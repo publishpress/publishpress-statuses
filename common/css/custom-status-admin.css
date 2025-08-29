@@ -650,9 +650,12 @@ user-select: none;
     color: #000 !important;
 }
 
+.pp-visibility-statuses-promo
+{
+  background-color: #fcf0ea !important;
+}
 
 .pp-cta-section {
-  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
   border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 24px;
@@ -696,7 +699,7 @@ user-select: none;
 }
 .pp-cta-section .pp-cta-buttons .pp-learn-more-link {
   color: var(--primary-color);
-  background: transparent;
+  background: white;
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
@@ -725,10 +728,12 @@ user-select: none;
 .pp-revisions-pro-features ul {
   display: inline-block;
   text-align: left;
+  padding-bottom: 10px;
 }
 
 .pp-revisions-pro-features li {
-  margin-bottom: 8px;
+  margin-bottom: 8px !important;
+  border-top: none !important;
 }
 
 .pp-revisions-pro-features li:before {
