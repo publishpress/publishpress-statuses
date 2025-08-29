@@ -369,11 +369,6 @@ if ('_pre-publish' == $key) {
 ?>
 <?php endif;?>
 
-<?php if (('_visibility-statuses' == $key) && !defined('PRESSPERMIT_PRO_VERSION')) {
-    echo ' <span style="font-style: italic"> ' . esc_html__('(customization requires Permissions Pro plugin)', 'publishpress-statuses') . '</span>';
-}
-?>
-
 <?php 
 do_action('publishpress_statuses_table_row', $key, []);
 ?>
@@ -582,6 +577,47 @@ do_action('publishpress_statuses_table_row', $key, []);
         <?php 
         endif;?>
         <?php
+
+        if (('private' == $item->name) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
+            <li class="pp-cta-section pp-visibility-statuses-promo">
+                <h4>
+                    <?php esc_html_e('Ready to customize post visibility?', 'revisionary'); ?>
+                </h4>
+                <p>
+                    <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'revisionary'); ?>
+                </p>
+
+                <div class="pp-revisions-pro-features">
+                    <ul>
+                        <li>
+                            &nbsp;<?php _e('Custom visibility status works like an alterante "Private" status', 'revisionary');?>
+                        </li>
+                        <li>
+                            &nbsp;<?php _e('Enable role-specific viewing', 'revisionary');?>
+                        </li>
+                        <li>
+                            &nbsp;<?php _e('Configure which roles can set a visibility status', 'revisionary');?>
+                        </li>
+                        <li>
+                            &nbsp;<?php _e('Optionally, control role-specific editing access for each visibility status', 'revisionary');?>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pp-cta-buttons">
+                    <a href="https://publishpress.com/statuses/" 
+                        class="button-primary button-large pp-upgrade-btn" 
+                        target="_blank">
+                        <?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
+                    </a>
+                    <a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
+                        target="_blank"
+                        class="pp-learn-more-link">
+                        <?php esc_html_e('Learn More', 'revisionary'); ?>
+                    </a>
+                </div>
+            </li>
+        <?php endif;
 	}
 
 	/**
