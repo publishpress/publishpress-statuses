@@ -650,6 +650,15 @@ user-select: none;
     color: #000 !important;
 }
 
+div.pp-statuses-warning {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-left-width: 4px;
+  border-left-color: #dba617;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  padding: 12px;
+}
+
 .pp-visibility-statuses-promo
 {
   background-color: #fcf0ea !important;

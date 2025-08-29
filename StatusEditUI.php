@@ -78,6 +78,12 @@ class StatusEditUI
             }
         }
 
+        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+        || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
+        :
+            $tabs['post_access'] = __('Post Access', 'publishpress-statuses');
+        endif;
+
         $tabs = apply_filters('publishpress_statuses_edit_status_tabs', $tabs, $status->name);
 
         $pp_tab = (!\PublishPress_Functions::empty_REQUEST('pp_tab')) ? \PublishPress_Functions::REQUEST_key('pp_tab') : 'name';
@@ -92,7 +98,29 @@ class StatusEditUI
             $class = ($default_tab == $tab) ? $class_selected : $class_unselected;  // todo: return to last tab
 
             echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
-                . esc_html($caption) . '</a></li>';
+                . esc_html($caption);
+                
+            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION')) {
+                $badge =
+                [
+                    'text' => 'PRO',
+                    'bg_color' => '#8B5CF6',
+                    'class' => 'pp-pro-badge'
+                ];
+                $badge_text = isset($badge['text']) ? esc_html($badge['text']) : 'PRO';
+                $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#8B5CF6';
+                $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#8B5CF6';
+                $badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
+                
+                printf(
+                    '<span class="pp-tab-badge %s" style="background: %s; color: white; font-size: 10px; font-weight: 600; padding: 2px 4px; border-radius: 10px; margin-left: 0; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">%s</span>',
+                    $badge_class,
+                    $badge_bg_color,
+                    $badge_text
+                );
+            }
+                
+            echo '</a></li>';
         }
 
         echo '</ul>';
@@ -165,7 +193,14 @@ class StatusEditUI
             self::tabContent('roles', $status, $default_tab);
             self::tabContent('post_types', $status, $default_tab);
 
-            do_action('publishpress_statuses_edit_status_tab_content', $status, $default_tab);
+            if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
+            {
+                self::tabContent('post_access', $status, $default_tab);
+            
+            } elseif (class_exists('PublishPress\StatusCapabilities') && \PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)) {
+                do_action('publishpress_statuses_edit_status_tab_content', $status, $default_tab);
+            }
             ?>
 
             <p class="submit">
@@ -490,6 +525,64 @@ class StatusEditUI
                                 value="<?php echo esc_attr(stripslashes($button_label)); ?>" class="regular-text"  /></td>
                     </tr>
                 <?php endif;
+                break;
+
+            case 'post_access' :
+                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+                :?>
+                    <div class="pp-cta-section pp-status-permissions-promo">
+                        <h4>
+                            <?php esc_html_e('Ready to customize post access for statuses?', 'publishpress-statuses'); ?>
+                        </h4>
+                        <p>
+                            <?php esc_html_e('Get PublishPress Capabilities Pro for status-specific post access control.', 'publishpress-statuses'); ?>
+                        </p>
+
+                        <div class="pp-revisions-pro-features">
+                            <ul>
+                                <li>
+                                    &nbsp;<?php _e('Control which roles can assign a status', 'publishpress-statuses');?>
+                                </li>
+                                <li>
+                                    &nbsp;<?php _e('Control which roles can edit or delete posts per-status', 'publishpress-statuses');?>
+                                </li>
+                                <li>
+                                    &nbsp;<?php _e('Set capabilities separately for each post type', 'publishpress-statuses');?>
+                                </li>
+                                <li>
+                                    &nbsp;<?php _e('User-friendly checkbox grid to assign capabilities', 'publishpress-statuses');?>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pp-cta-buttons">
+                            <a href="https://publishpress.com/capabilities/" 
+                                class="button-primary button-large pp-upgrade-btn" 
+                                target="_blank">
+                                <?php esc_html_e('Get PublishPress Capabilities Pro', 'publishpress-statuses'); ?>
+                            </a>
+                            <a href="https://publishpress.com/knowledge-base/extended-capabilities-statuses/" 
+                                target="_blank"
+                                class="pp-learn-more-link">
+                                <?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
+                            </a>
+                        </div>
+                    </div>
+                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status_obj)) :?>
+                    <br>
+                    <div class="pp-statuses-warning">
+                        <?php 
+                        printf(
+                            esc_html__('Status-specific post capabilities are %1$scurrently disabled%2$s by PublishPress Capabilities Pro. You can %3$schange this setting%4$s.', 'publishpress-statuses'),
+                            '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
+                            '</a>',
+                            '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
+                            '</a>'
+                        );
+                        ?>
+                    </div>
+                <?php endif;
+
                 break;
         }
 
