@@ -605,12 +605,12 @@ do_action('publishpress_statuses_table_row', $key, []);
                 </div>
 
                 <div class="pp-cta-buttons">
-                    <a href="https://publishpress.com/statuses/" 
+                    <a href="https://publishpress.com/permissions/" 
                         class="button-primary button-large pp-upgrade-btn" 
                         target="_blank">
-                        <?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
+                        <?php esc_html_e('Get Permissions Pro', 'publishpress-statuses'); ?>
                     </a>
-                    <a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
+                    <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
                         target="_blank"
                         class="pp-learn-more-link">
                         <?php esc_html_e('Learn More', 'revisionary'); ?>
