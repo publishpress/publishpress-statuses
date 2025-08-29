@@ -581,25 +581,25 @@ do_action('publishpress_statuses_table_row', $key, []);
         if (('private' == $item->name) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
-                    <?php esc_html_e('Ready to customize post visibility?', 'revisionary'); ?>
+                    <?php esc_html_e('Ready to customize post visibility?', 'publishpress-statuses'); ?>
                 </h4>
                 <p>
-                    <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'revisionary'); ?>
+                    <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
                 </p>
 
                 <div class="pp-revisions-pro-features">
                     <ul>
                         <li>
-                            &nbsp;<?php _e('Custom visibility status works like an alterante "Private" status', 'revisionary');?>
+                            &nbsp;<?php _e('Custom visibility status works like an alterante "Private" status', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Enable role-specific viewing', 'revisionary');?>
+                            &nbsp;<?php _e('Enable role-specific viewing', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Configure which roles can set a visibility status', 'revisionary');?>
+                            &nbsp;<?php _e('Configure which roles can set a visibility status', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Optionally, control role-specific editing access for each visibility status', 'revisionary');?>
+                            &nbsp;<?php _e('Optionally, control role-specific editing access for each visibility status', 'publishpress-statuses');?>
                         </li>
                     </ul>
                 </div>
@@ -613,7 +613,7 @@ do_action('publishpress_statuses_table_row', $key, []);
                     <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
                         target="_blank"
                         class="pp-learn-more-link">
-                        <?php esc_html_e('Learn More', 'revisionary'); ?>
+                        <?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
                     </a>
                 </div>
             </li>
