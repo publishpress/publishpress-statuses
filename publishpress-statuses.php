@@ -115,7 +115,7 @@ if (false === $publishpress_statuses_loaded_by_pro) {
             function($links, $file)
             {
                 if ($file == plugin_basename(__FILE__)) {
-                    $links[]= __('<strong>This plugin can be deleted.</strong>', 'revisionary');
+                    $links[]= __('<strong>This plugin can be deleted.</strong>', 'publishpress-statuses');
                 }
 
                 return $links;
