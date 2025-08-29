@@ -151,28 +151,28 @@ class StatusListTable extends \WP_List_Table
     <!-- CTA Section -->
 	<div class="pp-cta-section">
 		<h4>
-			<?php esc_html_e('Ready to enhance your revision workflow?', 'revisionary'); ?>
+			<?php esc_html_e('Ready to enhance your revision workflow?', 'publishpress-statuses'); ?>
 		</h4>
 		<p>
-			<?php esc_html_e('Upgrade to PublishPress Statuses Pro and optimize your revision process with custom revision statuses.', 'revisionary'); ?>
+			<?php esc_html_e('Upgrade to PublishPress Statuses Pro and optimize your revision process with custom revision statuses.', 'publishpress-statuses'); ?>
 		</p>
 
 		<div class="pp-revisions-pro-features">
 			<ul>
 				<li>
-					&nbsp;<?php _e('Define your own statuses before or after Revision Submitted', 'revisionary');?>
+					&nbsp;<?php _e('Define your own statuses before or after Revision Submitted', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('New predefined statuses: Deferred, Needs Work, Rejected', 'revisionary');?>
+					&nbsp;<?php _e('New predefined statuses: Deferred, Needs Work, Rejected', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Statuses can be specific to a post type', 'revisionary');?>
+					&nbsp;<?php _e('Statuses can be specific to a post type', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Control access to statuses per-role', 'revisionary');?>
+					&nbsp;<?php _e('Control access to statuses per-role', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Status workflow can be nested with sub-statuses', 'revisionary');?>
+					&nbsp;<?php _e('Status workflow can be nested with sub-statuses', 'publishpress-statuses');?>
 				</li>
 			</ul>
 		</div>
@@ -181,12 +181,12 @@ class StatusListTable extends \WP_List_Table
 			<a href="https://publishpress.com/statuses/" 
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
-				<?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
+				<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses'); ?>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
 				target="_blank"
 				class="pp-learn-more-link">
-				<?php esc_html_e('Learn More', 'revisionary'); ?>
+				<?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
 			</a>
 		</div>
 	</div>
