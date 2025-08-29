@@ -148,21 +148,50 @@ class StatusListTable extends \WP_List_Table
 <?php if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ('revision' == \PublishPress_Functions::REQUEST_key('status_type'))):?>
     <div id="pp-statuses-promo">
     
-    <div class="pp-pro-banner" style="margin-bottom: 20px">
-		<div>
-			<h2><?php _e('Unlock Revision Statuses', 'publishpress-statuses');?></h2>
-			<p><?php _e('Install Statuses Pro to enhance your workflow with custom revision statuses.', 'publishpress-statuses');?></p>
+    <!-- CTA Section -->
+	<div class="pp-cta-section">
+		<h4>
+			<?php esc_html_e('Ready to enhance your revision workflow?', 'revisionary'); ?>
+		</h4>
+		<p>
+			<?php esc_html_e('Upgrade to PublishPress Statuses Pro and optimize your revision process with custom revision statuses.', 'revisionary'); ?>
+		</p>
+
+		<div class="pp-revisions-pro-features">
+			<ul>
+				<li>
+					&nbsp;<?php _e('Define your own statuses before or after Revision Submitted', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('New predefined statuses: Deferred, Needs Work, Rejected', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Statuses can be specific to a post type', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Control access to statuses per-role', 'revisionary');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Status workflow can be nested with sub-statuses', 'revisionary');?>
+				</li>
+			</ul>
 		</div>
 
-        <!--
-		<div class="pp-pro-badge-banner">
-			<a href="https://publishpress.com/statuses/" target="_blank" class="pp-upgrade-btn">
-				<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses');?>
+		<div class="pp-cta-buttons">
+			<a href="https://publishpress.com/statuses/" 
+				class="button-primary button-large pp-upgrade-btn" 
+				target="_blank">
+				<?php esc_html_e('Upgrade to Pro', 'revisionary'); ?>
+			</a>
+			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
+				target="_blank"
+				class="pp-learn-more-link">
+				<?php esc_html_e('Learn More', 'revisionary'); ?>
 			</a>
 		</div>
-        -->
 	</div>
 
+	<?php if (!empty($_REQUEST['rvy_promo_img'])):?>
 	<div class="pp-integration-card">
 	<div>
 	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 100%; min-width: 797px; max-width: 860px;" />
@@ -183,6 +212,7 @@ class StatusListTable extends \WP_List_Table
 		</div>
 	</div>
 	</div>
+    <?php endif;?>
 
     </div>
 
