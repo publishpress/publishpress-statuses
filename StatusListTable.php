@@ -608,7 +608,7 @@ do_action('publishpress_statuses_table_row', $key, []);
                     <a href="https://publishpress.com/permissions/" 
                         class="button-primary button-large pp-upgrade-btn" 
                         target="_blank">
-                        <?php esc_html_e('Get Permissions Pro', 'publishpress-statuses'); ?>
+                        <?php esc_html_e('Get PublishPress Permissions Pro', 'publishpress-statuses'); ?>
                     </a>
                     <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
                         target="_blank"
