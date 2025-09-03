@@ -578,7 +578,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         endif;?>
         <?php
 
-        if (('private' == $item->name) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
+        if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
                     <?php esc_html_e('Ready to customize post visibility?', 'publishpress-statuses'); ?>
