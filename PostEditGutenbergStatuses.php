@@ -37,7 +37,9 @@ class PostEditGutenbergStatuses
             $next_status_obj = \PublishPress_Statuses::defaultStatusProgression($post_id);
         }
 
-        if ($args['workflowSequence'] = \PublishPress_Statuses::instance()->options->moderation_statuses_default_by_sequence) {
+        $default_by_sequence = \PublishPress_Statuses::instance()->workflow_by_sequence;
+
+        if ($args['workflowSequence'] = $default_by_sequence) {
             $default_by_sequence = true;
             $max_status_obj = \PublishPress_Statuses::defaultStatusProgression($post_id, ['default_by_sequence' => false, 'skip_current_status_check' => true]);
 
@@ -135,6 +137,8 @@ class PostEditGutenbergStatuses
         $args['isGutenbergLegacy'] = ! ((version_compare($wp_version, '6.6', '>=') && !defined('GUTENBERG_VERSION')) || (defined('GUTENBERG_VERSION') && version_compare(GUTENBERG_VERSION, '18.5', '>=')));
 
         $args['isStatusesPro'] = defined('PUBLISHPRESS_STATUSES_PRO_VERSION');
+
+        $args['workflowDisabled'] = \PublishPress_Statuses::instance()->workflow_disabled;
 
         wp_localize_script('publishpress-statuses-post-block-edit', 'ppObjEdit', $args);
     }
