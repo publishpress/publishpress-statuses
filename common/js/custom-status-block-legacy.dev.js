@@ -556,6 +556,7 @@ registerPlugin('publishpress-custom-status-block', {
   render: plugin
 });
 
+if (!ppObjEdit.workflowDisabled) {
 var PPWorkflowAction = function PPWorkflowAction(_ref) {
   var onUpdate = _ref.onUpdate,
     wfa = _ref.ppWorkflowAction;
@@ -632,3 +633,4 @@ registerPlugin('publishpress-statuses-workflow-action', {
   icon: 'admin-site',
   render: pluginWorkflow
 });
+}

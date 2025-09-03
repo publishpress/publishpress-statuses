@@ -869,8 +869,8 @@ class StatusHandler {
 
                     case 'force_editor_detection':
                     case 'label_storage':
+                    case 'moderation_statuses_default_by_sequence':
                         $new_options[$option_name] = sanitize_key($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]);
-
                         break;
 
                     default:

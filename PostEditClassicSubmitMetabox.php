@@ -188,7 +188,7 @@ class PostEditClassicSubmitMetabox
 
                 if (!$disable_bypass
                 && (empty($post_status_obj) || (empty($post_status_obj->public) && empty($post_status_obj->private) && ('future' != $post_status)))
-                && \PublishPress_Statuses::instance()->options->moderation_statuses_default_by_sequence
+                && \PublishPress_Statuses::instance()->workflow_by_sequence
                 && (current_user_can('administrator')
                 || (!empty($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->publish_posts)) 
                 || current_user_can('pp_bypass_status_sequence'))
@@ -456,6 +456,17 @@ class PostEditClassicSubmitMetabox
         foreach (array_keys($defaults) as $var) {
             $$var = $args[$var];
         }
+
+        if (\PublishPress_Statuses::instance()->workflow_disabled) :?>
+            <div id="publishing-action">
+                <span class="spinner"></span>
+                <input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Update' ); ?>" />
+                <input name="save" type="submit" class="button button-primary button-large" id="publish" value="<?php esc_attr_e( 'Update' ); ?>" />
+            </div>
+            <div class="clear"></div>
+        <?php 
+            return;
+        endif;
         ?>
         <span class="spinner" style="display:none"></span>
 
