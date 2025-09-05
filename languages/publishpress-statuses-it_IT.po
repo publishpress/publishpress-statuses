@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Statuses 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2025-03-05T19:57:53+00:00\n"
-"PO-Revision-Date: 2025-03-07 12:38+0100\n"
+"POT-Creation-Date: 2025-08-01T04:22:40+00:00\n"
+"PO-Revision-Date: 2025-09-02 10:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.7\n"
 "X-Domain: publishpress-statuses\n"
 
 #. Plugin Name of the plugin
@@ -43,7 +43,21 @@ msgstr "PublishPress"
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
 
-#: Admin.php:272
+#: Admin.php:18 Admin.php:352 Admin.php:353 PublishPress_Statuses.php:328
+#: PublishPress_Statuses.php:329 StatusesUI.php:92
+msgid "Statuses"
+msgstr "Stati"
+
+#: Admin.php:19
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: Admin.php:22 includes-core/CoreAdmin.php:108 StatusListTable.php:160
+#: StatusListTable.php:181
+msgid "Upgrade to Pro"
+msgstr "Aggiorna a Pro"
+
+#: Admin.php:291
 msgid ""
 "Are you sure you want to delete the post status? All posts with this status "
 "will be assigned to the default status."
@@ -51,43 +65,38 @@ msgstr ""
 "Desideri davvero eliminare lo stato dell'articolo? Tutti gli articoli con "
 "questo stato verranno assegnati allo stato predefinito."
 
-#: Admin.php:333 Admin.php:334 PublishPress_Statuses.php:319
-#: PublishPress_Statuses.php:320 StatusesUI.php:92
-msgid "Statuses"
-msgstr "Stati"
-
-#: Admin.php:344 Admin.php:345 StatusesUI.php:817
+#: Admin.php:363 Admin.php:364 StatusesUI.php:818
 msgid "Add New"
 msgstr "Aggiungi nuovo"
 
-#: Admin.php:431 PublishPress_Statuses.php:776
+#: Admin.php:450 PublishPress_Statuses.php:785
 msgid "Approve"
 msgstr "Approva"
 
-#: Admin.php:433 PublishPress_Statuses.php:748
+#: Admin.php:452 PublishPress_Statuses.php:757
 msgid "Assign"
 msgstr "Assegna"
 
-#: Admin.php:435 PublishPress_Statuses.php:762
+#: Admin.php:454 PublishPress_Statuses.php:771
 msgid "Mark In Progress"
 msgstr "Segna in fase di lavorazione"
 
 #. translators: %s is the status label
-#: Admin.php:448
+#: Admin.php:467
 msgid "Set to %s"
 msgstr "Imposta a %s"
 
 #. translators: %s is the status label
-#: Admin.php:457 PostEditGutenberg.php:75
+#: Admin.php:476 PostEditGutenberg.php:75
 msgid "Save as %s"
 msgstr "Salva come %s"
 
 #. translators: %s is the name of a custom public status
-#: Admin.php:469
+#: Admin.php:488
 msgid "Public (%s)"
 msgstr "Pubblico (%s)"
 
-#: Admin.php:540 PostEditClassic.php:179 PostEditGutenberg.php:72
+#: Admin.php:559 PostEditClassic.php:179 PostEditGutenberg.php:72
 #: PostEditGutenberg.php:259 PostEditGutenbergStatuses.php:44
 #: PostEditGutenbergStatuses.php:64 PostEditGutenbergStatuses.php:72
 msgid "Advance Status"
@@ -132,10 +141,6 @@ msgstr "Nessuna pubblicità dentro al plugin"
 #: includes-core/CoreAdmin.php:104
 msgid "Prompt, professional support"
 msgstr "Supporto rapido e professionale"
-
-#: includes-core/CoreAdmin.php:108
-msgid "Upgrade to Pro"
-msgstr "Aggiorna a Pro"
 
 #: includes-core/CoreAdmin.php:115
 msgid "Need Statuses Support?"
@@ -258,160 +263,171 @@ msgstr ""
 "Per utilizzare PublishPress Status, aggiorna PublishPress Capabilities Pro "
 "alla versione %s o superiore."
 
-#: PublishPress_Statuses.php:320
+#: PublishPress_Statuses.php:296
+msgid ""
+"Can bypass normal status progression (publishing or setting to max status)."
+msgstr ""
+"Può aggirare la normale progressione di stato (pubblicazione o impostazione "
+"allo stato massimo)."
+
+#: PublishPress_Statuses.php:297
+msgid "Manage Statuses plugin settings."
+msgstr "Gestisci le impostazioni del plugin Statuses."
+
+#: PublishPress_Statuses.php:329
 msgid "Status"
 msgstr "Stato"
 
-#: PublishPress_Statuses.php:334
+#: PublishPress_Statuses.php:343
 msgid "Core Post Statuses"
 msgstr "Stati dell'articolo di base"
 
-#: PublishPress_Statuses.php:597
+#: PublishPress_Statuses.php:606
 msgid "New post, not yet submitted."
 msgstr "Nuovo articolo non ancora inviato."
 
-#: PublishPress_Statuses.php:618
+#: PublishPress_Statuses.php:627
 msgid "Post is awaiting review."
 msgstr "L'articolo è in attesa di revisione."
 
-#: PublishPress_Statuses.php:637
+#: PublishPress_Statuses.php:646
 msgid "Post is scheduled for publication."
 msgstr "L'articolo è programmato per la pubblicazione."
 
-#: PublishPress_Statuses.php:655
+#: PublishPress_Statuses.php:664
 msgid "Post is published, publicly visible."
 msgstr "L'articolo è pubblicato, visibile pubblicamente."
 
-#: PublishPress_Statuses.php:673
+#: PublishPress_Statuses.php:682
 msgid "Post is published with private visibility."
 msgstr "L'articolo è pubblicato con visibilità privata."
 
-#: PublishPress_Statuses.php:732
+#: PublishPress_Statuses.php:741
 msgid "Pitch"
 msgstr "Idea"
 
-#: PublishPress_Statuses.php:734
+#: PublishPress_Statuses.php:743
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Idea"
 
-#: PublishPress_Statuses.php:735
+#: PublishPress_Statuses.php:744
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Idea proposta; in attesa di accettazione."
 
-#: PublishPress_Statuses.php:746
+#: PublishPress_Statuses.php:755
 msgid "Assigned"
 msgstr "Assegnato"
 
-#: PublishPress_Statuses.php:749
+#: PublishPress_Statuses.php:758
 msgid "Post idea assigned to writer."
 msgstr "Idea di articolo assegnato allo scrittore."
 
-#: PublishPress_Statuses.php:760
+#: PublishPress_Statuses.php:769
 msgid "In Progress"
 msgstr "In lavorazione"
 
-#: PublishPress_Statuses.php:763
+#: PublishPress_Statuses.php:772
 msgid "Writer is working on the post."
 msgstr "Lo scrittore sta lavorando sull'articolo."
 
-#: PublishPress_Statuses.php:774
+#: PublishPress_Statuses.php:783
 msgid "Approved"
 msgstr "Approvato"
 
-#: PublishPress_Statuses.php:777
+#: PublishPress_Statuses.php:786
 msgid "Post has been approved for publication."
 msgstr "L'articolo è stato approvato per la pubblicazione."
 
-#: PublishPress_Statuses.php:788
+#: PublishPress_Statuses.php:797
 msgid "Deferred"
 msgstr "Rimandato"
 
-#: PublishPress_Statuses.php:790
+#: PublishPress_Statuses.php:799
 msgid "Defer"
 msgstr "Rimandare"
 
-#: PublishPress_Statuses.php:791
+#: PublishPress_Statuses.php:800
 msgid "Post has been deferred for future consideration."
 msgstr "L'articolo è stato rimandato per una futura considerazione."
 
-#: PublishPress_Statuses.php:802
+#: PublishPress_Statuses.php:811
 msgid "Needs Work"
 msgstr "Necessita modifiche"
 
-#: PublishPress_Statuses.php:804
+#: PublishPress_Statuses.php:813
 msgid "Set to Needs Work"
 msgstr "Imposta come necessita modifiche"
 
-#: PublishPress_Statuses.php:805
+#: PublishPress_Statuses.php:814
 msgid "Post needs work before further review."
 msgstr "L'articolo necessita delle modifiche prima di una nuova revisione."
 
-#: PublishPress_Statuses.php:816
+#: PublishPress_Statuses.php:825
 msgid "Rejected"
 msgstr "Rifiutato"
 
-#: PublishPress_Statuses.php:818
+#: PublishPress_Statuses.php:827
 msgid "Reject"
 msgstr "Rifiutare"
 
-#: PublishPress_Statuses.php:819
+#: PublishPress_Statuses.php:828
 msgid "Post has been rejected."
 msgstr "L'articolo è stato rifiutato."
 
-#: PublishPress_Statuses.php:852
+#: PublishPress_Statuses.php:861
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Flusso di lavorazione di pre-pubblicazione alternativo:"
 
-#: PublishPress_Statuses.php:919
+#: PublishPress_Statuses.php:928
 msgid "Disabled Statuses:"
 msgstr "Stati disabilitati:"
 
-#: PublishPress_Statuses.php:935
+#: PublishPress_Statuses.php:944
 msgid "Committee"
 msgstr "Comitato"
 
-#: PublishPress_Statuses.php:937
+#: PublishPress_Statuses.php:946
 msgid "Refer to Committee"
 msgstr "Rinviare al comitato"
 
-#: PublishPress_Statuses.php:938
+#: PublishPress_Statuses.php:947
 msgid "Post has been referred to committee."
 msgstr "L'articolo è stato rinviato al comitato."
 
-#: PublishPress_Statuses.php:950
+#: PublishPress_Statuses.php:959
 msgid "Committee Review"
 msgstr "Revisione del comitato"
 
-#: PublishPress_Statuses.php:952
+#: PublishPress_Statuses.php:961
 msgid "Set to Committee Review"
 msgstr "Imposta come in revisione del comitato"
 
-#: PublishPress_Statuses.php:953
+#: PublishPress_Statuses.php:962
 msgid "Committee is reviewing the post."
 msgstr "Il comitato sta esaminando l'articolo."
 
-#: PublishPress_Statuses.php:965
+#: PublishPress_Statuses.php:974
 msgid "Committee Progress"
 msgstr "Progresso del comitato"
 
-#: PublishPress_Statuses.php:967
+#: PublishPress_Statuses.php:976
 msgid "Set to Committee Progress"
 msgstr "Imposta come in corso del comitato"
 
-#: PublishPress_Statuses.php:968
+#: PublishPress_Statuses.php:977
 msgid "Committee is editing the post."
 msgstr "Il comitato ha modificato l'articolo."
 
-#: PublishPress_Statuses.php:980
+#: PublishPress_Statuses.php:989
 msgid "Committee Approved"
 msgstr "Approvato dal comitato"
 
-#: PublishPress_Statuses.php:982
+#: PublishPress_Statuses.php:991
 msgid "Set Committee Approval"
 msgstr "Imposta l'approvazione del comitato"
 
-#: PublishPress_Statuses.php:983
+#: PublishPress_Statuses.php:992
 msgid "Committee has approved the post."
 msgstr "Il comitato ha approvato l'articolo."
 
@@ -538,7 +554,7 @@ msgstr "Aggiungi stato dell'articolo"
 msgid "Add Status"
 msgstr "Aggiungi stato"
 
-#: StatusesUI.php:87 StatusesUI.php:930
+#: StatusesUI.php:87 StatusesUI.php:965
 msgid "PublishPress Statuses Settings"
 msgstr "Impostazioni di PublishPress Statuses"
 
@@ -830,12 +846,12 @@ msgstr "Modifica stato: %s"
 msgid "Edit %1$s: %2$s"
 msgstr "Modifica %1$s: %2$s"
 
-#: StatusesUI.php:816 StatusesUI.php:916
+#: StatusesUI.php:817 StatusesUI.php:951
 msgid "Add New Pre-Publication Status"
 msgstr "Aggiungi nuovo stato di pre-pubblicazione"
 
 #. translators: %1$s and %2$s is link markup
-#: StatusesUI.php:833
+#: StatusesUI.php:835
 msgid ""
 "For custom Visibility Statuses, please %1$senable the Status Control "
 "module%2$s of Permissions Pro."
@@ -843,15 +859,19 @@ msgstr ""
 "Per gli stati di visibilità personalizzati, devi %1$sabilitare il modulo di "
 "controllo degli stati%2$s di Permissions Pro."
 
-#: StatusesUI.php:874
+#: StatusesUI.php:876
 msgid "Pre-Publication"
 msgstr "Pre-pubblicazione"
 
-#: StatusesUI.php:882
+#: StatusesUI.php:884
 msgid "Visibility"
 msgstr "Visibilità"
 
-#: StatusesUI.php:920
+#: StatusesUI.php:895
+msgid "Revision"
+msgstr "Revisione"
+
+#: StatusesUI.php:955
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
@@ -939,15 +959,37 @@ msgstr "Posizione"
 msgid "Status Name"
 msgstr "Nome stato"
 
-#: StatusListTable.php:195
-msgid ""
-"To define and control Revision statuses, upgrade to the %1$sPublishPress "
-"Statuses Pro%2$s plugin."
-msgstr ""
-"Per definire e controllare gli stati delle revisioni, aggiornare il plugin "
-"%1$sPublishPress Statuses Pro%2$s."
+#: StatusListTable.php:153
+msgid "Unlock Revision Statuses"
+msgstr "Sblocca gli stati delle revisioni"
 
-#: StatusListTable.php:204
+#: StatusListTable.php:154
+msgid ""
+"Install Statuses Pro to enhance your workflow with custom revision statuses."
+msgstr ""
+"Installa Statuses Pro per migliorare il tuo flusso di lavoro con stati di "
+"revisione personalizzati."
+
+#: StatusListTable.php:172
+msgid "Premium Feature"
+msgstr "Caratteristica Premium"
+
+#: StatusListTable.php:173
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr ""
+"Installa Statuses Pro per sbloccare gli stati di revisione personalizzati."
+
+#: StatusListTable.php:174
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Configura qualsiasi tipo di contenuto e ruolo in modo che corrisponda al tuo "
+"flusso di lavoro di modifica."
+
+#: StatusListTable.php:177
+msgid "Learn More"
+msgstr "Approfondisci"
+
+#: StatusListTable.php:238
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
@@ -955,21 +997,37 @@ msgstr ""
 "Per definire e controllare gli stati delle revisioni, aggiornare il plugin "
 "%1$sPublishPress Revisions%2$s alla versione %3$s o superiore."
 
-#: StatusListTable.php:236
+#: StatusListTable.php:270
 msgid "Main Workflow:"
 msgstr "Flusso di lavoro principale:"
 
-#: StatusListTable.php:258
+#: StatusListTable.php:292
 msgid "Drop any status here to include it in main workflow for new posts."
 msgstr ""
 "Rilascia qui qualsiasi stato da inserire nel flusso di lavoro principale per "
 "i nuovi articoli."
 
-#: StatusListTable.php:285
+#: StatusListTable.php:327
+msgid ""
+"Statuses in the main workflow are presented for convenient default selection "
+"when updating an unpublished post."
+msgstr ""
+"Gli stati nel flusso di lavoro principale vengono presentati per una comoda "
+"selezione predefinita durante l'aggiornamento di un articolo non pubblicato."
+
+#: StatusListTable.php:334
+msgid ""
+"Statuses in the main workflow are manually selectable when editing an "
+"unpublished post."
+msgstr ""
+"Gli stati nel flusso di lavoro principale possono essere selezionati "
+"manualmente durante la modifica di un articolo non pubblicato."
+
+#: StatusListTable.php:343
 msgid "(customization requires Permissions Pro plugin)"
 msgstr "(per la personalizzazione è necessario il plugin Permissions Pro)"
 
-#: StatusListTable.php:309
+#: StatusListTable.php:367
 msgid ""
 "Drop any status here to make it manually selectable outside the main "
 "workflow."
@@ -977,43 +1035,54 @@ msgstr ""
 "Rilascia qui qualsiasi stato per renderlo selezionabile manualmente al di "
 "fuori del flusso di lavoro principale."
 
-#: StatusListTable.php:328
+#: StatusListTable.php:386
 msgid "Drop any status here to disable."
 msgstr "Rilascia qui qualsiasi stato da disabilitare."
 
-#: StatusListTable.php:376
+#: StatusListTable.php:434
 msgid "Standard Publication:"
 msgstr "Pubblicazione standard:"
 
-#: StatusListTable.php:383
+#: StatusListTable.php:441
 msgid "Visibility Statuses for Private Publication:"
 msgstr "Stati di visibilità per pubblicazione privata:"
 
-#: StatusListTable.php:390
+#: StatusListTable.php:448
 msgid "Alternate Workflows:"
 msgstr "Flusso di lavorazione alternativo:"
 
 #. translators: %s is the opening and closing <span> tags
-#: StatusListTable.php:401
+#: StatusListTable.php:459
 msgid "Disabled Statuses (drag to re-enable):"
 msgstr "Stati disabilitati (trascina per riabilitarli):"
 
 #. translators: %s is the list of post types
-#: StatusListTable.php:575
+#: StatusListTable.php:633
 msgid "%s, more..."
 msgstr "%s, altro…"
 
-#: StatusListTable.php:657
+#: StatusListTable.php:715
 msgid "No custom statuses found."
 msgstr "Nessun stato personalizzato trovato."
 
-#: StatusListTable.php:726
+#: StatusListTable.php:786
+msgid "Core"
+msgstr "Core"
+
+#: StatusListTable.php:790
 msgid "Default"
 msgstr "Predefinito"
 
-#: StatusListTable.php:744
+#: StatusListTable.php:815
 msgid "X"
 msgstr "X"
+
+#~ msgid ""
+#~ "To define and control Revision statuses, upgrade to the %1$sPublishPress "
+#~ "Statuses Pro%2$s plugin."
+#~ msgstr ""
+#~ "Per definire e controllare gli stati delle revisioni, aggiornare il "
+#~ "plugin %1$sPublishPress Statuses Pro%2$s."
 
 #~ msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 #~ msgstr "Se ti piace %1$s, per favore lasciaci una valutazione %2$s. Grazie!"
@@ -1040,9 +1109,6 @@ msgstr "X"
 
 #~ msgid "(same as %s)"
 #~ msgstr "(uguale a %s)"
-
-#~ msgid "Settings"
-#~ msgstr "Impostazioni"
 
 #~ msgid "%s <span class=\"count\">()</span>"
 #~ msgstr "%s <span class=\"count\">()</span>"
@@ -1112,9 +1178,6 @@ msgstr "X"
 #~ msgstr ""
 #~ "Fai clic sulla proprietà di qualsiasi stato per modificarlo. Trascina per "
 #~ "riordinare, annidare o spostare in una sezione diversa."
-
-#~ msgid "Revision"
-#~ msgstr "Revisione"
 
 #~ msgid "You are not permitted to do that."
 #~ msgstr "Non hai i permessi per fare ciò."
