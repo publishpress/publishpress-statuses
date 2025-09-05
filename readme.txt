@@ -167,6 +167,11 @@ Extended Post Status is a very useful plugin. With PublshPress Statuses we're ai
 
 == Changelog ==
 
+= [1.1.6] - 8 Sep 2025 =
+* Feature : Plugin setting to disable Workflow Guidance
+* Change : Status capability descriptions
+* Lang : Update ES, FR, IT translations
+
 = [1.1.5] - 31 Jul 2025 =
 * Change : Add contextual promo for Revision Statuses (Pro)
 
