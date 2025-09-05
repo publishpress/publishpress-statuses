@@ -669,6 +669,7 @@ div.pp-statuses-warning {
   border-radius: 12px;
   padding: 24px;
   text-align: center;
+  background-color: white;
 }
 .pp-cta-section h4 {
   margin: 0 0 12px 0;
@@ -730,6 +731,11 @@ div.pp-statuses-warning {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.pp-cta-section p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
 .pp-revisions-pro-features {
   text-align: center;
 }
@@ -738,6 +744,8 @@ div.pp-statuses-warning {
   display: inline-block;
   text-align: left;
   padding-bottom: 10px;
+  color: #6b7280;
+  font-size: 14px;
 }
 
 .pp-revisions-pro-features li {
@@ -764,6 +772,9 @@ div.pp-statuses-warning {
   color:#181818 !important;
 }
 
+#pp-statuses-promo .pp-cta-section {
+    padding-top: 34px;
+}
 
 .pp-pro-badge {
     background: #6950bd;
@@ -779,6 +790,7 @@ div.pp-statuses-warning {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 10px;
   }
 #pp-statuses-promo .pp-pro-banner h2 {
     font-size: 1.4rem;
