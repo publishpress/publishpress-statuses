@@ -109,11 +109,11 @@ class ModuleAdminUI_Base {
         <hr>
         <nav>
         <ul>
-        <li><a href="<?php echo esc_url($ppcom_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('About %s', 'publishpress-functions'), esc_html($plugin_title));?>"><?php esc_html_e('About', 'publishpress-functions');?>
+        <li><a href="<?php echo esc_url($ppcom_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('About %s', 'publishpress-statuses'), esc_html($plugin_title));?>"><?php esc_html_e('About', 'publishpress-statuses');?>
         </a></li>
-        <li><a href="<?php echo esc_url($ppcom_doc_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('%s Documentation', 'publishpress-functions'), esc_html($plugin_title));?>"><?php esc_html_e('Documentation', 'publishpress-functions');?>
+        <li><a href="<?php echo esc_url($ppcom_doc_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('%s Documentation', 'publishpress-statuses'), esc_html($plugin_title));?>"><?php esc_html_e('Documentation', 'publishpress-statuses');?>
         </a></li>
-        <li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php esc_attr_e('Contact the PublishPress team', 'publishpress-functions');?>"><?php esc_html_e('Contact', 'publishpress-functions');?>
+        <li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php esc_attr_e('Contact the PublishPress team', 'publishpress-statuses');?>"><?php esc_html_e('Contact', 'publishpress-statuses');?>
         </a></li>
         </ul>
         </nav>
