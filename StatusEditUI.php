@@ -533,7 +533,7 @@ class StatusEditUI
                 :?>
                     <div class="pp-cta-section pp-status-permissions-promo">
                         <h4>
-                            <?php esc_html_e('Ready to customize post access for statuses?', 'publishpress-statuses'); ?>
+                            <?php esc_html_e('Upgrade to choose who can manage posts in each status', 'publishpress-statuses'); ?>
                         </h4>
                         <p>
                             <?php esc_html_e('Get PublishPress Capabilities Pro for status-specific post access control.', 'publishpress-statuses'); ?>
