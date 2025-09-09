@@ -581,7 +581,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
-                    <?php esc_html_e('Ready to customize post visibility?', 'publishpress-statuses'); ?>
+                    <?php esc_html_e('Upgrade to choose who can view your non-public posts?', 'publishpress-statuses'); ?>
                 </h4>
                 <p>
                     <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
@@ -590,16 +590,16 @@ do_action('publishpress_statuses_table_row', $key, []);
                 <div class="pp-revisions-pro-features">
                     <ul>
                         <li>
-                            &nbsp;<?php _e('Custom visibility status works like an alterante "Private" status', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Create multiple visibility statuses to show content to different users', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Enable role-specific viewing', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Choose which user roles can see posts in each status', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Configure which roles can set a visibility status', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Select which user roles can move posts to each status', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Optionally, control role-specific editing access for each visibility status', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Decide which user roles can edit posts in each status', 'publishpress-statuses');?>
                         </li>
                     </ul>
                 </div>
