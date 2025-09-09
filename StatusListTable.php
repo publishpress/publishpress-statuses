@@ -151,28 +151,25 @@ class StatusListTable extends \WP_List_Table
     <!-- CTA Section -->
 	<div class="pp-cta-section">
 		<h4>
-			<?php esc_html_e('Ready to enhance your revision workflow?', 'publishpress-statuses'); ?>
+			<?php esc_html_e('Upgrade to create an approval workflow for published content', 'publishpress-statuses'); ?>
 		</h4>
 		<p>
-			<?php esc_html_e('Upgrade to PublishPress Statuses Pro and optimize your revision process with custom revision statuses.', 'publishpress-statuses'); ?>
+			<?php esc_html_e('Create approval workflows using PublishPress Statuses Pro together with the PublishPress Revisions Pro plugin', 'publishpress-statuses'); ?>
 		</p>
 
 		<div class="pp-revisions-pro-features">
 			<ul>
 				<li>
-					&nbsp;<?php _e('Define your own statuses before or after Revision Submitted', 'publishpress-statuses');?>
+					&nbsp;<?php _e('The PublishPress Revisions plugin allows users to submit changes to published posts', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('New predefined statuses: Deferred, Needs Work, Rejected', 'publishpress-statuses');?>
+					&nbsp;<?php _e('PublishPress Statuses plugin enables you to add statuses for post changes created with Revisions', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Statuses can be specific to a post type', 'publishpress-statuses');?>
+					&nbsp;<?php _e('Each post type can have different Revisions statuses', 'publishpress-statuses');?>
 				</li>
 				<li>
-					&nbsp;<?php _e('Control access to statuses per-role', 'publishpress-statuses');?>
-				</li>
-				<li>
-					&nbsp;<?php _e('Status workflow can be nested with sub-statuses', 'publishpress-statuses');?>
+					&nbsp;<?php _e('You choose which users can manage content in each Revisions status', 'publishpress-statuses');?>
 				</li>
 			</ul>
 		</div>
@@ -581,7 +578,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
-                    <?php esc_html_e('Ready to customize post visibility?', 'publishpress-statuses'); ?>
+                    <?php esc_html_e('Upgrade to choose who can view your non-public posts?', 'publishpress-statuses'); ?>
                 </h4>
                 <p>
                     <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
@@ -590,16 +587,16 @@ do_action('publishpress_statuses_table_row', $key, []);
                 <div class="pp-revisions-pro-features">
                     <ul>
                         <li>
-                            &nbsp;<?php _e('Custom visibility status works like an alterante "Private" status', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Create multiple visibility statuses to show content to different users', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Enable role-specific viewing', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Choose which user roles can see posts in each status', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Configure which roles can set a visibility status', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Select which user roles can move posts to each status', 'publishpress-statuses');?>
                         </li>
                         <li>
-                            &nbsp;<?php _e('Optionally, control role-specific editing access for each visibility status', 'publishpress-statuses');?>
+                            &nbsp;<?php _e('Decide which user roles can edit posts in each status', 'publishpress-statuses');?>
                         </li>
                     </ul>
                 </div>

@@ -113,7 +113,7 @@ class StatusEditUI
                 $badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
                 
                 printf(
-                    '<span class="pp-tab-badge %s" style="background: %s; color: white; font-size: 10px; font-weight: 600; padding: 2px 4px; border-radius: 10px; margin-left: 0; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">%s</span>',
+                    ' <span class="pp-tab-badge %s" style="background: %s; color: white; font-size: 10px; font-weight: 600; padding: 2px 4px; border-radius: 10px; margin-left: 0; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">%s</span>',
                     $badge_class,
                     $badge_bg_color,
                     $badge_text
@@ -137,16 +137,11 @@ class StatusEditUI
                 $(this).addClass('nav-tab-active');
 
                 $('.publishpress-admin table.form-table').hide();
+                $('#editstatus > div').hide();
 
                 var panel = $(this).find('a').first().attr('href');
-
-                if ('#pp-name' == panel) {
-                    $('div.publishpress-admin form table').show();
-                    $('div.publishpress-admin form table.pp-statuses-options').hide();
-                } else {
-                    $(panel).show();
-                    $(panel).find('table').show();
-                }
+                $(panel).show();
+                $(panel + ' table.form-table').show();
             });
 
             // If the basic set status cap is changed on the Roles tab, mirror on Post Access tab and in type-specific Set caps
@@ -256,7 +251,7 @@ class StatusEditUI
             <tr class="form-field form-required">
                 <th scope="row" valign="top"><label for="label"><?php
                         _e(
-                            'Status Label',
+                            'Status Label',  
                             'publishpress-statuses'
                         ); ?></label></th>
                 <td><input name="status_label" id="label"
@@ -370,8 +365,6 @@ class StatusEditUI
     }
 
     private static function tabContent($tab, $status, $default_tab) {
-        $display = ($default_tab == $tab) ? '' : 'display:none';
-        
         // @todo
         $table_class = 'form-table pp-statuses-options';
         
@@ -380,7 +373,15 @@ class StatusEditUI
 
         $label_disabled = ('future' == $status) ? ' disabled ' : '';
 
-        echo "<div id='pp-" . esc_attr($tab) . "' style='clear:both;margin:0;style='" . esc_attr($display) . "' class='pp-options'>";
+        $display = 'margin:0';
+
+        if ($default_tab == $tab) {
+            $display .= ';display:none';
+        } else {
+            $display .= ';clear:both';
+        }
+
+        echo "<div id='pp-" . esc_attr($tab) . "' style='" . esc_attr($display) . "' class='pp-options'>";
 
         echo "<table class='" . esc_attr($table_class) . "' id='pp-" . esc_attr($tab) . "_table' style='" . esc_attr($display) . "'>";
 
@@ -532,7 +533,7 @@ class StatusEditUI
                 :?>
                     <div class="pp-cta-section pp-status-permissions-promo">
                         <h4>
-                            <?php esc_html_e('Ready to customize post access for statuses?', 'publishpress-statuses'); ?>
+                            <?php esc_html_e('Upgrade to choose who can manage posts in each status', 'publishpress-statuses'); ?>
                         </h4>
                         <p>
                             <?php esc_html_e('Get PublishPress Capabilities Pro for status-specific post access control.', 'publishpress-statuses'); ?>

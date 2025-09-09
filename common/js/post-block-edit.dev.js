@@ -472,6 +472,28 @@ jQuery(document).ready(function ($) {
         }, 100);
     });
 
+    $(document).on('change', '.e1mv6sxx2', function() {
+        if ($(this).val() === 'draft') {
+            setTimeout(function() {
+                if ($('span.presspermit-save-button').length) {
+                    $('span.presspermit-save-button button').css(
+                        {
+                            'display': 'flex',
+                            'z-index': '999'
+                        }
+                    ).attr('aria-disabled', 'false');
+                } else {
+                    $('.editor-header__settings .editor-post-save-draft').css(
+                        {
+                            'display': 'flex',
+                            'z-index': '999'
+                        }
+                    ).attr('aria-disabled', 'false');
+                }
+            }, 100);
+        }
+    });
+
     $(document).on('click', 'button.editor-post-save-draft', function () {
         $('span.presspermit-editor-button button').attr('aria-disabled', 'true');
 
