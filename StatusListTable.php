@@ -148,21 +148,47 @@ class StatusListTable extends \WP_List_Table
 <?php if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ('revision' == \PublishPress_Functions::REQUEST_key('status_type'))):?>
     <div id="pp-statuses-promo">
     
-    <div class="pp-pro-banner" style="margin-bottom: 20px">
-		<div>
-			<h2><?php _e('Unlock Revision Statuses', 'publishpress-statuses');?></h2>
-			<p><?php _e('Install Statuses Pro to enhance your workflow with custom revision statuses.', 'publishpress-statuses');?></p>
+    <!-- CTA Section -->
+	<div class="pp-cta-section">
+		<h4>
+			<?php esc_html_e('Upgrade to create an approval workflow for published content', 'publishpress-statuses'); ?>
+		</h4>
+		<p>
+			<?php esc_html_e('Create approval workflows using PublishPress Statuses Pro together with the PublishPress Revisions Pro plugin', 'publishpress-statuses'); ?>
+		</p>
+
+		<div class="pp-revisions-pro-features">
+			<ul>
+				<li>
+					&nbsp;<?php _e('The PublishPress Revisions plugin allows users to submit changes to published posts', 'publishpress-statuses');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('PublishPress Statuses plugin enables you to add statuses for post changes created with Revisions', 'publishpress-statuses');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('Each post type can have different Revisions statuses', 'publishpress-statuses');?>
+				</li>
+				<li>
+					&nbsp;<?php _e('You choose which users can manage content in each Revisions status', 'publishpress-statuses');?>
+				</li>
+			</ul>
 		</div>
 
-        <!--
-		<div class="pp-pro-badge-banner">
-			<a href="https://publishpress.com/statuses/" target="_blank" class="pp-upgrade-btn">
-				<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses');?>
+		<div class="pp-cta-buttons">
+			<a href="https://publishpress.com/statuses/" 
+				class="button-primary button-large pp-upgrade-btn" 
+				target="_blank">
+				<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses'); ?>
+			</a>
+			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
+				target="_blank"
+				class="pp-learn-more-link">
+				<?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
 			</a>
 		</div>
-        -->
 	</div>
 
+	<?php if (!empty($_REQUEST['rvy_promo_img'])):?>
 	<div class="pp-integration-card">
 	<div>
 	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 797px;" />
@@ -183,6 +209,7 @@ class StatusListTable extends \WP_List_Table
 		</div>
 	</div>
 	</div>
+    <?php endif;?>
 
     </div>
 
@@ -338,11 +365,6 @@ if ('_pre-publish' == $key) {
 }
 ?>
 <?php endif;?>
-
-<?php if (('_visibility-statuses' == $key) && !defined('PRESSPERMIT_PRO_VERSION')) {
-    echo ' <span style="font-style: italic"> ' . esc_html__('(customization requires Permissions Pro plugin)', 'publishpress-statuses') . '</span>';
-}
-?>
 
 <?php 
 do_action('publishpress_statuses_table_row', $key, []);
@@ -552,6 +574,47 @@ do_action('publishpress_statuses_table_row', $key, []);
         <?php 
         endif;?>
         <?php
+
+        if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
+            <li class="pp-cta-section pp-visibility-statuses-promo">
+                <h4>
+                    <?php esc_html_e('Upgrade to choose who can view your non-public posts?', 'publishpress-statuses'); ?>
+                </h4>
+                <p>
+                    <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
+                </p>
+
+                <div class="pp-revisions-pro-features">
+                    <ul>
+                        <li>
+                            &nbsp;<?php _e('Create multiple visibility statuses to show content to different users', 'publishpress-statuses');?>
+                        </li>
+                        <li>
+                            &nbsp;<?php _e('Choose which user roles can see posts in each status', 'publishpress-statuses');?>
+                        </li>
+                        <li>
+                            &nbsp;<?php _e('Select which user roles can move posts to each status', 'publishpress-statuses');?>
+                        </li>
+                        <li>
+                            &nbsp;<?php _e('Decide which user roles can edit posts in each status', 'publishpress-statuses');?>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pp-cta-buttons">
+                    <a href="https://publishpress.com/permissions/" 
+                        class="button-primary button-large pp-upgrade-btn" 
+                        target="_blank">
+                        <?php esc_html_e('Get PublishPress Permissions Pro', 'publishpress-statuses'); ?>
+                    </a>
+                    <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
+                        target="_blank"
+                        class="pp-learn-more-link">
+                        <?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
+                    </a>
+                </div>
+            </li>
+        <?php endif;
 	}
 
 	/**

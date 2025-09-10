@@ -162,7 +162,7 @@ class PostEditClassic
             }
         }
 
-        if ($default_by_sequence = \PublishPress_Statuses::instance()->options->moderation_statuses_default_by_sequence) {
+        if ($default_by_sequence = \PublishPress_Statuses::instance()->workflow_by_sequence) {
             $is_administrator = \PublishPress_Statuses::isContentAdministrator();
 
             $post_status = ($post) ? $post->post_status : 'draft';
@@ -282,6 +282,8 @@ class PostEditClassic
         if (empty($args['maxSchedule'])) {
             $args['maxSchedule'] = $args['schedule'];
         }
+
+        $args['workflowDisabled'] = \PublishPress_Statuses::instance()->workflow_disabled;
 
         wp_localize_script('publishpress-statuses-classic-edit', 'ppObjEdit', $args);
 

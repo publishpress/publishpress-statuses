@@ -31,7 +31,7 @@ There are two types of statuses:
 
 ## Pre-Publication Statuses
 
-Go to the "Statuses" area in your WordPress site and you'll six different statuses. This is the [main workflow](https://publishpress.com/knowledge-base/main-workflow/). Every post on your site must use this workflow. However, with PublishPress Statuses, you can move, rerrange and add to this workflow. 
+Go to the "Statuses" area in your WordPress site and you'll six different statuses. This is the [main workflow](https://publishpress.com/knowledge-base/main-workflow/). Every post on your site must use this workflow. However, with PublishPress Statuses, you can move, rearrange and add to this workflow. 
 
 - **Draft**: This is the WordPress default status and can not be modified. 
 - **Pitch**: This is a new status. You can use this status to indicate the post is just an idea.
@@ -66,7 +66,7 @@ We call this feature "Custom Visibility Statuses" because WordPress has three co
 - **Published**: This post is available to general public.
 - **Private**: This post is published for users logged in to your WordPress site.
 
-Using PublishPress Statuses and PublishPress Permissions Pro together, you can add your own custom visiblity statuses.
+Using PublishPress Statuses and PublishPress Permissions Pro together, you can add your own custom visibility statuses.
 
 ## Custom Permissions for Visibility Statuses
 
@@ -76,23 +76,24 @@ The PublishPress Statuses plugin integrates with the PublishPress Permissions Pr
 
 You can take this further and decide who assign, edit, and delete content in each status. This is possible if you also use the PublishPress Permissions Pro plugin. 
 
-## Join PublishPress and get the Pro plugins
+## Join PublishPress and get the Pro plugins ##
 
 The Pro versions of the PublishPress plugins are well worth your investment. The Pro versions have extra features and faster support. [Click here to join PublishPress](https://publishpress.com/pricing/).
 
-Join PublishPress and you'll get access to these nine Pro plugins:
+Join PublishPress and you'll get access to these ten Pro plugins:
 
 * [PublishPress Authors Pro](https://publishpress.com/authors) allows you to add multiple authors and guest authors to WordPress posts.
 * [PublishPress Blocks Pro](https://publishpress.com/blocks) has everything you need to build professional websites with the WordPress block editor.
 * [PublishPress Capabilities Pro](https://publishpress.com/capabilities) is the plugin to manage your WordPress user roles, permissions, and capabilities.
 * [PublishPress Checklists Pro](https://publishpress.com/checklists) enables you to define tasks that must be completed before content is published.
 * [PublishPress Future Pro](https://publishpress.com/future) is the plugin for scheduling changes to your posts.
-* [PublishPress Permissions Pro](https://publishpress.com/permissions) is the plugin for advanced WordPress permissions.
+* [PublishPress Permissions Pro](https://publishpress.com/permissions)  is the plugin for restricted content and advanced WordPress permissions.
 * [PublishPress Planner Pro](https://publishpress.com/publishpress) is the plugin for managing and scheduling WordPress content.
 * [PublishPress Revisions Pro](https://publishpress.com/revisions) allows you to update your published pages with teamwork and precision.
 * [PublishPress Series Pro](https://publishpress.com/series) enables you to group content together into a series.
+* [PublishPress Statuses Pro](https://publishpress.com/series) enables you to create additional publishing steps for your posts.
 
-Together, these plugins are a suite of powerful publishing tools for WordPress. If you need to create a professional workflow in WordPress, with moderation, revisions, permissions and more... then you should try PublishPress.
+Together, these plugins are a suite of powerful publishing tools for WordPress. If you need to create a professional workflow in WordPress, with moderation, revisions, permissions and more, then you should try PublishPress.
 
 ## Bug Reports 
 
@@ -163,9 +164,19 @@ A post in the Future status is not published yet, but is scheduled to be publish
 
 = How does this compare to the Extended Post Status plugin? =
 
-Extended Post Status is a very useful plugin. With PublshPress Statuses we're aiming to provide more advanced features such as custom capabilities, workflow branching, icons, colors, and much more.
+Extended Post Status is a very useful plugin. With PublishPress Statuses we're aiming to provide more advanced features such as custom capabilities, workflow branching, icons, colors, and much more.
+
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the PublishPress Statuses &#8211; Custom Post Status and Workflow plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/dca8e034-2c6e-4179-8b76-860f830ecc12). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 == Changelog ==
+
+= [1.1.6] - 9 Sep 2025 =
+* Feature : Plugin setting to disable Workflow Guidance
+* Fixed : Save Draft button was hidden after switching post editor from another status to Draft
+* Change : Status capability descriptions
+* Lang : Update ES, FR, IT translations
 
 = [1.1.5] - 31 Jul 2025 =
 * Change : Add contextual promo for Revision Statuses (Pro)

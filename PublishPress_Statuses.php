@@ -59,6 +59,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
     public $module;
     public $doing_rest = false;
+    public $workflow_by_sequence = false;
+    public $workflow_disabled = false;
 
     private $all_moderation_statuses = [];
 
@@ -194,6 +196,13 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         $this->load_options(self::SETTINGS_SLUG);
         
+        if ('none' === $this->options->moderation_statuses_default_by_sequence) {
+            $this->workflow_disabled = true;
+
+        } elseif ($this->options->moderation_statuses_default_by_sequence) {
+            $this->workflow_by_sequence = true;
+        }
+
         $this->maybeGrantPendingStatusCap();
         
         if (is_admin()) {
@@ -293,7 +302,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
     function fltCapDescriptions($pp_caps)
     {
-        $pp_caps['pp_bypass_status_sequence'] = esc_html__('Can bypass normal status progression (publishing or setting to max status).', 'publishpress-statuses');
+        $pp_caps['pp_bypass_status_sequence'] = esc_html__('Can bypass normal status progression. User can publish immediately or move post to the furthest possible status.', 'publishpress-statuses');
         $pp_caps['pp_manage_statuses'] = esc_html__('Manage Statuses plugin settings.', 'publishpress-statuses');
 
         return $pp_caps;
@@ -1684,12 +1693,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                 if (empty($all_statuses[$status_name]->private)) {
                     // This is a non-private status whose position may have been artificially backed up from the disabled section into the private section
-                    if ('pending' == $status_name) {
-                        // Pending status cannot be moved out of standard Pre-Publication workflow
-                        if ($stored_status_positions[$status_name] >= $stored_status_positions['_pre-publish-alternate']) {
-                            $stored_status_positions[$status_name] = 1;
-                            $all_statuses[$status_name]->disabled = false;
-                        }
+                    if (('pending' != $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
+                        $all_statuses[$status_name]->disabled = true;
+                    
+                    } elseif (('pending' == $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_pre-publish-alternate'])) {
+                         $stored_status_positions[$status_name] = 1;
+                         $all_statuses[$status_name]->disabled = false;
                     }
                 } else {
                     // This is a private status whose position may have been artificially advanced from the private section into the disabled section
@@ -2651,7 +2660,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if (is_null($default_by_sequence)) {
-            $default_by_sequence = \PublishPress_Statuses::instance()->options->moderation_statuses_default_by_sequence;
+            $default_by_sequence = \PublishPress_Statuses::instance()->workflow_by_sequence;
         }
 
         if (!$is_revision && current_user_can($type_obj->cap->publish_posts) 
@@ -3285,9 +3294,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         // Allow Publish / Submit button to trigger our desired workflow progression instead of Publish / Pending status.
         // Apply this change only if stored post is not already published or scheduled.
         // Also skip retain normal WP editor behavior if the newly posted status is privately published or future.
-        if ((in_array($selected_status, ['publish', 'pending', 'future']) && !in_array($stored_status, ['publish', 'private', 'future']) 
+        if (in_array($selected_status, ['publish', 'pending', 'future']) && !in_array($stored_status, ['publish', 'private', 'future']) 
             && empty($classic_explicit_publish)
-            && empty($stored_status_obj->public) && empty($stored_status_obj->private))
+            && empty($stored_status_obj->public) && empty($stored_status_obj->private)
+            && !$this->workflow_disabled
         ) {
             // Gutenberg REST gives no way to distinguish between Publish and Save request. Treat as Publish (next workflow progression) if any of the following:
             //  * user cannot set pending status
@@ -3501,7 +3511,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $default_status = \PublishPress_Statuses::defaultStatusProgression($post_id, ['return' => 'name', 'post_type' => $post_type]);
 
             if ($default_status != $post_status) {
-                if (\PublishPress_Statuses::instance()->options->moderation_statuses_default_by_sequence) {
+                if (\PublishPress_Statuses::instance()->workflow_by_sequence) {
                     $default_action = 'next';
                 } else {
                     $default_action = 'max';

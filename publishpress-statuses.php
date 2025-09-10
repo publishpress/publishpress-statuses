@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Statuses
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
- * Version: 1.1.5
+ * Version: 1.1.6
  * Author: PublishPress
  * Author URI:  https://publishpress.com/
  * Text Domain: publishpress-statuses
@@ -115,7 +115,7 @@ if (false === $publishpress_statuses_loaded_by_pro) {
             function($links, $file)
             {
                 if ($file == plugin_basename(__FILE__)) {
-                    $links[]= __('<strong>This plugin can be deleted.</strong>', 'revisionary');
+                    $links[]= __('<strong>This plugin can be deleted.</strong>', 'publishpress-statuses');
                 }
 
                 return $links;
@@ -227,7 +227,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         }
         
         if (empty($interrupt_load)) {
-            define('PUBLISHPRESS_STATUSES_VERSION', '1.1.5');
+            define('PUBLISHPRESS_STATUSES_VERSION', '1.1.6');
 
             define('PUBLISHPRESS_STATUSES_URL', trailingslashit(plugins_url('', __FILE__)));    // @todo: vendor lib
 

@@ -548,7 +548,7 @@ class Admin
 
         unset($moderation_statuses['future']);
 
-        $default_by_sequence = \PublishPress_Statuses::instance()->options->moderation_statuses_default_by_sequence;
+        $default_by_sequence = \PublishPress_Statuses::instance()->workflow_by_sequence;
 
         if ($post && $is_administrator && $default_by_sequence 
         && empty($post_status_obj->public) && empty($post_status_obj->private) && ('future' != $post_status) 

@@ -373,7 +373,7 @@ class StatusesUI {
             esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[moderation_statuses_default_by_sequence]'
         ) . ' ';
 
-        $checked = $module->options->moderation_statuses_default_by_sequence ? 'checked' : '';
+        $checked = ($module->options->moderation_statuses_default_by_sequence && ('none' !== $module->options->moderation_statuses_default_by_sequence)) ? 'checked' : '';
 
         echo sprintf(
             '<input type="radio" name="%s" id="moderation_statuses_default_to_next" value="1" autocomplete="off" %s>',
@@ -397,6 +397,20 @@ class StatusesUI {
 
         echo '<label for="moderation_statuses_default_to_highest">';
         esc_html_e('Bypass by default: Publish button defaults to maximum available status', 'publishpress-statuses');
+        echo '</label>';
+
+        echo '</div><div style="margin-top: 12px;">';
+
+        $checked = $module->options->moderation_statuses_default_by_sequence === 'none' ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="radio" name="%s" id="moderation_statuses_no_workflow" value="none" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[moderation_statuses_default_by_sequence]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="moderation_statuses_no_workflow">';
+        esc_html_e('No workflow guidance', 'publishpress-statuses');
         echo '</label>';
 
         echo '</div></div>';

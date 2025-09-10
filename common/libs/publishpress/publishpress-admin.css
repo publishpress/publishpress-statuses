@@ -47,6 +47,10 @@
     color: #23282d;
 }
 
+.publishpress-admin-wrapper .nav-tab-wrapper {
+    margin-top: 10px !important;
+}
+
 .publishpress-admin-wrapper .nav-tab-wrapper .nav-tab {
     color: inherit;
     margin-bottom: 0;

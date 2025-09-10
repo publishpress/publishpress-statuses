@@ -34,8 +34,8 @@ class CoreAdmin
     {
         add_submenu_page(
             'publishpress-statuses',
-            esc_html__('Upgrade to Pro', 'press-permit-core'),
-            esc_html__('Upgrade to Pro', 'press-permit-core'),
+            esc_html__('Upgrade to Pro', 'publishpress-statuses'),
+            esc_html__('Upgrade to Pro', 'publishpress-statuses'),
             'read',
             'statuses-pro',
             ['PublishPress\Statuses\UI\Dashboard\DashboardFilters', 'actMenuHandler']

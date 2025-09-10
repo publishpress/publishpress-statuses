@@ -36,10 +36,12 @@ class PostEditGutenberg
             return;
         }
 
-        // Gutenberg Block Editor support for workflow status progression guidance / limitation
-        require_once(__DIR__ . '/PostEditGutenbergStatuses.php');
-        PostEditGutenbergStatuses::loadBlockEditorStatusGuidance();
-
+        if (!\PublishPress_Statuses::instance()->workflow_disabled) {
+            // Gutenberg Block Editor support for workflow status progression guidance / limitation
+            require_once(__DIR__ . '/PostEditGutenbergStatuses.php');
+            PostEditGutenbergStatuses::loadBlockEditorStatusGuidance();
+        }
+        
         $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 
         $filename = 
