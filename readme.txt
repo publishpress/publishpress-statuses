@@ -172,8 +172,9 @@ Please report security bugs found in the source code of the PublishPress Statuse
 
 == Changelog ==
 
-= [1.1.6] - 8 Sep 2025 =
+= [1.1.6] - 9 Sep 2025 =
 * Feature : Plugin setting to disable Workflow Guidance
+* Fixed : Save Draft button was hidden after switching post editor from another status to Draft
 * Change : Status capability descriptions
 * Lang : Update ES, FR, IT translations
 
