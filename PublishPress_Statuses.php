@@ -1693,12 +1693,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                 if (empty($all_statuses[$status_name]->private)) {
                     // This is a non-private status whose position may have been artificially backed up from the disabled section into the private section
-                    if ('pending' == $status_name) {
-                        // Pending status cannot be moved out of standard Pre-Publication workflow
-                        if ($stored_status_positions[$status_name] >= $stored_status_positions['_pre-publish-alternate']) {
-                            $stored_status_positions[$status_name] = 1;
-                            $all_statuses[$status_name]->disabled = false;
-                        }
+                    if (('pending' != $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
+                        $all_statuses[$status_name]->disabled = true;
+                    
+                    } elseif (('pending' == $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_pre-publish-alternate'])) {
+                         $stored_status_positions[$status_name] = 1;
+                         $all_statuses[$status_name]->disabled = false;
                     }
                 } else {
                     // This is a private status whose position may have been artificially advanced from the private section into the disabled section
