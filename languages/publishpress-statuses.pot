@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Statuses 1.1.6-rc3\n"
+"Project-Id-Version: PublishPress Statuses 1.1.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-05T15:22:50+00:00\n"
+"POT-Creation-Date: 2025-09-10T20:31:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: publishpress-statuses\n"
@@ -53,9 +53,11 @@ msgid "Settings"
 msgstr ""
 
 #: Admin.php:22
+#: includes-core/CoreAdmin.php:37
+#: includes-core/CoreAdmin.php:38
 #: includes-core/CoreAdmin.php:108
-#: StatusListTable.php:184
-#: StatusListTable.php:210
+#: StatusListTable.php:181
+#: StatusListTable.php:207
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -436,7 +438,7 @@ msgid "Labels"
 msgstr ""
 
 #: StatusEditUI.php:69
-#: StatusEditUI.php:428
+#: StatusEditUI.php:429
 #: StatusListTable.php:128
 msgid "Post Types"
 msgstr ""
@@ -450,115 +452,115 @@ msgstr ""
 msgid "Post Access"
 msgstr ""
 
-#: StatusEditUI.php:170
+#: StatusEditUI.php:165
 msgid "Enforce type-specific post capabilitities for this status, or share capabilities with another status."
 msgstr ""
 
-#: StatusEditUI.php:215
+#: StatusEditUI.php:210
 msgid "Update Status"
 msgstr ""
 
-#: StatusEditUI.php:258
+#: StatusEditUI.php:253
 msgid "Status Label"
 msgstr ""
 
-#: StatusEditUI.php:271
+#: StatusEditUI.php:266
 msgid "The name is used to identify the status. (Max: 20 characters)"
 msgstr ""
 
-#: StatusEditUI.php:293
+#: StatusEditUI.php:288
 msgid "The slug is the unique ID for the status."
 msgstr ""
 
-#: StatusEditUI.php:303
+#: StatusEditUI.php:298
 msgid "Description"
 msgstr ""
 
-#: StatusEditUI.php:315
+#: StatusEditUI.php:310
 msgid "The description is primarily for administrative use, to give you some context on what the custom status is to be used for."
 msgstr ""
 
-#: StatusEditUI.php:324
+#: StatusEditUI.php:319
 msgid "Color"
 msgstr ""
 
-#: StatusEditUI.php:336
+#: StatusEditUI.php:331
 msgid "The color is used to identify the status."
 msgstr ""
 
-#: StatusEditUI.php:342
+#: StatusEditUI.php:337
 #: StatusListTable.php:126
 msgid "Icon"
 msgstr ""
 
-#: StatusEditUI.php:358
+#: StatusEditUI.php:353
 msgid "Select Icon"
 msgstr ""
 
-#: StatusEditUI.php:364
+#: StatusEditUI.php:359
 msgid "The icon is used to visually represent the status."
 msgstr ""
 
-#: StatusEditUI.php:392
+#: StatusEditUI.php:393
 msgid "Status Availability"
 msgstr ""
 
-#: StatusEditUI.php:395
+#: StatusEditUI.php:396
 msgid "Choose which user roles can assign this status to a post."
 msgstr ""
 
-#: StatusEditUI.php:431
+#: StatusEditUI.php:432
 msgid "Choose which post types can be set to this status."
 msgstr ""
 
-#: StatusEditUI.php:468
+#: StatusEditUI.php:469
 msgid "All Post Types"
 msgstr ""
 
-#: StatusEditUI.php:515
+#: StatusEditUI.php:516
 msgid "Save As Label"
 msgstr ""
 
-#: StatusEditUI.php:523
+#: StatusEditUI.php:524
 msgid "Submit Button Label"
 msgstr ""
 
-#: StatusEditUI.php:535
-msgid "Ready to customize post access for statuses?"
+#: StatusEditUI.php:536
+msgid "Upgrade to choose who can manage posts in each status"
 msgstr ""
 
-#: StatusEditUI.php:538
+#: StatusEditUI.php:539
 msgid "Get PublishPress Capabilities Pro for status-specific post access control."
 msgstr ""
 
-#: StatusEditUI.php:544
+#: StatusEditUI.php:545
 msgid "Control which roles can assign a status"
 msgstr ""
 
-#: StatusEditUI.php:547
+#: StatusEditUI.php:548
 msgid "Control which roles can edit or delete posts per-status"
 msgstr ""
 
-#: StatusEditUI.php:550
+#: StatusEditUI.php:551
 msgid "Set capabilities separately for each post type"
 msgstr ""
 
-#: StatusEditUI.php:553
+#: StatusEditUI.php:554
 msgid "User-friendly checkbox grid to assign capabilities"
 msgstr ""
 
-#: StatusEditUI.php:562
+#: StatusEditUI.php:563
 msgid "Get PublishPress Capabilities Pro"
 msgstr ""
 
-#: StatusEditUI.php:567
-#: StatusListTable.php:189
-#: StatusListTable.php:206
-#: StatusListTable.php:616
+#: StatusEditUI.php:568
+#: StatusListTable.php:186
+#: StatusListTable.php:203
+#: StatusListTable.php:613
 msgid "Learn More"
 msgstr ""
 
-#: StatusEditUI.php:576
+#: StatusEditUI.php:577
 msgid "Status-specific post capabilities are %1$scurrently disabled%2$s by PublishPress Capabilities Pro. You can %3$schange this setting%4$s."
 msgstr ""
 
@@ -942,135 +944,131 @@ msgid "Status Name"
 msgstr ""
 
 #: StatusListTable.php:154
-msgid "Ready to enhance your revision workflow?"
+msgid "Upgrade to create an approval workflow for published content"
 msgstr ""
 
 #: StatusListTable.php:157
-msgid "Upgrade to PublishPress Statuses Pro and optimize your revision process with custom revision statuses."
+msgid "Create approval workflows using PublishPress Statuses Pro together with the PublishPress Revisions Pro plugin"
 msgstr ""
 
 #: StatusListTable.php:163
-msgid "Define your own statuses before or after Revision Submitted"
+msgid "The PublishPress Revisions plugin allows users to submit changes to published posts"
 msgstr ""
 
 #: StatusListTable.php:166
-msgid "New predefined statuses: Deferred, Needs Work, Rejected"
+msgid "PublishPress Statuses plugin enables you to add statuses for post changes created with Revisions"
 msgstr ""
 
 #: StatusListTable.php:169
-msgid "Statuses can be specific to a post type"
+msgid "Each post type can have different Revisions statuses"
 msgstr ""
 
 #: StatusListTable.php:172
-msgid "Control access to statuses per-role"
+msgid "You choose which users can manage content in each Revisions status"
 msgstr ""
 
-#: StatusListTable.php:175
-msgid "Status workflow can be nested with sub-statuses"
-msgstr ""
-
-#: StatusListTable.php:201
+#: StatusListTable.php:198
 msgid "Premium Feature"
 msgstr ""
 
-#: StatusListTable.php:202
+#: StatusListTable.php:199
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr ""
 
-#: StatusListTable.php:203
+#: StatusListTable.php:200
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
 
-#: StatusListTable.php:268
+#: StatusListTable.php:265
 msgid "To define and control Revision statuses, update the %1$sPublishPress Revisions%2$s plugin to version %3$s or higher."
 msgstr ""
 
-#: StatusListTable.php:300
+#: StatusListTable.php:297
 msgid "Main Workflow:"
 msgstr ""
 
-#: StatusListTable.php:322
+#: StatusListTable.php:319
 msgid "Drop any status here to include it in main workflow for new posts."
 msgstr ""
 
-#: StatusListTable.php:357
+#: StatusListTable.php:354
 msgid "Statuses in the main workflow are presented for convenient default selection when updating an unpublished post."
 msgstr ""
 
-#: StatusListTable.php:364
+#: StatusListTable.php:361
 msgid "Statuses in the main workflow are manually selectable when editing an unpublished post."
 msgstr ""
 
-#: StatusListTable.php:392
+#: StatusListTable.php:389
 msgid "Drop any status here to make it manually selectable outside the main workflow."
 msgstr ""
 
-#: StatusListTable.php:411
+#: StatusListTable.php:408
 msgid "Drop any status here to disable."
 msgstr ""
 
-#: StatusListTable.php:459
+#: StatusListTable.php:456
 msgid "Standard Publication:"
 msgstr ""
 
-#: StatusListTable.php:466
+#: StatusListTable.php:463
 msgid "Visibility Statuses for Private Publication:"
 msgstr ""
 
-#: StatusListTable.php:473
+#: StatusListTable.php:470
 msgid "Alternate Workflows:"
 msgstr ""
 
 #. translators: %s is the opening and closing <span> tags
-#: StatusListTable.php:484
+#: StatusListTable.php:481
 msgid "Disabled Statuses (drag to re-enable):"
 msgstr ""
 
-#: StatusListTable.php:584
-msgid "Ready to customize post visibility?"
+#: StatusListTable.php:581
+msgid "Upgrade to choose who can view your non-public posts?"
 msgstr ""
 
-#: StatusListTable.php:587
+#: StatusListTable.php:584
 msgid "Install PublishPress Permissions Pro to define your own custom visibility statuses."
 msgstr ""
 
+#: StatusListTable.php:590
+msgid "Create multiple visibility statuses to show content to different users"
+msgstr ""
+
 #: StatusListTable.php:593
-msgid "Custom visibility status works like an alterante \"Private\" status"
+msgid "Choose which user roles can see posts in each status"
 msgstr ""
 
 #: StatusListTable.php:596
-msgid "Enable role-specific viewing"
+msgid "Select which user roles can move posts to each status"
 msgstr ""
 
 #: StatusListTable.php:599
-msgid "Configure which roles can set a visibility status"
+msgid "Decide which user roles can edit posts in each status"
 msgstr ""
 
-#: StatusListTable.php:602
-msgid "Optionally, control role-specific editing access for each visibility status"
-msgstr ""
-
-#: StatusListTable.php:611
+#: StatusListTable.php:608
 msgid "Get PublishPress Permissions Pro"
 msgstr ""
 
 #. translators: %s is the list of post types
-#: StatusListTable.php:699
+#: StatusListTable.php:696
 msgid "%s, more..."
 msgstr ""
 
-#: StatusListTable.php:781
+#: StatusListTable.php:778
 msgid "No custom statuses found."
 msgstr ""
 
-#: StatusListTable.php:852
+#: StatusListTable.php:849
 msgid "Core"
 msgstr ""
 
-#: StatusListTable.php:856
+#: StatusListTable.php:853
 msgid "Default"
 msgstr ""
 
-#: StatusListTable.php:881
+#: StatusListTable.php:878
 msgid "X"
 msgstr ""
