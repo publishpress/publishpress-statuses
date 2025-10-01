@@ -826,7 +826,7 @@ class StatusesUI {
                 );
 
                 if (('visibility' != $status_type) || (defined('PRESSPERMIT_STATUSES_VERSION') && get_option('presspermit_privacy_statuses_enabled') )) {
-                    if (('revision' != $status_type) || defined('PUBLISPRESS_STATUSES_PRO_VERSION')) {
+                    if (('revision' != $status_type) || defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
                         echo '<a class="button primary add-new" title="' 
                             . esc_attr__("Add New Pre-Publication Status", 'publishpress-statuses')
                             . '" href="' . esc_url($url) . '">' . esc_html__('Add New', 'publishpress-statuses') . '</a>';
