@@ -163,8 +163,11 @@ class PostEditGutenberg
         if (!empty($args['moderation'])) {
 	        $draft_obj = get_post_status_object('draft');
 	
+
+            $icon = (isset($draft_obj->icon)) ? $draft_obj->icon : '';
+
 	        $ordered_statuses = array_merge(
-	            ['draft' => (object)['name' => 'draft', 'label' => esc_html(\PublishPress_Statuses::__wp('Draft')), 'icon' => $draft_obj->icon, 'color' => $draft_obj->color]],
+	            ['draft' => (object)['name' => 'draft', 'label' => esc_html(\PublishPress_Statuses::__wp('Draft')), 'icon' => $icon, 'color' => $draft_obj->color]],
 	
 	            array_diff_key(
 	                    \PublishPress_Statuses::getPostStati($args, 'object'),
