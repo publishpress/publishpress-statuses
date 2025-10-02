@@ -578,7 +578,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
-                    <?php esc_html_e('Upgrade to choose who can view your non-public posts?', 'publishpress-statuses'); ?>
+                    <?php esc_html_e('Upgrade to choose who can view your non-public posts', 'publishpress-statuses'); ?>
                 </h4>
                 <p>
                     <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>

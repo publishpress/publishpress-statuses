@@ -6,7 +6,7 @@ Tags: custom statuses, workflow, pending review, status manager, archived status
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 1.1.5
+Stable tag: 1.1.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,12 +168,17 @@ Extended Post Status is a very useful plugin. With PublishPress Statuses we're a
 
 = Where do I report security bugs found in this plugin? =
 
-Please report security bugs found in the source code of the PublishPress Statuses &#8211; Custom Post Status and Workflow plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/dca8e034-2c6e-4179-8b76-860f830ecc12). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+Please report security bugs found in the source code of the PublishPress Statuses &#8211; Custom Post Status and Workflow plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/dca8e034-2c6e-4179-8b76-860f830ecc12). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 == Changelog ==
 
+= [1.1.7] - 2 Oct 2025 =
+* Fixed : Plugin-defined statuses could not be disabled
+* Fixed : Typo in Visibility Statuses promo
+
 = [1.1.6] - 9 Sep 2025 =
 * Feature : Plugin setting to disable Workflow Guidance
+* Fixed : Disabled statuses were not listed correctly
 * Fixed : Save Draft button was hidden after switching post editor from another status to Draft
 * Change : Status capability descriptions
 * Lang : Update ES, FR, IT translations

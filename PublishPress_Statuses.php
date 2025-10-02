@@ -931,7 +931,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
-
         // [Fake status to support organization by table position re-ordering]: "Disabled Statuses:"
         $all_statuses['pseudo_status_pp']['_disabled'] = (object) [
             'label' => __('Disabled Statuses:', 'publishpress-statuses'),
@@ -1507,15 +1506,57 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         $stored_status_positions = (is_array($positions) && $positions) ? array_flip($positions) : [];
 
+        $status_positions_modified = !empty($stored_status_positions);
+
         $stored_status_terms = [];
 
         $term_meta_fields = apply_filters('publishpress_statuses_meta_fields', ['labels', 'post_type', 'roles', 'status_parent', 'color', 'icon']);
 
+        $_disabled_statuses = [];
+
+        if (!empty($all_statuses['_disabled'])) {
+            $_disabled_statuses['_disabled'] = $all_statuses['_disabled'];
+        }
+
+        foreach ($all_statuses as $status_name => $status) {
+            if (!empty($status->disabled)) {
+                unset($all_statuses[$status_name]);
+
+                if (!isset($_disabled_statuses[$status_name])) {
+                    $_disabled_statuses[$status_name] = $status;
+                }
+            }
+        }
+
+        $disabled_position = count($all_statuses) + 100;
+        $stored_status_positions['_disabled'] = $disabled_position;
+        $pos = $disabled_position;
+
+        foreach (array_keys($_disabled_statuses) as $status_name) {
+            $_disabled_statuses[$status_name]->position = $pos;
+            $pos++;
+        }
+
+        $all_statuses = array_merge($all_statuses, $_disabled_statuses);
 
         // Merge stored positions with defaults
         foreach ($all_statuses as $status_name => $status) {
             if (empty($stored_status_positions[$status_name])) {
                 $stored_status_positions[$status_name] = (!empty($status->position)) ? $status->position : 0;
+            }
+        }
+
+        if ($status_positions_modified) {
+            foreach (array_keys($stored_status_positions) as $status_name) {
+                if ('_disabled' == $status_name) {
+                    $in_disabled_statuses = true;
+                    $pos = $disabled_position;
+                }
+
+                if (!empty($in_disabled_statuses)) {
+                    $pos++;
+                    $stored_status_positions[$status_name] = $pos;
+                }
             }
         }
 
@@ -1693,12 +1734,13 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                 if (empty($all_statuses[$status_name]->private)) {
                     // This is a non-private status whose position may have been artificially backed up from the disabled section into the private section
-                    if (('pending' != $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
+                    if (('pending' != $status_name) && $status_positions_modified && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
                         $all_statuses[$status_name]->disabled = true;
                     
                     } elseif (('pending' == $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_pre-publish-alternate'])) {
-                         $stored_status_positions[$status_name] = 1;
-                         $all_statuses[$status_name]->disabled = false;
+                        $stored_status_positions[$status_name] = 1;
+                        $all_statuses[$status_name]->disabled = false;
+
                     }
                 } else {
                     // This is a private status whose position may have been artificially advanced from the private section into the disabled section
@@ -1706,7 +1748,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     ) {
                         $stored_status_positions[$status_name] = $stored_status_positions['private'];
 
-                    } elseif (($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
+                    } elseif ($status_positions_modified && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
                         $all_statuses[$status_name]->disabled = true;
                     }
                 }
@@ -1811,7 +1853,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     }
 
                     if (empty($core_statuses[$status->slug]) && empty($pseudo_statuses[$status->slug])) {
-                        if ($status->position >= $all_statuses['_disabled']->position) {
+                        if ($status_positions_modified && ($status->position >= $all_statuses['_disabled']->position)) {
                             $status->disabled = true; // Fallback in case the disabled_statuses array is missing or out of sync (privacy statuses are pulled from a different taxonomy)
 
                         } elseif (!empty($status->moderation)) { 
