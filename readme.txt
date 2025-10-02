@@ -168,7 +168,7 @@ Extended Post Status is a very useful plugin. With PublishPress Statuses we're a
 
 = Where do I report security bugs found in this plugin? =
 
-Please report security bugs found in the source code of the PublishPress Statuses &#8211; Custom Post Status and Workflow plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/dca8e034-2c6e-4179-8b76-860f830ecc12). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+Please report security bugs found in the source code of the PublishPress Statuses &#8211; Custom Post Status and Workflow plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/dca8e034-2c6e-4179-8b76-860f830ecc12). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 == Changelog ==
 
