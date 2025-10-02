@@ -172,6 +172,19 @@ Please report security bugs found in the source code of the PublishPress Statuse
 
 == Changelog ==
 
+= [1.1.7] - 2 Oct 2025 =
+* Fixed : Revision Statuses screen was missing Add New button
+* Fixed : Revision Statuses were listed as disabled 
+* Fixed : Plugin-defined statuses could not be disabled
+* Fixed : Typo in Visibility Statuses promo
+
+= [1.1.6] - 9 Sep 2025 =
+* Feature : Plugin setting to disable Workflow Guidance
+* Fixed : Disabled statuses were not listed correctly
+* Fixed : Save Draft button was hidden after switching post editor from another status to Draft
+* Change : Status capability descriptions
+* Lang : Update ES, FR, IT translations
+
 = [1.1.5] - 31 Jul 2025 =
 * Change : Add contextual promo for Revision Statuses (Pro)
 
