@@ -6,7 +6,7 @@ Tags: custom statuses, workflow, pending review, status manager, archived status
 Requires at least: 5.5
 Requires PHP: 7.2.5
 Tested up to: 6.8
-Stable tag: 1.1.5
+Stable tag: 1.1.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -173,8 +173,6 @@ Please report security bugs found in the source code of the PublishPress Statuse
 == Changelog ==
 
 = [1.1.7] - 2 Oct 2025 =
-* Fixed : Revision Statuses screen was missing Add New button
-* Fixed : Revision Statuses were listed as disabled 
 * Fixed : Plugin-defined statuses could not be disabled
 * Fixed : Typo in Visibility Statuses promo
 
