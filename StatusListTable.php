@@ -191,7 +191,7 @@ class StatusListTable extends \WP_List_Table
 	<?php if (!empty($_REQUEST['rvy_promo_img'])):?>
 	<div class="pp-integration-card">
 	<div>
-	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 100%; min-width: 797px; max-width: 860px;" />
+	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 797px;" />
 	</div>
 
 	<div class="pp-upgrade-overlay">
