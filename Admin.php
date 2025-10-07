@@ -809,7 +809,7 @@ class Admin
         if ($force_planner_import || (
         $auto_import                     // Statuses < 1.0.3.2 updated archive array without performing import, and earlier versions did not save import version
         && ($queued_term_descriptions || empty($import_run_version) || version_compare($import_run_version, '1.0.3.2', '<')) 
-        && (!defined('PUBLISHPRESS_STATUSES_NO_AUTO_IMPORT')) && (!defined('PUBLISHPRESS_STATUSES_NO_PLANNER_IMPORT'))
+        && defined('PUBLISHPRESS_STATUSES_PLANNER_AUTO_IMPORT') && !defined('PUBLISHPRESS_STATUSES_NO_PLANNER_IMPORT')
         )) {
             // Failsafe mechanism will disable auto-import if this option is not deleted by the Planner import function.
             update_option('publishpress_statuses_planner_import_gmt', gmdate("Y-m-d H:i:s"));
