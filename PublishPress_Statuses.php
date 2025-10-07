@@ -2767,6 +2767,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 ['post' => $_post]
             );
 
+            $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
+
             // If this user cannot set any further progression steps, return current post status
             if (!$moderation_statuses) {
                 if ((!empty($post_status_obj->status_parent) || !empty($status_children)) && !$force_main_channel) {
@@ -2780,8 +2782,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     // Defaulting to highest order that can be set by the user...
                     $moderation_statuses = array_reverse($moderation_statuses);
                 }
-
-                $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
 
                 foreach ($moderation_statuses as $_status_obj) {
                     if (!empty($can_set_status[$_status_obj->name]) && ($_status_obj->name != $_post_status_obj_name)) {
@@ -2805,18 +2805,18 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             $override_status = apply_filters(
                 'presspermit_workflow_progression', 
-                $post_status_obj->name, 
+                $_post_status_obj_name, 
                 $post_id, 
                 compact('moderation_statuses')
             );
 
-            if (($override_status != $post_status_obj->name) 
+            if (($override_status != $_post_status_obj_name) 
             && $can_set_status[$override_status]
             ) {
                 $post_status_obj = get_post_status_object($override_status);
             }
 
-            if (($post_status_obj->name == $post_status) && current_user_can($type_obj->cap->publish_posts) && !$is_revision) {
+            if (($_post_status_obj_name == $post_status) && current_user_can($type_obj->cap->publish_posts) && !$is_revision) {
                 $post_status_obj = get_post_status_object('publish');
             }
 
@@ -2824,8 +2824,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             if ('alternate' == self::getStatusSection($current_status)) {
                 $current_status_obj = self::getCustomStatus($current_status);
 
-                if ((('publish' == $post_status_obj->name) && ('publish' != $current_status))  // Would default to Publish / Schedule
-                || ($current_status_obj && empty($current_status_obj->public) && empty($current_status_obj->private) && ($current_status == $post_status_obj->name)) // At last child status in alternate workflow, would default to staying there
+                if ((('publish' == $_post_status_obj_name) && ('publish' != $current_status))  // Would default to Publish / Schedule
+                || ($current_status_obj && empty($current_status_obj->public) && empty($current_status_obj->private) && ($current_status == $_post_status_obj_name)) // At last child status in alternate workflow, would default to staying there
                 || ($current_status_obj && empty($current_status_obj->status_parent) && !self::getStatusChildren($current_status, $moderation_statuses))  // At a top-level alternate status with no children, would default to next top-level alternate status 
                 ) {
                     if ($main_status_obj = self::getLastMainStatus($post_id)) {
@@ -2834,14 +2834,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 }
             }
 
-            if (!empty($post_status_obj) && ('publish' == $post_status_obj->name)) {
+            if (!empty($post_status_obj) && ('publish' == $_post_status_obj_name)) {
                 if (!empty($_post) && !empty($_post->post_date_gmt) && time() < strtotime($_post->post_date_gmt . ' +0000')) {
                     $post_status_obj = get_post_status_object('future');
                 }
             }
         }
 
-        if (empty($post_status_obj) || ('auto-draft' == $post_status_obj->name)) {
+        if (empty($post_status_obj) || ('auto-draft' == $_post_status_obj_name)) {
             return get_post_status_object('draft');
         }
 
@@ -2862,7 +2862,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $status_obj = get_post_status_object('draft');
         }
 
-        return ('name' == $return) ? $status_obj->name : $status_obj;
+        $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
+
+        return ('name' == $return) ? $_post_status_obj_name : $status_obj;
     }
 
     public static function getLastMainStatus($post_id, $args = []) {
