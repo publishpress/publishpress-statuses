@@ -1718,6 +1718,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                         }
                     }
                 }
+
+                // @todo: register Revision Statuses upstream
+                if ('pp_revision_status' == $taxonomy) {
+                    register_post_status($status_name, $all_statuses[$status_name]);
+                }
             }
         }
 
