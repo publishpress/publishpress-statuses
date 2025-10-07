@@ -924,9 +924,38 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $default_disabled_position = max($status_count, $max_pos) + 1;
 
         if ($stored_positions = (array) get_option('publishpress_status_positions')) {
-            if ($pos = array_search('_disabled', $stored_positions)) {
-                if ($pos > $default_disabled_position) {
-                    $default_disabled_position = $pos;
+            if ($stored_disabled_pos = array_search('_disabled', $stored_positions)) {
+                $disabled_pos = $stored_disabled_pos;
+                
+                // If stored disabled position is invalid, fix it
+                if ($rev_pos = array_search('_revision-workflow', $stored_positions)) {
+                    if ($rev_pos > $stored_disabled_pos) {
+                        if ($alternate_rev_pos = array_search('_revision-alternate', $stored_positions)) {
+                            if ($alternate_rev_pos > $stored_disabled_pos) {
+                                $disabled_pos = $alternate_rev_pos + 1;
+        
+                                $rev_status_count = $alternate_rev_pos - $rev_pos - 1;
+                                $alt_rev_status_count = count($stored_positions) - $alternate_rev_pos - 1;
+                                $disabled_count = $rev_pos - $stored_disabled_pos - 1;
+
+                                $stored_positions = array_merge(
+                                    array_slice($stored_positions, 0, $stored_disabled_pos),
+                                    array_slice($stored_positions, $rev_pos, $rev_status_count + 1),
+                                    array_slice($stored_positions, $alternate_rev_pos, $alt_rev_status_count + 1),
+                                    ['_disabled'],
+                                    array_slice($stored_positions, $stored_disabled_pos + 1, $disabled_count)
+                                );
+
+                                update_option('publishpress_status_positions', $stored_positions);
+
+                                $disabled_pos = $alternate_rev_pos + 1;
+                            }
+                        }
+                    }
+                }
+
+                if ($disabled_pos > $default_disabled_position) {
+                    $default_disabled_position = $disabled_pos;
                 }
             }
         }
