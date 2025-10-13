@@ -1038,6 +1038,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         ];
 
         foreach(array_keys($statuses) as $slug) {
+            if (!empty($disabled_pos)) {
+                if ($stored_pos = array_search($slug, $stored_positions)) {
+                    if ($stored_pos < $disabled_pos) {
+                        continue;
+                    }
+                }
+            }
+
             $statuses[$slug]->disabled = true;
         }
 
