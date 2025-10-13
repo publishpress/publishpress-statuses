@@ -172,6 +172,10 @@ Please report security bugs found in the source code of the PublishPress Statuse
 
 == Changelog ==
 
+= [1.1.8] - 13 Oct 2025
+* Fixed : Invalid status order / disabling under some conditions
+* Fixed : PHP Warning for undefined status name property
+
 = [1.1.7] - 2 Oct 2025 =
 * Fixed : Plugin-defined statuses could not be disabled
 * Fixed : Typo in Visibility Statuses promo
