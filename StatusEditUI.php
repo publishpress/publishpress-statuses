@@ -375,7 +375,7 @@ class StatusEditUI
 
         $display = 'margin:0';
 
-        if ($default_tab == $tab) {
+        if ($default_tab != $tab) {
             $display .= ';display:none';
         } else {
             $display .= ';clear:both';
