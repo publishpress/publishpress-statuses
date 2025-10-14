@@ -189,11 +189,11 @@ class StatusEditUI
             self::tabContent('post_types', $status, $default_tab);
 
             if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
-            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
+            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps')))
             {
                 self::tabContent('post_access', $status, $default_tab);
             
-            } elseif (class_exists('PublishPress\StatusCapabilities') && \PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)) {
+            } elseif (class_exists('PublishPress\StatusCapabilities')) {
                 do_action('publishpress_statuses_edit_status_tab_content', $status, $default_tab);
             }
             ?>
@@ -247,6 +247,7 @@ class StatusEditUI
             }
         }
         ?>
+        <div id="pp-name" class="pp-options">
         <table class="form-table" style="<?php echo esc_attr($display);?>">
             <tr class="form-field form-required">
                 <th scope="row" valign="top"><label for="label"><?php
@@ -361,6 +362,7 @@ class StatusEditUI
                 </td>
             </tr>
         </table>
+        </div>
         <?php
     }
 
@@ -375,7 +377,7 @@ class StatusEditUI
 
         $display = 'margin:0';
 
-        if ($default_tab == $tab) {
+        if ($default_tab != $tab) {
             $display .= ';display:none';
         } else {
             $display .= ';clear:both';
@@ -569,7 +571,7 @@ class StatusEditUI
                             </a>
                         </div>
                     </div>
-                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status_obj)) :?>
+                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps')) :?>
                     <br>
                     <div class="pp-statuses-warning">
                         <?php 
