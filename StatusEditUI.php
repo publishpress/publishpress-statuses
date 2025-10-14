@@ -247,6 +247,7 @@ class StatusEditUI
             }
         }
         ?>
+        <div id="pp-name" class="pp-options">
         <table class="form-table" style="<?php echo esc_attr($display);?>">
             <tr class="form-field form-required">
                 <th scope="row" valign="top"><label for="label"><?php
@@ -361,6 +362,7 @@ class StatusEditUI
                 </td>
             </tr>
         </table>
+        </div>
         <?php
     }
 
