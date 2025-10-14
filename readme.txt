@@ -172,7 +172,10 @@ Please report security bugs found in the source code of the PublishPress Statuse
 
 == Changelog ==
 
-= [1.1.8] - 13 Oct 2025
+= [1.1.8] - 14 Oct 2025
+* Fixed : Status Edit - Name tab shows others tab's fields
+* Fixed : Status Edit - Name tab contents not redisplayed on return from other tab
+* Fixed : Status Edit - Capability Requirements dropdown on Post Access tab only shown if Custom Capabilities already enabled
 * Fixed : Invalid status order / disabling under some conditions
 * Fixed : PHP Warning for undefined status name property
 
