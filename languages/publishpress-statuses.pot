@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Statuses 1.1.7\n"
+"Project-Id-Version: PublishPress Statuses 1.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-02T22:14:54+00:00\n"
+"POT-Creation-Date: 2025-10-14T17:31:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: publishpress-statuses\n"
@@ -372,55 +372,55 @@ msgstr ""
 msgid "Alternate Pre-Publication Workflow:"
 msgstr ""
 
-#: PublishPress_Statuses.php:936
+#: PublishPress_Statuses.php:965
 msgid "Disabled Statuses:"
 msgstr ""
 
-#: PublishPress_Statuses.php:952
+#: PublishPress_Statuses.php:981
 msgid "Committee"
 msgstr ""
 
-#: PublishPress_Statuses.php:954
+#: PublishPress_Statuses.php:983
 msgid "Refer to Committee"
 msgstr ""
 
-#: PublishPress_Statuses.php:955
+#: PublishPress_Statuses.php:984
 msgid "Post has been referred to committee."
 msgstr ""
 
-#: PublishPress_Statuses.php:967
+#: PublishPress_Statuses.php:996
 msgid "Committee Review"
 msgstr ""
 
-#: PublishPress_Statuses.php:969
+#: PublishPress_Statuses.php:998
 msgid "Set to Committee Review"
 msgstr ""
 
-#: PublishPress_Statuses.php:970
+#: PublishPress_Statuses.php:999
 msgid "Committee is reviewing the post."
 msgstr ""
 
-#: PublishPress_Statuses.php:982
+#: PublishPress_Statuses.php:1011
 msgid "Committee Progress"
 msgstr ""
 
-#: PublishPress_Statuses.php:984
+#: PublishPress_Statuses.php:1013
 msgid "Set to Committee Progress"
 msgstr ""
 
-#: PublishPress_Statuses.php:985
+#: PublishPress_Statuses.php:1014
 msgid "Committee is editing the post."
 msgstr ""
 
-#: PublishPress_Statuses.php:997
+#: PublishPress_Statuses.php:1026
 msgid "Committee Approved"
 msgstr ""
 
-#: PublishPress_Statuses.php:999
+#: PublishPress_Statuses.php:1028
 msgid "Set Committee Approval"
 msgstr ""
 
-#: PublishPress_Statuses.php:1000
+#: PublishPress_Statuses.php:1029
 msgid "Committee has approved the post."
 msgstr ""
 
@@ -438,7 +438,7 @@ msgid "Labels"
 msgstr ""
 
 #: StatusEditUI.php:69
-#: StatusEditUI.php:429
+#: StatusEditUI.php:431
 #: StatusListTable.php:128
 msgid "Post Types"
 msgstr ""
@@ -460,107 +460,107 @@ msgstr ""
 msgid "Update Status"
 msgstr ""
 
-#: StatusEditUI.php:253
+#: StatusEditUI.php:254
 msgid "Status Label"
 msgstr ""
 
-#: StatusEditUI.php:266
+#: StatusEditUI.php:267
 msgid "The name is used to identify the status. (Max: 20 characters)"
 msgstr ""
 
-#: StatusEditUI.php:288
+#: StatusEditUI.php:289
 msgid "The slug is the unique ID for the status."
 msgstr ""
 
-#: StatusEditUI.php:298
+#: StatusEditUI.php:299
 msgid "Description"
 msgstr ""
 
-#: StatusEditUI.php:310
+#: StatusEditUI.php:311
 msgid "The description is primarily for administrative use, to give you some context on what the custom status is to be used for."
 msgstr ""
 
-#: StatusEditUI.php:319
+#: StatusEditUI.php:320
 msgid "Color"
 msgstr ""
 
-#: StatusEditUI.php:331
+#: StatusEditUI.php:332
 msgid "The color is used to identify the status."
 msgstr ""
 
-#: StatusEditUI.php:337
+#: StatusEditUI.php:338
 #: StatusListTable.php:126
 msgid "Icon"
 msgstr ""
 
-#: StatusEditUI.php:353
+#: StatusEditUI.php:354
 msgid "Select Icon"
 msgstr ""
 
-#: StatusEditUI.php:359
+#: StatusEditUI.php:360
 msgid "The icon is used to visually represent the status."
 msgstr ""
 
-#: StatusEditUI.php:393
+#: StatusEditUI.php:395
 msgid "Status Availability"
 msgstr ""
 
-#: StatusEditUI.php:396
+#: StatusEditUI.php:398
 msgid "Choose which user roles can assign this status to a post."
 msgstr ""
 
-#: StatusEditUI.php:432
+#: StatusEditUI.php:434
 msgid "Choose which post types can be set to this status."
 msgstr ""
 
-#: StatusEditUI.php:469
+#: StatusEditUI.php:471
 msgid "All Post Types"
 msgstr ""
 
-#: StatusEditUI.php:516
+#: StatusEditUI.php:518
 msgid "Save As Label"
 msgstr ""
 
-#: StatusEditUI.php:524
+#: StatusEditUI.php:526
 msgid "Submit Button Label"
 msgstr ""
 
-#: StatusEditUI.php:536
+#: StatusEditUI.php:538
 msgid "Upgrade to choose who can manage posts in each status"
 msgstr ""
 
-#: StatusEditUI.php:539
+#: StatusEditUI.php:541
 msgid "Get PublishPress Capabilities Pro for status-specific post access control."
 msgstr ""
 
-#: StatusEditUI.php:545
+#: StatusEditUI.php:547
 msgid "Control which roles can assign a status"
 msgstr ""
 
-#: StatusEditUI.php:548
+#: StatusEditUI.php:550
 msgid "Control which roles can edit or delete posts per-status"
 msgstr ""
 
-#: StatusEditUI.php:551
+#: StatusEditUI.php:553
 msgid "Set capabilities separately for each post type"
 msgstr ""
 
-#: StatusEditUI.php:554
+#: StatusEditUI.php:556
 msgid "User-friendly checkbox grid to assign capabilities"
 msgstr ""
 
-#: StatusEditUI.php:563
+#: StatusEditUI.php:565
 msgid "Get PublishPress Capabilities Pro"
 msgstr ""
 
-#: StatusEditUI.php:568
+#: StatusEditUI.php:570
 #: StatusListTable.php:186
 #: StatusListTable.php:203
 #: StatusListTable.php:613
 msgid "Learn More"
 msgstr ""
 
-#: StatusEditUI.php:577
+#: StatusEditUI.php:579
 msgid "Status-specific post capabilities are %1$scurrently disabled%2$s by PublishPress Capabilities Pro. You can %3$schange this setting%4$s."
 msgstr ""
 
