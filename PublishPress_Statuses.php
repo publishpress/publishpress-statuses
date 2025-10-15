@@ -2900,7 +2900,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $status_obj = get_post_status_object('draft');
         }
 
-        $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
+        $_post_status_obj_name = (!empty($status_obj->name)) ? $status_obj->name : '';
 
         return ('name' == $return) ? $_post_status_obj_name : $status_obj;
     }
