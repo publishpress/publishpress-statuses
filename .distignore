@@ -18,3 +18,4 @@ bin
 composer.json
 composer.lock
 version.txt
+.env.example

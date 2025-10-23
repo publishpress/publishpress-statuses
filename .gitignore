@@ -8,3 +8,6 @@
 *.code-workspace
 /version.txt
 .php-cs-fixer.cache
+
+dev-workspace/.cache
+.env
