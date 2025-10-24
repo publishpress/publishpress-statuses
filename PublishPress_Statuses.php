@@ -1142,6 +1142,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
      */
     private function register_moderation_statuses($statuses)
     {
+        global $wp_post_statuses;
+
         if (function_exists('register_post_status')) {
             foreach ($statuses as $status) {
                 // Ignore visibility statues and all core statuses, which are registered elsewhere.
@@ -1543,8 +1545,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         $stored_status_positions = (is_array($positions) && $positions) ? array_flip($positions) : [];
 
-        $status_positions_modified = !empty($stored_status_positions);
-
         $stored_status_terms = [];
 
         $term_meta_fields = apply_filters('publishpress_statuses_meta_fields', ['labels', 'post_type', 'roles', 'status_parent', 'color', 'icon']);
@@ -1583,14 +1583,15 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
-        if ($status_positions_modified) {
+        // Make sure Revision statuses are not improperly disabled
+        if (!empty($stored_status_positions) && array_search('_revision-workflow', $positions)) {
             foreach (array_keys($stored_status_positions) as $status_name) {
                 if ('_disabled' == $status_name) {
                     $in_disabled_statuses = true;
                     $pos = $disabled_position;
                 }
 
-                if (!empty($in_disabled_statuses)) {
+                if (!empty($in_disabled_statuses) && !in_array($status_name, ['_revision-workflow', '_revision-alternate'])) {
                     $pos++;
                     $stored_status_positions[$status_name] = $pos;
                 }
@@ -1758,7 +1759,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                 // @todo: register Revision Statuses upstream
                 if ('pp_revision_status' == $taxonomy) {
-                    register_post_status($status_name, $all_statuses[$status_name]);
+                    if (!isset($wp_post_statuses[$status_name])) {
+                        register_post_status($status_name, $all_statuses[$status_name]);
+                    }
                 }
             }
         }
@@ -1776,13 +1779,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                 if (empty($all_statuses[$status_name]->private)) {
                     // This is a non-private status whose position may have been artificially backed up from the disabled section into the private section
-                    if (('pending' != $status_name) && $status_positions_modified && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
+                    if (('pending' != $status_name) && !empty($stored_status_positions) && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
                         $all_statuses[$status_name]->disabled = true;
                     
                     } elseif (('pending' == $status_name) && ($stored_status_positions[$status_name] >= $stored_status_positions['_pre-publish-alternate'])) {
                         $stored_status_positions[$status_name] = 1;
                         $all_statuses[$status_name]->disabled = false;
-
                     }
                 } else {
                     // This is a private status whose position may have been artificially advanced from the private section into the disabled section
@@ -1790,7 +1792,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     ) {
                         $stored_status_positions[$status_name] = $stored_status_positions['private'];
 
-                    } elseif ($status_positions_modified && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
+                    } elseif (!empty($stored_status_positions) && ($stored_status_positions[$status_name] >= $stored_status_positions['_disabled']) && ('_disabled' != $status_name)) {
                         $all_statuses[$status_name]->disabled = true;
                     }
                 }
@@ -1895,7 +1897,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     }
 
                     if (empty($core_statuses[$status->slug]) && empty($pseudo_statuses[$status->slug])) {
-                        if ($status_positions_modified && ($status->position >= $all_statuses['_disabled']->position)) {
+                        if (!empty($stored_status_positions) && ($status->position >= $all_statuses['_disabled']->position)) {
                             $status->disabled = true; // Fallback in case the disabled_statuses array is missing or out of sync (privacy statuses are pulled from a different taxonomy)
 
                         } elseif (!empty($status->moderation)) { 
