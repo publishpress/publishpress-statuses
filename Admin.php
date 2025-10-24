@@ -54,10 +54,68 @@ class Admin
 
         $last_statuses_version = get_option('publishpress_statuses_version');
 
-        if ($last_statuses_version != PUBLISHPRESS_STATUSES_VERSION) {
+        if (($last_statuses_version != PUBLISHPRESS_STATUSES_VERSION) || !empty($_REQUEST['pp_reset_status_positions'])) {
             if ('1.1.7-beta' == $last_statuses_version) {
                 // work around beta bug
                 delete_option('publishpress_status_positions');
+
+            } elseif (version_compare($last_statuses_version, '1.1.9', '<=') || !empty($_REQUEST['pp_reset_status_positions'])) {
+                if ($positions = get_option('publishpress_status_positions')) {
+                    $current_positions = $positions;
+                    
+                    $rev_statuses = \PublishPress_Statuses::instance()->getPostStatuses(['for_revision' => true], 'names');
+        
+                    $ordered_rev_statuses = [];
+                    $ordered_disabled_statuses = [];
+        
+                    $rev_main_pos = array_search('_revision-workflow', $positions);
+        
+                    // Move Main Rev workflow above Rev statuses
+                    foreach ($positions as $k => $status) {
+                        if ($k >= $rev_main_pos) {
+                            break;
+                        }
+        
+                        if (in_array($status, $rev_statuses) && ('draft-revision' != $status)) {
+                            unset($positions['_revision-workflow']);
+        
+                            $positions = array_merge(
+                                array_slice($positions, 0, $k),
+                                ['_revision-workflow'],
+                                array_slice($positions, $k)
+                            );
+        
+                            break;
+                        }
+                    }
+        
+                    reset($positions);
+        
+                    $rev_main_pos = array_search('_revision-workflow', $positions);
+                    $alternate_rev_pos = array_search('_revision-alternate', $positions);
+                    $disabled_pos = array_search('_disabled', $positions);
+        
+                    // Move Alternate Rev workflow above Disabled
+                    if ($alternate_rev_pos > $disabled_pos) {
+                        $last_rev_status_pos = 0;
+        
+                        foreach ($positions as $k => $status) {
+                            if (in_array($status, $rev_statuses)) {
+                                $last_rev_status_pos = $k;
+                            }
+                        }
+        
+                        $positions = array_merge(
+                            array_slice($positions, 0, $disabled_pos-1),
+                            array_slice($positions, $alternate_rev_pos, $last_rev_status_pos - $alternate_rev_status_pos + 1),
+                            array_slice($positions, $disabled_pos)
+                        );
+                    }
+        
+                    if ($positions !== $current_positions) {
+                        update_option('publishpress_status_positions', $positions);
+                    }
+                }
             }
 
             if (!$last_statuses_version || version_compare($last_statuses_version, '1.1.7', '<')) {
