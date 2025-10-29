@@ -1,4 +1,14 @@
-path: ./dist/publishpress-statuses
+path:
+  - .
+  - common
+  - includes-core
+  - lib
 jobs: 10
 extensions:
   - php
+exclude:
+  - .github
+  - .dev-workspace
+  - dist
+  - vendor
+  - lib/vendor
