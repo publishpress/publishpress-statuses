@@ -8,3 +8,5 @@
 - /vendor
 - composer.lock
 - composer.json
+- .env
+- .env.example

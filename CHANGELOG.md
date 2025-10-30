@@ -1,6 +1,14 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [1.1.10] - 30 Oct 2025 =
+* Fixed : Status Edit - Capability Requirements dropdown not shown on Post Access tab if Custom Capabilities not already enabled and Permissions Pro is active
+* Fixed : Pro - Default Revision Statuses were not ordered / classified correctly on Statuses screen if their order was not previously updated
+* Fixed : Pro - Revision Status ordering could become invalid in previous versions, breaking some Revisions functionality
+
+= [1.1.9] - 15 Oct 2025 =
+* Fixed : Publication workflow reverts post to draft
+
 = [1.1.8] - 14 Oct 2025
 * Fixed : Status Edit - Name tab shows others tab's fields
 * Fixed : Status Edit - Name tab contents not redisplayed on return from other tab
