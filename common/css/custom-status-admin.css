@@ -393,6 +393,10 @@ font-size: 14px;
 font-weight: bold;
 }
 
+tr.cme-postmeta-status {
+background-color: #e8e8e8;
+}
+
 
 /* Add Status Form */
 #addstatus .form-table th, #addstatus .form-table th label
