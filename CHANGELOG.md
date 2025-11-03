@@ -1,6 +1,10 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [1.1.11] - 3 Nov 2025 =
+* Fixed : Status disable was not applied, all statuses were available in alternate workflow
+* Change : Improve background color contrast on Status Edit > Post Access
+
 = [1.1.10] - 30 Oct 2025 =
 * Fixed : Status Edit - Capability Requirements dropdown not shown on Post Access tab if Custom Capabilities not already enabled and Permissions Pro is active
 * Fixed : Pro - Default Revision Statuses were not ordered / classified correctly on Statuses screen if their order was not previously updated
