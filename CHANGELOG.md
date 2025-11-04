@@ -1,6 +1,13 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [1.1.12] - 4 Nov 2025 =
+* Fixed : Status disable was not applied, all statuses were available in alternate workflow
+* Fixed : Blank Post Access tab was displayed when editing Draft status
+* Change : Remove Statuses > Add New submenu item
+* Change : Clarify Delete captions in Statuses table
+* Lang : Update ES, FR, IT
+
 = [1.1.11] - 3 Nov 2025 =
 * Fixed : Status disable was not applied, all statuses were available in alternate workflow
 * Change : Improve background color contrast on Status Edit > Post Access
