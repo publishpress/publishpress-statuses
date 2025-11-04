@@ -1584,7 +1584,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         // Make sure Revision statuses are not improperly disabled
-        if ($positions && !empty($stored_status_positions) && !empty($stored_status_positions['_revision-workflow'])) {
+        if ($positions && !empty($stored_status_positions)) {
             foreach (array_keys($stored_status_positions) as $status_name) {
                 if ('_disabled' == $status_name) {
                     $in_disabled_statuses = true;
