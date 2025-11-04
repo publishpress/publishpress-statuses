@@ -870,12 +870,12 @@ do_action('publishpress_statuses_table_row', $key, []);
         $url = admin_url("admin.php?action=edit-status&name={$status_obj->name}&page=publishpress-statuses");
         $actions['edit'] =  ['url' => esc_url($url), 'label' => esc_html__('Edit')];
 
-        if (empty($status_obj) || (empty($status_obj->_builtin))) {
+        if ((empty($status_obj) || (empty($status_obj->_builtin))) && empty($status_obj->disabled)) {
             $actions['disable'] = ['url' => '#', 'label' => \PublishPress_Statuses::__wp('Disable', 'publishpress-statuses')];
         }
 
         if (empty($status_obj) || (empty($status_obj->_builtin) && empty($status_obj->pp_builtin))) {
-            $actions['delete'] = ['url' => '#', 'label' => __('X', 'publishpress-statuses')];
+            $actions['delete'] = ['url' => '#', 'label' => __('Delete', 'publishpress-statuses')];
         }
 
         $actions = apply_filters('publishpress_statuses_row-actions', $actions, $item);
