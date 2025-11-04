@@ -81,7 +81,9 @@ class StatusEditUI
         if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
         || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
         :
-            $tabs['post_access'] = __('Post Access', 'publishpress-statuses');
+            if ('draft' != $status->name) {
+                $tabs['post_access'] = __('Post Access', 'publishpress-statuses');
+            }
         endif;
 
         $tabs = apply_filters('publishpress_statuses_edit_status_tabs', $tabs, $status->name);
