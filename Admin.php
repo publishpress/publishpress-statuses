@@ -432,6 +432,15 @@ class Admin
 
         add_submenu_page(
             'publishpress-statuses',
+            esc_html__('Add New', 'publishpress-statuses'), 
+            esc_html__('Add New', 'publishpress-statuses'), 
+            $check_cap,
+            'publishpress-statuses-add-new', 
+            [$this, 'render_admin_page']
+        );
+
+        add_submenu_page(
+            'publishpress-statuses',
             esc_html(\PublishPress_Statuses::__wp('Settings', 'publishpress-statuses')), 
             esc_html(\PublishPress_Statuses::__wp('Settings', 'publishpress-statuses')), 
             'manage_options',   // @todo: custom capability?
