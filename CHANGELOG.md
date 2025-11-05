@@ -1,6 +1,9 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [1.1.13] - 4 Nov 2025 =
+* Fixed : Add Status screen could not be loaded
+
 = [1.1.12] - 4 Nov 2025 =
 * Fixed : Status disable was not applied, all statuses were available in alternate workflow
 * Fixed : Blank Post Access tab was displayed when editing Draft status
