@@ -12,3 +12,4 @@ exclude:
   - dist
   - vendor
   - lib/vendor
+  - .wordpress-org
