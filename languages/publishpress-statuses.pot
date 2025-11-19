@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Statuses 1.1.13\n"
+"Project-Id-Version: PublishPress Statuses 1.1.14\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-05T02:39:44+00:00\n"
+"POT-Creation-Date: 2025-11-19T16:58:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: publishpress-statuses\n"
@@ -94,6 +94,7 @@ msgstr ""
 #. translators: %s is the status label
 #: Admin.php:548
 #: PostEditGutenberg.php:77
+#: PostEditGutenberg.php:97
 msgid "Save as %s"
 msgstr ""
 
@@ -105,7 +106,7 @@ msgstr ""
 #: Admin.php:631
 #: PostEditClassic.php:179
 #: PostEditGutenberg.php:74
-#: PostEditGutenberg.php:264
+#: PostEditGutenberg.php:265
 #: PostEditGutenbergStatuses.php:46
 #: PostEditGutenbergStatuses.php:66
 #: PostEditGutenbergStatuses.php:74
@@ -236,7 +237,7 @@ msgstr ""
 msgid "Workflow"
 msgstr ""
 
-#: PostEditGutenbergStatuses.php:122
+#: PostEditGutenbergStatuses.php:124
 msgid "Submit Revision"
 msgstr ""
 
