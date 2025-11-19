@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Statuses 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2025-10-02T22:14:54+00:00\n"
-"PO-Revision-Date: 2025-11-04 09:52+0100\n"
+"POT-Creation-Date: 2025-11-05T02:39:44+00:00\n"
+"PO-Revision-Date: 2025-11-05 10:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -43,7 +43,7 @@ msgstr "PublishPress"
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
 
-#: Admin.php:18 Admin.php:366 Admin.php:367 PublishPress_Statuses.php:337
+#: Admin.php:18 Admin.php:424 Admin.php:425 PublishPress_Statuses.php:337
 #: PublishPress_Statuses.php:338 StatusesUI.php:92
 msgid "Statuses"
 msgstr "Estados"
@@ -58,7 +58,7 @@ msgstr "Ajustes"
 msgid "Upgrade to Pro"
 msgstr "Actualizar a Pro"
 
-#: Admin.php:305
+#: Admin.php:363
 msgid ""
 "Are you sure you want to delete the post status? All posts with this status "
 "will be assigned to the default status."
@@ -66,38 +66,38 @@ msgstr ""
 "¿Estás seguro de querer borrar el estado de la entrada? Todas las entradas "
 "con este estado serán asignadas al estado por defecto."
 
-#: Admin.php:377 Admin.php:378 StatusesUI.php:832
+#: Admin.php:435 Admin.php:436 StatusesUI.php:832
 msgid "Add New"
 msgstr "Añadir nuevo"
 
-#: Admin.php:464 PublishPress_Statuses.php:794
+#: Admin.php:522 PublishPress_Statuses.php:794
 msgid "Approve"
 msgstr "Aprobar"
 
-#: Admin.php:466 PublishPress_Statuses.php:766
+#: Admin.php:524 PublishPress_Statuses.php:766
 msgid "Assign"
 msgstr "Asignar"
 
-#: Admin.php:468 PublishPress_Statuses.php:780
+#: Admin.php:526 PublishPress_Statuses.php:780
 msgid "Mark In Progress"
 msgstr "Marca en progreso"
 
 #. translators: %s is the status label
-#: Admin.php:481
+#: Admin.php:539
 msgid "Set to %s"
 msgstr "Establecer %s"
 
 #. translators: %s is the status label
-#: Admin.php:490 PostEditGutenberg.php:77
+#: Admin.php:548 PostEditGutenberg.php:77
 msgid "Save as %s"
 msgstr "Guardar como %s"
 
 #. translators: %s is the name of a custom public status
-#: Admin.php:502
+#: Admin.php:560
 msgid "Public (%s)"
 msgstr "Público (%s)"
 
-#: Admin.php:573 PostEditClassic.php:179 PostEditGutenberg.php:74
+#: Admin.php:631 PostEditClassic.php:179 PostEditGutenberg.php:74
 #: PostEditGutenberg.php:264 PostEditGutenbergStatuses.php:46
 #: PostEditGutenbergStatuses.php:66 PostEditGutenbergStatuses.php:74
 msgid "Advance Status"
@@ -386,55 +386,55 @@ msgstr "La entrada ha sido rechazada."
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Flujo de trabajo alternativo previo a la publicación:"
 
-#: PublishPress_Statuses.php:936
+#: PublishPress_Statuses.php:965
 msgid "Disabled Statuses:"
 msgstr "Estados desactivados:"
 
-#: PublishPress_Statuses.php:952
+#: PublishPress_Statuses.php:981
 msgid "Committee"
 msgstr "Comité"
 
-#: PublishPress_Statuses.php:954
+#: PublishPress_Statuses.php:983
 msgid "Refer to Committee"
 msgstr "Trasmitir al comité"
 
-#: PublishPress_Statuses.php:955
+#: PublishPress_Statuses.php:984
 msgid "Post has been referred to committee."
 msgstr "La entrada ha sido transmitida al comité."
 
-#: PublishPress_Statuses.php:967
+#: PublishPress_Statuses.php:996
 msgid "Committee Review"
 msgstr "Revisión por el comité"
 
-#: PublishPress_Statuses.php:969
+#: PublishPress_Statuses.php:998
 msgid "Set to Committee Review"
 msgstr "Enviar a la revisión del comité"
 
-#: PublishPress_Statuses.php:970
+#: PublishPress_Statuses.php:999
 msgid "Committee is reviewing the post."
 msgstr "El comité está revisando la entrada."
 
-#: PublishPress_Statuses.php:982
+#: PublishPress_Statuses.php:1011
 msgid "Committee Progress"
 msgstr "Progreso del comité"
 
-#: PublishPress_Statuses.php:984
+#: PublishPress_Statuses.php:1013
 msgid "Set to Committee Progress"
 msgstr "Establecer el progreso del comité"
 
-#: PublishPress_Statuses.php:985
+#: PublishPress_Statuses.php:1014
 msgid "Committee is editing the post."
 msgstr "Le comité ha editado la entrada."
 
-#: PublishPress_Statuses.php:997
+#: PublishPress_Statuses.php:1026
 msgid "Committee Approved"
 msgstr "Comité aprobado"
 
-#: PublishPress_Statuses.php:999
+#: PublishPress_Statuses.php:1028
 msgid "Set Committee Approval"
 msgstr "Establece la aprobación del comité"
 
-#: PublishPress_Statuses.php:1000
+#: PublishPress_Statuses.php:1029
 msgid "Committee has approved the post."
 msgstr "Le comité ha aprobado la entrada."
 
@@ -450,7 +450,7 @@ msgstr "Volver a los estados"
 msgid "Labels"
 msgstr "Etiquetas"
 
-#: StatusEditUI.php:69 StatusEditUI.php:429 StatusListTable.php:128
+#: StatusEditUI.php:69 StatusEditUI.php:433 StatusListTable.php:128
 msgid "Post Types"
 msgstr "Tipos de contenido"
 
@@ -458,11 +458,11 @@ msgstr "Tipos de contenido"
 msgid "Roles"
 msgstr "Perfiles"
 
-#: StatusEditUI.php:84
+#: StatusEditUI.php:85
 msgid "Post Access"
 msgstr "Acceso a las entradas"
 
-#: StatusEditUI.php:165
+#: StatusEditUI.php:167
 msgid ""
 "Enforce type-specific post capabilitities for this status, or share "
 "capabilities with another status."
@@ -470,27 +470,27 @@ msgstr ""
 "Aplica las capacidades de publicación específicas de este tipo para este "
 "estado, o comparte capacidades con otro estado."
 
-#: StatusEditUI.php:210
+#: StatusEditUI.php:212
 msgid "Update Status"
 msgstr "Actualizar estado"
 
-#: StatusEditUI.php:253
+#: StatusEditUI.php:256
 msgid "Status Label"
 msgstr "Etiqueta de estado"
 
-#: StatusEditUI.php:266
+#: StatusEditUI.php:269
 msgid "The name is used to identify the status. (Max: 20 characters)"
 msgstr "El nombre es usado para identificar el estado. (Máximo: 20 caracteres)"
 
-#: StatusEditUI.php:288
+#: StatusEditUI.php:291
 msgid "The slug is the unique ID for the status."
 msgstr "El slug es el identificador único del estado."
 
-#: StatusEditUI.php:298
+#: StatusEditUI.php:301
 msgid "Description"
 msgstr "Descripción"
 
-#: StatusEditUI.php:310
+#: StatusEditUI.php:313
 msgid ""
 "The description is primarily for administrative use, to give you some "
 "context on what the custom status is to be used for."
@@ -498,90 +498,90 @@ msgstr ""
 "La descripción es principalmente para uso administrativo, para que tengas un "
 "poco de contexto sobre para qué se usa el estado personalizado."
 
-#: StatusEditUI.php:319
+#: StatusEditUI.php:322
 msgid "Color"
 msgstr "Color"
 
-#: StatusEditUI.php:331
+#: StatusEditUI.php:334
 msgid "The color is used to identify the status."
 msgstr "El color se usa para identificar el estado."
 
-#: StatusEditUI.php:337 StatusListTable.php:126
+#: StatusEditUI.php:340 StatusListTable.php:126
 msgid "Icon"
 msgstr "Icono"
 
-#: StatusEditUI.php:353
+#: StatusEditUI.php:356
 msgid "Select Icon"
 msgstr "Selecciona icono"
 
-#: StatusEditUI.php:359
+#: StatusEditUI.php:362
 msgid "The icon is used to visually represent the status."
 msgstr "El icono se usa para representar visualmente el estado."
 
-#: StatusEditUI.php:393
+#: StatusEditUI.php:397
 msgid "Status Availability"
 msgstr "Estado de disponibilidad"
 
-#: StatusEditUI.php:396
+#: StatusEditUI.php:400
 msgid "Choose which user roles can assign this status to a post."
 msgstr ""
 "Elige qué perfiles de usuario pueden asignar este estado a una entrada."
 
-#: StatusEditUI.php:432
+#: StatusEditUI.php:436
 msgid "Choose which post types can be set to this status."
 msgstr "Elige qué tipos de entrada pueden tener este estado."
 
-#: StatusEditUI.php:469
+#: StatusEditUI.php:473
 msgid "All Post Types"
 msgstr "Todos los tipos de contenido"
 
-#: StatusEditUI.php:516
+#: StatusEditUI.php:520
 msgid "Save As Label"
 msgstr "Guardar como etiqueta"
 
-#: StatusEditUI.php:524
+#: StatusEditUI.php:528
 msgid "Submit Button Label"
 msgstr "Etiqueta del botón «Enviar»"
 
-#: StatusEditUI.php:536
+#: StatusEditUI.php:540
 msgid "Upgrade to choose who can manage posts in each status"
 msgstr ""
 "Actualizar para elegir quién puede gestionar las entradas en cada estado"
 
-#: StatusEditUI.php:539
+#: StatusEditUI.php:543
 msgid ""
 "Get PublishPress Capabilities Pro for status-specific post access control."
 msgstr ""
 "Obtén PublishPress Capabilities Pro para controlar el acceso al estado "
 "específico de la entrada."
 
-#: StatusEditUI.php:545
+#: StatusEditUI.php:549
 msgid "Control which roles can assign a status"
 msgstr "Controla qué perfiles pueden asignar un estado"
 
-#: StatusEditUI.php:548
+#: StatusEditUI.php:552
 msgid "Control which roles can edit or delete posts per-status"
 msgstr "Controla qué perfiles pueden editar o borrar las entradas por estado"
 
-#: StatusEditUI.php:551
+#: StatusEditUI.php:555
 msgid "Set capabilities separately for each post type"
 msgstr "Establece las capacidades separadamente para cada tipo de contenido"
 
-#: StatusEditUI.php:554
+#: StatusEditUI.php:558
 msgid "User-friendly checkbox grid to assign capabilities"
 msgstr ""
 "Cuadrícula de casillas de verificación fácil de usar para asignar capacidades"
 
-#: StatusEditUI.php:563
+#: StatusEditUI.php:567
 msgid "Get PublishPress Capabilities Pro"
 msgstr "Obtén PublishPress Capabilities Pro"
 
-#: StatusEditUI.php:568 StatusListTable.php:186 StatusListTable.php:203
+#: StatusEditUI.php:572 StatusListTable.php:186 StatusListTable.php:203
 #: StatusListTable.php:613
 msgid "Learn More"
 msgstr "Aprender más"
 
-#: StatusEditUI.php:577
+#: StatusEditUI.php:581
 msgid ""
 "Status-specific post capabilities are %1$scurrently disabled%2$s by "
 "PublishPress Capabilities Pro. You can %3$schange this setting%4$s."
@@ -1201,8 +1201,11 @@ msgid "Default"
 msgstr "Por defecto"
 
 #: StatusListTable.php:878
-msgid "X"
-msgstr "X"
+msgid "Delete"
+msgstr "Borrar"
+
+#~ msgid "X"
+#~ msgstr "X"
 
 #~ msgid "Unlock Revision Statuses"
 #~ msgstr "Desbloquear los estados de revisión"
