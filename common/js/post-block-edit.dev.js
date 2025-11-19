@@ -216,7 +216,7 @@ jQuery(document).ready(function ($) {
                             ppObjEdit.saveAs = ppObjEdit.update;
                         } else {
                             if ($('button.editor-post-publish-panel__toggle').length) {
-                                if (typeof ppObjEdit.prePublish != 'undefined' && ppObjEdit.prePublish && ($('button.editor-post-publish-panel__toggle').html() != __('Schedule…'))) {
+                                if (typeof ppObjEdit.prePublish != 'undefined' && ppObjEdit.prePublish && ($('button.editor-post-publish-panel__toggle').html() != ppObjEdit.scheduleCaption)) {
                                     
                                     var pendingStatusArr = new Array('pending', '_pending');
                                     

@@ -94,6 +94,7 @@ class PostEditGutenberg
                         'statuses' => $statuses, 
                         'publishedStatuses' => $published_statuses, 
                         'publishedStatusObjects' => $published_status_objects, 
+                        'saveAsCaption' => __('Save as %s', 'publishpress-statuses'),
                         'captions' => apply_filters('publishpress_statuses_workflow_captions', $captions, $post),
                         'ajaxurl' => admin_url('admin-ajax.php'), 
                         'ppNonce' => wp_create_nonce('pp-custom-statuses-nonce')

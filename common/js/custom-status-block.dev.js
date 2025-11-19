@@ -80,7 +80,9 @@ var ppGetStatusSaveAs = function ppGetStatusSaveAs(slug) {
       return s.value === slug;
     });
 
-    return (item) ? __('Save as %s').replace('%s', item.label) : '';
+    var saveAsCaption = window.PPCustomStatuses.saveAsCaption;
+
+    return (item) ? saveAsCaption.replace('%s', item.label) : '';
   } else {
     return (item) ? item.save_as : '';
   }

@@ -2826,6 +2826,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 foreach ($moderation_statuses as $_status_obj) {
                     if (!empty($can_set_status[$_status_obj->name]) && ($_status_obj->name != $_post_status_obj_name)) {
                         $post_status_obj = $_status_obj;
+                        $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
                         break;
                     }
                 }
@@ -2841,6 +2842,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 	        	);
         	
         		$post_status_obj = get_post_status_object($_post_status);
+                $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
             }
 
             $override_status = apply_filters(
@@ -2854,10 +2856,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             && $can_set_status[$override_status]
             ) {
                 $post_status_obj = get_post_status_object($override_status);
+                $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
             }
 
             if (($_post_status_obj_name == $post_status) && current_user_can($type_obj->cap->publish_posts) && !$is_revision) {
                 $post_status_obj = get_post_status_object('publish');
+                $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
             }
 
             // If we are at the end of an alternate workflow status, default to returning to the last main workflow status this post was saved with
@@ -2870,6 +2874,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 ) {
                     if ($main_status_obj = self::getLastMainStatus($post_id)) {
                         $post_status_obj = $main_status_obj;
+                        $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
                     }
                 }
             }
@@ -2877,6 +2882,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             if (!empty($post_status_obj) && ('publish' == $_post_status_obj_name)) {
                 if (!empty($_post) && !empty($_post->post_date_gmt) && time() < strtotime($_post->post_date_gmt . ' +0000')) {
                     $post_status_obj = get_post_status_object('future');
+                    $_post_status_obj_name = (!empty($post_status_obj->name)) ? $post_status_obj->name : '';
                 }
             }
         }

@@ -118,6 +118,8 @@ class PostEditGutenbergStatuses
             $args['prePublish'] = apply_filters('presspermit_workflow_button_label', __('Workflow', 'publishpress-statuses'), $post_id);
         }
 
+        $args['scheduleCaption'] = __('Schedule');
+
         $args['saveDraftCaption'] = esc_html(\PublishPress_Statuses::__wp('Save Draft')); // this is used for reference in js
         $args['submitRevisionCaption'] = esc_html__('Submit Revision', 'publishpress-statuses'); // identify Revisions caption, to avoid overriding it
 
