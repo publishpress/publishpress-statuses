@@ -1,6 +1,10 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+= [1.1.14] =
+* Fixed : Status workflow did not offer to advance to next status under some configurations
+* Fixed : Javascript errors for ReferenceError in Post Editor 
+
 = [1.1.13] - 4 Nov 2025 =
 * Fixed : Add Status screen could not be loaded
 
