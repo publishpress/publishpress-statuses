@@ -32,14 +32,23 @@ class CoreAdmin
 
     function actAdminMenu()
     {
-        add_submenu_page(
-            'publishpress-statuses',
-            esc_html__('Upgrade to Pro', 'publishpress-statuses'),
-            esc_html__('Upgrade to Pro', 'publishpress-statuses'),
-            'read',
-            'statuses-pro',
-            ['PublishPress\Statuses\UI\Dashboard\DashboardFilters', 'actMenuHandler']
-        );
+        $check_cap = (current_user_can('manage_options')) ? 'read' : 'pp_manage_statuses';
+
+        if (current_user_can($check_cap)) {
+            add_submenu_page(
+                'publishpress-statuses',
+                esc_html__('Upgrade to Pro', 'publishpress-statuses'),
+                esc_html__('Upgrade to Pro', 'publishpress-statuses'),
+                'read',
+                'statuses-pro',
+                ['PublishPress\Statuses\CoreAdmin', 'actUpgradeMenu']
+            );
+        }
+    }
+
+    function actUpgradeMenu() 
+    {
+        return;
     }
 
     function setUpgradeMenuLink()
