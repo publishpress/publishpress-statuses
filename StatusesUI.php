@@ -864,7 +864,7 @@ class StatusesUI {
 
                     printf(
                         // translators: %1$s and %2$s is link markup
-                        esc_html__('Note: Custom Visibility Statuses are %1$sdisabled%2$s.', 'publishpress-permissions'),
+                        esc_html__('Note: Custom Visibility Statuses are %1$sdisabled%2$s.', 'publishpress-statuses'),
                         '<a href="' . esc_url($url) . '">',
                         '</a>'
                     );
