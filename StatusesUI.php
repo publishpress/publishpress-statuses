@@ -266,6 +266,15 @@ class StatusesUI {
                 ['class' => 'pp-settings-space-top pp-settings-separation-bottom']
             );
 
+            add_settings_field(
+                'default_privacy',
+                __('Default visibility for new posts:', 'publishpress-statuses'),
+                [$this, 'settings_default_privacy_option'],
+                $group_name,
+                $group_name . '_general',
+                ['class' => 'pp-settings-space-top pp-settings-separation-bottom']
+            );
+
             $show_edit_caps_setting = (function_exists('presspermit') && defined('PRESSPERMIT_COLLAB_VERSION') && defined('PRESSPERMIT_STATUSES_VERSION'));
 
             add_settings_field(
@@ -586,7 +595,7 @@ class StatusesUI {
         foreach ($post_types as $post_type => $title) {
             echo sprintf(
                 '<input type="hidden" name="%s" value="0" />',
-                esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[post_types][' . esc_attr($post_type) . ']"'
+                esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[post_types][' . esc_attr($post_type) . ']'
             ) . ' ';
 
             echo '<label for="' . esc_attr($post_type) . '-' . esc_attr($pp->module->slug) . '">';
@@ -616,6 +625,131 @@ class StatusesUI {
         _e('Note: Post types can also be specified for each individual status.', 'publishpress-statuses');
         ?>
         </p>
+        <?php
+    }
+
+    public function settings_default_privacy_option($unused = [])
+    {
+        $pp = \PublishPress_Statuses::instance();
+
+        if (empty($pp->module)) {
+            return;
+        }
+
+        if (empty($post_types)) {
+            $post_types = [
+                'post' => \PublishPress_Statuses::__wp('Posts'),
+                'page' => \PublishPress_Statuses::__wp('Pages'),
+            ];
+
+            $custom_post_types = $pp->get_supported_post_types();
+
+            foreach ($custom_post_types as $custom_post_type => $args) {
+                $post_types[$custom_post_type] = $args->label;
+            }
+        }
+        ?>
+
+        <div class="pp-statuses-post-types">
+
+        <table id="pp_statuses_default_privacy">
+        <?php
+
+        $do_force_option = true; // @todo
+
+        $custom_privacy_enabled = function_exists('presspermit') && presspermit()->moduleActive('status-control') && get_option('presspermit_privacy_statuses_enabled');
+
+        $options = \PublishPress_Statuses::instance()->options;
+
+        foreach ($post_types as $post_type => $title) {
+            $setting = (isset($pp->options->default_privacy[$post_type])) ?  $pp->options->default_privacy[$post_type] : '';
+
+            echo sprintf(
+                '<input type="hidden" name="%s" value="" />',
+                esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[default_privacy][' . esc_attr($post_type) . ']'
+            ) . ' ';
+
+            //echo '<label for="' . esc_attr($post_type) . '-' . esc_attr($pp->module->slug) . '">';
+            ?>
+            <tr>
+
+            <th>
+            <?php
+            esc_html_e($title) . ' ';
+            ?>
+            </th>
+
+            <td style="text-align: left">
+            <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
+                <option value=""><?php esc_html_e('Public'); ?></option>
+
+                <?php foreach (get_post_stati(['private' => true], 'object') as $status_obj) :
+                    $selected = ($status_obj->name == $setting) ? ' selected ' : '';
+                ?>
+                    <option value="<?php echo esc_attr($status_obj->name); ?>" <?php echo esc_attr($selected); ?>><?php echo esc_html($status_obj->label); ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <?php if ($do_force_option) :
+                $force_default_privacy = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
+
+                $id = 'force_default_privacy-' . $post_type;
+                $name = "force_default_privacy[$post_type]";
+                $style = 'display:inline'; // ($setting) ? 'display:inline' : 'display:none';
+
+                $checked = ($force_default_privacy) ? ' checked ' : ''; // || ($custom_privacy_enabled && \PublishPress_Functions::isBlockEditorActive($post_type))) ? ' checked ' : '';
+                $disabled = ''; // ($custom_privacy_enabled && \PublishPress_Functions::isBlockEditorActive($post_type)) ? " disabled " : '';
+            ?>
+                <input name='<?php echo esc_attr($name); ?>' type='hidden' value='0' />
+                &nbsp;<label style='<?php echo esc_attr($style); ?>' for="<?php echo esc_attr($id); ?>"><input
+                        type="checkbox" <?php echo esc_attr($checked); ?><?php echo esc_attr($disabled); ?>id="<?php echo esc_attr($id); ?>"
+                        name="<?php echo esc_attr($pp->options_group_name) . '[force_default_privacy][' . esc_attr($post_type) . ']'; ?>"
+                        value="1" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'press-permit-core'); ?><?php endif; ?>
+                </label>
+            <?php endif; ?>
+
+            </td>
+
+            </tr>
+            <?php
+
+            /*
+            
+            // Defining post_type_supports in the functions.php file or similar should disable the checkbox
+            disabled(post_type_supports($post_type, 'pp_custom_statuses'), true);
+            echo ' type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;' . esc_html($title) . '</label>';
+            
+            // Leave a note to the admin as a reminder that add_post_type_support has been used somewhere in their code
+            if (post_type_supports($post_type, 'pp_custom_statuses')) {
+                // translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
+                echo '&nbsp&nbsp;&nbsp;<span class="description">' . sprintf(esc_html____('Disabled because add_post_type_support(\'%1$s\', \'%2$s\') is included in a loaded file.', 'publishpress-statuses'), esc_html($post_type), 'pp_custom_statuses') . '</span>';
+            }
+
+            */
+        }
+        ?>
+        </table>
+
+        <br>
+
+        <?php
+        $lock_publication = is_object($options) && !empty($options->lock_publication);
+
+        $id = 'lock_publication';
+        $name = 'lock_publication';
+        $checked = ($lock_publication) ? ' checked ' : '';
+        ?>
+
+        <input name='<?php echo esc_attr($name); ?>' type='hidden' value='0' />
+        &nbsp;<label for="<?php echo esc_attr($id); ?>"><input
+                type="checkbox" <?php echo esc_attr($checked); ?> id="<?php echo esc_attr($id); ?>"
+                name="<?php echo esc_attr($pp->options_group_name) . '[lock_publication]'; ?>"
+                value="1" />
+
+        <?php esc_html_e('Visibility locks also prevent return to an unpublished status', 'press-permit-core'); ?>
+        </label>
+
+        </div>
         <?php
     }
 

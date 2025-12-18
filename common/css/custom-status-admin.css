@@ -649,6 +649,33 @@ user-select: none;
     color: #000 !important;
 }
 
+
+/* Settings */
+#pp_statuses_default_privacy {
+  display: flex;
+}
+
+#pp_statuses_default_privacy th, #pp_statuses_default_privacy td {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none;
+  font-weight: inherit;
+  text-align: right;
+}
+
+#pp_statuses_default_privacy th {
+  width: 100px;
+  width: inherit;
+  text-align: right;
+  vertical-align: baseline;
+  padding-right: 0;
+}
+
+#pp_statuses_default_privacy td {
+  vertical-align: baseline;
+}
+
+
 div.pp-statuses-warning {
   background: #fff;
   border: 1px solid #c3c4c7;
