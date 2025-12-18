@@ -38,13 +38,16 @@ class PublishPress_Functions
             'disable-gutenberg' => class_exists('DisableGutenberg'),
         ];
 
+        if (!empty($args['post_type'])) {
+            $postType = $args['post_type'];
+        } else {
+            if (function_exists('get_post_type')) {
+                $postType = get_post_type();
+            }
 
-        if (function_exists('get_post_type')) {
-            $postType = get_post_type();
-        }
-
-        if (! isset($postType) || empty($postType)) {
-            $postType = 'post';
+            if (!isset($postType) || empty($postType)) {
+                $postType = 'post';
+            }
         }
 
         /**

@@ -867,6 +867,15 @@ class StatusHandler {
 
                         break;
 
+                    case 'default_privacy':
+                    case 'force_default_privacy':
+                        $new_options[$option_name] = array_intersect_key(
+                            array_map('sanitize_key', (array) $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]), 
+                            \PublishPress_Statuses::instance()->get_supported_post_types()
+                        );
+
+                        break;
+
                     case 'force_editor_detection':
                     case 'label_storage':
                     case 'moderation_statuses_default_by_sequence':
