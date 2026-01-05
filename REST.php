@@ -8,6 +8,7 @@ class REST
     var $endpoint_class = '';
     var $post_type = '';
     var $post_id = 0;
+    var $post_status = '';
     var $is_posts_request = false;
     var $is_terms_request = false;
     var $params = [];
@@ -136,6 +137,25 @@ class REST
                 
                     if ( ! $this->post_id = (!empty($args['id'])) ? $args['id'] : 0 ) {
                         $this->post_id = (!empty($this->params['id'])) ? $this->params['id'] : 0;
+                    }
+
+                    // @todo: is this still needed?
+                    if (('revision' != $this->post_type) && apply_filters('publishpress_statuses_default_visibility', '', $this->post_type)) {
+                        if (false === get_post_meta($this->post_id, '_pp_original_status')) {
+                            global $wpdb;
+
+                            // phpcs Note: When imposing a default privacy, ensure retrieval of stored original status, not newly updated value
+
+                            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                            if ( $post_status = $wpdb->get_var( 
+                                $wpdb->prepare(
+                                    "SELECT post_status FROM $wpdb->posts WHERE ID = %s", 
+                                    $this->post_id
+                                )
+                            )) {
+                                update_post_meta($this->post_id, '_pp_original_status', $post_status);
+                            }
+                        }
                     }
 
                     if (!$this->post_type) {
