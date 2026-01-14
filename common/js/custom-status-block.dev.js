@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * PublishPress Statuses
  *
@@ -484,7 +482,7 @@ setInterval(function () {
       if ('auto-draft' == buttonStatus) {
         buttonStatus = 'draft';
       }
-      
+
       var statusCaption = ppGetStatusLabel(buttonStatus);
       var statusObj = ppGetStatusObject(buttonStatus);
 
