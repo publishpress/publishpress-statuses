@@ -268,7 +268,7 @@ class StatusesUI {
 
             add_settings_field(
                 'default_privacy',
-                __('Default visibility for new posts:', 'publishpress-statuses'),
+                __('Default Visibility Status:', 'publishpress-statuses'),
                 [$this, 'settings_default_privacy_option'],
                 $group_name,
                 $group_name . '_general',
@@ -681,7 +681,7 @@ class StatusesUI {
 
             <td style="text-align: left">
             <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
-                <option value=""><?php esc_html_e('Public'); ?></option>
+                <option value=""><?php esc_html_e('Published'); ?></option>
 
                 <?php foreach (get_post_stati(['private' => true], 'object') as $status_obj) :
                     $selected = ($status_obj->name == $setting) ? ' selected ' : '';
@@ -704,7 +704,7 @@ class StatusesUI {
                 &nbsp;<label style='<?php echo esc_attr($style); ?>' for="<?php echo esc_attr($id); ?>"><input
                         type="checkbox" <?php echo esc_attr($checked); ?><?php echo esc_attr($disabled); ?>id="<?php echo esc_attr($id); ?>"
                         name="<?php echo esc_attr($pp->options_group_name) . '[force_default_privacy][' . esc_attr($post_type) . ']'; ?>"
-                        value="1" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'press-permit-core'); ?><?php endif; ?>
+                        value="1" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'publishpress-statuses'); ?><?php endif; ?>
                 </label>
             <?php endif; ?>
 
@@ -730,7 +730,11 @@ class StatusesUI {
         ?>
         </table>
 
-        <br>
+        <p class="pp-option-footnote">
+        <?php
+        _e('Note: Visibility status locking also applies to Administrators.', 'publishpress-statuses');
+        ?>
+        </p>
 
         <?php
         $lock_publication = is_object($options) && !empty($options->lock_publication);
@@ -746,8 +750,14 @@ class StatusesUI {
                 name="<?php echo esc_attr($pp->options_group_name) . '[lock_publication]'; ?>"
                 value="1" />
 
-        <?php esc_html_e('Visibility locks also prevent return to an unpublished status', 'press-permit-core'); ?>
+        <?php esc_html_e('If the Published visibility status is locked, also prevent posts from being unpublished.', 'publishpress-statuses'); ?>
         </label>
+
+        <p class="pp-option-footnote">
+        <?php
+        _e('Note: Administrators will always be able to unpublish posts.', 'publishpress-statuses');
+        ?>
+        </p>
 
         </div>
         <?php
