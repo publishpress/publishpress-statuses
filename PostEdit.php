@@ -11,6 +11,8 @@ class PostEdit
             // Gutenberg scripts are only loaded if Gutenberg-specific actions fire.
             add_action('enqueue_block_editor_assets', [$this, 'actLoadGutenbergScripts']);
 
+            //add_action('admin_print_scripts', [$this, 'ui_add_js']);
+
             // Always load basic scripts for Classic Editor support unless explicitly disabled by plugin setting
             if ('gutenberg' !== \PublishPress_Statuses::instance()->options->force_editor_detection) {
                 add_action('add_meta_boxes', [$this, 'act_replace_publish_metabox'], 10, 2);
@@ -38,12 +40,7 @@ class PostEdit
         $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
 
         if ($post_type && $default_privacy) {
-            if (\PublishPress_Functions::isBlockEditorActive($post_type)) {
-                // separate JS for Gutenberg
-                if (in_array($pagenow, ['post-new.php'])) {
-                    add_action('admin_print_scripts', [$this, 'default_privacy_gutenberg']);
-                }
-            } else {
+            if (!\PublishPress_Functions::isBlockEditorActive($post_type)) {
                 add_action('admin_footer', [$this, 'default_privacy_js']);
             }
         }
@@ -53,17 +50,6 @@ class PostEdit
         require_once(__DIR__ . '/PostEditGutenberg.php');
         $obj = new \PublishPress_Statuses\PostEditGutenberg();
         $obj->actEnqueueBlockEditorAssets();
-    }
-
-
-    function default_privacy_gutenberg() {
-        // Pass default_privacy setting to JavaScript for Gutenberg
-        $post_type = \PublishPress_Functions::findPostType();
-
-        $options = \PublishPress_Statuses::instance()->options;
-        $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
-
-        wp_localize_script('publishpress-statuses-post-edit', 'ppEditorConfig', ['defaultPrivacy' => $default_privacy]);
     }
 
     function default_privacy_js()

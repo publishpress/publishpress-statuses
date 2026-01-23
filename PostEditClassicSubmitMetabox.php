@@ -54,7 +54,7 @@ class PostEditClassicSubmitMetabox
                         <?php self::post_status_display($post, $_args); ?>
                     </div>
 
-                    <?php if ((!defined('PRESSPERMIT_STATUSES_VERSION') || !get_option('presspermit_privacy_statuses_enabled')) && apply_filters('pp_statuses_display_visibility_ui', true, $post)):?>
+                    <?php if ((!defined('PRESSPERMIT_STATUSES_VERSION') || !get_option('presspermit_privacy_statuses_enabled', 1)) && apply_filters('pp_statuses_display_visibility_ui', true, $post)):?>
                     <div class="misc-pub-section misc-pub-visibility" id="visibility">
                         <?php _e('Visibility:', 'publishpress-statuses'); ?>
                         <span id="post-visibility-display">
@@ -115,7 +115,7 @@ class PostEditClassicSubmitMetabox
 
                     <?php 
                     // Prevent Permissions Pro Status control from adding a second Visibility div
-                    if (!defined('PRESSPERMIT_STATUSES_VERSION') || version_compare(PRESSPERMIT_STATUSES_VERSION, '4.0.8', '>') || get_option('presspermit_privacy_statuses_enabled')) {
+                    if (!defined('PRESSPERMIT_STATUSES_VERSION') || version_compare(PRESSPERMIT_STATUSES_VERSION, '4.0.8', '>') || get_option('presspermit_privacy_statuses_enabled', 1)) {
                         do_action('pp_statuses_post_submitbox_misc_sections', $post, $_args);
                     }
                     ?>

@@ -575,13 +575,13 @@ do_action('publishpress_statuses_table_row', $key, []);
         endif;?>
         <?php
 
-        if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
+        if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
                     <?php esc_html_e('Upgrade to choose who can view your non-public posts', 'publishpress-statuses'); ?>
                 </h4>
                 <p>
-                    <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
+                    <?php esc_html_e('Upgrade to PublishPress Statuses Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
                 </p>
 
                 <div class="pp-revisions-pro-features">
@@ -602,10 +602,10 @@ do_action('publishpress_statuses_table_row', $key, []);
                 </div>
 
                 <div class="pp-cta-buttons">
-                    <a href="https://publishpress.com/permissions/" 
+                    <a href="https://publishpress.com/statuses/" 
                         class="button-primary button-large pp-upgrade-btn" 
                         target="_blank">
-                        <?php esc_html_e('Get PublishPress Permissions Pro', 'publishpress-statuses'); ?>
+                        <?php esc_html_e('Get PublishPress Statuses Pro', 'publishpress-statuses'); ?>
                     </a>
                     <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
                         target="_blank"

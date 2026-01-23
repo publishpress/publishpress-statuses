@@ -4,13 +4,11 @@ namespace PublishPress_Statuses;
 class REST
 {
     var $route = '';
-    var $is_view_method = false;
     var $endpoint_class = '';
     var $post_type = '';
     var $post_id = 0;
     var $post_status = '';
     var $is_posts_request = false;
-    var $is_terms_request = false;
     var $params = [];
     var $referer = '';
 
@@ -41,47 +39,9 @@ class REST
         $routes = $rest_server->get_routes();
         
         $post_endpoints = apply_filters('presspermit_rest_post_endpoints', []);
-        $term_endpoints = apply_filters('presspermit_rest_term_endpoints', []);
-        
-        $extra_route_endpoints = array_replace($post_endpoints, $term_endpoints);
-        $endpoint_post_types = [];
-		
-        foreach($extra_route_endpoints as $route => $endpoint) {
-            if ($route && !is_numeric($route)) {
-                $set_routes []= $route;
-                $set_routes []= $route . '/(?P<id>[\d]+)';
-
-                foreach($set_routes as $route) {
-					if (is_array($endpoint)) {
-                        $_endpoint = $endpoint;
-                        $endpoint = reset($_endpoint);
-                        $post_type = key($_endpoint);
-
-                        if ($post_type) {
-                            $endpoint_post_types[$endpoint] = $post_type;
-                        }
-						
-                        if (isset($post_endpoints[$route]) && is_array($post_endpoints[$route])) {
-                            $post_endpoints[$route] = $endpoint;
-                        }
-						
-                        if (isset($term_endpoints[$route]) && is_array($term_endpoints[$route])) {
-                            $term_endpoints[$route] = $endpoint;
-                        }
-                    }
-					
-                    if (!empty($routes[$route])) {
-                        $routes[$route] []= ['callback' => [0 => $endpoint]];
-                    } else {
-                        $routes[$route] = ['callback' => [0 => $endpoint]];
-                    }
-                }
-            }
-        }
 
         $post_endpoints[]= 'WP_REST_Posts_Controller';
         $post_endpoints[]= 'WP_REST_Autosaves_Controller';
-        $term_endpoints[]= 'WP_REST_Terms_Controller';
 		
 		foreach ( $routes as $route => $handlers ) {
 			$match = preg_match( '@^' . $route . '$@i', $path, $matches );
@@ -111,14 +71,13 @@ class REST
                     continue;
                 }
 				
-                if (!in_array($this->endpoint_class, $post_endpoints, true) && !in_array($this->endpoint_class, $term_endpoints, true)
+                if (!in_array($this->endpoint_class, $post_endpoints, true)
                 ) {
                     continue;
                 }
 				
                 $this->route = $route;
 
-                $this->is_view_method = in_array($method, [\WP_REST_Server::READABLE, 'GET']);
                 $this->params = $request->get_params();
                 
                 $headers = $request->get_headers();

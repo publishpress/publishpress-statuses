@@ -852,13 +852,19 @@ class StatusHandler {
 
         $new_options = [];
 
-        foreach ($module->default_options as $option_name => $current_val) {
+        $options = array_merge($module->default_options, ['enable_custom_privacy', 1]);
+
+        foreach ($options as $option_name => $current_val) {
             if ('loaded_once' == $option_name) {
                 continue;
             }
 
             if (isset($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name])) {
                 switch ($option_name) {
+                    case 'enable_custom_privacy' :
+                        update_option('presspermit_enable_custom_privacy', intval($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]));
+                        return;
+
                     case 'post_types':
                         $new_options[$option_name] = array_intersect_key(
                             array_map('intval', (array) $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]), 

@@ -118,13 +118,6 @@ class Admin
                 }
             }
 
-            if (!$last_statuses_version || version_compare($last_statuses_version, '1.1.7', '<')) {
-                // Ensure Visibility Statuses are enabled by default
-                if (null === get_option('presspermit_privacy_statuses_enabled', null)) {
-                    update_option('presspermit_privacy_statuses_enabled', 1);
-                }
-            }
-
             update_option('publishpress_statuses_version', PUBLISHPRESS_STATUSES_VERSION);
         }
     }
@@ -553,7 +546,7 @@ class Admin
 
         if (empty($status->labels->visibility)) {
             if ('publish' == $status->name) {
-                $status->labels->visibility = esc_html(\PublishPress_Statuses::__wp('Public'));
+                $status->labels->visibility = esc_html(\PublishPress_Statuses::__wp('Published'));
 
             } elseif (!empty($status->public)) {
                 $status->labels->visibility = (!defined('WPLANG') || ('en_EN' == WPLANG))  // translators: %s is the name of a custom public status
