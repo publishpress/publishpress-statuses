@@ -78,7 +78,7 @@ class StatusEditUI
             }
         }
 
-        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION'))
         || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
         :
             if ('draft' != $status->name) {
@@ -102,7 +102,7 @@ class StatusEditUI
             echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
                 . esc_html($caption);
                 
-            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION')) {
+            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION')) {
                 $badge =
                 [
                     'text' => 'PRO',
@@ -533,7 +533,7 @@ class StatusEditUI
                 break;
 
             case 'post_access' :
-                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION'))
                 :?>
                     <div class="pp-cta-section pp-status-permissions-promo">
                         <h4>
