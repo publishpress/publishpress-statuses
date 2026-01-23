@@ -62,10 +62,10 @@ class PromoBanner
     $pluginData = get_file_data(PRESSPERMIT_FILE, ['PluginURI' => 'Plugin URI', 'Name' => 'Plugin Name']);
     $this->pluginUrl = $pluginData['PluginURI'];
     $this->pluginName = $pluginData['Name'];
-    $this->title = esc_html__("Upgrade to {$this->pluginName} Pro", 'press-permit-core');
-    $this->subtitle = esc_html__("Enhance the power of {$this->pluginName} with the Pro version:", 'press-permit-core');
-    $this->supportTitle = esc_html__("Need {$this->pluginName} Support?", 'press-permit-core');
-    $this->supportSubtitle = esc_html__('If you need help or have a new feature request, let us know.', 'press-permit-core');
+    $this->title = esc_html__("Upgrade to {$this->pluginName} Pro", 'publishpress-statuses');
+    $this->subtitle = esc_html__("Enhance the power of {$this->pluginName} with the Pro version:", 'publishpress-statuses');
+    $this->supportTitle = esc_html__("Need {$this->pluginName} Support?", 'publishpress-statuses');
+    $this->supportSubtitle = esc_html__('If you need help or have a new feature request, let us know.', 'publishpress-statuses');
 
     foreach ($args as $key => $val) {
       if (property_exists($this, $key)) {
@@ -222,7 +222,7 @@ class PromoBanner
             <?php endforeach; ?>
           </ul>
           <div class="upgrade-btn">
-            <a href="<?php echo esc_url($this->pluginUrl); ?>" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'press-permit-core'); ?></a>
+            <a href="<?php echo esc_url($this->pluginUrl); ?>" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'publishpress-statuses'); ?></a>
           </div>
         </div>
       </div>
@@ -238,17 +238,17 @@ class PromoBanner
             <?php echo esc_html($this->supportSubtitle); ?>
             <a
               class="advert-link" href="<?php echo esc_url($this->pluginSupportUrl); ?>" target="_blank">
-              <?php echo esc_html__('Request Support', 'press-permit-core'); ?>
+              <?php echo esc_html__('Request Support', 'publishpress-statuses'); ?>
               <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" class="linkIcon">
                 <path d="M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"></path>
               </svg>
             </a>
           </p>
           <p>
-            <?php echo esc_html__('Detailed documentation is also available on the plugin website.', 'press-permit-core'); ?>
+            <?php echo esc_html__('Detailed documentation is also available on the plugin website.', 'publishpress-statuses'); ?>
             <a
               class="advert-link" href="<?php echo esc_url($this->pluginDocsUrl); ?>" target="_blank">
-              <?php echo esc_html__('View Knowledge Base', 'press-permit-core'); ?>
+              <?php echo esc_html__('View Knowledge Base', 'publishpress-statuses'); ?>
               <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" class="linkIcon">
                 <path d="M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"></path>
               </svg>
