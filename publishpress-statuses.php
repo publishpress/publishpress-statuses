@@ -250,14 +250,6 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
 
             require_once(__DIR__ . '/PublishPress_Statuses.php');
             PublishPress_Statuses::instance();
-
-            if (defined('PRESSPERMIT_VERSION')) {
-                class_alias('\PressShack\LibWP', '\PublishPress_Statuses\PWP');
-
-                if (class_exists('\PublishPress\Permissions\Statuses')) {
-                    class_alias('\PublishPress\Permissions\Statuses', '\PublishPress_Statuses\PPS');
-                }
-            }
         
         	do_action('publishpress_statuses_init');
 

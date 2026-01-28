@@ -161,8 +161,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 		// ShortPixel Critical CSS plugin: https://wordpress.org/support/topic/conflict-with-taxonomies-that-have-same-name-as-a-wp_post-field/
         add_filter('shortpixel_critical_css_manual_term_css', function($val) {return false;}, 5);
 
-        add_action('init', [$this, 'actDefaultPrivacyWorkaround'], 72);
-
         // Register the module with PublishPress
         
         $this->slug = 'publishpress_statuses';
@@ -189,7 +187,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             'force_editor_detection' => '',
             'label_storage' => '',
             'pending_status_regulation' => '',
-            'auto_import' => 1
+            'auto_import' => 1,
+
+            'custom_privacy_edit_caps' => defined('PPS_CUSTOM_PRIVACY_EDIT_CAPS') ? PPS_CUSTOM_PRIVACY_EDIT_CAPS : 0,
+            'quick_edit_custom_privacy_dropdown' => 1,
         ];
 
         $this->post_type_support_slug = 'pp_custom_statuses'; // This has been plural in all of our docs
@@ -344,40 +345,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $force = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
 
         return $force;
-    }
-
-    // prevent default_privacy option from forcing a draft/pending post into private publishing
-    function actDefaultPrivacyWorkaround()
-    {
-        global $pagenow;
-
-        if (!\PublishPress_Functions::empty_POST() && in_array($pagenow, ['post.php', 'post-new.php'])) {
-            if (\PublishPress_Functions::empty_POST('publish') && \PublishPress_Functions::is_POST('visibility') && \PublishPress_Functions::is_POST('post_type')) {
-                $options = \PublishPress_Statuses::instance()->options;
-
-                $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[\PublishPress_Functions::POST_key('post_type')])) 
-                ? $options->default_privacy[\PublishPress_Functions::POST_key('post_type')] : '';
-
-                if ($default_privacy) {
-                    $stati = get_post_stati(['moderation' => true], 'names');
-                    if (!\PublishPress_Functions::empty_POST('post_status') && in_array(\PublishPress_Functions::POST_key('post_status'), $stati, true)) {
-                        return;
-                    }
-        
-                    $stati = get_post_stati(['public' => true, 'private' => true], 'names', 'or');
-        
-                    if (!in_array(\PublishPress_Functions::POST_key('visibility'), ['public', 'password'], true) 
-                    && (!\PublishPress_Functions::is_POST('hidden_post_status') || !in_array(\PublishPress_Functions::POST_key('hidden_post_status'), $stati, true))
-                    ) {
-                        $_POST['post_status'] = \PublishPress_Functions::POST_key('hidden_post_status');
-                        $_REQUEST['post_status'] = \PublishPress_Functions::POST_key('hidden_post_status');
-
-                        $_POST['visibility'] = 'public';
-                        $_REQUEST['visibility'] = 'public';
-                    }
-                }
-            }
-        }
     }
 
     public function fltRegisterCapabilities($cme_caps) {
@@ -3308,7 +3275,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public function fltApplySelectedPostStatus($post_status) {
-        if (defined('REST_REQUEST') && REST_REQUEST) {
+        if (defined('REST_REQUEST') && REST_REQUEST
+        && (!defined('DOING_AUTOSAVE') || ! DOING_AUTOSAVE)
+        ) {
             $rest = \PublishPress_Statuses\REST::instance();
 
             if (!empty($rest->params['pp_status_selection'])) {
@@ -3364,7 +3333,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
 
             if ($post_id) {
-                if (!in_array($status, ['draft'])) {
+                if (!in_array($post_status, ['draft'])) {
                     $this->filtered_post_status[$post_id] = $post_status;
                 }
             }
