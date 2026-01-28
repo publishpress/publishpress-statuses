@@ -37,6 +37,10 @@ class PostEditGutenbergStatuses
             $next_status_obj = \PublishPress_Statuses::defaultStatusProgression($post_id);
         }
 
+        if (!$next_status_obj || empty($next_status_obj->name)) {
+            $next_status_obj = $current_status_obj;
+        }
+
         $default_by_sequence = \PublishPress_Statuses::instance()->workflow_by_sequence;
 
         if ($default_by_sequence) {
@@ -79,6 +83,10 @@ class PostEditGutenbergStatuses
         // Now that logic is done, pass actual Next Status object even if not defaulting to it
         if (!$default_by_sequence && !defined('PP_STATUSES_SUPPRESS_NEXT_STATUS_SELECTION')) {
             $next_status_obj = \PublishPress_Statuses::defaultStatusProgression(0, ['default_by_sequence' => true]);
+        }
+
+        if (!$next_status_obj || empty($next_status_obj->name)) {
+            $next_status_obj = $current_status_obj;
         }
 
         $post_type = \PublishPress_Functions::findPostType();
