@@ -118,6 +118,13 @@ class Admin
                 }
             }
 
+            if (!$last_statuses_version || version_compare($last_statuses_version, '1.2.0', '<')) {
+                // Ensure Visibility Statuses are enabled by default
+                if (null === get_option('presspermit_privacy_statuses_enabled', null)) {
+                    update_option('presspermit_privacy_statuses_enabled', 1);
+                }
+            }
+
             update_option('publishpress_statuses_version', PUBLISHPRESS_STATUSES_VERSION);
         }
     }
