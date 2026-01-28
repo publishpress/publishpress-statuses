@@ -36,95 +36,12 @@ class PostEdit
 
         $options = \PublishPress_Statuses::instance()->options;
         $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
-
-        if ($post_type && $default_privacy) {
-            if (\PublishPress_Functions::isBlockEditorActive($post_type)) {
-                // separate JS for Gutenberg
-                if (in_array($pagenow, ['post-new.php'])) {
-                    add_action('admin_print_scripts', [$this, 'default_privacy_gutenberg']);
-                }
-            } else {
-                add_action('admin_footer', [$this, 'default_privacy_js']);
-            }
-        }
     }
 
     public function actLoadGutenbergScripts() {
         require_once(__DIR__ . '/PostEditGutenberg.php');
         $obj = new \PublishPress_Statuses\PostEditGutenberg();
         $obj->actEnqueueBlockEditorAssets();
-    }
-
-
-    function default_privacy_gutenberg() {
-        // Pass default_privacy setting to JavaScript for Gutenberg
-        $post_type = \PublishPress_Functions::findPostType();
-
-        $options = \PublishPress_Statuses::instance()->options;
-        $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
-
-        wp_localize_script('publishpress-statuses-post-edit', 'ppEditorConfig', ['defaultPrivacy' => $default_privacy]);
-    }
-
-    function default_privacy_js()
-    {
-        global $post, $typenow;
-
-        if ('post-new.php' != $GLOBALS['pagenow']) {
-            $stati = get_post_stati(['public' => true, 'private' => true], 'names', 'or');
-
-            if (in_array($post->post_status, $stati, true)) {
-                return;
-            }
-        }
-
-        $options = \PublishPress_Statuses::instance()->options;
-        $set_visibility = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$typenow])) ? $options->default_privacy[$typenow] : '';
-
-        if (!$set_visibility) {
-            return;
-        }
-
-        if (is_numeric($set_visibility) || !get_post_status_object($set_visibility)) {
-            $set_visibility = 'private';
-        }
-?>
-        <script type="text/javascript">
-            /* <![CDATA[ */
-            jQuery(document).ready(function($) {
-                // Check the radio (use 'checked' for radio inputs) and update hidden value
-                var $radio = $('#visibility-radio-<?php echo esc_attr($set_visibility); ?>');
-                $radio.prop('checked', true).trigger('change');
-                $('#hidden-post-visibility').val('<?php echo esc_attr($set_visibility); ?>');
-
-                // Update the visible label. Prefer localized strings if available.
-                if (typeof(postL10n) != 'undefined') {
-                    var vis = $('#post-visibility-select input:radio:checked').val();
-                    var str = '';
-
-                    if ('private' == vis) {
-                        str = '<?php esc_html_e('Private'); ?>';
-                    } else if (postL10n[vis]) {
-                        str = postL10n[vis];
-                    } else {
-                        str = '<?php esc_html_e('Public'); ?>';
-                    }
-
-                    if (str) {
-                        $('#post-visibility-display').html(str);
-                        setTimeout(function() {
-                            $('.save-post-visibility').trigger('click');
-                        }, 0);
-                    }
-                } else {
-                    $('#post-visibility-display').html(
-                        $('#visibility-radio-<?php echo esc_attr($set_visibility); ?>').next('label').html()
-                    );
-                }
-            });
-            /* ]]> */
-        </script>
-        <?php
     }
 
     function act_status_labels_structural_check_and_supplement() {
