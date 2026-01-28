@@ -11,8 +11,6 @@ class PostEdit
             // Gutenberg scripts are only loaded if Gutenberg-specific actions fire.
             add_action('enqueue_block_editor_assets', [$this, 'actLoadGutenbergScripts']);
 
-            //add_action('admin_print_scripts', [$this, 'ui_add_js']);
-
             // Always load basic scripts for Classic Editor support unless explicitly disabled by plugin setting
             if ('gutenberg' !== \PublishPress_Statuses::instance()->options->force_editor_detection) {
                 add_action('add_meta_boxes', [$this, 'act_replace_publish_metabox'], 10, 2);
