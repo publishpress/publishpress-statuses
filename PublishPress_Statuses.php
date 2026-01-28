@@ -2276,6 +2276,15 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
+        // @todo: why do custom statuses break Planner Calendar's add post modal?
+        if (defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action'] && ('publishpress_calendar_get_post_type_fields' == $_REQUEST['action']))) {
+            foreach ($return_arr as $k => $obj) {
+                if (is_object($obj) && !in_array($obj->slug, ['draft', 'pending', 'publish', 'private'])) {
+                    unset($return_arr[$k]);
+                }
+            }
+        }
+
         return apply_filters('_presspermit_get_post_statuses', $return_arr, $status_args, $return_args, $function_args);
     }
 
