@@ -644,30 +644,34 @@ class Admin
 			$post
 		);
 
-        // Don't exclude the current status, regardless of other arguments
-        $_args = ['include_status' => $post_status_obj->name];
+        $_args = [];
 
-        if ($post) {
-            if ($default_by_sequence && \PublishPress_Statuses::instance()->options->status_dropdown_show_current_branch_only) {
-                if (!empty($post_status_obj->status_parent)) {
-                    // If current status is a sub-status, only offer:
-                    // * other sub-statuses in the same workflow branch
-                    // * next status after current status
-                    $_args['status_parent'] = $post_status_obj->status_parent;
+        if (!empty($post_status_obj) && !empty($post_status_obj->name)) {
+            // Don't exclude the current status, regardless of other arguments
+            $_args['include_status'] = $post_status_obj->name;
 
-                    if ($status_obj = \PublishPress_Statuses::getNextStatusObject($post->ID, compact('moderation_statuses', 'default_by_sequence', 'post_status'))) {
-                        $_args['whitelist_status'] = $status_obj->name;
-                    }
-                } else {
-                    // If current status is in main workflow, only display:
-                    // * other top level workflow statuses
-                    // * sub-statuses of the current status
-                    $_args['status_parent'] = '';
+            if ($post) {
+                if ($default_by_sequence && \PublishPress_Statuses::instance()->options->status_dropdown_show_current_branch_only) {
+                    if (!empty($post_status_obj->status_parent)) {
+                        // If current status is a sub-status, only offer:
+                        // * other sub-statuses in the same workflow branch
+                        // * next status after current status
+                        $_args['status_parent'] = $post_status_obj->status_parent;
 
-                    if ($status_children = \PublishPress_Statuses::getStatusChildren($post_status_obj->name, $moderation_statuses)) {
-                        // These statuses will not be added to the array if already removed by filterAvailablePostStatuses(),
-                        // but will be exempted from the top level status_parent requirement
-                        $_args['whitelist_status'] = array_keys($status_children);
+                        if ($status_obj = \PublishPress_Statuses::getNextStatusObject($post->ID, compact('moderation_statuses', 'default_by_sequence', 'post_status'))) {
+                            $_args['whitelist_status'] = $status_obj->name;
+                        }
+                    } else {
+                        // If current status is in main workflow, only display:
+                        // * other top level workflow statuses
+                        // * sub-statuses of the current status
+                        $_args['status_parent'] = '';
+
+                        if ($status_children = \PublishPress_Statuses::getStatusChildren($post_status_obj->name, $moderation_statuses)) {
+                            // These statuses will not be added to the array if already removed by filterAvailablePostStatuses(),
+                            // but will be exempted from the top level status_parent requirement
+                            $_args['whitelist_status'] = array_keys($status_children);
+                        }
                     }
                 }
             }
