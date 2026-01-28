@@ -324,6 +324,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     function fltDefaultPrivacy($status, $post_type) {
+        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
+            return $status;
+        }
+        
         $options = \PublishPress_Statuses::instance()->options;
         $status = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
 
@@ -341,6 +345,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     function fltForceDefaultPrivacy($force, $post_type) {
+        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
+            return $force;
+        }
+        
         $options = \PublishPress_Statuses::instance()->options;
         $force = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
 
@@ -2792,21 +2800,23 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if ('auto-draft' == $post_status)
             $post_status = 'draft';
     
-        $options = \PublishPress_Statuses::instance()->options;
-        $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
-        
-        if ($default_privacy && ('publish' != $default_privacy)) {
-            if (!$default_privacy_obj = get_post_status_object($default_privacy)) {
-                $default_privacy = 'publish';
-            }
-        } else {
-            $default_privacy = 'publish';
-        }
+        $default_privacy = 'publish';
 
-        if (!empty($post_status_obj) && !empty($post_status_obj->name) && ('publish' == $post_status_obj->name) 
-            && !empty($default_privacy_obj) && ($default_privacy_obj->name != 'publish')
-        ) {
-            $post_status_obj = $default_privacy_obj;
+        if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
+            $options = \PublishPress_Statuses::instance()->options;
+            $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
+            
+            if ($default_privacy && ('publish' != $default_privacy)) {
+                if (!$default_privacy_obj = get_post_status_object($default_privacy)) {
+                    $default_privacy = 'publish';
+                }
+            }
+    
+            if (!empty($post_status_obj) && !empty($post_status_obj->name) && ('publish' == $post_status_obj->name) 
+                && !empty($default_privacy_obj) && ($default_privacy_obj->name != 'publish')
+            ) {
+                $post_status_obj = $default_privacy_obj;
+            }
         }
 
         if (!empty($post_status_obj->public) || !empty($post_status_obj->private) || (!empty($post_status_obj->name) && ('future' == $post_status_obj->name))) {
@@ -3325,6 +3335,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $post_status = $this->filterStatus($post_status);
         }
 
+        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
+            return $post_status;
+        }
+
         $post_status = $this->flt_force_visibility($post_status);
 
         if ($orig_status != $post_status) {
@@ -3345,6 +3359,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     // If a public or private status is selected, change it to the specified force_visibility status
     public static function flt_force_visibility($post_status)
     {
+        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
+            return $post_status;
+        }
+        
         if (!$status_obj = get_post_status_object($post_status)) {
             return $post_status;
         }

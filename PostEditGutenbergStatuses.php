@@ -83,20 +83,22 @@ class PostEditGutenbergStatuses
 
         $post_type = \PublishPress_Functions::findPostType();
 
-        $options = \PublishPress_Statuses::instance()->options;
-        $lock_privacy = (is_object($options) && !empty($options->lock_privacy) && !empty($options->lock_privacy[$post_type])) ? $options->lock_privacy[$post_type] : false;
-
-        $args = array_merge(
-            $args, 
-            [
-                'publish' => $publish_label, 
-                'saveAs' => $save_as_label, 
-                'nextStatus' => $next_status_obj->name, 
-                'maxStatus' => $max_status_obj->name, 
-                'defaultBySequence' => !empty($default_by_sequence),
-                'lockVisibility' => $lock_privacy
-            ]
-        );
+        if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
+            $options = \PublishPress_Statuses::instance()->options;
+            $lock_privacy = (is_object($options) && !empty($options->lock_privacy) && !empty($options->lock_privacy[$post_type])) ? $options->lock_privacy[$post_type] : false;
+    
+            $args = array_merge(
+                $args, 
+                [
+                    'publish' => $publish_label, 
+                    'saveAs' => $save_as_label, 
+                    'nextStatus' => $next_status_obj->name, 
+                    'maxStatus' => $max_status_obj->name, 
+                    'defaultBySequence' => !empty($default_by_sequence),
+                    'lockVisibility' => $lock_privacy
+                ]
+            );
+        }
 
         if (!$is_administrator = \PublishPress_Statuses::isContentAdministrator()) {
             $current_status = get_post_field('post_status', $post_id);
@@ -159,7 +161,9 @@ class PostEditGutenbergStatuses
 
         if (in_array($pagenow, ['post-new.php'])) {
             // Pass default_privacy setting to JavaScript for Gutenberg
-            $args['defaultPrivacy'] = apply_filters('publishpress_statuses_default_visibility', '', $post_type);
+            if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
+                $args['defaultPrivacy'] = apply_filters('publishpress_statuses_default_visibility', '', $post_type);
+            }
         }
 
         wp_localize_script('publishpress-statuses-post-block-edit', 'ppObjEdit', $args);
