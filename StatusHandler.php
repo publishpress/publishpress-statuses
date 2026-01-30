@@ -378,43 +378,6 @@ class StatusHandler {
             }
         }
 
-        // Temporary support for old Permissions Pro 4 betas (4.0-beta9 and earlier)
-        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.0-beta10', '<')) {
-            if (isset($_REQUEST['status_caps'])) {
-                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                foreach ($_REQUEST['status_caps'] as $role_name => $set_status_caps) { // array elements sanitized below
-                    $role_name = sanitize_key($role_name);
-                    $set_status_caps = array_map('boolval', $set_status_caps);
-
-                    if (!\PublishPress_Functions::isEditableRole($role_name)) {
-                        continue;
-                    }
-
-                    $role = get_role($role_name);
-
-                    if ($add_caps = array_diff_key(
-                        array_filter($set_status_caps),
-                        array_filter($role->capabilities)
-                    )) {
-                        foreach (array_keys($add_caps) as $cap_name) {
-                            $cap_name = sanitize_key($cap_name);
-                            $role->add_cap($cap_name);
-                        }
-                    }
-
-                    $set_false_status_caps = array_diff_key($set_status_caps, array_filter($set_status_caps));
-
-                    foreach(array_keys($set_false_status_caps) as $cap_name) {
-                        $cap_name = sanitize_key($cap_name);
-
-                        if (!empty($role->capabilities[$cap_name])) {
-                            $role->remove_cap($cap_name);
-                        }
-                    }
-                }
-            }
-        }
-
         $name = apply_filters('publishpress_statuses_sanitize_status_name', sanitize_key($name), $taxonomy);
 
         $status_obj = get_post_status_object($name);
