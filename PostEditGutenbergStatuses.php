@@ -37,6 +37,10 @@ class PostEditGutenbergStatuses
             $next_status_obj = \PublishPress_Statuses::defaultStatusProgression($post_id);
         }
 
+        if (!$next_status_obj || empty($next_status_obj->name)) {
+            $next_status_obj = $current_status_obj;
+        }
+
         $default_by_sequence = \PublishPress_Statuses::instance()->workflow_by_sequence;
 
         if ($default_by_sequence) {
@@ -81,11 +85,20 @@ class PostEditGutenbergStatuses
             $next_status_obj = \PublishPress_Statuses::defaultStatusProgression(0, ['default_by_sequence' => true]);
         }
 
+        if (!$next_status_obj || empty($next_status_obj->name)) {
+            $next_status_obj = $current_status_obj;
+        }
+
         $post_type = \PublishPress_Functions::findPostType();
 
         if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
             $options = \PublishPress_Statuses::instance()->options;
-            $lock_privacy = (is_object($options) && !empty($options->lock_privacy) && !empty($options->lock_privacy[$post_type])) ? $options->lock_privacy[$post_type] : false;
+            
+            $force_default_privacy = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? true : '';
+    
+            if ($force_default_privacy) {
+                $force_default_privacy = (!empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
+            }
     
             $args = array_merge(
                 $args, 
@@ -95,7 +108,7 @@ class PostEditGutenbergStatuses
                     'nextStatus' => $next_status_obj->name, 
                     'maxStatus' => $max_status_obj->name, 
                     'defaultBySequence' => !empty($default_by_sequence),
-                    'lockVisibility' => $lock_privacy
+                    'lockVisibility' => $force_default_privacy
                 ]
             );
         }
