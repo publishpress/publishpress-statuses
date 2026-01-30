@@ -143,7 +143,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         add_filter('pre_post_status', [$this, 'fltPostStatus'], 20);
         add_filter('publishpress_statuses_default_visibility', [$this, 'fltDefaultPrivacy'], 10, 2);
-        add_filter('publishpress_statuses_force_default_visibility', [$this, 'fltForceDefaultPrivacy'], 10, 2);
 
         add_action('user_has_cap', [$this, 'fltUserHasCap'], 20, 3);
 
@@ -342,17 +341,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         */
 
         return $status;
-    }
-
-    function fltForceDefaultPrivacy($force, $post_type) {
-        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
-            return $force;
-        }
-        
-        $options = \PublishPress_Statuses::instance()->options;
-        $force = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
-
-        return $force;
     }
 
     public function fltRegisterCapabilities($cme_caps) {
