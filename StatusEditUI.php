@@ -78,7 +78,7 @@ class StatusEditUI
             }
         }
 
-        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION'))
+        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
         || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
         :
             if ('draft' != $status->name) {
@@ -102,7 +102,7 @@ class StatusEditUI
             echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
                 . esc_html($caption);
                 
-            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION')) {
+            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
                 $badge =
                 [
                     'text' => 'PRO',
@@ -190,7 +190,7 @@ class StatusEditUI
             self::tabContent('roles', $status, $default_tab);
             self::tabContent('post_types', $status, $default_tab);
 
-            if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+            if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
             || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()))
             {
                 self::tabContent('post_access', $status, $default_tab);
@@ -533,14 +533,14 @@ class StatusEditUI
                 break;
 
             case 'post_access' :
-                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION'))
+                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
                 :?>
                     <div class="pp-cta-section pp-status-permissions-promo">
                         <h4>
                             <?php esc_html_e('Upgrade to choose who can manage posts in each status', 'publishpress-statuses'); ?>
                         </h4>
                         <p>
-                            <?php esc_html_e('Get PublishPress Capabilities Pro for status-specific post access control.', 'publishpress-statuses'); ?>
+                            <?php esc_html_e('Get PublishPress Statuses Pro for status-specific post access control.', 'publishpress-statuses'); ?>
                         </p>
 
                         <div class="pp-revisions-pro-features">
@@ -561,10 +561,10 @@ class StatusEditUI
                         </div>
 
                         <div class="pp-cta-buttons">
-                            <a href="https://publishpress.com/capabilities/" 
+                            <a href="https://publishpress.com/statuses/" 
                                 class="button-primary button-large pp-upgrade-btn" 
                                 target="_blank">
-                                <?php esc_html_e('Get PublishPress Capabilities Pro', 'publishpress-statuses'); ?>
+                                <?php esc_html_e('Get PublishPress Statuses Pro', 'publishpress-statuses'); ?>
                             </a>
                             <a href="https://publishpress.com/knowledge-base/extended-capabilities-statuses/" 
                                 target="_blank"
@@ -578,7 +578,7 @@ class StatusEditUI
                     <div class="pp-statuses-warning">
                         <?php 
                         printf(
-                            esc_html__('Status-specific post capabilities are %1$scurrently disabled%2$s by PublishPress Capabilities Pro. You can %3$schange this setting%4$s.', 'publishpress-statuses'),
+                            esc_html__('Status-specific post capabilities are %1$scurrently disabled%2$s. You can %3$schange this setting%4$s.', 'publishpress-statuses'),
                             '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
                             '</a>',
                             '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
