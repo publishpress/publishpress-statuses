@@ -73,6 +73,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
     private static $instance = null;
 
+    public $lock_status = [];
+
     public static function instance($reload = false) {
         if ( is_null(self::$instance) || $reload) {
             self::$instance = new \PublishPress_Statuses(false);
@@ -2801,7 +2803,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
             $options = \PublishPress_Statuses::instance()->options;
-            $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
+            $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
             
             if ($default_privacy && ('publish' != $default_privacy)) {
                 if (!$default_privacy_obj = get_post_status_object($default_privacy)) {
@@ -3300,9 +3302,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             return $data;
         }
 
-        $post_status = (empty($data['post_status'])) ? '' : $data['post_status'];
-        $data['post_status'] = $this->fltPostStatus($post_status, ['post_id' => $postarr['ID']]);
+        if (!empty($this->lock_status[$postarr['ID']])) {
+            $data['post_status'] = $this->lock_status[$postarr['ID']];
 
+        } elseif (!isset($_REQUEST['visibility'])) { // bypass this filter with Classic Editor
+            $post_status = (empty($data['post_status'])) ? '' : $data['post_status'];
+            $data['post_status'] = $this->fltPostStatus($post_status, ['post_id' => $postarr['ID']]);
+        }
+        
         if ('publish' == $data['post_status']) {
             if (!empty($data['post_date_gmt'])) {
                 if (time() < strtotime($data['post_date_gmt'] . ' +0000')) {
@@ -3360,6 +3367,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             return $post_status;
         }
         
+        if ('public' == $post_status) {
+            $post_status = 'publish';
+        }
+
         if (!$status_obj = get_post_status_object($post_status)) {
             return $post_status;
         }
@@ -3388,10 +3399,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         $options = \PublishPress_Statuses::instance()->options;
 
-        $force = (!empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
-
-        if ($force) {
-            if (empty($status_obj->public) && empty($status_obj->private) && !empty($_post)
+        if (!empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) {
+            if ((!empty($status_obj->public) || !empty($status_obj->private)) && !empty($_post)
                 && !is_super_admin() && !current_user_can('pp_unpublish_posts')
             ) {
                 $lock_publication = (is_object($options) && !empty($options->lock_publication) && !empty($options->lock_publication)) ? $options->lock_publication : '';
@@ -3408,11 +3417,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
 
             if (!empty($status_obj->public) || !empty($status_obj->private) || !empty($lock_publication)) {
-                $default_privacy = (is_object($options) && !empty($options->default_privacy) && isset($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
-
-                if (!$default_privacy) {
-                    $default_privacy = 'publish';
-                }
+                $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
         
                 if (get_post_status_object($default_privacy)) {
                     if ($post_id = \PublishPress_Functions::getPostID()) {
@@ -3432,6 +3437,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                             delete_post_meta($_post->ID, '_pp_original_status');
                         }
                     }
+                }
+
+                if (!empty($lock_publication)) {
+                    \PublishPress_Statuses::instance()->lock_status[$_post->ID] = $post_status;
                 }
             }
         }
