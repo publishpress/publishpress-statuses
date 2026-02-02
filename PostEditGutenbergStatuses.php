@@ -91,6 +91,8 @@ class PostEditGutenbergStatuses
 
         $post_type = \PublishPress_Functions::findPostType();
 
+        $args['lockStatus'] = false;
+
         if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
             $options = \PublishPress_Statuses::instance()->options;
             
@@ -99,7 +101,7 @@ class PostEditGutenbergStatuses
             if ($force_default_privacy) {
                 $force_default_privacy = (!empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
             }
-    
+
             $args = array_merge(
                 $args, 
                 [
@@ -111,6 +113,8 @@ class PostEditGutenbergStatuses
                     'lockVisibility' => $force_default_privacy
                 ]
             );
+
+            $args['lockStatus'] = $force_default_privacy && !empty($options->lock_publication) && !empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private));
         }
 
         if (!$is_administrator = \PublishPress_Statuses::isContentAdministrator()) {
@@ -168,7 +172,6 @@ class PostEditGutenbergStatuses
         $args['isStatusesPro'] = defined('PUBLISHPRESS_STATUSES_PRO_VERSION');
 
         $args['workflowDisabled'] = \PublishPress_Statuses::instance()->workflow_disabled;
-
 
         global $pagenow;
 
