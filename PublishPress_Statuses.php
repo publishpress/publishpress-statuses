@@ -3400,14 +3400,15 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $options = \PublishPress_Statuses::instance()->options;
 
         if (!empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) {
-            if ((!empty($status_obj->public) || !empty($status_obj->private)) && !empty($_post)
+            $current_status = get_post_field('post_status', $_post->ID);
+            $current_status_obj = get_post_status_object($current_status);
+
+            if (!empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private)) && !empty($_post)
                 && !is_super_admin() && !current_user_can('pp_unpublish_posts')
             ) {
                 $lock_publication = (is_object($options) && !empty($options->lock_publication) && !empty($options->lock_publication)) ? $options->lock_publication : '';
 
                 if ($lock_publication) {
-                    $current_status = get_post_field('post_status', $_post->ID);
-
                     $current_status_obj = get_post_status_object($current_status);
 
                     if (empty($current_status_obj) || (empty($current_status_obj->public) && empty($current_status_obj->private))) {
