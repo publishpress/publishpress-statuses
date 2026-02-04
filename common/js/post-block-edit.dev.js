@@ -180,6 +180,7 @@ jQuery(document).ready(function ($) {
 
         if (ppObjEdit.lockStatus) {
             $('.editor-change-status__options input').prop('disabled', true);
+            $('.publishpress-extended-post-privacy select').prop('disabled', true);
         }
     }
     var initInterval = setInterval(PP_InitializeBlockEditorModifications, 50);
