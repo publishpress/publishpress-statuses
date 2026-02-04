@@ -7,7 +7,7 @@ namespace PublishPress_Statuses;
 class PostEdit
 {
     function __construct() {
-        if (!in_array(\PublishPress_Functions::findPostType(), ['forum', 'topic', 'reply'])) {
+        if (!in_array(\PP_Statuses_Functions::findPostType(), ['forum', 'topic', 'reply'])) {
             // Gutenberg scripts are only loaded if Gutenberg-specific actions fire.
             add_action('enqueue_block_editor_assets', [$this, 'actLoadGutenbergScripts']);
 
@@ -19,7 +19,7 @@ class PostEdit
 
                 add_action('admin_enqueue_scripts', function() {
                     // Load full set of Classic Editor scripts if Gutenberg is not detected, or if Classic Editor explicitly specified by plugin setting
-                    if (! \PublishPress_Functions::isBlockEditorActive(['force' => \PublishPress_Statuses::instance()->options->force_editor_detection])) {
+                    if (! \PP_Statuses_Functions::isBlockEditorActive(['force' => \PublishPress_Statuses::instance()->options->force_editor_detection])) {
                         require_once(__DIR__ . '/PostEditClassic.php');
                         $obj = new PostEditClassic();
                         $obj->post_admin_header();
@@ -32,7 +32,7 @@ class PostEdit
 
         global $pagenow;
 
-        $post_type = \PublishPress_Functions::findPostType();
+        $post_type = \PP_Statuses_Functions::findPostType();
 
         $options = \PublishPress_Statuses::instance()->options;
         $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';

@@ -161,7 +161,7 @@ class StatusHandler {
 
         $redirect_args = ['action' => 'edit-status', 'name' => $status_name, 'message' => 'status-added'];
 
-        if ($status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+        if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
             $redirect_args['status_type'] = $status_type;
         }
 
@@ -356,7 +356,7 @@ class StatusHandler {
                 $role_name = sanitize_key($role_name);
                 $set_val = boolval($set_val);
 
-                if (!\PublishPress_Functions::isEditableRole($role_name)) {
+                if (!\PP_Statuses_Functions::isEditableRole($role_name)) {
                     continue;
                 }
 
@@ -382,10 +382,10 @@ class StatusHandler {
 
         $status_obj = get_post_status_object($name);
 
-        if (!\PublishPress_Functions::empty_REQUEST('return_module')) {
+        if (!\PP_Statuses_Functions::empty_REQUEST('return_module')) {
             $arr = ['message' => 'status-updated'];
             $arr['page'] = 'pp-modules-settings';
-            $arr['settings_module'] = \PublishPress_Functions::REQUEST_key('return_module');
+            $arr['settings_module'] = \PP_Statuses_Functions::REQUEST_key('return_module');
 
             $redirect_url = \PublishPress_Statuses::getLink($arr);
         } else {
@@ -648,7 +648,7 @@ class StatusHandler {
     public static function handleAjaxDeleteStatus() {
         check_ajax_referer('custom-status-sortable');
 
-        if ($status_name = \PublishPress_Functions::REQUEST_key('delete_status')) {
+        if ($status_name = \PP_Statuses_Functions::REQUEST_key('delete_status')) {
             if (!current_user_can('manage_options') && !current_user_can('pp_manage_statuses')) {
                 self::printAjaxResponse('error', esc_html(\PublishPress_Statuses::__wp('Sorry, you are not allowed to access this page.')));
             }
@@ -760,7 +760,7 @@ class StatusHandler {
      */
     public static function printAjaxResponse($status, $message = '', $data = null)
     {
-        \PublishPress_Functions::printAjaxResponse($status, $message, $data);
+        \PP_Statuses_Functions::printAjaxResponse($status, $message, $data);
     }
 
     /**
@@ -795,7 +795,7 @@ class StatusHandler {
 
     public static function settings_validate_and_save()
     {
-        if (!wp_verify_nonce(\PublishPress_Functions::POST_key('_wpnonce'), 'edit-publishpress-settings')
+        if (!wp_verify_nonce(\PP_Statuses_Functions::POST_key('_wpnonce'), 'edit-publishpress-settings')
         || !current_user_can('manage_options')
         ) {
             wp_die(esc_html__('Cheatin&#8217; uh?'));
@@ -863,60 +863,60 @@ class StatusHandler {
         update_option('publishpress_custom_status_options', (object) $new_options);
         
         // Import / Backup Operations
-        if (\PublishPress_Functions::is_POST('publishpress_statuses_import_operation', 'do_status_control_import')) {
+        if (\PP_Statuses_Functions::is_POST('publishpress_statuses_import_operation', 'do_status_control_import')) {
             update_option('pp_statuses_force_status_control_import', true);
             update_option('pp_statuses_force_planner_import', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_import_operation', 'do_planner_import')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_import_operation', 'do_planner_import')) {
             update_option('pp_statuses_force_planner_import', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_import_operation', 'do_planner_import_only')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_import_operation', 'do_planner_import_only')) {
             update_option('pp_statuses_skip_status_control_import', true);
             update_option('pp_statuses_force_planner_import', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'backup_status_properties')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'backup_status_properties')) {
             update_option('pp_statuses_set_backup_props', true);
             
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_colors')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_colors')) {
             update_option('pp_statuses_restore_backup_colors', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_icons')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_icons')) {
             update_option('pp_statuses_restore_backup_icons', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_labels')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_labels')) {
             update_option('pp_statuses_restore_backup_labels', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_post_types')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_post_types')) {
             update_option('pp_statuses_restore_backup_post_types', true);
         
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_colors_auto')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_colors_auto')) {
             update_option('pp_statuses_restore_autobackup_colors', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_icons_auto')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_icons_auto')) {
             update_option('pp_statuses_restore_autobackup_icons', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_labels_auto')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_labels_auto')) {
             update_option('pp_statuses_restore_autobackup_labels', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_post_types_auto')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'restore_status_post_types_auto')) {
             update_option('pp_statuses_restore_autobackup_post_types', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_colors')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_colors')) {
             update_option('pp_statuses_default_colors', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_icons')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_icons')) {
             update_option('pp_statuses_default_icons', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_labels')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_labels')) {
             update_option('pp_statuses_default_labels', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_post_types')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_post_types')) {
             update_option('pp_statuses_default_post_types', true);
         
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_colors_planner')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_colors_planner')) {
             update_option('pp_statuses_default_planner_colors', true);
 
-        } elseif (\PublishPress_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_icons_planner')) {
+        } elseif (\PP_Statuses_Functions::is_POST('publishpress_statuses_backup_operation', 'default_status_icons_planner')) {
             update_option('pp_statuses_default_planner_icons', true);
         }
 

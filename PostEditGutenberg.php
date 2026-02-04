@@ -18,7 +18,7 @@ class PostEditGutenberg
             }
         }
 
-        if ($post_id = \PublishPress_Functions::getPostID()) {
+        if ($post_id = \PP_Statuses_Functions::getPostID()) {
             if (defined('PUBLISHPRESS_REVISIONS_VERSION') && !class_exists('PublishPress_Statuses\Revisions') && rvy_in_revision_workflow($post_id)) {
                 return;
             }
@@ -153,7 +153,7 @@ class PostEditGutenberg
     private function getStatuses($args = false, $only_basic_info = false)
     {
         global $post;
-        $post_type = \PublishPress_Functions::findPostType();
+        $post_type = \PP_Statuses_Functions::findPostType();
 
         if (!is_array($args)) {
             $args = ['moderation' => true];

@@ -7,7 +7,7 @@ class StatusEditUI
     public static function display() {
 
         // Check whether the term exists
-        $name = \PublishPress_Functions::REQUEST_key('name');
+        $name = \PP_Statuses_Functions::REQUEST_key('name');
 
         if (!$status = \PublishPress_Statuses::getStatusBy('id', $name)) {
             echo '<div class="error"><p>' . esc_html(\PublishPress_Statuses::instance()->messages['status-missing']) . '</p></div>';
@@ -16,7 +16,7 @@ class StatusEditUI
 
         $url_args = ['action' => 'statuses'];
 
-        if ($status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+        if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
             $url_args['status_type'] = $status_type;
         }
 
@@ -88,7 +88,7 @@ class StatusEditUI
 
         $tabs = apply_filters('publishpress_statuses_edit_status_tabs', $tabs, $status->name);
 
-        $pp_tab = (!\PublishPress_Functions::empty_REQUEST('pp_tab')) ? \PublishPress_Functions::REQUEST_key('pp_tab') : 'name';
+        $pp_tab = (!\PP_Statuses_Functions::empty_REQUEST('pp_tab')) ? \PP_Statuses_Functions::REQUEST_key('pp_tab') : 'name';
 
         $default_tab = apply_filters('presspermit_edit_status_default_tab', $pp_tab);
 
@@ -205,8 +205,8 @@ class StatusEditUI
                 <input type="hidden" name="action" value="edit-status" />
                 <input type="hidden" name="pp_tab" value="<?php echo '#pp-' . esc_attr($default_tab);?>" />
                 <?php
-                if (!\PublishPress_Functions::empty_REQUEST('return_module')) :?>
-                    <input type="hidden" name="return_module" value="<?php echo esc_attr(\PublishPress_Functions::REQUEST_key('return_module'));?>" />
+                if (!\PP_Statuses_Functions::empty_REQUEST('return_module')) :?>
+                    <input type="hidden" name="return_module" value="<?php echo esc_attr(\PP_Statuses_Functions::REQUEST_key('return_module'));?>" />
                 <?php endif;
 
                 submit_button(__('Update Status', 'publishpress-statuses'), 'primary pp-statuses', 'submit', false); ?>
@@ -391,7 +391,7 @@ class StatusEditUI
 
         switch ($tab) {
             case 'roles' :
-                $roles = \PublishPress_Functions::getRoles(true);
+                $roles = \PP_Statuses_Functions::getRoles(true);
                 ?>
                 <tr class="form-field">
                     <th><label for="status_assign"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
@@ -403,7 +403,7 @@ class StatusEditUI
 
                     <td class="set-status-roles">
                         <?php foreach($roles as $role_name => $role_label):
-                            if (\PublishPress_Functions::isEditableRole($role_name)) :
+                            if (\PP_Statuses_Functions::isEditableRole($role_name)) :
                                 $role = get_role($role_name);
                                 $cap_name = str_replace('-', '_', "status_change_{$status->name}");
 

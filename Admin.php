@@ -229,8 +229,8 @@ class Admin
                     }
                 }
             }
-        } elseif (\PublishPress_Functions::empty_REQUEST('post_status') 
-        || (\PublishPress_Functions::REQUEST_key('post_status') != $post->post_status)
+        } elseif (\PP_Statuses_Functions::empty_REQUEST('post_status') 
+        || (\PP_Statuses_Functions::REQUEST_key('post_status') != $post->post_status)
         ) {  // if filtering for this status, don't display caption in result rows
             $status_obj = (!empty($wp_post_statuses[$post->post_status])) ? $wp_post_statuses[$post->post_status] : false;
 
@@ -245,7 +245,7 @@ class Admin
     }
 
     function add_admin_styles() {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
         if (0 === strpos($plugin_page, 'publishpress-statuses')) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
             wp_enqueue_style('publishpress-statuses-tooltips', PUBLISHPRESS_STATUSES_URL . '/common/css/_tooltip.css', [], PUBLISHPRESS_STATUSES_VERSION);
@@ -292,7 +292,7 @@ class Admin
             }
         }
 
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
         // Scripts and styles needed for Add Status, Edit Status, and possibly Statuses
         if (0 === strpos($plugin_page, 'publishpress-statuses')) {
@@ -324,7 +324,7 @@ class Admin
 
         // Scripts and styles for Statuses screen
         if ('publishpress-statuses' == $plugin_page
-        && in_array(\PublishPress_Functions::REQUEST_key('action'), ['', 'statuses'])
+        && in_array(\PP_Statuses_Functions::REQUEST_key('action'), ['', 'statuses'])
         ) {
             wp_enqueue_script('jquery-ui-core');
             wp_enqueue_script('jquery-ui-sortable');
@@ -380,7 +380,7 @@ class Admin
 
         // Custom javascript to modify the post status dropdown where it shows up
         if (self::is_post_management_page() && class_exists('PublishPress_Functions')) {
-            if (\PublishPress_Functions::isBlockEditorActive(['force' => \PublishPress_Statuses::instance()->options->force_editor_detection])) {
+            if (\PP_Statuses_Functions::isBlockEditorActive(['force' => \PublishPress_Statuses::instance()->options->force_editor_detection])) {
                 wp_enqueue_style(
                     'publishpress-custom_status-block',
                     PUBLISHPRESS_STATUSES_URL . 'common/css/custom-status-block-editor.css',
@@ -469,7 +469,7 @@ class Admin
         }
 
         // Disable the scripts for the post page if the plugin Visual Composer is enabled.
-        if ('frontend' === \PublishPress_Functions::GET_key('vcv-action')) {
+        if ('frontend' === \PP_Statuses_Functions::GET_key('vcv-action')) {
             return false;
         }
 
@@ -893,7 +893,7 @@ class Admin
             	// Ensure stases reload following import
                 wp_cache_delete('publishpress_status_positions', 'options');
 
-                if (('admin.php' == $pagenow) && \PublishPress_Functions::is_REQUEST('publishpress-statuses')) {
+                if (('admin.php' == $pagenow) && \PP_Statuses_Functions::is_REQUEST('publishpress-statuses')) {
                     \PublishPress_Statuses::instance(true);
                 }
             }
