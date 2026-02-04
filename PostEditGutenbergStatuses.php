@@ -114,7 +114,11 @@ class PostEditGutenbergStatuses
                 ]
             );
 
-            $args['lockStatus'] = $force_default_privacy && !empty($options->lock_publication) && !empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private));
+            $args['lockStatus'] = 
+                $force_default_privacy 
+                && !empty($options->lock_publication) 
+                && !empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private))
+                && !current_user_can('pp_unpublish_posts');
         }
 
         if (!$is_administrator = \PublishPress_Statuses::isContentAdministrator()) {
