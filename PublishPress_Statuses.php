@@ -63,6 +63,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public $workflow_disabled = false;
 
     private $all_moderation_statuses = [];
+    public $filtered_post_status = [];
 
     public $last_error = '';
     public $form_errors = [];
