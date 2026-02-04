@@ -696,7 +696,7 @@ class StatusesUI {
             esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[custom_privacy_edit_caps]'
         ) . ' ';
 
-        $checked = $module->options->custom_privacy_edit_caps ? 'checked' : '';
+        $checked = !empty($module->options->custom_privacy_edit_caps) ? 'checked' : '';
 
         echo sprintf(
             '<input type="checkbox" name="%s" id="custom_privacy_edit_caps" value="1" autocomplete="off" %s>',
