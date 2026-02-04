@@ -1,8 +1,6 @@
 <?php
-if (!class_exists('PP_Statuses_Functions')) {
-
 /**
- * PublishPress_Functions
+ * PP_Statuses_Functions
  */
 class PP_Statuses_Functions 
 {
@@ -639,5 +637,4 @@ class PP_Statuses_Functions
         $entry = preg_replace( '/[^a-zA-Z0-9 \.\,\+\*\:\|\(\)_\-]/', '', $entry );
         return $entry;
     }
-}
 }

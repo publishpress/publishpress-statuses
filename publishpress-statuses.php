@@ -233,7 +233,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
 
             define('PUBLISHPRESS_STATUSES_DIR', __DIR__);
 
-            require_once(__DIR__ . '/lib/PublishPress_Functions.php');
+            require_once(__DIR__ . '/lib/PP_Statuses_Functions.php');
 
             if (!$publishpress_statuses_loaded_by_pro) {
                 require_once(__DIR__ . '/includes-core/Core.php');
