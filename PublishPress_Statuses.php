@@ -3416,7 +3416,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $current_status_obj = get_post_status_object($current_status);
 
             if (!empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private)) && !empty($_post)
-                && !is_super_admin() && !current_user_can('pp_unpublish_posts')
+                && !current_user_can('pp_unpublish_posts')
             ) {
                 $lock_publication = (is_object($options) && !empty($options->lock_publication) && !empty($options->lock_publication)) ? $options->lock_publication : '';
 
