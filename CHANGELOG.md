@@ -1,10 +1,16 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-= [1.2.0] - 17 Dec 2025 =
-* Feature : Default Visibility for new posts (configure per-type)
-* Feature : Lock Visibility of published posts (configure per-type)
-* Feature : Lock publication status for non-Administrators, published posts from being unpublished
+= [1.2.0] - 3 Feb 2026 =
+* Added : Default Visibility for new posts (configure per-type)
+* Added : Lock Visibility of published posts (configure per-type)
+* Added : Lock publication status for non-Administrators, published posts from being unpublished
+* Fixed : Workflow selectors not properly displayed under some conditions
+* Fixed : Compat - Non-editors cannot add post to Planner Calendar
+* Fixed : Wrong text domain for some strings
+* Fixed : Javascript error in block editor on some installations
+* Changed : Remove Define Privacy Types link in Classic Editor publish metabox 
+* Changed : Update EDD Updater library
 
 = [1.1.14] - 19 Nov 2025 =
 * Fixed : Status workflow did not offer to advance to next status under some configurations
