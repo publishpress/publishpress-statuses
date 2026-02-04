@@ -7,7 +7,7 @@ class PostEditGutenbergStatuses
 {
     public static function loadBlockEditorStatusGuidance() 
     {
-        if ($post_id = \PublishPress_Functions::getPostID()) {
+        if ($post_id = \PP_Statuses_Functions::getPostID()) {
             if (defined('PUBLISHPRESS_REVISIONS_VERSION') && !class_exists('PublishPress_Statuses\Revisions') && rvy_in_revision_workflow($post_id)) {
                 return;
             }
@@ -89,12 +89,19 @@ class PostEditGutenbergStatuses
             $next_status_obj = $current_status_obj;
         }
 
-        $post_type = \PublishPress_Functions::findPostType();
+        $post_type = \PP_Statuses_Functions::findPostType();
+
+        $args['lockStatus'] = false;
 
         if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
             $options = \PublishPress_Statuses::instance()->options;
-            $lock_privacy = (is_object($options) && !empty($options->lock_privacy) && !empty($options->lock_privacy[$post_type])) ? $options->lock_privacy[$post_type] : false;
+            
+            $force_default_privacy = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? true : '';
     
+            if ($force_default_privacy) {
+                $force_default_privacy = (!empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
+            }
+
             $args = array_merge(
                 $args, 
                 [
@@ -103,9 +110,15 @@ class PostEditGutenbergStatuses
                     'nextStatus' => $next_status_obj->name, 
                     'maxStatus' => $max_status_obj->name, 
                     'defaultBySequence' => !empty($default_by_sequence),
-                    'lockVisibility' => $lock_privacy
+                    'lockVisibility' => $force_default_privacy
                 ]
             );
+
+            $args['lockStatus'] = 
+                $force_default_privacy 
+                && !empty($options->lock_publication) 
+                && !empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private))
+                && !current_user_can('pp_unpublish_posts');
         }
 
         if (!$is_administrator = \PublishPress_Statuses::isContentAdministrator()) {
@@ -163,7 +176,6 @@ class PostEditGutenbergStatuses
         $args['isStatusesPro'] = defined('PUBLISHPRESS_STATUSES_PRO_VERSION');
 
         $args['workflowDisabled'] = \PublishPress_Statuses::instance()->workflow_disabled;
-
 
         global $pagenow;
 

@@ -285,6 +285,20 @@ class PostEditClassic
 
         $args['workflowDisabled'] = \PublishPress_Statuses::instance()->workflow_disabled;
 
+        if ((!empty($post_status_obj->public) || !empty($post_status_obj->private)) && !\PublishPress_Statuses::isContentAdministrator()) {
+            $options = \PublishPress_Statuses::instance()->options;
+
+            if (is_object($options) && !empty($options->lock_publication) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) :?>
+                <style>
+                a.edit-post-status, a.edit-visibility {display: none !important;}
+                </style>
+            <?php elseif (is_object($options) && !empty($options->default_privacy[$post_type]) && !empty($options->force_default_privacy[$post_type])) :?>
+                <style>
+                a.edit-visibility {display: none !important;}
+                </style>
+            <?php endif;
+        }
+
         wp_localize_script('publishpress-statuses-classic-edit', 'ppObjEdit', $args);
 
         global $wp_scripts;

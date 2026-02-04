@@ -30,7 +30,7 @@ class ModuleAdminUI_Base {
         $display_messages = [];
 
         // If there's been a message, let's display it
-        if (!$message = \PublishPress_Functions::REQUEST_key('message')) {
+        if (!$message = \PP_Statuses_Functions::REQUEST_key('message')) {
             $message = false;
         }
 

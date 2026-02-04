@@ -73,6 +73,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
     private static $instance = null;
 
+    public $lock_status = [];
+
     public static function instance($reload = false) {
         if ( is_null(self::$instance) || $reload) {
             self::$instance = new \PublishPress_Statuses(false);
@@ -104,7 +106,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     private function load() {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
         if (is_admin()) {
             // Methods for handling the actions of creating, making default, and deleting post stati
@@ -143,7 +145,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         add_filter('pre_post_status', [$this, 'fltPostStatus'], 20);
         add_filter('publishpress_statuses_default_visibility', [$this, 'fltDefaultPrivacy'], 10, 2);
-        add_filter('publishpress_statuses_force_default_visibility', [$this, 'fltForceDefaultPrivacy'], 10, 2);
 
         add_action('user_has_cap', [$this, 'fltUserHasCap'], 20, 3);
 
@@ -344,19 +345,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         return $status;
     }
 
-    function fltForceDefaultPrivacy($force, $post_type) {
-        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
-            return $force;
-        }
-        
-        $options = \PublishPress_Statuses::instance()->options;
-        $force = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
-
-        return $force;
-    }
-
     public function fltRegisterCapabilities($cme_caps) {
         $cme_caps['PublishPress Statuses'] = ['pp_manage_statuses', 'pp_bypass_status_sequence'];
+
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if (!empty($options) && !empty($options->lock_publication)) {
+            $cme_caps['PublishPress Statuses'] []= 'pp_unpublish_posts';
+        }
 
         return $cme_caps;
     }
@@ -365,6 +361,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     {
         $pp_caps['pp_bypass_status_sequence'] = esc_html__('Can bypass normal status progression. User can publish immediately or move post to the furthest possible status.', 'publishpress-statuses');
         $pp_caps['pp_manage_statuses'] = esc_html__('Manage Statuses plugin settings.', 'publishpress-statuses');
+
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if (!empty($options) && !empty($options->lock_publication)) {
+            $pp_caps['pp_unpublish_posts'] = esc_html__('Can unpublish posts even if Visibility Status is locked.', 'publishpress-statuses');
+        }
 
         return $pp_caps;
     }
@@ -567,7 +569,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public function get_ajax_selectable_statuses()
     {
         if (!empty($_REQUEST['post_id'])) {
-            if (!wp_verify_nonce(\PublishPress_Functions::POST_key('pp_nonce'),'pp-custom-statuses-nonce')) {
+            if (!wp_verify_nonce(\PP_Statuses_Functions::POST_key('pp_nonce'),'pp-custom-statuses-nonce')) {
                 exit;
             }
 
@@ -620,9 +622,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             $statuses = array_keys(\PublishPress_Statuses\Admin::get_selectable_statuses($post_id, $args));
 
-            \PublishPress_Functions::printAjaxResponse('success', '', $statuses, $params);
+            \PP_Statuses_Functions::printAjaxResponse('success', '', $statuses, $params);
         } else {
-            \PublishPress_Functions::printAjaxResponse('success', '', [], []);
+            \PP_Statuses_Functions::printAjaxResponse('success', '', [], []);
         }
 
         exit;
@@ -631,9 +633,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public function set_workflow_action($action) {
         global $current_user;
 
-        if ($post_id = \PublishPress_Functions::REQUEST_int('post_id')) {
-            if ($workflow_action = \PublishPress_Functions::REQUEST_key('workflow_action')) {
-                if (!wp_verify_nonce(\PublishPress_Functions::POST_key('pp_nonce'),'pp-custom-statuses-nonce')) {
+        if ($post_id = \PP_Statuses_Functions::REQUEST_int('post_id')) {
+            if ($workflow_action = \PP_Statuses_Functions::REQUEST_key('workflow_action')) {
+                if (!wp_verify_nonce(\PP_Statuses_Functions::POST_key('pp_nonce'),'pp-custom-statuses-nonce')) {
                     exit;
                 }
 
@@ -643,20 +645,20 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                 update_user_meta($current_user->ID, "_pp_statuses_workflow_action_" . $post_id, sanitize_key($workflow_action));
 
-                \PublishPress_Functions::printAjaxResponse('success', '', [], []);
+                \PP_Statuses_Functions::printAjaxResponse('success', '', [], []);
             }
         }
     }
 
     public static function isStatusManagement() {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
         
         return
             in_array($plugin_page, ['publishpress-statuses', 'pp-capabilities'])
             || (
                 isset($_SERVER['SCRIPT_NAME']) 
                 && false !== strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'admin-ajax.php') 
-                && \PublishPress_Functions::is_REQUEST('action', ['pp_update_status_positions', 'pp_statuses_toggle', 'pp_delete_custom_status'])
+                && \PP_Statuses_Functions::is_REQUEST('action', ['pp_update_status_positions', 'pp_statuses_toggle', 'pp_delete_custom_status'])
             );
     }
 
@@ -1312,7 +1314,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public static function getCurrentPostType() {
-        return \PublishPress_Functions::getPostType();
+        return \PP_Statuses_Functions::getPostType();
     }
 
     public static function DisabledForPostType($post_type = null) {
@@ -1541,7 +1543,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     {
         global $wp_post_statuses;
 
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
         if (!is_array($function_args)) {
             $function_args = [$function_args => $function_args];
@@ -2706,7 +2708,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $post_id = $post->ID;
         } else {
             if (!$post_id && !$skip_post_id_check) {
-                $post_id = \PublishPress_Functions::getPostID();
+                $post_id = \PP_Statuses_Functions::getPostID();
             }
 
             if ($post_id) {
@@ -2717,7 +2719,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if (empty($post)) {
-            $post_type = (!empty($args['post_type'])) ? $args['post_type'] : \PublishPress_Functions::findPostType();
+            $post_type = (!empty($args['post_type'])) ? $args['post_type'] : \PP_Statuses_Functions::findPostType();
         } else {
             $post_type = $post->post_type;
         }
@@ -2813,7 +2815,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
             $options = \PublishPress_Statuses::instance()->options;
-            $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
+            $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
             
             if ($default_privacy && ('publish' != $default_privacy)) {
                 if (!$default_privacy_obj = get_post_status_object($default_privacy)) {
@@ -3232,7 +3234,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         $role_caps = [];
-        $roles = \PublishPress_Functions::getRoles(true);
+        $roles = \PP_Statuses_Functions::getRoles(true);
 
         foreach (array_keys($roles) as $role_name) {
             if ($role = get_role($role_name)) {
@@ -3312,9 +3314,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             return $data;
         }
 
-        $post_status = (empty($data['post_status'])) ? '' : $data['post_status'];
-        $data['post_status'] = $this->fltPostStatus($post_status, ['post_id' => $postarr['ID']]);
+        if (!empty($this->lock_status[$postarr['ID']])) {
+            $data['post_status'] = $this->lock_status[$postarr['ID']];
 
+        } elseif (!isset($_REQUEST['visibility'])) { // bypass this filter with Classic Editor
+            $post_status = (empty($data['post_status'])) ? '' : $data['post_status'];
+            $data['post_status'] = $this->fltPostStatus($post_status, ['post_id' => $postarr['ID']]);
+        }
+        
         if ('publish' == $data['post_status']) {
             if (!empty($data['post_date_gmt'])) {
                 if (time() < strtotime($data['post_date_gmt'] . ' +0000')) {
@@ -3352,7 +3359,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         if ($orig_status != $post_status) {
             if (!$post_id = \PublishPress_Statuses::instance()->getCurrentSanitizePostID()) {
-                $post_id = \PublishPress_Functions::getPostID();
+                $post_id = \PP_Statuses_Functions::getPostID();
             }
 
             if ($post_id) {
@@ -3372,6 +3379,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             return $post_status;
         }
         
+        if ('public' == $post_status) {
+            $post_status = 'publish';
+        }
+
         if (!$status_obj = get_post_status_object($post_status)) {
             return $post_status;
         }
@@ -3380,37 +3391,36 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if (!empty($done)) return $post_status;  // Important: if other plugin code inserts additional posts in response, don't filter those
         $done = true;
 
-        if ($post_id = \PublishPress_Functions::getPostID()) {
+        if ($post_id = \PP_Statuses_Functions::getPostID()) {
             $_post = get_post($post_id);
         } else {
             $_post = false;
         }
 
-        if (!\PublishPress_Functions::empty_POST('post_password')) {
+        if (!\PP_Statuses_Functions::empty_POST('post_password')) {
             return $post_status;
         }
 
         if (!empty($_post) && !empty($_post->post_type)) {
             $post_type = $_post->post_type;
         } else {
-            if (!$post_type = \PublishPress_Functions::findPostType()) {
+            if (!$post_type = \PP_Statuses_Functions::findPostType()) {
                 return $post_status;
             }
         }
 
         $options = \PublishPress_Statuses::instance()->options;
 
-        $force = (!empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
+        if (!empty($_post) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) {
+            $current_status = get_post_field('post_status', $_post->ID);
+            $current_status_obj = get_post_status_object($current_status);
 
-        if ($force) {
-            if (empty($status_obj->public) && empty($status_obj->private) && !empty($_post)
-                && !is_super_admin() && !current_user_can('pp_unpublish_posts')
+            if (!empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private)) && !empty($_post)
+                && !current_user_can('pp_unpublish_posts')
             ) {
                 $lock_publication = (is_object($options) && !empty($options->lock_publication) && !empty($options->lock_publication)) ? $options->lock_publication : '';
 
                 if ($lock_publication) {
-                    $current_status = get_post_field('post_status', $_post->ID);
-
                     $current_status_obj = get_post_status_object($current_status);
 
                     if (empty($current_status_obj) || (empty($current_status_obj->public) && empty($current_status_obj->private))) {
@@ -3420,14 +3430,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
 
             if (!empty($status_obj->public) || !empty($status_obj->private) || !empty($lock_publication)) {
-                $default_privacy = (is_object($options) && !empty($options->default_privacy) && isset($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
-
-                if (!$default_privacy) {
-                    $default_privacy = 'publish';
-                }
+                $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
         
                 if (get_post_status_object($default_privacy)) {
-                    if ($post_id = \PublishPress_Functions::getPostID()) {
+                    if ($post_id = \PP_Statuses_Functions::getPostID()) {
                         $_post = get_post($post_id);
                     }
     
@@ -3444,6 +3450,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                             delete_post_meta($_post->ID, '_pp_original_status');
                         }
                     }
+                }
+
+                if (!empty($lock_publication)) {
+                    \PublishPress_Statuses::instance()->lock_status[$_post->ID] = $post_status;
                 }
             }
         }
@@ -3482,7 +3492,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $post_id = $args['post_id'];
         } else {
             if (!$post_id = \PublishPress_Statuses::instance()->useSanitizePostID()) {
-                $post_id = \PublishPress_Functions::getPostID();
+                $post_id = \PP_Statuses_Functions::getPostID();
             }
         }
 
@@ -3514,7 +3524,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $save_as_pending = true;
         }
 
-        $post_type = ($_post) ? $_post->post_type : \PublishPress_Functions::findPostType();
+        $post_type = ($_post) ? $_post->post_type : \PP_Statuses_Functions::findPostType();
 
         if (!in_array($post_type, \PublishPress_Statuses::getEnabledPostTypes())) {
             return $post_status;
@@ -3533,18 +3543,18 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $stored_status_obj = get_post_status_object($stored_status);
         }
 
-        if ($doing_rest = defined('REST_REQUEST') && (!\PublishPress_Functions::empty_REQUEST('meta-box-loader') || $this->doing_rest))  {
+        if ($doing_rest = defined('REST_REQUEST') && (!\PP_Statuses_Functions::empty_REQUEST('meta-box-loader') || $this->doing_rest))  {
             $rest = \PublishPress_Statuses\REST::instance();
         }
 
         if ($doing_rest && !empty($rest->params['pp_status_selection'])) {
             $_post_status = $rest->params['pp_status_selection'];
         } else {
-            if (('_public' === \PublishPress_Functions::REQUEST_key('post_status')) && !$doing_rest) {
+            if (('_public' === \PP_Statuses_Functions::REQUEST_key('post_status')) && !$doing_rest) {
                 $_post_status = 'public';
                 $classic_explicit_publish = true;
             } else {
-                $_post_status = \PublishPress_Functions::POST_key('post_status');
+                $_post_status = \PP_Statuses_Functions::POST_key('post_status');
             }
         }
 
@@ -3559,7 +3569,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         $this->logLastMainSection($_post_status, $post_id);
 
-        if (\PublishPress_Functions::REQUEST_key('save') && !$doing_rest
+        if (\PP_Statuses_Functions::REQUEST_key('save') && !$doing_rest
         || ($doing_rest && !empty($rest->params['pp_status_selection']))
         ) {
             return $_post_status;
@@ -3633,7 +3643,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     $selected_status_dropdown = 'pending';
                 }
 
-                $post_type = ($post_id) ? '' : \PublishPress_Functions::findPostType();
+                $post_type = ($post_id) ? '' : \PP_Statuses_Functions::findPostType();
 
                 switch ($workflow_action) {
                     case 'specified':
@@ -3654,7 +3664,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                     default:
                         if ((($doing_rest && !empty($rest->params['pp_statuses_selecting_workflow']))
-                        || !\PublishPress_Functions::empty_POST('publish'))
+                        || !\PP_Statuses_Functions::empty_POST('publish'))
                         || ($is_revision && !empty($_POST) && !empty($_POST['originalaction']) && ('editpost' == $_POST['originalaction']))     // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
                         ) {
                             if (empty($save_as_pending) 
@@ -3798,7 +3808,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $default_action = '';
         $post_status = '';
 
-        if ($post_id = \PublishPress_Functions::getPostID()) {
+        if ($post_id = \PP_Statuses_Functions::getPostID()) {
             if ($post_status = get_post_field('post_status', $post_id)) {
                 if ($status_obj = get_post_status_object($post_status)) {
                     if (in_array($post_status, ['publish', 'private', 'future']) || !empty($stored_status_obj->public) || !empty($stored_status_obj->private)) {
@@ -3809,7 +3819,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             $post_type = get_post_field('post_type', $post_id);
         } else {
-            $post_type = \PublishPress_Functions::findPostType();
+            $post_type = \PP_Statuses_Functions::findPostType();
         }
 
         if (!$default_action) {
@@ -3834,7 +3844,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public static function getStatusSelection( $object ) {
         $status_selection = '';
 
-        if ($post_id = \PublishPress_Functions::getPostID()) {
+        if ($post_id = \PP_Statuses_Functions::getPostID()) {
             if ($post_status = get_post_field('post_status', $post_id)) {
                 if (get_post_status_object($post_status)) {
                     $status_selection = $post_status;

@@ -31,6 +31,6 @@ class Core {
     }
 
     public function shouldDisplayBanner() {
-        return \PublishPress_Functions::getPluginPage();
+        return \PP_Statuses_Functions::getPluginPage();
     }
 }

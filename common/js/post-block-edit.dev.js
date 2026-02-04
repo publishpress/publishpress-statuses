@@ -177,6 +177,10 @@ jQuery(document).ready(function ($) {
                 PP_SetPublishButtonCaption(ppObjEdit.publish, false);
             }
         }
+
+        if (ppObjEdit.lockStatus) {
+            $('.editor-change-status__options input').prop('disabled', true);
+        }
     }
     var initInterval = setInterval(PP_InitializeBlockEditorModifications, 50);
 

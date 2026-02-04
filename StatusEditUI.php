@@ -7,7 +7,7 @@ class StatusEditUI
     public static function display() {
 
         // Check whether the term exists
-        $name = \PublishPress_Functions::REQUEST_key('name');
+        $name = \PP_Statuses_Functions::REQUEST_key('name');
 
         if (!$status = \PublishPress_Statuses::getStatusBy('id', $name)) {
             echo '<div class="error"><p>' . esc_html(\PublishPress_Statuses::instance()->messages['status-missing']) . '</p></div>';
@@ -16,7 +16,7 @@ class StatusEditUI
 
         $url_args = ['action' => 'statuses'];
 
-        if ($status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+        if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
             $url_args['status_type'] = $status_type;
         }
 
@@ -78,7 +78,7 @@ class StatusEditUI
             }
         }
 
-        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION'))
+        if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
         || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
         :
             if ('draft' != $status->name) {
@@ -88,7 +88,7 @@ class StatusEditUI
 
         $tabs = apply_filters('publishpress_statuses_edit_status_tabs', $tabs, $status->name);
 
-        $pp_tab = (!\PublishPress_Functions::empty_REQUEST('pp_tab')) ? \PublishPress_Functions::REQUEST_key('pp_tab') : 'name';
+        $pp_tab = (!\PP_Statuses_Functions::empty_REQUEST('pp_tab')) ? \PP_Statuses_Functions::REQUEST_key('pp_tab') : 'name';
 
         $default_tab = apply_filters('presspermit_edit_status_default_tab', $pp_tab);
 
@@ -102,7 +102,7 @@ class StatusEditUI
             echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
                 . esc_html($caption);
                 
-            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION')) {
+            if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
                 $badge =
                 [
                     'text' => 'PRO',
@@ -190,7 +190,7 @@ class StatusEditUI
             self::tabContent('roles', $status, $default_tab);
             self::tabContent('post_types', $status, $default_tab);
 
-            if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_PRO_VERSION'))
+            if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
             || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()))
             {
                 self::tabContent('post_access', $status, $default_tab);
@@ -205,8 +205,8 @@ class StatusEditUI
                 <input type="hidden" name="action" value="edit-status" />
                 <input type="hidden" name="pp_tab" value="<?php echo '#pp-' . esc_attr($default_tab);?>" />
                 <?php
-                if (!\PublishPress_Functions::empty_REQUEST('return_module')) :?>
-                    <input type="hidden" name="return_module" value="<?php echo esc_attr(\PublishPress_Functions::REQUEST_key('return_module'));?>" />
+                if (!\PP_Statuses_Functions::empty_REQUEST('return_module')) :?>
+                    <input type="hidden" name="return_module" value="<?php echo esc_attr(\PP_Statuses_Functions::REQUEST_key('return_module'));?>" />
                 <?php endif;
 
                 submit_button(__('Update Status', 'publishpress-statuses'), 'primary pp-statuses', 'submit', false); ?>
@@ -391,7 +391,7 @@ class StatusEditUI
 
         switch ($tab) {
             case 'roles' :
-                $roles = \PublishPress_Functions::getRoles(true);
+                $roles = \PP_Statuses_Functions::getRoles(true);
                 ?>
                 <tr class="form-field">
                     <th><label for="status_assign"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
@@ -403,7 +403,7 @@ class StatusEditUI
 
                     <td class="set-status-roles">
                         <?php foreach($roles as $role_name => $role_label):
-                            if (\PublishPress_Functions::isEditableRole($role_name)) :
+                            if (\PP_Statuses_Functions::isEditableRole($role_name)) :
                                 $role = get_role($role_name);
                                 $cap_name = str_replace('-', '_', "status_change_{$status->name}");
 
@@ -533,14 +533,14 @@ class StatusEditUI
                 break;
 
             case 'post_access' :
-                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PRESSPERMIT_STATUSES_PRO_VERSION'))
+                if (!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
                 :?>
                     <div class="pp-cta-section pp-status-permissions-promo">
                         <h4>
                             <?php esc_html_e('Upgrade to choose who can manage posts in each status', 'publishpress-statuses'); ?>
                         </h4>
                         <p>
-                            <?php esc_html_e('Get PublishPress Capabilities Pro for status-specific post access control.', 'publishpress-statuses'); ?>
+                            <?php esc_html_e('Get PublishPress Statuses Pro for status-specific post access control.', 'publishpress-statuses'); ?>
                         </p>
 
                         <div class="pp-revisions-pro-features">
@@ -561,10 +561,10 @@ class StatusEditUI
                         </div>
 
                         <div class="pp-cta-buttons">
-                            <a href="https://publishpress.com/capabilities/" 
+                            <a href="https://publishpress.com/statuses/" 
                                 class="button-primary button-large pp-upgrade-btn" 
                                 target="_blank">
-                                <?php esc_html_e('Get PublishPress Capabilities Pro', 'publishpress-statuses'); ?>
+                                <?php esc_html_e('Get PublishPress Statuses Pro', 'publishpress-statuses'); ?>
                             </a>
                             <a href="https://publishpress.com/knowledge-base/extended-capabilities-statuses/" 
                                 target="_blank"
@@ -578,7 +578,7 @@ class StatusEditUI
                     <div class="pp-statuses-warning">
                         <?php 
                         printf(
-                            esc_html__('Status-specific post capabilities are %1$scurrently disabled%2$s by PublishPress Capabilities Pro. You can %3$schange this setting%4$s.', 'publishpress-statuses'),
+                            esc_html__('Status-specific post capabilities are %1$scurrently disabled%2$s. You can %3$schange this setting%4$s.', 'publishpress-statuses'),
                             '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
                             '</a>',
                             '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',

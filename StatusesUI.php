@@ -25,7 +25,7 @@ class StatusesUI {
     }
 
     private function load() {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
         add_filter('presspermit_edit_status_default_tab', [$this, 'fltEditStatusDefaultTab']);
 
@@ -34,7 +34,7 @@ class StatusesUI {
             add_action('admin_init', [$this, 'register_settings']);
         }
 
-        if ('publishpress_custom_status_options' === \PublishPress_Functions::POST_key('option_page')) { 
+        if ('publishpress_custom_status_options' === \PP_Statuses_Functions::POST_key('option_page')) { 
             add_action('admin_init', function() {
                 $this->handle_settings();
             });
@@ -44,7 +44,7 @@ class StatusesUI {
 
         // @todo: REST
         if ((0 === strpos($plugin_page, 'publishpress-statuses'))
-        && !\PublishPress_Functions::empty_POST('submit')
+        && !\PP_Statuses_Functions::empty_POST('submit')
         ) {
             add_action('init', function() {
                 $this->handle_add_custom_status();
@@ -56,8 +56,8 @@ class StatusesUI {
         $title = '';
 
         if (('publishpress-statuses' === $plugin_page) 
-        && ('edit-status' === \PublishPress_Functions::REQUEST_key('action'))) {
-            $status_name = \PublishPress_Functions::REQUEST_key('name');
+        && ('edit-status' === \PP_Statuses_Functions::REQUEST_key('action'))) {
+            $status_name = \PP_Statuses_Functions::REQUEST_key('name');
 
             if ($status_obj = get_post_status_object($status_name)) {
                 // translators: %s is the status label
@@ -68,8 +68,8 @@ class StatusesUI {
             }
 
         } elseif ('publishpress-statuses-add-new' === $plugin_page) {
-            if (!\PublishPress_Functions::empty_REQUEST('taxonomy')) {
-                if ($tx = get_taxonomy(\PublishPress_Functions::REQUEST_key('taxonomy'))) {
+            if (!\PP_Statuses_Functions::empty_REQUEST('taxonomy')) {
+                if ($tx = get_taxonomy(\PP_Statuses_Functions::REQUEST_key('taxonomy'))) {
                     $title = sprintf(
                         // translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
                         __('Add %s Status', 'publishpress-statuses'),
@@ -91,7 +91,7 @@ class StatusesUI {
             $title = __('Post Statuses', 'publishpress-statuses');
             $custom_html_title = __('Statuses', 'publishpress-statuses');
             
-            if ($status_type = \PublishPress_Functions::REQUEST_key('status_type')) { // @todo: implement hook in Permissions
+            if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) { // @todo: implement hook in Permissions
                 $_title = $title;
                 
                 if ('visibility' == $status_type) {
@@ -128,8 +128,8 @@ class StatusesUI {
      */
     public function handle_add_custom_status()
     {
-        if (('add-status' === \PublishPress_Functions::POST_key('action'))
-        && \PublishPress_Functions::empty_REQUEST('settings_module')) {
+        if (('add-status' === \PP_Statuses_Functions::POST_key('action'))
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleAddCustomStatus();
         }
@@ -140,8 +140,8 @@ class StatusesUI {
      */
     public function handle_edit_custom_status()
     {
-        if (('edit-status' === \PublishPress_Functions::POST_key('action')) 
-        && \PublishPress_Functions::empty_REQUEST('settings_module')) {
+        if (('edit-status' === \PP_Statuses_Functions::POST_key('action')) 
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleEditCustomStatus();
         }
@@ -154,8 +154,8 @@ class StatusesUI {
      */
     public function handle_delete_custom_status()
     {
-        if ('delete-status' === (\PublishPress_Functions::POST_key('action')) 
-        && \PublishPress_Functions::empty_REQUEST('settings_module')) {
+        if ('delete-status' === (\PP_Statuses_Functions::POST_key('action')) 
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleDeleteCustomStatus();
         }
@@ -166,8 +166,8 @@ class StatusesUI {
      */
     public function handle_settings()
     {
-        if (!\PublishPress_Functions::empty_POST('action')
-        && ('publishpress_custom_status_options' === \PublishPress_Functions::POST_key('option_page'))
+        if (!\PP_Statuses_Functions::empty_POST('action')
+        && ('publishpress_custom_status_options' === \PP_Statuses_Functions::POST_key('option_page'))
         ) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::settings_validate_and_save();
@@ -821,12 +821,6 @@ class StatusesUI {
         ?>
         </table>
 
-        <p class="pp-option-footnote">
-        <?php
-        _e('Note: Visibility status locking also applies to Administrators.', 'publishpress-statuses');
-        ?>
-        </p>
-
         <?php
         $lock_publication = is_object($options) && !empty($options->lock_publication);
 
@@ -846,7 +840,28 @@ class StatusesUI {
 
         <p class="pp-option-footnote">
         <?php
-        _e('Note: Administrators will always be able to unpublish posts.', 'publishpress-statuses');
+        $cap_caption = sprintf(__('%s capability', 'revisionary'), 'pp_unpublish_posts');
+
+        if (defined('PUBLISHPRESS_CAPS_VERSION')) {
+            $options = \PublishPress_Statuses::instance()->options;
+
+            if (!empty($options) && !empty($options->lock_publication)) {
+                $url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses');
+
+                $cap_caption = "<a href='$url'>" . $cap_caption . '</a>';
+            }
+
+            printf(
+                __('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption
+            );
+        } else {
+            printf(
+                __('If enabled, users need the %s in their role to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption
+            );
+        }
+
         ?>
         </p>
 
@@ -994,7 +1009,7 @@ class StatusesUI {
     }
 
     public function fltEditStatusDefaultTab($default_tab) {
-        if (!$default_tab = \PublishPress_Functions::REQUEST_key('pp_tab')) {
+        if (!$default_tab = \PP_Statuses_Functions::REQUEST_key('pp_tab')) {
             $default_tab = 'name';
         }
 
@@ -1006,14 +1021,14 @@ class StatusesUI {
      */
     public function render_admin_page()
     {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
-        $action = \PublishPress_Functions::GET_key('action');
+        $action = \PP_Statuses_Functions::GET_key('action');
         $enable_left_col = false;
 
         /** Edit Status screen **/
-        if (('publishpress-statuses' === $plugin_page) && ('edit-status' == $action) && !\PublishPress_Functions::empty_REQUEST('name')) {
-            $status_name = \PublishPress_Functions::REQUEST_key('name');
+        if (('publishpress-statuses' === $plugin_page) && ('edit-status' == $action) && !\PP_Statuses_Functions::empty_REQUEST('name')) {
+            $status_name = \PP_Statuses_Functions::REQUEST_key('name');
             
             $status_obj = \PublishPress_Statuses::getStatusBy('id', $status_name);
 
@@ -1038,7 +1053,7 @@ class StatusesUI {
         /** Statuses screen **/
         } elseif (('publishpress-statuses' === $plugin_page) && (!$action || ('statuses' == $action))) {
             add_action('publishpress_header_button', function() {
-                $status_type = \PublishPress_Functions::REQUEST_key('status_type');
+                $status_type = \PP_Statuses_Functions::REQUEST_key('status_type');
                 
                 $args = [
                     'action' => 'add-new', 
@@ -1069,7 +1084,7 @@ class StatusesUI {
                 }
             });
 
-            $status_type = \PublishPress_Functions::REQUEST_key('status_type');
+            $status_type = \PP_Statuses_Functions::REQUEST_key('status_type');
 
             \PublishPress\ModuleAdminUI_Base::instance()->default_header();
 
@@ -1111,7 +1126,7 @@ class StatusesUI {
             ?>
             <div class='nav-tab-wrapper'>
             <a href="<?php
-                if (!$status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+                if (!$status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
                     $status_type = 'moderation';
                 }
 
@@ -1188,7 +1203,7 @@ class StatusesUI {
         <?php 
         /** Add New Status **/
         } elseif (isset($plugin_page) && ('publishpress-statuses-add-new' === $plugin_page)) {
-            $status_type = \PublishPress_Functions::REQUEST_key('status_type');
+            $status_type = \PP_Statuses_Functions::REQUEST_key('status_type');
 
 			if (('visibility' == $status_type) && ! defined('PRESSPERMIT_STATUSES_VERSION')) {
                 return;

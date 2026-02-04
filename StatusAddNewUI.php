@@ -15,8 +15,8 @@ method='post' id='addstatus' name='addstatus'>
     <input type="hidden" name="action" value="add-status" />
 
     <?php 
-    if (!$_taxonomy = \PublishPress_Functions::REQUEST_key('taxonomy')) {
-        if ('visibility' == \PublishPress_Functions::REQUEST_key('status_type')) {
+    if (!$_taxonomy = \PP_Statuses_Functions::REQUEST_key('taxonomy')) {
+        if ('visibility' == \PP_Statuses_Functions::REQUEST_key('status_type')) {
             $_taxonomy = 'post_visibility_pp';
         }
     }
