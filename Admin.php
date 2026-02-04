@@ -55,6 +55,12 @@ class Admin
         $last_statuses_version = get_option('publishpress_statuses_version');
 
         if (($last_statuses_version != PUBLISHPRESS_STATUSES_VERSION) || !empty($_REQUEST['pp_reset_status_positions'])) {
+            if (version_compare($last_statuses_version, '1.2.0', '<')) {
+                if ($role = @get_role('administrator')) {
+                    $role->add_cap('pp_unpublish_posts');
+                }
+            }
+            
             if ('1.1.7-beta' == $last_statuses_version) {
                 // work around beta bug
                 delete_option('publishpress_status_positions');
