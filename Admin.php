@@ -379,7 +379,7 @@ class Admin
         }
 
         // Custom javascript to modify the post status dropdown where it shows up
-        if (self::is_post_management_page() && class_exists('PublishPress_Functions')) {
+        if (self::is_post_management_page() && class_exists('PP_Statuses_Functions')) {
             if (\PP_Statuses_Functions::isBlockEditorActive(['force' => \PublishPress_Statuses::instance()->options->force_editor_detection])) {
                 wp_enqueue_style(
                     'publishpress-custom_status-block',
