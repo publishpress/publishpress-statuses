@@ -1,10 +1,10 @@
 <?php
-if (!class_exists('PublishPress_Functions')) {
+if (!class_exists('PP_Statuses_Functions')) {
 
 /**
  * PublishPress_Functions
  */
-class PublishPress_Functions 
+class PP_Statuses_Functions 
 {
 
     /**
