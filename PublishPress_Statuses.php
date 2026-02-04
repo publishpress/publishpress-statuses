@@ -3411,7 +3411,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         $options = \PublishPress_Statuses::instance()->options;
 
-        if (!empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) {
+        if (!empty($_post) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) {
             $current_status = get_post_field('post_status', $_post->ID);
             $current_status_obj = get_post_status_object($current_status);
 

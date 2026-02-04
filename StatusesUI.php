@@ -821,12 +821,6 @@ class StatusesUI {
         ?>
         </table>
 
-        <p class="pp-option-footnote">
-        <?php
-        _e('Note: Visibility status locking also applies to Administrators.', 'publishpress-statuses');
-        ?>
-        </p>
-
         <?php
         $lock_publication = is_object($options) && !empty($options->lock_publication);
 
@@ -846,7 +840,28 @@ class StatusesUI {
 
         <p class="pp-option-footnote">
         <?php
-        _e('Note: Administrators will always be able to unpublish posts.', 'publishpress-statuses');
+        $cap_caption = sprintf(__('%s capability', 'revisionary'), 'pp_unpublish_posts');
+
+        if (defined('PUBLISHPRESS_CAPS_VERSION')) {
+            $options = \PublishPress_Statuses::instance()->options;
+
+            if (!empty($options) && !empty($options->lock_publication)) {
+                $url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses');
+
+                $cap_caption = "<a href='$url'>" . $cap_caption . '</a>';
+            }
+
+            printf(
+                __('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption
+            );
+        } else {
+            printf(
+                __('If enabled, users need the %s in their role to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption
+            );
+        }
+
         ?>
         </p>
 
