@@ -348,6 +348,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public function fltRegisterCapabilities($cme_caps) {
         $cme_caps['PublishPress Statuses'] = ['pp_manage_statuses', 'pp_bypass_status_sequence'];
 
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if (!empty($options) && !empty($options->lock_publication)) {
+            $cme_caps['PublishPress Statuses'] []= 'pp_unpublish_posts';
+        }
+
         return $cme_caps;
     }
 
@@ -355,6 +361,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     {
         $pp_caps['pp_bypass_status_sequence'] = esc_html__('Can bypass normal status progression. User can publish immediately or move post to the furthest possible status.', 'publishpress-statuses');
         $pp_caps['pp_manage_statuses'] = esc_html__('Manage Statuses plugin settings.', 'publishpress-statuses');
+
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if (!empty($options) && !empty($options->lock_publication)) {
+            $pp_caps['pp_unpublish_posts'] = esc_html__('Can unpublish posts even if Visibility Status is locked.', 'publishpress-statuses');
+        }
 
         return $pp_caps;
     }
