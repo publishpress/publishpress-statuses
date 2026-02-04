@@ -145,7 +145,7 @@ class StatusListTable extends \WP_List_Table
 
 <div class="is-dismissible notice notice-success pp-float-notice" style="clear:both;display:none;"><p></p></div>
 
-<?php if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ('revision' == \PublishPress_Functions::REQUEST_key('status_type'))):?>
+<?php if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && ('revision' == \PP_Statuses_Functions::REQUEST_key('status_type'))):?>
     <div id="pp-statuses-promo">
     
     <!-- CTA Section -->
@@ -307,7 +307,7 @@ class StatusListTable extends \WP_List_Table
         $class = (!empty($args['class'])) ? $args['class'] : '';
         $label = (!empty($args['label'])) ? $args['label'] : $key;
 
-        if (($key == '_pre-publish-alternate') && (\PublishPress_Functions::empty_REQUEST('status_type') || 'moderation' == \PublishPress_Functions::REQUEST_key('status_type'))) :?>
+        if (($key == '_pre-publish-alternate') && (\PP_Statuses_Functions::empty_REQUEST('status_type') || 'moderation' == \PP_Statuses_Functions::REQUEST_key('status_type'))) :?>
             <li class="ui-sortable-placeholder moderation-status ui-temp-placeholder" style="height: 50px;">
             <div class="row tpl-default">
                 <div class="child-toggle" style="padding-left: 0">
@@ -324,7 +324,7 @@ class StatusListTable extends \WP_List_Table
         <?php endif;
 
 		do_action('publishpress_statuses_table_list', $key, $args);
-        if (!$status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+        if (!$status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
             $status_type = 'moderation';
         }
 
@@ -377,7 +377,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         <?php
         switch ($key) {
             case '_pre-publish-alternate':
-                if (\PublishPress_Functions::empty_REQUEST('status_type') || 'moderation' == \PublishPress_Functions::REQUEST_key('status_type')) :?>
+                if (\PP_Statuses_Functions::empty_REQUEST('status_type') || 'moderation' == \PP_Statuses_Functions::REQUEST_key('status_type')) :?>
                 <li class="ui-sortable-placeholder alternate-moderation-status ui-temp-placeholder" style="height: 50px;">
                 <div class="row tpl-default">
                     <div class="child-toggle" style="padding-left: 0">
@@ -446,7 +446,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         endif;?>
         <?php
 
-        if (!$status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+        if (!$status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
             $status_type = 'moderation';
         }
 
@@ -575,13 +575,13 @@ do_action('publishpress_statuses_table_row', $key, []);
         endif;?>
         <?php
 
-        if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PRESSPERMIT_PRO_VERSION')) :?>
+        if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
                 <h4>
                     <?php esc_html_e('Upgrade to choose who can view your non-public posts', 'publishpress-statuses'); ?>
                 </h4>
                 <p>
-                    <?php esc_html_e('Install PublishPress Permissions Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
+                    <?php esc_html_e('Upgrade to PublishPress Statuses Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
                 </p>
 
                 <div class="pp-revisions-pro-features">
@@ -602,10 +602,10 @@ do_action('publishpress_statuses_table_row', $key, []);
                 </div>
 
                 <div class="pp-cta-buttons">
-                    <a href="https://publishpress.com/permissions/" 
+                    <a href="https://publishpress.com/statuses/" 
                         class="button-primary button-large pp-upgrade-btn" 
                         target="_blank">
-                        <?php esc_html_e('Get PublishPress Permissions Pro', 'publishpress-statuses'); ?>
+                        <?php esc_html_e('Get PublishPress Statuses Pro', 'publishpress-statuses'); ?>
                     </a>
                     <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
                         target="_blank"

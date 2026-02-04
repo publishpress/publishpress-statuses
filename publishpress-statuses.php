@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Statuses
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
- * Version: 1.1.14
+ * Version: 1.2.0
  * Author: PublishPress
  * Author URI:  https://publishpress.com/
  * Text Domain: publishpress-statuses
@@ -186,7 +186,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             $interrupt_load = true;
         }
 
-        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.0-beta8', '<')) {
+        if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
             add_action('admin_notices', function() {
                 ?>
                 <div class="notice error">
@@ -227,13 +227,13 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         }
         
         if (empty($interrupt_load)) {
-            define('PUBLISHPRESS_STATUSES_VERSION', '1.1.14');
+            define('PUBLISHPRESS_STATUSES_VERSION', '1.2.0');
 
             define('PUBLISHPRESS_STATUSES_URL', trailingslashit(plugins_url('', __FILE__)));    // @todo: vendor lib
 
             define('PUBLISHPRESS_STATUSES_DIR', __DIR__);
 
-            require_once(__DIR__ . '/lib/PublishPress_Functions.php');
+            require_once(__DIR__ . '/lib/PP_Statuses_Functions.php');
 
             if (!$publishpress_statuses_loaded_by_pro) {
                 require_once(__DIR__ . '/includes-core/Core.php');
@@ -250,14 +250,6 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
 
             require_once(__DIR__ . '/PublishPress_Statuses.php');
             PublishPress_Statuses::instance();
-
-            if (defined('PRESSPERMIT_VERSION')) {
-                class_alias('\PressShack\LibWP', '\PublishPress_Statuses\PWP');
-
-                if (class_exists('\PublishPress\Permissions\Statuses')) {
-                    class_alias('\PublishPress\Permissions\Statuses', '\PublishPress_Statuses\PPS');
-                }
-            }
         
         	do_action('publishpress_statuses_init');
 

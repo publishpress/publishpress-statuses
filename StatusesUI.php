@@ -25,7 +25,7 @@ class StatusesUI {
     }
 
     private function load() {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
         add_filter('presspermit_edit_status_default_tab', [$this, 'fltEditStatusDefaultTab']);
 
@@ -34,7 +34,7 @@ class StatusesUI {
             add_action('admin_init', [$this, 'register_settings']);
         }
 
-        if ('publishpress_custom_status_options' === \PublishPress_Functions::POST_key('option_page')) { 
+        if ('publishpress_custom_status_options' === \PP_Statuses_Functions::POST_key('option_page')) { 
             add_action('admin_init', function() {
                 $this->handle_settings();
             });
@@ -44,7 +44,7 @@ class StatusesUI {
 
         // @todo: REST
         if ((0 === strpos($plugin_page, 'publishpress-statuses'))
-        && !\PublishPress_Functions::empty_POST('submit')
+        && !\PP_Statuses_Functions::empty_POST('submit')
         ) {
             add_action('init', function() {
                 $this->handle_add_custom_status();
@@ -56,8 +56,8 @@ class StatusesUI {
         $title = '';
 
         if (('publishpress-statuses' === $plugin_page) 
-        && ('edit-status' === \PublishPress_Functions::REQUEST_key('action'))) {
-            $status_name = \PublishPress_Functions::REQUEST_key('name');
+        && ('edit-status' === \PP_Statuses_Functions::REQUEST_key('action'))) {
+            $status_name = \PP_Statuses_Functions::REQUEST_key('name');
 
             if ($status_obj = get_post_status_object($status_name)) {
                 // translators: %s is the status label
@@ -68,8 +68,8 @@ class StatusesUI {
             }
 
         } elseif ('publishpress-statuses-add-new' === $plugin_page) {
-            if (!\PublishPress_Functions::empty_REQUEST('taxonomy')) {
-                if ($tx = get_taxonomy(\PublishPress_Functions::REQUEST_key('taxonomy'))) {
+            if (!\PP_Statuses_Functions::empty_REQUEST('taxonomy')) {
+                if ($tx = get_taxonomy(\PP_Statuses_Functions::REQUEST_key('taxonomy'))) {
                     $title = sprintf(
                         // translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
                         __('Add %s Status', 'publishpress-statuses'),
@@ -91,7 +91,7 @@ class StatusesUI {
             $title = __('Post Statuses', 'publishpress-statuses');
             $custom_html_title = __('Statuses', 'publishpress-statuses');
             
-            if ($status_type = \PublishPress_Functions::REQUEST_key('status_type')) { // @todo: implement hook in Permissions
+            if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) { // @todo: implement hook in Permissions
                 $_title = $title;
                 
                 if ('visibility' == $status_type) {
@@ -128,8 +128,8 @@ class StatusesUI {
      */
     public function handle_add_custom_status()
     {
-        if (('add-status' === \PublishPress_Functions::POST_key('action'))
-        && \PublishPress_Functions::empty_REQUEST('settings_module')) {
+        if (('add-status' === \PP_Statuses_Functions::POST_key('action'))
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleAddCustomStatus();
         }
@@ -140,8 +140,8 @@ class StatusesUI {
      */
     public function handle_edit_custom_status()
     {
-        if (('edit-status' === \PublishPress_Functions::POST_key('action')) 
-        && \PublishPress_Functions::empty_REQUEST('settings_module')) {
+        if (('edit-status' === \PP_Statuses_Functions::POST_key('action')) 
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleEditCustomStatus();
         }
@@ -154,8 +154,8 @@ class StatusesUI {
      */
     public function handle_delete_custom_status()
     {
-        if ('delete-status' === (\PublishPress_Functions::POST_key('action')) 
-        && \PublishPress_Functions::empty_REQUEST('settings_module')) {
+        if ('delete-status' === (\PP_Statuses_Functions::POST_key('action')) 
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleDeleteCustomStatus();
         }
@@ -166,8 +166,8 @@ class StatusesUI {
      */
     public function handle_settings()
     {
-        if (!\PublishPress_Functions::empty_POST('action')
-        && ('publishpress_custom_status_options' === \PublishPress_Functions::POST_key('option_page'))
+        if (!\PP_Statuses_Functions::empty_POST('action')
+        && ('publishpress_custom_status_options' === \PP_Statuses_Functions::POST_key('option_page'))
         ) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::settings_validate_and_save();
@@ -265,6 +265,48 @@ class StatusesUI {
                 $group_name . '_general',
                 ['class' => 'pp-settings-space-top pp-settings-separation-bottom']
             );
+
+            if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
+                add_settings_field(
+                    'privacy_statuses_enabled',
+                    __('Custom Visibility:', 'publishpress-statuses'),
+                    [$this, 'settings_privacy_statuses_enabled'],
+                    $group_name,
+                    $group_name . '_general',
+                    ['class' => 'pp-settings-space-bottom']
+                );
+            }
+
+            $class = (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) ? 'pp-settings-space-bottom' : 'pp-settings-space-top pp-settings-separation-bottom';
+
+            add_settings_field(
+                'default_privacy',
+                __('Default Visibility Status:', 'publishpress-statuses'),
+                [$this, 'settings_default_privacy_option'],
+                $group_name,
+                $group_name . '_general',
+                ['class' => $class]
+            );
+
+            if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
+                add_settings_field(
+                    'custom_privacy_edit_caps',
+                    __('Custom Visibility Editing:', 'publishpress-statuses'),
+                    [$this, 'settings_custom_privacy_edit_caps'],
+                    $group_name,
+                    $group_name . '_general',
+                    ['class' => 'pp-settings-space-bottom']
+                );
+
+                add_settings_field(
+                    'quick_edit_custom_privacy_dropdown',
+                    __('Quick Edit:', 'publishpress-statuses'),
+                    [$this, 'settings_quick_edit_custom_privacy_dropdown'],
+                    $group_name,
+                    $group_name . '_general',
+                    ['class' => 'pp-settings-separation-bottom']
+                );
+            }
 
             $show_edit_caps_setting = (function_exists('presspermit') && defined('PRESSPERMIT_COLLAB_VERSION') && defined('PRESSPERMIT_STATUSES_VERSION'));
 
@@ -586,7 +628,7 @@ class StatusesUI {
         foreach ($post_types as $post_type => $title) {
             echo sprintf(
                 '<input type="hidden" name="%s" value="0" />',
-                esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[post_types][' . esc_attr($post_type) . ']"'
+                esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[post_types][' . esc_attr($post_type) . ']'
             ) . ' ';
 
             echo '<label for="' . esc_attr($post_type) . '-' . esc_attr($pp->module->slug) . '">';
@@ -604,7 +646,7 @@ class StatusesUI {
             // Leave a note to the admin as a reminder that add_post_type_support has been used somewhere in their code
             if (post_type_supports($post_type, 'pp_custom_statuses')) {
                 // translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
-                echo '&nbsp&nbsp;&nbsp;<span class="description">' . sprintf(esc_html____('Disabled because add_post_type_support(\'%1$s\', \'%2$s\') is included in a loaded file.', 'publishpress-statuses'), esc_html($post_type), 'pp_custom_statuses') . '</span>';
+                echo '&nbsp&nbsp;&nbsp;<span class="description">' . sprintf(esc_html__('Disabled because add_post_type_support(\'%1$s\', \'%2$s\') is included in a loaded file.', 'publishpress-statuses'), esc_html($post_type), 'pp_custom_statuses') . '</span>';
             }
         }
         ?>
@@ -616,6 +658,214 @@ class StatusesUI {
         _e('Note: Post types can also be specified for each individual status.', 'publishpress-statuses');
         ?>
         </p>
+        <?php
+    }
+
+    public function settings_privacy_statuses_enabled($unused = []) {
+        $module = \PublishPress_Statuses::instance();
+        
+        echo '<div class="c-input-group">';
+
+        echo sprintf(
+            '<input type="hidden" name="%s" value="0" />',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[privacy_statuses_enabled]'
+        ) . ' ';
+
+        $checked = get_option('presspermit_privacy_statuses_enabled', 1) ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="checkbox" name="%s" id="privacy_statuses_enabled" value="1" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[privacy_statuses_enabled]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="privacy_statuses_enabled">';
+        esc_html_e('Enable custom Visibility Statuses', 'publishpress-statuses');
+        echo '</label>';
+
+        echo '</div>';
+    }
+
+    public function settings_custom_privacy_edit_caps($unused = []) {
+        $module = \PublishPress_Statuses::instance();
+        
+        echo '<div class="c-input-group">';
+
+        echo sprintf(
+            '<input type="hidden" name="%s" value="0" />',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[custom_privacy_edit_caps]'
+        ) . ' ';
+
+        $checked = !empty($module->options->custom_privacy_edit_caps) ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="checkbox" name="%s" id="custom_privacy_edit_caps" value="1" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[custom_privacy_edit_caps]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="custom_privacy_edit_caps">';
+        esc_html_e('Posts with custom Visibility also require status-specific capabilities for editing', 'publishpress-statuses');
+        echo '</label>';
+
+        echo '</div>';
+    }
+
+    public function settings_quick_edit_custom_privacy_dropdown($unused = []) {
+        $module = \PublishPress_Statuses::instance();
+        
+        echo '<div class="c-input-group">';
+
+        echo sprintf(
+            '<input type="hidden" name="%s" value="0" />',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[settings_quick_edit_custom_privacy_dropdown]'
+        ) . ' ';
+
+        $checked = $module->options->quick_edit_custom_privacy_dropdown ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="checkbox" name="%s" id="settings_quick_edit_custom_privacy_dropdown" value="1" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[settings_quick_edit_custom_privacy_dropdown]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="settings_quick_edit_custom_privacy_dropdown">';
+        esc_html_e('Show a Visibility Status dropdown in Quick Edit', 'publishpress-statuses');
+        echo '</label>';
+
+        echo '</div>';
+    }
+
+    public function settings_default_privacy_option($unused = [])
+    {
+        $pp = \PublishPress_Statuses::instance();
+
+        if (empty($pp->module)) {
+            return;
+        }
+
+        if (empty($post_types)) {
+            $post_types = [
+                'post' => \PublishPress_Statuses::__wp('Posts'),
+                'page' => \PublishPress_Statuses::__wp('Pages'),
+            ];
+
+            $custom_post_types = $pp->get_supported_post_types();
+
+            foreach ($custom_post_types as $custom_post_type => $args) {
+                $post_types[$custom_post_type] = $args->label;
+            }
+        }
+        ?>
+
+        <div class="pp-statuses-post-types">
+
+        <table id="pp_statuses_default_privacy">
+        <?php
+
+        $do_force_option = true; // @todo
+
+        $options = \PublishPress_Statuses::instance()->options;
+
+        foreach ($post_types as $post_type => $title) {
+            $setting = (isset($pp->options->default_privacy[$post_type])) ?  $pp->options->default_privacy[$post_type] : '';
+
+            echo sprintf(
+                '<input type="hidden" name="%s" value="" />',
+                esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[default_privacy][' . esc_attr($post_type) . ']'
+            ) . ' ';
+
+            ?>
+            <tr>
+
+            <th>
+            <?php
+            esc_html_e($title) . ' ';
+            ?>
+            </th>
+
+            <td style="text-align: left">
+            <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
+                <option value=""><?php esc_html_e('Published'); ?></option>
+
+                <?php foreach (get_post_stati(['private' => true], 'object') as $status_obj) :
+                    $selected = ($status_obj->name == $setting) ? ' selected ' : '';
+                ?>
+                    <option value="<?php echo esc_attr($status_obj->name); ?>" <?php echo esc_attr($selected); ?>><?php echo esc_html($status_obj->label); ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <?php if ($do_force_option) :
+                $force_default_privacy = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
+
+                $id = 'force_default_privacy-' . $post_type;
+                $name = "force_default_privacy[$post_type]";
+                $style = 'display:inline';
+
+                $checked = ($force_default_privacy) ? ' checked ' : '';
+                $disabled = '';
+            ?>
+                <input name='<?php echo esc_attr($name); ?>' type='hidden' value='0' />
+                &nbsp;<label style='<?php echo esc_attr($style); ?>' for="<?php echo esc_attr($id); ?>"><input
+                        type="checkbox" <?php echo esc_attr($checked); ?><?php echo esc_attr($disabled); ?>id="<?php echo esc_attr($id); ?>"
+                        name="<?php echo esc_attr($pp->options_group_name) . '[force_default_privacy][' . esc_attr($post_type) . ']'; ?>"
+                        value="1" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'publishpress-statuses'); ?><?php endif; ?>
+                </label>
+            <?php endif; ?>
+
+            </td>
+
+            </tr>
+            <?php
+        }
+        ?>
+        </table>
+
+        <?php
+        $lock_publication = is_object($options) && !empty($options->lock_publication);
+
+        $id = 'lock_publication';
+        $name = 'lock_publication';
+        $checked = ($lock_publication) ? ' checked ' : '';
+        ?>
+
+        <input name='<?php echo esc_attr($name); ?>' type='hidden' value='0' />
+        &nbsp;<label for="<?php echo esc_attr($id); ?>"><input
+                type="checkbox" <?php echo esc_attr($checked); ?> id="<?php echo esc_attr($id); ?>"
+                name="<?php echo esc_attr($pp->options_group_name) . '[lock_publication]'; ?>"
+                value="1" />
+
+        <?php esc_html_e('If the Published visibility status is locked, also prevent posts from being unpublished.', 'publishpress-statuses'); ?>
+        </label>
+
+        <p class="pp-option-footnote">
+        <?php
+        $cap_caption = sprintf(__('%s capability', 'revisionary'), 'pp_unpublish_posts');
+
+        if (defined('PUBLISHPRESS_CAPS_VERSION')) {
+            $options = \PublishPress_Statuses::instance()->options;
+
+            if (!empty($options) && !empty($options->lock_publication)) {
+                $url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses');
+
+                $cap_caption = "<a href='$url'>" . $cap_caption . '</a>';
+            }
+
+            printf(
+                __('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption
+            );
+        } else {
+            printf(
+                __('If enabled, users need the %s in their role to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption
+            );
+        }
+
+        ?>
+        </p>
+
+        </div>
         <?php
     }
 
@@ -759,7 +1009,7 @@ class StatusesUI {
     }
 
     public function fltEditStatusDefaultTab($default_tab) {
-        if (!$default_tab = \PublishPress_Functions::REQUEST_key('pp_tab')) {
+        if (!$default_tab = \PP_Statuses_Functions::REQUEST_key('pp_tab')) {
             $default_tab = 'name';
         }
 
@@ -771,14 +1021,14 @@ class StatusesUI {
      */
     public function render_admin_page()
     {
-        $plugin_page = \PublishPress_Functions::getPluginPage();
+        $plugin_page = \PP_Statuses_Functions::getPluginPage();
 
-        $action = \PublishPress_Functions::GET_key('action');
+        $action = \PP_Statuses_Functions::GET_key('action');
         $enable_left_col = false;
 
         /** Edit Status screen **/
-        if (('publishpress-statuses' === $plugin_page) && ('edit-status' == $action) && !\PublishPress_Functions::empty_REQUEST('name')) {
-            $status_name = \PublishPress_Functions::REQUEST_key('name');
+        if (('publishpress-statuses' === $plugin_page) && ('edit-status' == $action) && !\PP_Statuses_Functions::empty_REQUEST('name')) {
+            $status_name = \PP_Statuses_Functions::REQUEST_key('name');
             
             $status_obj = \PublishPress_Statuses::getStatusBy('id', $status_name);
 
@@ -803,7 +1053,7 @@ class StatusesUI {
         /** Statuses screen **/
         } elseif (('publishpress-statuses' === $plugin_page) && (!$action || ('statuses' == $action))) {
             add_action('publishpress_header_button', function() {
-                $status_type = \PublishPress_Functions::REQUEST_key('status_type');
+                $status_type = \PP_Statuses_Functions::REQUEST_key('status_type');
                 
                 $args = [
                     'action' => 'add-new', 
@@ -834,20 +1084,18 @@ class StatusesUI {
                 }
             });
 
-            $status_type = \PublishPress_Functions::REQUEST_key('status_type');
+            $status_type = \PP_Statuses_Functions::REQUEST_key('status_type');
 
             \PublishPress\ModuleAdminUI_Base::instance()->default_header();
 
             if ('visibility' == $status_type) {
-                if (!defined('PRESSPERMIT_PRO_VERSION')) :?>
-
-                <?php elseif (!defined('PRESSPERMIT_STATUSES_VERSION')) :?>
+                if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) :?>
                     <div class="pp-statuses-config-notice">
                     <?php
                     printf(
                         // translators: %1$s and %2$s is link markup
-                        esc_html__('For custom Visibility Statuses, please %1$senable the Status Control module%2$s of Permissions Pro.', 'publishpress-statuses'),
-                        '<a href="' . esc_url(admin_url('admin.php?page=presspermit-settings&pp_tab=modules')) . '">',
+                        esc_html__('For custom Visibility Statuses, %1$supgrade to PublishPress Statuses Pro%2$s.', 'publishpress-statuses'),
+                        '<a href="' . esc_url('https://publishpress.com/statuses/') . '">',
                         '</a>'
                     );
                     ?>
@@ -864,7 +1112,7 @@ class StatusesUI {
 
                     printf(
                         // translators: %1$s and %2$s is link markup
-                        esc_html__('Note: Custom Visibility Statuses are %1$sdisabled%2$s.', 'publishpress-permissions'),
+                        esc_html__('Note: Custom Visibility Statuses are %1$sdisabled%2$s.', 'publishpress-statuses'),
                         '<a href="' . esc_url($url) . '">',
                         '</a>'
                     );
@@ -878,7 +1126,7 @@ class StatusesUI {
             ?>
             <div class='nav-tab-wrapper'>
             <a href="<?php
-                if (!$status_type = \PublishPress_Functions::REQUEST_key('status_type')) {
+                if (!$status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
                     $status_type = 'moderation';
                 }
 
@@ -955,7 +1203,7 @@ class StatusesUI {
         <?php 
         /** Add New Status **/
         } elseif (isset($plugin_page) && ('publishpress-statuses-add-new' === $plugin_page)) {
-            $status_type = \PublishPress_Functions::REQUEST_key('status_type');
+            $status_type = \PP_Statuses_Functions::REQUEST_key('status_type');
 
 			if (('visibility' == $status_type) && ! defined('PRESSPERMIT_STATUSES_VERSION')) {
                 return;

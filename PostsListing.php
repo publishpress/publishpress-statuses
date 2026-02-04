@@ -20,7 +20,7 @@ class PostsListing
         add_action('admin_print_footer_scripts', [$this, 'act_modify_inline_edit_ui']);
 
         add_action('plugins_loaded', function() {
-            add_filter('views_' . \PublishPress_Functions::findPostType(), [$this, 'flt_views_stati']);
+            add_filter('views_' . \PP_Statuses_Functions::findPostType(), [$this, 'flt_views_stati']);
         });
 
         add_action('the_post', [$this, 'act_log_displayed_posts']);
@@ -156,7 +156,7 @@ class PostsListing
 
     function flt_views_stati($views)
     {
-        $post_type = \PublishPress_Functions::findPostType();
+        $post_type = \PP_Statuses_Functions::findPostType();
         $type_stati = \PublishPress_Statuses::getPostStati(['show_in_admin_all_list' => true, 'post_type' => $post_type]);
 
         if (\PublishPress_Statuses::DisabledForPostType($post_type)) {
@@ -170,7 +170,7 @@ class PostsListing
 
         $total_posts = array_sum((array)$num_posts);
 
-        $class = !isset($views['mine']) && \PublishPress_Functions::empty_REQUEST('post_status', 'show_sticky') ? ' class="current"' : '';
+        $class = !isset($views['mine']) && \PP_Statuses_Functions::empty_REQUEST('post_status', 'show_sticky') ? ' class="current"' : '';
         $allposts = (strpos($views['all'], 'all_posts=1')) ? $allposts = '&all_posts=1' : '';
 
         $views['all'] = "<a href='edit.php?post_type=$post_type{$allposts}'$class>" 

@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * PublishPress Statuses
  *
@@ -360,8 +358,11 @@ var sideEffectL10nManipulation = function sideEffectL10nManipulation(status) {
       $('div.publishpress-extended-post-status-published').hide();
       $('div.publishpress-extended-post-status-scheduled').hide();
       $('div.publishpress-extended-post-status select option[value="publish"]').hide();
-
     } else {
+      if (('publish' != status) && ('private' != status) && (-1 != PPCustomStatuses.publishedStatuses.indexOf(status))) {
+        $('.editor-post-publish-panel__toggle').hide();
+      }
+
       $('div.publishpress-extended-post-status select').hide();
     }
 
@@ -484,7 +485,7 @@ setInterval(function () {
       if ('auto-draft' == buttonStatus) {
         buttonStatus = 'draft';
       }
-      
+
       var statusCaption = ppGetStatusLabel(buttonStatus);
       var statusObj = ppGetStatusObject(buttonStatus);
 

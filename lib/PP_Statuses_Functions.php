@@ -1,10 +1,8 @@
 <?php
-if (!class_exists('PublishPress_Functions')) {
-
 /**
- * PublishPress_Functions
+ * PP_Statuses_Functions
  */
-class PublishPress_Functions 
+class PP_Statuses_Functions 
 {
 
     /**
@@ -38,13 +36,16 @@ class PublishPress_Functions
             'disable-gutenberg' => class_exists('DisableGutenberg'),
         ];
 
+        if (!empty($args['post_type'])) {
+            $postType = $args['post_type'];
+        } else {
+            if (function_exists('get_post_type')) {
+                $postType = get_post_type();
+            }
 
-        if (function_exists('get_post_type')) {
-            $postType = get_post_type();
-        }
-
-        if (! isset($postType) || empty($postType)) {
-            $postType = 'post';
+            if (!isset($postType) || empty($postType)) {
+                $postType = 'post';
+            }
         }
 
         /**
@@ -312,6 +313,32 @@ class PublishPress_Functions
         return $post_type;
     }
 
+    // support array matching for post type (@todo: review)
+    public static function getPostStatuses($args, $return = 'names', $operator = 'and', $function_args = [])
+    {
+        if (isset($args['post_type'])) {
+            $_post_type = $args['post_type'];
+
+            $post_type = $args['post_type'];
+            unset($args['post_type']);
+            $stati = get_post_stati($args, 'object', $operator);
+
+            foreach ($stati as $status => $obj) {
+                if (!empty($obj->post_type) && !array_intersect((array)$post_type, (array)$obj->post_type))
+                    unset($stati[$status]);
+            }
+
+            // restore original argument for filter
+            $args['post_type'] = $_post_type;
+
+            $statuses = ('names' == $return) ? array_keys($stati) : $stati;
+        } else {
+            $statuses = get_post_stati($args, $return, $operator);
+        }
+
+        return apply_filters('presspermit_get_post_statuses', $statuses, $args, $return, $operator, $function_args);
+    }
+
     public static function isPluginActive($plugin) {
         return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || self::is_plugin_active_for_network( $plugin );
     }
@@ -377,6 +404,26 @@ class PublishPress_Functions
         }
 
         return $ordered_types;
+    }
+
+    // derived from http://us3.php.net/manual/en/ref.array.php#80631
+    public static function flatten($arr_md, $go_deep = false)
+    { //flattens multi-dim arrays (if go_deep, supports > 2D but destroys keys)
+        if (!is_array($arr_md)) return [];
+
+        $arr_flat = [];
+
+        foreach ($arr_md as $element) {
+            if (is_array($element)) {
+                if ($go_deep)
+                    $arr_flat = array_merge($arr_flat, self::flatten($element));
+                else
+                    $arr_flat = array_merge($arr_flat, $element);
+            } else
+                array_push($arr_flat, $element);
+        }
+
+        return $arr_flat;
     }
 
     /**
@@ -459,7 +506,6 @@ class PublishPress_Functions
     
         return apply_filters('publishpress_statuses_editable_role', isset($editable_roles[$role_name]), $role_name);
     }
-
 
     /**** $_REQUEST / $_POST / $_GET Analysis Functions for URL qualification ***
      *
@@ -544,6 +590,11 @@ class PublishPress_Functions
         return (is_array($_POST[$var])) ? array_map('sanitize_key', $_POST[$var]) : sanitize_key($_POST[$var]);
     }
 
+    public static function POST_int($var) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+        return (!empty($_POST) && !empty($_POST[$var])) ? intval($_POST[$var]) : 0;
+    }
+
     public static function is_POST($var, $match = false) {
         // phpcs:ignore WordPress.VIP.SuperGlobalInputUsage.AccessDetected, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
         if (empty($_POST)) {
@@ -562,5 +613,28 @@ class PublishPress_Functions
             return (isset($_POST[$var]) && ($_POST[$var] == $match));
         }
     }
-}
+
+    public static function SERVER_url($var) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        return (!empty($_SERVER[$var])) ? sanitize_url(sanitize_text_field($_SERVER[$var])) : '';
+    }
+
+    public static function REQUEST_url($var) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        return (!empty($_REQUEST) && !empty($_REQUEST[$var])) ? sanitize_url(sanitize_text_field($_REQUEST[$var])) : '';
+    }
+
+    /**
+     * Sanitizes a string entry
+     *
+     * Keys are used as internal identifiers. Uppercase or lowercase alphanumeric characters,
+     * spaces, periods, commas, plusses, asterisks, colons, pipes, parentheses, dashes and underscores are allowed.
+     *
+     * @param string $entry String entry
+     * @return string Sanitized entry
+     */
+    public static function sanitizeEntry( $entry ) {
+        $entry = preg_replace( '/[^a-zA-Z0-9 \.\,\+\*\:\|\(\)_\-]/', '', $entry );
+        return $entry;
+    }
 }
