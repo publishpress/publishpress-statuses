@@ -1,6 +1,10 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.1] - 10 Feb 2026
+- Lang: ES, FR, IT, PT-BR
+- Change : Background color of Pro promo on Visbility Statuses tab
+
 ## [1.2.0] - 3 Feb 2026
 - Added : Default Visibility for new posts (configure per-type)
 - Added : Lock Visibility of published posts (configure per-type)
@@ -9,8 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Compat - Non-editors cannot add post to Planner Calendar
 - Fixed : Wrong text domain for some strings
 - Fixed : Javascript error in block editor on some installations
-- Changed : Remove Define Privacy Types link in Classic Editor publish metabox 
-- Changed : Update EDD Updater library
+- Changed : Update Reviews library
 
 ## [1.1.14] - 19 Nov 2025
 - Fixed : Status workflow did not offer to advance to next status under some configurations
