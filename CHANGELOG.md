@@ -1,6 +1,9 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.2] - 12 Feb 2026
+- Fixed : Avoid error when Pro, free plugins activated together
+
 ## [1.2.1] - 10 Feb 2026
 - Lang: ES, FR, IT, PT-BR
 - Change : Background color of Pro promo on Visbility Statuses tab
