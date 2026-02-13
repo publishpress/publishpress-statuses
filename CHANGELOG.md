@@ -1,6 +1,10 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.3]- 13 Feb 2026
+- Fixed : Classic Editor - Auto Drafts were auto-published under some configurations
+- Fixed : Planner Calendar - Add Post modal did not offer custom post statuses. Implemented plugin setting for sites that need them disabled.
+
 ## [1.2.2] - 12 Feb 2026
 - Fixed : Avoid error when Pro, free plugins activated together
 

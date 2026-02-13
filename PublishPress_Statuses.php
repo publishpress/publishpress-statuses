@@ -184,6 +184,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             ],
             'lock_publication' => false,
             'supplemental_cap_moderate_any' => 0,
+            'planner_add_post_custom_statuses' => 1,
             'moderation_statuses_default_by_sequence' => 0,
             'status_dropdown_show_current_branch_only' => 0,
             'force_editor_detection' => '',
@@ -2279,8 +2280,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
-        // @todo: why do custom statuses break Planner Calendar's add post modal?
-        if (defined('DOING_AJAX') && DOING_AJAX && !empty($_REQUEST['action'] && ('publishpress_calendar_get_post_type_fields' == $_REQUEST['action']))) {
+        // @todo: why do custom statuses sometimes break Planner Calendar's add post modal?
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if (defined('DOING_AJAX') && DOING_AJAX && empty($options->planner_add_post_custom_statuses) && !empty($_REQUEST['action'] && ('publishpress_calendar_get_post_type_fields' == $_REQUEST['action']))) {
             foreach ($return_arr as $k => $obj) {
                 if (is_object($obj) && !in_array($obj->slug, ['draft', 'pending', 'publish', 'private'])) {
                     unset($return_arr[$k]);
@@ -3339,7 +3342,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public function fltPostStatus($post_status, $args = []) {
         global $pagenow, $post;
 
-        if (in_array($post_status, ['inherit', 'trash']) 
+        if (in_array($post_status, ['inherit', 'auto-draft', 'trash']) 
         || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || ('async-upload.php' == $pagenow)) {
             return $post_status;
         }
