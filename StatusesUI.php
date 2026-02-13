@@ -316,8 +316,19 @@ class StatusesUI {
                 [$this, 'settings_pending_status_regulation_option'],
                 $group_name,
                 $group_name . '_general',
-                ($show_edit_caps_setting) ? ['class' => 'pp-settings-separation-top'] : ['class' => 'pp-settings-separation-top pp-settings-separation-bottom']
+                ($show_edit_caps_setting || defined('PUBLISHPRESS_VERSION')) ? ['class' => 'pp-settings-separation-top'] : ['class' => 'pp-settings-separation-top pp-settings-separation-bottom']
             );
+
+            if (defined('PUBLISHPRESS_VERSION')) {
+                add_settings_field(
+                    'planner_add_post_custom_statuses',
+                    __('Planner Integration:', 'publishpress-statuses'),
+                    [$this, 'settings_planner_add_post_custom_statuses_option'],
+                    $group_name,
+                    $group_name . '_general',
+                    ($show_edit_caps_setting) ? [] : ['class' => 'pp-settings-separation-bottom']
+                );
+            }
 
             if ($show_edit_caps_setting) {
                 add_settings_field(
@@ -398,6 +409,31 @@ class StatusesUI {
 
         echo '<label for="supplemental_cap_moderate_any">';
         esc_html_e('Supplemental Role of Editor covers custom statuses', 'publishpress-statuses');
+        echo '</label>';
+
+        echo '</div>';
+    }
+
+    public function settings_planner_add_post_custom_statuses_option() {
+        $module = \PublishPress_Statuses::instance();
+        
+        echo '<div class="c-input-group">';
+
+        echo sprintf(
+            '<input type="hidden" name="%s" value="0" />',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[planner_add_post_custom_statuses]'
+        ) . ' ';
+
+        $checked = $module->options->planner_add_post_custom_statuses ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="checkbox" name="%s" id="planner_add_post_custom_statuses" value="1" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[planner_add_post_custom_statuses]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="planner_add_post_custom_statuses">';
+        esc_html_e('Include custom statuses in Add New pop-up on Calendar', 'publishpress-statuses');
         echo '</label>';
 
         echo '</div>';
