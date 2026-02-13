@@ -3342,7 +3342,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     public function fltPostStatus($post_status, $args = []) {
         global $pagenow, $post;
 
-        if (in_array($post_status, ['inherit', 'trash']) 
+        if (in_array($post_status, ['inherit', 'auto-draft', 'trash']) 
         || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || ('async-upload.php' == $pagenow)) {
             return $post_status;
         }
