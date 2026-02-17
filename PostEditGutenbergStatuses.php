@@ -95,6 +95,13 @@ class PostEditGutenbergStatuses
 
         if (!defined('PRESSPERMIT_PRO_VERSION') || version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '>=')) {
             $options = \PublishPress_Statuses::instance()->options;
+
+            // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+            /*
+            if (('publish' == $max_status_obj->name) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) {
+                $max_status_obj = get_post_status_object($options->default_privacy[$post_type]);
+            }
+            */
             
             $force_default_privacy = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? true : '';
     

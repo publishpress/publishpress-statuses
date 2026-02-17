@@ -116,9 +116,9 @@ class StatusEditUI
                 
                 printf(
                     ' <span class="pp-tab-badge %s" style="background: %s; color: white; font-size: 10px; font-weight: 600; padding: 2px 4px; border-radius: 10px; margin-left: 0; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">%s</span>',
-                    $badge_class,
-                    $badge_bg_color,
-                    $badge_text
+                    esc_html($badge_class),
+                    esc_html($badge_bg_color),
+                    esc_html($badge_text)
                 );
             }
                 
