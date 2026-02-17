@@ -2273,6 +2273,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         // @todo: why do custom statuses sometimes break Planner Calendar's add post modal?
         $options = \PublishPress_Statuses::instance()->options;
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (defined('DOING_AJAX') && DOING_AJAX && empty($options->planner_add_post_custom_statuses) && !empty($_REQUEST['action'] && ('publishpress_calendar_get_post_type_fields' == $_REQUEST['action']))) {
             foreach ($return_arr as $k => $obj) {
                 if (is_object($obj) && !in_array($obj->slug, ['draft', 'pending', 'publish', 'private'])) {
@@ -3311,6 +3312,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if (!empty($this->lock_status[$postarr['ID']])) {
             $data['post_status'] = $this->lock_status[$postarr['ID']];
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         } elseif (!isset($_REQUEST['visibility'])) { // bypass this filter with Classic Editor
             $post_status = (empty($data['post_status'])) ? '' : $data['post_status'];
             $data['post_status'] = $this->fltPostStatus($post_status, ['post_id' => $postarr['ID']]);

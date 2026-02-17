@@ -54,7 +54,7 @@ class Admin
 
         $last_statuses_version = get_option('publishpress_statuses_version');
 
-        if (($last_statuses_version != PUBLISHPRESS_STATUSES_VERSION) || !empty($_REQUEST['pp_reset_status_positions'])) {
+        if (($last_statuses_version != PUBLISHPRESS_STATUSES_VERSION) || (defined('PP_STATUSES_RESET_POSITIONS') && !empty($_REQUEST['pp_reset_status_positions']))) {  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (version_compare($last_statuses_version, '1.2.0', '<')) {
                 if ($role = @get_role('administrator')) {
                     $role->add_cap('pp_unpublish_posts');
@@ -65,7 +65,7 @@ class Admin
                 // work around beta bug
                 delete_option('publishpress_status_positions');
 
-            } elseif (version_compare($last_statuses_version, '1.1.9', '<=') || !empty($_REQUEST['pp_reset_status_positions'])) {
+            } elseif (version_compare($last_statuses_version, '1.1.9', '<=') || (defined('PP_STATUSES_RESET_POSITIONS') && !empty($_REQUEST['pp_reset_status_positions']))) {  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 if ($positions = get_option('publishpress_status_positions')) {
                     $current_positions = $positions;
                     
