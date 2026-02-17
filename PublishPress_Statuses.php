@@ -334,16 +334,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $options = \PublishPress_Statuses::instance()->options;
         $status = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : '';
 
-        /* @todo: confirm bbPress compat
-        if (!empty($options['presspermit_default_privacy'])) {
-            $disabled_types = (class_exists('bbPress', false)) ? ['forum', 'topic', 'reply'] : [];
-            if ($disabled_types = apply_filters('presspermit_disabled_default_privacy_types', $disabled_types)) {
-                if ($_default_privacy = maybe_unserialize($options['presspermit_default_privacy']))
-                    $options['presspermit_default_privacy'] = array_diff_key($_default_privacy, array_fill_keys($disabled_types, true));
-            }
-        }
-        */
-
         return $status;
     }
 
