@@ -191,7 +191,7 @@ class StatusEditUI
             self::tabContent('post_types', $status, $default_tab);
 
             if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
-            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()))
+            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\Capabilities\Pro') && !\PublishPress\Capabilities\Pro::customStatusPostMetaPermissions() && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()))
             {
                 self::tabContent('post_access', $status, $default_tab);
             
