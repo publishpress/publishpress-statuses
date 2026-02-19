@@ -116,9 +116,9 @@ class StatusEditUI
                 
                 printf(
                     ' <span class="pp-tab-badge %s" style="background: %s; color: white; font-size: 10px; font-weight: 600; padding: 2px 4px; border-radius: 10px; margin-left: 0; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">%s</span>',
-                    $badge_class,
-                    $badge_bg_color,
-                    $badge_text
+                    esc_html($badge_class),
+                    esc_html($badge_bg_color),
+                    esc_html($badge_text)
                 );
             }
                 
@@ -191,7 +191,7 @@ class StatusEditUI
             self::tabContent('post_types', $status, $default_tab);
 
             if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
-            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()))
+            || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\Capabilities\Pro') && !\PublishPress\Capabilities\Pro::customStatusPostMetaPermissions() && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()))
             {
                 self::tabContent('post_access', $status, $default_tab);
             
@@ -573,7 +573,7 @@ class StatusEditUI
                             </a>
                         </div>
                     </div>
-                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()) :?>
+                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\Capabilities\Pro') && !\PublishPress\Capabilities\Pro::customStatusPostMetaPermissions() && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()) :?>
                     <br>
                     <div class="pp-statuses-warning">
                         <?php 

@@ -188,7 +188,7 @@ class StatusListTable extends \WP_List_Table
 		</div>
 	</div>
 
-	<?php if (!empty($_REQUEST['rvy_promo_img'])):?>
+	<?php if (!empty($_REQUEST['rvy_promo_img'])):  // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 	<div class="pp-integration-card">
 	<div>
 	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 797px;" />

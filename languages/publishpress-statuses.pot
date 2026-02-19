@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Statuses 1.2.3\n"
+"Project-Id-Version: PublishPress Statuses 1.2.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-13T23:09:48+00:00\n"
+"POT-Creation-Date: 2026-02-19T17:37:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
@@ -42,8 +42,8 @@ msgstr ""
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:402
-#: PublishPress_Statuses.php:403
+#: PublishPress_Statuses.php:392
+#: PublishPress_Statuses.php:393
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr ""
@@ -73,17 +73,17 @@ msgid "Add New"
 msgstr ""
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:859
+#: PublishPress_Statuses.php:849
 msgid "Approve"
 msgstr ""
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:831
+#: PublishPress_Statuses.php:821
 msgid "Assign"
 msgstr ""
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:845
+#: PublishPress_Statuses.php:835
 msgid "Mark In Progress"
 msgstr ""
 
@@ -245,11 +245,11 @@ msgstr ""
 msgid "This post is currently scheduled"
 msgstr ""
 
-#: PostEditGutenbergStatuses.php:159
+#: PostEditGutenbergStatuses.php:160
 msgid "Workflow"
 msgstr ""
 
-#: PostEditGutenbergStatuses.php:165
+#: PostEditGutenbergStatuses.php:166
 msgid "Submit Revision"
 msgstr ""
 
@@ -275,172 +275,172 @@ msgstr ""
 msgid "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro to version %s or higher."
 msgstr ""
 
-#: PublishPress_Statuses.php:364
+#: PublishPress_Statuses.php:354
 msgid "Can bypass normal status progression. User can publish immediately or move post to the furthest possible status."
 msgstr ""
 
-#: PublishPress_Statuses.php:365
+#: PublishPress_Statuses.php:355
 msgid "Manage Statuses plugin settings."
 msgstr ""
 
-#: PublishPress_Statuses.php:370
+#: PublishPress_Statuses.php:360
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr ""
 
-#: PublishPress_Statuses.php:403
+#: PublishPress_Statuses.php:393
 msgid "Status"
 msgstr ""
 
-#: PublishPress_Statuses.php:417
+#: PublishPress_Statuses.php:407
 msgid "Core Post Statuses"
 msgstr ""
 
-#: PublishPress_Statuses.php:680
+#: PublishPress_Statuses.php:670
 msgid "New post, not yet submitted."
 msgstr ""
 
-#: PublishPress_Statuses.php:701
+#: PublishPress_Statuses.php:691
 msgid "Post is awaiting review."
 msgstr ""
 
-#: PublishPress_Statuses.php:720
+#: PublishPress_Statuses.php:710
 msgid "Post is scheduled for publication."
 msgstr ""
 
-#: PublishPress_Statuses.php:738
+#: PublishPress_Statuses.php:728
 msgid "Post is published, publicly visible."
 msgstr ""
 
-#: PublishPress_Statuses.php:756
+#: PublishPress_Statuses.php:746
 msgid "Post is published with private visibility."
 msgstr ""
 
-#: PublishPress_Statuses.php:815
+#: PublishPress_Statuses.php:805
 msgid "Pitch"
 msgstr ""
 
-#: PublishPress_Statuses.php:817
+#: PublishPress_Statuses.php:807
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr ""
 
-#: PublishPress_Statuses.php:818
+#: PublishPress_Statuses.php:808
 msgid "Idea proposed; waiting for acceptance."
 msgstr ""
 
-#: PublishPress_Statuses.php:829
+#: PublishPress_Statuses.php:819
 msgid "Assigned"
 msgstr ""
 
-#: PublishPress_Statuses.php:832
+#: PublishPress_Statuses.php:822
 msgid "Post idea assigned to writer."
 msgstr ""
 
-#: PublishPress_Statuses.php:843
+#: PublishPress_Statuses.php:833
 msgid "In Progress"
 msgstr ""
 
-#: PublishPress_Statuses.php:846
+#: PublishPress_Statuses.php:836
 msgid "Writer is working on the post."
 msgstr ""
 
-#: PublishPress_Statuses.php:857
+#: PublishPress_Statuses.php:847
 msgid "Approved"
 msgstr ""
 
-#: PublishPress_Statuses.php:860
+#: PublishPress_Statuses.php:850
 msgid "Post has been approved for publication."
 msgstr ""
 
-#: PublishPress_Statuses.php:871
+#: PublishPress_Statuses.php:861
 msgid "Deferred"
 msgstr ""
 
-#: PublishPress_Statuses.php:873
+#: PublishPress_Statuses.php:863
 msgid "Defer"
 msgstr ""
 
-#: PublishPress_Statuses.php:874
+#: PublishPress_Statuses.php:864
 msgid "Post has been deferred for future consideration."
 msgstr ""
 
-#: PublishPress_Statuses.php:885
+#: PublishPress_Statuses.php:875
 msgid "Needs Work"
 msgstr ""
 
-#: PublishPress_Statuses.php:887
+#: PublishPress_Statuses.php:877
 msgid "Set to Needs Work"
 msgstr ""
 
-#: PublishPress_Statuses.php:888
+#: PublishPress_Statuses.php:878
 msgid "Post needs work before further review."
 msgstr ""
 
-#: PublishPress_Statuses.php:899
+#: PublishPress_Statuses.php:889
 msgid "Rejected"
 msgstr ""
 
-#: PublishPress_Statuses.php:901
+#: PublishPress_Statuses.php:891
 msgid "Reject"
 msgstr ""
 
-#: PublishPress_Statuses.php:902
+#: PublishPress_Statuses.php:892
 msgid "Post has been rejected."
 msgstr ""
 
-#: PublishPress_Statuses.php:935
+#: PublishPress_Statuses.php:925
 msgid "Alternate Pre-Publication Workflow:"
 msgstr ""
 
-#: PublishPress_Statuses.php:1030
+#: PublishPress_Statuses.php:1020
 msgid "Disabled Statuses:"
 msgstr ""
 
-#: PublishPress_Statuses.php:1046
+#: PublishPress_Statuses.php:1036
 msgid "Committee"
 msgstr ""
 
-#: PublishPress_Statuses.php:1048
+#: PublishPress_Statuses.php:1038
 msgid "Refer to Committee"
 msgstr ""
 
-#: PublishPress_Statuses.php:1049
+#: PublishPress_Statuses.php:1039
 msgid "Post has been referred to committee."
 msgstr ""
 
-#: PublishPress_Statuses.php:1061
+#: PublishPress_Statuses.php:1051
 msgid "Committee Review"
 msgstr ""
 
-#: PublishPress_Statuses.php:1063
+#: PublishPress_Statuses.php:1053
 msgid "Set to Committee Review"
 msgstr ""
 
-#: PublishPress_Statuses.php:1064
+#: PublishPress_Statuses.php:1054
 msgid "Committee is reviewing the post."
 msgstr ""
 
-#: PublishPress_Statuses.php:1076
+#: PublishPress_Statuses.php:1066
 msgid "Committee Progress"
 msgstr ""
 
-#: PublishPress_Statuses.php:1078
+#: PublishPress_Statuses.php:1068
 msgid "Set to Committee Progress"
 msgstr ""
 
-#: PublishPress_Statuses.php:1079
+#: PublishPress_Statuses.php:1069
 msgid "Committee is editing the post."
 msgstr ""
 
-#: PublishPress_Statuses.php:1091
+#: PublishPress_Statuses.php:1081
 msgid "Committee Approved"
 msgstr ""
 
-#: PublishPress_Statuses.php:1093
+#: PublishPress_Statuses.php:1083
 msgid "Set Committee Approval"
 msgstr ""
 
-#: PublishPress_Statuses.php:1094
+#: PublishPress_Statuses.php:1084
 msgid "Committee has approved the post."
 msgstr ""
 
@@ -613,7 +613,7 @@ msgid "Add Status"
 msgstr ""
 
 #: StatusesUI.php:87
-#: StatusesUI.php:1263
+#: StatusesUI.php:1259
 msgid "PublishPress Statuses Settings"
 msgstr ""
 
@@ -925,7 +925,7 @@ msgid "Edit %1$s: %2$s"
 msgstr ""
 
 #: StatusesUI.php:1117
-#: StatusesUI.php:1249
+#: StatusesUI.php:1245
 msgid "Add New Pre-Publication Status"
 msgstr ""
 
@@ -936,24 +936,24 @@ msgid "For custom Visibility Statuses, %1$supgrade to PublishPress Statuses Pro%
 msgstr ""
 
 #. translators: %1$s and %2$s is link markup
-#: StatusesUI.php:1151
+#: StatusesUI.php:1147
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr ""
 
-#: StatusesUI.php:1174
+#: StatusesUI.php:1170
 msgid "Pre-Publication"
 msgstr ""
 
-#: StatusesUI.php:1182
+#: StatusesUI.php:1178
 msgid "Visibility"
 msgstr ""
 
-#: StatusesUI.php:1193
+#: StatusesUI.php:1189
 msgid "Revision"
 msgstr ""
 
-#: StatusesUI.php:1253
+#: StatusesUI.php:1249
 msgid "This status can be assigned to an unpublished post using the Post Status dropdown."
 msgstr ""
 

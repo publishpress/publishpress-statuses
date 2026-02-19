@@ -95,7 +95,7 @@ class ModuleAdminUI_Base {
         <footer>
 
         <div class="pp-rating">
-        <a href="https://wordpress.org/support/plugin/<?php echo esc_url($plugin_wp_slug);?>/reviews/#new-post" target="_blank" rel="noopener noreferrer">
+        <a href="https://wordpress.org/support/plugin/<?php echo esc_attr($plugin_wp_slug);?>/reviews/#new-post" target="_blank" rel="noopener noreferrer">
         <?php printf(
                 // translators: %1$s is the plugin name, %2$s is the rating stars
             esc_html__('If you like %1$s, please leave us a %2$s rating. Thank you!', 'publishpress-statuses'),

@@ -754,14 +754,14 @@ class StatusesUI {
 
         echo sprintf(
             '<input type="hidden" name="%s" value="0" />',
-            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[settings_quick_edit_custom_privacy_dropdown]'
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[quick_edit_custom_privacy_dropdown]'
         ) . ' ';
 
         $checked = $module->options->quick_edit_custom_privacy_dropdown ? 'checked' : '';
 
         echo sprintf(
             '<input type="checkbox" name="%s" id="settings_quick_edit_custom_privacy_dropdown" value="1" autocomplete="off" %s>',
-            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[settings_quick_edit_custom_privacy_dropdown]',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[quick_edit_custom_privacy_dropdown]',
             esc_attr($checked)
         ) . ' ';
 
@@ -888,13 +888,13 @@ class StatusesUI {
             }
 
             printf(
-                __('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
-                $cap_caption
+                esc_html__('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption                                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             );
         } else {
             printf(
-                __('If enabled, users need the %s in their role to unpublish a post.', 'publishpress-statuses'),
-                $cap_caption
+                esc_html__('If enabled, users need the %s in their role to unpublish a post.', 'publishpress-statuses'),
+                $cap_caption                                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             );
         }
 
@@ -1140,11 +1140,7 @@ class StatusesUI {
                 <?php elseif (!get_option('presspermit_privacy_statuses_enabled')) :?>
                     <div class="pp-statuses-config-notice">
                     <?php
-                    if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-                        $url = admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities');
-                    } else {
-                        $url = admin_url('admin.php?page=presspermit-settings&pp_tab=statuses');
-                    }
+                    $url = admin_url('admin.php?page=publishpress-statuses-settings');
 
                     printf(
                         // translators: %1$s and %2$s is link markup
@@ -1206,9 +1202,9 @@ class StatusesUI {
                     
                     printf(
                         '<span class="pp-tab-badge %s" style="background: %s; color: white; font-size: 10px; font-weight: 600; padding: 2px 4px; border-radius: 10px; margin-left: 0; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">%s</span>',
-                        $badge_class,
-                        $badge_bg_color,
-                        $badge_text
+                        esc_html($badge_class),
+                        esc_html($badge_bg_color),
+                        esc_html($badge_text)
                     );
                     ?>
                 

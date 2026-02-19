@@ -1,7 +1,14 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.2.3]- 13 Feb 2026
+## [1.2.4] - 19 Feb 2026
+- Fixed : Status > Post Access UI was missing under some configurations
+- Fixed : Statuses > Settings > Quick Edit could not be updated
+- Fixed : Rating link in plugin screen footer was broken
+- Fixed : PHP Code Sniffer compliance
+- Changed : Lang - Update ES, FR, IT
+
+## [1.2.3] - 13 Feb 2026
 - Fixed : Classic Editor - Auto Drafts were auto-published under some configurations
 - Fixed : Planner Calendar - Add Post modal did not offer custom post statuses. Implemented plugin setting for sites that need them disabled.
 
