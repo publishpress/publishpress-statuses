@@ -573,7 +573,7 @@ class StatusEditUI
                             </a>
                         </div>
                     </div>
-                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !get_option('cme_custom_status_postmeta_caps') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()) :?>
+                <?php elseif (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\Capabilities\Pro') && !\PublishPress\Capabilities\Pro::customStatusPostMetaPermissions() && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::presspermitStatusControlActive()) :?>
                     <br>
                     <div class="pp-statuses-warning">
                         <?php 
