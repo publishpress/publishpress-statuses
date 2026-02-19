@@ -1140,11 +1140,7 @@ class StatusesUI {
                 <?php elseif (!get_option('presspermit_privacy_statuses_enabled')) :?>
                     <div class="pp-statuses-config-notice">
                     <?php
-                    if (defined('PUBLISHPRESS_CAPS_PRO_VERSION')) {
-                        $url = admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities');
-                    } else {
-                        $url = admin_url('admin.php?page=presspermit-settings&pp_tab=statuses');
-                    }
+                    $url = admin_url('admin.php?page=publishpress-statuses-settings');
 
                     printf(
                         // translators: %1$s and %2$s is link markup
