@@ -754,14 +754,14 @@ class StatusesUI {
 
         echo sprintf(
             '<input type="hidden" name="%s" value="0" />',
-            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[settings_quick_edit_custom_privacy_dropdown]'
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[quick_edit_custom_privacy_dropdown]'
         ) . ' ';
 
         $checked = $module->options->quick_edit_custom_privacy_dropdown ? 'checked' : '';
 
         echo sprintf(
             '<input type="checkbox" name="%s" id="settings_quick_edit_custom_privacy_dropdown" value="1" autocomplete="off" %s>',
-            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[settings_quick_edit_custom_privacy_dropdown]',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[quick_edit_custom_privacy_dropdown]',
             esc_attr($checked)
         ) . ' ';
 
