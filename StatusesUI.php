@@ -842,26 +842,13 @@ class StatusesUI {
 
         <p class="pp-option-footnote">
         <?php
-        $cap_caption = sprintf(__('%s capability', 'publishpress-statuses'), 'pp_unpublish_posts');
-
-        if (defined('PUBLISHPRESS_CAPS_VERSION')) {
-            $options = \PublishPress_Statuses::instance()->options;
-
-            if (!empty($options) && !empty($options->lock_publication)) {
-                $url = admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses');
-
-                $cap_caption = "<a href='$url'>" . $cap_caption . '</a>';
-            }
-
+        if (defined('PUBLISHPRESS_CAPS_VERSION') && !empty($options) && !empty($options->lock_publication)) {
             printf(
                 esc_html__('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
-                $cap_caption                                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>" . sprintf(__('%s capability', 'revisionary'), 'pp_unpublish_posts') . '</a>'                                                                               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             );
         } else {
-            printf(
-                esc_html__('If enabled, users need the %s in their role to unpublish a post.', 'publishpress-statuses'),
-                $cap_caption                                                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            );
+            esc_html_e('If enabled, users will need an additional role capability to unpublish a post.', 'publishpress-statuses');
         }
 
         ?>
