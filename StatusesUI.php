@@ -876,7 +876,7 @@ class StatusesUI {
 
         <p class="pp-option-footnote">
         <?php
-        $cap_caption = sprintf(__('%s capability', 'revisionary'), 'pp_unpublish_posts');
+        $cap_caption = sprintf(__('%s capability', 'publishpress-statuses'), 'pp_unpublish_posts');
 
         if (defined('PUBLISHPRESS_CAPS_VERSION')) {
             $options = \PublishPress_Statuses::instance()->options;
