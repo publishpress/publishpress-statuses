@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: PublishPress Statuses
+ * Plugin Name: PublishPress Statuses Free
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
  * Version: 1.2.4
