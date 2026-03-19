@@ -297,15 +297,6 @@ class StatusesUI {
                     $group_name . '_general',
                     ['class' => 'pp-settings-space-bottom']
                 );
-
-                add_settings_field(
-                    'quick_edit_custom_privacy_dropdown',
-                    __('Quick Edit:', 'publishpress-statuses'),
-                    [$this, 'settings_quick_edit_custom_privacy_dropdown'],
-                    $group_name,
-                    $group_name . '_general',
-                    ['class' => 'pp-settings-separation-bottom']
-                );
             }
 
             $show_edit_caps_setting = (function_exists('presspermit') && defined('PRESSPERMIT_COLLAB_VERSION') && defined('PRESSPERMIT_STATUSES_VERSION'));
@@ -742,31 +733,6 @@ class StatusesUI {
 
         echo '<label for="custom_privacy_edit_caps">';
         esc_html_e('Posts with custom Visibility also require status-specific capabilities for editing', 'publishpress-statuses');
-        echo '</label>';
-
-        echo '</div>';
-    }
-
-    public function settings_quick_edit_custom_privacy_dropdown($unused = []) {
-        $module = \PublishPress_Statuses::instance();
-        
-        echo '<div class="c-input-group">';
-
-        echo sprintf(
-            '<input type="hidden" name="%s" value="0" />',
-            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[quick_edit_custom_privacy_dropdown]'
-        ) . ' ';
-
-        $checked = $module->options->quick_edit_custom_privacy_dropdown ? 'checked' : '';
-
-        echo sprintf(
-            '<input type="checkbox" name="%s" id="settings_quick_edit_custom_privacy_dropdown" value="1" autocomplete="off" %s>',
-            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[quick_edit_custom_privacy_dropdown]',
-            esc_attr($checked)
-        ) . ' ';
-
-        echo '<label for="settings_quick_edit_custom_privacy_dropdown">';
-        esc_html_e('Show a Visibility Status dropdown in Quick Edit', 'publishpress-statuses');
         echo '</label>';
 
         echo '</div>';
