@@ -458,7 +458,7 @@ class StatusesUI {
         ) . ' ';
 
         echo '<label for="hide_manual_status_selectors">';
-        esc_html_e('Hide status selection dropdown from non-Administrators', 'publishpress-statuses');
+        esc_html_e('Hide status selection dropdown from non-Administrators in Gutenberg editor', 'publishpress-statuses');
         echo '</label>';
 
         echo '</div>';
