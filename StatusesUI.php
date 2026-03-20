@@ -249,6 +249,15 @@ class StatusesUI {
             );
 
             add_settings_field(
+                'hide_manual_status_selectors',
+                __('Manual Status Selection:', 'publishpress-statuses'),
+                [$this, 'settings_hide_manual_status_selectors_option'],
+                $group_name,
+                $group_name . '_general',
+                ['class' => 'pp-settings-space-bottom']
+            );
+
+            add_settings_field(
                 'status_dropdown_show_current_branch_only',
                 __('Sub-Status Selection:', 'publishpress-statuses'),
                 [$this, 'settings_status_dropdown_show_current_branch_only_option'],
@@ -425,6 +434,31 @@ class StatusesUI {
 
         echo '<label for="planner_add_post_custom_statuses">';
         esc_html_e('Include custom statuses in Add New pop-up on Calendar', 'publishpress-statuses');
+        echo '</label>';
+
+        echo '</div>';
+    }
+
+    public function settings_hide_manual_status_selectors_option() {
+        $module = \PublishPress_Statuses::instance();
+        
+        echo '<div class="c-input-group">';
+
+        echo sprintf(
+            '<input type="hidden" name="%s" value="0" />',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[hide_manual_status_selectors]'
+        ) . ' ';
+
+        $checked = $module->options->hide_manual_status_selectors ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="checkbox" name="%s" id="hide_manual_status_selectors" value="1" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[hide_manual_status_selectors]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="hide_manual_status_selectors">';
+        esc_html_e('Hide status selection dropdown from non-Administrators', 'publishpress-statuses');
         echo '</label>';
 
         echo '</div>';

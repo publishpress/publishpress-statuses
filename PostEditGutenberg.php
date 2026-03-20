@@ -139,6 +139,23 @@ class PostEditGutenberg
             }
             </style>
         <?php endif;
+
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if ($options->hide_manual_status_selectors && !\PublishPress_Statuses::isContentAdministrator()) :?>
+            <style type="text/css">
+            div.publishpress-extended-post-status {
+                opacity: 0;
+                height: 0;
+                margin: 0;
+                pointer-events: none;
+            }
+
+            div.publishpress-extended-post-status select {
+                height: 0;
+            }
+            </style>
+        <?php endif;
     }
 
     /**

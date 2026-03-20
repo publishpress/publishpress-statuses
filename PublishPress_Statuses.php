@@ -186,6 +186,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             'supplemental_cap_moderate_any' => 0,
             'planner_add_post_custom_statuses' => 1,
             'moderation_statuses_default_by_sequence' => 0,
+            'hide_manual_status_selectors' => 0,
             'status_dropdown_show_current_branch_only' => 0,
             'force_editor_detection' => '',
             'label_storage' => '',
