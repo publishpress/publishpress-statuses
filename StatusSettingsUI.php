@@ -20,6 +20,7 @@
 
     <br />
 
+    <input type='hidden' name='pp_tab' value='<?php !empty($_REQUEST['pp_tab']) ? esc_attr(sanitize_key(str_replace('#', '', $_REQUEST['pp_tab']))) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized ?>' />
     <?php
     submit_button(); 
     ?>

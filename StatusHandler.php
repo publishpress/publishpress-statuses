@@ -922,6 +922,11 @@ class StatusHandler {
 
         // Redirect back to the settings page that was submitted without any previous messages
         $goback = add_query_arg('message', 'settings-updated', remove_query_arg(['message'], wp_get_referer()));
+
+        if (!empty($_REQUEST['pp_tab']) && ('workflow' != $_REQUEST['pp_tab'])) {
+            $goback = add_query_arg('pp_tab', esc_attr($_REQUEST['pp_tab']), $goback);
+        }
+
         wp_safe_redirect($goback);
 
         exit;
