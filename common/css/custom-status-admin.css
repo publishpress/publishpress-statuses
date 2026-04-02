@@ -550,6 +550,18 @@ padding-bottom: 25px !important;
 display: none;
 }
 
+body.statuses_page_publishpress-statuses-settings .form-table tr {
+display: none;
+}
+
+body.statuses_page_publishpress-statuses-settings .wrap.publishpress-admin .nav-tab-wrapper a {
+margin-top: 0;
+}
+
+body.statuses_page_publishpress-statuses-settings div.publishpress-admin-wrapper h2 {
+font-style: normal;
+}
+
 .pp-option-footnote {
 font-style: italic;
 }

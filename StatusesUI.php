@@ -245,7 +245,7 @@ class StatusesUI {
                 [$this, 'settings_moderation_statuses_default_by_sequence_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => 'pp-settings-space-bottom']
+                ['class' => 'pp-settings-workflow']
             );
 
             add_settings_field(
@@ -254,7 +254,7 @@ class StatusesUI {
                 [$this, 'settings_hide_manual_status_selectors_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => 'pp-settings-space-bottom']
+                ['class' => 'pp-settings-workflow']
             );
 
             add_settings_field(
@@ -263,7 +263,7 @@ class StatusesUI {
                 [$this, 'settings_status_dropdown_show_current_branch_only_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => 'pp-statuses-settings-status-declutter pp-settings-space-bottom']
+                ['class' => 'pp-settings-workflow']
             );
 
             add_settings_field(
@@ -272,7 +272,7 @@ class StatusesUI {
                 [$this, 'settings_post_types_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => 'pp-settings-space-top pp-settings-separation-bottom']
+                ['class' => 'pp-settings-workflow']
             );
 
             if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
@@ -282,11 +282,9 @@ class StatusesUI {
                     [$this, 'settings_privacy_statuses_enabled'],
                     $group_name,
                     $group_name . '_general',
-                    ['class' => 'pp-settings-space-bottom']
+                    ['class' => 'pp-settings-visibility']
                 );
             }
-
-            $class = (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) ? 'pp-settings-space-bottom' : 'pp-settings-space-top pp-settings-separation-bottom';
 
             add_settings_field(
                 'default_privacy',
@@ -294,7 +292,7 @@ class StatusesUI {
                 [$this, 'settings_default_privacy_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => $class]
+                ['class' => 'pp-settings-visibility']
             );
 
             if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
@@ -304,7 +302,7 @@ class StatusesUI {
                     [$this, 'settings_custom_privacy_edit_caps'],
                     $group_name,
                     $group_name . '_general',
-                    ['class' => 'pp-settings-space-bottom']
+                    ['class' => 'pp-settings-visibility']
                 );
             }
 
@@ -316,7 +314,7 @@ class StatusesUI {
                 [$this, 'settings_pending_status_regulation_option'],
                 $group_name,
                 $group_name . '_general',
-                ($show_edit_caps_setting || defined('PUBLISHPRESS_VERSION')) ? ['class' => 'pp-settings-separation-top'] : ['class' => 'pp-settings-separation-top pp-settings-separation-bottom']
+                ['class' => 'pp-settings-integration']
             );
 
             if (defined('PUBLISHPRESS_VERSION')) {
@@ -326,7 +324,7 @@ class StatusesUI {
                     [$this, 'settings_planner_add_post_custom_statuses_option'],
                     $group_name,
                     $group_name . '_general',
-                    ($show_edit_caps_setting) ? [] : ['class' => 'pp-settings-separation-bottom']
+                    ['class' => 'pp-settings-integration']
                 );
             }
 
@@ -337,7 +335,7 @@ class StatusesUI {
                     [$this, 'settings_supplemental_cap_moderate_any_option'],
                     $group_name,
                     $group_name . '_general',
-                    ['class' => 'pp-settings-separation-bottom']
+                    ['class' => 'pp-settings-integration']
                 );
             }
 
@@ -347,7 +345,7 @@ class StatusesUI {
                 [$this, 'settings_force_editor_detection_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => 'pp-settings-separation-top']
+                ['class' => 'pp-settings-editor']
             );
 
             add_settings_field(
@@ -356,7 +354,7 @@ class StatusesUI {
                 [$this, 'settings_label_storage_option'],
                 $group_name,
                 $group_name . '_general',
-                ['class' => 'pp-settings-separation-bottom']
+                ['class' => 'pp-settings-editor']
             );
 
             if (!defined('PUBLISHPRESS_STATUSES_NO_PLANNER_IMPORT')) {
@@ -371,7 +369,7 @@ class StatusesUI {
                         [$this, 'settings_import_operation_option'],
                         $group_name,
                         $group_name . '_general',
-                        ['class' => 'pp-settings-separation-top']
+                        ['class' => 'pp-settings-advanced']
                     );
                 }
             }
@@ -382,7 +380,7 @@ class StatusesUI {
                 [$this, 'settings_backup_operation_option'],
                 $group_name,
                 $group_name . '_general',
-                (!empty($show_import_setting)) ? ['class' => 'pp-settings-separation-bottom'] : ['class' => 'pp-settings-separation-top pp-settings-separation-bottom']
+                ['class' => 'pp-settings-advanced']
             );
 
             do_action('publishpress_statuses_add_settings_field', $group_name);
@@ -884,7 +882,6 @@ class StatusesUI {
         } else {
             esc_html_e('If enabled, users will need an additional role capability to unpublish a post.', 'publishpress-statuses');
         }
-
         ?>
         </p>
 
@@ -1255,13 +1252,71 @@ class StatusesUI {
                 <div class='col-wrap'>
                     <div class='form-wrap'>
                         <?php
-                        if ('publishpress-statuses-add-new' === $plugin_page) {
+                        $current_tab = (!empty($_REQUEST['pp_tab'])) ? $_REQUEST['pp_tab'] : 'workflow';
+
+                        if ('publishpress-statuses-add-new' === $plugin_page) :
                             require_once(__DIR__ . '/StatusAddNewUI.php');
 
-                        } elseif ('publishpress-statuses-settings' === $plugin_page) {
+                        elseif ('publishpress-statuses-settings' === $plugin_page) :?>
+                            <div class="wrap publishpress-admin">
+                                <div class="pp-columns-wrapper<?php echo (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) ? ' pp-enable-sidebar' : '' ?>">
+                                    <div class="pp-column-left">
+                                        <h2 class="nav-tab-wrapper">
+                                            <?php 
+                                            $tabs = [
+                                                'workflow' =>       __('Workflow', 'publishpress-statuses'),
+                                                'visibility' =>     __('Visibilty', 'publishpress-statuses'),
+                                                'integration' =>    __('Integration', 'publishpress-statuses'),
+                                                'editor' =>         __('Editor', 'publishpress-statuses'),
+                                                'advanced' =>       __('Advanced', 'publishpress-statuses'),
+                                                'license' =>        __('License', 'publishpress-statuses'),
+                                            ];
+
+                                            foreach ($tabs as $tab => $tab_caption) : ?>
+                                                <a
+                                                        href="#pp-tab-<?php echo esc_attr($tab);?>"
+                                                        data-section="<?php echo esc_attr($tab);?>" 
+                                                        class="nav-tab<?php if ($current_tab === $tab) : ?> nav-tab-active<?php endif; ?>">
+
+                                                    <?php echo esc_html($tab_caption); ?>
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </h2>
+
+                                        <div class="pp-module-settings">
+                                            <?php /* echo $context['module_output']; */ ?>
+                                        </div>
+
+                                    </div><!-- .pp-column-left -->
+                                    <?php if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) { ?>
+                                        <div class="pp-column-right">
+                                            <?php /* echo $context['pro_sidebar']; */ // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                        </div><!-- .pp-column-right -->
+                                    <?php } ?>
+                                </div><!-- .pp-columns-wrapper -->
+                            </div>
+
+                            <script type="text/javascript">
+                                /* <![CDATA[ */
+                                jQuery(document).ready(function ($) {
+                                    $('tr.pp-settings-<?php echo esc_attr($current_tab);?>').show();
+
+                                    $('.nav-tab-wrapper .nav-tab').on('click', function (e) {
+                                        $('.form-table tr').hide();
+
+                                        $('.nav-tab-wrapper a').removeClass('nav-tab-active');
+                                        $(this).addClass('nav-tab-active');
+
+                                        $('input[name="pp_tab"]').val($(this).attr('data-section'));
+
+                                        $('tr.pp-settings-' + $(this).attr('data-section')).show();
+                                    });
+                                });
+                                /* ]]> */
+                            </script>
+                        <?php
                             require_once(__DIR__ . '/StatusSettingsUI.php');
-                        }
-                        ?>
+                        endif;?>
                     </div>
                 </div>
             </div>
