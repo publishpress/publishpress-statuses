@@ -97,6 +97,13 @@ class StatusListTable extends \WP_List_Table
             }
         }
 
+        if (!empty($this->items['_revision-workflow'])) {
+            $main_workflow = $this->items['_revision-workflow'];
+
+            unset($this->items['_revision-workflow']);
+            $this->items = ['_revision-workflow' => $main_workflow] + $this->items;
+        }
+
         $this->default_status = \PublishPress_Statuses::DEFAULT_STATUS;
 
         $this->set_pagination_args(
@@ -358,7 +365,7 @@ if ('_pre-publish' == $key) {
 
 } elseif ('_pre-publish-alternate' == $key) {
     $this->generateTooltip(
-        esc_html__('Statuses in the main workflow are manually selectable when editing an unpublished post.', 'publishpress-statuses'),
+        esc_html__('Statuses outside the main workflow are manually selectable when editing an unpublished post.', 'publishpress-statuses'),
         '',
         'bottom'
     );
