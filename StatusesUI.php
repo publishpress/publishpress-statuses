@@ -239,6 +239,16 @@ class StatusesUI {
                 '__return_false',
                 $group_name
             );
+
+            add_settings_field(
+                'post_types',
+                __('Use on these Post Types:', 'publishpress-statuses'),
+                [$this, 'settings_post_types_option'],
+                $group_name,
+                $group_name . '_general',
+                ['class' => 'pp-settings-workflow']
+            );
+
             add_settings_field(
                 'moderation_statuses_default_by_sequence',
                 __('Workflow Guidance:', 'publishpress-statuses'),
@@ -261,15 +271,6 @@ class StatusesUI {
                 'status_dropdown_show_current_branch_only',
                 __('Sub-Status Selection:', 'publishpress-statuses'),
                 [$this, 'settings_status_dropdown_show_current_branch_only_option'],
-                $group_name,
-                $group_name . '_general',
-                ['class' => 'pp-settings-workflow']
-            );
-
-            add_settings_field(
-                'post_types',
-                __('Use on these Post Types:', 'publishpress-statuses'),
-                [$this, 'settings_post_types_option'],
                 $group_name,
                 $group_name . '_general',
                 ['class' => 'pp-settings-workflow']
