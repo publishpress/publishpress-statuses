@@ -550,7 +550,7 @@ padding-bottom: 25px !important;
 display: none;
 }
 
-body.statuses_page_publishpress-statuses-settings .form-table > tr {
+body.statuses_page_publishpress-statuses-settings .form-table > tbody > tr {
 display: none;
 }
 
