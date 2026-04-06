@@ -72,7 +72,7 @@ class StatusEditUI
                                           // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
             if ((empty($status->private) /*|| (class_exists('\PublishPress\StatusCapabilities') && \PublishPress\StatusCapabilities::postStatusHasCustomCaps($status->name))*/)
             && (('pending' != $name) || \PublishPress_Statuses::instance()->options->pending_status_regulation)
-            && (!empty($status->taxonomy) && in_array ($status->taxonomy, $editable_taxonomies))
+            && (('pending' == $name) || (!empty($status->taxonomy) && in_array ($status->taxonomy, $editable_taxonomies)))
             ) {
                 $tabs['roles'] = __('Roles', 'publishpress-statuses');
             }
