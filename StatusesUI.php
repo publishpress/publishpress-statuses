@@ -1265,7 +1265,7 @@ class StatusesUI {
                                             <?php 
                                             $tabs = [
                                                 'workflow' =>       __('Workflow', 'publishpress-statuses'),
-                                                'visibility' =>     __('Visibilty', 'publishpress-statuses'),
+                                                'visibility' =>     __('Visibility', 'publishpress-statuses'),
                                                 'integration' =>    __('Integration', 'publishpress-statuses'),
                                                 'editor' =>         __('Editor', 'publishpress-statuses'),
                                                 'advanced' =>       __('Advanced', 'publishpress-statuses'),
@@ -1302,7 +1302,7 @@ class StatusesUI {
                                     $('tr.pp-settings-<?php echo esc_attr($current_tab);?>').show();
 
                                     $('.nav-tab-wrapper .nav-tab').on('click', function (e) {
-                                        $('.form-table tr').hide();
+                                        $('.form-table > tbody > tr').hide();
 
                                         $('.nav-tab-wrapper a').removeClass('nav-tab-active');
                                         $(this).addClass('nav-tab-active');
