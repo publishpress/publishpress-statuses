@@ -44,7 +44,7 @@ class PostEditClassic
         if (\PublishPress_Statuses\Admin::is_post_management_page()) {
             $post_type_obj = get_post_type_object(\PublishPress_Statuses::getCurrentPostType());
             $selected = null;
-            $selected_name = \PublishPress_Statuses::__wp('Draft');
+            $selected_name = __('Draft', 'publishpress-statuses');
 
             $post_id = (!empty($post)) ? $post->ID : 0;
             $args = (empty($post) && !empty($post_type_obj)) ? ['post_type' => $post_type_obj->name] : [];
@@ -98,8 +98,8 @@ class PostEditClassic
             // TODO: Move this to a script localization method. 
             ?>
             <script type="text/javascript">
-                var pp_text_no_change = '<?php echo esc_js(\PublishPress_Statuses::__wp("&mdash; No Change &mdash;")); ?>';
-                var label_save = '<?php echo esc_html(\PublishPress_Statuses::__wp('Save')); ?>';
+                var pp_text_no_change = '<?php echo esc_js(__("&mdash; No Change &mdash;", 'publishpress-statuses')); ?>';
+                var label_save = '<?php echo esc_html__('Save', 'publishpress-statuses'); ?>';
                 var pp_default_custom_status = '<?php echo esc_js(\PublishPress_Statuses::DEFAULT_STATUS); ?>';
                 var current_status = '<?php echo esc_js($selected); ?>';
                 var current_status_name = '<?php echo esc_js($selected_name); ?>';
@@ -156,8 +156,8 @@ class PostEditClassic
                 $stati[$prop][] = [
                     'name' => $status, 
                     'label' => $status_obj->labels->name, 
-                    'save_as' => isset($status_obj->labels->save_as) ? $status_obj->labels->save_as : \PublishPress_Statuses::__wp('Save'),
-                    'publish' => isset($status_obj->labels->publish) ? $status_obj->labels->publish : \PublishPress_Statuses::__wp('Update')
+                    'save_as' => isset($status_obj->labels->save_as) ? $status_obj->labels->save_as : __('Save', 'publishpress-statuses'),
+                    'publish' => isset($status_obj->labels->publish) ? $status_obj->labels->publish : __('Update', 'publishpress-statuses')
                 ];
             }
         }
@@ -174,8 +174,8 @@ class PostEditClassic
             if ($is_administrator && $default_by_sequence && empty($post_status_obj->public) && empty($post_status_obj->private) && ('future' != $post_status)) {
                 $stati['moderation'][] = [
                     'name' => '_public',
-                    'label' => \PublishPress_Statuses::__wp('Published'),
-                    'save_as' => \PublishPress_Statuses::__wp('Publish'),
+                    'label' => __('Published', 'publishpress-statuses'),
+                    'save_as' => __('Publish', 'publishpress-statuses'),
                     'publish' => __('Advance Status', 'publishpress-statuses'),
                 ];
             }
@@ -198,16 +198,16 @@ class PostEditClassic
             'pvtStati' => wp_json_encode($stati['private']),
             'modStati' => wp_json_encode($stati['moderation']),
             'draftSaveAs' => $draft_obj->labels->save_as,
-            'update' => esc_html(\PublishPress_Statuses::__wp('Update')),
-            'schedule' => esc_html(\PublishPress_Statuses::_x_wp('Schedule', 'post action/button label')),
-            'published' => esc_html(\PublishPress_Statuses::__wp('Published')),
-            'privatelyPublished' => esc_html(\PublishPress_Statuses::__wp('Privately Published')),
-            'publish' => esc_html(\PublishPress_Statuses::__wp('Publish')),
-            'publishSticky' => esc_html(\PublishPress_Statuses::__wp('Published, Sticky')),
+            'update' => esc_html__('Update', 'publishpress-statuses'),
+            'schedule' => esc_html(_x('Schedule', 'post action/button label', 'publishpress-statuses')),
+            'published' => esc_html__('Published', 'publishpress-statuses'),
+            'privatelyPublished' => esc_html__('Privately Published', 'publishpress-statuses'),
+            'publish' => esc_html__('Publish', 'publishpress-statuses'),
+            'publishSticky' => esc_html__('Published, Sticky', 'publishpress-statuses'),
             'defaultBySequence' => $default_by_sequence,
-            'scheduleFor' => esc_html(\PublishPress_Statuses::__wp('Schedule for: %s')),
-            'publishOn' => esc_html(\PublishPress_Statuses::__wp('Publish on: %s')),
-            'publishedOn' => esc_html(\PublishPress_Statuses::__wp('Published on: %s'))
+            'scheduleFor' => esc_html__('Schedule for: %s', 'publishpress-statuses'),
+            'publishOn' => esc_html__('Publish on: %s', 'publishpress-statuses'),
+            'publishedOn' => esc_html__('Published on: %s', 'publishpress-statuses')
         ];
 
         if (defined('PUBLISHPRESS_STATUSES_CURRENT_TIME_LINK')) {
@@ -256,8 +256,8 @@ class PostEditClassic
                 );
 
                 if (in_array($max_status_obj->name, ['publish', 'future'])) {
-                    $args['maxPublish'] = esc_html(\PublishPress_Statuses::__wp('Publish'));
-                    $args['maxSchedule'] = esc_html(\PublishPress_Statuses::_x_wp('Schedule', 'post action/button label'));
+                    $args['maxPublish'] = esc_html__('Publish', 'publishpress-statuses');
+                    $args['maxSchedule'] = esc_html(_x('Schedule', 'post action/button label', 'publishpress-statuses'));
                 } else {
                     if (!empty($max_status_obj->labels->publish)) {
                         $args['maxPublish'] = $max_status_obj->labels->publish;

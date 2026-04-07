@@ -245,7 +245,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
                 }
             }
 
-            require_once(__DIR__ . '/lib/publishpress-module/Module_Base.php');
+            require_once(__DIR__ . '/publishpress-module/Module_Base.php');
             new \PublishPress\PPP_Module_Base();
 
             require_once(__DIR__ . '/PublishPress_Statuses.php');
