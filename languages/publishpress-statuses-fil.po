@@ -2,42 +2,48 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: PublishPress Statuses Free 1.3.0-rc\n"
+"Project-Id-Version: PublishPress Statuses 1.2.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-07T18:10:43+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2026-02-19T17:37:10+00:00\n"
+"PO-Revision-Date: 2026-04-07 18:12+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
+"|| n % 10 == 6 || n % 10 == 9);\n"
+"|| n % 10 == 6 || n % 10 == 9);: \n"
+"Language: fil\n"
+"Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 || n % 10 == 6 || n % 10 == 9);\n"
 
-#. Plugin Name of the plugin
 #: publishpress-statuses.php:3
+#. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
-msgstr ""
+msgstr "PublishPress Statuses Libre"
 
+#: publishpress-statuses.php:4, fuzzy
 #. Plugin URI of the plugin
-#: publishpress-statuses.php:4
 msgid "https://publishpress.com/statuses"
-msgstr ""
+msgstr "https://publishpress.com/statuses"
 
-#. Description of the plugin
 #: publishpress-statuses.php:5
+#. Description of the plugin
 msgid "Manage and create post statuses to customize your editorial workflow"
 msgstr ""
+"Pamahalaan at lumikha ng mga estado ng post upang i-customize ang iyong "
+"daloy ng editorial"
 
+#: publishpress-statuses.php:7, fuzzy
 #. Author of the plugin
-#: publishpress-statuses.php:7
 msgid "PublishPress"
-msgstr ""
+msgstr "PublishPress"
 
+#: publishpress-statuses.php:8, fuzzy
 #. Author URI of the plugin
-#: publishpress-statuses.php:8
 msgid "https://publishpress.com/"
-msgstr ""
+msgstr "https://publishpress.com/"
 
 #: Admin.php:18
 #: Admin.php:430
@@ -46,13 +52,13 @@ msgstr ""
 #: PublishPress_Statuses.php:394
 #: StatusesUI.php:92
 msgid "Statuses"
-msgstr ""
+msgstr "Mga Estado"
 
 #: Admin.php:19
 #: Admin.php:450
 #: Admin.php:451
 msgid "Settings"
-msgstr ""
+msgstr "Mga Setting"
 
 #: Admin.php:22
 #: includes-core/CoreAdmin.php:40
@@ -62,17 +68,21 @@ msgstr ""
 #: StatusListTable.php:188
 #: StatusListTable.php:214
 msgid "Upgrade to Pro"
-msgstr ""
+msgstr "Mag-upgrade sa Pro"
 
 #: Admin.php:369
-msgid "Are you sure you want to delete the post status? All posts with this status will be assigned to the default status."
+msgid ""
+"Are you sure you want to delete the post status? All posts with this status "
+"will be assigned to the default status."
 msgstr ""
+"Sigurado ka bang nais mong tanggalin ang estado ng post? Lahat ng mga post "
+"na may estado na ito ay itatalaga sa default na estado."
 
 #: Admin.php:441
 #: Admin.php:442
 #: StatusesUI.php:1103
 msgid "Add New"
-msgstr ""
+msgstr "Magdagdag ng Bago"
 
 #: Admin.php:526
 #: PostEditGutenberg.php:243
@@ -80,22 +90,22 @@ msgstr ""
 #: PublishPress_Statuses.php:1182
 #: PublishPress_Statuses.php:3747
 msgid "Submit for Review"
-msgstr ""
+msgstr "I-submit para sa Pagsusuri"
 
 #: Admin.php:528
 #: PublishPress_Statuses.php:850
 msgid "Approve"
-msgstr ""
+msgstr "Aprubahan"
 
 #: Admin.php:530
 #: PublishPress_Statuses.php:822
 msgid "Assign"
-msgstr ""
+msgstr "Italaga"
 
 #: Admin.php:532
 #: PublishPress_Statuses.php:836
 msgid "Mark In Progress"
-msgstr ""
+msgstr "Markahan bilang Nasa Progreso"
 
 #: Admin.php:534
 #: Admin.php:636
@@ -106,17 +116,17 @@ msgstr ""
 #: PublishPress_Statuses.php:727
 #: PublishPress_Statuses.php:1177
 msgid "Publish"
-msgstr ""
+msgstr "I-publish"
 
 #: Admin.php:542
 msgid "Submit"
-msgstr ""
+msgstr "I-submit"
 
-#. translators: %s is the status label
 #: Admin.php:545
+#. translators: %s is the status label
 #, php-format
 msgid "Set to %s"
-msgstr ""
+msgstr "Itakda sa %s"
 
 #: Admin.php:552
 #: PostEditGutenberg.php:239
@@ -124,15 +134,15 @@ msgstr ""
 #: PublishPress_Statuses.php:1181
 #: PublishPress_Statuses.php:3746
 msgid "Save as Pending"
-msgstr ""
+msgstr "I-save bilang Naka-pending"
 
-#. translators: %s is the status label
 #: Admin.php:554
 #: PostEditGutenberg.php:77
 #: PostEditGutenberg.php:97
+#. translators: %s is the status label
 #, php-format
 msgid "Save as %s"
-msgstr ""
+msgstr "I-save bilang %s"
 
 #: Admin.php:562
 #: PostEditClassic.php:177
@@ -141,13 +151,13 @@ msgstr ""
 #: PostEditGutenberg.php:195
 #: PublishPress_Statuses.php:722
 msgid "Published"
-msgstr ""
+msgstr "Naka-publish"
 
-#. translators: %s is the name of a custom public status
 #: Admin.php:566
+#. translators: %s is the name of a custom public status
 #, php-format
 msgid "Public (%s)"
-msgstr ""
+msgstr "Pampubliko (%s)"
 
 #: Admin.php:637
 #: PostEditClassic.php:179
@@ -157,78 +167,84 @@ msgstr ""
 #: PostEditGutenbergStatuses.php:69
 #: PostEditGutenbergStatuses.php:77
 msgid "Advance Status"
-msgstr ""
+msgstr "Ipaunlad ang Estado"
 
 #: includes-core/CoreAdmin.php:19
 #, php-format
-msgid "You're using PublishPress Statuses Free. The Pro version has more features and support. %sUpgrade to Pro%s"
+msgid ""
+"You're using PublishPress Statuses Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
 msgstr ""
+"Gumagamit ka ng PublishPress Statuses Free. Ang Pro na bersyon ay may mas "
+"maraming tampok at suporta. %sMag-upgrade sa Pro%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
-msgstr ""
+msgstr "Mag-upgrade sa Statuses Pro"
 
 #: includes-core/CoreAdmin.php:105
 msgid "Upgrade to PublishPress Statuses Pro for additional benefits:"
-msgstr ""
+msgstr "Mag-upgrade sa PublishPress Statuses Pro para sa karagdagang benepisyo:"
 
 #: includes-core/CoreAdmin.php:108
 msgid "Define revision statuses"
-msgstr ""
+msgstr "Tukuyin ang mga estado ng rebisyon"
 
 #: includes-core/CoreAdmin.php:109
 msgid "Control revision status selection"
-msgstr ""
+msgstr "Kontrolin ang pagpili ng estado ng rebisyon"
 
 #: includes-core/CoreAdmin.php:110
 msgid "Customize revision workflow sequence"
-msgstr ""
+msgstr "I-customize ang pagkakasunod-sunod ng daloy ng rebisyon"
 
 #: includes-core/CoreAdmin.php:111
 msgid "Custom notifications, with PublishPress Planner"
-msgstr ""
+msgstr "Mga pasadyang abiso, kasama ang PublishPress Planner"
 
 #: includes-core/CoreAdmin.php:112
 msgid "No ads inside the plugin"
-msgstr ""
+msgstr "Walang mga ad sa loob ng plugin"
 
 #: includes-core/CoreAdmin.php:113
 msgid "Prompt, professional support"
-msgstr ""
+msgstr "Mabilis, propesyonal na suporta"
 
 #: includes-core/CoreAdmin.php:124
 msgid "Need Statuses Support?"
-msgstr ""
+msgstr "Kailangan ng Suporta para sa mga Estado?"
 
 #: includes-core/CoreAdmin.php:129
 #: includes-core/PromoBanner.php:68
 msgid "If you need help or have a new feature request, let us know."
 msgstr ""
+"Kung kailangan mo ng tulong o may bago kang hiling na tampok, ipaalam sa "
+"amin."
 
 #: includes-core/CoreAdmin.php:131
 #: includes-core/PromoBanner.php:241
 msgid "Request Support"
-msgstr ""
+msgstr "Humiling ng Suporta"
 
 #: includes-core/CoreAdmin.php:140
 #: includes-core/PromoBanner.php:248
 msgid "Detailed documentation is also available on the plugin website."
-msgstr ""
+msgstr "Detalyadong dokumentasyon ay available din sa website ng plugin."
 
 #: includes-core/CoreAdmin.php:142
 #: includes-core/PromoBanner.php:251
 msgid "View Knowledge Base"
-msgstr ""
+msgstr "Tingnan ang Knowledge Base"
 
 #: PostEditClassic.php:47
 #: PostEditGutenberg.php:188
-#: PublishPress_Statuses.php:664
+#: PublishPress_Statuses.php:664, fuzzy
 msgid "Draft"
-msgstr ""
+msgstr "Draft"
 
 #: PostEditClassic.php:101
 msgid "&mdash; No Change &mdash;"
-msgstr ""
+msgstr "&mdash; Walang Pagbabago &mdash;"
 
 #: PostEditClassic.php:102
 #: PostEditClassic.php:159
@@ -239,7 +255,7 @@ msgstr ""
 #: PostEditGutenbergStatuses.php:73
 #: PublishPress_Statuses.php:745
 msgid "Save"
-msgstr ""
+msgstr "I-save"
 
 #: PostEditClassic.php:160
 #: PostEditClassic.php:201
@@ -247,210 +263,202 @@ msgstr ""
 #: PostEditClassicSubmitMetabox.php:499
 #: PostEditClassicSubmitMetabox.php:500
 msgid "Update"
-msgstr ""
-
-#: PostEditClassic.php:202
-#: PostEditClassic.php:260
-#: PostEditGutenberg.php:73
-#: PublishPress_Statuses.php:1178
-msgctxt "post action/button label"
-msgid "Schedule"
-msgstr ""
+msgstr "I-update"
 
 #: PostEditClassic.php:204
 #: PostEditClassicSubmitMetabox.php:332
 #: PublishPress_Statuses.php:1192
 msgid "Privately Published"
-msgstr ""
+msgstr "Pribadong Naka-publish"
 
 #: PostEditClassic.php:206
 msgid "Published, Sticky"
-msgstr ""
+msgstr "Naka-publish, Sticky"
 
 #: PostEditClassic.php:208
 #: PostEditClassicSubmitMetabox.php:430
 #, php-format
 msgid "Schedule for: %s"
-msgstr ""
+msgstr "I-schedule para sa: %s"
 
 #: PostEditClassic.php:209
 #: PostEditClassicSubmitMetabox.php:434
 #, php-format
 msgid "Publish on: %s"
-msgstr ""
+msgstr "I-publish sa: %s"
 
 #: PostEditClassic.php:210
 #: PostEditClassicSubmitMetabox.php:422
 #, php-format
 msgid "Published on: %s"
-msgstr ""
+msgstr "Naka-publish noong: %s"
 
 #: PostEditClassic.php:214
 msgid "Current Time"
-msgstr ""
+msgstr "Kasalukuyang Oras"
 
-#. translators: %s is a status name
 #: PostEditClassic.php:242
 #: PostEditClassic.php:267
+#. translators: %s is a status name
 #, php-format
 msgid "Submit as %s"
-msgstr ""
+msgstr "Isumite bilang %s"
 
-#. translators: %s is the name of a custom visibility status
 #: PostEditClassic.php:328
-#, php-format
+#. translators: %s is the name of a custom visibility status
+#, fuzzy, php-format
 msgid "%s, Sticky"
-msgstr ""
+msgstr "%s, Sticky"
 
-#: PostEditClassicSubmitMetabox.php:59
+#: PostEditClassicSubmitMetabox.php:59, fuzzy
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibility:"
 
 #: PostEditClassicSubmitMetabox.php:65
 #: PostEditClassicSubmitMetabox.php:105
 #: PublishPress_Statuses.php:740
 msgid "Private"
-msgstr ""
+msgstr "Pribado"
 
 #: PostEditClassicSubmitMetabox.php:68
 #: PostEditClassicSubmitMetabox.php:102
 msgid "Password protected"
-msgstr ""
+msgstr "Protektado ng Password"
 
 #: PostEditClassicSubmitMetabox.php:71
 msgid "Public, Sticky"
-msgstr ""
+msgstr "Publiko, Sticky"
 
 #: PostEditClassicSubmitMetabox.php:74
 #: PostEditClassicSubmitMetabox.php:96
 msgid "Public"
-msgstr ""
+msgstr "Publiko"
 
 #: PostEditClassicSubmitMetabox.php:82
 #: PostEditClassicSubmitMetabox.php:350
 #: PostEditClassicSubmitMetabox.php:444
 #: Workarounds.php:320
 msgid "Edit"
-msgstr ""
+msgstr "I-edit"
 
-#. translators: Hidden accessibility text.
 #: PostEditClassicSubmitMetabox.php:85
+#. translators: Hidden accessibility text.
 msgid "Edit visibility"
-msgstr ""
+msgstr "I-edit ang visibility"
 
 #: PostEditClassicSubmitMetabox.php:99
 msgid "Stick this post to the front page"
-msgstr ""
+msgstr "Idikit ang post na ito sa pangunahing pahina"
 
-#: PostEditClassicSubmitMetabox.php:103
+#: PostEditClassicSubmitMetabox.php:103, fuzzy
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
 #: PostEditClassicSubmitMetabox.php:108
-#: PostEditClassicSubmitMetabox.php:380
+#: PostEditClassicSubmitMetabox.php:380, fuzzy
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: PostEditClassicSubmitMetabox.php:109
 #: PostEditClassicSubmitMetabox.php:383
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselahin"
 
 #: PostEditClassicSubmitMetabox.php:132
 #: PostEditClassicSubmitMetabox.php:135
 #, php-format
 msgid "Revisions: %s"
-msgstr ""
+msgstr "Rebisyon: %s"
 
 #: PostEditClassicSubmitMetabox.php:167
 msgid "Delete Permanently"
-msgstr ""
+msgstr "Tanggalin ng Permanente"
 
 #: PostEditClassicSubmitMetabox.php:169
 msgid "Move to Trash"
-msgstr ""
+msgstr "Ilipat sa Basurahan"
 
 #: PostEditClassicSubmitMetabox.php:200
 msgid "Restore default behavior of publish button"
-msgstr ""
+msgstr "Ibalik ang default na asal ng publish button"
 
 #: PostEditClassicSubmitMetabox.php:201
 msgid "Bypass sequence"
-msgstr ""
+msgstr "Lumaktaw ng pagkakasunod-sunod"
 
 #: PostEditClassicSubmitMetabox.php:281
 #: PostEditClassicSubmitMetabox.php:290
 #: Workarounds.php:375
 msgid "Preview"
-msgstr ""
+msgstr "Suriin"
 
 #: PostEditClassicSubmitMetabox.php:325
 msgid "Status:"
-msgstr ""
+msgstr "Katayuan:"
 
+#: PostEditClassicSubmitMetabox.php:410, fuzzy
 #. translators: Publish box date formt, see http://php.net/date
-#: PostEditClassicSubmitMetabox.php:410
 msgid "M j, Y @ G:i"
-msgstr ""
+msgstr "M j, Y @ G:i"
 
 #: PostEditClassicSubmitMetabox.php:418
 #, php-format
 msgid "Scheduled for: %s"
-msgstr ""
+msgstr "Naka-iskedyul para sa: %s"
 
 #: PostEditClassicSubmitMetabox.php:426
 #: PostEditClassicSubmitMetabox.php:441
 msgid "Publish <b>immediately</b>"
-msgstr ""
+msgstr "I-publish <b>kaagad</b>"
 
-#. translators: %s is html markup
 #: PostEditClassicSubmitMetabox.php:437
+#. translators: %s is html markup
 #, php-format
 msgid "Publish %1$s on approval %2$s"
-msgstr ""
+msgstr "I-publish %1$s sa pag-apruba %2$s"
 
 #: PostEditGutenberg.php:71
 msgid "Publication Workflow"
-msgstr ""
+msgstr "Daloy ng Publikasyon"
 
 #: PostEditGutenberg.php:75
 msgid "Post Status"
-msgstr ""
+msgstr "Status ng Post"
 
 #: PostEditGutenberg.php:78
 msgid "Set Selected Status"
-msgstr ""
+msgstr "Itakda ang Napiling Katayuan"
 
 #: PostEditGutenberg.php:79
 msgid "Keep Current Status"
-msgstr ""
+msgstr "Panatilihin ang Kasalukuyang Katayuan"
 
 #: PostEditGutenberg.php:80
 msgid "Advance to Next Status"
-msgstr ""
+msgstr "Isulong sa Susunod na Katayuan"
 
 #: PostEditGutenberg.php:81
 msgid "Advance to Max Status"
-msgstr ""
+msgstr "Isulong sa Pinakamataas na Katayuan"
 
 #: PostEditGutenberg.php:82
 msgid "This post is currently published"
-msgstr ""
+msgstr "Ang post na ito ay kasalukuyang nai-publish"
 
 #: PostEditGutenberg.php:83
 msgid "This post is currently scheduled"
-msgstr ""
+msgstr "Ang post na ito ay kasalukuyang naka-schedule"
 
 #: PostEditGutenberg.php:196
 #: PublishPress_Statuses.php:704
 msgid "Scheduled"
-msgstr ""
+msgstr "Naka-iskedyul"
 
 #: PostEditGutenberg.php:234
 #: PublishPress_Statuses.php:682
 #: PublishPress_Statuses.php:683
 msgid "Pending Review"
-msgstr ""
+msgstr "Naghihintay ng Pagsusuri"
 
 #: PostEditGutenberg.php:278
 #: PostEditGutenbergStatuses.php:165
@@ -458,1030 +466,1218 @@ msgstr ""
 #: PublishPress_Statuses.php:1185
 #: PublishPress_Statuses.php:1186
 msgid "Save Draft"
-msgstr ""
+msgstr "I-save ang Draft"
 
 #: PostEditGutenbergStatuses.php:160
 #: StatusesUI.php:1268
 msgid "Workflow"
-msgstr ""
+msgstr "Daloy ng Trabaho"
 
 #: PostEditGutenbergStatuses.php:166
 msgid "Submit Revision"
-msgstr ""
+msgstr "I-submit ang Rebisyon"
 
 #: PostsListing.php:58
 #: PublishPress_Statuses.php:394
 msgid "Status"
-msgstr ""
+msgstr "Katayuan"
 
-#. translators: %1$s is the plugin name, %2$s is the rating stars
 #: publishpress-module/ModuleAdminUI_Base.php:101
+#. translators: %1$s is the plugin name, %2$s is the rating stars
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr ""
+"Kung nagustuhan mo ang %1$s, mangyaring iwanan kami ng %2$s na rating. "
+"Salamat!"
 
 #: publishpress-module/ModuleAdminUI_Base.php:112
 #, php-format
 msgid "About %s"
-msgstr ""
+msgstr "Tungkol sa %s"
 
 #: publishpress-module/ModuleAdminUI_Base.php:112
 msgid "About"
-msgstr ""
+msgstr "Tungkol sa"
 
 #: publishpress-module/ModuleAdminUI_Base.php:114
 #, php-format
 msgid "%s Documentation"
-msgstr ""
+msgstr "%s Dokumentasyon"
 
 #: publishpress-module/ModuleAdminUI_Base.php:114
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentasyon"
 
 #: publishpress-module/ModuleAdminUI_Base.php:116
 msgid "Contact the PublishPress team"
-msgstr ""
+msgstr "Makipag-ugnayan sa koponan ng PublishPress"
 
 #: publishpress-module/ModuleAdminUI_Base.php:116
 msgid "Contact"
-msgstr ""
+msgstr "Makipag-ugnayan"
 
 #: publishpress-statuses.php:118
 msgid "<strong>This plugin can be deleted.</strong>"
-msgstr ""
+msgstr "<strong>Ang plugin na ito ay maaring tanggalin.</strong>"
 
-#. translators: %s is a version number
 #: publishpress-statuses.php:178
-#, php-format
-msgid "To use PublishPress Statuses, please upgrade PublishPress Planner to version %s or higher."
-msgstr ""
-
 #. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Planner to "
+"version %s or higher."
+msgstr ""
+"Upang magamit ang PublishPress Statuses, mangyaring i-upgrade ang "
+"PublishPress Planner sa bersyon %s o mas mataas."
+
 #: publishpress-statuses.php:195
-#, php-format
-msgid "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro to version %s or higher."
-msgstr ""
-
 #. translators: %s is a version number
-#: publishpress-statuses.php:212
 #, php-format
-msgid "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro to version %s or higher."
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
+"to version %s or higher."
 msgstr ""
+"Upang magamit ang PublishPress Statuses, mangyaring i-upgrade ang "
+"PublishPress Permissions Pro sa bersyon %s o mas mataas."
+
+#: publishpress-statuses.php:212
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
+"to version %s or higher."
+msgstr ""
+"Upang magamit ang PublishPress Statuses, mangyaring i-upgrade ang "
+"PublishPress Capabilities Pro sa bersyon %s o mas mataas."
 
 #: PublishPress_Statuses.php:355
-msgid "Can bypass normal status progression. User can publish immediately or move post to the furthest possible status."
+msgid ""
+"Can bypass normal status progression. User can publish immediately or move "
+"post to the furthest possible status."
 msgstr ""
+"Maaaring lumampas sa normal na pag-usad ng estado. Maaaring agad na "
+"mag-publish ang gumagamit o ilipat ang post sa pinakamas mataas na "
+"posibleng estado."
 
 #: PublishPress_Statuses.php:356
 msgid "Manage Statuses plugin settings."
-msgstr ""
+msgstr "Pamahalaan ang mga setting ng plugin ng Katayuan."
 
 #: PublishPress_Statuses.php:361
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr ""
+"Maaaring i-unpublish ang mga post kahit na naka-lock ang Katayuan ng "
+"Visibility."
 
 #: PublishPress_Statuses.php:408
 msgid "Core Post Statuses"
-msgstr ""
+msgstr "Mga Pangunahing Katayuan ng Post"
 
 #: PublishPress_Statuses.php:671
 msgid "New post, not yet submitted."
-msgstr ""
+msgstr "Bagong post, hindi pa naipapasa."
 
 #: PublishPress_Statuses.php:692
 msgid "Post is awaiting review."
-msgstr ""
+msgstr "Ang post ay naghihintay ng pagsusuri."
 
 #: PublishPress_Statuses.php:709
 msgid "Schedule"
-msgstr ""
+msgstr "I-iskedyul"
 
 #: PublishPress_Statuses.php:711
 msgid "Post is scheduled for publication."
-msgstr ""
+msgstr "Ang post ay naka-schedule para sa publikasyon."
 
 #: PublishPress_Statuses.php:729
 msgid "Post is published, publicly visible."
-msgstr ""
+msgstr "Nai-publish ang post, pampublikong nakikita."
 
 #: PublishPress_Statuses.php:747
 msgid "Post is published with private visibility."
-msgstr ""
+msgstr "Nai-publish ang post na may pribadong visibility."
 
-#: PublishPress_Statuses.php:806
+#: PublishPress_Statuses.php:806, fuzzy
 msgid "Pitch"
-msgstr ""
-
-#: PublishPress_Statuses.php:808
-msgctxt "post action/button label"
-msgid "Pitch"
-msgstr ""
+msgstr "Pitch"
 
 #: PublishPress_Statuses.php:809
 msgid "Idea proposed; waiting for acceptance."
-msgstr ""
+msgstr "Ideya na iniharap; naghihintay ng pagtanggap."
 
 #: PublishPress_Statuses.php:820
 msgid "Assigned"
-msgstr ""
+msgstr "Naka-assign"
 
 #: PublishPress_Statuses.php:823
 msgid "Post idea assigned to writer."
-msgstr ""
+msgstr "Naka-assign ang ideya ng post sa manunulat."
 
 #: PublishPress_Statuses.php:834
 msgid "In Progress"
-msgstr ""
+msgstr "Nasa Progreso"
 
 #: PublishPress_Statuses.php:837
 msgid "Writer is working on the post."
-msgstr ""
+msgstr "Nagtatrabaho ang manunulat sa post."
 
 #: PublishPress_Statuses.php:848
 msgid "Approved"
-msgstr ""
+msgstr "Na-aprubahan"
 
 #: PublishPress_Statuses.php:851
 msgid "Post has been approved for publication."
-msgstr ""
+msgstr "Na-aprubahan ang post para sa publikasyon."
 
 #: PublishPress_Statuses.php:862
 msgid "Deferred"
-msgstr ""
+msgstr "Naantala"
 
 #: PublishPress_Statuses.php:864
 msgid "Defer"
-msgstr ""
+msgstr "I-antala"
 
 #: PublishPress_Statuses.php:865
 msgid "Post has been deferred for future consideration."
-msgstr ""
+msgstr "Ang post ay naantala para sa hinaharap na pagsasaalang-alang."
 
 #: PublishPress_Statuses.php:876
 msgid "Needs Work"
-msgstr ""
+msgstr "Kailangan ng Trabaho"
 
 #: PublishPress_Statuses.php:878
 msgid "Set to Needs Work"
-msgstr ""
+msgstr "Itakda sa Kailangan ng Trabaho"
 
 #: PublishPress_Statuses.php:879
 msgid "Post needs work before further review."
-msgstr ""
+msgstr "Kailangan ng trabaho ang post bago ang karagdagang pagsusuri."
 
 #: PublishPress_Statuses.php:890
 msgid "Rejected"
-msgstr ""
+msgstr "Tinanggihan"
 
 #: PublishPress_Statuses.php:892
 msgid "Reject"
-msgstr ""
+msgstr "Tanggihan"
 
 #: PublishPress_Statuses.php:893
 msgid "Post has been rejected."
-msgstr ""
+msgstr "Ang post ay tinanggihan."
 
 #: PublishPress_Statuses.php:926
 msgid "Alternate Pre-Publication Workflow:"
-msgstr ""
+msgstr "Alternatibong Pre-Publikasyon na Workflow:"
 
 #: PublishPress_Statuses.php:1021
 msgid "Disabled Statuses:"
-msgstr ""
+msgstr "Mga Hindi Aktibong Katayuan:"
 
 #: PublishPress_Statuses.php:1037
 msgid "Committee"
-msgstr ""
+msgstr "Komite"
 
 #: PublishPress_Statuses.php:1039
 msgid "Refer to Committee"
-msgstr ""
+msgstr "I-refer sa Komite"
 
 #: PublishPress_Statuses.php:1040
 msgid "Post has been referred to committee."
-msgstr ""
+msgstr "Ang post ay na-refer sa komite."
 
 #: PublishPress_Statuses.php:1052
 msgid "Committee Review"
-msgstr ""
+msgstr "Pagsusuri ng Komite"
 
 #: PublishPress_Statuses.php:1054
 msgid "Set to Committee Review"
-msgstr ""
+msgstr "Itakda sa Pagsusuri ng Komite"
 
 #: PublishPress_Statuses.php:1055
 msgid "Committee is reviewing the post."
-msgstr ""
+msgstr "Sinusuri ng komite ang post."
 
 #: PublishPress_Statuses.php:1067
 msgid "Committee Progress"
-msgstr ""
+msgstr "K progres ng Komite"
 
 #: PublishPress_Statuses.php:1069
 msgid "Set to Committee Progress"
-msgstr ""
+msgstr "Itakda sa Progreso ng Komite"
 
 #: PublishPress_Statuses.php:1070
 msgid "Committee is editing the post."
-msgstr ""
+msgstr "Binabago ng komite ang post."
 
 #: PublishPress_Statuses.php:1082
 msgid "Committee Approved"
-msgstr ""
+msgstr "Inaprubahan ng Komite"
 
 #: PublishPress_Statuses.php:1084
 msgid "Set Committee Approval"
-msgstr ""
+msgstr "Itakda ang Pag-apruba ng Komite"
 
 #: PublishPress_Statuses.php:1085
 msgid "Committee has approved the post."
-msgstr ""
+msgstr "Inaprubahan ng komite ang post."
 
 #: PublishPress_Statuses.php:3743
 msgid "Pending"
-msgstr ""
+msgstr "Naghihintay"
 
 #: StatusAddNewUI.php:30
 msgid "Add New Status"
-msgstr ""
+msgstr "Magdagdag ng Bagong Katayuan"
 
 #: StatusEditUI.php:30
 msgid "Back to Statuses"
-msgstr ""
+msgstr "Bumalik sa Mga Katayuan"
 
 #: StatusEditUI.php:43
 #: StatusListTable.php:132
 msgid "Name"
-msgstr ""
+msgstr "Pangalan"
 
 #: StatusEditUI.php:54
 #: StatusEditUI.php:63
 msgid "Labels"
-msgstr ""
+msgstr "Mga Label"
 
 #: StatusEditUI.php:69
 #: StatusEditUI.php:433
 #: StatusListTable.php:135
 msgid "Post Types"
-msgstr ""
+msgstr "Mga Uri ng Post"
 
 #: StatusEditUI.php:77
 #: StatusListTable.php:134
 msgid "Roles"
-msgstr ""
+msgstr "Mga Papel"
 
 #: StatusEditUI.php:85
 msgid "Post Access"
-msgstr ""
+msgstr "Access sa Post"
 
 #: StatusEditUI.php:167
-msgid "Enforce type-specific post capabilitities for this status, or share capabilities with another status."
+msgid ""
+"Enforce type-specific post capabilitities for this status, or share "
+"capabilities with another status."
 msgstr ""
+"Ipapatupad ang mga kakayahan ng post na tiyak sa uri para sa estado na ito, "
+"o ibahagi ang mga kakayahan sa ibang estado."
 
 #: StatusEditUI.php:212
 msgid "Update Status"
-msgstr ""
+msgstr "I-update ang Katayuan"
 
 #: StatusEditUI.php:256
 msgid "Status Label"
-msgstr ""
+msgstr "Label ng Katayuan"
 
 #: StatusEditUI.php:269
 msgid "The name is used to identify the status. (Max: 20 characters)"
-msgstr ""
+msgstr "Ang pangalan ay ginagamit upang tukuyin ang katayuan. (Max: 20 karakter)"
 
-#: StatusEditUI.php:279
+#: StatusEditUI.php:279, fuzzy
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 #: StatusEditUI.php:291
 msgid "The slug is the unique ID for the status."
-msgstr ""
+msgstr "Ang slug ay ang natatanging ID para sa katayuan."
 
 #: StatusEditUI.php:301
 #: StatusListTable.php:136
 msgid "Description"
-msgstr ""
+msgstr "Deskripsyon"
 
 #: StatusEditUI.php:313
-msgid "The description is primarily for administrative use, to give you some context on what the custom status is to be used for."
+msgid ""
+"The description is primarily for administrative use, to give you some "
+"context on what the custom status is to be used for."
 msgstr ""
+"Ang paglalarawan ay pangunahing para sa administratibong paggamit, upang "
+"bigyan ka ng konteksto sa kung ano ang dapat gamitin para sa pasadyang "
+"estado."
 
 #: StatusEditUI.php:322
 msgid "Color"
-msgstr ""
+msgstr "Kulay"
 
 #: StatusEditUI.php:334
 msgid "The color is used to identify the status."
-msgstr ""
+msgstr "Ang kulay ay ginagamit upang tukuyin ang katayuan."
 
 #: StatusEditUI.php:340
-#: StatusListTable.php:133
+#: StatusListTable.php:133, fuzzy
 msgid "Icon"
-msgstr ""
+msgstr "Icon"
 
 #: StatusEditUI.php:356
 msgid "Select Icon"
-msgstr ""
+msgstr "Pumili ng Icon"
 
 #: StatusEditUI.php:362
 msgid "The icon is used to visually represent the status."
-msgstr ""
+msgstr "Ang icon ay ginagamit upang biswal na kumatawan sa katayuan."
 
 #: StatusEditUI.php:397
 msgid "Status Availability"
-msgstr ""
+msgstr "Availability ng Katayuan"
 
 #: StatusEditUI.php:400
 msgid "Choose which user roles can assign this status to a post."
 msgstr ""
+"Pumili kung aling mga tungkulin ng gumagamit ang maaaring magtalaga ng "
+"katayuang ito sa isang post."
 
 #: StatusEditUI.php:436
 msgid "Choose which post types can be set to this status."
-msgstr ""
+msgstr "Pumili kung aling mga uri ng post ang maaaring itakda sa katayuang ito."
 
 #: StatusEditUI.php:473
 msgid "All Post Types"
-msgstr ""
+msgstr "Lahat ng Uri ng Post"
 
 #: StatusEditUI.php:520
 msgid "Save As Label"
-msgstr ""
+msgstr "I-save Bilang Label"
 
 #: StatusEditUI.php:528
 msgid "Submit Button Label"
-msgstr ""
+msgstr "Label ng Submit Button"
 
 #: StatusEditUI.php:540
 msgid "Upgrade to choose who can manage posts in each status"
 msgstr ""
+"Mag-upgrade upang piliin kung sino ang maaaring pamahalaan ang mga post sa "
+"bawat katayuan"
 
 #: StatusEditUI.php:543
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
 msgstr ""
+"Kumuha ng PublishPress Statuses Pro para sa kontrol ng pag-access ng post "
+"na tiyak sa katayuan."
 
 #: StatusEditUI.php:549
 msgid "Control which roles can assign a status"
-msgstr ""
+msgstr "Kontrolin kung aling mga tungkulin ang maaaring magtalaga ng isang katayuan"
 
 #: StatusEditUI.php:552
 msgid "Control which roles can edit or delete posts per-status"
 msgstr ""
+"Kontrolin kung aling mga papel ang maaaring mag-edit o mag-delete ng mga "
+"post batay sa estado"
 
 #: StatusEditUI.php:555
 msgid "Set capabilities separately for each post type"
-msgstr ""
+msgstr "Itakda ang mga kakayahan nang hiwalay para sa bawat uri ng post"
 
 #: StatusEditUI.php:558
 msgid "User-friendly checkbox grid to assign capabilities"
-msgstr ""
+msgstr "User-friendly na checkbox grid para magtalaga ng mga kakayahan"
 
 #: StatusEditUI.php:567
 #: StatusListTable.php:615
 msgid "Get PublishPress Statuses Pro"
-msgstr ""
+msgstr "Kumuha ng PublishPress Statuses Pro"
 
 #: StatusEditUI.php:572
 #: StatusListTable.php:193
 #: StatusListTable.php:210
 #: StatusListTable.php:620
 msgid "Learn More"
-msgstr ""
+msgstr "Matuto Nang Higit Pa"
 
 #: StatusEditUI.php:581
 #, php-format
-msgid "Status-specific post capabilities are %1$scurrently disabled%2$s. You can %3$schange this setting%4$s."
+msgid ""
+"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
+"%3$schange this setting%4$s."
 msgstr ""
+"Ang mga kakayahan ng post na tiyak sa estado ay %1$scurrently disabled%2$s. "
+"Maaari mong %3$sbaguhin ang setting na ito%4$s."
 
-#. translators: %s is the status label
 #: StatusesUI.php:64
+#. translators: %s is the status label
 #, php-format
 msgid "Edit Post Status: %s"
-msgstr ""
+msgstr "I-edit ang Status ng Post: %s"
 
-#. translators: %s is the status label
 #: StatusesUI.php:67
+#. translators: %s is the status label
 #, php-format
 msgid "%s Status - Edit"
-msgstr ""
+msgstr "%s Status - I-edit"
 
-#. translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
 #: StatusesUI.php:75
+#. translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
 #, php-format
 msgid "Add %s Status"
-msgstr ""
+msgstr "Magdagdag ng %s Status"
 
 #: StatusesUI.php:82
 msgid "Add Post Status"
-msgstr ""
+msgstr "Magdagdag ng Status ng Post"
 
 #: StatusesUI.php:83
 msgid "Add Status"
-msgstr ""
+msgstr "Magdagdag ng Status"
 
 #: StatusesUI.php:87
 #: StatusesUI.php:1244
 msgid "PublishPress Statuses Settings"
-msgstr ""
+msgstr "Mga Setting ng PublishPress Statuses"
 
 #: StatusesUI.php:88
 msgid "Statuses Settings"
-msgstr ""
+msgstr "Mga Setting ng Statuses"
 
 #: StatusesUI.php:91
 msgid "Post Statuses"
-msgstr ""
+msgstr "Mga Status ng Post"
 
 #: StatusesUI.php:98
 msgid "Visibility Statuses"
-msgstr ""
+msgstr "Mga Status ng Visibility"
 
 #: StatusesUI.php:212
 msgid "Post status created. Select a tab for further configuration."
-msgstr ""
+msgstr "Nalikha ang status ng post. Pumili ng tab para sa karagdagang konfigurasyon."
 
-#. translators: %1$s is the status name, %2$s is the edit link
 #: StatusesUI.php:214
 #: StatusesUI.php:219
+#. translators: %1$s is the status name, %2$s is the edit link
 #, php-format
 msgid "Post status %1$s updated. %2$s"
-msgstr ""
+msgstr "Na-update ang status ng post %1$s. %2$s"
 
 #: StatusesUI.php:215
 msgid "Settings updated"
-msgstr ""
+msgstr "Na-update ang mga setting"
 
 #: StatusesUI.php:216
-msgid "That post status doesn't seem to exist. Was a required plugin or setting deactivated?"
+msgid ""
+"That post status doesn't seem to exist. Was a required plugin or setting "
+"deactivated?"
 msgstr ""
+"Mukhang hindi umiiral ang estado ng post na iyon. Na-deactivate ba ang "
+"isang kinakailangang plugin o setting?"
 
 #: StatusesUI.php:217
 msgid "Default post status has been changed."
-msgstr ""
+msgstr "Nabago ang default na status ng post."
 
 #: StatusesUI.php:220
 msgid "Post status deleted."
-msgstr ""
+msgstr "Nadagdag na estado ng post."
 
 #: StatusesUI.php:221
 #: StatusHandler.php:748
 msgid "Status order updated."
-msgstr ""
+msgstr "Na-update ang pagkakasunod-sunod ng estado."
 
 #: StatusesUI.php:245
 msgid "Use on these Post Types:"
-msgstr ""
+msgstr "Gamitin sa mga Uri ng Post na ito:"
 
 #: StatusesUI.php:254
 msgid "Workflow Guidance:"
-msgstr ""
+msgstr "Patnubay sa Workflow:"
 
 #: StatusesUI.php:263
 msgid "Manual Status Selection:"
-msgstr ""
+msgstr "Manu-manong Pagpili ng Estado:"
 
 #: StatusesUI.php:272
 msgid "Sub-Status Selection:"
-msgstr ""
+msgstr "Pagsusuri ng Sub-Estado:"
 
 #: StatusesUI.php:282
 msgid "Custom Visibility:"
-msgstr ""
+msgstr "Pasadyang Visibility:"
 
 #: StatusesUI.php:292
 msgid "Default Visibility Status:"
-msgstr ""
+msgstr "Default na Estado ng Visibility:"
 
 #: StatusesUI.php:302
 msgid "Custom Visibility Editing:"
-msgstr ""
+msgstr "Pag-edit ng Pasadyang Visibility:"
 
 #: StatusesUI.php:314
 msgid "Pending Review Status:"
-msgstr ""
+msgstr "Naghihintay na Estado ng Pagsusuri:"
 
 #: StatusesUI.php:324
 msgid "Planner Integration:"
-msgstr ""
+msgstr "Pagsasama ng Planner:"
 
 #: StatusesUI.php:335
 msgid "Permissions Integration:"
-msgstr ""
+msgstr "Pagsasama ng Mga Pahintulot:"
 
-#: StatusesUI.php:345
+#: StatusesUI.php:345, fuzzy
 msgid "Gutenberg / Classic Editor:"
-msgstr ""
+msgstr "Gutenberg / Classic Editor:"
 
 #: StatusesUI.php:354
 msgid "Status Label Customization:"
-msgstr ""
+msgstr "Pag-customize ng Label ng Estado:"
 
 #: StatusesUI.php:369
 msgid "Import Operation:"
-msgstr ""
+msgstr "Operasyon ng Pag-import:"
 
 #: StatusesUI.php:380
 msgid "Backup / Restore:"
-msgstr ""
+msgstr "Backup / Ibalik:"
 
 #: StatusesUI.php:410
 msgid "Supplemental Role of Editor covers custom statuses"
-msgstr ""
+msgstr "Supplemental na Papel ng Editor ay sumasaklaw sa mga pasadyang estado"
 
 #: StatusesUI.php:435
 msgid "Include custom statuses in Add New pop-up on Calendar"
-msgstr ""
+msgstr "Isama ang mga pasadyang estado sa Add New pop-up sa Calendar"
 
 #: StatusesUI.php:460
 msgid "Hide status selection dropdown from non-Administrators in Gutenberg editor"
 msgstr ""
+"Itago ang dropdown ng pagpili ng estado mula sa mga hindi Administrator sa "
+"Gutenberg editor"
 
 #: StatusesUI.php:487
 msgid "Sequence by default: Publish button defaults to next status in workflow"
 msgstr ""
+"Pagkakasunod-sunod ayon sa default: Ang button na Publish ay nag-default sa "
+"susunod na estado sa workflow"
 
 #: StatusesUI.php:501
 msgid "Bypass by default: Publish button defaults to maximum available status"
 msgstr ""
+"Bypass ayon sa default: Ang button na Publish ay nag-default sa "
+"pinakamataas na magagamit na estado"
 
 #: StatusesUI.php:515
 msgid "No workflow guidance"
-msgstr ""
+msgstr "Walang gabay sa daloy ng trabaho"
 
 #: StatusesUI.php:560
 msgid "Hide workflow branches in dropdown unless post status is in the branch"
 msgstr ""
+"Itago ang mga sanga ng workflow sa dropdown maliban kung ang status ng post "
+"ay nasa sanga"
 
 #: StatusesUI.php:579
 msgid "Available to all users"
-msgstr ""
+msgstr "Magagamit ng lahat ng mga gumagamit"
 
 #: StatusesUI.php:580
 msgid "Available to specified roles only"
-msgstr ""
+msgstr "Magagamit ng mga tiyak na papel lamang"
 
 #: StatusesUI.php:586
-msgid "Users can only assign a custom status to a post if their role allows it. With the current setting, the same control is applied to the Pending Review status."
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, the same control is applied to the Pending Review "
+"status."
 msgstr ""
+"Maaaring italaga ng mga gumagamit ang isang pasadyang estado sa isang post "
+"kung pinapayagan ito ng kanilang papel. Sa kasalukuyang setting, ang "
+"parehong kontrol ay nalalapat sa estado ng Pending Review."
 
 #: StatusesUI.php:588
-msgid "Users can only assign a custom status to a post if their role allows it. With the current setting, those limitations will not be applied for the Pending Review status."
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, those limitations will not be applied for the "
+"Pending Review status."
 msgstr ""
+"Maaaring italaga ng mga gumagamit ang isang pasadyang estado sa isang post "
+"kung pinapayagan ito ng kanilang papel. Sa kasalukuyang setting, ang mga "
+"limitasyong iyon ay hindi ilalapat para sa estado ng Pending Review."
 
-#. translators: %1$s and %2$s are link markup
 #: StatusesUI.php:597
+#. translators: %1$s and %2$s are link markup
 #, php-format
 msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
 msgstr ""
+"Tingnan o itakda ang mga papel sa %1$s Mga Estado > Mga Estado > Pending "
+"Review > Mga Papel %2$s"
 
 #: StatusesUI.php:621
 msgid "Automatic Detection"
-msgstr ""
+msgstr "Awtomatikong Pagtuklas"
 
 #: StatusesUI.php:622
 msgid "Using Classic Editor"
-msgstr ""
+msgstr "Gumagamit ng Classic Editor"
 
 #: StatusesUI.php:623
 msgid "Using Gutenberg Editor"
-msgstr ""
+msgstr "Gumagamit ng Gutenberg Editor"
 
 #: StatusesUI.php:628
-msgid "If custom statuses in the post editor are not loaded correctly, prevent incorrect detection of editor by specifying it here."
+msgid ""
+"If custom statuses in the post editor are not loaded correctly, prevent "
+"incorrect detection of editor by specifying it here."
 msgstr ""
+"Kung ang mga pasadyang estado sa post editor ay hindi na-load nang tama, "
+"pigilan ang maling pagtukoy ng editor sa pamamagitan ng pagtukoy dito."
 
 #: StatusesUI.php:649
 msgid "For all plugin statuses"
-msgstr ""
+msgstr "Para sa lahat ng mga estado ng plugin"
 
 #: StatusesUI.php:650
 msgid "For user-created plugin statuses only"
-msgstr ""
+msgstr "Para lamang sa mga estado ng plugin na nilikha ng gumagamit"
 
 #: StatusesUI.php:655
-msgid "This controls which statuses can have their labels customized by editing Status properties. If a non-default entry is stored, it will override any language file strings."
+msgid ""
+"This controls which statuses can have their labels customized by editing "
+"Status properties. If a non-default entry is stored, it will override any "
+"language file strings."
 msgstr ""
+"Ito ay kumokontrol kung aling mga estado ang maaaring magkaroon ng kanilang "
+"mga label na na-customize sa pamamagitan ng pag-edit ng mga katangian ng "
+"Estado. Kung may naka-imbak na hindi default na entry, ito ay papalitan ang "
+"anumang mga string ng language file."
 
 #: StatusesUI.php:673
 #: StatusesUI.php:784
 msgid "Posts"
-msgstr ""
+msgstr "Mga Post"
 
 #: StatusesUI.php:674
 #: StatusesUI.php:785
 msgid "Pages"
-msgstr ""
+msgstr "Mga Pahina"
 
-#. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
 #: StatusesUI.php:709
+#. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
 #, php-format
-msgid "Disabled because add_post_type_support('%1$s', '%2$s') is included in a loaded file."
+msgid ""
+"Disabled because add_post_type_support('%1$s', '%2$s') is included in a "
+"loaded file."
 msgstr ""
+"Na-disable dahil ang add_post_type_support('%1$s', '%2$s') ay kasama sa "
+"isang na-load na file."
 
 #: StatusesUI.php:718
 msgid "Note: Post types can also be specified for each individual status."
 msgstr ""
+"Tandaan: Ang mga uri ng post ay maaari ring itakda para sa bawat indibidwal "
+"na estado."
 
 #: StatusesUI.php:743
 msgid "Enable custom Visibility Statuses"
-msgstr ""
+msgstr "Paganahin ang mga pasadyang Visibility Statuses"
 
 #: StatusesUI.php:768
-msgid "Posts with custom Visibility also require status-specific capabilities for editing"
+msgid ""
+"Posts with custom Visibility also require status-specific capabilities for "
+"editing"
 msgstr ""
+"Ang mga post na may pasadyang Visibility ay nangangailangan din ng mga "
+"kakayahan na tiyak sa estado para sa pag-edit"
 
-#: StatusesUI.php:847
+#: StatusesUI.php:847, fuzzy
 msgid "lock"
-msgstr ""
+msgstr "lock"
 
 #: StatusesUI.php:873
-msgid "If the Published visibility status is locked, also prevent posts from being unpublished."
+msgid ""
+"If the Published visibility status is locked, also prevent posts from being "
+"unpublished."
 msgstr ""
+"Kung ang nakalathalang visibility status ay naka-lock, pigilan din ang mga "
+"post mula sa pagiging hindi nailathala."
 
 #: StatusesUI.php:880
 #, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr ""
+"Kung naka-enable, kailangan ng mga gumagamit ang %s upang ma-unpublish ang "
+"isang post."
 
 #: StatusesUI.php:884
-msgid "If enabled, users will need an additional role capability to unpublish a post."
+msgid ""
+"If enabled, users will need an additional role capability to unpublish a "
+"post."
 msgstr ""
+"Kung na-enable, kakailanganin ng mga gumagamit ng karagdagang kakayahan sa "
+"papel upang i-unpublish ang isang post."
 
 #: StatusesUI.php:901
 #: StatusesUI.php:959
 msgid "Select..."
-msgstr ""
+msgstr "Pumili..."
 
 #: StatusesUI.php:904
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr ""
+"Ulitin ang pag-import ng Planner (na may mga katangian ng Status Control, "
+"pag-uuri)"
 
 #: StatusesUI.php:905
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr ""
+"Ulitin ang pag-import ng Planner (na hindi pinapansin ang konfigurasyon ng "
+"Status Control)"
 
 #: StatusesUI.php:907
 msgid "Re-run Planner import"
-msgstr ""
+msgstr "Ulitin ang pag-import ng Planner"
 
 #: StatusesUI.php:913
-msgid "Status color, icon and position is automatically imported from PublishPress Planner. Select an option above to re-run the import, giving priority to Planner-defined status position."
+msgid ""
+"Status color, icon and position is automatically imported from PublishPress "
+"Planner. Select an option above to re-run the import, giving priority to "
+"Planner-defined status position."
 msgstr ""
+"Ang kulay ng estado, icon at posisyon ay awtomatikong ina-import mula sa "
+"PublishPress Planner. Pumili ng isang opsyon sa itaas upang muling "
+"patakbuhin ang import, na nagbibigay-priyoridad sa posisyon ng estado na "
+"tinukoy ng Planner."
 
 #: StatusesUI.php:961
 msgid "Back up current colors, icons, labels and post types"
-msgstr ""
+msgstr "I-back up ang kasalukuyang mga kulay, icon, label at uri ng post"
 
 #: StatusesUI.php:966
 msgid "Restore backup of status colors"
-msgstr ""
+msgstr "Ibalik ang backup ng mga kulay ng katayuan"
 
 #: StatusesUI.php:970
 msgid "Restore backup of status icons"
-msgstr ""
+msgstr "Ibalik ang backup ng mga icon ng katayuan"
 
 #: StatusesUI.php:974
 msgid "Restore backup of status labels"
-msgstr ""
+msgstr "Ibalik ang backup ng mga label ng katayuan"
 
 #: StatusesUI.php:978
 msgid "Restore backup of status post types"
-msgstr ""
+msgstr "Ibalik ang backup ng mga uri ng post ng katayuan"
 
 #: StatusesUI.php:984
 msgid "Restore auto-backup of status colors"
-msgstr ""
+msgstr "Ibalik ang awtomatikong backup ng mga kulay ng katayuan"
 
 #: StatusesUI.php:988
 msgid "Restore auto-backup of status icons"
-msgstr ""
+msgstr "Ibalik ang awtomatikong backup ng mga icon ng katayuan"
 
 #: StatusesUI.php:992
 msgid "Restore auto-backup of status labels"
-msgstr ""
+msgstr "Ibalik ang awtomatikong backup ng mga label ng katayuan"
 
 #: StatusesUI.php:996
 msgid "Restore auto-backup of status post types"
-msgstr ""
+msgstr "Ibalik ang awtomatikong backup ng mga uri ng post ng katayuan"
 
 #: StatusesUI.php:1003
 msgid "Use default status colors"
-msgstr ""
+msgstr "Gamitin ang mga default na kulay ng katayuan"
 
 #: StatusesUI.php:1007
 msgid "Use default status icons"
-msgstr ""
+msgstr "Gamitin ang mga default na icon ng katayuan"
 
 #: StatusesUI.php:1011
 msgid "Use default status labels"
-msgstr ""
+msgstr "Gamitin ang mga default na label ng katayuan"
 
 #: StatusesUI.php:1015
 msgid "Use default status post types"
-msgstr ""
+msgstr "Gamitin ang default na uri ng status post"
 
 #: StatusesUI.php:1019
 msgid "Use Planner plugin's default status colors"
-msgstr ""
+msgstr "Gamitin ang default na kulay ng status ng Planner plugin"
 
 #: StatusesUI.php:1023
 msgid "Use Planner plugin's default status icons"
-msgstr ""
+msgstr "Gamitin ang default na icon ng status ng Planner plugin"
 
-#. translators: %s is the status name
 #: StatusesUI.php:1062
+#. translators: %s is the status name
 #, php-format
 msgid "Edit Status: %s"
-msgstr ""
+msgstr "I-edit ang Status: %s"
 
-#. translators: %s is the status name
 #: StatusesUI.php:1065
+#. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s: %2$s"
-msgstr ""
+msgstr "I-edit ang %1$s: %2$s"
 
 #: StatusesUI.php:1102
 #: StatusesUI.php:1230
 msgid "Add New Pre-Publication Status"
-msgstr ""
+msgstr "Magdagdag ng Bagong Pre-Publication Status"
 
-#. translators: %1$s and %2$s is link markup
 #: StatusesUI.php:1118
-#, php-format
-msgid "For custom Visibility Statuses, %1$supgrade to PublishPress Statuses Pro%2$s."
-msgstr ""
-
 #. translators: %1$s and %2$s is link markup
+#, php-format
+msgid ""
+"For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
+"Pro%2$s."
+msgstr ""
+"Para sa mga custom na Visibility Statuses, %1$smag-upgrade sa PublishPress "
+"Statuses Pro%2$s."
+
 #: StatusesUI.php:1132
+#. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
-msgstr ""
+msgstr "Tandaan: Ang mga custom na Visibility Statuses ay %1$sna-disable%2$s."
 
-#: StatusesUI.php:1155
+#: StatusesUI.php:1155, fuzzy
 msgid "Pre-Publication"
-msgstr ""
+msgstr "Pre-Publication"
 
 #: StatusesUI.php:1163
-#: StatusesUI.php:1269
+#: StatusesUI.php:1269, fuzzy
 msgid "Visibility"
-msgstr ""
+msgstr "Visibility"
 
 #: StatusesUI.php:1174
 msgid "Revision"
-msgstr ""
+msgstr "Rebisyon"
 
 #: StatusesUI.php:1234
-msgid "This status can be assigned to an unpublished post using the Post Status dropdown."
+msgid ""
+"This status can be assigned to an unpublished post using the Post Status "
+"dropdown."
 msgstr ""
+"Ang status na ito ay maaaring italaga sa isang unpublished na post gamit "
+"ang dropdown ng Post Status."
 
 #: StatusesUI.php:1270
 msgid "Integration"
-msgstr ""
+msgstr "Integrasyon"
 
 #: StatusesUI.php:1271
 msgid "Editor"
-msgstr ""
+msgstr "Edisyon"
 
-#: StatusesUI.php:1272
+#: StatusesUI.php:1272, fuzzy
 msgid "Advanced"
-msgstr ""
+msgstr "Advanced"
 
 #: StatusesUI.php:1273
 msgid "License"
-msgstr ""
+msgstr "Lisensya"
 
 #: StatusHandler.php:17
 #: StatusHandler.php:186
 msgid "Sorry, you do not have permission to edit custom statuses."
-msgstr ""
+msgstr "Paumanhin, wala kang pahintulot na i-edit ang mga custom na status."
 
 #: StatusHandler.php:53
 #: StatusHandler.php:272
 msgid "Please enter a name for the status"
-msgstr ""
+msgstr "Mangyaring maglagay ng pangalan para sa status"
 
 #: StatusHandler.php:57
 msgid "Please enter a slug for the status"
-msgstr ""
+msgstr "Mangyaring maglagay ng slug para sa status"
 
 #: StatusHandler.php:64
 #: StatusHandler.php:277
 msgid "Please enter a valid, non-numeric name for the status."
-msgstr ""
+msgstr "Mangyaring maglagay ng wastong pangalan na hindi numeriko para sa status."
 
 #: StatusHandler.php:81
 #: StatusHandler.php:296
 msgid "Status name cannot exceed 20 characters. Please try a shorter name."
 msgstr ""
+"Ang pangalan ng status ay hindi dapat lumagpas sa 20 karakter. Mangyaring "
+"subukan ang mas maiikli na pangalan."
 
 #: StatusHandler.php:100
 msgid "Status slug cannot exceed 20 characters. Please try a shorter name."
 msgstr ""
+"Ang slug ng status ay hindi dapat lumagpas sa 20 karakter. Mangyaring "
+"subukan ang mas maiikli na pangalan."
 
 #: StatusHandler.php:110
 msgid "Name conflicts with existing status. Please choose another."
 msgstr ""
+"Ang pangalan ay nagkakaroon ng salungatan sa umiiral na status. Mangyaring "
+"pumili ng iba."
 
 #: StatusHandler.php:117
 msgid "Status name is restricted. Please choose another name."
 msgstr ""
+"Ang pangalan ng status ay may restriksyon. Mangyaring pumili ng ibang "
+"pangalan."
 
 #: StatusHandler.php:141
 msgid "Could not add status: "
-msgstr ""
+msgstr "Hindi maidar ang katayuan: "
 
 #: StatusHandler.php:193
 #: StatusHandler.php:670
 msgid "Status does not exist."
-msgstr ""
+msgstr "Walang umiiral na katayuan."
 
 #: StatusHandler.php:198
 #: StatusHandler.php:665
 msgid "Could not delete the status: "
-msgstr ""
+msgstr "Hindi ma-delete ang katayuan: "
 
 #: StatusHandler.php:217
 #: StatusHandler.php:653
 #: StatusHandler.php:658
 #: StatusHandler.php:685
 msgid "Sorry, you are not allowed to access this page."
-msgstr ""
+msgstr "Paumanhin, hindi ka pinapayagang ma-access ang pahinang ito."
 
 #: StatusHandler.php:223
 msgid "Post status doesn't exist."
-msgstr ""
+msgstr "Walang umiiral na katayuan ng post."
 
 #: StatusHandler.php:420
 msgid "Error updating post status."
-msgstr ""
+msgstr "Error sa pag-update ng katayuan ng post."
 
 #: StatusHandler.php:593
 msgid "Cannot reassign to the status you want to delete"
-msgstr ""
+msgstr "Hindi ma-reassign sa katayuan na nais mong i-delete"
 
 #: StatusHandler.php:640
 msgid "Restricted status "
-msgstr ""
+msgstr "Nakalimitang katayuan "
 
 #: StatusHandler.php:667
 msgid "Status deleted"
-msgstr ""
+msgstr "Nadelete ang katayuan"
 
 #: StatusHandler.php:689
 msgid "Status positions were not sent."
-msgstr ""
+msgstr "Hindi naipadala ang mga posisyon ng katayuan."
 
 #: StatusListTable.php:130
 msgid "Position"
-msgstr ""
+msgstr "Posisyon"
 
 #: StatusListTable.php:131
 msgid "Status Name"
-msgstr ""
+msgstr "Pangalan ng Katayuan"
 
 #: StatusListTable.php:161
 msgid "Upgrade to create an approval workflow for published content"
 msgstr ""
+"Mag-upgrade upang lumikha ng approval workflow para sa nai-publish na "
+"nilalaman"
 
 #: StatusListTable.php:164
-msgid "Create approval workflows using PublishPress Statuses Pro together with the PublishPress Revisions Pro plugin"
+msgid ""
+"Create approval workflows using PublishPress Statuses Pro together with the "
+"PublishPress Revisions Pro plugin"
 msgstr ""
+"Lumikha ng mga workflow ng pag-apruba gamit ang PublishPress Statuses Pro "
+"kasama ang PublishPress Revisions Pro plugin"
 
 #: StatusListTable.php:170
-msgid "The PublishPress Revisions plugin allows users to submit changes to published posts"
+msgid ""
+"The PublishPress Revisions plugin allows users to submit changes to "
+"published posts"
 msgstr ""
+"Ang PublishPress Revisions plugin ay nagpapahintulot sa mga gumagamit na "
+"magsumite ng mga pagbabago sa mga nailathalang post"
 
 #: StatusListTable.php:173
-msgid "PublishPress Statuses plugin enables you to add statuses for post changes created with Revisions"
+msgid ""
+"PublishPress Statuses plugin enables you to add statuses for post changes "
+"created with Revisions"
 msgstr ""
+"Ang PublishPress Statuses plugin ay nagbibigay-daan sa iyo upang magdagdag "
+"ng mga status para sa mga pagbabago sa post na nilikha gamit ang Revisions"
 
 #: StatusListTable.php:176
 msgid "Each post type can have different Revisions statuses"
 msgstr ""
+"Ang bawat uri ng post ay maaaring magkaroon ng iba't ibang Revisions na "
+"katayuan"
 
 #: StatusListTable.php:179
 msgid "You choose which users can manage content in each Revisions status"
 msgstr ""
+"Pumili ka kung aling mga gumagamit ang makakapamahala ng nilalaman sa bawat "
+"Revisions na katayuan"
 
 #: StatusListTable.php:205
 msgid "Premium Feature"
-msgstr ""
+msgstr "Premium na Tampok"
 
 #: StatusListTable.php:206
 msgid "Install Statuses Pro to unlock custom revision statuses."
 msgstr ""
+"I-install ang Statuses Pro upang i-unlock ang mga custom na revision "
+"statuses."
 
 #: StatusListTable.php:207
 msgid "Configure for any post type and role to match your editing workflow."
 msgstr ""
+"I-configure para sa anumang uri ng post at papel upang tumugma sa iyong "
+"editing workflow."
 
 #: StatusListTable.php:272
 #, php-format
-msgid "To define and control Revision statuses, update the %1$sPublishPress Revisions%2$s plugin to version %3$s or higher."
+msgid ""
+"To define and control Revision statuses, update the %1$sPublishPress "
+"Revisions%2$s plugin to version %3$s or higher."
 msgstr ""
+"Upang tukuyin at kontrolin ang mga Revision statuses, i-update ang "
+"%1$sPublishPress Revisions%2$s plugin sa bersyon %3$s o mas mataas."
 
 #: StatusListTable.php:304
 msgid "Main Workflow:"
-msgstr ""
+msgstr "Pangunahing Daloy ng Trabaho:"
 
 #: StatusListTable.php:326
 msgid "Drop any status here to include it in main workflow for new posts."
 msgstr ""
+"I-drop ang anumang estado dito upang isama ito sa pangunahing daloy ng "
+"trabaho para sa mga bagong post."
 
 #: StatusListTable.php:361
-msgid "Statuses in the main workflow are presented for convenient default selection when updating an unpublished post."
+msgid ""
+"Statuses in the main workflow are presented for convenient default "
+"selection when updating an unpublished post."
 msgstr ""
+"Ang mga status sa pangunahing workflow ay ipinapakita para sa maginhawang "
+"default na pagpili kapag nag-a-update ng isang unpublished na post."
 
 #: StatusListTable.php:368
-msgid "Statuses outside the main workflow are manually selectable when editing an unpublished post."
+msgid ""
+"Statuses outside the main workflow are manually selectable when editing an "
+"unpublished post."
 msgstr ""
+"Ang mga status sa labas ng pangunahing workflow ay manu-manong mapipili "
+"kapag nag-e-edit ng isang unpublished na post."
 
 #: StatusListTable.php:396
-msgid "Drop any status here to make it manually selectable outside the main workflow."
+msgid ""
+"Drop any status here to make it manually selectable outside the main "
+"workflow."
 msgstr ""
+"I-drop ang anumang status dito upang gawing manu-manong mapipili sa labas "
+"ng pangunahing workflow."
 
 #: StatusListTable.php:415
 msgid "Drop any status here to disable."
-msgstr ""
+msgstr "I-drop ang anumang estado dito upang huwag paganahin."
 
 #: StatusListTable.php:463
 msgid "Standard Publication:"
-msgstr ""
+msgstr "Karaniwang Publikasyon:"
 
 #: StatusListTable.php:470
 msgid "Visibility Statuses for Private Publication:"
-msgstr ""
+msgstr "Mga Estado ng Visibility para sa Pribadong Publikasyon:"
 
 #: StatusListTable.php:477
 msgid "Alternate Workflows:"
-msgstr ""
+msgstr "Alternatibong Daloy ng Trabaho:"
 
-#. translators: %s is the opening and closing <span> tags
 #: StatusListTable.php:488
+#. translators: %s is the opening and closing <span> tags
 msgid "Disabled Statuses (drag to re-enable):"
-msgstr ""
+msgstr "Mga Naka-disable na Estado (i-drag upang muling paganahin):"
 
 #: StatusListTable.php:588
 msgid "Upgrade to choose who can view your non-public posts"
 msgstr ""
+"Mag-upgrade upang pumili kung sino ang maaaring makakita ng iyong mga hindi "
+"pampublikong post"
 
 #: StatusListTable.php:591
-msgid "Upgrade to PublishPress Statuses Pro to define your own custom visibility statuses."
+msgid ""
+"Upgrade to PublishPress Statuses Pro to define your own custom visibility "
+"statuses."
 msgstr ""
+"Mag-upgrade sa PublishPress Statuses Pro upang tukuyin ang iyong sariling "
+"mga custom na visibility statuses."
 
 #: StatusListTable.php:597
 msgid "Create multiple visibility statuses to show content to different users"
 msgstr ""
+"Lumikha ng maraming mga estado ng visibility upang ipakita ang nilalaman sa "
+"iba't ibang mga gumagamit"
 
 #: StatusListTable.php:600
 msgid "Choose which user roles can see posts in each status"
 msgstr ""
+"Pumili kung aling mga tungkulin ng gumagamit ang maaaring makakita ng mga "
+"post sa bawat estado"
 
 #: StatusListTable.php:603
 msgid "Select which user roles can move posts to each status"
 msgstr ""
+"Piliin kung aling mga tungkulin ng gumagamit ang maaaring ilipat ang mga "
+"post sa bawat estado"
 
 #: StatusListTable.php:606
 msgid "Decide which user roles can edit posts in each status"
 msgstr ""
+"Magpasya kung aling mga tungkulin ng gumagamit ang maaaring mag-edit ng mga "
+"post sa bawat estado"
 
-#. translators: %s is the list of post types
 #: StatusListTable.php:703
+#. translators: %s is the list of post types
 #, php-format
 msgid "%s, more..."
-msgstr ""
+msgstr "%s, higit pa..."
 
 #: StatusListTable.php:706
 #: StatusListTable.php:713
 msgid "All"
-msgstr ""
+msgstr "Lahat"
 
 #: StatusListTable.php:785
 msgid "No custom statuses found."
-msgstr ""
+msgstr "Walang natagpuang pasadyang estado."
 
 #: StatusListTable.php:856
 msgid "Core"
-msgstr ""
+msgstr "Pundasyon"
 
-#: StatusListTable.php:860
+#: StatusListTable.php:860, fuzzy
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 #: StatusListTable.php:881
 msgid "Disable"
-msgstr ""
+msgstr "Huwag paganahin"
 
 #: StatusListTable.php:885
 msgid "Delete"
-msgstr ""
+msgstr "Tanggalin"
 
 #: Workarounds.php:276
-#: Workarounds.php:313
+#: Workarounds.php:313, fuzzy
 msgid "Permalink:"
-msgstr ""
+msgstr "Permalink:"
 
 #: Workarounds.php:372
 #, php-format
 msgid "Preview &#8220;%s&#8221;"
-msgstr ""
+msgstr "I-preview &#8220;%s&#8221;"
+
+#: PostEditClassic.php:202
+#: PostEditClassic.php:260
+#: PostEditGutenberg.php:73
+#: PublishPress_Statuses.php:1178
+msgctxt "post action/button label"
+msgid "Schedule"
+msgstr "Iskedyul"
+
+#: PublishPress_Statuses.php:808, fuzzy
+msgctxt "post action/button label"
+msgid "Pitch"
+msgstr "Pitch"

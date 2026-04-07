@@ -17,12 +17,17 @@ msgstr ""
 "X-Generator: Poedit 3.7\n"
 
 #. Plugin Name of the plugin
-#: publishpress-statuses.php
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#: publishpress-statuses.php, fuzzy
 msgid "PublishPress Statuses"
 msgstr "PublishPress Statuses"
 
 #. Plugin URI of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "https://publishpress.com/statuses"
 msgstr "https://publishpress.com/statuses"
 
@@ -34,12 +39,12 @@ msgstr ""
 "travail éditorial"
 
 #. Author of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "PublishPress"
 msgstr "PublishPress"
 
 #. Author URI of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
 
@@ -96,7 +101,7 @@ msgstr "Enregistrer comme %s"
 
 #. translators: %s is the name of a custom public status
 #: Admin.php:566
-#, php-format
+#, fuzzy, php-format
 msgid "Public (%s)"
 msgstr "Public (%s)"
 
@@ -327,11 +332,11 @@ msgstr "La publication est publiée, publiquement visible."
 msgid "Post is published with private visibility."
 msgstr "La publication est publiée avec une visibilité privée."
 
-#: PublishPress_Statuses.php:815
+#: PublishPress_Statuses.php:815, fuzzy
 msgid "Pitch"
 msgstr "Pitch"
 
-#: PublishPress_Statuses.php:817
+#: PublishPress_Statuses.php:817, fuzzy
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Pitch"
@@ -506,7 +511,7 @@ msgstr "Le nom est utilisé pour identifier l’état. (Max : 20 caractères)"
 msgid "The slug is the unique ID for the status."
 msgstr "Le slug est l’identifiant unique de l’état."
 
-#: StatusEditUI.php:301
+#: StatusEditUI.php:301, fuzzy
 msgid "Description"
 msgstr "Description"
 
@@ -1140,7 +1145,7 @@ msgstr "État supprimé"
 msgid "Status positions were not sent."
 msgstr "Les positions d’état n’ont pas été envoyées."
 
-#: StatusListTable.php:123
+#: StatusListTable.php:123, fuzzy
 msgid "Position"
 msgstr "Position"
 

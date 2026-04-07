@@ -17,12 +17,17 @@ msgstr ""
 "X-Domain: publishpress-statuses\n"
 
 #. Plugin Name of the plugin
-#: publishpress-statuses.php
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#. Plugin Name of the plugin
+#: publishpress-statuses.php, fuzzy
 msgid "PublishPress Statuses"
 msgstr "PublishPress Statuses"
 
 #. Plugin URI of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "https://publishpress.com/statuses"
 msgstr "https://publishpress.com/statuses"
 
@@ -34,12 +39,12 @@ msgstr ""
 "lavoro editoriale"
 
 #. Author of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "PublishPress"
 msgstr "PublishPress"
 
 #. Author URI of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
 
@@ -1286,7 +1291,7 @@ msgstr "%s, altro…"
 msgid "No custom statuses found."
 msgstr "Nessun stato personalizzato trovato."
 
-#: StatusListTable.php:849
+#: StatusListTable.php:849, fuzzy
 msgid "Core"
 msgstr "Core"
 
