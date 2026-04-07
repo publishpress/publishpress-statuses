@@ -40,7 +40,7 @@ class StatusEditUI
         $class_selected = "nav-tab nav-tab-active";
         $class_unselected = "nav-tab";
 
-        $tabs = ['name' => \PublishPress_Statuses::__wp('Name')];
+        $tabs = ['name' => __('Name', 'publishpress-statuses')];
 
 		$editable_taxonomies = apply_filters('publishpress_statuses_editable_taxonomies', ['post_status']);
 
@@ -276,7 +276,7 @@ class StatusEditUI
 
             <tr class="form-field">
                 <th scope="row" valign="top"><?php
-                    \PublishPress_Statuses::_e_wp('Slug', 'publishpress-statuses'); ?></th>
+                    esc_html_e('Slug', 'publishpress-statuses'); ?></th>
                 <td>
                     <input type="text" name="slug" id="slug" 
                             value="<?php

@@ -557,7 +557,7 @@ class StatusesUI {
         ) . ' ';
 
         echo '<label for="status_dropdown_show_current_branch_only">';
-        esc_html_e('Hide nested statuses (workflow branches) in the dropdown unless the post is set to the parent status or a sibling', 'publishpress-statuses');
+        esc_html_e('Hide workflow branches in dropdown unless post status is in the branch', 'publishpress-statuses');
         echo '</label>';
 
         echo '</div>';
@@ -670,8 +670,8 @@ class StatusesUI {
 
         if (empty($post_types)) {
             $post_types = [
-                'post' => \PublishPress_Statuses::__wp('Posts'),
-                'page' => \PublishPress_Statuses::__wp('Pages'),
+                'post' => __('Posts', 'publishpress-statuses'),
+                'page' => __('Pages', 'publishpress-statuses'),
             ];
 
             $custom_post_types = $pp->get_supported_post_types();
@@ -781,8 +781,8 @@ class StatusesUI {
 
         if (empty($post_types)) {
             $post_types = [
-                'post' => \PublishPress_Statuses::__wp('Posts'),
-                'page' => \PublishPress_Statuses::__wp('Pages'),
+                'post' => __('Posts', 'publishpress-statuses'),
+                'page' => __('Pages', 'publishpress-statuses'),
             ];
 
             $custom_post_types = $pp->get_supported_post_types();
@@ -1272,6 +1272,10 @@ class StatusesUI {
                                                 'advanced' =>       __('Advanced', 'publishpress-statuses'),
                                                 'license' =>        __('License', 'publishpress-statuses'),
                                             ];
+
+                                            if (!defined('PUBLISHPRESS_STAUSES_PRO_VERSION')) {
+                                                unset($tabs['license']);
+                                            }
 
                                             foreach ($tabs as $tab => $tab_caption) : ?>
                                                 <a
