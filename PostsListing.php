@@ -96,6 +96,8 @@ class PostsListing
         <script type="text/javascript">
             /* <![CDATA[ */
             jQuery(document).ready(function ($) {
+                $('select[name="_status"] option[value="pending"]').remove();
+
                 <?php
                 $isContentAdministrator = current_user_can('administrator') 
                 || current_user_can('pp_administer_content') 
@@ -108,7 +110,7 @@ class PostsListing
 
                 $can_publish = current_user_can($type_obj->cap->publish_posts);
 
-                // @todo: ordered, indented statuses in quick edit dropdown
+                // @todo: indented statuses in quick edit dropdown
                 ?>
                 <?php
                 if ($can_publish) {
