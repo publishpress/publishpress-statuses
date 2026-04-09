@@ -877,6 +877,16 @@ do_action('publishpress_statuses_table_row', $key, []);
         $url = admin_url("admin.php?action=edit-status&name={$status_obj->name}&page=publishpress-statuses");
         $actions['edit'] =  ['url' => esc_url($url), 'label' => esc_html__('Edit')];
 
+        $options = \PublishPress_Statuses::instance()->options;
+
+        if (
+            !in_array($status_obj->name, ['draft', 'pending', 'publish', 'future']) 
+            && (empty($status_obj->pp_builtin) || (empty($options->label_storage) && ('user' != $options->label_storage)))
+        ) {
+            $url = admin_url("admin.php?action=edit-status-labels&name={$status_obj->name}&page=publishpress-statuses");
+            $actions['labels'] =  ['url' => esc_url($url), 'label' => esc_html__('Labels', 'publishpress-statuses')];
+        }
+
         if ((empty($status_obj) || (empty($status_obj->_builtin))) && empty($status_obj->disabled)) {
             $actions['disable'] = ['url' => '#', 'label' => \PublishPress_Statuses::__wp('Disable', 'publishpress-statuses')];
         }
