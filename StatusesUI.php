@@ -144,6 +144,11 @@ class StatusesUI {
         && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
             require_once(__DIR__ . '/StatusHandler.php');
             \PublishPress_Statuses\StatusHandler::handleEditCustomStatus();
+
+        } elseif (('edit-status-labels' === \PP_Statuses_Functions::POST_key('action')) 
+        && \PP_Statuses_Functions::empty_REQUEST('settings_module')) {
+            require_once(__DIR__ . '/StatusHandler.php');
+            \PublishPress_Statuses\StatusHandler::handleEditCustomStatusLabels();
         }
     }
 
@@ -1070,6 +1075,29 @@ class StatusesUI {
 
             require_once(__DIR__ . '/StatusEditUI.php');
             \PublishPress_Statuses\StatusEditUI::display();
+
+        } elseif (('publishpress-statuses' === $plugin_page) && ('edit-status-labels' == $action) && !\PP_Statuses_Functions::empty_REQUEST('name')) {
+            $status_name = \PP_Statuses_Functions::REQUEST_key('name');
+            
+            $status_obj = \PublishPress_Statuses::getStatusBy('id', $status_name);
+
+            $status_label = ($status_obj && !empty($status_obj->label)) ? $status_obj->label : $status_name;
+
+            $tx_obj = get_taxonomy($status_obj->taxonomy);
+
+            if (('post_status' == $status_obj->taxonomy) || !$tx_obj || empty($tx_obj->labels) || empty($tx_obj->labels->singular_name)) {
+                // translators: %s is the status name
+                $title = sprintf(__('Edit Status Labels: %s', 'publishpress-statuses'), $status_label);
+            } else {
+                // translators: %s is the status name
+                $title = sprintf(__('Edit %1$s Labels: %2$s', 'publishpress-statuses'), $tx_obj->labels->singular_name, $status_label);
+            }
+
+            \PublishPress\ModuleAdminUI_Base::instance()->module->title = $title;
+            \PublishPress\ModuleAdminUI_Base::instance()->default_header('');
+
+            require_once(__DIR__ . '/StatusEditUI.php');
+            \PublishPress_Statuses\StatusEditUI::display(['action' => $action]);
 
         /** Statuses screen **/
         } elseif (('publishpress-statuses' === $plugin_page) && (!$action || ('statuses' == $action))) {

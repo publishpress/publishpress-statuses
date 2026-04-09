@@ -669,6 +669,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'save_as' => \PublishPress_Statuses::__wp('Save Draft')
                 ],
                 'description' => __('New post, not yet submitted.', 'publishpress-statuses'),
+                'default_description' => 'New post, not yet submitted.',
                 'color' => '#767676',
                 'icon' => 'dashicons-media-default',
                 'position' => 0,
@@ -690,6 +691,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'publish' => \PublishPress_Statuses::__wp('Submit for Review')
                 ],
                 'description' => __('Post is awaiting review.', 'publishpress-statuses'),
+                'default_description' => 'Post is awaiting review.',
                 'color' => '#b95c00',
                 'icon' => 'dashicons-clock',
                 'position' => 4,
@@ -709,6 +711,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'publish' => \PublishPress_Statuses::__wp('Schedule')
                 ],
                 'description' => __('Post is scheduled for publication.', 'publishpress-statuses'),
+                'default_description' => 'Post is scheduled for publication.',
                 'color' => '#8440f0',
                 'icon' => 'dashicons-calendar-alt',
                 'position' => 7,
@@ -727,6 +730,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'publish' => \PublishPress_Statuses::__wp('Publish')
                 ],
                 'description' => __('Post is published, publicly visible.', 'publishpress-statuses'),
+                'default_description' => 'Post is published, publicly visible.',
                 'color' => '#207720',
                 'icon' => 'dashicons-yes',
                 'position' => 8,
@@ -745,6 +749,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'publish' => \PublishPress_Statuses::__wp('Save')
                 ],
                 'description' => __('Post is published with private visibility.', 'publishpress-statuses'),
+                'default_description' => 'Post is published with private visibility.',
                 'color' => '#b40000',
                 'icon' => 'dashicons-lock',
                 'position' => 9,
@@ -807,6 +812,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Pitch'],
                 'labels' => (object) ['publish' => _x('Pitch', 'post action/button label', 'publishpress-statuses')],
                 'description' => __('Idea proposed; waiting for acceptance.', 'publishpress-statuses'),
+                'default_description' => 'Idea proposed; waiting for acceptance.',
                 'color' => '#887618',
                 'icon' => 'dashicons-lightbulb',
                 'position' => 1,
@@ -821,6 +827,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Assign'],
                 'labels' => (object) ['publish' => __('Assign', 'publishpress-statuses')],
                 'description' => __('Post idea assigned to writer.', 'publishpress-statuses'),
+                'default_description' => 'Post idea assigned to writer.',
                 'color' => '#009ba0',
                 'icon' => 'dashicons-admin-users',
                 'position' => 2,
@@ -835,6 +842,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Mark In Progress'],
                 'labels' => (object) ['publish' => __('Mark In Progress', 'publishpress-statuses')],
                 'description' => __('Writer is working on the post.', 'publishpress-statuses'),
+                'default_description' => 'Writer is working on the post.',
                 'color' => '#8c5400',
                 'icon' => 'dashicons-performance',
                 'position' => 3,
@@ -849,6 +857,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Approve'],
                 'labels' => (object) ['publish' => __('Approve', 'publishpress-statuses')],
                 'description' => __('Post has been approved for publication.', 'publishpress-statuses'),
+                'default_description' => 'Post has been approved for publication.',
                 'color' => '#304baa',
                 'icon' => 'dashicons-yes-alt',
                 'position' => 5,
@@ -863,6 +872,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Defer'],
                 'labels' => (object) ['publish' => __('Defer', 'publishpress-statuses')],
                 'description' => __('Post has been deferred for future consideration.', 'publishpress-statuses'),
+                'default_description' => 'Post has been deferred for future consideration.',
                 'color' => '#9b9b9b',
                 'icon' => 'dashicons-coffee',
                 'position' => $default_alternate_position + 1,
@@ -877,6 +887,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Set to Needs Work'],
                 'labels' => (object) ['publish' => __('Set to Needs Work', 'publishpress-statuses')],
                 'description' => __('Post needs work before further review.', 'publishpress-statuses'),
+                'default_description' => 'Post needs work before further review.',
                 'color' => '#A88F8D',
                 'icon' => 'dashicons-image-crop',
                 'position' => $default_alternate_position + 2,
@@ -891,6 +902,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Reject'],
                 'labels' => (object) ['publish' => __('Reject', 'publishpress-statuses')],
                 'description' => __('Post has been rejected.', 'publishpress-statuses'),
+                'default_description' => 'Post has been rejected.',
                 'color' => '#6b0000',
                 'icon' => 'dashicons-thumbs-down',
                 'position' => $default_alternate_position + 3,
@@ -1038,6 +1050,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Refer to Committee'],
                 'labels' => (object) ['publish' => __('Refer to Committee', 'publishpress-statuses')],
                 'description' => __('Post has been referred to committee.', 'publishpress-statuses'),
+                'default_description' => 'Post has been referred to committee.',
                 'color' => '#791bb7',
                 'icon' => 'dashicons-welcome-learn-more',
                 'position' => $default_disabled_position + 2,
@@ -1053,6 +1066,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Set to Committee Review'],
                 'labels' => (object) ['publish' => __('Set to Committee Review', 'publishpress-statuses')],
                 'description' => __('Committee is reviewing the post.', 'publishpress-statuses'),
+                'default_description' => 'Committee is reviewing the post.',
                 'color' => '#ba7925',
                 'icon' => 'dashicons-search',
                 'position' => $default_disabled_position + 2,
@@ -1068,6 +1082,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Set to Committee Progress'],
                 'labels' => (object) ['publish' => __('Set to Committee Progress', 'publishpress-statuses')],
                 'description' => __('Committee is editing the post.', 'publishpress-statuses'),
+                'default_description' => 'Committee is editing the post.',
                 'color' => '#A8902B',
                 'icon' => 'dashicons-format-chat',
                 'position' => $default_disabled_position + 3,
@@ -1083,6 +1098,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_labels' => (object) ['publish' => 'Set Committee Approval'],
                 'labels' => (object) ['publish' => __('Set Committee Approval', 'publishpress-statuses')],
                 'description' => __('Committee has approved the post.', 'publishpress-statuses'),
+                'default_description' => 'Committee has approved the post.',
                 'color' => '#22a522',
                 'icon' => 'dashicons-editor-break',
                 'position' => $default_disabled_position + 4,
@@ -1465,10 +1481,25 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         } else {
             $status_obj = $status;
         }
+
+        if (!empty($status_obj->_builtin) || !empty($status_obj->pp_builtin)) {
+            $options = \PublishPress_Statuses::instance()->options;
+
+            if (
+                !empty($options) 
+                && (!empty($options->label_storage) && ('user' == $options->label_storage))
+            ) {
+                return true;
+            }
+        }
         
         switch ($property) {
             case 'label':
                 return (!empty($status_obj->default_label) && ($caption == $status_obj->default_label));
+                break;
+
+            case 'description':
+                return (!empty($status_obj->default_description) && ($caption == $status_obj->default_description));
                 break;
 
             case 'save_as':
@@ -2082,7 +2113,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                             $wp_post_statuses[$status_name]->$prop = $val;
                         }
 
-                        if ('labels' == $prop) {
+                        if ('label' == $prop) {
                             // Disregard the stored value if it is the same as hardcoded defaults. This allows for translation.
                             if (!$val || (!empty($all_statuses[$status_name]->default_label) && ($val == $all_statuses[$status_name]->default_label))) {
                                 continue;
@@ -2448,6 +2479,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 break;
 
             case 'edit-status':
+            case 'edit-status-labels':
                 $args['page'] = 'publishpress-statuses';
 
                 if (!empty($args['slug'])) {

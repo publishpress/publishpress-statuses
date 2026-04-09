@@ -204,7 +204,6 @@ class StatusHandler {
         exit;
     }
 
-    
     /**
      * Handles a POST request to edit a custom status
      *
@@ -217,15 +216,161 @@ class StatusHandler {
             wp_die(esc_html(\PublishPress_Statuses::__wp('Sorry, you are not allowed to access this page.')));
         }
 
-        $name = !empty($_REQUEST['name']) ? trim(sanitize_text_field($_REQUEST['name'])) : '';
+        $name = sanitize_key($_REQUEST['name']);
 
-        if (!$existing_status = \PublishPress_Statuses::getStatusBy('name', sanitize_key($name))) {
+        if (!$existing_status = \PublishPress_Statuses::getStatusBy('slug', $name)) {
             wp_die(esc_html__("Post status doesn't exist.", 'publishpress-statuses'));
         }
 
         $color = !empty($_POST['status_color']) ? sanitize_hex_color($_POST['status_color']) : '';
         $icon = !empty($_POST['icon']) ? sanitize_text_field($_POST['icon']) : '';
         $icon = str_replace('dashicons|', '', $icon);
+
+        $status_obj = $existing_status;
+
+        // Prime the term_meta records if they don't already exist
+        // Doing this in advance prevents seletions from being overridden by defaults.
+        if (!empty($status_obj->_builtin)) {
+            $taxonomy = \PublishPress_Statuses::TAXONOMY_CORE_STATUS;
+
+        } elseif (in_array($name, ['_pre-publish-alternate', '_disabled'])) {
+            $taxonomy = \PublishPress_Statuses::TAXONOMY_PSEUDO_STATUS;
+
+        } elseif (!empty($status_obj->private)) {
+            $taxonomy = \PublishPress_Statuses::TAXONOMY_PRIVACY;
+
+        } else {
+			if (!$taxonomy = apply_filters('publishpress_statuses_taxonomy', '', $status_obj)) {
+            	$taxonomy = \PublishPress_Statuses::TAXONOMY_PRE_PUBLISH;
+        	}
+        }
+
+        if (!$term = get_term_by('slug', $name, $taxonomy)) {
+            \PublishPress_Statuses::instance()->addStatus($taxonomy, $status_obj->label, ['slug' => $name]);
+        }
+
+        $form_errors = [];
+
+        // Try to edit the post status
+        $args = [
+            'name' => $name,
+            'color' => $color,
+            'icon' => $icon,
+        ];
+
+        $status_post_types = !empty($status_obj->post_type) ? $status_obj->post_type : [];
+
+        if (!empty($_REQUEST['pp_status_all_types'])) {
+            $args['post_type'] = [];
+
+        } else {
+            $set_post_types = !empty($_REQUEST['pp_status_post_types']) ? array_map('intval', $_REQUEST['pp_status_post_types']) : false;
+
+            if ($set_post_types) {
+                if ($add_types = array_filter($set_post_types)) {
+                    $status_post_types = array_unique(array_merge($status_post_types, array_map('sanitize_key', array_keys($add_types))));
+                }
+
+                if ($remove_types = array_diff($set_post_types, ['1', true, 1])) {
+                    $status_post_types = array_diff($status_post_types, array_keys($remove_types));
+                }
+
+                $args['post_type'] = $status_post_types;
+            }
+        }
+
+        if (isset($_REQUEST['roles_set_status'])) {
+            $cap_name = str_replace('-', '_', "status_change_{$status_obj->name}");
+            
+            $roles_set_status = array_map('intval', $_REQUEST['roles_set_status']);
+
+            foreach ($roles_set_status as $role_name => $set_val) {
+                $role_name = sanitize_key($role_name);
+                $set_val = boolval($set_val);
+
+                if (!\PP_Statuses_Functions::isEditableRole($role_name)) {
+                    continue;
+                }
+
+                if ($role = get_role($role_name)) {
+                    if ($set_val && empty($role->capabilities[$cap_name])) {
+                        $role->add_cap($cap_name);
+                        $changed = true;
+
+                    } elseif (!$set_val && !empty($role->capabilities[$cap_name])) {
+                        $role->remove_cap($cap_name);
+                        $changed = true;
+                    }
+                }
+
+            }
+
+            if (!empty($changed)) {
+                \PublishPress_Statuses::updateStatusNumRoles($status_obj->name, ['force_refresh' => true]);
+            }
+        }
+
+        $status_obj = get_post_status_object($name);
+
+        if (!\PP_Statuses_Functions::empty_REQUEST('return_module')) {
+            $arr = ['message' => 'status-updated'];
+            $arr['page'] = 'pp-modules-settings';
+            $arr['settings_module'] = \PP_Statuses_Functions::REQUEST_key('return_module');
+
+            $redirect_url = \PublishPress_Statuses::getLink($arr);
+        } else {
+            $arr = ['message' => 'status-updated'];
+            $arr['page'] = 'publishpress-statuses';
+            $arr['action'] = 'edit-status';
+            $arr['name'] = $name;
+
+            if (!empty($_REQUEST['pp_tab'])) {
+                $arr['pp_tab'] = str_replace('pp-', '', sanitize_key($_REQUEST['pp_tab']));
+            }
+
+            $arr = apply_filters('publishpress_status_edit_redirect_args', $arr, $status_obj);
+
+            $redirect_url = \PublishPress_Statuses::getLink($arr);
+        }
+
+        // work around bug in status capabilities library (displaying Set capability checkbox for disabled post types)
+        if (isset($_REQUEST['status_caps'])) {                                                          // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+            foreach (array_keys($_REQUEST['status_caps']) as $role_name) {                              // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+                if (isset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+                    unset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"]);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+                }
+            }
+        }
+
+        do_action('publishpress_statuses_edit_status', $existing_status->name, $args);
+
+        $return = self::updateCustomStatus($existing_status->name, $args);
+
+        if (is_wp_error($return)) {
+            wp_die(esc_html__('Error updating post status.', 'publishpress-statuses'));
+        }
+
+        wp_redirect($redirect_url);
+        exit;
+    }
+
+    /**
+     * Handles a POST request to edit a custom status
+     *
+     */
+    public static function handleEditCustomStatusLabels()
+    {
+        check_admin_referer('edit-status');
+
+        if (!current_user_can('manage_options') && !current_user_can('pp_manage_statuses')) {
+            wp_die(esc_html(\PublishPress_Statuses::__wp('Sorry, you are not allowed to access this page.')));
+        }
+
+        $name = !empty($_REQUEST['name']) ? trim(sanitize_text_field($_REQUEST['name'])) : '';
+
+        if (!$existing_status = \PublishPress_Statuses::getStatusBy('name', sanitize_key($name))) {
+            wp_die(esc_html__("Post status doesn't exist.", 'publishpress-statuses'));
+        }
 
         $status_obj = $existing_status;
 
@@ -307,8 +452,6 @@ class StatusHandler {
         // Try to edit the post status
         $args = [
             'name' => $name,
-            'color' => $color,
-            'icon' => $icon,
         ];
 
         if (isset($label)) {
@@ -325,59 +468,6 @@ class StatusHandler {
         $labels['publish'] = !empty($_REQUEST['status_publish_label']) ? sanitize_text_field($_REQUEST['status_publish_label']) : '';
         $args['labels'] = (object) $labels;
 
-
-        $status_post_types = !empty($status_obj->post_type) ? $status_obj->post_type : [];
-
-        if (!empty($_REQUEST['pp_status_all_types'])) {
-            $args['post_type'] = [];
-
-        } else {
-            $set_post_types = !empty($_REQUEST['pp_status_post_types']) ? array_map('intval', $_REQUEST['pp_status_post_types']) : false;
-
-            if ($set_post_types) {
-                if ($add_types = array_filter($set_post_types)) {
-                    $status_post_types = array_unique(array_merge($status_post_types, array_map('sanitize_key', array_keys($add_types))));
-                }
-
-                if ($remove_types = array_diff($set_post_types, ['1', true, 1])) {
-                    $status_post_types = array_diff($status_post_types, array_keys($remove_types));
-                }
-
-                $args['post_type'] = $status_post_types;
-            }
-        }
-
-        if (isset($_REQUEST['roles_set_status'])) {
-            $cap_name = str_replace('-', '_', "status_change_{$status_obj->name}");
-            
-            $roles_set_status = array_map('intval', $_REQUEST['roles_set_status']);
-
-            foreach ($roles_set_status as $role_name => $set_val) {
-                $role_name = sanitize_key($role_name);
-                $set_val = boolval($set_val);
-
-                if (!\PP_Statuses_Functions::isEditableRole($role_name)) {
-                    continue;
-                }
-
-                if ($role = get_role($role_name)) {
-                    if ($set_val && empty($role->capabilities[$cap_name])) {
-                        $role->add_cap($cap_name);
-                        $changed = true;
-
-                    } elseif (!$set_val && !empty($role->capabilities[$cap_name])) {
-                        $role->remove_cap($cap_name);
-                        $changed = true;
-                    }
-                }
-
-            }
-
-            if (!empty($changed)) {
-                \PublishPress_Statuses::updateStatusNumRoles($status_obj->name, ['force_refresh' => true]);
-            }
-        }
-
         $name = apply_filters('publishpress_statuses_sanitize_status_name', sanitize_key($name), $taxonomy);
 
         $status_obj = get_post_status_object($name);
@@ -391,7 +481,7 @@ class StatusHandler {
         } else {
             $arr = ['message' => 'status-updated'];
             $arr['page'] = 'publishpress-statuses';
-            $arr['action'] = 'edit-status';
+            $arr['action'] = 'edit-status-labels';
             $arr['name'] = $name;
 
             if (!empty($_REQUEST['pp_tab'])) {
@@ -403,27 +493,17 @@ class StatusHandler {
             $redirect_url = \PublishPress_Statuses::getLink($arr);
         }
 
-        // work around bug in status capabilities library (displaying Set capability checkbox for disabled post types)
-        if (isset($_REQUEST['status_caps'])) {                                                          // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-            foreach (array_keys($_REQUEST['status_caps']) as $role_name) {                              // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-                if (isset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-                    unset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"]);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-                }
-            }
-        }
-
-        do_action('publishpress_statuses_edit_status', $existing_status->name, $args);
+        do_action('publishpress_statuses_edit_status_labels', $existing_status->name, $args);
 
         $return = self::updateCustomStatus($existing_status->name, $args);
 
         if (is_wp_error($return)) {
-            wp_die(esc_html__('Error updating post status.', 'publishpress-statuses'));
+            wp_die(esc_html__('Error updating post status labels.', 'publishpress-statuses'));
         }
 
         wp_redirect($redirect_url);
         exit;
     }
-
 
     /**
      * Update an existing custom status
