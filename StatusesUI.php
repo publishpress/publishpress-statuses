@@ -562,9 +562,17 @@ class StatusesUI {
         ) . ' ';
 
         echo '<label for="status_dropdown_show_current_branch_only">';
-        esc_html_e('Hide nested statuses (workflow branches) in the dropdown unless the post is set to the parent status or a sibling', 'publishpress-statuses');
+        esc_html_e('Hide sub-statuses in the dropdown unless the post is set to the parent status or a sibling', 'publishpress-statuses');
         echo '</label>';
+        ?>
 
+        <p class="pp-option-footnote">
+        <?php
+        _e('Sub-statuses may be nested below any top-level status. They function as branches in the Main Workflow or in an Alternate Workflow.', 'publishpress-statuses');
+        ?>
+        </p>
+
+        <?php
         echo '</div>';
     }
 
