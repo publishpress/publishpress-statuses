@@ -235,7 +235,7 @@ opacity: 100%;
 
 #the_status_list li.disabled-status,
 #the_status_list li.disabled-status div.tpl-default {
-background-color: #f4f4f4;
+background-color: #f4f4f4 !important;
 }
 
 
