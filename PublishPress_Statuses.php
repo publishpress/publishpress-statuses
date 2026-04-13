@@ -866,21 +866,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'pp_builtin' => true,
             ],
 
-            'deferred' => (object) [
-                'default_label' => 'Deferred',
-                'label' => __('Deferred', 'publishpress-statuses'),
-                'default_labels' => (object) ['publish' => 'Defer'],
-                'labels' => (object) ['publish' => __('Defer', 'publishpress-statuses')],
-                'description' => __('Post has been deferred for future consideration.', 'publishpress-statuses'),
-                'default_description' => 'Post has been deferred for future consideration.',
-                'color' => '#9b9b9b',
-                'icon' => 'dashicons-coffee',
-                'position' => $default_alternate_position + 1,
-                'order' => 280,
-                'moderation' => true,
-                'pp_builtin' => true,
-            ],
-
             'needs-work' => (object) [
                 'default_label' => 'Needs Work',
                 'label' => __('Needs Work', 'publishpress-statuses'),
@@ -1044,6 +1029,21 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $taxonomy = self::TAXONOMY_PRE_PUBLISH;
 
         $statuses = [
+            'deferred' => (object) [
+                'default_label' => 'Deferred',
+                'label' => __('Deferred', 'publishpress-statuses'),
+                'default_labels' => (object) ['publish' => 'Defer'],
+                'labels' => (object) ['publish' => __('Defer', 'publishpress-statuses')],
+                'description' => __('Post has been deferred for future consideration.', 'publishpress-statuses'),
+                'default_description' => 'Post has been deferred for future consideration.',
+                'color' => '#9b9b9b',
+                'icon' => 'dashicons-coffee',
+                'position' => $default_disabled_position + 1,
+                'order' => 280,
+                'moderation' => true,
+                'pp_builtin' => true,
+            ],
+
             'committee' => (object) [
                 'default_label' => 'Committee',
                 'label' => __('Committee', 'publishpress-statuses'),
@@ -1069,7 +1069,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_description' => 'Committee is reviewing the post.',
                 'color' => '#ba7925',
                 'icon' => 'dashicons-search',
-                'position' => $default_disabled_position + 2,
+                'position' => $default_disabled_position + 3,
                 'order' => 352,
                 'moderation' => true,
                 'pp_builtin' => true,
@@ -1085,7 +1085,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_description' => 'Committee is editing the post.',
                 'color' => '#A8902B',
                 'icon' => 'dashicons-format-chat',
-                'position' => $default_disabled_position + 3,
+                'position' => $default_disabled_position + 4,
                 'order' => 354,
                 'moderation' => true,
                 'pp_builtin' => true,
@@ -1101,7 +1101,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'default_description' => 'Committee has approved the post.',
                 'color' => '#22a522',
                 'icon' => 'dashicons-editor-break',
-                'position' => $default_disabled_position + 4,
+                'position' => $default_disabled_position + 5,
                 'order' => 358,
                 'moderation' => true,
                 'pp_builtin' => true,
