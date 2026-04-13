@@ -428,9 +428,8 @@ class PP_Statuses_PlannerImport extends PublishPress_Statuses {
 
             $status_positions['_pre-publish-alternate'] = $presspermit_alternate_position;  // intentional mapping of presspermit alternates ahead of Statuses alternates
 
-            $status_positions['deferred'] = $statuses_alternate_position + 1;
-            $status_positions['needs-work'] = $statuses_alternate_position + 2;
-            $status_positions['rejected'] = $statuses_alternate_position + 3;
+            $status_positions['needs-work'] = $statuses_alternate_position + 1;
+            $status_positions['rejected'] = $statuses_alternate_position + 2;
 
             $status_positions['future'] = $default_published_position - 1;
             $status_positions['publish'] = $default_published_position;
@@ -438,10 +437,12 @@ class PP_Statuses_PlannerImport extends PublishPress_Statuses {
 
             $status_positions['_disabled'] = $default_disabled_position; 
 
-            $status_positions['committee'] = $default_disabled_position + 1;
-            $status_positions['committee-review'] = $default_disabled_position + 2;
-            $status_positions['committee-progress'] = $default_disabled_position + 3;
-            $status_positions['committee-approved'] = $default_disabled_position + 4;
+            $status_positions['deferred'] = $default_disabled_position + 1;
+
+            $status_positions['committee'] = $default_disabled_position + 2;
+            $status_positions['committee-review'] = $default_disabled_position + 3;
+            $status_positions['committee-progress'] = $default_disabled_position + 4;
+            $status_positions['committee-approved'] = $default_disabled_position + 5;
 
             asort($status_positions);
         }
