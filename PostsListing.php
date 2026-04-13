@@ -120,7 +120,14 @@ class PostsListing
                     );
                 }
 
+                $in_alternate_statuses = false;
+
                 foreach ($moderation_statuses as $_status => $_status_obj) :
+                    if (!empty($_status_obj->alternate) && !$in_alternate_statuses) :?>
+                        $('select[name="_status"]').append('<option value="" disabled>______________</option>');
+                    <?php 
+                        $in_alternate_statuses = true;
+                    endif;
                 ?>
                     if (!$('select[name="_status"] option[value="<?php echo esc_attr($_status);?>"]').length) {
                         $('select[name="_status"]').append('<?php 
