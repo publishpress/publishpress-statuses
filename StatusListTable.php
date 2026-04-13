@@ -559,6 +559,11 @@ do_action('publishpress_statuses_table_row', $key, []);
         ) {
             $class .= ' section-row';
         }
+
+        // Deferred, Needs Work and Rejected statuses require an Alternate Workflow selection UI
+        if (!empty($options->hide_manual_status_selectors) && in_array($item->name, ['deferred', 'needs-work', 'rejected'])) {
+            $hidden = true;
+        }
     
     	$hidden = apply_filters('publishpress_statuses_table_alternate_row_hidden', $hidden, $item, $status_type);
     	
