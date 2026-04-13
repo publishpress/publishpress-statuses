@@ -85,6 +85,15 @@ class StatusListTable extends \WP_List_Table
             ['context' => 'load']
         );
 
+        foreach (['draft-revision', 'pending-revision', 'future-revision'] as $locked_revision_status) {
+            if (!empty($this->items[$locked_revision_status]->alternate) || !empty($this->items[$locked_revision_status]->revision_alternate) || !empty($this->items[$locked_revision_status]->disabled)) {
+                $this->moveItem($this->items, $locked_revision_status, 'up', '_revision-alternate');
+                $this->items[$locked_revision_status]->alternate = false;
+                $this->items[$locked_revision_status]->revision_alternate = false;
+                $this->items[$locked_revision_status]->disabled = false;
+            }
+        }
+
         $total_items = count($this->items);
 
         foreach($this->items as $status) {
@@ -112,6 +121,33 @@ class StatusListTable extends \WP_List_Table
                 'per_page' => $total_items,
             ]
         );
+    }
+
+    // https://stackoverflow.com/questions/11282592/move-an-element-by-key-before-another-element-by-key-in-the-context-of-an-associ
+    private function moveItem(&$ref_arr, $key1, $move, $key2 = null)
+    {
+        $arr = $ref_arr;
+
+        if($key2 == null) $key2 = $key1;
+
+        if(!isset($arr[$key1]) || !isset($arr[$key2])) return false;
+
+        $i = 0; foreach($arr as &$val) $val = array('sort' => (++$i * 10), 'val' => $val);
+
+        switch($move)
+        {
+            case 'up':     $arr[$key1]['sort'] = $arr[$key2]['sort'] - ($key1 == $key2 ? 15 : 5); break;
+            case 'down':   $arr[$key1]['sort'] = $arr[$key2]['sort'] + ($key1 == $key2 ? 15 : 5); break;
+            default: return false;
+        }
+
+        uasort($arr, function($a, $b) { return $a['sort'] > $b['sort']; });
+
+        foreach($arr as &$val) $val = $val['val'];
+
+        $ref_arr = $arr;
+
+        return true;
     }
 
     /**
