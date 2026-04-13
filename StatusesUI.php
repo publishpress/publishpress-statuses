@@ -274,7 +274,7 @@ class StatusesUI {
 
             add_settings_field(
                 'status_dropdown_show_current_branch_only',
-                __('Sub-Status Selection:', 'publishpress-statuses'),
+                '',
                 [$this, 'settings_status_dropdown_show_current_branch_only_option'],
                 $group_name,
                 $group_name . '_general',
@@ -546,7 +546,11 @@ class StatusesUI {
     public function settings_status_dropdown_show_current_branch_only_option() {
         $module = \PublishPress_Statuses::instance();
 
-        echo '<div class="c-input-group">';
+        $status_dropdown_disabled = $module->options->hide_manual_status_selectors;
+
+        echo '<div class="c-input-group status_dropdown_current_branch_only" ';
+        if ($status_dropdown_disabled) echo 'style="display: none"'; 
+        echo ' >';
 
         echo sprintf(
             '<input type="hidden" name="%s" value="0" />',
@@ -571,6 +575,16 @@ class StatusesUI {
         _e('Sub-statuses may be nested below any top-level status. They function as branches in the Main Workflow or in an Alternate Workflow.', 'publishpress-statuses');
         ?>
         </p>
+
+        <script type="text/javascript">
+        /* <![CDATA[ */
+        jQuery(document).ready(function ($) {
+            $('#hide_manual_status_selectors').on('click', function() {
+                $('div.status_dropdown_current_branch_only').toggle($(this).val());
+            });
+        });
+        /* ]]> */
+        </script>
 
         <?php
         echo '</div>';
