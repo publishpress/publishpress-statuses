@@ -36,6 +36,10 @@ class PostEditGutenberg
             return;
         }
 
+        foreach (array_keys($statuses) as $k) {
+            $statuses[$k]->alternate = !empty($statuses[$k]->alternate) ? 'alternate' : '';
+        }
+
         if (!\PublishPress_Statuses::instance()->workflow_disabled) {
             // Gutenberg Block Editor support for workflow status progression guidance / limitation
             require_once(__DIR__ . '/PostEditGutenbergStatuses.php');
