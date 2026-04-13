@@ -314,6 +314,8 @@ class StatusListTable extends \WP_List_Table
         $class = (!empty($args['class'])) ? $args['class'] : '';
         $label = (!empty($args['label'])) ? $args['label'] : $key;
 
+        $options = \PublishPress_Statuses::instance()->options;
+
         if (($key == '_pre-publish-alternate') && (\PP_Statuses_Functions::empty_REQUEST('status_type') || 'moderation' == \PP_Statuses_Functions::REQUEST_key('status_type'))) :?>
             <li class="ui-sortable-placeholder moderation-status ui-temp-placeholder" style="height: 50px;">
             <div class="row tpl-default">
@@ -336,7 +338,8 @@ class StatusListTable extends \WP_List_Table
         }
 
         $hidden = (in_array($key, ['_pre-publish', '_pre-publish-alternate']) && ('moderation' != $status_type))
-        || (in_array($key, ['_standard-publication', '_visibility-statuses']) && ('visibility' != $status_type));
+        || (in_array($key, ['_standard-publication', '_visibility-statuses']) && ('visibility' != $status_type))
+        || (('_disabled' == $key) && !empty($options->hide_manual_status_selectors));
         ?>
 <li id="status_row_<?php echo esc_attr($key);?>" class="page-row section-row <?php echo esc_attr($class);?>"<?php if ($hidden) echo ' style="display: none;"';?>>
 <div class="row tpl-default">
@@ -364,11 +367,13 @@ if ('_pre-publish' == $key) {
     );
 
 } elseif ('_pre-publish-alternate' == $key) {
-    $this->generateTooltip(
-        esc_html__('Statuses outside the main workflow are manually selectable when editing an unpublished post.', 'publishpress-statuses'),
-        '',
-        'bottom'
-    );
+    if (empty($options->hide_manual_status_selectors)) {
+        $this->generateTooltip(
+            esc_html__('Statuses outside the main workflow are manually selectable when editing an unpublished post.', 'publishpress-statuses'),
+            '',
+            'bottom'
+        );
+    }
 }
 ?>
 <?php endif;?>
@@ -384,8 +389,8 @@ do_action('publishpress_statuses_table_row', $key, []);
         <?php
         switch ($key) {
             case '_pre-publish-alternate':
-                if (\PP_Statuses_Functions::empty_REQUEST('status_type') || 'moderation' == \PP_Statuses_Functions::REQUEST_key('status_type')) :?>
-                <li class="ui-sortable-placeholder alternate-moderation-status ui-temp-placeholder" style="height: 50px;">
+                if ((\PP_Statuses_Functions::empty_REQUEST('status_type') || 'moderation' == \PP_Statuses_Functions::REQUEST_key('status_type'))) :?>
+                <li class="ui-sortable-placeholder <?php if (empty($options->hide_manual_status_selectors)) echo 'alternate-moderation-status'; else echo 'disabled-status';?> ui-temp-placeholder" style="height: 50px;">
                 <div class="row tpl-default">
                     <div class="child-toggle" style="padding-left: 0">
                         <div class="child-toggle-spacer"></div>
@@ -393,7 +398,15 @@ do_action('publishpress_statuses_table_row', $key, []);
     
                     <div class="row-inner">
                         <table class="status-row" style="width:100%"><tbody><tr>
-                        <td colspan="7" style="text-align: center"><?php _e('Drop any status here to make it manually selectable outside the main workflow.', 'publishpress-statuses');?></td>
+                        <td colspan="7" style="text-align: center">
+                        <?php 
+                        if (empty($options->hide_manual_status_selectors)) {
+                            _e('Drop any status here to make it manually selectable outside the main workflow.', 'publishpress-statuses');
+                        } else {
+                            _e('Drop any status here to disable.', 'publishpress-statuses');
+                        }
+                        ?>
+                        </td>
                         </tr></tbody></table>
                     </div>
                 </div>
@@ -403,7 +416,7 @@ do_action('publishpress_statuses_table_row', $key, []);
                 break;
 
             case '_disabled':
-                ?>
+                if (empty($options->hide_manual_status_selectors)) :?>
                 <li class="ui-sortable-placeholder disabled-status ui-temp-placeholder" style="height: 50px;">
                 <div class="row tpl-default">
                     <div class="child-toggle" style="padding-left: 0">
@@ -418,7 +431,8 @@ do_action('publishpress_statuses_table_row', $key, []);
                 </div>
                 </li>
 
-                <?php
+                <?php endif;
+
                 break;
                 
 			default:
@@ -436,6 +450,8 @@ do_action('publishpress_statuses_table_row', $key, []);
 	 */
 	public function single_row( $item ) {
         $last_status_parent = end($this->current_ancestors);
+
+        $options = \PublishPress_Statuses::instance()->options;
 
         if (empty($this->status_children[$item->name]) || ($item->status_parent != $last_status_parent) ) :
             $item_status_parent = (!empty($item->status_parent)) ? $item->status_parent : '';
@@ -474,8 +490,8 @@ do_action('publishpress_statuses_table_row', $key, []);
         } elseif ('_pre-publish-alternate' == $item->name) {
             $this->display_section_row('_pre-publish-alternate', 
             [
-                'label' => __('Alternate Workflows:', 'publishpress-statuses'),
-                'class' => 'alternate-moderation-status'
+                'label' => (empty($options->hide_manual_status_selectors)) ? __('Alternate Workflows:', 'publishpress-statuses') : __('Disabled Statuses (drag to re-enable):', 'publishpress-statuses'),
+                'class' => 'disabled-status'
             ]);
 
             return;
@@ -485,7 +501,7 @@ do_action('publishpress_statuses_table_row', $key, []);
             [
                 'label' => 
                     // translators: %s is the opening and closing <span> tags
-                    __('Disabled Statuses (drag to re-enable):', 'publishpress-statuses'),
+                    (empty($options->hide_manual_status_selectors)) ? __('Disabled Statuses (drag to re-enable):', 'publishpress-statuses') : ' ',
                 'class' => 'disabled-status'
             ]);
 
@@ -507,7 +523,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         $class = '';
 
         if (!empty($item->alternate) && ('future' != $item->name)) {
-            $class = ' alternate-moderation-status';
+            $class = (empty($options->hide_manual_status_selectors)) ? ' alternate-moderation-status' : ' disabled-status';
 
             if ('moderation' != $status_type) {
                 $hidden = true;
