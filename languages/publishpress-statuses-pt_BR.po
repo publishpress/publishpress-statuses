@@ -26,6 +26,15 @@ msgstr ""
 #: includes-pro/LicenseActivationAjax.php:102
 #: includes-pro/LicenseActivationAjax.php:102
 #: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
+#: includes-pro/LicenseActivationAjax.php:102
 #: includes-pro/LicenseActivationAjax.php:116
 msgid "An error occurred. Please, try again or contact the support team."
 msgstr "Ocorreu um erro. Tente novamente ou fale com a equipe de suporte."
