@@ -141,7 +141,7 @@ class StatusListTable extends \WP_List_Table
             default: return false;
         }
 
-        uasort($arr, function($a, $b) { return $a['sort'] > $b['sort']; });
+        uasort($arr, function($a, $b) { return intval($a['sort'] > $b['sort']); });
 
         foreach($arr as &$val) $val = $val['val'];
 
