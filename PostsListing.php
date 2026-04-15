@@ -98,6 +98,8 @@ class PostsListing
             jQuery(document).ready(function ($) {
                 $('select[name="_status"] option[value="pending"]').remove();
 
+                $('select[name="_status"] option[value="future"]').after('<option value="_" disabled>______________</option>');
+
                 <?php
                 $isContentAdministrator = current_user_can('administrator') 
                 || current_user_can('pp_administer_content') 
