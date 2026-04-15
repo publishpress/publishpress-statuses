@@ -144,7 +144,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }, 1, 2
         );
 
-        add_filter('wp_insert_post_data', [$this, 'fltPostDataFilterStatus'], 20, 2);       // dev note: was previously hooked to pre_post_status, priority 20
+        add_filter('pre_post_status', [$this, 'fltPostStatus'], 20);
         add_filter('publishpress_statuses_default_visibility', [$this, 'fltDefaultPrivacy'], 10, 2);
 
         add_action('user_has_cap', [$this, 'fltUserHasCap'], 20, 3);
@@ -154,7 +154,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         add_action('rest_api_init', [$this, 'actRestInit'], 1);
         
         add_filter('pre_post_status', [$this, 'fltApplySelectedPostStatus'], 2);
-        add_filter('wp_insert_post_data', [$this, 'fltPostDataApplyFutureStatus'], 60, 2);
+        add_filter('wp_insert_post_data', [$this, 'fltPostData'], 50, 2);
         add_filter('wp_insert_post_data', [$this, 'fltEnsureValidStatus'], 1000, 2);
 
         add_filter('cme_plugin_capabilities', [$this, 'fltRegisterCapabilities']);
@@ -3337,14 +3337,19 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         return $post_status;
     }
 
-    public function fltPostDataApplyFutureStatus($data, $postarr) {
+    public function fltPostData($data, $postarr) {
         if (empty($postarr['ID'])) {
             return $data;
         }
 
         if (!empty($this->lock_status[$postarr['ID']])) {
             $data['post_status'] = $this->lock_status[$postarr['ID']];
-        }
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        } elseif (!isset($_REQUEST['visibility'])) { // bypass this filter with Classic Editor
+            $post_status = (empty($data['post_status'])) ? '' : $data['post_status'];
+            $data['post_status'] = $this->fltPostStatus($post_status, ['post_id' => $postarr['ID']]);
+        } 
         
         if ('publish' == $data['post_status']) {
             if (!empty($data['post_date_gmt'])) {
@@ -3359,34 +3364,33 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         return apply_filters('publishpress_statuses_insert_post_data', $data, $postarr);
     }
 
-    public function fltPostDataFilterStatus($data, $postarr) {
+    public function fltPostStatus($post_status, $args = []) {
         global $pagenow, $post;
-
-        $post_status = (!empty($data['post_status'])) ? $data['post_status'] : '';
 
         if (in_array($post_status, ['inherit', 'auto-draft', 'trash']) 
         || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || ('async-upload.php' == $pagenow)) {
-            return $data;
+            return $post_status;
         }
 
         $orig_status = $post_status;
 
-        $post_id = (!empty($data['post_id'])) ? $data['post_id'] : 0;
-        $post_type = (!empty($data['post_type'])) ? $data['post_type'] : '';
-
         if ($_post_status = apply_filters('publishpress_statuses_override_post_status', false, $post_status, $args)) { 
             $post_status = $_post_status;
         } else {
-            $post_status = $this->filterStatus($post_status, compact(['post_id', 'post_type']));
+            $post_status = $this->filterStatus($post_status);
         }
 
         if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
-            return $data;
+            return $post_status;
         }
 
-        $post_status = $this->flt_force_visibility($post_status, compact(['post_id', 'post_type']));
+        $post_status = $this->flt_force_visibility($post_status);
 
         if ($orig_status != $post_status) {
+            if (!$post_id = \PublishPress_Statuses::instance()->getCurrentSanitizePostID()) {
+                $post_id = \PP_Statuses_Functions::getPostID();
+            }
+
             if ($post_id) {
                 if (!in_array($post_status, ['draft'])) {
                     $this->filtered_post_status[$post_id] = $post_status;
@@ -3394,11 +3398,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
-        return $data;
+        return $post_status;
     }
 
     // If a public or private status is selected, change it to the specified force_visibility status
-    public static function flt_force_visibility($post_status, $args = [])
+    public static function flt_force_visibility($post_status)
     {
         if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
             return $post_status;
@@ -3416,21 +3420,31 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if (!empty($done)) return $post_status;  // Important: if other plugin code inserts additional posts in response, don't filter those
         $done = true;
 
-        $post_id = (!empty($args['post_id'])) ? $args['post_id'] : 0;
-
-        if (!$post_id || !\PP_Statuses_Functions::empty_POST('post_password')) {
+        if ($post_id = \PP_Statuses_Functions::getPostID()) {
+            $_post = get_post($post_id);
+        } else {
+            $_post = false;
+        }
+        
+        if (!\PP_Statuses_Functions::empty_POST('post_password')) {
             return $post_status;
         }
-
-        $_post = get_post($post_id);
-
+    
+        if (!empty($_post) && !empty($_post->post_type)) {
+            $post_type = $_post->post_type;
+        } else {
+            if (!$post_type = \PP_Statuses_Functions::findPostType()) {
+                return $post_status;
+            }
+        }
+        
         $options = \PublishPress_Statuses::instance()->options;
 
-        if (!empty($_post) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$_post->post_type])) {
+        if (!empty($_post) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) {
             $current_status = get_post_field('post_status', $_post->ID);
             $current_status_obj = get_post_status_object($current_status);
 
-            if (!empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private))
+            if (!empty($current_status_obj) && (!empty($current_status_obj->public) || !empty($current_status_obj->private)) && !empty($_post)
                 && !current_user_can('pp_unpublish_posts')
             ) {
                 $lock_publication = (is_object($options) && !empty($options->lock_publication) && !empty($options->lock_publication)) ? $options->lock_publication : '';
@@ -3445,17 +3459,25 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
 
             if (!empty($status_obj->public) || !empty($status_obj->private) || !empty($lock_publication)) {
-                $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$_post->post_type])) ? $options->default_privacy[$_post->post_type] : 'publish';
+                $default_privacy = (is_object($options) && !empty($options->default_privacy) && !empty($options->default_privacy[$post_type])) ? $options->default_privacy[$post_type] : 'publish';
         
-                if (get_post_status_object($default_privacy)) {
-                        if ( $stored_status = get_post_meta($_post->ID, '_pp_original_status') ) {
-                            $stored_status_obj = get_post_status_object($stored_status);
-                        }
+                if (get_post_status_object($default_privacy)) {    
+                    if ($post_id = \PP_Statuses_Functions::getPostID()) {
+                        $_post = get_post($post_id);
+                    }
+    
+                    if (!empty($_post)) {
+                    if ( $stored_status = get_post_meta($_post->ID, '_pp_original_status') ) {
+                        $stored_status_obj = get_post_status_object($stored_status);
+                    }
+                    }
     
                     if (empty($stored_status_obj) || (empty($stored_status_obj->public) && empty($stored_status_obj->private))) {
                         $post_status = $default_privacy;
     
-                            delete_post_meta($_post->ID, '_pp_original_status');
+                        if (!empty($_post)) {
+                        delete_post_meta($_post->ID, '_pp_original_status');
+                        }
                     }
                 }
 
