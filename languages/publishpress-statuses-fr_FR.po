@@ -17,20 +17,6 @@ msgstr ""
 "X-Generator: Poedit 3.7\n"
 
 #. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
 #: publishpress-statuses.php, fuzzy
 msgid "PublishPress Statuses"
 msgstr "PublishPress Statuses"

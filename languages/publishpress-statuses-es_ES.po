@@ -17,9 +17,6 @@ msgstr ""
 "X-Domain: publishpress-statuses\n"
 
 #. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
-#. Plugin Name of the plugin
 #: publishpress-statuses.php, fuzzy
 msgid "PublishPress Statuses"
 msgstr "PublishPress Statuses"
