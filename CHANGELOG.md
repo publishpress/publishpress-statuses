@@ -1,6 +1,16 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3.0] - 15 Apr 2026
+- Changed : Tabbed view for plugin settings
+- Fixed : Ordering of Pending Review status in Quick Edit dropdown and Post Editor status dropdown did not match Statuses screen
+- Added : Separator between published statuses, workflow statuses and alternate workflow statuses in status dropdowns
+- Added : Option to remove manual status selection UI
+- Changed : Modify some settings captions
+- Fixed : Statuses admin screen - main workflow section header displays below its statuses in some cases
+- Added : Lang - Several new translations
+- Fixed : Lang - several strings were not translated
+
 ## [1.2.4] - 19 Feb 2026
 - Fixed : Status > Post Access UI was missing under some configurations
 - Fixed : Statuses > Settings > Quick Edit could not be updated
