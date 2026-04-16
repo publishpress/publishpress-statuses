@@ -26,24 +26,10 @@ class StatusEditUI
         	\PublishPress_Statuses::getLink($url_args),
         	$status
         );
-        ?>
-        <div class='pp-edit-status-back'>
-            <a href="<?php echo esc_url($url); ?>"><?php esc_html_e('Back to Statuses', 'publishpress-statuses'); ?></a>
-        </div>
-        <?php
 
-        $edit_status_link = \PublishPress_Statuses::getLink(['action' => 'edit-status', 'name' => $name]);
-
-        $status->icon = str_replace('dashicons|', '', $status->icon);
-
-        echo "<ul class='nav-tab-wrapper' style='margin-bottom:-0.1em'>";
-
-        $class_selected = "nav-tab nav-tab-active";
-        $class_unselected = "nav-tab";
+        $editable_taxonomies = apply_filters('publishpress_statuses_editable_taxonomies', ['post_status']);
 
         $tabs = ['name' => \PublishPress_Statuses::__wp('Name')];
-
-		$editable_taxonomies = apply_filters('publishpress_statuses_editable_taxonomies', ['post_status']);
 
         if (empty($status->publish) && !in_array($name, ['draft', 'future', 'publish', 'private'])) {
             if (empty($status->private)) {
@@ -78,6 +64,26 @@ class StatusEditUI
                 $tabs['roles'] = __('Roles', 'publishpress-statuses');
             }
         }
+        ?>
+        <div class='pp-edit-status-back'>
+            <?php if (!empty($tabs['labels']) && ('edit-status' == $action)) :
+                $labels_url = admin_url("admin.php?action=edit-status-labels&name={$status->name}&page=publishpress-statuses");
+            ?>
+                <a href="<?php echo esc_url($labels_url); ?>"><?php esc_html_e('Edit Status Labels', 'publishpress-statuses'); ?></a> &nbsp;&bull;&nbsp; 
+            <?php endif;?>
+
+            <a href="<?php echo esc_url($url); ?>"><?php esc_html_e('Back to Statuses', 'publishpress-statuses'); ?></a>
+        </div>
+        <?php
+
+        $edit_status_link = \PublishPress_Statuses::getLink(['action' => 'edit-status', 'name' => $name]);
+
+        $status->icon = str_replace('dashicons|', '', $status->icon);
+
+        echo "<ul class='nav-tab-wrapper' style='margin-bottom:-0.1em'>";
+
+        $class_selected = "nav-tab nav-tab-active";
+        $class_unselected = "nav-tab";
 
         if ((!defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION'))
         || (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && class_exists('PublishPress\StatusCapabilities') && !\PublishPress\StatusCapabilities::customStatusPostMetaPermissions('', $status)))
@@ -88,7 +94,6 @@ class StatusEditUI
         endif;
 
         if ('edit-status' == $action) {
-            unset($tabs['labels']);
             $tabs = apply_filters('publishpress_statuses_edit_status_tabs', $tabs, $status->name);
 
             $pp_tab = (!\PP_Statuses_Functions::empty_REQUEST('pp_tab')) ? \PP_Statuses_Functions::REQUEST_key('pp_tab') : 'name';
@@ -106,6 +111,8 @@ class StatusEditUI
 
         if (count($tabs) > 1) {
             foreach ($tabs as $tab => $caption) {
+                if ('labels' == $tab) continue;
+
                 $class = ($default_tab == $tab) ? $class_selected : $class_unselected;  // todo: return to last tab
 
                 echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
@@ -239,6 +246,8 @@ class StatusEditUI
 
         $display = ($default_tab == 'name') ? '' : 'display:none';
 
+        $label_locked = false;
+
         if (!empty($status_obj)) {
             $label_storage = \PublishPress_Statuses::instance()->options->label_storage;
 
@@ -263,6 +272,10 @@ class StatusEditUI
         ?>
         <div id="pp-name" class="pp-options">
         <table class="form-table" style="<?php echo esc_attr($display);?>">
+            <?php if (!empty($_REQUEST['page']) && ('publishpress-statuses-add-new' == $_REQUEST['page'])) :
+                self::labelsUI($status_obj, compact('label_locked'));
+            endif;?>
+
             <tr class="form-field">
                 <th scope="row" valign="top"><?php
                     \PublishPress_Statuses::_e_wp('Slug', 'publishpress-statuses'); ?></th>
@@ -343,7 +356,7 @@ class StatusEditUI
         $status_obj = $status;
         $status_types = (!empty($status_obj) && !empty($status_obj->post_type)) ? $status_obj->post_type : [];
 
-        $label_disabled = ('future' == $status) ? ' disabled ' : '';
+        $label_locked = ('future' == $status) ? ' disabled ' : '';
 
         $display = 'margin:0';
 
@@ -480,69 +493,7 @@ class StatusEditUI
                 break;
 
             case 'labels' :
-                ?>
-                <tr class="form-field form-required">
-                    <th scope="row" valign="top"><label for="label"><?php
-                            _e(
-                                'Status Label',  
-                                'publishpress-statuses'
-                            ); ?></label></th>
-                    <td><input name="status_label" id="label"
-                                type="text" <?php
-
-                        if (!empty($status_obj) && !empty($label_locked)) : echo 'disabled="disabled"';
-                        endif; ?> value="<?php
-                        echo esc_attr($status_obj->label); ?>" size="40" aria-required="true"/>
-                        <?php
-                        \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
-                            'label',
-                            __(
-                                'The name is used to identify the status. (Max: 20 characters)',
-                                'publishpress-statuses'
-                            )
-                        ); ?>
-                    </td>
-                </tr>
-
-                <tr class="form-field">
-                    <th scope="row" valign="top"><label for="description"><?php
-                            _e(
-                                'Description',
-                                'publishpress-statuses'
-                            ); ?></label></th>
-                    <td>
-                    <textarea name="description" id="description" rows="5"
-                                cols="50" style="width: 97%;"><?php
-                        
-                        echo esc_textarea($status_obj->description); ?></textarea>
-                        <?php
-                        \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
-                            'description',
-                            __(
-                                'The description is primarily for administrative use, to give you some context on what the custom status is to be used for.',
-                                'publishpress-statuses'
-                            )
-                        ); ?>
-                    </td>
-                </tr>
-
-                <?php if ('future' != $status) :
-                    $save_as_label = (!empty($status_obj) && !empty($status_obj->labels->save_as)) ? $status_obj->labels->save_as : '';
-                    ?>
-                    <tr class="form-field">
-                        <th><label for="status_save_as_label"><?php esc_html_e('Save As Label', 'publishpress-statuses') ?></label></th>
-                        <td><input type="text" name="status_save_as_label" id="status_save_as_label" autocomplete="off"
-                                value="<?php echo esc_attr(stripslashes($save_as_label)); ?>" class="regular-text"  /></td>
-                    </tr>
-                    <?php
-                    $button_label = (!empty($status_obj) && !empty($status_obj->labels->publish)) ? $status_obj->labels->publish : '';
-                    ?>
-                    <tr class="form-field">
-                        <th><label for="status_publish_label"><?php esc_html_e('Submit Button Label', 'publishpress-statuses') ?></label></th>
-                        <td><input type="text" name="status_publish_label" id="status_publish_label" autocomplete="off"
-                                value="<?php echo esc_attr(stripslashes($button_label)); ?>" class="regular-text"  /></td>
-                    </tr>
-                <?php endif;
+                self::labelsUI($status_obj, compact('label_locked'));
                 break;
 
             case 'post_access' :
@@ -607,4 +558,69 @@ class StatusEditUI
         echo '</table></div>';
     }
 
+    private static function labelsUI($status_obj, $args = []) {
+        ?>
+        <tr class="form-field form-required">
+            <th scope="row" valign="top"><label for="label"><?php
+                    _e(
+                        'Status Label',  
+                        'publishpress-statuses'
+                    ); ?></label></th>
+            <td><input name="status_label" id="label"
+                        type="text" <?php
+
+                if (!empty($status_obj) && !empty($args['label_locked'])) : echo 'disabled="disabled"';
+                endif; ?> value="<?php
+                echo esc_attr(!empty($status_obj) ? $status_obj->label : ''); ?>" size="40" aria-required="true"/>
+                <?php
+                \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
+                    'label',
+                    __(
+                        'The name is used to identify the status. (Max: 20 characters)',
+                        'publishpress-statuses'
+                    )
+                ); ?>
+            </td>
+        </tr>
+
+        <tr class="form-field">
+            <th scope="row" valign="top"><label for="description"><?php
+                    _e(
+                        'Description',
+                        'publishpress-statuses'
+                    ); ?></label></th>
+            <td>
+            <textarea name="description" id="description" rows="5"
+                        cols="50" style="width: 97%;"><?php
+                
+                echo esc_textarea(!empty($status_obj) ? $status_obj->description : ''); ?></textarea>
+                <?php
+                \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
+                    'description',
+                    __(
+                        'The description is primarily for administrative use, to give you some context on what the custom status is to be used for.',
+                        'publishpress-statuses'
+                    )
+                ); ?>
+            </td>
+        </tr>
+
+        <?php if (!empty($status_obj) && ('future' != $status_obj->name)) :
+            $save_as_label = (!empty($status_obj) && !empty($status_obj->labels->save_as)) ? $status_obj->labels->save_as : '';
+            ?>
+            <tr class="form-field">
+                <th><label for="status_save_as_label"><?php esc_html_e('Save As Label', 'publishpress-statuses') ?></label></th>
+                <td><input type="text" name="status_save_as_label" id="status_save_as_label" autocomplete="off"
+                        value="<?php echo esc_attr(stripslashes($save_as_label)); ?>" class="regular-text"  /></td>
+            </tr>
+            <?php
+            $button_label = (!empty($status_obj) && !empty($status_obj->labels->publish)) ? $status_obj->labels->publish : '';
+            ?>
+            <tr class="form-field">
+                <th><label for="status_publish_label"><?php esc_html_e('Submit Button Label', 'publishpress-statuses') ?></label></th>
+                <td><input type="text" name="status_publish_label" id="status_publish_label" autocomplete="off"
+                        value="<?php echo esc_attr(stripslashes($button_label)); ?>" class="regular-text"  /></td>
+            </tr>
+        <?php endif;
+    }
 }
