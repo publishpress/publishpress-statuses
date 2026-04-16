@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.3.0] - 15 Apr 2026
+[1.3.0] - 15 Apr 2026
 - Changed : Tabbed view for plugin settings
 - Fixed : Ordering of Pending Review status in Quick Edit dropdown and Post Editor status dropdown did not match Statuses screen
 - Added : Separator between published statuses, workflow statuses and alternate workflow statuses in status dropdowns
@@ -11,25 +11,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added : Lang - Several new translations
 - Fixed : Lang - several strings were not translated
 
-## [1.2.4] - 19 Feb 2026
+[1.2.4] - 19 Feb 2026
 - Fixed : Status > Post Access UI was missing under some configurations
 - Fixed : Statuses > Settings > Quick Edit could not be updated
 - Fixed : Rating link in plugin screen footer was broken
 - Fixed : PHP Code Sniffer compliance
 - Changed : Lang - Update ES, FR, IT
 
-## [1.2.3] - 13 Feb 2026
+[1.2.3] - 13 Feb 2026
 - Fixed : Classic Editor - Auto Drafts were auto-published under some configurations
 - Fixed : Planner Calendar - Add Post modal did not offer custom post statuses. Implemented plugin setting for sites that need them disabled.
 
-## [1.2.2] - 12 Feb 2026
+[1.2.2] - 12 Feb 2026
 - Fixed : Avoid error when Pro, free plugins activated together
 
-## [1.2.1] - 10 Feb 2026
+[1.2.1] - 10 Feb 2026
 - Lang: ES, FR, IT, PT-BR
 - Change : Background color of Pro promo on Visbility Statuses tab
 
-## [1.2.0] - 3 Feb 2026
+[1.2.0] - 3 Feb 2026
 - Added : Default Visibility for new posts (configure per-type)
 - Added : Lock Visibility of published posts (configure per-type)
 - Added : Lock publication status for non-Administrators, published posts from being unpublished
@@ -39,54 +39,54 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Javascript error in block editor on some installations
 - Changed : Update Reviews library
 
-## [1.1.14] - 19 Nov 2025
+[1.1.14] - 19 Nov 2025
 - Fixed : Status workflow did not offer to advance to next status under some configurations
 - Fixed : Javascript errors for ReferenceError in Post Editor 
 
-## [1.1.13] - 4 Nov 2025
+[1.1.13] - 4 Nov 2025
 - Fixed : Add Status screen could not be loaded
 
-## [1.1.12] - 4 Nov 2025
+[1.1.12] - 4 Nov 2025
 - Fixed : Status disable was not applied, all statuses were available in alternate workflow
 - Fixed : Blank Post Access tab was displayed when editing Draft status
 - Changed : Remove Statuses > Add New submenu item
 - Changed : Clarify Delete captions in Statuses table
 - Changed : Lang - Update ES, FR, IT
 
-## [1.1.11] - 3 Nov 2025
+[1.1.11] - 3 Nov 2025
 - Fixed : Status disable was not applied, all statuses were available in alternate workflow
 - Changed : Improve background color contrast on Status Edit > Post Access
 
-## [1.1.10] - 30 Oct 2025
+[1.1.10] - 30 Oct 2025
 - Fixed : Status Edit - Capability Requirements dropdown not shown on Post Access tab if Custom Capabilities not already enabled and Permissions Pro is active
 - Fixed : Pro - Default Revision Statuses were not ordered / classified correctly on Statuses screen if their order was not previously updated
 - Fixed : Pro - Revision Status ordering could become invalid in previous versions, breaking some Revisions functionality
 
-## [1.1.9] - 15 Oct 2025
+[1.1.9] - 15 Oct 2025
 - Fixed : Publication workflow reverts post to draft
 
-## [1.1.8] - 14 Oct 2025
+[1.1.8] - 14 Oct 2025
 - Fixed : Status Edit - Name tab shows others tab's fields
 - Fixed : Status Edit - Name tab contents not redisplayed on return from other tab
 - Fixed : Status Edit - Capability Requirements dropdown on Post Access tab only shown if Custom Capabilities already enabled
 - Fixed : Invalid status order / disabling under some conditions
 - Fixed : PHP Warning for undefined status name property
 
-## [1.1.7] - 2 Oct 2025
+[1.1.7] - 2 Oct 2025
 - Fixed : Plugin-defined statuses could not be disabled
 - Fixed : Typo in Visibility Statuses promo
 
-## [1.1.6] - 9 Sep 2025
+[1.1.6] - 9 Sep 2025
 - Added : Plugin setting to disable Workflow Guidance
 - Fixed : Disabled statuses were not listed correctly
 - Fixed : Save Draft button was hidden after switching post editor from another status to Draft
 - Changed : Status capability descriptions
 - Changed : Lang - Update ES, FR, IT translations
 
-## [1.1.5] - 31 Jul 2025
+[1.1.5] - 31 Jul 2025
 - Changed : Add contextual promo for Revision Statuses (Pro)
 
-## [1.1.4] - 17 June 2025
+[1.1.4] - 17 June 2025
 - Fixed : Customization of Pending Review properties were not applied #301
 - Fixed : Javascript error in post editor on some sites #309
 - Fixed : Status dropdown in Post Editor is empty under some conditions #308
@@ -96,56 +96,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Changed : Visual indicator for core Visibility statuses #114
 - Changed : Tool tips for Statuses table section headings (Main Workflow, Alternate Workflows) #129
 
-## [1.1.3] - 15 May 2025
+[1.1.3] - 15 May 2025
 - Fixed : Setting Status to Published causes Publish button to be hidden
 - Fixed : Edit Status - Post Access tab not displayed under some conditions
 - Fixed : Post Editor - Javascript errors on some sites
 - Fixed : Error on status retrieval if a status was stored to the wrong taxonomy
 - Changed : Show capability descriptions on Statuses capabilities tab in PublishPress Capabilities plugin
 
-## [1.1.2] - 5 Mar 2025
+[1.1.2] - 5 Mar 2025
 - Fixed : Posts could not be scheduled (instead being published immediately)
 - Fixed : Post Editor - Redundant post status update on status dropdown selection, post save
 - Changed : Statuses Pro promotional headers, sidebar and/or links on plugin screens, admin menu
 
-## [1.1.0] - unreleased =
+[1.1.0] - unreleased =
 - Plugin API to support Statuses Pro
 
-## [1.0.9] - 13 Nov 2024
+[1.0.9] - 13 Nov 2024
 - Fixed: Compat - WP 6.7 - On translated sites, error loading textdomain too early
 
-## [1.0.8] - 13 Nov 2024
+[1.0.8] - 13 Nov 2024
 - Fixed: Compat - WP 6.7 - Some display issues with post editor integration
 
-## [1.0.7] - 16 Sep 2024
+[1.0.7] - 16 Sep 2024
 - Fixed: Compat - WP 6.6 - Gutenberg UI integration was partially broken
 - Fixed : Publication Workflow caption showed new post defaulting to Scheduled, not Published
 - Fixed : On translated sites, post permalink was forced to plain format
 - Fixed : Pending Review status label could not be customized by Edit Status screen
 - Fixed : Classic Editor - PHP Warning for undefined array index "moderation"
 
-## [1.0.6.9] - 18 Jun 2024
+[1.0.6.9] - 18 Jun 2024
 - Fixed : Could not create new Statuses with Multibyte label
 - Fixed : Status backup / restore / default operation was not applied to core statuses (Draft, Pending)
 - Fixed : Status default operation did not restore default Planner colors and icons under some conditions
 - Fixed: Compat - Planner - If one or more post types have Statuses integration disabled, customized status colors are not applied to paged results on Planner Content Calendar
 - Fixed: Compat - Disable Gutenberg - Classic Editor mode was not detected under some configurations
 
-## [1.0.6.8] - 5 Apr 2024
+[1.0.6.8] - 5 Apr 2024
 - Fixed: Compat - WP 6.5 - Workflow labels in post editor sidebar were mis-aligned
 - Fixed : Fatal error in PHP 8.2 if another plugin sets $plugin_page to array
 - Changed : Lang - Brazilian Portuguese translation
 
-## [1.0.6.7] - 7 Feb 2024
+[1.0.6.7] - 7 Feb 2024
 - Fixed: Compat - The Events Calendar, other plugins - Avoid js errors due to scripts being loaded before jQuery
 
-## [1.0.6.6] - 31 Jan 2024
+[1.0.6.6] - 31 Jan 2024
 - Fixed: Compat - Advanced Custom Fields - Selected / Current / Next Workflow selection was not applied if a required ACF field is in the editor
 - Fixed: Compat - The Events Calendar, other plugins - Avoid js errors due to scripts being loaded before jQuery
 - Fixed: Compat - ShortPixel Critical CSS - Conflict with post_status taxonomy causes status value to be cleared in post editor
 - Fixed: Compat - Custom Fields plugins - Stop disabling Publish button on click, in case custom field plugin doesn't re-enable it after required entries
 
-## [1.0.6.5] - 30 Jan 2024
+[1.0.6.5] - 30 Jan 2024
 - Fixed : Gutenberg publish button and workflow status captions were not changed from "Publish" to "Schedule" if a future date is selected
 - Fixed : For authors with limited status permissions, Gutenberg Post Status dropdown intially included unavailable statuses, then refreshed to correct statuses
 - Fixed : Unintended progression to next / max status could be applied under some conditions
@@ -154,36 +154,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed: Compat - The Events Calendar + The Events Calendar Pro - Extensive javascript errors in Post Editor
 - Fixed: Compat - Permissions Pro - Pending status was restricted by capability check even if Statuses > Settings configured to make Pending status available to all users
 
-## [1.0.6.4] - 24 Jan 2024
+[1.0.6.4] - 24 Jan 2024
 - Fixed: Compat - PublishPress Checklists - Blockage / Warning messages for content requirements were not displayed on Pre-Publish panel
 - Fixed : Some status filtering was still applied even if plugin is disabled for the post type
 - Changed : Lang - Updated translations
 
-## [1.0.6.3] - 22 Jan 2024
+[1.0.6.3] - 22 Jan 2024
 - Changed : Edit Status, Add Status screens - Distinct html titles for browser tab navigation
 - Changed : Swap the position of Post Types, Roles tabs on Edit Status screen
 - Changed : Visibility Statuses - Acknowledge installation of updated Status Capabilities library (in Capabilities Pro or Permissions Pro) by labeling Custom Visibility Capabilities as "Custom" or "Custom Read"
 - Changed : Edit Status - Don't toggle selection of type-specific Set capabilities when basic set capability is selected. It is a separate capability, not a toggle button.
 - Fixed : Blank error message displayed on attempt to edit a status that is not defined.
 
-## [1.0.6.2] - 18 Jan 2024
+[1.0.6.2] - 18 Jan 2024
 - Added : When completing an alternate workflow, offer to step back to last previously saved main workflow status
 - Fixed : Non-Administrators could not view private pages authored by other users
 - Fixed : Classic Editor - Canceling out of Status selection caused selection to default back to Draft
 - Fixed : Classic Editor - Canceling out of Visibility selection caused wrong Publish button caption under some configurations
 - Fixed : PHP Warning on Planner Import
 
-## [1.0.6.1] - Unreleased =
+[1.0.6.1] - Unreleased =
 - Fixed: Compat - Permissions Pro - Status-specific editing access was not applied under some configurations
 - Fixed : PHP Warning on user edit
 
-## [1.0.6] - 17 Jan 2024
+[1.0.6] - 17 Jan 2024
 - Fixed : Post permalink for new posts defaulted to plain format regardless of permalink settings
 - Fixed : Author could not change permalink
 - Fixed : Default statuses did not show post count on Posts / Pages screen
 - Fixed : PHP Warning on Edit Status screen
            
-## [1.0.5] - 16 Jan 2024
+[1.0.5] - 16 Jan 2024
 - Changed : Lang - Some Publish and Save As button labels were not translated if saved (in Statuses > Edit Status) with default values
 - Fixed : Gutenberg editor - Using Post Status dropdown to select Pending status, followed by "Selected status" Workflow selection, caused post to be saved with an invalid status value, making it inaccessible
 - Fixed : Restore Pending Review posts previously made inaccessible by Gutenberg UI integration glitch
@@ -207,7 +207,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Changed : Hide "Sub-status selection" option if Workflow Guidance is not set to "Sequence by default"
 - Changed : On new status creation, give status assignment capability to all roles that can edit Posts or Pages (not just standard roles)
 
-## [1.0.4.1] - 11 Jan 2024
+[1.0.4.1] - 11 Jan 2024
 - Fixed : Status assignment capabilities for plugin-defined statuses were not granted to Editor, Author, Contributor by default
 - Changed : Don't enforce capability requirements for Pending Review status assignment by default, but introduce a plugin setting to do so
 - Fixed : Using Post Status dropdown in Gutenberg editor to select the Pending status caused post to be saved with an invalid status value, making it inaccessible
@@ -217,7 +217,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Labels tab not displayed on Edit Status screen for plugin-defined statuses if Label Storage mode set to "All plugin statuses"
 - Fixed : PHP warnings on plugin install, status update
 
-## [1.0.4] - 10 Jan 2024
+[1.0.4] - 10 Jan 2024
 - Fixed : Lang - Native WordPress status captions and editor button captions were not translated correctly
 - Fixed : Lang - Statuses imported from Planner did not have translations applied
 - Added : Lang - Option to apply stored labels for user-defined statuses only
@@ -229,27 +229,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed: Compat - Permissions Pro - Duplicate Visibility div in Classic Editor if Status Control enabled but Visibility Statuses disabled
 - Fixed: Compat - Permissions Pro - Current Visibility Status not displayed on load in Classic Editor
 
-## [1.0.3.5] - 8 Jan 2024
+[1.0.3.5] - 8 Jan 2024
 - Fixed: Compat - Yoast Duplicate Post - Rewrite & Republish function failed if PP Statuses is active
 - Fixed: Compat - General precaution to prevent inappropriate modification of post status
 - Fixed : Classic Editor - When editing an unpublished post, Published option was displayed in Post Status dropdown for users who can publish
 
-## [1.0.3.4] - 8 Jan 2024
+[1.0.3.4] - 8 Jan 2024
 - Fixed : If one of the default statuses was already user-defined in Planner, the import script changed its position
 
-## [1.0.3.3] - Unreleased =
+[1.0.3.3] - Unreleased =
 - Fixed : Colors were not displayed on Statuses management screen
 - Changed : Include default alternate workflow statuses: Deferred, Needs Work, Rejected
 - Changed : Include a sample alternate workflow (disabled by default): Committee, Committee Review, Committee Progress, Committee Approved
 - Changed : Recaption section titles on Statuses screen
 
-## [1.0.3.2] - Unreleased =
+[1.0.3.2] - Unreleased =
 - Changed : PublishPress Planner import put some statuses into wrong section
 
-## [1.0.3.1] - Unreleased =
+[1.0.3.1] - Unreleased =
 - Changed : PublishPress Planner import will execute again if Planner is re-activated and statuses added or modified
 
-## [1.0.3] - Unreleased =
+[1.0.3] - Unreleased =
 - Fixed : PublishPress Planner status properties (color, icon, position, description) were not imported
 - Fixed: Compat - Pods - Could not enable Pods-defined custom post types for custom statuses
 - Fixed : Classic Editor - Custom statuses were not available if Classic mode is triggered in a non-standard way
@@ -269,11 +269,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed: Compat - PublishPress Permissions Pro - Status Edit screen did not update Set Status capability assignment correctly under some conditions
 - Changed : Lang - A few string had wrong text domain
 
-## [1.0.2.4] - 4 Jan 2024
+[1.0.2.4] - 4 Jan 2024
 - Initial public release
 - Changed : Don't allow pre-publish checks to be disabled (unless forced by constant)
 
-## [1.0.2.2] - 20 Dec 2023
+[1.0.2.2] - 20 Dec 2023
 - GitHub release
 - Changed : In Workflow (Pre-Publish) panel, display selectable radio option for next status even if not defaulting to it
 - Changed : Force usage of Pre-Publish panel (unless disabled by constant)
@@ -283,7 +283,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Classic Editor - Explicit selection of Published status was ignored if using Default to Next Status mode
 - Fixed : Classic Editor - Numerous captioning and display toggle issues in post publish metabox
 
-## [1.0.2.1] - 19 Dec 2023
+[1.0.2.1] - 19 Dec 2023
 - GitHub release
 - Fixed : Non-Administrator login caused Auto Draft publication
 - Fixed : Pending status draggable to Disabled even though disabling is prevented
@@ -293,7 +293,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Permissions Pro - Visibility Status button, form displayed without required Permissions Pro module
 - Fixed : Permissions Pro - Disabled Visibility Statuses still available
 
-## [1.0.2] - 13 Dec 2023
+[1.0.2] - 13 Dec 2023
 - GitHub release
 - Fixed : Redirect back to Planner Calendar settings after editing a status
 - Fixed : Statuses Admin UI - Minor styling fix for tabs
@@ -301,11 +301,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Change (Pro) : Visibility Statuses - allow selection of Post Types in Edit Status screen
 - Fixed: Compat - Permissions / Capabilities - Avoid redundant execution of status capabilities update handler
 
-## [1.0.1] - 17 Oct 2023
+[1.0.1] - 17 Oct 2023
 - GitHub release
 - Fixed : If running without Permissions Pro, users who cannot set a status were not blocked from editing or deleting posts of that status
 - Fixed : Capabilities Pro integration - Typo in PublishPress Statuses tab caption
 - Code : Improved scan results
 
-## [1.0.0] - 10 Oct 2023
+[1.0.0] - 10 Oct 2023
 - Initial wordpress.org submission
