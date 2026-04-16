@@ -17,52 +17,23 @@
         },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "publishpress/dev-workspace": true,
+            "php-http/discovery": true
         }
     },
     "prefer-stable": true,
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=7.2.5",
         "ext-json": "*"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-        "phpcompatibility/php-compatibility": "^9.3",
-        "wp-coding-standards/wpcs": "^2.3",
-        "squizlabs/php_codesniffer": "^3.5",
-        "overtrue/phplint": "^2.1",
-        "wp-cli/i18n-command": "^2.2",
-        "friendsofphp/php-cs-fixer": "^3.4",
-        "automattic/vipwpcs": "^2.3",
-        "publishpress/publishpress-phpcs-standards": "dev-main",
-        "szepeviktor/phpstan-wordpress": "^1.1",
-        "phpstan/extension-installer": "^1.2"
+        "publishpress/dev-workspace": "dev-testing-translations"
     },
     "scripts": {
-        "build": "build zip",
-        "build:dir": "build dir",
-        "build:clean": "build clean",
-        "info:versions": "bash ./dev-workspace/scripts/dependency-versions.sh",
-        "gen:mo": "wp i18n make-mo ./languages ./languages --allow-root",
-        "gen:pot": "wp i18n make-pot . languages/publishpress-statuses.pot --domain=publishpress-statuses --exclude=dev-workspace,.wordpress-org,.github,dist,tests,lib,language,vendor --allow-root",
-        "check:longpath": "longpath .",
         "check:lint": "phplint",
         "check:phpcs": "phpcs",
-        "check:php": [
-            "@check:php56",
-            "@check:php72",
-            "@check:php74",
-            "@check:php80",
-            "@check:php81",
-            "@check:php82"
-        ],
-        "check:php56": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 5.6 ./publishpress-statuses.php",
-        "check:php72": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 7.2",
-        "check:php74": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 7.4",
-        "check:php80": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.0",
-        "check:php81": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.1",
-        "check:php82": "phpcs --standard=.phpcs-php-compatibility.xml --runtime-set testVersion 8.2",
         "-pre-autoload-dump": "composer dumpautoload --working-dir=./lib",
         "-pre-update-cmd": "composer update --working-dir=./lib",
         "-pre-install-cmd": "composer install --working-dir=./lib",
@@ -71,6 +42,10 @@
     "extra": {
         "plugin-slug": "publishpress-statuses",
         "plugin-name": "publishpress-statuses",
-        "plugin-folder": "publishpress-statuses"
+        "plugin-folder": "publishpress-statuses",
+        "version-constant": "PUBLISHPRESS_STATUSES_VERSION",
+        "plugin-lang-domain": "publishpress-statuses",
+        "plugin-github-repo": "publishpress/publishpress-statuses",
+        "plugin-composer-package": "publishpress/publishpress-statuses"
     }
 }

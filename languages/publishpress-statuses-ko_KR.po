@@ -1,0 +1,1316 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Statuses Free 1.3.0-rc\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
+"PO-Revision-Date: 2026-04-15 15:25+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: publishpress-statuses\n"
+"Language: ko_KR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: publishpress-statuses.php:3
+#. Plugin Name of the plugin
+msgid "PublishPress Statuses Free"
+msgstr "퍼블리시프레스 스테이터스 무료"
+
+#: publishpress-statuses.php:4, fuzzy
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/statuses"
+msgstr "https://publishpress.com/statuses"
+
+#: publishpress-statuses.php:5
+#. Description of the plugin
+msgid "Manage and create post statuses to customize your editorial workflow"
+msgstr "편집 워크플로를 사용자화하기 위해 게시물 상태를 관리하고 생성합니다"
+
+#: publishpress-statuses.php:7
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "퍼블리시프레스"
+
+#: publishpress-statuses.php:8, fuzzy
+#. Author URI of the plugin
+msgid "https://publishpress.com/"
+msgstr "https://publishpress.com/"
+
+#: Admin.php:18
+#: Admin.php:430
+#: Admin.php:431
+#: PublishPress_Statuses.php:393
+#: PublishPress_Statuses.php:394
+#: StatusesUI.php:92
+msgid "Statuses"
+msgstr "상태"
+
+#: Admin.php:19
+msgid "Settings"
+msgstr "설정"
+
+#: Admin.php:22
+#: includes-core/CoreAdmin.php:40
+#: includes-core/CoreAdmin.php:41
+#: includes-core/CoreAdmin.php:117
+#: includes-core/PromoBanner.php:225
+#: StatusListTable.php:224
+#: StatusListTable.php:250
+msgid "Upgrade to Pro"
+msgstr "프로로 업그레이드"
+
+#: Admin.php:369
+msgid ""
+"Are you sure you want to delete the post status? All posts with this status "
+"will be assigned to the default status."
+msgstr "정말로 게시물 상태를 삭제하시겠습니까? 이 상태의 모든 게시물은 기본 상태로 지정됩니다."
+
+#: Admin.php:441
+#: Admin.php:442
+#: StatusesUI.php:1154
+msgid "Add New"
+msgstr "새로 추가"
+
+#: Admin.php:528
+#: PublishPress_Statuses.php:858
+msgid "Approve"
+msgstr "승인"
+
+#: Admin.php:530
+#: PublishPress_Statuses.php:828
+msgid "Assign"
+msgstr "할당"
+
+#: Admin.php:532
+#: PublishPress_Statuses.php:843
+msgid "Mark In Progress"
+msgstr "진행 중으로 표시"
+
+#: Admin.php:545
+#. translators: %s is the status label
+#, php-format
+msgid "Set to %s"
+msgstr "%s로 설정"
+
+#: Admin.php:554
+#: PostEditGutenberg.php:81
+#: PostEditGutenberg.php:101
+#. translators: %s is the status label
+#, php-format
+msgid "Save as %s"
+msgstr "%s로 저장"
+
+#: Admin.php:566
+#. translators: %s is the name of a custom public status
+#, php-format
+msgid "Public (%s)"
+msgstr "공용 (%s)"
+
+#: Admin.php:637
+#: PostEditClassic.php:179
+#: PostEditGutenberg.php:78
+#: PostEditGutenberg.php:286
+#: PostEditGutenbergStatuses.php:49
+#: PostEditGutenbergStatuses.php:69
+#: PostEditGutenbergStatuses.php:77
+msgid "Advance Status"
+msgstr "상태 진행"
+
+#: includes-core/CoreAdmin.php:19
+#, php-format
+msgid ""
+"You're using PublishPress Statuses Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr "현재 퍼블리시프레스 스테이터스 무료를 사용하고 있습니다. 프로 버전은 더 많은 기능과 지원을 제공합니다. %s프로로 업그레이드%s"
+
+#: includes-core/CoreAdmin.php:100
+msgid "Upgrade to Statuses Pro"
+msgstr "상태 프로로 업그레이드"
+
+#: includes-core/CoreAdmin.php:105
+msgid "Upgrade to PublishPress Statuses Pro for additional benefits:"
+msgstr "추가 혜택을 위해 퍼블리시프레스 스테이터스 프로로 업그레이드:"
+
+#: includes-core/CoreAdmin.php:108
+msgid "Define revision statuses"
+msgstr "수정 상태 정의"
+
+#: includes-core/CoreAdmin.php:109
+msgid "Control revision status selection"
+msgstr "수정 상태 선택 제어"
+
+#: includes-core/CoreAdmin.php:110
+msgid "Customize revision workflow sequence"
+msgstr "수정 워크플로우 순서 사용자 정의"
+
+#: includes-core/CoreAdmin.php:111
+msgid "Custom notifications, with PublishPress Planner"
+msgstr "PublishPress Planner와 함께하는 사용자 정의 알림"
+
+#: includes-core/CoreAdmin.php:112
+msgid "No ads inside the plugin"
+msgstr "플러그인 내 광고 없음"
+
+#: includes-core/CoreAdmin.php:113
+msgid "Prompt, professional support"
+msgstr "신속하고 전문적인 지원"
+
+#: includes-core/CoreAdmin.php:124
+msgid "Need Statuses Support?"
+msgstr "상태 지원이 필요하신가요?"
+
+#: includes-core/CoreAdmin.php:129
+#: includes-core/PromoBanner.php:68
+msgid "If you need help or have a new feature request, let us know."
+msgstr "도움이 필요하시거나 새로운 기능 요청이 있으시면 알려주세요."
+
+#: includes-core/CoreAdmin.php:131
+#: includes-core/PromoBanner.php:241
+msgid "Request Support"
+msgstr "지원 요청"
+
+#: includes-core/CoreAdmin.php:140
+#: includes-core/PromoBanner.php:248
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "상세 문서는 플러그인 웹사이트에서도 확인할 수 있습니다."
+
+#: includes-core/CoreAdmin.php:142
+#: includes-core/PromoBanner.php:251
+msgid "View Knowledge Base"
+msgstr "지식 베이스 보기"
+
+#: PostEditClassic.php:214
+msgid "Current Time"
+msgstr "현재 시간"
+
+#: PostEditClassic.php:242
+#: PostEditClassic.php:267
+#. translators: %s is a status name
+#, php-format
+msgid "Submit as %s"
+msgstr "%s로 제출"
+
+#: PostEditClassic.php:328
+#. translators: %s is the name of a custom visibility status
+#, php-format
+msgid "%s, Sticky"
+msgstr "%s, 고정됨"
+
+#: PostEditClassicSubmitMetabox.php:59
+msgid "Visibility:"
+msgstr "가시성:"
+
+#: PostEditClassicSubmitMetabox.php:200
+msgid "Restore default behavior of publish button"
+msgstr "게시 버튼의 기본 동작 복원"
+
+#: PostEditClassicSubmitMetabox.php:201
+msgid "Bypass sequence"
+msgstr "순서 우회"
+
+#: PostEditClassicSubmitMetabox.php:437
+#. translators: %s is html markup
+#, php-format
+msgid "Publish %1$s on approval %2$s"
+msgstr "승인 %1$s에서 게시 %2$s"
+
+#: PostEditGutenberg.php:75
+msgid "Publication Workflow"
+msgstr "게시 워크플로우"
+
+#: PostEditGutenberg.php:79
+msgid "Post Status"
+msgstr "게시 상태"
+
+#: PostEditGutenberg.php:82
+msgid "Set Selected Status"
+msgstr "선택된 상태 설정"
+
+#: PostEditGutenberg.php:83
+msgid "Keep Current Status"
+msgstr "현재 상태 유지"
+
+#: PostEditGutenberg.php:84
+msgid "Advance to Next Status"
+msgstr "다음 상태로 진행"
+
+#: PostEditGutenberg.php:85
+msgid "Advance to Max Status"
+msgstr "최대 상태로 진행"
+
+#: PostEditGutenberg.php:86
+msgid "This post is currently published"
+msgstr "이 게시물은 현재 게시되었습니다"
+
+#: PostEditGutenberg.php:87
+msgid "This post is currently scheduled"
+msgstr "이 게시물은 현재 예약되었습니다"
+
+#: PostEditGutenbergStatuses.php:160
+#: StatusesUI.php:1319
+msgid "Workflow"
+msgstr "워크플로우"
+
+#: PostEditGutenbergStatuses.php:166
+msgid "Submit Revision"
+msgstr "수정 제출"
+
+#: publishpress-module/ModuleAdminUI_Base.php:100
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "%1$s가 마음에 드신다면, %2$s 평가를 남겨주세요. 감사합니다!"
+
+#: publishpress-module/ModuleAdminUI_Base.php:111
+#, php-format
+msgid "About %s"
+msgstr "%s에 대하여"
+
+#: publishpress-module/ModuleAdminUI_Base.php:111
+msgid "About"
+msgstr "정보"
+
+#: publishpress-module/ModuleAdminUI_Base.php:113
+#, php-format
+msgid "%s Documentation"
+msgstr "%s 문서"
+
+#: publishpress-module/ModuleAdminUI_Base.php:113
+msgid "Documentation"
+msgstr "문서"
+
+#: publishpress-module/ModuleAdminUI_Base.php:115
+msgid "Contact the PublishPress team"
+msgstr "PublishPress 팀에 문의하기"
+
+#: publishpress-module/ModuleAdminUI_Base.php:115
+msgid "Contact"
+msgstr "연락하기"
+
+#: publishpress-statuses.php:118
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>이 플러그인은 삭제할 수 있습니다.</strong>"
+
+#: publishpress-statuses.php:178
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Planner to "
+"version %s or higher."
+msgstr "PublishPress 상태를 사용하려면 PublishPress Planner를 %s 이상의 버전으로 업그레이드하세요."
+
+#: publishpress-statuses.php:195
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
+"to version %s or higher."
+msgstr "PublishPress 상태를 사용하려면 PublishPress Permissions Pro를 %s 이상의 버전으로 업그레이드하세요."
+
+#: publishpress-statuses.php:212
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
+"to version %s or higher."
+msgstr "PublishPress 상태를 사용하려면 PublishPress Capabilities Pro를 %s 이상의 버전으로 업그레이드하세요."
+
+#: PublishPress_Statuses.php:355
+msgid ""
+"Can bypass normal status progression. User can publish immediately or move "
+"post to the furthest possible status."
+msgstr "정상 상태 진행을 우회할 수 있습니다. 사용자는 즉시 게시하거나 게시물을 가능한 한 먼 상태로 이동할 수 있습니다."
+
+#: PublishPress_Statuses.php:356
+msgid "Manage Statuses plugin settings."
+msgstr "상태 관리 플러그인 설정."
+
+#: PublishPress_Statuses.php:361
+msgid "Can unpublish posts even if Visibility Status is locked."
+msgstr "가시성 상태가 잠겨 있어도 게시물을 게시 취소할 수 있습니다."
+
+#: PublishPress_Statuses.php:394
+msgid "Status"
+msgstr "상태"
+
+#: PublishPress_Statuses.php:408
+msgid "Core Post Statuses"
+msgstr "핵심 게시물 상태"
+
+#: PublishPress_Statuses.php:671
+msgid "New post, not yet submitted."
+msgstr "새 게시물, 아직 제출되지 않음."
+
+#: PublishPress_Statuses.php:693
+msgid "Post is awaiting review."
+msgstr "게시물이 검토를 기다리고 있습니다."
+
+#: PublishPress_Statuses.php:713
+msgid "Post is scheduled for publication."
+msgstr "게시물이 게시 예정입니다."
+
+#: PublishPress_Statuses.php:732
+msgid "Post is published, publicly visible."
+msgstr "게시물이 게시되었으며, 공개적으로 보입니다."
+
+#: PublishPress_Statuses.php:751
+msgid "Post is published with private visibility."
+msgstr "게시물이 게시되었지만, 개인적으로 보입니다."
+
+#: PublishPress_Statuses.php:811
+msgid "Pitch"
+msgstr "제안"
+
+#: PublishPress_Statuses.php:814
+msgid "Idea proposed; waiting for acceptance."
+msgstr "제안된 아이디어; 수락을 기다리고 있습니다."
+
+#: PublishPress_Statuses.php:826
+msgid "Assigned"
+msgstr "배정됨"
+
+#: PublishPress_Statuses.php:829
+msgid "Post idea assigned to writer."
+msgstr "작가에게 배정된 게시물 아이디어."
+
+#: PublishPress_Statuses.php:841
+msgid "In Progress"
+msgstr "진행 중"
+
+#: PublishPress_Statuses.php:844
+msgid "Writer is working on the post."
+msgstr "작가가 게시물 작업 중입니다."
+
+#: PublishPress_Statuses.php:856
+msgid "Approved"
+msgstr "승인됨"
+
+#: PublishPress_Statuses.php:859
+msgid "Post has been approved for publication."
+msgstr "게시물이 게시를 위해 승인되었습니다."
+
+#: PublishPress_Statuses.php:871
+msgid "Needs Work"
+msgstr "작업 필요"
+
+#: PublishPress_Statuses.php:873
+msgid "Set to Needs Work"
+msgstr "작업 필요로 설정"
+
+#: PublishPress_Statuses.php:874
+msgid "Post needs work before further review."
+msgstr "추가 검토를 위해 게시물이 작업이 필요합니다."
+
+#: PublishPress_Statuses.php:886
+msgid "Rejected"
+msgstr "거부됨"
+
+#: PublishPress_Statuses.php:888
+msgid "Reject"
+msgstr "거부"
+
+#: PublishPress_Statuses.php:889
+msgid "Post has been rejected."
+msgstr "게시물이 거부되었습니다."
+
+#: PublishPress_Statuses.php:923
+msgid "Alternate Pre-Publication Workflow:"
+msgstr "대체 사전 출판 워크플로우:"
+
+#: PublishPress_Statuses.php:1018
+msgid "Disabled Statuses:"
+msgstr "비활성 상태:"
+
+#: PublishPress_Statuses.php:1034
+msgid "Deferred"
+msgstr "연기됨"
+
+#: PublishPress_Statuses.php:1036
+msgid "Defer"
+msgstr "연기"
+
+#: PublishPress_Statuses.php:1037
+msgid "Post has been deferred for future consideration."
+msgstr "게시물이 향후 고려를 위해 연기되었습니다."
+
+#: PublishPress_Statuses.php:1049
+msgid "Committee"
+msgstr "위원회"
+
+#: PublishPress_Statuses.php:1051
+msgid "Refer to Committee"
+msgstr "위원회에 회부"
+
+#: PublishPress_Statuses.php:1052
+msgid "Post has been referred to committee."
+msgstr "게시물이 위원회에 회부되었습니다."
+
+#: PublishPress_Statuses.php:1065
+msgid "Committee Review"
+msgstr "위원회 검토"
+
+#: PublishPress_Statuses.php:1067
+msgid "Set to Committee Review"
+msgstr "위원회 검토로 설정"
+
+#: PublishPress_Statuses.php:1068
+msgid "Committee is reviewing the post."
+msgstr "위원회가 게시물을 검토하고 있습니다."
+
+#: PublishPress_Statuses.php:1081
+msgid "Committee Progress"
+msgstr "위원회 진행 상황"
+
+#: PublishPress_Statuses.php:1083
+msgid "Set to Committee Progress"
+msgstr "위원회 진행 상황으로 설정"
+
+#: PublishPress_Statuses.php:1084
+msgid "Committee is editing the post."
+msgstr "위원회가 게시물을 편집하고 있습니다."
+
+#: PublishPress_Statuses.php:1097
+msgid "Committee Approved"
+msgstr "위원회 승인됨"
+
+#: PublishPress_Statuses.php:1099
+msgid "Set Committee Approval"
+msgstr "위원회 승인을 설정"
+
+#: PublishPress_Statuses.php:1100
+msgid "Committee has approved the post."
+msgstr "위원회가 게시물을 승인했습니다."
+
+#: StatusAddNewUI.php:30
+msgid "Add New Status"
+msgstr "새 상태 추가"
+
+#: StatusEditUI.php:31
+msgid "Back to Statuses"
+msgstr "상태로 돌아가기"
+
+#: StatusEditUI.php:55
+#: StatusEditUI.php:64
+#: StatusListTable.php:946
+msgid "Labels"
+msgstr "레이블"
+
+#: StatusEditUI.php:70
+#: StatusEditUI.php:401
+#: StatusListTable.php:171
+msgid "Post Types"
+msgstr "게시물 유형"
+
+#: StatusEditUI.php:78
+#: StatusListTable.php:170
+msgid "Roles"
+msgstr "역할"
+
+#: StatusEditUI.php:86
+msgid "Post Access"
+msgstr "게시물 접근"
+
+#: StatusEditUI.php:177
+msgid ""
+"Enforce type-specific post capabilitities for this status, or share "
+"capabilities with another status."
+msgstr "이 상태에 대해 유형별 게시물 기능을 적용하거나 다른 상태와 기능을 공유하세요."
+
+#: StatusEditUI.php:224
+msgid "Update Status"
+msgstr "상태 업데이트"
+
+#: StatusEditUI.php:280
+msgid "The slug is the unique ID for the status."
+msgstr "슬러그는 상태의 고유 ID입니다."
+
+#: StatusEditUI.php:290
+msgid "Color"
+msgstr "색상"
+
+#: StatusEditUI.php:302
+msgid "The color is used to identify the status."
+msgstr "색상은 상태를 식별하는 데 사용됩니다."
+
+#: StatusEditUI.php:308
+#: StatusListTable.php:169
+msgid "Icon"
+msgstr "아이콘"
+
+#: StatusEditUI.php:324
+msgid "Select Icon"
+msgstr "아이콘 선택"
+
+#: StatusEditUI.php:330
+msgid "The icon is used to visually represent the status."
+msgstr "아이콘은 상태를 시각적으로 표현하는 데 사용됩니다."
+
+#: StatusEditUI.php:365
+msgid "Status Availability"
+msgstr "상태 가용성"
+
+#: StatusEditUI.php:368
+msgid "Choose which user roles can assign this status to a post."
+msgstr "이 상태를 게시물에 할당할 수 있는 사용자 역할을 선택하세요."
+
+#: StatusEditUI.php:404
+msgid "Choose which post types can be set to this status."
+msgstr "이 상태로 설정할 수 있는 게시물 유형을 선택하세요."
+
+#: StatusEditUI.php:441
+msgid "All Post Types"
+msgstr "모든 게시물 유형"
+
+#: StatusEditUI.php:486
+msgid "Status Label"
+msgstr "상태 레이블"
+
+#: StatusEditUI.php:499
+msgid "The name is used to identify the status. (Max: 20 characters)"
+msgstr "이름은 상태를 식별하는 데 사용됩니다. (최대: 20자)"
+
+#: StatusEditUI.php:509
+msgid "Description"
+msgstr "설명"
+
+#: StatusEditUI.php:521
+msgid ""
+"The description is primarily for administrative use, to give you some "
+"context on what the custom status is to be used for."
+msgstr "설명은 주로 관리 용도로 사용되며, 사용자 지정 상태가 무엇에 사용되는지에 대한 맥락을 제공합니다."
+
+#: StatusEditUI.php:533
+msgid "Save As Label"
+msgstr "레이블로 저장"
+
+#: StatusEditUI.php:541
+msgid "Submit Button Label"
+msgstr "제출 버튼 레이블"
+
+#: StatusEditUI.php:553
+msgid "Upgrade to choose who can manage posts in each status"
+msgstr "각 상태에서 게시물을 관리할 수 있는 사람을 선택하려면 업그레이드하세요."
+
+#: StatusEditUI.php:556
+msgid "Get PublishPress Statuses Pro for status-specific post access control."
+msgstr "상태별 게시물 접근 제어를 위해 PublishPress Statuses Pro를 받으세요."
+
+#: StatusEditUI.php:562
+msgid "Control which roles can assign a status"
+msgstr "어떤 역할이 상태를 할당할 수 있는지 제어하세요."
+
+#: StatusEditUI.php:565
+msgid "Control which roles can edit or delete posts per-status"
+msgstr "각 상태별로 어떤 역할이 게시물을 편집하거나 삭제할 수 있는지 제어하세요."
+
+#: StatusEditUI.php:568
+msgid "Set capabilities separately for each post type"
+msgstr "각 게시물 유형에 대해 별도로 권한을 설정하세요."
+
+#: StatusEditUI.php:571
+msgid "User-friendly checkbox grid to assign capabilities"
+msgstr "권한 할당을 위한 사용자 친화적인 체크박스 그리드"
+
+#: StatusEditUI.php:580
+#: StatusListTable.php:674
+msgid "Get PublishPress Statuses Pro"
+msgstr "PublishPress Statuses Pro 받기"
+
+#: StatusEditUI.php:585
+#: StatusListTable.php:229
+#: StatusListTable.php:246
+#: StatusListTable.php:679
+msgid "Learn More"
+msgstr "자세히 알아보기"
+
+#: StatusEditUI.php:594
+#, php-format
+msgid ""
+"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
+"%3$schange this setting%4$s."
+msgstr "상태별 게시물 권한이 %1$scurrently disabled%2$s 상태입니다. 이 설정을 %3$s변경할 수 있습니다%4$s."
+
+#: StatusesUI.php:64
+#. translators: %s is the status label
+#, php-format
+msgid "Edit Post Status: %s"
+msgstr "게시물 상태 편집: %s"
+
+#: StatusesUI.php:67
+#. translators: %s is the status label
+#, php-format
+msgid "%s Status - Edit"
+msgstr "%s 상태 - 편집"
+
+#: StatusesUI.php:75
+#. translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
+#, php-format
+msgid "Add %s Status"
+msgstr "%s 상태 추가"
+
+#: StatusesUI.php:82
+msgid "Add Post Status"
+msgstr "게시물 상태 추가"
+
+#: StatusesUI.php:83
+msgid "Add Status"
+msgstr "상태 추가"
+
+#: StatusesUI.php:87
+#: StatusesUI.php:1295
+msgid "PublishPress Statuses Settings"
+msgstr "PublishPress Statuses 설정"
+
+#: StatusesUI.php:88
+msgid "Statuses Settings"
+msgstr "상태 설정"
+
+#: StatusesUI.php:91
+msgid "Post Statuses"
+msgstr "게시물 상태"
+
+#: StatusesUI.php:98
+msgid "Visibility Statuses"
+msgstr "가시성 상태"
+
+#: StatusesUI.php:217
+msgid "Post status created. Select a tab for further configuration."
+msgstr "게시물 상태가 생성되었습니다. 추가 구성을 위해 탭을 선택하세요."
+
+#: StatusesUI.php:219
+#: StatusesUI.php:224
+#. translators: %1$s is the status name, %2$s is the edit link
+#, php-format
+msgid "Post status %1$s updated. %2$s"
+msgstr "게시물 상태 %1$s가 업데이트되었습니다. %2$s"
+
+#: StatusesUI.php:220
+msgid "Settings updated"
+msgstr "설정이 업데이트되었습니다"
+
+#: StatusesUI.php:221
+msgid ""
+"That post status doesn't seem to exist. Was a required plugin or setting "
+"deactivated?"
+msgstr "해당 게시물 상태는 존재하지 않는 것 같습니다. 필수 플러그인 또는 설정이 비활성화되었나요?"
+
+#: StatusesUI.php:222
+msgid "Default post status has been changed."
+msgstr "기본 게시물 상태가 변경되었습니다."
+
+#: StatusesUI.php:225
+msgid "Post status deleted."
+msgstr "게시물 상태가 삭제되었습니다."
+
+#: StatusesUI.php:226
+#: StatusHandler.php:828
+msgid "Status order updated."
+msgstr "상태 순서가 업데이트되었습니다."
+
+#: StatusesUI.php:250
+msgid "Use on these Post Types:"
+msgstr "다음 게시물 유형에서 사용:"
+
+#: StatusesUI.php:259
+msgid "Workflow Guidance:"
+msgstr "워크플로우 안내:"
+
+#: StatusesUI.php:268
+msgid "Manual Status Selection:"
+msgstr "수동 상태 선택:"
+
+#: StatusesUI.php:287
+msgid "Custom Visibility:"
+msgstr "사용자 정의 가시성:"
+
+#: StatusesUI.php:297
+msgid "Default Visibility Status:"
+msgstr "기본 가시성 상태:"
+
+#: StatusesUI.php:307
+msgid "Custom Visibility Editing:"
+msgstr "사용자 정의 가시성 편집:"
+
+#: StatusesUI.php:319
+msgid "Pending Review Status:"
+msgstr "검토 대기 상태:"
+
+#: StatusesUI.php:329
+msgid "Planner Integration:"
+msgstr "플래너 통합:"
+
+#: StatusesUI.php:340
+msgid "Permissions Integration:"
+msgstr "권한 통합:"
+
+#: StatusesUI.php:350
+msgid "Gutenberg / Classic Editor:"
+msgstr "구텐베르크 / 클래식 편집기:"
+
+#: StatusesUI.php:359
+msgid "Status Label Customization:"
+msgstr "상태 레이블 사용자 정의:"
+
+#: StatusesUI.php:374
+msgid "Import Operation:"
+msgstr "가져오기 작업:"
+
+#: StatusesUI.php:385
+msgid "Backup / Restore:"
+msgstr "백업 / 복원:"
+
+#: StatusesUI.php:415
+msgid "Supplemental Role of Editor covers custom statuses"
+msgstr "편집자의 보조 역할은 사용자 정의 상태를 포함합니다"
+
+#: StatusesUI.php:440
+msgid "Include custom statuses in Add New pop-up on Calendar"
+msgstr "캘린더의 새 추가 팝업에 사용자 정의 상태 포함"
+
+#: StatusesUI.php:465
+msgid "Hide status selection dropdown from non-Administrators in Gutenberg editor"
+msgstr "Gutenberg 편집기에서 비관리자에게 상태 선택 드롭다운 숨기기"
+
+#: StatusesUI.php:492
+msgid "Sequence by default: Publish button defaults to next status in workflow"
+msgstr "기본적으로 순서: 게시 버튼은 워크플로우에서 다음 상태로 기본 설정됩니다"
+
+#: StatusesUI.php:506
+msgid "Bypass by default: Publish button defaults to maximum available status"
+msgstr "기본적으로 우회: 게시 버튼은 사용 가능한 최대 상태로 기본 설정됩니다"
+
+#: StatusesUI.php:520
+msgid "No workflow guidance"
+msgstr "워크플로우 안내 없음"
+
+#: StatusesUI.php:570
+msgid ""
+"Hide sub-statuses in the dropdown unless the post is set to the parent "
+"status or a sibling"
+msgstr "게시물이 상위 상태 또는 형제 상태로 설정되지 않는 한 드롭다운에서 하위 상태를 숨깁니다."
+
+#: StatusesUI.php:576
+msgid ""
+"Sub-statuses may be nested below any top-level status. They function as "
+"branches in the Main Workflow or in an Alternate Workflow."
+msgstr "하위 상태는 모든 최상위 상태 아래에 중첩될 수 있습니다. 이는 기본 워크플로우 또는 대체 워크플로우에서 분기 역할을 합니다."
+
+#: StatusesUI.php:607
+msgid "Available to all users"
+msgstr "모든 사용자에게 사용 가능"
+
+#: StatusesUI.php:608
+msgid "Available to specified roles only"
+msgstr "지정된 역할에만 사용 가능"
+
+#: StatusesUI.php:614
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, the same control is applied to the Pending Review "
+"status."
+msgstr ""
+"사용자는 자신의 역할이 허용하는 경우에만 게시물에 사용자 정의 상태를 할당할 수 있습니다. 현재 설정에서는 대기 검토 상태에 대해 "
+"동일한 제어가 적용됩니다."
+
+#: StatusesUI.php:616
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, those limitations will not be applied for the "
+"Pending Review status."
+msgstr ""
+"사용자는 자신의 역할이 허용하는 경우에만 게시물에 사용자 정의 상태를 할당할 수 있습니다. 현재 설정에서는 대기 검토 상태에 대한 "
+"제한이 적용되지 않습니다."
+
+#: StatusesUI.php:625
+#. translators: %1$s and %2$s are link markup
+#, php-format
+msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
+msgstr "%1$s 상태 > 상태 > 대기 검토 > 역할 %2$s에서 역할 보기 또는 설정"
+
+#: StatusesUI.php:649
+msgid "Automatic Detection"
+msgstr "자동 감지"
+
+#: StatusesUI.php:650
+msgid "Using Classic Editor"
+msgstr "클래식 편집기 사용"
+
+#: StatusesUI.php:651
+msgid "Using Gutenberg Editor"
+msgstr "Gutenberg 편집기 사용"
+
+#: StatusesUI.php:656
+msgid ""
+"If custom statuses in the post editor are not loaded correctly, prevent "
+"incorrect detection of editor by specifying it here."
+msgstr "게시물 편집기에서 사용자 정의 상태가 올바르게 로드되지 않는 경우, 여기에서 이를 지정하여 편집기의 잘못된 감지를 방지하십시오."
+
+#: StatusesUI.php:677
+msgid "For all plugin statuses"
+msgstr "모든 플러그인 상태에 대해"
+
+#: StatusesUI.php:678
+msgid "For user-created plugin statuses only"
+msgstr "사용자 생성 플러그인 상태에만 해당"
+
+#: StatusesUI.php:683
+msgid ""
+"This controls which statuses can have their labels customized by editing "
+"Status properties. If a non-default entry is stored, it will override any "
+"language file strings."
+msgstr ""
+"이 설정은 상태 속성을 편집하여 레이블을 사용자화할 수 있는 상태를 제어합니다. 비기본 항목이 저장되면 모든 언어 파일 문자열을 "
+"무시합니다."
+
+#: StatusesUI.php:737
+#. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
+#, php-format
+msgid ""
+"Disabled because add_post_type_support('%1$s', '%2$s') is included in a "
+"loaded file."
+msgstr "로드된 파일에 add_post_type_support('%1$s', '%2$s')가 포함되어 있어 사용 중지되었습니다."
+
+#: StatusesUI.php:746
+msgid "Note: Post types can also be specified for each individual status."
+msgstr "참고: 게시물 유형은 각 개별 상태에 대해서도 지정할 수 있습니다."
+
+#: StatusesUI.php:771
+msgid "Enable custom Visibility Statuses"
+msgstr "사용자 정의 가시성 상태 활성화"
+
+#: StatusesUI.php:796
+msgid ""
+"Posts with custom Visibility also require status-specific capabilities for "
+"editing"
+msgstr "사용자 정의 가시성을 가진 게시물은 편집을 위한 상태별 권한도 필요합니다"
+
+#: StatusesUI.php:875
+msgid "lock"
+msgstr "잠금"
+
+#: StatusesUI.php:901
+msgid ""
+"If the Published visibility status is locked, also prevent posts from being "
+"unpublished."
+msgstr "게시된 가시성 상태가 잠겨 있으면 게시물이 게시 해제되는 것도 방지됩니다."
+
+#: StatusesUI.php:908
+#, php-format
+msgid "If enabled, users need the %s to unpublish a post."
+msgstr "활성화된 경우, 사용자는 게시물을 게시 해제하기 위해 %s가 필요합니다."
+
+#: StatusesUI.php:912
+msgid ""
+"If enabled, users will need an additional role capability to unpublish a "
+"post."
+msgstr "활성화된 경우, 사용자는 게시물을 게시 해제하기 위해 추가 역할 권한이 필요합니다."
+
+#: StatusesUI.php:929
+#: StatusesUI.php:987
+msgid "Select..."
+msgstr "선택..."
+
+#: StatusesUI.php:932
+msgid "Re-run Planner import (with Status Control properties, ordering)"
+msgstr "플래너 가져오기 다시 실행 (상태 제어 속성, 정렬 포함)"
+
+#: StatusesUI.php:933
+msgid "Re-run Planner import (ignoring Status Control configuration)"
+msgstr "플래너 가져오기 다시 실행 (상태 제어 설정 무시)"
+
+#: StatusesUI.php:935
+msgid "Re-run Planner import"
+msgstr "플래너 가져오기 다시 실행"
+
+#: StatusesUI.php:941
+msgid ""
+"Status color, icon and position is automatically imported from PublishPress "
+"Planner. Select an option above to re-run the import, giving priority to "
+"Planner-defined status position."
+msgstr ""
+"상태 색상, 아이콘 및 위치는 PublishPress Planner에서 자동으로 가져옵니다. 가져오기를 다시 실행하려면 위에서 옵션을 "
+"선택하여 Planner에서 정의한 상태 위치에 우선순위를 부여하세요."
+
+#: StatusesUI.php:989
+msgid "Back up current colors, icons, labels and post types"
+msgstr "현재 색상, 아이콘, 레이블 및 게시물 유형 백업"
+
+#: StatusesUI.php:994
+msgid "Restore backup of status colors"
+msgstr "상태 색상 백업 복원"
+
+#: StatusesUI.php:998
+msgid "Restore backup of status icons"
+msgstr "상태 아이콘 백업 복원"
+
+#: StatusesUI.php:1002
+msgid "Restore backup of status labels"
+msgstr "상태 레이블 백업 복원"
+
+#: StatusesUI.php:1006
+msgid "Restore backup of status post types"
+msgstr "상태 게시물 유형 백업 복원"
+
+#: StatusesUI.php:1012
+msgid "Restore auto-backup of status colors"
+msgstr "상태 색상의 자동 백업 복원"
+
+#: StatusesUI.php:1016
+msgid "Restore auto-backup of status icons"
+msgstr "상태 아이콘의 자동 백업 복원"
+
+#: StatusesUI.php:1020
+msgid "Restore auto-backup of status labels"
+msgstr "상태 레이블의 자동 백업 복원"
+
+#: StatusesUI.php:1024
+msgid "Restore auto-backup of status post types"
+msgstr "상태 게시물 유형의 자동 백업 복원"
+
+#: StatusesUI.php:1031
+msgid "Use default status colors"
+msgstr "기본 상태 색상 사용"
+
+#: StatusesUI.php:1035
+msgid "Use default status icons"
+msgstr "기본 상태 아이콘 사용"
+
+#: StatusesUI.php:1039
+msgid "Use default status labels"
+msgstr "기본 상태 레이블 사용"
+
+#: StatusesUI.php:1043
+msgid "Use default status post types"
+msgstr "기본 상태 게시물 유형 사용"
+
+#: StatusesUI.php:1047
+msgid "Use Planner plugin's default status colors"
+msgstr "플래너 플러그인의 기본 상태 색상 사용"
+
+#: StatusesUI.php:1051
+msgid "Use Planner plugin's default status icons"
+msgstr "플래너 플러그인의 기본 상태 아이콘 사용"
+
+#: StatusesUI.php:1090
+#. translators: %s is the status name
+#, php-format
+msgid "Edit Status: %s"
+msgstr "상태 편집: %s"
+
+#: StatusesUI.php:1093
+#. translators: %s is the status name
+#, php-format
+msgid "Edit %1$s: %2$s"
+msgstr "편집 %1$s: %2$s"
+
+#: StatusesUI.php:1113
+#. translators: %s is the status name
+#, php-format
+msgid "Edit Status Labels: %s"
+msgstr "상태 레이블 편집: %s"
+
+#: StatusesUI.php:1116
+#. translators: %s is the status name
+#, php-format
+msgid "Edit %1$s Labels: %2$s"
+msgstr "%1$s 레이블 편집: %2$s"
+
+#: StatusesUI.php:1153
+#: StatusesUI.php:1281
+msgid "Add New Pre-Publication Status"
+msgstr "새로운 사전 게시 상태 추가"
+
+#: StatusesUI.php:1169
+#. translators: %1$s and %2$s is link markup
+#, php-format
+msgid ""
+"For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
+"Pro%2$s."
+msgstr "사용자 지정 가시성 상태의 경우, %1$sPublishPress 상태 Pro%2$s로 업그레이드하십시오."
+
+#: StatusesUI.php:1183
+#. translators: %1$s and %2$s is link markup
+#, php-format
+msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
+msgstr "참고: 사용자 지정 가시성 상태는 %1$s비활성화됨%2$s."
+
+#: StatusesUI.php:1206
+msgid "Pre-Publication"
+msgstr "사전 게시"
+
+#: StatusesUI.php:1214
+#: StatusesUI.php:1320
+msgid "Visibility"
+msgstr "가시성"
+
+#: StatusesUI.php:1225
+msgid "Revision"
+msgstr "수정"
+
+#: StatusesUI.php:1285
+msgid ""
+"This status can be assigned to an unpublished post using the Post Status "
+"dropdown."
+msgstr "이 상태는 게시 상태 드롭다운을 사용하여 게시되지 않은 게시물에 할당될 수 있습니다."
+
+#: StatusesUI.php:1321
+msgid "Integration"
+msgstr "통합"
+
+#: StatusesUI.php:1322
+msgid "Editor"
+msgstr "편집기"
+
+#: StatusesUI.php:1323
+msgid "Advanced"
+msgstr "고급"
+
+#: StatusesUI.php:1324
+msgid "License"
+msgstr "라이센스"
+
+#: StatusHandler.php:17
+#: StatusHandler.php:186
+msgid "Sorry, you do not have permission to edit custom statuses."
+msgstr "죄송하지만, 사용자 정의 상태를 편집할 권한이 없습니다."
+
+#: StatusHandler.php:53
+#: StatusHandler.php:417
+msgid "Please enter a name for the status"
+msgstr "상태 이름을 입력하세요"
+
+#: StatusHandler.php:57
+msgid "Please enter a slug for the status"
+msgstr "상태 슬러그를 입력하세요"
+
+#: StatusHandler.php:64
+#: StatusHandler.php:422
+msgid "Please enter a valid, non-numeric name for the status."
+msgstr "상태에 대해 유효한 비숫자 이름을 입력하세요."
+
+#: StatusHandler.php:81
+#: StatusHandler.php:441
+msgid "Status name cannot exceed 20 characters. Please try a shorter name."
+msgstr "상태 이름은 20자를 초과할 수 없습니다. 더 짧은 이름을 사용해 보세요."
+
+#: StatusHandler.php:100
+msgid "Status slug cannot exceed 20 characters. Please try a shorter name."
+msgstr "상태 슬러그는 20자를 초과할 수 없습니다. 더 짧은 이름을 사용해 보세요."
+
+#: StatusHandler.php:110
+msgid "Name conflicts with existing status. Please choose another."
+msgstr "이름이 기존 상태와 충돌합니다. 다른 것을 선택하세요."
+
+#: StatusHandler.php:117
+msgid "Status name is restricted. Please choose another name."
+msgstr "상태 이름이 제한되어 있습니다. 다른 이름을 선택하세요."
+
+#: StatusHandler.php:141
+msgid "Could not add status: "
+msgstr "상태를 추가할 수 없습니다: "
+
+#: StatusHandler.php:193
+#: StatusHandler.php:750
+msgid "Status does not exist."
+msgstr "상태가 존재하지 않습니다."
+
+#: StatusHandler.php:198
+#: StatusHandler.php:745
+msgid "Could not delete the status: "
+msgstr "상태를 삭제할 수 없습니다: "
+
+#: StatusHandler.php:222
+#: StatusHandler.php:372
+msgid "Post status doesn't exist."
+msgstr "게시물 상태가 존재하지 않습니다."
+
+#: StatusHandler.php:350
+msgid "Error updating post status."
+msgstr "게시물 상태 업데이트 중 오류가 발생했습니다."
+
+#: StatusHandler.php:501
+msgid "Error updating post status labels."
+msgstr "게시물 상태 레이블 업데이트 중 오류가 발생했습니다."
+
+#: StatusHandler.php:673
+msgid "Cannot reassign to the status you want to delete"
+msgstr "삭제하려는 상태로 재지정할 수 없습니다"
+
+#: StatusHandler.php:720
+msgid "Restricted status "
+msgstr "제한된 상태 "
+
+#: StatusHandler.php:747
+msgid "Status deleted"
+msgstr "상태가 삭제되었습니다"
+
+#: StatusHandler.php:769
+msgid "Status positions were not sent."
+msgstr "상태 위치가 전송되지 않았습니다."
+
+#: StatusListTable.php:166
+msgid "Position"
+msgstr "위치"
+
+#: StatusListTable.php:167
+msgid "Status Name"
+msgstr "상태 이름"
+
+#: StatusListTable.php:197
+msgid "Upgrade to create an approval workflow for published content"
+msgstr "게시된 콘텐츠에 대한 승인 워크플로우를 생성하기 위해 업그레이드"
+
+#: StatusListTable.php:200
+msgid ""
+"Create approval workflows using PublishPress Statuses Pro together with the "
+"PublishPress Revisions Pro plugin"
+msgstr ""
+"PublishPress Statuses Pro와 PublishPress Revisions Pro 플러그인을 함께 사용하여 승인 "
+"워크플로우를 생성하세요"
+
+#: StatusListTable.php:206
+msgid ""
+"The PublishPress Revisions plugin allows users to submit changes to "
+"published posts"
+msgstr "PublishPress Revisions 플러그인은 사용자가 게시된 게시물에 대한 변경 사항을 제출할 수 있도록 합니다"
+
+#: StatusListTable.php:209
+msgid ""
+"PublishPress Statuses plugin enables you to add statuses for post changes "
+"created with Revisions"
+msgstr "PublishPress Statuses 플러그인은 Revisions로 생성된 게시물 변경 사항에 대한 상태를 추가할 수 있게 해줍니다"
+
+#: StatusListTable.php:212
+msgid "Each post type can have different Revisions statuses"
+msgstr "각 게시물 유형은 서로 다른 Revisions 상태를 가질 수 있습니다"
+
+#: StatusListTable.php:215
+msgid "You choose which users can manage content in each Revisions status"
+msgstr "각 Revisions 상태에서 콘텐츠를 관리할 수 있는 사용자를 선택하세요"
+
+#: StatusListTable.php:241
+msgid "Premium Feature"
+msgstr "프리미엄 기능"
+
+#: StatusListTable.php:242
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "사용자 정의 리비전 상태를 잠금 해제하려면 Statuses Pro를 설치하세요."
+
+#: StatusListTable.php:243
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr "편집 워크플로우에 맞게 모든 게시물 유형과 역할을 구성하세요."
+
+#: StatusListTable.php:308
+#, php-format
+msgid ""
+"To define and control Revision statuses, update the %1$sPublishPress "
+"Revisions%2$s plugin to version %3$s or higher."
+msgstr ""
+"리비전 상태를 정의하고 제어하려면 %1$sPublishPress Revisions%2$s 플러그인을 %3$s 버전 이상으로 "
+"업데이트하세요."
+
+#: StatusListTable.php:340
+msgid "Main Workflow:"
+msgstr "주요 워크플로우:"
+
+#: StatusListTable.php:366
+msgid "Drop any status here to include it in main workflow for new posts."
+msgstr "새 게시물의 주요 워크플로우에 포함시키기 위해 이곳에 상태를 드래그하세요."
+
+#: StatusListTable.php:402
+msgid ""
+"Statuses in the main workflow are presented for convenient default "
+"selection when updating an unpublished post."
+msgstr "주요 워크플로우의 상태는 게시되지 않은 게시물 업데이트 시 편리한 기본 선택을 위해 제공됩니다."
+
+#: StatusListTable.php:410
+msgid ""
+"Statuses outside the main workflow are manually selectable when editing an "
+"unpublished post."
+msgstr "주요 워크플로우 외부의 상태는 게시되지 않은 게시물 편집 시 수동으로 선택할 수 있습니다."
+
+#: StatusListTable.php:442
+msgid ""
+"Drop any status here to make it manually selectable outside the main "
+"workflow."
+msgstr "주요 워크플로우 외부에서 수동으로 선택할 수 있도록 하려면 이곳에 상태를 드래그하세요."
+
+#: StatusListTable.php:444
+#: StatusListTable.php:466
+msgid "Drop any status here to disable."
+msgstr "비활성화하려면 이곳에 상태를 드래그하세요."
+
+#: StatusListTable.php:517
+msgid "Standard Publication:"
+msgstr "표준 게시:"
+
+#: StatusListTable.php:524
+msgid "Visibility Statuses for Private Publication:"
+msgstr "비공식 게시를 위한 가시성 상태:"
+
+#: StatusListTable.php:531
+msgid "Alternate Workflows:"
+msgstr "대체 워크플로우:"
+
+#: StatusListTable.php:531
+#: StatusListTable.php:542
+#. translators: %s is the opening and closing <span> tags
+msgid "Disabled Statuses (drag to re-enable):"
+msgstr "비활성 상태 (드래그하여 다시 활성화):"
+
+#: StatusListTable.php:647
+msgid "Upgrade to choose who can view your non-public posts"
+msgstr "업그레이드하여 비공식 게시물을 볼 수 있는 사람을 선택하세요"
+
+#: StatusListTable.php:650
+msgid ""
+"Upgrade to PublishPress Statuses Pro to define your own custom visibility "
+"statuses."
+msgstr "업그레이드하여 PublishPress Statuses Pro로 사용자 정의 가시성 상태를 정의하세요."
+
+#: StatusListTable.php:656
+msgid "Create multiple visibility statuses to show content to different users"
+msgstr "다양한 사용자에게 콘텐츠를 보여주기 위해 여러 가시성 상태를 만드세요"
+
+#: StatusListTable.php:659
+msgid "Choose which user roles can see posts in each status"
+msgstr "각 상태에서 어떤 사용자 역할이 게시물을 볼 수 있는지 선택하세요"
+
+#: StatusListTable.php:662
+msgid "Select which user roles can move posts to each status"
+msgstr "각 상태로 게시물을 이동할 수 있는 사용자 역할을 선택하세요"
+
+#: StatusListTable.php:665
+msgid "Decide which user roles can edit posts in each status"
+msgstr "각 상태에서 게시물을 편집할 수 있는 사용자 역할을 결정하세요"
+
+#: StatusListTable.php:762
+#. translators: %s is the list of post types
+#, php-format
+msgid "%s, more..."
+msgstr "%s, 더 보기..."
+
+#: StatusListTable.php:844
+msgid "No custom statuses found."
+msgstr "사용자 정의 상태를 찾을 수 없습니다."
+
+#: StatusListTable.php:915
+msgid "Core"
+msgstr "코어"
+
+#: StatusListTable.php:919
+msgid "Default"
+msgstr "기본값"
+
+#: StatusListTable.php:954
+msgid "Delete"
+msgstr "삭제"
+
+#: PublishPress_Statuses.php:813
+msgctxt "post action/button label"
+msgid "Pitch"
+msgstr "제안"

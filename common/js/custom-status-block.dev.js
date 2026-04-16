@@ -28,6 +28,7 @@ var ppStatuses = window.PPCustomStatuses.statuses.map(function (s) {
     submit: s.submit,
     icon: s.icon,
     color: s.color,
+    alternate: s.alternate,
     value: s.name
   };
 
@@ -141,7 +142,12 @@ var querySelectableStatuses = function(status, post_id) {
       var selectable_statuses = retval['data'];
 
       jQuery(document).ready(function ($) {
-        $('div.publishpress-extended-post-status select option').hide();
+        $('div.publishpress-extended-post-status select option').each(function() {
+          if ($(this).attr('alternate')) {
+            $('div.publishpress-extended-post-status select option[value="_"]').attr('disabled', 'disabled').show().insertBefore($(this).parent().find('[value="' + $(this).attr('value') + '"]'));
+            return false;
+          }
+        });
 
         $('div.publishpress-extended-post-status select option').each(function() {
           if (selectable_statuses.indexOf($(this).val()) != -1) {
@@ -623,6 +629,9 @@ var PPCustomPostStatusInfo = function PPCustomPostStatusInfo(_ref) {
       status = _ref[PPCustomStatuses.statusRestProperty];
 
   var statusOptions = ppStatuses.slice();
+
+  var divider = {value: "_", label: "_____________", disabled: "disabled", save_as: "", submit: "", color: "", icon: ""};
+  statusOptions.push(divider);
 
   var publishStatusObj = ppGetPublishedStatusObject('publish');
   var futureStatusObj = ppGetPublishedStatusObject('future');

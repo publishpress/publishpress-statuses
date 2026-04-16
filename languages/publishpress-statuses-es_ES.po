@@ -17,12 +17,12 @@ msgstr ""
 "X-Domain: publishpress-statuses\n"
 
 #. Plugin Name of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "PublishPress Statuses"
 msgstr "PublishPress Statuses"
 
 #. Plugin URI of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "https://publishpress.com/statuses"
 msgstr "https://publishpress.com/statuses"
 
@@ -34,12 +34,12 @@ msgstr ""
 "ediorial"
 
 #. Author of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "PublishPress"
 msgstr "PublishPress"
 
 #. Author URI of the plugin
-#: publishpress-statuses.php
+#: publishpress-statuses.php, fuzzy
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
 
@@ -514,7 +514,7 @@ msgstr ""
 "La descripción es principalmente para uso administrativo, para que tengas un "
 "poco de contexto sobre para qué se usa el estado personalizado."
 
-#: StatusEditUI.php:322
+#: StatusEditUI.php:322, fuzzy
 msgid "Color"
 msgstr "Color"
 

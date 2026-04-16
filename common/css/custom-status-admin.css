@@ -5,7 +5,6 @@ margin-top: 0;
 div.publishpress-admin-wrapper h2 {
 font-size: 1.1em;
 font-weight: normal;
-font-style: italic;
 margin-top: 5px;
 margin-bottom: 0;
 padding-top: 5px;
@@ -236,7 +235,7 @@ opacity: 100%;
 
 #the_status_list li.disabled-status,
 #the_status_list li.disabled-status div.tpl-default {
-background-color: #f4f4f4;
+background-color: #f4f4f4 !important;
 }
 
 
@@ -548,6 +547,18 @@ padding-bottom: 25px !important;
 
 .form-table .pp-statuses-settings-status-declutter {
 display: none;
+}
+
+body.statuses_page_publishpress-statuses-settings .form-table > tbody > tr {
+display: none;
+}
+
+body.statuses_page_publishpress-statuses-settings .wrap.publishpress-admin .nav-tab-wrapper a {
+margin-top: 0;
+}
+
+body.statuses_page_publishpress-statuses-settings div.publishpress-admin-wrapper h2 {
+font-style: normal;
 }
 
 .pp-option-footnote {

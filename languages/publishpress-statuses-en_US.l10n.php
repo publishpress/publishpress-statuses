@@ -1,0 +1,2 @@
+<?php
+return ['domain'=>'publishpress-statuses','plural-forms'=>NULL,'language'=>'','project-id-version'=>'PublishPress Statuses 1.2.4','pot-creation-date'=>'2026-04-08T17:03:24+00:00','po-revision-date'=>'YEAR-MO-DA HO:MI+ZONE','x-generator'=>'WP-CLI 2.12.0','messages'=>[]];

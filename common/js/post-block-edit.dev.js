@@ -141,13 +141,14 @@ jQuery(document).ready(function ($) {
                 }
             }
         }
-        
+
         if (
         (typeof forceRefresh != "undefined" && forceRefresh) 
         || (
         	($('button.editor-post-publish-button').length || $('button.editor-post-publish-panel__toggle').length) 
         	&& (
         		$('button.editor-post-save-draft').length
+                || $('button.editor-post-saved-state.is-saved').length
         		|| (
 	        		$('div.publishpress-extended-post-status select option[value="_pending"]').length 
 	        		&& ('pending' == $('div.publishpress-extended-post-status select').val() || '_pending' == $('div.publishpress-extended-post-status select').val())
@@ -156,12 +157,13 @@ jQuery(document).ready(function ($) {
         )
         || ((typeof window.PPCustomStatuses != 'undefined') && (typeof window.PPCustomStatuses['isRevision'] != 'undefined') && (window.PPCustomStatuses.isRevision))
         ) {
-            clearInterval(initInterval);
-            initInterval = null;
+            if ($('button.editor-post-publish-panel__toggle').length || $('button.editor-post-publish-button').length) {
+                clearInterval(initInterval);
+                initInterval = null;
+            }
 
             if ($('button.editor-post-publish-panel__toggle').length) {
                 if (typeof ppObjEdit.prePublish != 'undefined' && ppObjEdit.prePublish) { // && ($('button.editor-post-publish-panel__toggle').html() != __('Schedule…'))) {
-                    
                     let status = wp.data.select('core/editor').getEditedPostAttribute('status');
 
                     if (-1 == window.PPCustomStatuses.publishedStatuses.indexOf(status)) {

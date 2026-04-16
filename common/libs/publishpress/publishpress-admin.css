@@ -62,6 +62,7 @@
 .publishpress-admin-wrapper .nav-tab-wrapper .nav-tab:focus {
     border-top-color: #655997;
     color: #655997;
+    background-color: white;
 }
 
 .publishpress-admin-wrapper > footer {
