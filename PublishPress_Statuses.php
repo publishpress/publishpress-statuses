@@ -160,8 +160,43 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         add_filter('cme_plugin_capabilities', [$this, 'fltRegisterCapabilities']);
         add_filter('cme_capability_descriptions', [$this, 'fltCapDescriptions']);
 
-		// ShortPixel Critical CSS plugin: https://wordpress.org/support/topic/conflict-with-taxonomies-that-have-same-name-as-a-wp_post-field/
+        // ShortPixel Critical CSS plugin: https://wordpress.org/support/topic/conflict-with-taxonomies-that-have-same-name-as-a-wp_post-field/
         add_filter('shortpixel_critical_css_manual_term_css', function($val) {return false;}, 5);
+
+        global $pagenow;
+
+        // Don't allow plugin name to be translated on Plugins screen
+        if (is_admin() && !empty($pagenow) && ('plugins.php' == $pagenow)) {
+            add_filter(
+                'gettext', 
+                function($translation, $text, $domain) {
+                    if ('PublishPress Statuses Free' == $text) {
+                        return 'PublishPress Statuses Free';
+                    }
+
+                    return $translation;
+                }, 50, 3
+            );
+            
+            // @todo: Ideally, WordPress would provide a post-translation filter to eliminate the need for gettext filtering.
+            /* 
+            add_filter(
+                'plugins_list', 
+                function($plugins) {
+                    $plugin_dir = trailingslashit(str_replace('\\', '/', WP_PLUGIN_DIR));
+                    $plugin_relpath = str_replace($plugin_dir, '', str_replace('\\', '/', PUBLISHPRESS_STATUSES_FILE));
+
+                    if (isset($plugins['all'][$plugin_relpath])) {
+                        $plugins['all'][$plugin_relpath]['Name'] = 'PublishPress Statuses Free';
+                        $plugins['all'][$plugin_relpath]['Title'] = 'PublishPress Statuses Free';
+                        $plugins['all'][$plugin_relpath]['AuthorName'] = 'PublishPress';
+                    }
+
+                    return $plugins;
+                }, 50
+            );
+            */
+        }
 
         // Register the module with PublishPress
         

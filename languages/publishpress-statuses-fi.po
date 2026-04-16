@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-15 15:25+0000\n"
+"PO-Revision-Date: 2026-04-16 20:33+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,8 +44,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:393
-#: PublishPress_Statuses.php:394
+#: PublishPress_Statuses.php:428
+#: PublishPress_Statuses.php:429
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Tilat"
@@ -79,17 +79,17 @@ msgid "Add New"
 msgstr "Lisää uusi"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:858
+#: PublishPress_Statuses.php:893
 msgid "Approve"
 msgstr "Hyväksy"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:828
+#: PublishPress_Statuses.php:863
 msgid "Assign"
 msgstr "Määritä"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:843
+#: PublishPress_Statuses.php:878
 msgid "Mark In Progress"
 msgstr "Merkitse käynnissä olevaksi"
 
@@ -266,34 +266,35 @@ msgstr "Työnkulku"
 msgid "Submit Revision"
 msgstr "Lähetä tarkistus"
 
-#: publishpress-module/ModuleAdminUI_Base.php:100
+#: publishpress-module/ModuleAdminUI_Base.php:101
+#. translators: %1$s is the plugin name, %2$s is the rating stars
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr "Jos pidät %1$s:stä, jätä meille %2$s arvio. Kiitos!"
 
-#: publishpress-module/ModuleAdminUI_Base.php:111
+#: publishpress-module/ModuleAdminUI_Base.php:112
 #, php-format
 msgid "About %s"
 msgstr "Tietoa %s:stä"
 
-#: publishpress-module/ModuleAdminUI_Base.php:111
+#: publishpress-module/ModuleAdminUI_Base.php:112
 msgid "About"
 msgstr "Tietoa"
 
-#: publishpress-module/ModuleAdminUI_Base.php:113
+#: publishpress-module/ModuleAdminUI_Base.php:114
 #, php-format
 msgid "%s Documentation"
 msgstr "%s-dokumentaatio"
 
-#: publishpress-module/ModuleAdminUI_Base.php:113
+#: publishpress-module/ModuleAdminUI_Base.php:114
 msgid "Documentation"
 msgstr "Dokumentaatio"
 
-#: publishpress-module/ModuleAdminUI_Base.php:115
+#: publishpress-module/ModuleAdminUI_Base.php:116
 msgid "Contact the PublishPress team"
 msgstr "Ota yhteyttä PublishPress-tiimiin"
 
-#: publishpress-module/ModuleAdminUI_Base.php:115
+#: publishpress-module/ModuleAdminUI_Base.php:116
 msgid "Contact"
 msgstr "Ota yhteyttä"
 
@@ -331,7 +332,7 @@ msgstr ""
 "Käyttääksesi PublishPress-tiloja, päivitä PublishPress Capabilities Pro "
 "versioon %s tai uudempiin."
 
-#: PublishPress_Statuses.php:355
+#: PublishPress_Statuses.php:390
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -339,163 +340,163 @@ msgstr ""
 "Voidaan ohittaa normaali tilan eteneminen. Käyttäjä voi julkaista heti tai "
 "siirtää julkaisun mahdollisimman kauas tilaan."
 
-#: PublishPress_Statuses.php:356
+#: PublishPress_Statuses.php:391
 msgid "Manage Statuses plugin settings."
 msgstr "Hallinnoi Statusten liitännäisen asetuksia."
 
-#: PublishPress_Statuses.php:361
+#: PublishPress_Statuses.php:396
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr "Voit poistaa julkaisut, vaikka näkyvyysasema on lukittu."
 
-#: PublishPress_Statuses.php:394
+#: PublishPress_Statuses.php:429
 msgid "Status"
 msgstr "Tila"
 
-#: PublishPress_Statuses.php:408
+#: PublishPress_Statuses.php:443
 msgid "Core Post Statuses"
 msgstr "Ydin Julkaisun Tilat"
 
-#: PublishPress_Statuses.php:671
+#: PublishPress_Statuses.php:706
 msgid "New post, not yet submitted."
 msgstr "Uusi julkaisu, ei vielä lähetetty."
 
-#: PublishPress_Statuses.php:693
+#: PublishPress_Statuses.php:728
 msgid "Post is awaiting review."
 msgstr "Julkaisu odottaa tarkistusta."
 
-#: PublishPress_Statuses.php:713
+#: PublishPress_Statuses.php:748
 msgid "Post is scheduled for publication."
 msgstr "Julkaisu on aikataulutettu julkaistavaksi."
 
-#: PublishPress_Statuses.php:732
+#: PublishPress_Statuses.php:767
 msgid "Post is published, publicly visible."
 msgstr "Julkaisu on julkaistu, julkisesti näkyvissä."
 
-#: PublishPress_Statuses.php:751
+#: PublishPress_Statuses.php:786
 msgid "Post is published with private visibility."
 msgstr "Julkaisu on julkaistu yksityisellä näkyvyydellä."
 
-#: PublishPress_Statuses.php:811
+#: PublishPress_Statuses.php:846
 msgid "Pitch"
 msgstr "Esitys"
 
-#: PublishPress_Statuses.php:814
+#: PublishPress_Statuses.php:849
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Idea ehdotettu; odottaa hyväksyntää."
 
-#: PublishPress_Statuses.php:826
+#: PublishPress_Statuses.php:861
 msgid "Assigned"
 msgstr "Määrätty"
 
-#: PublishPress_Statuses.php:829
+#: PublishPress_Statuses.php:864
 msgid "Post idea assigned to writer."
 msgstr "Julkaisun idea määrätty kirjoittajalle."
 
-#: PublishPress_Statuses.php:841
+#: PublishPress_Statuses.php:876
 msgid "In Progress"
 msgstr "Käynnissä"
 
-#: PublishPress_Statuses.php:844
+#: PublishPress_Statuses.php:879
 msgid "Writer is working on the post."
 msgstr "Kirjoittaja työskentelee julkaisun parissa."
 
-#: PublishPress_Statuses.php:856
+#: PublishPress_Statuses.php:891
 msgid "Approved"
 msgstr "Hyväksytty"
 
-#: PublishPress_Statuses.php:859
+#: PublishPress_Statuses.php:894
 msgid "Post has been approved for publication."
 msgstr "Julkaisu on hyväksytty julkaistavaksi."
 
-#: PublishPress_Statuses.php:871
+#: PublishPress_Statuses.php:906
 msgid "Needs Work"
 msgstr "Tarvitsee työtä"
 
-#: PublishPress_Statuses.php:873
+#: PublishPress_Statuses.php:908
 msgid "Set to Needs Work"
 msgstr "Aseta tarvitsee työtä"
 
-#: PublishPress_Statuses.php:874
+#: PublishPress_Statuses.php:909
 msgid "Post needs work before further review."
 msgstr "Viesti tarvitsee työtä ennen lisäarviointia."
 
-#: PublishPress_Statuses.php:886
+#: PublishPress_Statuses.php:921
 msgid "Rejected"
 msgstr "Hylätty"
 
-#: PublishPress_Statuses.php:888
+#: PublishPress_Statuses.php:923
 msgid "Reject"
 msgstr "Hylkää"
 
-#: PublishPress_Statuses.php:889
+#: PublishPress_Statuses.php:924
 msgid "Post has been rejected."
 msgstr "Viesti on hylätty."
 
-#: PublishPress_Statuses.php:923
+#: PublishPress_Statuses.php:958
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Vaihtoehtoinen ennakkojulkaisu työnkulku:"
 
-#: PublishPress_Statuses.php:1018
+#: PublishPress_Statuses.php:1053
 msgid "Disabled Statuses:"
 msgstr "Poistetut tilat:"
 
-#: PublishPress_Statuses.php:1034
+#: PublishPress_Statuses.php:1069
 msgid "Deferred"
 msgstr "Siirretty"
 
-#: PublishPress_Statuses.php:1036
+#: PublishPress_Statuses.php:1071
 msgid "Defer"
 msgstr "Siirrä"
 
-#: PublishPress_Statuses.php:1037
+#: PublishPress_Statuses.php:1072
 msgid "Post has been deferred for future consideration."
 msgstr "Julkaisu on siirretty tulevaa tarkastelua varten."
 
-#: PublishPress_Statuses.php:1049
+#: PublishPress_Statuses.php:1084
 msgid "Committee"
 msgstr "Toimikunta"
 
-#: PublishPress_Statuses.php:1051
+#: PublishPress_Statuses.php:1086
 msgid "Refer to Committee"
 msgstr "Viittaa toimikuntaan"
 
-#: PublishPress_Statuses.php:1052
+#: PublishPress_Statuses.php:1087
 msgid "Post has been referred to committee."
 msgstr "Viesti on lähetetty toimikuntaan."
 
-#: PublishPress_Statuses.php:1065
+#: PublishPress_Statuses.php:1100
 msgid "Committee Review"
 msgstr "Toimikunnan arviointi"
 
-#: PublishPress_Statuses.php:1067
+#: PublishPress_Statuses.php:1102
 msgid "Set to Committee Review"
 msgstr "Aseta toimikunnan arviointi"
 
-#: PublishPress_Statuses.php:1068
+#: PublishPress_Statuses.php:1103
 msgid "Committee is reviewing the post."
 msgstr "Toimikunta arvioi viestiä."
 
-#: PublishPress_Statuses.php:1081
+#: PublishPress_Statuses.php:1116
 msgid "Committee Progress"
 msgstr "Toimikunnan edistyminen"
 
-#: PublishPress_Statuses.php:1083
+#: PublishPress_Statuses.php:1118
 msgid "Set to Committee Progress"
 msgstr "Aseta toimikunnan edistyminen"
 
-#: PublishPress_Statuses.php:1084
+#: PublishPress_Statuses.php:1119
 msgid "Committee is editing the post."
 msgstr "Toimikunta muokkaa viestiä."
 
-#: PublishPress_Statuses.php:1097
+#: PublishPress_Statuses.php:1132
 msgid "Committee Approved"
 msgstr "Toimikunta hyväksytty"
 
-#: PublishPress_Statuses.php:1099
+#: PublishPress_Statuses.php:1134
 msgid "Set Committee Approval"
 msgstr "Aseta toimikunnan hyväksyntä"
 
-#: PublishPress_Statuses.php:1100
+#: PublishPress_Statuses.php:1135
 msgid "Committee has approved the post."
 msgstr "Toimikunta on hyväksynyt viestin."
 
@@ -503,32 +504,36 @@ msgstr "Toimikunta on hyväksynyt viestin."
 msgid "Add New Status"
 msgstr "Lisää uusi tila"
 
-#: StatusEditUI.php:31
-msgid "Back to Statuses"
-msgstr "Takaisin tiloihin"
-
-#: StatusEditUI.php:55
-#: StatusEditUI.php:64
+#: StatusEditUI.php:41
+#: StatusEditUI.php:50
 #: StatusListTable.php:946
 msgid "Labels"
 msgstr "Tunnisteet"
 
-#: StatusEditUI.php:70
-#: StatusEditUI.php:401
+#: StatusEditUI.php:56
+#: StatusEditUI.php:414
 #: StatusListTable.php:171
 msgid "Post Types"
 msgstr "Julkaisutyypit"
 
-#: StatusEditUI.php:78
+#: StatusEditUI.php:64
 #: StatusListTable.php:170
 msgid "Roles"
 msgstr "Roolit"
 
-#: StatusEditUI.php:86
+#: StatusEditUI.php:72
+msgid "Edit Status Labels"
+msgstr "Muokkaa tilatunnisteita"
+
+#: StatusEditUI.php:75
+msgid "Back to Statuses"
+msgstr "Takaisin tiloihin"
+
+#: StatusEditUI.php:92
 msgid "Post Access"
 msgstr "Julkaisuoikeudet"
 
-#: StatusEditUI.php:177
+#: StatusEditUI.php:184
 msgid ""
 "Enforce type-specific post capabilitities for this status, or share "
 "capabilities with another status."
@@ -536,116 +541,88 @@ msgstr ""
 "Pakota tyyppikohtaiset julkaisokykyisyydet tälle tilalle tai jaa "
 "kykyisyydet toisen tilan kanssa."
 
-#: StatusEditUI.php:224
+#: StatusEditUI.php:231
 msgid "Update Status"
 msgstr "Päivitä tila"
 
-#: StatusEditUI.php:280
+#: StatusEditUI.php:293
 msgid "The slug is the unique ID for the status."
 msgstr "Slug on tilan ainutlaatuinen tunnus."
 
-#: StatusEditUI.php:290
+#: StatusEditUI.php:303
 msgid "Color"
 msgstr "Väri"
 
-#: StatusEditUI.php:302
+#: StatusEditUI.php:315
 msgid "The color is used to identify the status."
 msgstr "Väriä käytetään tilan tunnistamiseen."
 
-#: StatusEditUI.php:308
+#: StatusEditUI.php:321
 #: StatusListTable.php:169
 msgid "Icon"
 msgstr "Ikoni"
 
-#: StatusEditUI.php:324
+#: StatusEditUI.php:337
 msgid "Select Icon"
 msgstr "Valitse ikoni"
 
-#: StatusEditUI.php:330
+#: StatusEditUI.php:343
 msgid "The icon is used to visually represent the status."
 msgstr "Ikonia käytetään tilan visuaaliseen esittämiseen."
 
-#: StatusEditUI.php:365
+#: StatusEditUI.php:378
 msgid "Status Availability"
 msgstr "Tilanne saatavuus"
 
-#: StatusEditUI.php:368
+#: StatusEditUI.php:381
 msgid "Choose which user roles can assign this status to a post."
 msgstr "Valitse, mitkä käyttäjäroolit voivat antaa tämän tilan julkaisulle."
 
-#: StatusEditUI.php:404
+#: StatusEditUI.php:417
 msgid "Choose which post types can be set to this status."
 msgstr "Valitse, mitkä viestityypit voidaan asettaa tähän tilaan."
 
-#: StatusEditUI.php:441
+#: StatusEditUI.php:454
 msgid "All Post Types"
 msgstr "Kaikki viestityypit"
 
-#: StatusEditUI.php:486
-msgid "Status Label"
-msgstr "Tilan tunniste"
-
-#: StatusEditUI.php:499
-msgid "The name is used to identify the status. (Max: 20 characters)"
-msgstr "Nimeä käytetään tilan tunnistamiseen. (Max: 20 merkkiä)"
-
-#: StatusEditUI.php:509
-msgid "Description"
-msgstr "Kuvaus"
-
-#: StatusEditUI.php:521
-msgid ""
-"The description is primarily for administrative use, to give you some "
-"context on what the custom status is to be used for."
-msgstr ""
-"Kuvaus on ensisijaisesti hallinnolliseen käyttöön, jotta saat käsityksen "
-"siitä, mihin mukautettua tilaa käytetään."
-
-#: StatusEditUI.php:533
-msgid "Save As Label"
-msgstr "Tallenna nimilappuna"
-
-#: StatusEditUI.php:541
-msgid "Submit Button Label"
-msgstr "Lähetä painikkeen nimilappu"
-
-#: StatusEditUI.php:553
+#: StatusEditUI.php:504
 msgid "Upgrade to choose who can manage posts in each status"
 msgstr "Päivitä valitaksesi, kuka voi hallita viestejä jokaisessa tilassa"
 
-#: StatusEditUI.php:556
+#: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
 msgstr "Hanki PublishPress Statuses Pro erityisiä viestien pääsynhallintaa varten."
 
-#: StatusEditUI.php:562
+#: StatusEditUI.php:513
 msgid "Control which roles can assign a status"
 msgstr "Hallinnoi, mitkä roolit voivat määrittää tilan"
 
-#: StatusEditUI.php:565
+#: StatusEditUI.php:516
 msgid "Control which roles can edit or delete posts per-status"
 msgstr "Hallinnoi, mitkä roolit voivat muokata tai poistaa viestejä tilan mukaan"
 
-#: StatusEditUI.php:568
+#: StatusEditUI.php:519
 msgid "Set capabilities separately for each post type"
 msgstr "Aseta käyttöoikeudet erikseen jokaiselle viestityypille"
 
-#: StatusEditUI.php:571
+#: StatusEditUI.php:522
 msgid "User-friendly checkbox grid to assign capabilities"
 msgstr "Käyttäjäystävällinen valintaruutuverkko käyttöoikeuksien määrittämiseen"
 
-#: StatusEditUI.php:580
+#: StatusEditUI.php:531
 #: StatusListTable.php:674
 msgid "Get PublishPress Statuses Pro"
 msgstr "Hanki PublishPress Statuses Pro"
 
-#: StatusEditUI.php:585
+#: StatusEditUI.php:536
 #: StatusListTable.php:229
 #: StatusListTable.php:246
 #: StatusListTable.php:679
 msgid "Learn More"
 msgstr "Lisätietoja"
 
-#: StatusEditUI.php:594
+#: StatusEditUI.php:545
 #, php-format
 msgid ""
 "Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
@@ -653,6 +630,34 @@ msgid ""
 msgstr ""
 "Tila-erityiset viestien käyttöoikeudet ovat %1$skäytössä pois%2$s. Voit "
 "%3$smuuttaa tätä asetusta%4$s."
+
+#: StatusEditUI.php:565
+msgid "Status Label"
+msgstr "Tilan tunniste"
+
+#: StatusEditUI.php:578
+msgid "The name is used to identify the status. (Max: 20 characters)"
+msgstr "Nimeä käytetään tilan tunnistamiseen. (Max: 20 merkkiä)"
+
+#: StatusEditUI.php:588
+msgid "Description"
+msgstr "Kuvaus"
+
+#: StatusEditUI.php:600
+msgid ""
+"The description is primarily for administrative use, to give you some "
+"context on what the custom status is to be used for."
+msgstr ""
+"Kuvaus on ensisijaisesti hallinnolliseen käyttöön, jotta saat käsityksen "
+"siitä, mihin mukautettua tilaa käytetään."
+
+#: StatusEditUI.php:612
+msgid "Save As Label"
+msgstr "Tallenna nimilappuna"
+
+#: StatusEditUI.php:620
+msgid "Submit Button Label"
+msgstr "Lähetä painikkeen nimilappu"
 
 #: StatusesUI.php:64
 #. translators: %s is the status label
@@ -1371,7 +1376,7 @@ msgstr "Oletus"
 msgid "Delete"
 msgstr "Poista"
 
-#: PublishPress_Statuses.php:813
+#: PublishPress_Statuses.php:848
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Ehdotus"
