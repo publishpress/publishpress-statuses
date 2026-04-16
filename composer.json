@@ -29,7 +29,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "publishpress/dev-workspace": "dev-testing-translations"
+        "publishpress/dev-workspace": "^1.1.7"
     },
     "scripts": {
         "check:lint": "phplint",
