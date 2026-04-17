@@ -540,6 +540,7 @@ class StatusesUI {
         });
         /* ]]> */
         </script>
+
         <?php
     }
 
@@ -815,7 +816,9 @@ class StatusesUI {
             $custom_post_types = $pp->get_supported_post_types();
 
             foreach ($custom_post_types as $custom_post_type => $args) {
-                $post_types[$custom_post_type] = $args->label;
+                if (!\PublishPress_Statuses::DisabledForPostType($custom_post_type)) {
+                    $post_types[$custom_post_type] = $args->label;
+                }
             }
         }
         ?>
