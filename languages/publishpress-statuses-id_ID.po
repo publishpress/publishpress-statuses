@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 07:19+0000\n"
+"PO-Revision-Date: 2026-04-17 23:25+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: publishpress-statuses.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
-msgstr "PublishPress Statuses Gratis"
+msgstr "PublishPress Statuses Free"
 
 #: publishpress-statuses.php:4, fuzzy
 #. Plugin URI of the plugin
@@ -128,9 +128,7 @@ msgstr "Status Lanjutan"
 msgid ""
 "You're using PublishPress Statuses Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"Anda sedang menggunakan PublishPress Statuses Gratis. Versi Pro memiliki "
-"lebih banyak fitur dan dukungan. %sUpgrade ke Pro%s"
+msgstr "Anda sedang menggunakan PublishPress Statuses Gratis. Versi Pro memiliki lebih banyak fitur dan dukungan. %sUpgrade ke Pro%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
@@ -304,35 +302,29 @@ msgstr "Hubungi"
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>Plugin ini dapat dihapus.</strong>"
 
-#: publishpress-statuses.php:178
+#: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Planner to "
 "version %s or higher."
-msgstr ""
-"Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress "
-"Planner ke versi %s atau yang lebih tinggi."
+msgstr "Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress Planner ke versi %s atau yang lebih tinggi."
 
-#: publishpress-statuses.php:195
+#: publishpress-statuses.php:213
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
 "to version %s or higher."
-msgstr ""
-"Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress "
-"Permissions Pro ke versi %s atau yang lebih tinggi."
+msgstr "Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress Permissions Pro ke versi %s atau yang lebih tinggi."
 
-#: publishpress-statuses.php:212
+#: publishpress-statuses.php:230
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
 "to version %s or higher."
-msgstr ""
-"Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress "
-"Capabilities Pro ke versi %s atau yang lebih tinggi."
+msgstr "Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress Capabilities Pro ke versi %s atau yang lebih tinggi."
 
 #: PublishPress_Statuses.php:408
 msgid ""
@@ -986,10 +978,7 @@ msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
-msgstr ""
-"Warna, ikon, dan posisi status diimpor secara otomatis dari PublishPress "
-"Planner. Pilih opsi di atas untuk menjalankan ulang impor, memberi "
-"prioritas pada posisi status yang ditentukan oleh Perencana."
+msgstr "Warna, ikon, dan posisi status diimpor secara otomatis dari PublishPress Planner. Pilih opsi di atas untuk menjalankan ulang impor, memberi prioritas pada posisi status yang ditentukan oleh Perencana."
 
 #: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
@@ -1086,9 +1075,7 @@ msgstr "Tambahkan Status Prabuku Baru"
 msgid ""
 "For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
 "Pro%2$s."
-msgstr ""
-"Untuk Status Visibilitas kustom, %1$supgrade ke PublishPress Statuses "
-"Pro%2$s."
+msgstr "Untuk Status Visibilitas kustom, %1$supgrade ke PublishPress Statuses Pro%2$s."
 
 #: StatusesUI.php:1185
 #. translators: %1$s and %2$s is link markup
@@ -1234,25 +1221,19 @@ msgstr ""
 msgid ""
 "Create approval workflows using PublishPress Statuses Pro together with the "
 "PublishPress Revisions Pro plugin"
-msgstr ""
-"Buat alur kerja persetujuan menggunakan PublishPress Statuses Pro bersama "
-"dengan plugin PublishPress Revisions Pro"
+msgstr "Buat alur kerja persetujuan menggunakan PublishPress Statuses Pro bersama dengan plugin PublishPress Revisions Pro"
 
 #: StatusListTable.php:206
 msgid ""
 "The PublishPress Revisions plugin allows users to submit changes to "
 "published posts"
-msgstr ""
-"Plugin PublishPress Revisions memungkinkan pengguna untuk mengajukan "
-"perubahan pada pos yang diterbitkan"
+msgstr "Plugin PublishPress Revisions memungkinkan pengguna untuk mengajukan perubahan pada pos yang diterbitkan"
 
 #: StatusListTable.php:209
 msgid ""
 "PublishPress Statuses plugin enables you to add statuses for post changes "
 "created with Revisions"
-msgstr ""
-"Plugin PublishPress Statuses memungkinkan Anda menambahkan status untuk "
-"perubahan pos yang dibuat dengan Revisions"
+msgstr "Plugin PublishPress Statuses memungkinkan Anda menambahkan status untuk perubahan pos yang dibuat dengan Revisions"
 
 #: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
@@ -1283,9 +1264,7 @@ msgstr ""
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
-msgstr ""
-"Untuk mendefinisikan dan mengontrol status Revisi, perbarui plugin "
-"%1$sPublishPress Revisions%2$s ke versi %3$s atau lebih tinggi."
+msgstr "Untuk mendefinisikan dan mengontrol status Revisi, perbarui plugin %1$sPublishPress Revisions%2$s ke versi %3$s atau lebih tinggi."
 
 #: StatusListTable.php:340
 msgid "Main Workflow:"
@@ -1352,9 +1331,7 @@ msgstr "Tingkatkan untuk memilih siapa yang dapat melihat kiriman non-publik And
 msgid ""
 "Upgrade to PublishPress Statuses Pro to define your own custom visibility "
 "statuses."
-msgstr ""
-"Tingkatkan ke PublishPress Statuses Pro untuk mendefinisikan status "
-"visibilitas kustom Anda sendiri."
+msgstr "Tingkatkan ke PublishPress Statuses Pro untuk mendefinisikan status visibilitas kustom Anda sendiri."
 
 #: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"

@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 07:19+0000\n"
+"PO-Revision-Date: 2026-04-17 23:25+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: publishpress-statuses.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
-msgstr "PublishPress ステータス フリー"
+msgstr "PublishPress Statuses Free"
 
 #: publishpress-statuses.php:4, fuzzy
 #. Plugin URI of the plugin
@@ -125,9 +125,7 @@ msgstr "ステータスを進める"
 msgid ""
 "You're using PublishPress Statuses Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"PublishPress ステータス フリーを使用しています。Proバージョンには、さらに多くの機能とサポートがあります。 "
-"%sProにアップグレード%s"
+msgstr "PublishPress ステータス フリーを使用しています。Proバージョンには、さらに多くの機能とサポートがあります。 %sProにアップグレード%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
@@ -297,7 +295,7 @@ msgstr "連絡"
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>このプラグインは削除できます。</strong>"
 
-#: publishpress-statuses.php:178
+#: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
 msgid ""
@@ -305,25 +303,21 @@ msgid ""
 "version %s or higher."
 msgstr "PublishPress Statusesを使用するには、PublishPress Plannerをバージョン%s以上にアップグレードしてください。"
 
-#: publishpress-statuses.php:195
+#: publishpress-statuses.php:213
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
 "to version %s or higher."
-msgstr ""
-"PublishPress Statusesを使用するには、PublishPress Permissions "
-"Proをバージョン%s以上にアップグレードしてください。"
+msgstr "PublishPress Statusesを使用するには、PublishPress Permissions Proをバージョン%s以上にアップグレードしてください。"
 
-#: publishpress-statuses.php:212
+#: publishpress-statuses.php:230
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
 "to version %s or higher."
-msgstr ""
-"PublishPress Statusesを使用するには、PublishPress Capabilities "
-"Proをバージョン%s以上にアップグレードしてください。"
+msgstr "PublishPress Statusesを使用するには、PublishPress Capabilities Proをバージョン%s以上にアップグレードしてください。"
 
 #: PublishPress_Statuses.php:408
 msgid ""
@@ -941,9 +935,7 @@ msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
-msgstr ""
-"ステータスの色、アイコン、および位置は、PublishPress Planner "
-"から自動的にインポートされます。インポートを再実行するには、上のオプションを選択し、プランナーで定義されたステータス位置に優先順位を与えます。"
+msgstr "ステータスの色、アイコン、および位置は、PublishPress Planner から自動的にインポートされます。インポートを再実行するには、上のオプションを選択し、プランナーで定義されたステータス位置に優先順位を与えます。"
 
 #: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
@@ -1217,9 +1209,7 @@ msgstr "編集ワークフローに合わせて任意の投稿タイプと役割
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
-msgstr ""
-"リビジョンステータスを定義および制御するには、%1$sPublishPress "
-"Revisions%2$sプラグインをバージョン%3$s以上に更新してください。"
+msgstr "リビジョンステータスを定義および制御するには、%1$sPublishPress Revisions%2$sプラグインをバージョン%3$s以上に更新してください。"
 
 #: StatusListTable.php:340
 msgid "Main Workflow:"
