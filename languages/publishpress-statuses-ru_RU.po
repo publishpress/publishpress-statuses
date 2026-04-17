@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-15 15:25+0000\n"
+"PO-Revision-Date: 2026-04-17 05:53+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 ">= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Управляйте и создавайте статусы постов для настройки вашего редакционного "
 "рабочего процесса"
 
-#: publishpress-statuses.php:7, fuzzy
+#: publishpress-statuses.php:7
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
@@ -49,8 +49,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:393
-#: PublishPress_Statuses.php:394
+#: PublishPress_Statuses.php:446
+#: PublishPress_Statuses.php:447
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Статусы"
@@ -84,17 +84,17 @@ msgid "Add New"
 msgstr "Добавить новый"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:858
+#: PublishPress_Statuses.php:911
 msgid "Approve"
 msgstr "Одобрить"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:828
+#: PublishPress_Statuses.php:881
 msgid "Assign"
 msgstr "Назначить"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:843
+#: PublishPress_Statuses.php:896
 msgid "Mark In Progress"
 msgstr "Отметить как в процессе"
 
@@ -271,34 +271,35 @@ msgstr "Рабочий процесс"
 msgid "Submit Revision"
 msgstr "Отправить исправление"
 
-#: publishpress-module/ModuleAdminUI_Base.php:100
+#: publishpress-module/ModuleAdminUI_Base.php:101
+#. translators: %1$s is the plugin name, %2$s is the rating stars
 #, php-format
 msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
 msgstr "Если вам нравится %1$s, пожалуйста, оставьте нам оценку %2$s. Спасибо!"
 
-#: publishpress-module/ModuleAdminUI_Base.php:111
+#: publishpress-module/ModuleAdminUI_Base.php:112
 #, php-format
 msgid "About %s"
 msgstr "О %s"
 
-#: publishpress-module/ModuleAdminUI_Base.php:111
+#: publishpress-module/ModuleAdminUI_Base.php:112
 msgid "About"
 msgstr "О нас"
 
-#: publishpress-module/ModuleAdminUI_Base.php:113
+#: publishpress-module/ModuleAdminUI_Base.php:114
 #, php-format
 msgid "%s Documentation"
 msgstr "%s Документация"
 
-#: publishpress-module/ModuleAdminUI_Base.php:113
+#: publishpress-module/ModuleAdminUI_Base.php:114
 msgid "Documentation"
 msgstr "Документация"
 
-#: publishpress-module/ModuleAdminUI_Base.php:115
+#: publishpress-module/ModuleAdminUI_Base.php:116
 msgid "Contact the PublishPress team"
 msgstr "Связаться с командой PublishPress"
 
-#: publishpress-module/ModuleAdminUI_Base.php:115
+#: publishpress-module/ModuleAdminUI_Base.php:116
 msgid "Contact"
 msgstr "Контакт"
 
@@ -336,7 +337,7 @@ msgstr ""
 "Чтобы использовать PublishPress Статусы, пожалуйста, обновите PublishPress "
 "Capabilities Pro до версии %s или выше."
 
-#: PublishPress_Statuses.php:355
+#: PublishPress_Statuses.php:408
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -344,163 +345,163 @@ msgstr ""
 "Может обойти обычную прогрессию статуса. Пользователь может опубликовать "
 "немедленно или переместить пост на самый дальний возможный статус."
 
-#: PublishPress_Statuses.php:356
+#: PublishPress_Statuses.php:409
 msgid "Manage Statuses plugin settings."
 msgstr "Управление настройками плагина Статусы."
 
-#: PublishPress_Statuses.php:361
+#: PublishPress_Statuses.php:414
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr "Может отменить публикацию постов, даже если Статус видимости заблокирован."
 
-#: PublishPress_Statuses.php:394
+#: PublishPress_Statuses.php:447
 msgid "Status"
 msgstr "Статус"
 
-#: PublishPress_Statuses.php:408
+#: PublishPress_Statuses.php:461
 msgid "Core Post Statuses"
 msgstr "Основные статусы постов"
 
-#: PublishPress_Statuses.php:671
+#: PublishPress_Statuses.php:724
 msgid "New post, not yet submitted."
 msgstr "Новый пост, еще не отправлен."
 
-#: PublishPress_Statuses.php:693
+#: PublishPress_Statuses.php:746
 msgid "Post is awaiting review."
 msgstr "Пост ожидает проверки."
 
-#: PublishPress_Statuses.php:713
+#: PublishPress_Statuses.php:766
 msgid "Post is scheduled for publication."
 msgstr "Пост запланирован к публикации."
 
-#: PublishPress_Statuses.php:732
+#: PublishPress_Statuses.php:785
 msgid "Post is published, publicly visible."
 msgstr "Пост опубликован, виден публично."
 
-#: PublishPress_Statuses.php:751
+#: PublishPress_Statuses.php:804
 msgid "Post is published with private visibility."
 msgstr "Пост опубликован с приватной видимостью."
 
-#: PublishPress_Statuses.php:811
+#: PublishPress_Statuses.php:864
 msgid "Pitch"
 msgstr "Предложение"
 
-#: PublishPress_Statuses.php:814
+#: PublishPress_Statuses.php:867
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Идея предложена; ожидает одобрения."
 
-#: PublishPress_Statuses.php:826
+#: PublishPress_Statuses.php:879
 msgid "Assigned"
 msgstr "Назначено"
 
-#: PublishPress_Statuses.php:829
+#: PublishPress_Statuses.php:882
 msgid "Post idea assigned to writer."
 msgstr "Идея поста назначена автору."
 
-#: PublishPress_Statuses.php:841
+#: PublishPress_Statuses.php:894
 msgid "In Progress"
 msgstr "В процессе"
 
-#: PublishPress_Statuses.php:844
+#: PublishPress_Statuses.php:897
 msgid "Writer is working on the post."
 msgstr "Автор работает над постом."
 
-#: PublishPress_Statuses.php:856
+#: PublishPress_Statuses.php:909
 msgid "Approved"
 msgstr "Одобрено"
 
-#: PublishPress_Statuses.php:859
+#: PublishPress_Statuses.php:912
 msgid "Post has been approved for publication."
 msgstr "Пост был одобрен для публикации."
 
-#: PublishPress_Statuses.php:871
+#: PublishPress_Statuses.php:924
 msgid "Needs Work"
 msgstr "Требуется доработка"
 
-#: PublishPress_Statuses.php:873
+#: PublishPress_Statuses.php:926
 msgid "Set to Needs Work"
 msgstr "Установить на Требуется доработка"
 
-#: PublishPress_Statuses.php:874
+#: PublishPress_Statuses.php:927
 msgid "Post needs work before further review."
 msgstr "Пост требует доработки перед дальнейшим рассмотрением."
 
-#: PublishPress_Statuses.php:886
+#: PublishPress_Statuses.php:939
 msgid "Rejected"
 msgstr "Отклонено"
 
-#: PublishPress_Statuses.php:888
+#: PublishPress_Statuses.php:941
 msgid "Reject"
 msgstr "Отклонить"
 
-#: PublishPress_Statuses.php:889
+#: PublishPress_Statuses.php:942
 msgid "Post has been rejected."
 msgstr "Пост был отклонён."
 
-#: PublishPress_Statuses.php:923
+#: PublishPress_Statuses.php:976
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Альтернативный рабочий процесс до публикации:"
 
-#: PublishPress_Statuses.php:1018
+#: PublishPress_Statuses.php:1071
 msgid "Disabled Statuses:"
 msgstr "Отключенные статусы:"
 
-#: PublishPress_Statuses.php:1034
+#: PublishPress_Statuses.php:1087
 msgid "Deferred"
 msgstr "Отложено"
 
-#: PublishPress_Statuses.php:1036
+#: PublishPress_Statuses.php:1089
 msgid "Defer"
 msgstr "Отложить"
 
-#: PublishPress_Statuses.php:1037
+#: PublishPress_Statuses.php:1090
 msgid "Post has been deferred for future consideration."
 msgstr "Пост был отложен для дальнейшего рассмотрения."
 
-#: PublishPress_Statuses.php:1049
+#: PublishPress_Statuses.php:1102
 msgid "Committee"
 msgstr "Комитет"
 
-#: PublishPress_Statuses.php:1051
+#: PublishPress_Statuses.php:1104
 msgid "Refer to Committee"
 msgstr "Передать комитету"
 
-#: PublishPress_Statuses.php:1052
+#: PublishPress_Statuses.php:1105
 msgid "Post has been referred to committee."
 msgstr "Пост был передан в комитет."
 
-#: PublishPress_Statuses.php:1065
+#: PublishPress_Statuses.php:1118
 msgid "Committee Review"
 msgstr "Рассмотрение комитетом"
 
-#: PublishPress_Statuses.php:1067
+#: PublishPress_Statuses.php:1120
 msgid "Set to Committee Review"
 msgstr "Установить на Рассмотрение комитетом"
 
-#: PublishPress_Statuses.php:1068
+#: PublishPress_Statuses.php:1121
 msgid "Committee is reviewing the post."
 msgstr "Комитет рассматривает пост."
 
-#: PublishPress_Statuses.php:1081
+#: PublishPress_Statuses.php:1134
 msgid "Committee Progress"
 msgstr "Прогресс комитета"
 
-#: PublishPress_Statuses.php:1083
+#: PublishPress_Statuses.php:1136
 msgid "Set to Committee Progress"
 msgstr "Установить на Прогресс комитета"
 
-#: PublishPress_Statuses.php:1084
+#: PublishPress_Statuses.php:1137
 msgid "Committee is editing the post."
 msgstr "Комитет редактирует пост."
 
-#: PublishPress_Statuses.php:1097
+#: PublishPress_Statuses.php:1150
 msgid "Committee Approved"
 msgstr "Одобрено комитетом"
 
-#: PublishPress_Statuses.php:1099
+#: PublishPress_Statuses.php:1152
 msgid "Set Committee Approval"
 msgstr "Установить одобрение комитета"
 
-#: PublishPress_Statuses.php:1100
+#: PublishPress_Statuses.php:1153
 msgid "Committee has approved the post."
 msgstr "Комитет одобрил пост."
 
@@ -508,32 +509,36 @@ msgstr "Комитет одобрил пост."
 msgid "Add New Status"
 msgstr "Добавить новый статус"
 
-#: StatusEditUI.php:31
-msgid "Back to Statuses"
-msgstr "Вернуться к статусам"
-
-#: StatusEditUI.php:55
-#: StatusEditUI.php:64
+#: StatusEditUI.php:41
+#: StatusEditUI.php:50
 #: StatusListTable.php:946
 msgid "Labels"
 msgstr "Метки"
 
-#: StatusEditUI.php:70
-#: StatusEditUI.php:401
+#: StatusEditUI.php:56
+#: StatusEditUI.php:414
 #: StatusListTable.php:171
 msgid "Post Types"
 msgstr "Типы публикаций"
 
-#: StatusEditUI.php:78
+#: StatusEditUI.php:64
 #: StatusListTable.php:170
 msgid "Roles"
 msgstr "Роли"
 
-#: StatusEditUI.php:86
+#: StatusEditUI.php:72
+msgid "Edit Status Labels"
+msgstr "Редактировать метки статуса"
+
+#: StatusEditUI.php:75
+msgid "Back to Statuses"
+msgstr "Вернуться к статусам"
+
+#: StatusEditUI.php:92
 msgid "Post Access"
 msgstr "Доступ к публикациям"
 
-#: StatusEditUI.php:177
+#: StatusEditUI.php:184
 msgid ""
 "Enforce type-specific post capabilitities for this status, or share "
 "capabilities with another status."
@@ -541,64 +546,113 @@ msgstr ""
 "Применить специфические для типа публикаций возможности для этого статуса "
 "или поделиться возможностями с другим статусом."
 
-#: StatusEditUI.php:224
+#: StatusEditUI.php:231
 msgid "Update Status"
 msgstr "Обновить статус"
 
-#: StatusEditUI.php:280
+#: StatusEditUI.php:293
 msgid "The slug is the unique ID for the status."
 msgstr "Слаг — это уникальный идентификатор для статуса."
 
-#: StatusEditUI.php:290
+#: StatusEditUI.php:303
 msgid "Color"
 msgstr "Цвет"
 
-#: StatusEditUI.php:302
+#: StatusEditUI.php:315
 msgid "The color is used to identify the status."
 msgstr "Цвет используется для идентификации статуса."
 
-#: StatusEditUI.php:308
+#: StatusEditUI.php:321
 #: StatusListTable.php:169
 msgid "Icon"
 msgstr "Иконка"
 
-#: StatusEditUI.php:324
+#: StatusEditUI.php:337
 msgid "Select Icon"
 msgstr "Выбрать иконку"
 
-#: StatusEditUI.php:330
+#: StatusEditUI.php:343
 msgid "The icon is used to visually represent the status."
 msgstr "Иконка используется для визуального представления статуса."
 
-#: StatusEditUI.php:365
+#: StatusEditUI.php:378
 msgid "Status Availability"
 msgstr "Доступность статуса"
 
-#: StatusEditUI.php:368
+#: StatusEditUI.php:381
 msgid "Choose which user roles can assign this status to a post."
 msgstr "Выберите, какие роли пользователей могут назначать этот статус публикации."
 
-#: StatusEditUI.php:404
+#: StatusEditUI.php:417
 msgid "Choose which post types can be set to this status."
 msgstr "Выберите, какие типы записей могут быть установлены на этот статус."
 
-#: StatusEditUI.php:441
+#: StatusEditUI.php:454
 msgid "All Post Types"
 msgstr "Все типы записей"
 
-#: StatusEditUI.php:486
+#: StatusEditUI.php:504
+msgid "Upgrade to choose who can manage posts in each status"
+msgstr "Обновите, чтобы выбрать, кто может управлять записями в каждом статусе"
+
+#: StatusEditUI.php:507
+msgid "Get PublishPress Statuses Pro for status-specific post access control."
+msgstr ""
+"Получите PublishPress Statuses Pro для управления доступом к записям в "
+"зависимости от статуса."
+
+#: StatusEditUI.php:513
+msgid "Control which roles can assign a status"
+msgstr "Контролируйте, какие роли могут назначать статус"
+
+#: StatusEditUI.php:516
+msgid "Control which roles can edit or delete posts per-status"
+msgstr ""
+"Контролируйте, какие роли могут редактировать или удалять записи для "
+"каждого статуса"
+
+#: StatusEditUI.php:519
+msgid "Set capabilities separately for each post type"
+msgstr "Установите возможности отдельно для каждого типа записи"
+
+#: StatusEditUI.php:522
+msgid "User-friendly checkbox grid to assign capabilities"
+msgstr "Удобная для пользователя сетка чекбоксов для назначения возможностей"
+
+#: StatusEditUI.php:531
+#: StatusListTable.php:674
+msgid "Get PublishPress Statuses Pro"
+msgstr "Получите PublishPress Statuses Pro"
+
+#: StatusEditUI.php:536
+#: StatusListTable.php:229
+#: StatusListTable.php:246
+#: StatusListTable.php:679
+msgid "Learn More"
+msgstr "Узнать больше"
+
+#: StatusEditUI.php:545
+#, php-format
+msgid ""
+"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
+"%3$schange this setting%4$s."
+msgstr ""
+"Специфические для статуса возможности записи %1$scейчас отключены%2$s. Вы "
+"можете %3$сменить эту настройку%4$s."
+
+#: StatusEditUI.php:565
 msgid "Status Label"
 msgstr "Метка статуса"
 
-#: StatusEditUI.php:499
+#: StatusEditUI.php:578
 msgid "The name is used to identify the status. (Max: 20 characters)"
 msgstr "Имя используется для идентификации статуса. (Макс: 20 символов)"
 
-#: StatusEditUI.php:509
+#: StatusEditUI.php:588
 msgid "Description"
 msgstr "Описание"
 
-#: StatusEditUI.php:521
+#: StatusEditUI.php:600
 msgid ""
 "The description is primarily for administrative use, to give you some "
 "context on what the custom status is to be used for."
@@ -607,62 +661,13 @@ msgstr ""
 "использования, чтобы дать вам представление о том, для чего будет "
 "использоваться пользовательский статус."
 
-#: StatusEditUI.php:533
+#: StatusEditUI.php:612
 msgid "Save As Label"
 msgstr "Сохранить как метку"
 
-#: StatusEditUI.php:541
+#: StatusEditUI.php:620
 msgid "Submit Button Label"
 msgstr "Метка кнопки отправки"
-
-#: StatusEditUI.php:553
-msgid "Upgrade to choose who can manage posts in each status"
-msgstr "Обновите, чтобы выбрать, кто может управлять записями в каждом статусе"
-
-#: StatusEditUI.php:556
-msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Получите PublishPress Statuses Pro для управления доступом к записям в "
-"зависимости от статуса."
-
-#: StatusEditUI.php:562
-msgid "Control which roles can assign a status"
-msgstr "Контролируйте, какие роли могут назначать статус"
-
-#: StatusEditUI.php:565
-msgid "Control which roles can edit or delete posts per-status"
-msgstr ""
-"Контролируйте, какие роли могут редактировать или удалять записи для "
-"каждого статуса"
-
-#: StatusEditUI.php:568
-msgid "Set capabilities separately for each post type"
-msgstr "Установите возможности отдельно для каждого типа записи"
-
-#: StatusEditUI.php:571
-msgid "User-friendly checkbox grid to assign capabilities"
-msgstr "Удобная для пользователя сетка чекбоксов для назначения возможностей"
-
-#: StatusEditUI.php:580
-#: StatusListTable.php:674
-msgid "Get PublishPress Statuses Pro"
-msgstr "Получите PublishPress Statuses Pro"
-
-#: StatusEditUI.php:585
-#: StatusListTable.php:229
-#: StatusListTable.php:246
-#: StatusListTable.php:679
-msgid "Learn More"
-msgstr "Узнать больше"
-
-#: StatusEditUI.php:594
-#, php-format
-msgid ""
-"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
-"%3$schange this setting%4$s."
-msgstr ""
-"Специфические для статуса возможности записи %1$scейчас отключены%2$s. Вы "
-"можете %3$сменить эту настройку%4$s."
 
 #: StatusesUI.php:64
 #. translators: %s is the status label
@@ -1403,7 +1408,7 @@ msgstr "По умолчанию"
 msgid "Delete"
 msgstr "Удалить"
 
-#: PublishPress_Statuses.php:813
+#: PublishPress_Statuses.php:866
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Предложение"
