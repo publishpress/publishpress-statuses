@@ -10,5 +10,6 @@
 .php-cs-fixer.cache
 
 dev-workspace/.cache
+dev-workspace-cache/
 .env
 .phplint-cache
