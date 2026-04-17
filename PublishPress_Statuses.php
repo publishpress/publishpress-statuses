@@ -3479,9 +3479,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if ($post_id) {
             if ($orig_status != $status) {
                 if (!in_array($status, ['draft'])) {
-                    \PublishPress_Statuses::instance()->filtered_post_status[$post_id]= $status;
+                    $this->filtered_post_status[$post_id] = $status;
                 }
-                    }
+            }
 
             $post_type = get_post_field('post_type', $post_id);
 

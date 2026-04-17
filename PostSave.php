@@ -182,7 +182,9 @@ class PostSave
         }
 
         if (in_array($post_status, ['publish', 'private'])) {
-            $default_privacy = \PublishPress_Statuses::instance()->options->default_privacy[$_post->post_type];
+            $default_privacy = (isset(\PublishPress_Statuses::instance()->options->default_privacy[$_post->post_type])) 
+            ? \PublishPress_Statuses::instance()->options->default_privacy[$_post->post_type]
+            : '';
 
             if ($default_privacy) {
                 if (get_post_status_object($default_privacy)) {                    
