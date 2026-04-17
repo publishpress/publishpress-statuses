@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 07:19+0000\n"
+"PO-Revision-Date: 2026-04-17 23:25+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: publishpress-statuses.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
-msgstr "JulkaisePress Statukset Ilmainen"
+msgstr "PublishPress Statuses Free"
 
 #: publishpress-statuses.php:4, fuzzy
 #. Plugin URI of the plugin
@@ -34,7 +34,7 @@ msgstr "Hallinnoi ja luo viestin tiloja muokataksesi toimitusprosessiasi"
 #: publishpress-statuses.php:7
 #. Author of the plugin
 msgid "PublishPress"
-msgstr "JulkaisePress"
+msgstr "PublishPress"
 
 #: publishpress-statuses.php:8, fuzzy
 #. Author URI of the plugin
@@ -128,9 +128,7 @@ msgstr "Edistyminen tila"
 msgid ""
 "You're using PublishPress Statuses Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"Käytät JulkaisePress Statukset Ilmaista. Pro-versiossa on enemmän "
-"ominaisuuksia ja tukea. %sPäivitä Pro:hon%s"
+msgstr "Käytät JulkaisePress Statukset Ilmaista. Pro-versiossa on enemmän ominaisuuksia ja tukea. %sPäivitä Pro:hon%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
@@ -302,35 +300,29 @@ msgstr "Ota yhteyttä"
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>Tämä laajennus voidaan poistaa.</strong>"
 
-#: publishpress-statuses.php:178
+#: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Planner to "
 "version %s or higher."
-msgstr ""
-"Käyttääksesi PublishPress-tiloja, päivitä PublishPress Planner versioon %s "
-"tai uudempiin."
+msgstr "Käyttääksesi PublishPress-tiloja, päivitä PublishPress Planner versioon %s tai uudempiin."
 
-#: publishpress-statuses.php:195
+#: publishpress-statuses.php:213
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
 "to version %s or higher."
-msgstr ""
-"Käyttääksesi PublishPress-tiloja, päivitä PublishPress Permissions Pro "
-"versioon %s tai uudempiin."
+msgstr "Käyttääksesi PublishPress-tiloja, päivitä PublishPress Permissions Pro versioon %s tai uudempiin."
 
-#: publishpress-statuses.php:212
+#: publishpress-statuses.php:230
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
 "to version %s or higher."
-msgstr ""
-"Käyttääksesi PublishPress-tiloja, päivitä PublishPress Capabilities Pro "
-"versioon %s tai uudempiin."
+msgstr "Käyttääksesi PublishPress-tiloja, päivitä PublishPress Capabilities Pro versioon %s tai uudempiin."
 
 #: PublishPress_Statuses.php:408
 msgid ""
@@ -978,10 +970,7 @@ msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
-msgstr ""
-"Tilojen väri, ikoni ja sijainti tuodaan automaattisesti PublishPress "
-"Plannerista. Valitse yllä oleva vaihtoehto suorittaaksesi tuonnin "
-"uudelleen, antaen etusijan Plannerin määrittämälle tilan sijainnille."
+msgstr "Tilojen väri, ikoni ja sijainti tuodaan automaattisesti PublishPress Plannerista. Valitse yllä oleva vaihtoehto suorittaaksesi tuonnin uudelleen, antaen etusijan Plannerin määrittämälle tilan sijainnille."
 
 #: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
@@ -1218,25 +1207,19 @@ msgstr "Päivitä luodaksesi hyväksymisvirran julkaistulle sisällölle"
 msgid ""
 "Create approval workflows using PublishPress Statuses Pro together with the "
 "PublishPress Revisions Pro plugin"
-msgstr ""
-"Luo hyväksymisvirtoja käyttämällä PublishPress Statuses Pro -laajennusta "
-"yhdessä PublishPress Revisions Pro -laajennuksen kanssa"
+msgstr "Luo hyväksymisvirtoja käyttämällä PublishPress Statuses Pro -laajennusta yhdessä PublishPress Revisions Pro -laajennuksen kanssa"
 
 #: StatusListTable.php:206
 msgid ""
 "The PublishPress Revisions plugin allows users to submit changes to "
 "published posts"
-msgstr ""
-"PublishPress Revisions -laajennus mahdollistaa käyttäjien lähettää "
-"muutoksia julkaistuille posteille"
+msgstr "PublishPress Revisions -laajennus mahdollistaa käyttäjien lähettää muutoksia julkaistuille posteille"
 
 #: StatusListTable.php:209
 msgid ""
 "PublishPress Statuses plugin enables you to add statuses for post changes "
 "created with Revisions"
-msgstr ""
-"PublishPress Statuses -laajennus antaa sinun lisätä tiloja Revisionsin "
-"avulla luoduille postimuutoksille"
+msgstr "PublishPress Statuses -laajennus antaa sinun lisätä tiloja Revisionsin avulla luoduille postimuutoksille"
 
 #: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
@@ -1265,9 +1248,7 @@ msgstr "Määritä mikä tahansa postityyppi ja rooli vastaamaan muokkausvirtaas
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
-msgstr ""
-"Määritä ja hallitse Revision-tiloja päivittämällä %1$sPublishPress "
-"Revisions%2$s -laajennus versioon %3$s tai uudempiin."
+msgstr "Määritä ja hallitse Revision-tiloja päivittämällä %1$sPublishPress Revisions%2$s -laajennus versioon %3$s tai uudempiin."
 
 #: StatusListTable.php:340
 msgid "Main Workflow:"
@@ -1334,9 +1315,7 @@ msgstr "Päivitä valitaksesi, kuka voi nähdä ei-julkiset viestisi"
 msgid ""
 "Upgrade to PublishPress Statuses Pro to define your own custom visibility "
 "statuses."
-msgstr ""
-"Päivitä PublishPress Statuses Pro -versioon määrittääksesi omat mukautetut "
-"näkyvyystilat."
+msgstr "Päivitä PublishPress Statuses Pro -versioon määrittääksesi omat mukautetut näkyvyystilat."
 
 #: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"
