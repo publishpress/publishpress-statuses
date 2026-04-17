@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Statuses Free
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
- * Version: 1.3.0-rc5
+ * Version: 1.3.0-rc6
  * Author: PublishPress
  * Author URI:  https://publishpress.com/
  * Text Domain: publishpress-statuses
@@ -150,6 +150,24 @@ if (!defined('PUBLISHPRESS_STATUSES_FILE') && !$publishpress_statuses_loaded_by_
     ) {
         require_once PUBLISHPRESS_STATUSES_INTERNAL_VENDORPATH . '/autoload.php';
     }
+
+    // Load bundled-translations library
+    $bundledTranslationsPath = '/publishpress/bundled-translations/core/include.php';
+    if (file_exists(PUBLISHPRESS_STATUSES_INTERNAL_VENDORPATH . $bundledTranslationsPath)) {
+        require_once PUBLISHPRESS_STATUSES_INTERNAL_VENDORPATH . $bundledTranslationsPath;
+    }
+
+    // Initialize bundled translations
+    add_action('plugins_loaded', function() {
+        if (class_exists('PublishPress\BundledTranslations\BundledTranslations')) {
+            $bundledTranslations = new PublishPress\BundledTranslations\BundledTranslations(
+                'publishpress-statuses',
+                __DIR__ . '/languages',
+                __FILE__
+            );
+            $bundledTranslations->init();
+        }
+    }, 10);
 }
 
 if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_statuses_loaded_by_pro) {
@@ -227,7 +245,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         }
         
         if (empty($interrupt_load)) {
-            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.0-rc5');
+            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.0-rc6');
 
             define('PUBLISHPRESS_STATUSES_URL', trailingslashit(plugins_url('', __FILE__)));    // @todo: vendor lib
 

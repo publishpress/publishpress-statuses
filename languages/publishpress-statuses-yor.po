@@ -10,13 +10,13 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 07:19+0000\n"
+"PO-Revision-Date: 2026-04-17 23:25+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Language: yor\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: publishpress-statuses.php:3, fuzzy
+#: publishpress-statuses.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
 msgstr "PublishPress Statuses Free"
@@ -128,9 +128,7 @@ msgstr "Ilọsiwaju Ipo"
 msgid ""
 "You're using PublishPress Statuses Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"Iwọ nlo PublishPress Statuses Free. Ẹya Pro ni awọn ẹya diẹ sii ati "
-"atilẹyin. %sGba igbesoke si Pro%s"
+msgstr "Iwọ nlo PublishPress Statuses Free. Ẹya Pro ni awọn ẹya diẹ sii ati atilẹyin. %sGba igbesoke si Pro%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
@@ -300,35 +298,29 @@ msgstr "Kan si"
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>Ẹya yii le jẹ piparẹ.</strong>"
 
-#: publishpress-statuses.php:178
+#: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Planner to "
 "version %s or higher."
-msgstr ""
-"Lati lo Ipo PublishPress, jọwọ ṣe imudojuiwọn PublishPress Planner si ẹya "
-"%s tabi ga julọ."
+msgstr "Lati lo Ipo PublishPress, jọwọ ṣe imudojuiwọn PublishPress Planner si ẹya %s tabi ga julọ."
 
-#: publishpress-statuses.php:195
+#: publishpress-statuses.php:213
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
 "to version %s or higher."
-msgstr ""
-"Lati lo Ipo PublishPress, jọwọ ṣe imudojuiwọn PublishPress Permissions Pro "
-"si ẹya %s tabi ga julọ."
+msgstr "Lati lo Ipo PublishPress, jọwọ ṣe imudojuiwọn PublishPress Permissions Pro si ẹya %s tabi ga julọ."
 
-#: publishpress-statuses.php:212
+#: publishpress-statuses.php:230
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
 "to version %s or higher."
-msgstr ""
-"Lati lo Ipo PublishPress, jọwọ ṣe imudojuiwọn PublishPress Capabilities Pro "
-"si ẹya %s tabi ga julọ."
+msgstr "Lati lo Ipo PublishPress, jọwọ ṣe imudojuiwọn PublishPress Capabilities Pro si ẹya %s tabi ga julọ."
 
 #: PublishPress_Statuses.php:408
 msgid ""
@@ -590,9 +582,7 @@ msgstr "Ṣe ilọsiwaju lati yan ẹniti o le ṣakoso awọn ifiweranṣẹ ni
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Gba PublishPress Statuses Pro fun iṣakoso iraye si ifiweranṣẹ ti o ni "
-"ibatan si ipo."
+msgstr "Gba PublishPress Statuses Pro fun iṣakoso iraye si ifiweranṣẹ ti o ni ibatan si ipo."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"
@@ -975,10 +965,7 @@ msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
-msgstr ""
-"Awọ ipo, aami ati ipo ni a gbe wọle laifọwọyi lati PublishPress Planner. "
-"Yan aṣayan loke lati tun ṣe gbigbe wọle, fifun ni pataki si ipo ipo ti "
-"Planner ti ṣalaye."
+msgstr "Awọ ipo, aami ati ipo ni a gbe wọle laifọwọyi lati PublishPress Planner. Yan aṣayan loke lati tun ṣe gbigbe wọle, fifun ni pataki si ipo ipo ti Planner ti ṣalaye."
 
 #: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
@@ -1075,9 +1062,7 @@ msgstr "Fi Ipo Tuntun Pre-Publication kun"
 msgid ""
 "For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
 "Pro%2$s."
-msgstr ""
-"Fun awọn ipo Wiwo aṣa, %1$s ṣe imudojuiwọn si PublishPress Statuses Pro "
-"%2$s."
+msgstr "Fun awọn ipo Wiwo aṣa, %1$s ṣe imudojuiwọn si PublishPress Statuses Pro %2$s."
 
 #: StatusesUI.php:1185
 #. translators: %1$s and %2$s is link markup
@@ -1219,25 +1204,19 @@ msgstr "Gba imudojuiwọn lati ṣẹda ilana ifọwọsi fun akoonu ti a tẹja
 msgid ""
 "Create approval workflows using PublishPress Statuses Pro together with the "
 "PublishPress Revisions Pro plugin"
-msgstr ""
-"Ṣẹda awọn ilana ifọwọsi nipa lilo PublishPress Statuses Pro pọ pẹlu pẹpẹ "
-"PublishPress Revisions Pro"
+msgstr "Ṣẹda awọn ilana ifọwọsi nipa lilo PublishPress Statuses Pro pọ pẹlu pẹpẹ PublishPress Revisions Pro"
 
 #: StatusListTable.php:206
 msgid ""
 "The PublishPress Revisions plugin allows users to submit changes to "
 "published posts"
-msgstr ""
-"Pẹpẹ PublishPress Revisions n gba awọn olumulo laaye lati fi awọn ayipada "
-"silẹ si awọn ifiweranṣẹ ti a tẹjade"
+msgstr "Pẹpẹ PublishPress Revisions n gba awọn olumulo laaye lati fi awọn ayipada silẹ si awọn ifiweranṣẹ ti a tẹjade"
 
 #: StatusListTable.php:209
 msgid ""
 "PublishPress Statuses plugin enables you to add statuses for post changes "
 "created with Revisions"
-msgstr ""
-"Pẹpẹ PublishPress Statuses n jẹ ki o fi awọn ipo kun fun awọn ayipada "
-"ifiweranṣẹ ti a ṣẹda pẹlu Revisions"
+msgstr "Pẹpẹ PublishPress Statuses n jẹ ki o fi awọn ipo kun fun awọn ayipada ifiweranṣẹ ti a ṣẹda pẹlu Revisions"
 
 #: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
@@ -1264,9 +1243,7 @@ msgstr "Ṣeto fun iru ifiweranṣẹ eyikeyi ati ipa lati ba ilana ṣiṣatunk
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
-msgstr ""
-"Lati ṣalaye ati ṣakoso awọn ipo Revision, mu %1$sPublishPress Revisions%2$s "
-"pẹpẹ si ẹya %3$s tabi ga julọ."
+msgstr "Lati ṣalaye ati ṣakoso awọn ipo Revision, mu %1$sPublishPress Revisions%2$s pẹpẹ si ẹya %3$s tabi ga julọ."
 
 #: StatusListTable.php:340
 msgid "Main Workflow:"
@@ -1331,9 +1308,7 @@ msgstr ""
 msgid ""
 "Upgrade to PublishPress Statuses Pro to define your own custom visibility "
 "statuses."
-msgstr ""
-"Gba igbesoke si PublishPress Statuses Pro lati ṣe idanimọ awọn ipo ifihan "
-"aṣa tirẹ."
+msgstr "Gba igbesoke si PublishPress Statuses Pro lati ṣe idanimọ awọn ipo ifihan aṣa tirẹ."
 
 #: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"

@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 07:19+0000\n"
+"PO-Revision-Date: 2026-04-17 23:25+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: publishpress-statuses.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
-msgstr "PublishPress Statuses Kostenlos"
+msgstr "PublishPress Statuses Free"
 
 #: publishpress-statuses.php:4, fuzzy
 #. Plugin URI of the plugin
@@ -130,9 +130,7 @@ msgstr "Status voranbringen"
 msgid ""
 "You're using PublishPress Statuses Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"Sie verwenden PublishPress Statuses Kostenlos. Die Pro-Version bietet mehr "
-"Funktionen und Unterstützung. %sAuf Pro upgraden%s"
+msgstr "Sie verwenden PublishPress Statuses Kostenlos. Die Pro-Version bietet mehr Funktionen und Unterstützung. %sAuf Pro upgraden%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
@@ -306,35 +304,29 @@ msgstr "Kontakt"
 msgid "<strong>This plugin can be deleted.</strong>"
 msgstr "<strong>Dieses Plugin kann gelöscht werden.</strong>"
 
-#: publishpress-statuses.php:178
+#: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Planner to "
 "version %s or higher."
-msgstr ""
-"Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress "
-"Planner auf Version %s oder höher."
+msgstr "Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress Planner auf Version %s oder höher."
 
-#: publishpress-statuses.php:195
+#: publishpress-statuses.php:213
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
 "to version %s or higher."
-msgstr ""
-"Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress "
-"Permissions Pro auf Version %s oder höher."
+msgstr "Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress Permissions Pro auf Version %s oder höher."
 
-#: publishpress-statuses.php:212
+#: publishpress-statuses.php:230
 #. translators: %s is a version number
 #, php-format
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
 "to version %s or higher."
-msgstr ""
-"Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress "
-"Capabilities Pro auf Version %s oder höher."
+msgstr "Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress Capabilities Pro auf Version %s oder höher."
 
 #: PublishPress_Statuses.php:408
 msgid ""
@@ -602,9 +594,7 @@ msgstr "Upgrade, um auszuwählen, wer Beiträge in jedem Status verwalten kann"
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Erhalten Sie PublishPress Statuses Pro für status-spezifische "
-"Zugriffskontrolle auf Beiträge."
+msgstr "Erhalten Sie PublishPress Statuses Pro für status-spezifische Zugriffskontrolle auf Beiträge."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"
@@ -1009,11 +999,7 @@ msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
-msgstr ""
-"Statusfarbe, -icon und -position werden automatisch von PublishPress "
-"Planner importiert. Wählen Sie eine Option oben, um den Import erneut "
-"auszuführen, wobei der von Planner definierten Statusposition Vorrang "
-"eingeräumt wird."
+msgstr "Statusfarbe, -icon und -position werden automatisch von PublishPress Planner importiert. Wählen Sie eine Option oben, um den Import erneut auszuführen, wobei der von Planner definierten Statusposition Vorrang eingeräumt wird."
 
 #: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
@@ -1110,9 +1096,7 @@ msgstr "Neuen Status zur Vorveröffentlichung hinzufügen"
 msgid ""
 "For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
 "Pro%2$s."
-msgstr ""
-"Für benutzerdefinierte Sichtbarkeits-Status, %1$supgrade auf PublishPress "
-"Statuses Pro%2$s."
+msgstr "Für benutzerdefinierte Sichtbarkeits-Status, %1$supgrade auf PublishPress Statuses Pro%2$s."
 
 #: StatusesUI.php:1185
 #. translators: %1$s and %2$s is link markup
@@ -1262,25 +1246,19 @@ msgstr ""
 msgid ""
 "Create approval workflows using PublishPress Statuses Pro together with the "
 "PublishPress Revisions Pro plugin"
-msgstr ""
-"Genehmigungs-Workflows mit PublishPress Statuses Pro zusammen mit dem "
-"PublishPress Revisions Pro-Plugin erstellen"
+msgstr "Genehmigungs-Workflows mit PublishPress Statuses Pro zusammen mit dem PublishPress Revisions Pro-Plugin erstellen"
 
 #: StatusListTable.php:206
 msgid ""
 "The PublishPress Revisions plugin allows users to submit changes to "
 "published posts"
-msgstr ""
-"Das PublishPress Revisions-Plugin ermöglicht es Benutzern, Änderungen an "
-"veröffentlichten Beiträgen einzureichen"
+msgstr "Das PublishPress Revisions-Plugin ermöglicht es Benutzern, Änderungen an veröffentlichten Beiträgen einzureichen"
 
 #: StatusListTable.php:209
 msgid ""
 "PublishPress Statuses plugin enables you to add statuses for post changes "
 "created with Revisions"
-msgstr ""
-"Das PublishPress Statuses-Plugin ermöglicht es Ihnen, Status für "
-"Beitragsänderungen zu erstellen, die mit Revisions erstellt wurden"
+msgstr "Das PublishPress Statuses-Plugin ermöglicht es Ihnen, Status für Beitragsänderungen zu erstellen, die mit Revisions erstellt wurden"
 
 #: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
@@ -1298,9 +1276,7 @@ msgstr "Premium-Funktion"
 
 #: StatusListTable.php:242
 msgid "Install Statuses Pro to unlock custom revision statuses."
-msgstr ""
-"Installieren Sie Statuses Pro, um benutzerdefinierte Revisionsstatus "
-"freizuschalten."
+msgstr "Installieren Sie Statuses Pro, um benutzerdefinierte Revisionsstatus freizuschalten."
 
 #: StatusListTable.php:243
 msgid "Configure for any post type and role to match your editing workflow."
@@ -1313,9 +1289,7 @@ msgstr ""
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
-msgstr ""
-"Um Revisionsstatus zu definieren und zu steuern, aktualisieren Sie das "
-"%1$sPublishPress Revisions%2$s-Plugin auf Version %3$s oder höher."
+msgstr "Um Revisionsstatus zu definieren und zu steuern, aktualisieren Sie das %1$sPublishPress Revisions%2$s-Plugin auf Version %3$s oder höher."
 
 #: StatusListTable.php:340
 msgid "Main Workflow:"
@@ -1382,9 +1356,7 @@ msgstr "Upgrade, um auszuwählen, wer Ihre nicht-öffentlichen Beiträge sehen k
 msgid ""
 "Upgrade to PublishPress Statuses Pro to define your own custom visibility "
 "statuses."
-msgstr ""
-"Upgrade auf PublishPress Statuses Pro, um Ihre eigenen benutzerdefinierten "
-"Sichtbarkeitsstatus zu definieren."
+msgstr "Upgrade auf PublishPress Statuses Pro, um Ihre eigenen benutzerdefinierten Sichtbarkeitsstatus zu definieren."
 
 #: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"
