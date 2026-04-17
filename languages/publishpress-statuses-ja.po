@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 05:53+0000\n"
+"PO-Revision-Date: 2026-04-17 07:19+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Language: ja\n"
@@ -71,7 +71,7 @@ msgstr "本当に投稿ステータスを削除しますか？このステータ
 
 #: Admin.php:441
 #: Admin.php:442
-#: StatusesUI.php:1154
+#: StatusesUI.php:1156
 msgid "Add New"
 msgstr "新規追加"
 
@@ -253,7 +253,7 @@ msgid "This post is currently scheduled"
 msgstr "この投稿は現在スケジュールされています"
 
 #: PostEditGutenbergStatuses.php:160
-#: StatusesUI.php:1319
+#: StatusesUI.php:1321
 msgid "Workflow"
 msgstr "ワークフロー"
 
@@ -671,7 +671,7 @@ msgid "Add Status"
 msgstr "ステータスを追加"
 
 #: StatusesUI.php:87
-#: StatusesUI.php:1295
+#: StatusesUI.php:1297
 msgid "PublishPress Statuses Settings"
 msgstr "PublishPress Statuses 設定"
 
@@ -898,45 +898,45 @@ msgid ""
 "editing"
 msgstr "カスタム可視性を持つ投稿は、編集のためにステータス固有の権限も必要です"
 
-#: StatusesUI.php:875
+#: StatusesUI.php:877
 msgid "lock"
 msgstr "ロック"
 
-#: StatusesUI.php:901
+#: StatusesUI.php:903
 msgid ""
 "If the Published visibility status is locked, also prevent posts from being "
 "unpublished."
 msgstr "公開された可視性ステータスがロックされている場合、投稿が公開解除されるのを防ぎます。"
 
-#: StatusesUI.php:908
+#: StatusesUI.php:910
 #, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr "有効にすると、ユーザーは投稿を公開解除するために %s が必要です。"
 
-#: StatusesUI.php:912
+#: StatusesUI.php:914
 msgid ""
 "If enabled, users will need an additional role capability to unpublish a "
 "post."
 msgstr "有効にすると、ユーザーは投稿を公開解除するために追加の役割の権限が必要になります。"
 
-#: StatusesUI.php:929
-#: StatusesUI.php:987
+#: StatusesUI.php:931
+#: StatusesUI.php:989
 msgid "Select..."
 msgstr "選択..."
 
-#: StatusesUI.php:932
+#: StatusesUI.php:934
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr "プランナーインポートを再実行（ステータス制御プロパティ、順序付き）"
 
-#: StatusesUI.php:933
+#: StatusesUI.php:935
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr "プランナーインポートを再実行（ステータス制御設定を無視）"
 
-#: StatusesUI.php:935
+#: StatusesUI.php:937
 msgid "Re-run Planner import"
 msgstr "プランナーインポートを再実行"
 
-#: StatusesUI.php:941
+#: StatusesUI.php:943
 msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
@@ -945,96 +945,96 @@ msgstr ""
 "ステータスの色、アイコン、および位置は、PublishPress Planner "
 "から自動的にインポートされます。インポートを再実行するには、上のオプションを選択し、プランナーで定義されたステータス位置に優先順位を与えます。"
 
-#: StatusesUI.php:989
+#: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
 msgstr "現在の色、アイコン、ラベル、および投稿タイプのバックアップを取ります"
 
-#: StatusesUI.php:994
+#: StatusesUI.php:996
 msgid "Restore backup of status colors"
 msgstr "ステータスの色のバックアップを復元"
 
-#: StatusesUI.php:998
+#: StatusesUI.php:1000
 msgid "Restore backup of status icons"
 msgstr "ステータスのアイコンのバックアップを復元"
 
-#: StatusesUI.php:1002
+#: StatusesUI.php:1004
 msgid "Restore backup of status labels"
 msgstr "ステータスのラベルのバックアップを復元"
 
-#: StatusesUI.php:1006
+#: StatusesUI.php:1008
 msgid "Restore backup of status post types"
 msgstr "ステータスの投稿タイプのバックアップを復元"
 
-#: StatusesUI.php:1012
+#: StatusesUI.php:1014
 msgid "Restore auto-backup of status colors"
 msgstr "ステータスカラーの自動バックアップを復元"
 
-#: StatusesUI.php:1016
+#: StatusesUI.php:1018
 msgid "Restore auto-backup of status icons"
 msgstr "ステータスアイコンの自動バックアップを復元"
 
-#: StatusesUI.php:1020
+#: StatusesUI.php:1022
 msgid "Restore auto-backup of status labels"
 msgstr "ステータスラベルの自動バックアップを復元"
 
-#: StatusesUI.php:1024
+#: StatusesUI.php:1026
 msgid "Restore auto-backup of status post types"
 msgstr "ステータスポストタイプの自動バックアップを復元"
 
-#: StatusesUI.php:1031
+#: StatusesUI.php:1033
 msgid "Use default status colors"
 msgstr "デフォルトのステータスカラーを使用"
 
-#: StatusesUI.php:1035
+#: StatusesUI.php:1037
 msgid "Use default status icons"
 msgstr "デフォルトのステータスアイコンを使用"
 
-#: StatusesUI.php:1039
+#: StatusesUI.php:1041
 msgid "Use default status labels"
 msgstr "デフォルトのステータスラベルを使用"
 
-#: StatusesUI.php:1043
+#: StatusesUI.php:1045
 msgid "Use default status post types"
 msgstr "デフォルトのステータスポストタイプを使用"
 
-#: StatusesUI.php:1047
+#: StatusesUI.php:1049
 msgid "Use Planner plugin's default status colors"
 msgstr "Plannerプラグインのデフォルトのステータスカラーを使用"
 
-#: StatusesUI.php:1051
+#: StatusesUI.php:1053
 msgid "Use Planner plugin's default status icons"
 msgstr "Plannerプラグインのデフォルトのステータスアイコンを使用"
 
-#: StatusesUI.php:1090
+#: StatusesUI.php:1092
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status: %s"
 msgstr "ステータスを編集: %s"
 
-#: StatusesUI.php:1093
+#: StatusesUI.php:1095
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s: %2$s"
 msgstr "%1$sを編集: %2$s"
 
-#: StatusesUI.php:1113
+#: StatusesUI.php:1115
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status Labels: %s"
 msgstr "ステータスラベルを編集: %s"
 
-#: StatusesUI.php:1116
+#: StatusesUI.php:1118
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s Labels: %2$s"
 msgstr "%1$s ラベルを編集: %2$s"
 
-#: StatusesUI.php:1153
-#: StatusesUI.php:1281
+#: StatusesUI.php:1155
+#: StatusesUI.php:1283
 msgid "Add New Pre-Publication Status"
 msgstr "新しい公開前ステータスを追加"
 
-#: StatusesUI.php:1169
+#: StatusesUI.php:1171
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid ""
@@ -1042,44 +1042,44 @@ msgid ""
 "Pro%2$s."
 msgstr "カスタム可視性ステータスについては、%1$sPublishPressステータスプロ%2$sにアップグレードしてください。"
 
-#: StatusesUI.php:1183
+#: StatusesUI.php:1185
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "注意: カスタム可視性ステータスは%1$s無効化されています%2$s。"
 
-#: StatusesUI.php:1206
+#: StatusesUI.php:1208
 msgid "Pre-Publication"
 msgstr "公開前"
 
-#: StatusesUI.php:1214
-#: StatusesUI.php:1320
+#: StatusesUI.php:1216
+#: StatusesUI.php:1322
 msgid "Visibility"
 msgstr "可視性"
 
-#: StatusesUI.php:1225
+#: StatusesUI.php:1227
 msgid "Revision"
 msgstr "改訂"
 
-#: StatusesUI.php:1285
+#: StatusesUI.php:1287
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
 msgstr "このステータスは、投稿ステータスのドロップダウンを使用して未公開の投稿に割り当てることができます。"
 
-#: StatusesUI.php:1321
+#: StatusesUI.php:1323
 msgid "Integration"
 msgstr "統合"
 
-#: StatusesUI.php:1322
+#: StatusesUI.php:1324
 msgid "Editor"
 msgstr "エディタ"
 
-#: StatusesUI.php:1323
+#: StatusesUI.php:1325
 msgid "Advanced"
 msgstr "高度な"
 
-#: StatusesUI.php:1324
+#: StatusesUI.php:1326
 msgid "License"
 msgstr "ライセンス"
 
