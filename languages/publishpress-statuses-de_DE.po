@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-16 20:33+0000\n"
+"PO-Revision-Date: 2026-04-17 05:53+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -46,8 +46,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:428
-#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:446
+#: PublishPress_Statuses.php:447
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Status"
@@ -81,17 +81,17 @@ msgid "Add New"
 msgstr "Neu hinzufügen"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:893
+#: PublishPress_Statuses.php:911
 msgid "Approve"
 msgstr "Genehmigen"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:863
+#: PublishPress_Statuses.php:881
 msgid "Assign"
 msgstr "Zuweisen"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:878
+#: PublishPress_Statuses.php:896
 msgid "Mark In Progress"
 msgstr "Als In Bearbeitung markieren"
 
@@ -336,7 +336,7 @@ msgstr ""
 "Um PublishPress Statuses zu verwenden, bitte aktualisieren Sie PublishPress "
 "Capabilities Pro auf Version %s oder höher."
 
-#: PublishPress_Statuses.php:390
+#: PublishPress_Statuses.php:408
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -344,165 +344,165 @@ msgstr ""
 "Kann die normale Statusprogression umgehen. Der Benutzer kann sofort "
 "veröffentlichen oder den Beitrag auf den höchstmöglichen Status verschieben."
 
-#: PublishPress_Statuses.php:391
+#: PublishPress_Statuses.php:409
 msgid "Manage Statuses plugin settings."
 msgstr "Verwalten Sie die Einstellungen des Status-Plugins."
 
-#: PublishPress_Statuses.php:396
+#: PublishPress_Statuses.php:414
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr ""
 "Kann Beiträge nicht veröffentlichen, auch wenn der Sichtbarkeitsstatus "
 "gesperrt ist."
 
-#: PublishPress_Statuses.php:429, fuzzy
+#: PublishPress_Statuses.php:447, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: PublishPress_Statuses.php:443
+#: PublishPress_Statuses.php:461
 msgid "Core Post Statuses"
 msgstr "Kernbeiträge Status"
 
-#: PublishPress_Statuses.php:706
+#: PublishPress_Statuses.php:724
 msgid "New post, not yet submitted."
 msgstr "Neuer Beitrag, noch nicht eingereicht."
 
-#: PublishPress_Statuses.php:728
+#: PublishPress_Statuses.php:746
 msgid "Post is awaiting review."
 msgstr "Beitrag wartet auf Überprüfung."
 
-#: PublishPress_Statuses.php:748
+#: PublishPress_Statuses.php:766
 msgid "Post is scheduled for publication."
 msgstr "Beitrag ist zur Veröffentlichung geplant."
 
-#: PublishPress_Statuses.php:767
+#: PublishPress_Statuses.php:785
 msgid "Post is published, publicly visible."
 msgstr "Beitrag ist veröffentlicht, öffentlich sichtbar."
 
-#: PublishPress_Statuses.php:786
+#: PublishPress_Statuses.php:804
 msgid "Post is published with private visibility."
 msgstr "Beitrag ist veröffentlicht mit privater Sichtbarkeit."
 
-#: PublishPress_Statuses.php:846, fuzzy
+#: PublishPress_Statuses.php:864, fuzzy
 msgid "Pitch"
 msgstr "Pitch"
 
-#: PublishPress_Statuses.php:849
+#: PublishPress_Statuses.php:867
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Vorgeschlagene Idee; wartet auf Annahme."
 
-#: PublishPress_Statuses.php:861
+#: PublishPress_Statuses.php:879
 msgid "Assigned"
 msgstr "Zugeteilt"
 
-#: PublishPress_Statuses.php:864
+#: PublishPress_Statuses.php:882
 msgid "Post idea assigned to writer."
 msgstr "Beitragsidee wurde dem Autor zugewiesen."
 
-#: PublishPress_Statuses.php:876
+#: PublishPress_Statuses.php:894
 msgid "In Progress"
 msgstr "In Bearbeitung"
 
-#: PublishPress_Statuses.php:879
+#: PublishPress_Statuses.php:897
 msgid "Writer is working on the post."
 msgstr "Autor arbeitet am Beitrag."
 
-#: PublishPress_Statuses.php:891
+#: PublishPress_Statuses.php:909
 msgid "Approved"
 msgstr "Genehmigt"
 
-#: PublishPress_Statuses.php:894
+#: PublishPress_Statuses.php:912
 msgid "Post has been approved for publication."
 msgstr "Beitrag wurde zur Veröffentlichung genehmigt."
 
-#: PublishPress_Statuses.php:906
+#: PublishPress_Statuses.php:924
 msgid "Needs Work"
 msgstr "Bedarf an Arbeit"
 
-#: PublishPress_Statuses.php:908
+#: PublishPress_Statuses.php:926
 msgid "Set to Needs Work"
 msgstr "Auf Bedarf an Arbeit setzen"
 
-#: PublishPress_Statuses.php:909
+#: PublishPress_Statuses.php:927
 msgid "Post needs work before further review."
 msgstr "Beitrag benötigt Arbeit vor weiterer Überprüfung."
 
-#: PublishPress_Statuses.php:921
+#: PublishPress_Statuses.php:939
 msgid "Rejected"
 msgstr "Abgelehnt"
 
-#: PublishPress_Statuses.php:923
+#: PublishPress_Statuses.php:941
 msgid "Reject"
 msgstr "Ablehnen"
 
-#: PublishPress_Statuses.php:924
+#: PublishPress_Statuses.php:942
 msgid "Post has been rejected."
 msgstr "Der Beitrag wurde abgelehnt."
 
-#: PublishPress_Statuses.php:958
+#: PublishPress_Statuses.php:976
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Alternativer Pre-Publikations-Workflow:"
 
-#: PublishPress_Statuses.php:1053
+#: PublishPress_Statuses.php:1071
 msgid "Disabled Statuses:"
 msgstr "Deaktivierte Status:"
 
-#: PublishPress_Statuses.php:1069
+#: PublishPress_Statuses.php:1087
 msgid "Deferred"
 msgstr "Verschoben"
 
-#: PublishPress_Statuses.php:1071
+#: PublishPress_Statuses.php:1089
 msgid "Defer"
 msgstr "Verschieben"
 
-#: PublishPress_Statuses.php:1072
+#: PublishPress_Statuses.php:1090
 msgid "Post has been deferred for future consideration."
 msgstr "Beitrag wurde zur zukünftigen Überlegung verschoben."
 
-#: PublishPress_Statuses.php:1084
+#: PublishPress_Statuses.php:1102
 msgid "Committee"
 msgstr "Ausschuss"
 
-#: PublishPress_Statuses.php:1086
+#: PublishPress_Statuses.php:1104
 msgid "Refer to Committee"
 msgstr "An Ausschuss verweisen"
 
-#: PublishPress_Statuses.php:1087
+#: PublishPress_Statuses.php:1105
 msgid "Post has been referred to committee."
 msgstr "Der Beitrag wurde an den Ausschuss verwiesen."
 
-#: PublishPress_Statuses.php:1100
+#: PublishPress_Statuses.php:1118
 msgid "Committee Review"
 msgstr "Überprüfung durch den Ausschuss"
 
-#: PublishPress_Statuses.php:1102
+#: PublishPress_Statuses.php:1120
 msgid "Set to Committee Review"
 msgstr "Auf Überprüfung durch den Ausschuss setzen"
 
-#: PublishPress_Statuses.php:1103
+#: PublishPress_Statuses.php:1121
 msgid "Committee is reviewing the post."
 msgstr "Der Ausschuss überprüft den Beitrag."
 
-#: PublishPress_Statuses.php:1116
+#: PublishPress_Statuses.php:1134
 msgid "Committee Progress"
 msgstr "Fortschritt des Ausschusses"
 
-#: PublishPress_Statuses.php:1118
+#: PublishPress_Statuses.php:1136
 msgid "Set to Committee Progress"
 msgstr "Auf Fortschritt des Ausschusses setzen"
 
-#: PublishPress_Statuses.php:1119
+#: PublishPress_Statuses.php:1137
 msgid "Committee is editing the post."
 msgstr "Der Ausschuss bearbeitet den Beitrag."
 
-#: PublishPress_Statuses.php:1132
+#: PublishPress_Statuses.php:1150
 msgid "Committee Approved"
 msgstr "Ausschuss genehmigt"
 
-#: PublishPress_Statuses.php:1134
+#: PublishPress_Statuses.php:1152
 msgid "Set Committee Approval"
 msgstr "Ausschussgenehmigung festlegen"
 
-#: PublishPress_Statuses.php:1135
+#: PublishPress_Statuses.php:1153
 msgid "Committee has approved the post."
 msgstr "Der Ausschuss hat den Beitrag genehmigt."
 
@@ -1430,7 +1430,7 @@ msgstr "Standard"
 msgid "Delete"
 msgstr "Löschen"
 
-#: PublishPress_Statuses.php:848, fuzzy
+#: PublishPress_Statuses.php:866, fuzzy
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Pitch"
