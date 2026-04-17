@@ -146,6 +146,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         add_filter('pre_post_status', [$this, 'fltPostStatus'], 20);
         add_filter('publishpress_statuses_default_visibility', [$this, 'fltDefaultPrivacy'], 10, 2);
+        add_filter('pre_post_status', [$this, 'fltAppyDefaultVisibility'], 30);
 
         add_action('user_has_cap', [$this, 'fltUserHasCap'], 20, 3);
 
@@ -3434,6 +3435,49 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         return $post_status;
+    }
+
+    public function fltAppyDefaultVisibility($status, $args = [])
+    {
+        global $pagenow;
+        if (in_array($status, ['auto-draft', 'inherit', 'trash']) 
+        || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
+        || ('async-upload.php' == $pagenow) 
+        || ((strpos($status, 'wc-') === 0) && class_exists('WooCommerce') && !empty($_GET) && !empty($_GET['wc-ajax']) && ('checkout' == $_REQUEST['wc-ajax']))
+        ) {
+            return $status;
+        }
+
+        require_once(__DIR__ . '/PostSave.php');
+
+        $orig_status = $status;
+
+        $status = \PublishPress\Statuses\PostSave::fltPostStatus($status, $args);
+        $status = \PublishPress\Statuses\PostSave::flt_force_visibility($status);
+
+        if (!$post_id = \PublishPress_Statuses::instance()->getCurrentSanitizePostID()) {
+            $post_id = \PP_Statuses_Functions::getPostID();
+        }
+        
+        if ($post_id) {
+            if ($orig_status != $status) {
+                if (!in_array($status, ['draft'])) {
+                    \PublishPress_Statuses::instance()->filtered_post_status[$post_id]= $status;
+                }
+                    }
+
+            $post_type = get_post_field('post_type', $post_id);
+
+            if (!in_array($post_type, apply_filters('publishpress_statuses_basic_filtering_post_types', ['forum', 'topic', 'reply']))) {
+                if (!\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $status)) {
+                    if ($current_status = get_post_field('post_status', $post_id)) {
+                        return $current_status;
+                    }
+                }
+            }
+        }
+
+        return $status;
     }
 
     // If a public or private status is selected, change it to the specified force_visibility status
