@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Ordering of Pending Review status in Quick Edit dropdown and Post Editor status dropdown did not match Statuses screen
 - Added : Separator between published statuses, workflow statuses and alternate workflow statuses in status dropdowns
 - Added : Option to remove manual status selection UI
+- Fixed : Default visibility was offered, applied for post types that have Statuses disabled
 - Changed : Modify some settings captions
 - Fixed : Statuses admin screen - main workflow section header displays below its statuses in some cases
 - Added : Lang - Several new translations

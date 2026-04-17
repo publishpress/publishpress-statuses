@@ -37,6 +37,10 @@ if (!class_exists('PublishPress\PPP_Module_Base')) {
                     $this->options->$default_key = $default_value;
                 }
             }
+
+            if (!empty($this->options->default_privacy)) {
+               $this->options->default_privacy = array_intersect_key($this->options->default_privacy, array_fill_keys($this->get_enabled_post_types(), true));
+            }
         }
 
         /**
