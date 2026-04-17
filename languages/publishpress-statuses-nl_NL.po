@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 05:53+0000\n"
+"PO-Revision-Date: 2026-04-17 07:19+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: Admin.php:441
 #: Admin.php:442
-#: StatusesUI.php:1154
+#: StatusesUI.php:1156
 msgid "Add New"
 msgstr "Voeg Nieuw Toe"
 
@@ -258,7 +258,7 @@ msgid "This post is currently scheduled"
 msgstr "Dit bericht is momenteel ingepland"
 
 #: PostEditGutenbergStatuses.php:160
-#: StatusesUI.php:1319, fuzzy
+#: StatusesUI.php:1321, fuzzy
 msgid "Workflow"
 msgstr "Workflow"
 
@@ -692,7 +692,7 @@ msgid "Add Status"
 msgstr "Voeg Status Toe"
 
 #: StatusesUI.php:87
-#: StatusesUI.php:1295
+#: StatusesUI.php:1297
 msgid "PublishPress Statuses Settings"
 msgstr "PublishPress Statuses Instellingen"
 
@@ -942,11 +942,11 @@ msgstr ""
 "Berichten met aangepaste Zichtbaarheid vereisen ook status-specifieke "
 "mogelijkheden voor bewerken"
 
-#: StatusesUI.php:875
+#: StatusesUI.php:877
 msgid "lock"
 msgstr "vergrendelen"
 
-#: StatusesUI.php:901
+#: StatusesUI.php:903
 msgid ""
 "If the Published visibility status is locked, also prevent posts from being "
 "unpublished."
@@ -954,14 +954,14 @@ msgstr ""
 "Als de gepubliceerde zichtbaarheidstatus is vergrendeld, ook voorkomen dat "
 "berichten worden verwijderd."
 
-#: StatusesUI.php:908
+#: StatusesUI.php:910
 #, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr ""
 "Als ingeschakeld, hebben gebruikers de %s nodig om een bericht te "
 "verwijderen."
 
-#: StatusesUI.php:912
+#: StatusesUI.php:914
 msgid ""
 "If enabled, users will need an additional role capability to unpublish a "
 "post."
@@ -969,26 +969,26 @@ msgstr ""
 "Als ingeschakeld, hebben gebruikers een aanvullende rolcapaciteit nodig om "
 "een bericht te verwijderen."
 
-#: StatusesUI.php:929
-#: StatusesUI.php:987
+#: StatusesUI.php:931
+#: StatusesUI.php:989
 msgid "Select..."
 msgstr "Selecteer..."
 
-#: StatusesUI.php:932
+#: StatusesUI.php:934
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr ""
 "Planner-import opnieuw uitvoeren (met Status Controle-eigenschappen, "
 "volgorde)"
 
-#: StatusesUI.php:933
+#: StatusesUI.php:935
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr "Planner-import opnieuw uitvoeren (negeren van Status Controle-configuratie)"
 
-#: StatusesUI.php:935
+#: StatusesUI.php:937
 msgid "Re-run Planner import"
 msgstr "Planner-import opnieuw uitvoeren"
 
-#: StatusesUI.php:941
+#: StatusesUI.php:943
 msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
@@ -999,96 +999,96 @@ msgstr ""
 "uit te voeren, met prioriteit voor de door de Planner gedefinieerde "
 "statuspositie."
 
-#: StatusesUI.php:989
+#: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Maak een back-up van de huidige kleuren, pictogrammen, labels en posttypes"
 
-#: StatusesUI.php:994
+#: StatusesUI.php:996
 msgid "Restore backup of status colors"
 msgstr "Herstel back-up van statuskleuren"
 
-#: StatusesUI.php:998
+#: StatusesUI.php:1000
 msgid "Restore backup of status icons"
 msgstr "Herstel back-up van statuspictogrammen"
 
-#: StatusesUI.php:1002
+#: StatusesUI.php:1004
 msgid "Restore backup of status labels"
 msgstr "Herstel back-up van statuslabels"
 
-#: StatusesUI.php:1006
+#: StatusesUI.php:1008
 msgid "Restore backup of status post types"
 msgstr "Herstel back-up van statusposttypes"
 
-#: StatusesUI.php:1012
+#: StatusesUI.php:1014
 msgid "Restore auto-backup of status colors"
 msgstr "Herstel automatische back-up van statuskleuren"
 
-#: StatusesUI.php:1016
+#: StatusesUI.php:1018
 msgid "Restore auto-backup of status icons"
 msgstr "Herstel automatische back-up van statusiconen"
 
-#: StatusesUI.php:1020
+#: StatusesUI.php:1022
 msgid "Restore auto-backup of status labels"
 msgstr "Herstel automatische back-up van statuslabels"
 
-#: StatusesUI.php:1024
+#: StatusesUI.php:1026
 msgid "Restore auto-backup of status post types"
 msgstr "Herstel automatische back-up van statusberichttypen"
 
-#: StatusesUI.php:1031
+#: StatusesUI.php:1033
 msgid "Use default status colors"
 msgstr "Gebruik standaard statuskleuren"
 
-#: StatusesUI.php:1035
+#: StatusesUI.php:1037
 msgid "Use default status icons"
 msgstr "Gebruik standaard statusiconen"
 
-#: StatusesUI.php:1039
+#: StatusesUI.php:1041
 msgid "Use default status labels"
 msgstr "Gebruik standaard statuslabels"
 
-#: StatusesUI.php:1043
+#: StatusesUI.php:1045
 msgid "Use default status post types"
 msgstr "Gebruik standaard statusberichttypen"
 
-#: StatusesUI.php:1047
+#: StatusesUI.php:1049
 msgid "Use Planner plugin's default status colors"
 msgstr "Gebruik de standaard statuskleuren van de Planner-plugin"
 
-#: StatusesUI.php:1051
+#: StatusesUI.php:1053
 msgid "Use Planner plugin's default status icons"
 msgstr "Gebruik de standaard statusiconen van de Planner-plugin"
 
-#: StatusesUI.php:1090
+#: StatusesUI.php:1092
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status: %s"
 msgstr "Bewerk Status: %s"
 
-#: StatusesUI.php:1093
+#: StatusesUI.php:1095
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s: %2$s"
 msgstr "Bewerk %1$s: %2$s"
 
-#: StatusesUI.php:1113
+#: StatusesUI.php:1115
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status Labels: %s"
 msgstr "Statuslabels bewerken: %s"
 
-#: StatusesUI.php:1116
+#: StatusesUI.php:1118
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s Labels: %2$s"
 msgstr "Labels van %1$s bewerken: %2$s"
 
-#: StatusesUI.php:1153
-#: StatusesUI.php:1281
+#: StatusesUI.php:1155
+#: StatusesUI.php:1283
 msgid "Add New Pre-Publication Status"
 msgstr "Voeg Nieuwe Pre-publicatie Status Toe"
 
-#: StatusesUI.php:1169
+#: StatusesUI.php:1171
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid ""
@@ -1098,26 +1098,26 @@ msgstr ""
 "Voor aangepaste zichtbaarheidstatussen, %1$supgrade naar PublishPress "
 "Statuses Pro%2$s."
 
-#: StatusesUI.php:1183
+#: StatusesUI.php:1185
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Opmerking: Aangepaste zichtbaarheidstatussen zijn %1$suitgeschakeld%2$s."
 
-#: StatusesUI.php:1206
+#: StatusesUI.php:1208
 msgid "Pre-Publication"
 msgstr "Pre-publicatie"
 
-#: StatusesUI.php:1214
-#: StatusesUI.php:1320
+#: StatusesUI.php:1216
+#: StatusesUI.php:1322
 msgid "Visibility"
 msgstr "Zichtbaarheid"
 
-#: StatusesUI.php:1225
+#: StatusesUI.php:1227
 msgid "Revision"
 msgstr "Herziening"
 
-#: StatusesUI.php:1285
+#: StatusesUI.php:1287
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
@@ -1125,19 +1125,19 @@ msgstr ""
 "Deze status kan worden toegewezen aan een niet-gepubliceerd bericht via de "
 "keuzelijst Berichtstatus."
 
-#: StatusesUI.php:1321
+#: StatusesUI.php:1323
 msgid "Integration"
 msgstr "Integratie"
 
-#: StatusesUI.php:1322, fuzzy
+#: StatusesUI.php:1324, fuzzy
 msgid "Editor"
 msgstr "Editor"
 
-#: StatusesUI.php:1323
+#: StatusesUI.php:1325
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: StatusesUI.php:1324
+#: StatusesUI.php:1326
 msgid "License"
 msgstr "Licentie"
 
