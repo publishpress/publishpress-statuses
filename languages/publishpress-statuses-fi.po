@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-16 20:33+0000\n"
+"PO-Revision-Date: 2026-04-17 05:53+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,8 +44,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:428
-#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:446
+#: PublishPress_Statuses.php:447
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Tilat"
@@ -79,17 +79,17 @@ msgid "Add New"
 msgstr "Lisää uusi"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:893
+#: PublishPress_Statuses.php:911
 msgid "Approve"
 msgstr "Hyväksy"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:863
+#: PublishPress_Statuses.php:881
 msgid "Assign"
 msgstr "Määritä"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:878
+#: PublishPress_Statuses.php:896
 msgid "Mark In Progress"
 msgstr "Merkitse käynnissä olevaksi"
 
@@ -332,7 +332,7 @@ msgstr ""
 "Käyttääksesi PublishPress-tiloja, päivitä PublishPress Capabilities Pro "
 "versioon %s tai uudempiin."
 
-#: PublishPress_Statuses.php:390
+#: PublishPress_Statuses.php:408
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -340,163 +340,163 @@ msgstr ""
 "Voidaan ohittaa normaali tilan eteneminen. Käyttäjä voi julkaista heti tai "
 "siirtää julkaisun mahdollisimman kauas tilaan."
 
-#: PublishPress_Statuses.php:391
+#: PublishPress_Statuses.php:409
 msgid "Manage Statuses plugin settings."
 msgstr "Hallinnoi Statusten liitännäisen asetuksia."
 
-#: PublishPress_Statuses.php:396
+#: PublishPress_Statuses.php:414
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr "Voit poistaa julkaisut, vaikka näkyvyysasema on lukittu."
 
-#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:447
 msgid "Status"
 msgstr "Tila"
 
-#: PublishPress_Statuses.php:443
+#: PublishPress_Statuses.php:461
 msgid "Core Post Statuses"
 msgstr "Ydin Julkaisun Tilat"
 
-#: PublishPress_Statuses.php:706
+#: PublishPress_Statuses.php:724
 msgid "New post, not yet submitted."
 msgstr "Uusi julkaisu, ei vielä lähetetty."
 
-#: PublishPress_Statuses.php:728
+#: PublishPress_Statuses.php:746
 msgid "Post is awaiting review."
 msgstr "Julkaisu odottaa tarkistusta."
 
-#: PublishPress_Statuses.php:748
+#: PublishPress_Statuses.php:766
 msgid "Post is scheduled for publication."
 msgstr "Julkaisu on aikataulutettu julkaistavaksi."
 
-#: PublishPress_Statuses.php:767
+#: PublishPress_Statuses.php:785
 msgid "Post is published, publicly visible."
 msgstr "Julkaisu on julkaistu, julkisesti näkyvissä."
 
-#: PublishPress_Statuses.php:786
+#: PublishPress_Statuses.php:804
 msgid "Post is published with private visibility."
 msgstr "Julkaisu on julkaistu yksityisellä näkyvyydellä."
 
-#: PublishPress_Statuses.php:846
+#: PublishPress_Statuses.php:864
 msgid "Pitch"
 msgstr "Esitys"
 
-#: PublishPress_Statuses.php:849
+#: PublishPress_Statuses.php:867
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Idea ehdotettu; odottaa hyväksyntää."
 
-#: PublishPress_Statuses.php:861
+#: PublishPress_Statuses.php:879
 msgid "Assigned"
 msgstr "Määrätty"
 
-#: PublishPress_Statuses.php:864
+#: PublishPress_Statuses.php:882
 msgid "Post idea assigned to writer."
 msgstr "Julkaisun idea määrätty kirjoittajalle."
 
-#: PublishPress_Statuses.php:876
+#: PublishPress_Statuses.php:894
 msgid "In Progress"
 msgstr "Käynnissä"
 
-#: PublishPress_Statuses.php:879
+#: PublishPress_Statuses.php:897
 msgid "Writer is working on the post."
 msgstr "Kirjoittaja työskentelee julkaisun parissa."
 
-#: PublishPress_Statuses.php:891
+#: PublishPress_Statuses.php:909
 msgid "Approved"
 msgstr "Hyväksytty"
 
-#: PublishPress_Statuses.php:894
+#: PublishPress_Statuses.php:912
 msgid "Post has been approved for publication."
 msgstr "Julkaisu on hyväksytty julkaistavaksi."
 
-#: PublishPress_Statuses.php:906
+#: PublishPress_Statuses.php:924
 msgid "Needs Work"
 msgstr "Tarvitsee työtä"
 
-#: PublishPress_Statuses.php:908
+#: PublishPress_Statuses.php:926
 msgid "Set to Needs Work"
 msgstr "Aseta tarvitsee työtä"
 
-#: PublishPress_Statuses.php:909
+#: PublishPress_Statuses.php:927
 msgid "Post needs work before further review."
 msgstr "Viesti tarvitsee työtä ennen lisäarviointia."
 
-#: PublishPress_Statuses.php:921
+#: PublishPress_Statuses.php:939
 msgid "Rejected"
 msgstr "Hylätty"
 
-#: PublishPress_Statuses.php:923
+#: PublishPress_Statuses.php:941
 msgid "Reject"
 msgstr "Hylkää"
 
-#: PublishPress_Statuses.php:924
+#: PublishPress_Statuses.php:942
 msgid "Post has been rejected."
 msgstr "Viesti on hylätty."
 
-#: PublishPress_Statuses.php:958
+#: PublishPress_Statuses.php:976
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Vaihtoehtoinen ennakkojulkaisu työnkulku:"
 
-#: PublishPress_Statuses.php:1053
+#: PublishPress_Statuses.php:1071
 msgid "Disabled Statuses:"
 msgstr "Poistetut tilat:"
 
-#: PublishPress_Statuses.php:1069
+#: PublishPress_Statuses.php:1087
 msgid "Deferred"
 msgstr "Siirretty"
 
-#: PublishPress_Statuses.php:1071
+#: PublishPress_Statuses.php:1089
 msgid "Defer"
 msgstr "Siirrä"
 
-#: PublishPress_Statuses.php:1072
+#: PublishPress_Statuses.php:1090
 msgid "Post has been deferred for future consideration."
 msgstr "Julkaisu on siirretty tulevaa tarkastelua varten."
 
-#: PublishPress_Statuses.php:1084
+#: PublishPress_Statuses.php:1102
 msgid "Committee"
 msgstr "Toimikunta"
 
-#: PublishPress_Statuses.php:1086
+#: PublishPress_Statuses.php:1104
 msgid "Refer to Committee"
 msgstr "Viittaa toimikuntaan"
 
-#: PublishPress_Statuses.php:1087
+#: PublishPress_Statuses.php:1105
 msgid "Post has been referred to committee."
 msgstr "Viesti on lähetetty toimikuntaan."
 
-#: PublishPress_Statuses.php:1100
+#: PublishPress_Statuses.php:1118
 msgid "Committee Review"
 msgstr "Toimikunnan arviointi"
 
-#: PublishPress_Statuses.php:1102
+#: PublishPress_Statuses.php:1120
 msgid "Set to Committee Review"
 msgstr "Aseta toimikunnan arviointi"
 
-#: PublishPress_Statuses.php:1103
+#: PublishPress_Statuses.php:1121
 msgid "Committee is reviewing the post."
 msgstr "Toimikunta arvioi viestiä."
 
-#: PublishPress_Statuses.php:1116
+#: PublishPress_Statuses.php:1134
 msgid "Committee Progress"
 msgstr "Toimikunnan edistyminen"
 
-#: PublishPress_Statuses.php:1118
+#: PublishPress_Statuses.php:1136
 msgid "Set to Committee Progress"
 msgstr "Aseta toimikunnan edistyminen"
 
-#: PublishPress_Statuses.php:1119
+#: PublishPress_Statuses.php:1137
 msgid "Committee is editing the post."
 msgstr "Toimikunta muokkaa viestiä."
 
-#: PublishPress_Statuses.php:1132
+#: PublishPress_Statuses.php:1150
 msgid "Committee Approved"
 msgstr "Toimikunta hyväksytty"
 
-#: PublishPress_Statuses.php:1134
+#: PublishPress_Statuses.php:1152
 msgid "Set Committee Approval"
 msgstr "Aseta toimikunnan hyväksyntä"
 
-#: PublishPress_Statuses.php:1135
+#: PublishPress_Statuses.php:1153
 msgid "Committee has approved the post."
 msgstr "Toimikunta on hyväksynyt viestin."
 
@@ -1376,7 +1376,7 @@ msgstr "Oletus"
 msgid "Delete"
 msgstr "Poista"
 
-#: PublishPress_Statuses.php:848
+#: PublishPress_Statuses.php:866
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Ehdotus"
