@@ -1323,6 +1323,10 @@ class StatusesUI {
                                                 'license' =>        __('License', 'publishpress-statuses'),
                                             ];
 
+                                            if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
+                                                unset($tabs['license']);
+                                            }
+
                                             foreach ($tabs as $tab => $tab_caption) : ?>
                                                 <a
                                                         href="#pp-tab-<?php echo esc_attr($tab);?>"

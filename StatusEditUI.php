@@ -333,8 +333,8 @@ class StatusEditUI
                         <div id="publishpress_icon_pick_preview" class="dashicons <?php
                         if (!empty($icon)) echo esc_attr($icon); else echo esc_attr(\PublishPress_Statuses::DEFAULT_ICON); ?>"></div>
 
-                        <div class="publishpress_icon_pick_button_label"><?php
-                            esc_html_e('Select Icon', 'publishpress-statuses'); ?></div>
+                        <span class="publishpress_icon_pick_button_label"><?php
+                            esc_html_e('Select Icon', 'publishpress-statuses'); ?></span>
                     </div>
 
                     <?php
