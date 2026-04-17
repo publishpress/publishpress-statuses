@@ -5991,12 +5991,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/dev-workspace.git",
-                "reference": "3f0600327562acebe6e1fe0f9d59dbe2bb89ae29"
+                "reference": "f690c3ccbd729b54e0cbd4e402005ecd2e3efce3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/dev-workspace/zipball/3f0600327562acebe6e1fe0f9d59dbe2bb89ae29",
-                "reference": "3f0600327562acebe6e1fe0f9d59dbe2bb89ae29",
+                "url": "https://api.github.com/repos/publishpress/dev-workspace/zipball/f690c3ccbd729b54e0cbd4e402005ecd2e3efce3",
+                "reference": "f690c3ccbd729b54e0cbd4e402005ecd2e3efce3",
                 "shasum": ""
             },
             "require": {
@@ -6055,7 +6055,7 @@
                 "issues": "https://github.com/publishpress/dev-workspace/issues",
                 "source": "https://github.com/publishpress/dev-workspace/tree/testing-translations"
             },
-            "time": "2026-04-08T19:47:02+00:00"
+            "time": "2026-04-15T19:49:52+00:00"
         },
         {
             "name": "publishpress/publishpress-phpcs-standards",
@@ -6109,12 +6109,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/publishpress/library-publishpress-translator.git",
-                "reference": "c023698f6030dc64da0c8d40dff105dd5e24f61c"
+                "reference": "673a4da85714d618eeb21a5a50b84cec55acedfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/publishpress/library-publishpress-translator/zipball/c023698f6030dc64da0c8d40dff105dd5e24f61c",
-                "reference": "c023698f6030dc64da0c8d40dff105dd5e24f61c",
+                "url": "https://api.github.com/repos/publishpress/library-publishpress-translator/zipball/673a4da85714d618eeb21a5a50b84cec55acedfc",
+                "reference": "673a4da85714d618eeb21a5a50b84cec55acedfc",
                 "shasum": ""
             },
             "require": {
@@ -6158,7 +6158,7 @@
                 "issues": "https://github.com/publishpress/library-publishpress-translator/issues",
                 "source": "https://github.com/publishpress/library-publishpress-translator/tree/development"
             },
-            "time": "2026-04-15T13:02:30+00:00"
+            "time": "2026-04-16T11:42:40+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
