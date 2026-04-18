@@ -261,6 +261,19 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
                     require_once(__DIR__ . '/includes-core/CoreAdmin.php');
                     new \PublishPress\Statuses\CoreAdmin();
                 }
+
+                // Include a back compat class if an older version of status-capabilities library will be used
+                add_filter('publishpress_status_capabilities_library',
+                    function($status_caps_package_to_use) {
+                        if (!empty($status_caps_package_to_use) && !empty($status_caps_package_to_use->version)) {
+                            if (version_compare($status_caps_package_to_use->version, '1.3.0', '<')) {
+                                require_once(__DIR__ . '/includes-core/PublishPress_Functions.php');
+                            }
+                        }
+
+                        return $status_caps_package_to_use;
+                    }, 99
+                );
             }
 
             require_once(__DIR__ . '/publishpress-module/Module_Base.php');
