@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 23:25+0000\n"
+"PO-Revision-Date: 2026-04-17 23:54+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "|| n % 10 == 6 || n % 10 == 9);\n"
@@ -48,8 +48,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:446
-#: PublishPress_Statuses.php:447
+#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:430
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Mga Status"
@@ -83,17 +83,17 @@ msgid "Add New"
 msgstr "Magdagdag ng Bago"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:911
+#: PublishPress_Statuses.php:894
 msgid "Approve"
 msgstr "Aprubahan"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:881
+#: PublishPress_Statuses.php:864
 msgid "Assign"
 msgstr "Italaga"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:896
+#: PublishPress_Statuses.php:879
 msgid "Mark In Progress"
 msgstr "Markahan bilang Nasa Progreso"
 
@@ -326,7 +326,7 @@ msgid ""
 "to version %s or higher."
 msgstr "Upang magamit ang PublishPress Statuses, mangyaring i-upgrade ang PublishPress Capabilities Pro sa bersyon %s o mas mataas."
 
-#: PublishPress_Statuses.php:408
+#: PublishPress_Statuses.php:391
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -334,165 +334,165 @@ msgstr ""
 "Maaari nitong lampasan ang normal na pag-unlad ng katayuan. Maaaring agad "
 "na i-publish ng user o ilipat ang post sa pinakamalayong posibleng katayuan."
 
-#: PublishPress_Statuses.php:409
+#: PublishPress_Statuses.php:392
 msgid "Manage Statuses plugin settings."
 msgstr "Pamahalaan ang mga setting ng plugin na Statuses."
 
-#: PublishPress_Statuses.php:414
+#: PublishPress_Statuses.php:397
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr ""
 "Maaaring alisin ang paglalathala ng mga post kahit na naka-lock ang "
 "Visibility Status."
 
-#: PublishPress_Statuses.php:447, fuzzy
+#: PublishPress_Statuses.php:430, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: PublishPress_Statuses.php:461
+#: PublishPress_Statuses.php:444
 msgid "Core Post Statuses"
 msgstr "Pangunahing Status ng Post"
 
-#: PublishPress_Statuses.php:724
+#: PublishPress_Statuses.php:707
 msgid "New post, not yet submitted."
 msgstr "Bagong post, hindi pa naipapasa."
 
-#: PublishPress_Statuses.php:746
+#: PublishPress_Statuses.php:729
 msgid "Post is awaiting review."
 msgstr "Ang post ay naghihintay ng pagsusuri."
 
-#: PublishPress_Statuses.php:766
+#: PublishPress_Statuses.php:749
 msgid "Post is scheduled for publication."
 msgstr "Ang post ay nakatakdang ilathala."
 
-#: PublishPress_Statuses.php:785
+#: PublishPress_Statuses.php:768
 msgid "Post is published, publicly visible."
 msgstr "Ang post ay nailathala, pampublikong nakikita."
 
-#: PublishPress_Statuses.php:804
+#: PublishPress_Statuses.php:787
 msgid "Post is published with private visibility."
 msgstr "Ang post ay nailathala na may pribadong visibility."
 
-#: PublishPress_Statuses.php:864, fuzzy
+#: PublishPress_Statuses.php:847, fuzzy
 msgid "Pitch"
 msgstr "Pitch"
 
-#: PublishPress_Statuses.php:867
+#: PublishPress_Statuses.php:850
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Ideya na iminungkahi; naghihintay ng pagtanggap."
 
-#: PublishPress_Statuses.php:879
+#: PublishPress_Statuses.php:862
 msgid "Assigned"
 msgstr "Itinalaga"
 
-#: PublishPress_Statuses.php:882
+#: PublishPress_Statuses.php:865
 msgid "Post idea assigned to writer."
 msgstr "Ideya ng post na itinalaga sa manunulat."
 
-#: PublishPress_Statuses.php:894
+#: PublishPress_Statuses.php:877
 msgid "In Progress"
 msgstr "Nasa Progreso"
 
-#: PublishPress_Statuses.php:897
+#: PublishPress_Statuses.php:880
 msgid "Writer is working on the post."
 msgstr "Ang manunulat ay nagtatrabaho sa post."
 
-#: PublishPress_Statuses.php:909
+#: PublishPress_Statuses.php:892
 msgid "Approved"
 msgstr "Naaprubahan"
 
-#: PublishPress_Statuses.php:912
+#: PublishPress_Statuses.php:895
 msgid "Post has been approved for publication."
 msgstr "Ang post ay naaprubahan para sa publikasyon."
 
-#: PublishPress_Statuses.php:924
+#: PublishPress_Statuses.php:907
 msgid "Needs Work"
 msgstr "Kailangan ng Trabaho"
 
-#: PublishPress_Statuses.php:926
+#: PublishPress_Statuses.php:909
 msgid "Set to Needs Work"
 msgstr "Itakda sa Kailangan ng Trabaho"
 
-#: PublishPress_Statuses.php:927
+#: PublishPress_Statuses.php:910
 msgid "Post needs work before further review."
 msgstr "Ang post ay nangangailangan ng trabaho bago ang karagdagang pagsusuri."
 
-#: PublishPress_Statuses.php:939
+#: PublishPress_Statuses.php:922
 msgid "Rejected"
 msgstr "Tinanggihan"
 
-#: PublishPress_Statuses.php:941
+#: PublishPress_Statuses.php:924
 msgid "Reject"
 msgstr "Tanggihan"
 
-#: PublishPress_Statuses.php:942
+#: PublishPress_Statuses.php:925
 msgid "Post has been rejected."
 msgstr "Ang post ay tinanggihan na."
 
-#: PublishPress_Statuses.php:976
+#: PublishPress_Statuses.php:959
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Alternatibong Pre-Publication Workflow:"
 
-#: PublishPress_Statuses.php:1071
+#: PublishPress_Statuses.php:1054
 msgid "Disabled Statuses:"
 msgstr "Mga Hindi Aktibong Katayuan:"
 
-#: PublishPress_Statuses.php:1087
+#: PublishPress_Statuses.php:1070
 msgid "Deferred"
 msgstr "Naantala"
 
-#: PublishPress_Statuses.php:1089
+#: PublishPress_Statuses.php:1072
 msgid "Defer"
 msgstr "I-defer"
 
-#: PublishPress_Statuses.php:1090
+#: PublishPress_Statuses.php:1073
 msgid "Post has been deferred for future consideration."
 msgstr "Ang post ay naantala para sa hinaharap na pagsasaalang-alang."
 
-#: PublishPress_Statuses.php:1102
+#: PublishPress_Statuses.php:1085
 msgid "Committee"
 msgstr "Komite"
 
-#: PublishPress_Statuses.php:1104
+#: PublishPress_Statuses.php:1087
 msgid "Refer to Committee"
 msgstr "I-refer sa Komite"
 
-#: PublishPress_Statuses.php:1105
+#: PublishPress_Statuses.php:1088
 msgid "Post has been referred to committee."
 msgstr "Ang post ay na-refer sa komite."
 
-#: PublishPress_Statuses.php:1118
+#: PublishPress_Statuses.php:1101
 msgid "Committee Review"
 msgstr "Pagsusuri ng Komite"
 
-#: PublishPress_Statuses.php:1120
+#: PublishPress_Statuses.php:1103
 msgid "Set to Committee Review"
 msgstr "Itakda sa Pagsusuri ng Komite"
 
-#: PublishPress_Statuses.php:1121
+#: PublishPress_Statuses.php:1104
 msgid "Committee is reviewing the post."
 msgstr "Ang komite ay nagre-review ng post."
 
-#: PublishPress_Statuses.php:1134
+#: PublishPress_Statuses.php:1117
 msgid "Committee Progress"
 msgstr "Sulong ng Komite"
 
-#: PublishPress_Statuses.php:1136
+#: PublishPress_Statuses.php:1119
 msgid "Set to Committee Progress"
 msgstr "Itakda sa Sulong ng Komite"
 
-#: PublishPress_Statuses.php:1137
+#: PublishPress_Statuses.php:1120
 msgid "Committee is editing the post."
 msgstr "Ang komite ay nag-edit ng post."
 
-#: PublishPress_Statuses.php:1150
+#: PublishPress_Statuses.php:1133
 msgid "Committee Approved"
 msgstr "Inaprubahan ng Komite"
 
-#: PublishPress_Statuses.php:1152
+#: PublishPress_Statuses.php:1135
 msgid "Set Committee Approval"
 msgstr "Itakda ang Pag-apruba ng Komite"
 
-#: PublishPress_Statuses.php:1153
+#: PublishPress_Statuses.php:1136
 msgid "Committee has approved the post."
 msgstr "Inaprubahan ng komite ang post."
 
@@ -1405,7 +1405,7 @@ msgstr "Default"
 msgid "Delete"
 msgstr "Tanggalin"
 
-#: PublishPress_Statuses.php:866
+#: PublishPress_Statuses.php:849
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "I-pitch"

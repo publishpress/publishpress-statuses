@@ -164,23 +164,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         // ShortPixel Critical CSS plugin: https://wordpress.org/support/topic/conflict-with-taxonomies-that-have-same-name-as-a-wp_post-field/
         add_filter('shortpixel_critical_css_manual_term_css', function($val) {return false;}, 5);
 
-        if (!class_exists('\PublishPressBundledTranslations\BundledTranslations') && (!defined('PUBLISHPRESS_BUNDLED_TRANSLATIONS_ENABLED') || PUBLISHPRESS_BUNDLED_TRANSLATIONS_ENABLED)) {
-            add_filter(
-                'load_textdomain_mofile',
-                function ($mofile, $domain) {
-                    if (($domain === 'publishpress-statuses') && (false !== strpos($mofile, WP_LANG_DIR . '/plugins/'))) {
-                        $pluginMofile = PUBLISHPRESS_STATUSES_DIR . '/languages/' . 'publishpress-statuses' . '-' . determine_locale() . '.mo';
-
-                        if (file_exists($pluginMofile)) {
-                            return $pluginMofile;
-                        }
-                    }
-            
-                    return $mofile;
-                }
-            , 10, 2);
-        }
-
         global $pagenow;
 
         // Don't allow plugin name to be translated on Plugins screen

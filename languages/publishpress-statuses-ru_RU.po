@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 23:25+0000\n"
+"PO-Revision-Date: 2026-04-17 23:54+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 ">= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
@@ -49,8 +49,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:446
-#: PublishPress_Statuses.php:447
+#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:430
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Статусы"
@@ -84,17 +84,17 @@ msgid "Add New"
 msgstr "Добавить новый"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:911
+#: PublishPress_Statuses.php:894
 msgid "Approve"
 msgstr "Одобрить"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:881
+#: PublishPress_Statuses.php:864
 msgid "Assign"
 msgstr "Назначить"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:896
+#: PublishPress_Statuses.php:879
 msgid "Mark In Progress"
 msgstr "Отметить как в процессе"
 
@@ -329,7 +329,7 @@ msgid ""
 "to version %s or higher."
 msgstr "Чтобы использовать PublishPress Статусы, пожалуйста, обновите PublishPress Capabilities Pro до версии %s или выше."
 
-#: PublishPress_Statuses.php:408
+#: PublishPress_Statuses.php:391
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -337,163 +337,163 @@ msgstr ""
 "Может обойти обычную прогрессию статуса. Пользователь может опубликовать "
 "немедленно или переместить пост на самый дальний возможный статус."
 
-#: PublishPress_Statuses.php:409
+#: PublishPress_Statuses.php:392
 msgid "Manage Statuses plugin settings."
 msgstr "Управление настройками плагина Статусы."
 
-#: PublishPress_Statuses.php:414
+#: PublishPress_Statuses.php:397
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr "Может отменить публикацию постов, даже если Статус видимости заблокирован."
 
-#: PublishPress_Statuses.php:447
+#: PublishPress_Statuses.php:430
 msgid "Status"
 msgstr "Статус"
 
-#: PublishPress_Statuses.php:461
+#: PublishPress_Statuses.php:444
 msgid "Core Post Statuses"
 msgstr "Основные статусы постов"
 
-#: PublishPress_Statuses.php:724
+#: PublishPress_Statuses.php:707
 msgid "New post, not yet submitted."
 msgstr "Новый пост, еще не отправлен."
 
-#: PublishPress_Statuses.php:746
+#: PublishPress_Statuses.php:729
 msgid "Post is awaiting review."
 msgstr "Пост ожидает проверки."
 
-#: PublishPress_Statuses.php:766
+#: PublishPress_Statuses.php:749
 msgid "Post is scheduled for publication."
 msgstr "Пост запланирован к публикации."
 
-#: PublishPress_Statuses.php:785
+#: PublishPress_Statuses.php:768
 msgid "Post is published, publicly visible."
 msgstr "Пост опубликован, виден публично."
 
-#: PublishPress_Statuses.php:804
+#: PublishPress_Statuses.php:787
 msgid "Post is published with private visibility."
 msgstr "Пост опубликован с приватной видимостью."
 
-#: PublishPress_Statuses.php:864
+#: PublishPress_Statuses.php:847
 msgid "Pitch"
 msgstr "Предложение"
 
-#: PublishPress_Statuses.php:867
+#: PublishPress_Statuses.php:850
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Идея предложена; ожидает одобрения."
 
-#: PublishPress_Statuses.php:879
+#: PublishPress_Statuses.php:862
 msgid "Assigned"
 msgstr "Назначено"
 
-#: PublishPress_Statuses.php:882
+#: PublishPress_Statuses.php:865
 msgid "Post idea assigned to writer."
 msgstr "Идея поста назначена автору."
 
-#: PublishPress_Statuses.php:894
+#: PublishPress_Statuses.php:877
 msgid "In Progress"
 msgstr "В процессе"
 
-#: PublishPress_Statuses.php:897
+#: PublishPress_Statuses.php:880
 msgid "Writer is working on the post."
 msgstr "Автор работает над постом."
 
-#: PublishPress_Statuses.php:909
+#: PublishPress_Statuses.php:892
 msgid "Approved"
 msgstr "Одобрено"
 
-#: PublishPress_Statuses.php:912
+#: PublishPress_Statuses.php:895
 msgid "Post has been approved for publication."
 msgstr "Пост был одобрен для публикации."
 
-#: PublishPress_Statuses.php:924
+#: PublishPress_Statuses.php:907
 msgid "Needs Work"
 msgstr "Требуется доработка"
 
-#: PublishPress_Statuses.php:926
+#: PublishPress_Statuses.php:909
 msgid "Set to Needs Work"
 msgstr "Установить на Требуется доработка"
 
-#: PublishPress_Statuses.php:927
+#: PublishPress_Statuses.php:910
 msgid "Post needs work before further review."
 msgstr "Пост требует доработки перед дальнейшим рассмотрением."
 
-#: PublishPress_Statuses.php:939
+#: PublishPress_Statuses.php:922
 msgid "Rejected"
 msgstr "Отклонено"
 
-#: PublishPress_Statuses.php:941
+#: PublishPress_Statuses.php:924
 msgid "Reject"
 msgstr "Отклонить"
 
-#: PublishPress_Statuses.php:942
+#: PublishPress_Statuses.php:925
 msgid "Post has been rejected."
 msgstr "Пост был отклонён."
 
-#: PublishPress_Statuses.php:976
+#: PublishPress_Statuses.php:959
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Альтернативный рабочий процесс до публикации:"
 
-#: PublishPress_Statuses.php:1071
+#: PublishPress_Statuses.php:1054
 msgid "Disabled Statuses:"
 msgstr "Отключенные статусы:"
 
-#: PublishPress_Statuses.php:1087
+#: PublishPress_Statuses.php:1070
 msgid "Deferred"
 msgstr "Отложено"
 
-#: PublishPress_Statuses.php:1089
+#: PublishPress_Statuses.php:1072
 msgid "Defer"
 msgstr "Отложить"
 
-#: PublishPress_Statuses.php:1090
+#: PublishPress_Statuses.php:1073
 msgid "Post has been deferred for future consideration."
 msgstr "Пост был отложен для дальнейшего рассмотрения."
 
-#: PublishPress_Statuses.php:1102
+#: PublishPress_Statuses.php:1085
 msgid "Committee"
 msgstr "Комитет"
 
-#: PublishPress_Statuses.php:1104
+#: PublishPress_Statuses.php:1087
 msgid "Refer to Committee"
 msgstr "Передать комитету"
 
-#: PublishPress_Statuses.php:1105
+#: PublishPress_Statuses.php:1088
 msgid "Post has been referred to committee."
 msgstr "Пост был передан в комитет."
 
-#: PublishPress_Statuses.php:1118
+#: PublishPress_Statuses.php:1101
 msgid "Committee Review"
 msgstr "Рассмотрение комитетом"
 
-#: PublishPress_Statuses.php:1120
+#: PublishPress_Statuses.php:1103
 msgid "Set to Committee Review"
 msgstr "Установить на Рассмотрение комитетом"
 
-#: PublishPress_Statuses.php:1121
+#: PublishPress_Statuses.php:1104
 msgid "Committee is reviewing the post."
 msgstr "Комитет рассматривает пост."
 
-#: PublishPress_Statuses.php:1134
+#: PublishPress_Statuses.php:1117
 msgid "Committee Progress"
 msgstr "Прогресс комитета"
 
-#: PublishPress_Statuses.php:1136
+#: PublishPress_Statuses.php:1119
 msgid "Set to Committee Progress"
 msgstr "Установить на Прогресс комитета"
 
-#: PublishPress_Statuses.php:1137
+#: PublishPress_Statuses.php:1120
 msgid "Committee is editing the post."
 msgstr "Комитет редактирует пост."
 
-#: PublishPress_Statuses.php:1150
+#: PublishPress_Statuses.php:1133
 msgid "Committee Approved"
 msgstr "Одобрено комитетом"
 
-#: PublishPress_Statuses.php:1152
+#: PublishPress_Statuses.php:1135
 msgid "Set Committee Approval"
 msgstr "Установить одобрение комитета"
 
-#: PublishPress_Statuses.php:1153
+#: PublishPress_Statuses.php:1136
 msgid "Committee has approved the post."
 msgstr "Комитет одобрил пост."
 
@@ -1381,7 +1381,7 @@ msgstr "По умолчанию"
 msgid "Delete"
 msgstr "Удалить"
 
-#: PublishPress_Statuses.php:866
+#: PublishPress_Statuses.php:849
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Предложение"
