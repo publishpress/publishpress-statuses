@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-17 23:25+0000\n"
+"PO-Revision-Date: 2026-04-17 23:54+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,8 +44,8 @@ msgstr "https://publishpress.com/"
 #: Admin.php:18
 #: Admin.php:430
 #: Admin.php:431
-#: PublishPress_Statuses.php:446
-#: PublishPress_Statuses.php:447
+#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:430
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "Statussen"
@@ -79,17 +79,17 @@ msgid "Add New"
 msgstr "Voeg Nieuw Toe"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:911
+#: PublishPress_Statuses.php:894
 msgid "Approve"
 msgstr "Goedkeuren"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:881
+#: PublishPress_Statuses.php:864
 msgid "Assign"
 msgstr "Toewijzen"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:896
+#: PublishPress_Statuses.php:879
 msgid "Mark In Progress"
 msgstr "Markeer In Behandeling"
 
@@ -326,7 +326,7 @@ msgid ""
 "to version %s or higher."
 msgstr "Om PublishPress Statussen te gebruiken, werk PublishPress Capabilities Pro bij naar versie %s of hoger."
 
-#: PublishPress_Statuses.php:408
+#: PublishPress_Statuses.php:391
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -334,165 +334,165 @@ msgstr ""
 "Kan normale statusprogressie omzeilen. De gebruiker kan onmiddellijk "
 "publiceren of het bericht naar de uiterste mogelijke status verplaatsen."
 
-#: PublishPress_Statuses.php:409
+#: PublishPress_Statuses.php:392
 msgid "Manage Statuses plugin settings."
 msgstr "Beheer de instellingen van de Statusen-plugin."
 
-#: PublishPress_Statuses.php:414
+#: PublishPress_Statuses.php:397
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr ""
 "Kan berichten ongedaan maken, zelfs als de Zichtbaarheidsstatus vergrendeld "
 "is."
 
-#: PublishPress_Statuses.php:447, fuzzy
+#: PublishPress_Statuses.php:430, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: PublishPress_Statuses.php:461
+#: PublishPress_Statuses.php:444
 msgid "Core Post Statuses"
 msgstr "Kern Poststatussen"
 
-#: PublishPress_Statuses.php:724
+#: PublishPress_Statuses.php:707
 msgid "New post, not yet submitted."
 msgstr "Nieuwe post, nog niet ingediend."
 
-#: PublishPress_Statuses.php:746
+#: PublishPress_Statuses.php:729
 msgid "Post is awaiting review."
 msgstr "Post wacht op beoordeling."
 
-#: PublishPress_Statuses.php:766
+#: PublishPress_Statuses.php:749
 msgid "Post is scheduled for publication."
 msgstr "Post is gepland voor publicatie."
 
-#: PublishPress_Statuses.php:785
+#: PublishPress_Statuses.php:768
 msgid "Post is published, publicly visible."
 msgstr "Post is gepubliceerd, publiek zichtbaar."
 
-#: PublishPress_Statuses.php:804
+#: PublishPress_Statuses.php:787
 msgid "Post is published with private visibility."
 msgstr "Post is gepubliceerd met privézichtbaarheid."
 
-#: PublishPress_Statuses.php:864, fuzzy
+#: PublishPress_Statuses.php:847, fuzzy
 msgid "Pitch"
 msgstr "Pitch"
 
-#: PublishPress_Statuses.php:867
+#: PublishPress_Statuses.php:850
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Idee voorgesteld; wacht op acceptatie."
 
-#: PublishPress_Statuses.php:879
+#: PublishPress_Statuses.php:862
 msgid "Assigned"
 msgstr "Toegewezen"
 
-#: PublishPress_Statuses.php:882
+#: PublishPress_Statuses.php:865
 msgid "Post idea assigned to writer."
 msgstr "Postidee toegewezen aan schrijver."
 
-#: PublishPress_Statuses.php:894
+#: PublishPress_Statuses.php:877
 msgid "In Progress"
 msgstr "In Behandeling"
 
-#: PublishPress_Statuses.php:897
+#: PublishPress_Statuses.php:880
 msgid "Writer is working on the post."
 msgstr "Schrijver werkt aan de post."
 
-#: PublishPress_Statuses.php:909
+#: PublishPress_Statuses.php:892
 msgid "Approved"
 msgstr "Goedgekeurd"
 
-#: PublishPress_Statuses.php:912
+#: PublishPress_Statuses.php:895
 msgid "Post has been approved for publication."
 msgstr "Post is goedgekeurd voor publicatie."
 
-#: PublishPress_Statuses.php:924
+#: PublishPress_Statuses.php:907
 msgid "Needs Work"
 msgstr "Moet Werk"
 
-#: PublishPress_Statuses.php:926
+#: PublishPress_Statuses.php:909
 msgid "Set to Needs Work"
 msgstr "Instellen op Moet Werk"
 
-#: PublishPress_Statuses.php:927
+#: PublishPress_Statuses.php:910
 msgid "Post needs work before further review."
 msgstr "Bericht moet worden bewerkt voordat verdere beoordeling."
 
-#: PublishPress_Statuses.php:939
+#: PublishPress_Statuses.php:922
 msgid "Rejected"
 msgstr "Afgewezen"
 
-#: PublishPress_Statuses.php:941
+#: PublishPress_Statuses.php:924
 msgid "Reject"
 msgstr "Afwijzen"
 
-#: PublishPress_Statuses.php:942
+#: PublishPress_Statuses.php:925
 msgid "Post has been rejected."
 msgstr "Bericht is afgewezen."
 
-#: PublishPress_Statuses.php:976
+#: PublishPress_Statuses.php:959
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Alternatieve Voorpublicatieworkflow:"
 
-#: PublishPress_Statuses.php:1071
+#: PublishPress_Statuses.php:1054
 msgid "Disabled Statuses:"
 msgstr "Uitgeschakelde Statussen:"
 
-#: PublishPress_Statuses.php:1087
+#: PublishPress_Statuses.php:1070
 msgid "Deferred"
 msgstr "Uitgesteld"
 
-#: PublishPress_Statuses.php:1089
+#: PublishPress_Statuses.php:1072
 msgid "Defer"
 msgstr "Uitstellen"
 
-#: PublishPress_Statuses.php:1090
+#: PublishPress_Statuses.php:1073
 msgid "Post has been deferred for future consideration."
 msgstr "Post is uitgesteld voor toekomstige overweging."
 
-#: PublishPress_Statuses.php:1102
+#: PublishPress_Statuses.php:1085
 msgid "Committee"
 msgstr "Commissie"
 
-#: PublishPress_Statuses.php:1104
+#: PublishPress_Statuses.php:1087
 msgid "Refer to Committee"
 msgstr "Verwijs naar Commissie"
 
-#: PublishPress_Statuses.php:1105
+#: PublishPress_Statuses.php:1088
 msgid "Post has been referred to committee."
 msgstr "Bericht is verwezen naar de commissie."
 
-#: PublishPress_Statuses.php:1118
+#: PublishPress_Statuses.php:1101
 msgid "Committee Review"
 msgstr "Commissiebeoordeling"
 
-#: PublishPress_Statuses.php:1120
+#: PublishPress_Statuses.php:1103
 msgid "Set to Committee Review"
 msgstr "Instellen op Commissiebeoordeling"
 
-#: PublishPress_Statuses.php:1121
+#: PublishPress_Statuses.php:1104
 msgid "Committee is reviewing the post."
 msgstr "Commissie beoordeelt het bericht."
 
-#: PublishPress_Statuses.php:1134
+#: PublishPress_Statuses.php:1117
 msgid "Committee Progress"
 msgstr "Vooruitgang Commissie"
 
-#: PublishPress_Statuses.php:1136
+#: PublishPress_Statuses.php:1119
 msgid "Set to Committee Progress"
 msgstr "Instellen op Vooruitgang Commissie"
 
-#: PublishPress_Statuses.php:1137
+#: PublishPress_Statuses.php:1120
 msgid "Committee is editing the post."
 msgstr "Commissie is het bericht aan het bewerken."
 
-#: PublishPress_Statuses.php:1150
+#: PublishPress_Statuses.php:1133
 msgid "Committee Approved"
 msgstr "Commissie Goedgekeurd"
 
-#: PublishPress_Statuses.php:1152
+#: PublishPress_Statuses.php:1135
 msgid "Set Committee Approval"
 msgstr "Stel Commissie Goedkeuring in"
 
-#: PublishPress_Statuses.php:1153
+#: PublishPress_Statuses.php:1136
 msgid "Committee has approved the post."
 msgstr "Commissie heeft het bericht goedgekeurd."
 
@@ -1376,7 +1376,7 @@ msgstr "Standaard"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: PublishPress_Statuses.php:866, fuzzy
+#: PublishPress_Statuses.php:849, fuzzy
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Pitch"
