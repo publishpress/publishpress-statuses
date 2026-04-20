@@ -272,7 +272,7 @@ class StatusEditUI
         ?>
         <div id="pp-name" class="pp-options">
         <table class="form-table" style="<?php echo esc_attr($display);?>">
-            <?php if (!empty($_REQUEST['page']) && ('publishpress-statuses-add-new' == $_REQUEST['page'])) :
+            <?php if (!empty($_REQUEST['page']) && ('publishpress-statuses-add-new' == $_REQUEST['page'])) :    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 self::labelsUI($status_obj, compact('label_locked'));
             endif;?>
 

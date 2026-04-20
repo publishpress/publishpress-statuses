@@ -180,6 +180,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             );
             
             // @todo: Ideally, WordPress would provide a post-translation filter to eliminate the need for gettext filtering.
+            // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
             /* 
             add_filter(
                 'plugins_list', 
@@ -192,7 +193,6 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                         $plugins['all'][$plugin_relpath]['Title'] = 'PublishPress Statuses Free';
                         $plugins['all'][$plugin_relpath]['AuthorName'] = 'PublishPress';
                     }
-
                     return $plugins;
                 }, 50
             );
@@ -3443,7 +3443,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if (in_array($status, ['auto-draft', 'inherit', 'trash']) 
         || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
         || ('async-upload.php' == $pagenow) 
-        || ((strpos($status, 'wc-') === 0) && class_exists('WooCommerce') && !empty($_GET) && !empty($_GET['wc-ajax']) && ('checkout' == $_REQUEST['wc-ajax']))
+        || ((strpos($status, 'wc-') === 0) && class_exists('WooCommerce') && !empty($_GET) && !empty($_GET['wc-ajax']) && ('checkout' == $_GET['wc-ajax']))     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         ) {
             return $status;
         }

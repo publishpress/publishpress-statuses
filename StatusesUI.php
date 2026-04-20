@@ -1306,7 +1306,7 @@ class StatusesUI {
                 <div class='col-wrap'>
                     <div class='form-wrap'>
                         <?php
-                        $current_tab = (!empty($_REQUEST['pp_tab'])) ? $_REQUEST['pp_tab'] : 'workflow';
+                        $current_tab = (!empty($_REQUEST['pp_tab'])) ? $_REQUEST['pp_tab'] : 'workflow';            // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
                         if ('publishpress-statuses-add-new' === $plugin_page) :
                             require_once(__DIR__ . '/StatusAddNewUI.php');
@@ -1342,13 +1342,13 @@ class StatusesUI {
                                         </h2>
 
                                         <div class="pp-module-settings">
-                                            <?php /* echo $context['module_output']; */ ?>
+
                                         </div>
 
                                     </div><!-- .pp-column-left -->
                                     <?php if (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) { ?>
                                         <div class="pp-column-right">
-                                            <?php /* echo $context['pro_sidebar']; */ // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                            <?php /* echo $context['pro_sidebar']; */ // phpcs:ignore Squiz.PHP.CommentedOutCode.Found, WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                         </div><!-- .pp-column-right -->
                                     <?php } ?>
                                 </div><!-- .pp-columns-wrapper -->
