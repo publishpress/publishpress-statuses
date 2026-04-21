@@ -1299,6 +1299,7 @@ class StatusesUI {
                             <script type="text/javascript">
                                 /* <![CDATA[ */
                                 jQuery(document).ready(function ($) {
+                                    $('form > table > tbody > tr').hide();
                                     $('tr.pp-settings-<?php echo esc_attr($current_tab);?>').show();
 
                                     $('.nav-tab-wrapper .nav-tab').on('click', function (e) {
@@ -1308,7 +1309,6 @@ class StatusesUI {
                                         $(this).addClass('nav-tab-active');
 
                                         $('input[name="pp_tab"]').val($(this).attr('data-section'));
-
                                         $('tr.pp-settings-' + $(this).attr('data-section')).show();
                                     });
                                 });
