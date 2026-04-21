@@ -216,7 +216,7 @@ class StatusHandler {
             wp_die(esc_html(\PublishPress_Statuses::__wp('Sorry, you are not allowed to access this page.')));
         }
 
-        $name = sanitize_key($_REQUEST['name']);
+        $name = (!empty($_REQUEST['name'])) ? sanitize_key($_REQUEST['name']) : '';
 
         if (!$existing_status = \PublishPress_Statuses::getStatusBy('slug', $name)) {
             wp_die(esc_html__("Post status doesn't exist.", 'publishpress-statuses'));
@@ -1004,7 +1004,7 @@ class StatusHandler {
         $goback = add_query_arg('message', 'settings-updated', remove_query_arg(['message'], wp_get_referer()));
 
         if (!empty($_REQUEST['pp_tab']) && ('workflow' != $_REQUEST['pp_tab'])) {
-            $goback = add_query_arg('pp_tab', esc_attr($_REQUEST['pp_tab']), $goback);
+            $goback = add_query_arg('pp_tab', esc_attr($_REQUEST['pp_tab']), $goback);      // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         }
 
         wp_safe_redirect($goback);
