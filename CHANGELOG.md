@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[1.3.0] - 15 Apr 2026
+[1.3.0] - 20 Apr 2026
 - Changed : Tabbed view for plugin settings
 - Fixed : Ordering of Pending Review status in Quick Edit dropdown and Post Editor status dropdown did not match Statuses screen
 - Added : Separator between published statuses, workflow statuses and alternate workflow statuses in status dropdowns
