@@ -527,6 +527,10 @@ padding-top: 30px;
 
 
 /* Setting */
+div.publishpress-admin form.basic-settings > table > tbody > tr {
+display: none;
+}
+
 .form-table .pp-settings-separation-top td, .form-table .pp-settings-separation-top th {
 padding-top: 40px !important;
 border-top: 1px solid #ccc;
