@@ -934,7 +934,6 @@ do_action('publishpress_statuses_table_row', $key, []);
         $status_obj = $item;
 
         $url = admin_url("admin.php?action=edit-status&name={$status_obj->name}&page=publishpress-statuses");
-        $actions['edit'] =  ['url' => esc_url($url), 'label' => esc_html__('Edit')];
 
         $options = \PublishPress_Statuses::instance()->options;
 
