@@ -1,0 +1,1102 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Statuses Free 1.3.1-rc\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-29T19:43:28+00:00\n"
+"PO-Revision-Date: 2026-04-29 20:07+0000\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: publishpress-statuses\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: publishpress-statuses.php:3
+#. Plugin Name of the plugin
+msgid "PublishPress Statuses Free"
+msgstr "PublishPress Statuses Free"
+
+#: publishpress-statuses.php:4, fuzzy
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/statuses"
+msgstr "https://publishpress.com/statuses"
+
+#: publishpress-statuses.php:5
+#. Description of the plugin
+msgid "Manage and create post statuses to customize your editorial workflow"
+msgstr "管理和创建帖子状态，以自定义您的编辑工作流程"
+
+#: publishpress-statuses.php:7
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#: publishpress-statuses.php:8, fuzzy
+#. Author URI of the plugin
+msgid "https://publishpress.com/"
+msgstr "https://publishpress.com/"
+
+#: Admin.php:18
+#: Admin.php:430
+#: Admin.php:431
+#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:430
+#: StatusesUI.php:92
+msgid "Statuses"
+msgstr "状态"
+
+#: Admin.php:19
+msgid "Settings"
+msgstr "设置"
+
+#: Admin.php:22
+#: includes-core/CoreAdmin.php:40
+#: includes-core/CoreAdmin.php:41
+#: includes-core/CoreAdmin.php:117
+#: includes-core/PromoBanner.php:225
+#: StatusListTable.php:224
+#: StatusListTable.php:250
+msgid "Upgrade to Pro"
+msgstr "升级到 Pro"
+
+#: Admin.php:369
+msgid "Add New"
+msgstr "添加新状态"
+
+#: Admin.php:528
+#: PublishPress_Statuses.php:894
+msgid "Approve"
+msgstr "批准"
+
+#: Admin.php:530
+#: PublishPress_Statuses.php:864
+msgid "Assign"
+msgstr "分配"
+
+#: Admin.php:532
+#: PublishPress_Statuses.php:879
+msgid "Mark In Progress"
+msgstr "标记为进行中"
+
+#: Admin.php:545
+#. translators: %s is the status label
+#, php-format
+msgid "Set to %s"
+msgstr "设置为 %s"
+
+#: Admin.php:554
+#: PostEditGutenberg.php:81
+#: PostEditGutenberg.php:101
+#. translators: %s is the status label
+#, php-format
+msgid "Save as %s"
+msgstr "保存为 %s"
+
+#: Admin.php:566
+#. translators: %s is the name of a custom public status
+#, php-format
+msgid "Public (%s)"
+msgstr "公开 (%s)"
+
+#: Admin.php:637
+#: PostEditClassic.php:179
+#: PostEditGutenberg.php:78
+#: PostEditGutenberg.php:286
+#: PostEditGutenbergStatuses.php:49
+#: PostEditGutenbergStatuses.php:69
+#: PostEditGutenbergStatuses.php:77
+msgid "Advance Status"
+msgstr "高级状态"
+
+#: includes-core/CoreAdmin.php:19
+#, php-format
+msgid "Upgrade to Statuses Pro"
+msgstr "升级到 Statuses Pro"
+
+#: includes-core/CoreAdmin.php:105
+msgid "Upgrade to PublishPress Statuses Pro for additional benefits:"
+msgstr "升级到 PublishPress Statuses Pro 以获得额外的好处："
+
+#: includes-core/CoreAdmin.php:108
+msgid "Define revision statuses"
+msgstr "定义修订状态"
+
+#: includes-core/CoreAdmin.php:109
+msgid "Control revision status selection"
+msgstr "控制修订状态选择"
+
+#: includes-core/CoreAdmin.php:110
+msgid "Customize revision workflow sequence"
+msgstr "自定义修订工作流程顺序"
+
+#: includes-core/CoreAdmin.php:111
+msgid "Custom notifications, with PublishPress Planner"
+msgstr "自定义通知，使用 PublishPress Planner"
+
+#: includes-core/CoreAdmin.php:112
+msgid "No ads inside the plugin"
+msgstr "插件内没有广告"
+
+#: includes-core/CoreAdmin.php:113
+msgid "Prompt, professional support"
+msgstr "及时、专业的支持"
+
+#: includes-core/CoreAdmin.php:124
+msgid "Need Statuses Support?"
+msgstr "需要状态支持吗？"
+
+#: includes-core/CoreAdmin.php:129
+#: includes-core/PromoBanner.php:68
+msgid "If you need help or have a new feature request, let us know."
+msgstr "如果您需要帮助或有新功能请求，请告诉我们。"
+
+#: includes-core/CoreAdmin.php:131
+#: includes-core/PromoBanner.php:241
+msgid "Request Support"
+msgstr "请求支持"
+
+#: includes-core/CoreAdmin.php:140
+#: includes-core/PromoBanner.php:248
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "详细文档也可在插件网站上获得。"
+
+#: includes-core/CoreAdmin.php:142
+#: includes-core/PromoBanner.php:251
+msgid "View Knowledge Base"
+msgstr "查看知识库"
+
+#: PostEditClassic.php:214
+msgid "Current Time"
+msgstr "当前时间"
+
+#: PostEditClassic.php:242
+#: PostEditClassic.php:267
+#. translators: %s is a status name
+#, php-format
+msgid "Submit as %s"
+msgstr "提交为 %s"
+
+#: PostEditClassic.php:328
+#. translators: %s is the name of a custom visibility status
+#, php-format
+msgid "%s, Sticky"
+msgstr "%s, 固定"
+
+#: PostEditClassicSubmitMetabox.php:59
+msgid "Visibility:"
+msgstr "可见性："
+
+#: PostEditClassicSubmitMetabox.php:200
+msgid "Restore default behavior of publish button"
+msgstr "恢复发布按钮的默认行为"
+
+#: PostEditClassicSubmitMetabox.php:201
+msgid "Bypass sequence"
+msgstr "绕过顺序"
+
+#: PostEditClassicSubmitMetabox.php:437
+#. translators: %s is html markup
+#, php-format
+msgid "Publish %1$s on approval %2$s"
+msgstr "在批准 %2$s 上发布 %1$s"
+
+#: PostEditGutenberg.php:75
+msgid "Publication Workflow"
+msgstr "出版工作流程"
+
+#: PostEditGutenberg.php:79
+msgid "Post Status"
+msgstr "帖子状态"
+
+#: PostEditGutenberg.php:82
+msgid "Set Selected Status"
+msgstr "设置选定状态"
+
+#: PostEditGutenberg.php:83
+msgid "Keep Current Status"
+msgstr "保持当前状态"
+
+#: PostEditGutenberg.php:84
+msgid "Advance to Next Status"
+msgstr "推进到下一个状态"
+
+#: PostEditGutenberg.php:85
+msgid "Advance to Max Status"
+msgstr "推进到最大状态"
+
+#: PostEditGutenberg.php:86
+msgid "This post is currently published"
+msgstr "此帖子当前已发布"
+
+#: PostEditGutenberg.php:87
+msgid "This post is currently scheduled"
+msgstr "此帖子当前已排定"
+
+#: PostEditGutenbergStatuses.php:160
+#: StatusesUI.php:1321
+msgid "Workflow"
+msgstr "工作流"
+
+#: PostEditGutenbergStatuses.php:166
+msgid "Submit Revision"
+msgstr "提交修订"
+
+#: publishpress-module/ModuleAdminUI_Base.php:101
+#. translators: %1$s is the plugin name, %2$s is the rating stars
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "如果您喜欢 %1$s，请给我们留下 %2$s 评分。谢谢！"
+
+#: publishpress-module/ModuleAdminUI_Base.php:112
+#, php-format
+msgid "About %s"
+msgstr "关于 %s"
+
+#: publishpress-module/ModuleAdminUI_Base.php:112
+msgid "About"
+msgstr "关于"
+
+#: publishpress-module/ModuleAdminUI_Base.php:114
+#, php-format
+msgid "%s Documentation"
+msgstr "%s 文档"
+
+#: publishpress-module/ModuleAdminUI_Base.php:114
+msgid "Documentation"
+msgstr "文档"
+
+#: publishpress-module/ModuleAdminUI_Base.php:116
+msgid "Contact the PublishPress team"
+msgstr "联系 PublishPress 团队"
+
+#: publishpress-module/ModuleAdminUI_Base.php:116
+msgid "Contact"
+msgstr "联系"
+
+#: publishpress-statuses.php:118
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>此插件可以被删除。</strong>"
+
+#: publishpress-statuses.php:196
+#. translators: %s is a version number
+#, php-format
+msgid "Manage Statuses plugin settings."
+msgstr "管理状态插件设置。"
+
+#: PublishPress_Statuses.php:397
+msgid "Can unpublish posts even if Visibility Status is locked."
+msgstr "即使可见性状态被锁定，也可以取消发布帖子。"
+
+#: PublishPress_Statuses.php:430
+msgid "Status"
+msgstr "状态"
+
+#: PublishPress_Statuses.php:444
+msgid "Core Post Statuses"
+msgstr "核心帖子状态"
+
+#: PublishPress_Statuses.php:707
+msgid "New post, not yet submitted."
+msgstr "新帖子，尚未提交。"
+
+#: PublishPress_Statuses.php:729
+msgid "Post is awaiting review."
+msgstr "帖子正在等待审核。"
+
+#: PublishPress_Statuses.php:749
+msgid "Post is scheduled for publication."
+msgstr "帖子已安排发布。"
+
+#: PublishPress_Statuses.php:768
+msgid "Post is published, publicly visible."
+msgstr "帖子已发布，公开可见。"
+
+#: PublishPress_Statuses.php:787
+msgid "Post is published with private visibility."
+msgstr "帖子已发布，私密可见。"
+
+#: PublishPress_Statuses.php:847
+msgid "Pitch"
+msgstr "提案"
+
+#: PublishPress_Statuses.php:850
+msgid "Idea proposed; waiting for acceptance."
+msgstr "已提出想法；等待接受。"
+
+#: PublishPress_Statuses.php:862
+msgid "Assigned"
+msgstr "已分配"
+
+#: PublishPress_Statuses.php:865
+msgid "Post idea assigned to writer."
+msgstr "帖子想法已分配给作者。"
+
+#: PublishPress_Statuses.php:877
+msgid "In Progress"
+msgstr "进行中"
+
+#: PublishPress_Statuses.php:880
+msgid "Writer is working on the post."
+msgstr "作者正在撰写帖子。"
+
+#: PublishPress_Statuses.php:892
+msgid "Approved"
+msgstr "已批准"
+
+#: PublishPress_Statuses.php:895
+msgid "Post has been approved for publication."
+msgstr "帖子已获批准发布。"
+
+#: PublishPress_Statuses.php:907
+msgid "Needs Work"
+msgstr "需要修改"
+
+#: PublishPress_Statuses.php:909
+msgid "Set to Needs Work"
+msgstr "设置为需要修改"
+
+#: PublishPress_Statuses.php:910
+msgid "Post needs work before further review."
+msgstr "帖子需要修改后才能进一步审核。"
+
+#: PublishPress_Statuses.php:922
+msgid "Rejected"
+msgstr "被拒绝"
+
+#: PublishPress_Statuses.php:924
+msgid "Reject"
+msgstr "拒绝"
+
+#: PublishPress_Statuses.php:925
+msgid "Post has been rejected."
+msgstr "帖子已被拒绝。"
+
+#: PublishPress_Statuses.php:959
+msgid "Alternate Pre-Publication Workflow:"
+msgstr "替代预发布工作流程："
+
+#: PublishPress_Statuses.php:1054
+msgid "Disabled Statuses:"
+msgstr "禁用状态："
+
+#: PublishPress_Statuses.php:1070
+msgid "Deferred"
+msgstr "延期"
+
+#: PublishPress_Statuses.php:1072
+msgid "Defer"
+msgstr "延期"
+
+#: PublishPress_Statuses.php:1073
+msgid "Post has been deferred for future consideration."
+msgstr "帖子已被延期以供未来考虑。"
+
+#: PublishPress_Statuses.php:1085
+msgid "Committee"
+msgstr "委员会"
+
+#: PublishPress_Statuses.php:1087
+msgid "Refer to Committee"
+msgstr "转交委员会"
+
+#: PublishPress_Statuses.php:1088
+msgid "Post has been referred to committee."
+msgstr "帖子已被转交给委员会。"
+
+#: PublishPress_Statuses.php:1101
+msgid "Committee Review"
+msgstr "委员会审核"
+
+#: PublishPress_Statuses.php:1103
+msgid "Set to Committee Review"
+msgstr "设置为委员会审核"
+
+#: PublishPress_Statuses.php:1104
+msgid "Committee is reviewing the post."
+msgstr "委员会正在审核帖子。"
+
+#: PublishPress_Statuses.php:1117
+msgid "Committee Progress"
+msgstr "委员会进度"
+
+#: PublishPress_Statuses.php:1119
+msgid "Set to Committee Progress"
+msgstr "设置为委员会进度"
+
+#: PublishPress_Statuses.php:1120
+msgid "Committee is editing the post."
+msgstr "委员会正在编辑帖子。"
+
+#: PublishPress_Statuses.php:1133
+msgid "Committee Approved"
+msgstr "委员会批准"
+
+#: PublishPress_Statuses.php:1135
+msgid "Set Committee Approval"
+msgstr "设置委员会批准"
+
+#: PublishPress_Statuses.php:1136
+msgid "Committee has approved the post."
+msgstr "委员会已批准该帖子。"
+
+#: StatusAddNewUI.php:30
+msgid "Add New Status"
+msgstr "添加新状态"
+
+#: StatusEditUI.php:41
+#: StatusEditUI.php:50
+#: StatusListTable.php:945
+msgid "Labels"
+msgstr "标签"
+
+#: StatusEditUI.php:56
+#: StatusEditUI.php:414
+#: StatusListTable.php:171
+msgid "Post Types"
+msgstr "帖子类型"
+
+#: StatusEditUI.php:64
+#: StatusListTable.php:170
+msgid "Roles"
+msgstr "角色"
+
+#: StatusEditUI.php:72
+msgid "Edit Status Labels"
+msgstr "编辑状态标签"
+
+#: StatusEditUI.php:75
+msgid "Back to Statuses"
+msgstr "返回到状态"
+
+#: StatusEditUI.php:92
+msgid "Post Access"
+msgstr "帖子访问"
+
+#: StatusEditUI.php:184
+msgid "Update Status"
+msgstr "更新状态"
+
+#: StatusEditUI.php:293
+msgid "The slug is the unique ID for the status."
+msgstr "slug是状态的唯一ID。"
+
+#: StatusEditUI.php:303
+msgid "Color"
+msgstr "颜色"
+
+#: StatusEditUI.php:315
+msgid "The color is used to identify the status."
+msgstr "颜色用于识别状态。"
+
+#: StatusEditUI.php:321
+#: StatusListTable.php:169
+msgid "Icon"
+msgstr "图标"
+
+#: StatusEditUI.php:337
+msgid "Select Icon"
+msgstr "选择图标"
+
+#: StatusEditUI.php:343
+msgid "The icon is used to visually represent the status."
+msgstr "图标用于视觉上表示状态。"
+
+#: StatusEditUI.php:378
+msgid "Status Availability"
+msgstr "状态可用性"
+
+#: StatusEditUI.php:381
+msgid "Choose which user roles can assign this status to a post."
+msgstr "选择哪些用户角色可以将此状态分配给帖子。"
+
+#: StatusEditUI.php:417
+msgid "Choose which post types can be set to this status."
+msgstr "选择哪些帖子类型可以设置为此状态。"
+
+#: StatusEditUI.php:454
+msgid "All Post Types"
+msgstr "所有帖子类型"
+
+#: StatusEditUI.php:504
+msgid "Upgrade to choose who can manage posts in each status"
+msgstr "升级以选择谁可以管理每个状态下的帖子"
+
+#: StatusEditUI.php:507
+msgid "Get PublishPress Statuses Pro for status-specific post access control."
+msgstr "获取 PublishPress Statuses Pro 以进行状态特定的帖子访问控制。"
+
+#: StatusEditUI.php:513
+msgid "Control which roles can assign a status"
+msgstr "控制哪些角色可以分配状态"
+
+#: StatusEditUI.php:516
+msgid "Control which roles can edit or delete posts per-status"
+msgstr "控制哪些角色可以按状态编辑或删除帖子"
+
+#: StatusEditUI.php:519
+msgid "Set capabilities separately for each post type"
+msgstr "为每个 post type 单独设置权限"
+
+#: StatusEditUI.php:522
+msgid "User-friendly checkbox grid to assign capabilities"
+msgstr "用户友好的复选框网格以分配权限"
+
+#: StatusEditUI.php:531
+#: StatusListTable.php:674
+msgid "Get PublishPress Statuses Pro"
+msgstr "获取 PublishPress Statuses Pro"
+
+#: StatusEditUI.php:536
+#: StatusListTable.php:229
+#: StatusListTable.php:246
+#: StatusListTable.php:679
+msgid "Learn More"
+msgstr "了解更多"
+
+#: StatusEditUI.php:545
+#, php-format
+msgid "Status Label"
+msgstr "状态标签"
+
+#: StatusEditUI.php:578
+msgid "The name is used to identify the status. (Max: 20 characters)"
+msgstr "该名称用于标识状态。（最多：20 个字符）"
+
+#: StatusEditUI.php:588
+msgid "Description"
+msgstr "描述"
+
+#: StatusEditUI.php:600
+msgid "Save As Label"
+msgstr "另存为标签"
+
+#: StatusEditUI.php:620
+msgid "Submit Button Label"
+msgstr "提交按钮标签"
+
+#: StatusesUI.php:64
+#. translators: %s is the status label
+#, php-format
+msgid "Edit Post Status: %s"
+msgstr "编辑帖子状态：%s"
+
+#: StatusesUI.php:67
+#. translators: %s is the status label
+#, php-format
+msgid "%s Status - Edit"
+msgstr "%s 状态 - 编辑"
+
+#: StatusesUI.php:75
+#. translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
+#, php-format
+msgid "Add %s Status"
+msgstr "添加 %s 状态"
+
+#: StatusesUI.php:82
+msgid "Add Post Status"
+msgstr "添加帖子状态"
+
+#: StatusesUI.php:83
+msgid "Add Status"
+msgstr "添加状态"
+
+#: StatusesUI.php:87
+#: StatusesUI.php:1297
+msgid "PublishPress Statuses Settings"
+msgstr "PublishPress Statuses 设置"
+
+#: StatusesUI.php:88
+msgid "Statuses Settings"
+msgstr "状态设置"
+
+#: StatusesUI.php:91
+msgid "Post Statuses"
+msgstr "帖子状态"
+
+#: StatusesUI.php:98
+msgid "Visibility Statuses"
+msgstr "可见性状态"
+
+#: StatusesUI.php:217
+msgid "Post status created. Select a tab for further configuration."
+msgstr "帖子状态已创建。选择一个选项卡以进行进一步配置。"
+
+#: StatusesUI.php:219
+#: StatusesUI.php:224
+#. translators: %1$s is the status name, %2$s is the edit link
+#, php-format
+msgid "Post status %1$s updated. %2$s"
+msgstr "帖子状态 %1$s 已更新。 %2$s"
+
+#: StatusesUI.php:220
+msgid "Settings updated"
+msgstr "设置已更新"
+
+#: StatusesUI.php:221
+msgid "Default post status has been changed."
+msgstr "默认帖子状态已更改。"
+
+#: StatusesUI.php:225
+msgid "Post status deleted."
+msgstr "帖子状态已删除。"
+
+#: StatusesUI.php:226
+#: StatusHandler.php:832
+msgid "Status order updated."
+msgstr "状态顺序已更新。"
+
+#: StatusesUI.php:250
+msgid "Use on these Post Types:"
+msgstr "在这些帖子类型中使用："
+
+#: StatusesUI.php:259
+msgid "Workflow Guidance:"
+msgstr "工作流指南："
+
+#: StatusesUI.php:268
+msgid "Manual Status Selection:"
+msgstr "手动状态选择："
+
+#: StatusesUI.php:287
+msgid "Custom Visibility:"
+msgstr "自定义可见性："
+
+#: StatusesUI.php:297
+msgid "Default Visibility Status:"
+msgstr "默认可见性状态："
+
+#: StatusesUI.php:307
+msgid "Custom Visibility Editing:"
+msgstr "自定义可见性编辑："
+
+#: StatusesUI.php:319
+msgid "Pending Review Status:"
+msgstr "待审核状态："
+
+#: StatusesUI.php:329
+msgid "Planner Integration:"
+msgstr "计划者集成："
+
+#: StatusesUI.php:340
+msgid "Permissions Integration:"
+msgstr "权限集成："
+
+#: StatusesUI.php:350
+msgid "Gutenberg / Classic Editor:"
+msgstr "古腾堡 / 经典编辑器："
+
+#: StatusesUI.php:359
+msgid "Status Label Customization:"
+msgstr "状态标签自定义："
+
+#: StatusesUI.php:374
+msgid "Import Operation:"
+msgstr "导入操作："
+
+#: StatusesUI.php:385
+msgid "Backup / Restore:"
+msgstr "备份 / 恢复："
+
+#: StatusesUI.php:415
+msgid "Supplemental Role of Editor covers custom statuses"
+msgstr "编辑器的补充角色涵盖自定义状态"
+
+#: StatusesUI.php:440
+msgid "Include custom statuses in Add New pop-up on Calendar"
+msgstr "在日历的“添加新内容”弹出窗口中包含自定义状态"
+
+#: StatusesUI.php:465
+msgid "Hide status selection dropdown from non-Administrators in Gutenberg editor"
+msgstr "在古腾堡编辑器中隐藏非管理员的状态选择下拉菜单"
+
+#: StatusesUI.php:492
+msgid "Sequence by default: Publish button defaults to next status in workflow"
+msgstr "默认顺序：发布按钮默认为工作流中的下一个状态"
+
+#: StatusesUI.php:506
+msgid "Bypass by default: Publish button defaults to maximum available status"
+msgstr "默认绕过：发布按钮默认为最大可用状态"
+
+#: StatusesUI.php:520
+msgid "No workflow guidance"
+msgstr "没有工作流指导"
+
+#: StatusesUI.php:570
+msgid "Available to all users"
+msgstr "对所有用户可用"
+
+#: StatusesUI.php:608
+msgid "Available to specified roles only"
+msgstr "仅对指定角色可用"
+
+#: StatusesUI.php:614
+msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
+msgstr "在 %1$s 状态 > 状态 > 待审核 > 角色 %2$s 查看或设置角色"
+
+#: StatusesUI.php:649
+msgid "Automatic Detection"
+msgstr "自动检测"
+
+#: StatusesUI.php:650
+msgid "Using Classic Editor"
+msgstr "使用经典编辑器"
+
+#: StatusesUI.php:651
+msgid "Using Gutenberg Editor"
+msgstr "使用古腾堡编辑器"
+
+#: StatusesUI.php:656
+msgid "For all plugin statuses"
+msgstr "针对所有插件状态"
+
+#: StatusesUI.php:678
+msgid "For user-created plugin statuses only"
+msgstr "仅针对用户创建的插件状态"
+
+#: StatusesUI.php:683
+msgid "Note: Post types can also be specified for each individual status."
+msgstr "注意：可以为每个单独的状态指定帖子类型。"
+
+#: StatusesUI.php:771
+msgid "Enable custom Visibility Statuses"
+msgstr "启用自定义可见性状态"
+
+#: StatusesUI.php:796
+msgid "lock"
+msgstr "锁定"
+
+#: StatusesUI.php:903
+msgid "If enabled, users need the %s to unpublish a post."
+msgstr "如果启用，用户需要 %s 才能取消发布帖子。"
+
+#: StatusesUI.php:914
+msgid "Select..."
+msgstr "选择..."
+
+#: StatusesUI.php:934
+msgid "Re-run Planner import (with Status Control properties, ordering)"
+msgstr "重新运行规划器导入（带状态控制属性，排序）"
+
+#: StatusesUI.php:935
+msgid "Re-run Planner import (ignoring Status Control configuration)"
+msgstr "重新运行规划器导入（忽略状态控制配置）"
+
+#: StatusesUI.php:937
+msgid "Re-run Planner import"
+msgstr "重新运行规划器导入"
+
+#: StatusesUI.php:943
+msgid "Back up current colors, icons, labels and post types"
+msgstr "备份当前的颜色、图标、标签和帖子类型"
+
+#: StatusesUI.php:996
+msgid "Restore backup of status colors"
+msgstr "恢复状态颜色的备份"
+
+#: StatusesUI.php:1000
+msgid "Restore backup of status icons"
+msgstr "恢复状态图标的备份"
+
+#: StatusesUI.php:1004
+msgid "Restore backup of status labels"
+msgstr "恢复状态标签的备份"
+
+#: StatusesUI.php:1008
+msgid "Restore backup of status post types"
+msgstr "恢复状态帖子类型的备份"
+
+#: StatusesUI.php:1014
+msgid "Restore auto-backup of status colors"
+msgstr "恢复状态颜色的自动备份"
+
+#: StatusesUI.php:1018
+msgid "Restore auto-backup of status icons"
+msgstr "恢复状态图标的自动备份"
+
+#: StatusesUI.php:1022
+msgid "Restore auto-backup of status labels"
+msgstr "恢复状态标签的自动备份"
+
+#: StatusesUI.php:1026
+msgid "Restore auto-backup of status post types"
+msgstr "恢复状态帖子类型的自动备份"
+
+#: StatusesUI.php:1033
+msgid "Use default status colors"
+msgstr "使用默认状态颜色"
+
+#: StatusesUI.php:1037
+msgid "Use default status icons"
+msgstr "使用默认状态图标"
+
+#: StatusesUI.php:1041
+msgid "Use default status labels"
+msgstr "使用默认状态标签"
+
+#: StatusesUI.php:1045
+msgid "Use default status post types"
+msgstr "使用默认状态帖子类型"
+
+#: StatusesUI.php:1049
+msgid "Use Planner plugin's default status colors"
+msgstr "使用 Planner 插件的默认状态颜色"
+
+#: StatusesUI.php:1053
+msgid "Use Planner plugin's default status icons"
+msgstr "使用 Planner 插件的默认状态图标"
+
+#: StatusesUI.php:1092
+#. translators: %s is the status name
+#, php-format
+msgid "Edit Status: %s"
+msgstr "编辑状态: %s"
+
+#: StatusesUI.php:1095
+#. translators: %s is the status name
+#, php-format
+msgid "Edit %1$s: %2$s"
+msgstr "编辑 %1$s: %2$s"
+
+#: StatusesUI.php:1115
+#. translators: %s is the status name
+#, php-format
+msgid "Edit Status Labels: %s"
+msgstr "编辑状态标签: %s"
+
+#: StatusesUI.php:1118
+#. translators: %s is the status name
+#, php-format
+msgid "Edit %1$s Labels: %2$s"
+msgstr "编辑 %1$s 标签: %2$s"
+
+#: StatusesUI.php:1155
+#: StatusesUI.php:1283
+msgid "Add New Pre-Publication Status"
+msgstr "添加新的预发布状态"
+
+#: StatusesUI.php:1171
+#. translators: %1$s and %2$s is link markup
+#, php-format
+msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
+msgstr "注意: 自定义可见性状态是 %1$s禁用%2$s。"
+
+#: StatusesUI.php:1208
+msgid "Pre-Publication"
+msgstr "预发布"
+
+#: StatusesUI.php:1216
+#: StatusesUI.php:1322
+msgid "Visibility"
+msgstr "可见性"
+
+#: StatusesUI.php:1227
+msgid "Revision"
+msgstr "修订"
+
+#: StatusesUI.php:1287
+msgid "Integration"
+msgstr "集成"
+
+#: StatusesUI.php:1324
+msgid "Editor"
+msgstr "编辑器"
+
+#: StatusesUI.php:1325
+msgid "Advanced"
+msgstr "高级"
+
+#: StatusesUI.php:1326
+msgid "License"
+msgstr "许可证"
+
+#: StatusHandler.php:17
+#: StatusHandler.php:186
+msgid "Sorry, you do not have permission to edit custom statuses."
+msgstr "抱歉，您没有权限编辑自定义状态。"
+
+#: StatusHandler.php:53
+#: StatusHandler.php:417
+msgid "Please enter a name for the status"
+msgstr "请输入状态名称"
+
+#: StatusHandler.php:57
+msgid "Please enter a slug for the status"
+msgstr "请输入状态的别名"
+
+#: StatusHandler.php:64
+#: StatusHandler.php:422
+msgid "Please enter a valid, non-numeric name for the status."
+msgstr "请输入有效的非数字状态名称。"
+
+#: StatusHandler.php:81
+#: StatusHandler.php:441
+msgid "Status name cannot exceed 20 characters. Please try a shorter name."
+msgstr "状态名称不能超过20个字符。请尝试更短的名称。"
+
+#: StatusHandler.php:100
+msgid "Status slug cannot exceed 20 characters. Please try a shorter name."
+msgstr "状态别名不能超过20个字符。请尝试更短的名称。"
+
+#: StatusHandler.php:110
+msgid "Name conflicts with existing status. Please choose another."
+msgstr "名称与现有状态冲突。请另选一个。"
+
+#: StatusHandler.php:117
+msgid "Status name is restricted. Please choose another name."
+msgstr "状态名称受限。请另选一个名称。"
+
+#: StatusHandler.php:141
+msgid "Could not add status: "
+msgstr "无法添加状态："
+
+#: StatusHandler.php:193
+#: StatusHandler.php:754
+msgid "Status does not exist."
+msgstr "状态不存在。"
+
+#: StatusHandler.php:198
+#: StatusHandler.php:749
+msgid "Could not delete the status: "
+msgstr "无法删除状态："
+
+#: StatusHandler.php:222
+#: StatusHandler.php:372
+msgid "Post status doesn't exist."
+msgstr "帖子状态不存在。"
+
+#: StatusHandler.php:350
+msgid "Error updating post status."
+msgstr "更新帖子状态时出错。"
+
+#: StatusHandler.php:501
+msgid "Error updating post status labels."
+msgstr "更新帖子状态标签时出错。"
+
+#: StatusHandler.php:677
+msgid "Cannot reassign to the status you want to delete"
+msgstr "无法重新分配到您想要删除的状态"
+
+#: StatusHandler.php:724
+msgid "Restricted status "
+msgstr "受限状态 "
+
+#: StatusHandler.php:751
+msgid "Status deleted"
+msgstr "状态已删除"
+
+#: StatusHandler.php:773
+msgid "Status positions were not sent."
+msgstr "状态位置未发送。"
+
+#: StatusListTable.php:166
+msgid "Position"
+msgstr "位置"
+
+#: StatusListTable.php:167
+msgid "Status Name"
+msgstr "状态名称"
+
+#: StatusListTable.php:197
+msgid "Upgrade to create an approval workflow for published content"
+msgstr "升级以为已发布内容创建审批工作流程"
+
+#: StatusListTable.php:200
+msgid "Each post type can have different Revisions statuses"
+msgstr "每种文章类型可以有不同的 Revisions 状态"
+
+#: StatusListTable.php:215
+msgid "You choose which users can manage content in each Revisions status"
+msgstr "您可以选择哪些用户可以管理每个 Revisions 状态中的内容"
+
+#: StatusListTable.php:241
+msgid "Premium Feature"
+msgstr "高级功能"
+
+#: StatusListTable.php:242
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "安装 Statuses Pro 以解锁自定义修订状态。"
+
+#: StatusListTable.php:243
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr "为任何文章类型和角色配置以匹配您的编辑工作流程。"
+
+#: StatusListTable.php:308
+#, php-format
+msgid "Main Workflow:"
+msgstr "主要工作流程："
+
+#: StatusListTable.php:366
+msgid "Drop any status here to include it in main workflow for new posts."
+msgstr "在此处拖放任何状态以将其包含在新文章的主要工作流程中。"
+
+#: StatusListTable.php:402
+msgid "Drop any status here to disable."
+msgstr "将任何状态拖放到此处以禁用。"
+
+#: StatusListTable.php:517
+msgid "Standard Publication:"
+msgstr "标准发布："
+
+#: StatusListTable.php:524
+msgid "Visibility Statuses for Private Publication:"
+msgstr "私人发布的可见性状态："
+
+#: StatusListTable.php:531
+msgid "Alternate Workflows:"
+msgstr "备用工作流程："
+
+#: StatusListTable.php:531
+#: StatusListTable.php:542
+#. translators: %s is the opening and closing <span> tags
+msgid "Disabled Statuses (drag to re-enable):"
+msgstr "禁用状态（拖动以重新启用）："
+
+#: StatusListTable.php:647
+msgid "Upgrade to choose who can view your non-public posts"
+msgstr "升级以选择谁可以查看您的非公开帖子"
+
+#: StatusListTable.php:650
+msgid "Create multiple visibility statuses to show content to different users"
+msgstr "创建多个可见性状态以向不同用户显示内容"
+
+#: StatusListTable.php:659
+msgid "Choose which user roles can see posts in each status"
+msgstr "选择哪些用户角色可以查看每个状态中的帖子"
+
+#: StatusListTable.php:662
+msgid "Select which user roles can move posts to each status"
+msgstr "选择哪些用户角色可以将帖子移动到每个状态"
+
+#: StatusListTable.php:665
+msgid "Decide which user roles can edit posts in each status"
+msgstr "决定哪些用户角色可以编辑每个状态中的帖子"
+
+#: StatusListTable.php:762
+#. translators: %s is the list of post types
+#, php-format
+msgid "%s, more..."
+msgstr "%s，更多..."
+
+#: StatusListTable.php:844
+msgid "No custom statuses found."
+msgstr "未找到自定义状态。"
+
+#: StatusListTable.php:915
+msgid "Core"
+msgstr "核心"
+
+#: StatusListTable.php:919
+msgid "Default"
+msgstr "默认"
+
+#: StatusListTable.php:953
+msgid "Delete"
+msgstr "删除"
+
+#: PublishPress_Statuses.php:849
+msgctxt "post action/button label"
