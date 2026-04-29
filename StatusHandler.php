@@ -577,6 +577,10 @@ class StatusHandler {
                         $label_locked = true;
                     }
             }
+
+            if (!isset($args['label'])) {
+                $label_locked = true;
+            }
         }
 
         if ($term) {
