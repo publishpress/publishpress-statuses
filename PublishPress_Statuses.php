@@ -3739,11 +3739,20 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     $can_publish = ($type_obj) ? !empty($current_user->allcaps[$type_obj->cap->publish_posts]) : false;
                 }
 
-                $default_workflow_action = (!empty($args['workflow_action'])) ? $args['workflow_action'] : false;
-
                 require_once(__DIR__ . '/REST.php');
                 $rest = \PublishPress_Statuses\REST::instance();
-                $workflow_action = isset($rest->params['pp_workflow_action']) ? $rest->params['pp_workflow_action'] : $default_workflow_action;
+
+                if (!empty($rest->params['pp_workflow_action'])) {
+                    $workflow_action = $rest->params['pp_workflow_action'];
+                } else {
+                    if (!empty($args['workflow_action'])) {
+                        $workflow_action = $args['workflow_action'];
+                    } elseif (!empty($_REQUEST['pp_statuses_workflow_selection'])) {
+                        $workflow_action = sanitize_key($_REQUEST['pp_statuses_workflow_selection']);
+                    } else {
+                        $workflow_action = false;
+                    }
+                }
 
                 $selected_status_dropdown = $selected_status;
 
