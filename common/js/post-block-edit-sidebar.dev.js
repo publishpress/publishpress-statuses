@@ -1,6 +1,7 @@
 var ppRefreshA = false;
 var ppRefreshB = false;
 var ppRefreshC = false;
+var ppRefreshD = false;
 var ppLastStatusWindowVisible = false;
 
 jQuery(document).ready(function ($) {
@@ -32,21 +33,23 @@ jQuery(document).ready(function ($) {
 
             } else {
                 if (!$('div.editor-post-status.is-read-only').length) {
-                    var hideClass = 'presspermit-save-hidden';
-                    var node = $('div.editor-post-status');
+                    if ($('.editor-post-status').length) {
+                        var hideClass = 'presspermit-save-hidden';
+                        var node = $('div.editor-post-status');
 
-                    if (!$('.presspermit-status-span').length) {
-                        node.after('<span class="presspermit-status-span">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-status').removeAttr('disabled').removeAttr('aria-disabled').css('white-space', 'nowrap').css('pointer-events', 'none').css('color', '#007cba').wrap('<span>').html() + '</span>');
-                        $('span.presspermit-status-span').css('pointer-events', 'none');
+                        if (!$('.presspermit-status-span').length) {
+                            node.after('<span class="presspermit-status-span">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-status').removeAttr('disabled').removeAttr('aria-disabled').css('white-space', 'nowrap').css('pointer-events', 'none').css('color', '#007cba').wrap('<span>').html() + '</span>');
+                            $('span.presspermit-status-span').css('pointer-events', 'none');
+                        }
+
+                        $('.editor-post-status button, .presspermit-status-span button').css('width', 40 + (6 * statusCaption.length));
+
+                        var leftPos = $('.editor-post-status').offset().left - $('.presspermit-status-span').offset().left;
+
+                        $('.presspermit-status-span button').css('position', 'relative').css('left', leftPos).css('top', 0);
+
+                        $('.presspermit-status-span button').html(statusCaption).show();
                     }
-
-                    $('.editor-post-status button, .presspermit-status-span button').css('width', 40 + (6 * statusCaption.length));
-
-                    var leftPos = $('.editor-post-status').offset().left - $('.presspermit-status-span').offset().left;
-
-                    $('.presspermit-status-span button').css('position', 'relative').css('left', leftPos).css('top', 0);
-
-                    $('.presspermit-status-span button').html(statusCaption).show();
                 }
             }
         }
@@ -80,6 +83,18 @@ jQuery(document).ready(function ($) {
             setInterval(() => {
                 if (!$('div.publishpress-extended-post-status:visible').length) {
                     ppRefreshC = false;
+                }
+            }, 500);
+        }
+
+        if (!ppRefreshD && $('div.publishpress-extended-post-status:visible').length) {
+            ppRefreshD = true;
+            $('div.publishpress-extended-post-status').insertAfter($('div.rvy-current-status').closest('div.editor-post-panel__row'));
+            $('div.rvy-current-status').hide();
+
+            setInterval(() => {
+                if (!$('div.publishpress-extended-post-status:visible').length) {
+                    ppRefreshD = false;
                 }
             }, 500);
         }
