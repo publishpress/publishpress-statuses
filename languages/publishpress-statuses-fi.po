@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-20 20:06+0000\n"
+"PO-Revision-Date: 2026-04-30 14:54+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -498,7 +498,7 @@ msgstr "Lisää uusi tila"
 
 #: StatusEditUI.php:41
 #: StatusEditUI.php:50
-#: StatusListTable.php:946
+#: StatusListTable.php:945
 msgid "Labels"
 msgstr "Tunnisteet"
 
@@ -726,7 +726,7 @@ msgid "Post status deleted."
 msgstr "Postitila poistettu."
 
 #: StatusesUI.php:226
-#: StatusHandler.php:828
+#: StatusHandler.php:832
 msgid "Status order updated."
 msgstr "Tilajärjestys päivitetty."
 
@@ -1153,12 +1153,12 @@ msgid "Could not add status: "
 msgstr "Ei voitu lisätä tilaa: "
 
 #: StatusHandler.php:193
-#: StatusHandler.php:750
+#: StatusHandler.php:754
 msgid "Status does not exist."
 msgstr "Tila ei olemassa."
 
 #: StatusHandler.php:198
-#: StatusHandler.php:745
+#: StatusHandler.php:749
 msgid "Could not delete the status: "
 msgstr "Ei voitu poistaa tilaa: "
 
@@ -1175,19 +1175,19 @@ msgstr "Virhe päivittäessä viestin tilaa."
 msgid "Error updating post status labels."
 msgstr "Virhe päivitettäessä viestin statustekstejä."
 
-#: StatusHandler.php:673
+#: StatusHandler.php:677
 msgid "Cannot reassign to the status you want to delete"
 msgstr "Ei voi siirtää tilalle, jonka haluat poistaa"
 
-#: StatusHandler.php:720
+#: StatusHandler.php:724
 msgid "Restricted status "
 msgstr "Rajoitettu tila "
 
-#: StatusHandler.php:747
+#: StatusHandler.php:751
 msgid "Status deleted"
 msgstr "Tila poistettu"
 
-#: StatusHandler.php:769
+#: StatusHandler.php:773
 msgid "Status positions were not sent."
 msgstr "Tilan sijainteja ei lähetetty."
 
@@ -1351,7 +1351,7 @@ msgstr "Ydin"
 msgid "Default"
 msgstr "Oletus"
 
-#: StatusListTable.php:954
+#: StatusListTable.php:953
 msgid "Delete"
 msgstr "Poista"
 

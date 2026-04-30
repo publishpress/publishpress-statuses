@@ -388,7 +388,7 @@ class StatusEditUI
                                 $role = get_role($role_name);
                                 $cap_name = str_replace('-', '_', "status_change_{$status->name}");
 
-                                $is_administrator = !empty($role->capabilities['administrator']) || !empty($role->capabilities['manage_options']);
+                                $is_administrator = !empty($role->capabilities['administrator']) || !empty($role->capabilities['pp_moderate_any']);
                                 $can_set_status = $is_administrator || !empty($role->capabilities[$cap_name]);
                         ?>
                                 <div>

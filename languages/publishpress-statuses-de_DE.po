@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-20 20:06+0000\n"
+"PO-Revision-Date: 2026-04-30 14:54+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -504,7 +504,7 @@ msgstr "Neuen Status hinzufügen"
 
 #: StatusEditUI.php:41
 #: StatusEditUI.php:50
-#: StatusListTable.php:946, fuzzy
+#: StatusListTable.php:945, fuzzy
 msgid "Labels"
 msgstr "Labels"
 
@@ -738,7 +738,7 @@ msgid "Post status deleted."
 msgstr "Beitragsstatus gelöscht."
 
 #: StatusesUI.php:226
-#: StatusHandler.php:828
+#: StatusHandler.php:832
 msgid "Status order updated."
 msgstr "Statusreihenfolge aktualisiert."
 
@@ -1190,12 +1190,12 @@ msgid "Could not add status: "
 msgstr "Konnte den Status nicht hinzufügen: "
 
 #: StatusHandler.php:193
-#: StatusHandler.php:750
+#: StatusHandler.php:754
 msgid "Status does not exist."
 msgstr "Status existiert nicht."
 
 #: StatusHandler.php:198
-#: StatusHandler.php:745
+#: StatusHandler.php:749
 msgid "Could not delete the status: "
 msgstr "Konnte den Status nicht löschen: "
 
@@ -1212,19 +1212,19 @@ msgstr "Fehler beim Aktualisieren des Post-Status."
 msgid "Error updating post status labels."
 msgstr "Fehler beim Aktualisieren der Statusbezeichnungen des Beitrags."
 
-#: StatusHandler.php:673
+#: StatusHandler.php:677
 msgid "Cannot reassign to the status you want to delete"
 msgstr "Kann nicht auf den Status umschalten, den Sie löschen möchten"
 
-#: StatusHandler.php:720
+#: StatusHandler.php:724
 msgid "Restricted status "
 msgstr "Eingeschränkter Status "
 
-#: StatusHandler.php:747
+#: StatusHandler.php:751
 msgid "Status deleted"
 msgstr "Status gelöscht"
 
-#: StatusHandler.php:769
+#: StatusHandler.php:773
 msgid "Status positions were not sent."
 msgstr "Statuspositionen wurden nicht gesendet."
 
@@ -1398,7 +1398,7 @@ msgstr "Kern"
 msgid "Default"
 msgstr "Standard"
 
-#: StatusListTable.php:954
+#: StatusListTable.php:953
 msgid "Delete"
 msgstr "Löschen"
 

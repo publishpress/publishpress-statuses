@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-08T17:03:24+00:00\n"
-"PO-Revision-Date: 2026-04-20 20:06+0000\n"
+"PO-Revision-Date: 2026-04-30 14:54+0000\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: publishpress-statuses\n"
 "Language: ko_KR\n"
@@ -492,7 +492,7 @@ msgstr "새 상태 추가"
 
 #: StatusEditUI.php:41
 #: StatusEditUI.php:50
-#: StatusListTable.php:946
+#: StatusListTable.php:945
 msgid "Labels"
 msgstr "레이블"
 
@@ -712,7 +712,7 @@ msgid "Post status deleted."
 msgstr "게시물 상태가 삭제되었습니다."
 
 #: StatusesUI.php:226
-#: StatusHandler.php:828
+#: StatusHandler.php:832
 msgid "Status order updated."
 msgstr "상태 순서가 업데이트되었습니다."
 
@@ -1117,12 +1117,12 @@ msgid "Could not add status: "
 msgstr "상태를 추가할 수 없습니다: "
 
 #: StatusHandler.php:193
-#: StatusHandler.php:750
+#: StatusHandler.php:754
 msgid "Status does not exist."
 msgstr "상태가 존재하지 않습니다."
 
 #: StatusHandler.php:198
-#: StatusHandler.php:745
+#: StatusHandler.php:749
 msgid "Could not delete the status: "
 msgstr "상태를 삭제할 수 없습니다: "
 
@@ -1139,19 +1139,19 @@ msgstr "게시물 상태 업데이트 중 오류가 발생했습니다."
 msgid "Error updating post status labels."
 msgstr "게시물 상태 레이블 업데이트 중 오류가 발생했습니다."
 
-#: StatusHandler.php:673
+#: StatusHandler.php:677
 msgid "Cannot reassign to the status you want to delete"
 msgstr "삭제하려는 상태로 재지정할 수 없습니다"
 
-#: StatusHandler.php:720
+#: StatusHandler.php:724
 msgid "Restricted status "
 msgstr "제한된 상태 "
 
-#: StatusHandler.php:747
+#: StatusHandler.php:751
 msgid "Status deleted"
 msgstr "상태가 삭제되었습니다"
 
-#: StatusHandler.php:769
+#: StatusHandler.php:773
 msgid "Status positions were not sent."
 msgstr "상태 위치가 전송되지 않았습니다."
 
@@ -1305,7 +1305,7 @@ msgstr "코어"
 msgid "Default"
 msgstr "기본값"
 
-#: StatusListTable.php:954
+#: StatusListTable.php:953
 msgid "Delete"
 msgstr "삭제"
 

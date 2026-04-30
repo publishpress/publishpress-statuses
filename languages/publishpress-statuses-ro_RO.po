@@ -1,0 +1,1135 @@
+# Copyright (C) 2026 PublishPress
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublishPress Statuses Free 1.3.1-rc\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-29T19:43:28+00:00\n"
+"PO-Revision-Date: 2026-04-29 20:19+0000\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: publishpress-statuses\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);\n"
+"Language: ro-RO\n"
+
+#: publishpress-statuses.php:3
+#. Plugin Name of the plugin
+msgid "PublishPress Statuses Free"
+msgstr "PublishPress Statuses Free"
+
+#: publishpress-statuses.php:4, fuzzy
+#. Plugin URI of the plugin
+msgid "https://publishpress.com/statuses"
+msgstr "https://publishpress.com/statuses"
+
+#: publishpress-statuses.php:5
+#. Description of the plugin
+msgid "Manage and create post statuses to customize your editorial workflow"
+msgstr ""
+"Gestionează și creează statusuri pentru postări pentru a-ți personaliza "
+"fluxul editorial"
+
+#: publishpress-statuses.php:7
+#. Author of the plugin
+msgid "PublishPress"
+msgstr "PublishPress"
+
+#: publishpress-statuses.php:8, fuzzy
+#. Author URI of the plugin
+msgid "https://publishpress.com/"
+msgstr "https://publishpress.com/"
+
+#: Admin.php:18
+#: Admin.php:430
+#: Admin.php:431
+#: PublishPress_Statuses.php:429
+#: PublishPress_Statuses.php:430
+#: StatusesUI.php:92, fuzzy
+msgid "Statuses"
+msgstr "Statuses"
+
+#: Admin.php:19
+msgid "Settings"
+msgstr "Setări"
+
+#: Admin.php:22
+#: includes-core/CoreAdmin.php:40
+#: includes-core/CoreAdmin.php:41
+#: includes-core/CoreAdmin.php:117
+#: includes-core/PromoBanner.php:225
+#: StatusListTable.php:224
+#: StatusListTable.php:250
+msgid "Upgrade to Pro"
+msgstr "Upgrade la Pro"
+
+#: Admin.php:369
+msgid "Add New"
+msgstr "Adaugă Nou"
+
+#: Admin.php:528
+#: PublishPress_Statuses.php:894
+msgid "Approve"
+msgstr "Aprobă"
+
+#: Admin.php:530
+#: PublishPress_Statuses.php:864
+msgid "Assign"
+msgstr "Atribuie"
+
+#: Admin.php:532
+#: PublishPress_Statuses.php:879
+msgid "Mark In Progress"
+msgstr "Marchează în desfășurare"
+
+#: Admin.php:545
+#. translators: %s is the status label
+#, php-format
+msgid "Set to %s"
+msgstr "Setează la %s"
+
+#: Admin.php:554
+#: PostEditGutenberg.php:81
+#: PostEditGutenberg.php:101
+#. translators: %s is the status label
+#, php-format
+msgid "Save as %s"
+msgstr "Salvează ca %s"
+
+#: Admin.php:566
+#. translators: %s is the name of a custom public status
+#, fuzzy, php-format
+msgid "Public (%s)"
+msgstr "Public (%s)"
+
+#: Admin.php:637
+#: PostEditClassic.php:179
+#: PostEditGutenberg.php:78
+#: PostEditGutenberg.php:286
+#: PostEditGutenbergStatuses.php:49
+#: PostEditGutenbergStatuses.php:69
+#: PostEditGutenbergStatuses.php:77
+msgid "Advance Status"
+msgstr "Avansează Statusul"
+
+#: includes-core/CoreAdmin.php:19
+#, php-format
+msgid "Upgrade to Statuses Pro"
+msgstr "Upgrade la Statuses Pro"
+
+#: includes-core/CoreAdmin.php:105
+msgid "Upgrade to PublishPress Statuses Pro for additional benefits:"
+msgstr "Upgrade la PublishPress Statuses Pro pentru beneficii suplimentare:"
+
+#: includes-core/CoreAdmin.php:108
+msgid "Define revision statuses"
+msgstr "Definirea stărilor reviziei"
+
+#: includes-core/CoreAdmin.php:109
+msgid "Control revision status selection"
+msgstr "Controlul selecției stării reviziei"
+
+#: includes-core/CoreAdmin.php:110
+msgid "Customize revision workflow sequence"
+msgstr "Personalizarea secvenței fluxului de lucru al reviziei"
+
+#: includes-core/CoreAdmin.php:111
+msgid "Custom notifications, with PublishPress Planner"
+msgstr "Notificări personalizate, cu PublishPress Planner"
+
+#: includes-core/CoreAdmin.php:112
+msgid "No ads inside the plugin"
+msgstr "Fără reclame în interiorul pluginului"
+
+#: includes-core/CoreAdmin.php:113
+msgid "Prompt, professional support"
+msgstr "Asistență rapidă și profesională"
+
+#: includes-core/CoreAdmin.php:124
+msgid "Need Statuses Support?"
+msgstr "Aveți nevoie de asistență pentru stări?"
+
+#: includes-core/CoreAdmin.php:129
+#: includes-core/PromoBanner.php:68
+msgid "If you need help or have a new feature request, let us know."
+msgstr ""
+"Dacă aveți nevoie de ajutor sau aveți o cerere de caracteristici noi, "
+"anunțați-ne."
+
+#: includes-core/CoreAdmin.php:131
+#: includes-core/PromoBanner.php:241
+msgid "Request Support"
+msgstr "Solicitați asistență"
+
+#: includes-core/CoreAdmin.php:140
+#: includes-core/PromoBanner.php:248
+msgid "Detailed documentation is also available on the plugin website."
+msgstr "Documentația detaliată este, de asemenea, disponibilă pe site-ul pluginului."
+
+#: includes-core/CoreAdmin.php:142
+#: includes-core/PromoBanner.php:251
+msgid "View Knowledge Base"
+msgstr "Vizualizați baza de cunoștințe"
+
+#: PostEditClassic.php:214
+msgid "Current Time"
+msgstr "Timp curent"
+
+#: PostEditClassic.php:242
+#: PostEditClassic.php:267
+#. translators: %s is a status name
+#, php-format
+msgid "Submit as %s"
+msgstr "Trimiteți ca %s"
+
+#: PostEditClassic.php:328
+#. translators: %s is the name of a custom visibility status
+#, php-format
+msgid "%s, Sticky"
+msgstr "%s, Lipicios"
+
+#: PostEditClassicSubmitMetabox.php:59
+msgid "Visibility:"
+msgstr "Vizibilitate:"
+
+#: PostEditClassicSubmitMetabox.php:200
+msgid "Restore default behavior of publish button"
+msgstr "Restabilirea comportamentului implicit al butonului de publicare"
+
+#: PostEditClassicSubmitMetabox.php:201
+msgid "Bypass sequence"
+msgstr "Sărirea secvenței"
+
+#: PostEditClassicSubmitMetabox.php:437
+#. translators: %s is html markup
+#, php-format
+msgid "Publish %1$s on approval %2$s"
+msgstr "Publicați %1$s la aprobat %2$s"
+
+#: PostEditGutenberg.php:75
+msgid "Publication Workflow"
+msgstr "Flux de lucru pentru publicație"
+
+#: PostEditGutenberg.php:79
+msgid "Post Status"
+msgstr "Starea postării"
+
+#: PostEditGutenberg.php:82
+msgid "Set Selected Status"
+msgstr "Setează statutul selectat"
+
+#: PostEditGutenberg.php:83
+msgid "Keep Current Status"
+msgstr "Păstrează statutul curent"
+
+#: PostEditGutenberg.php:84
+msgid "Advance to Next Status"
+msgstr "Avansează la următorul statut"
+
+#: PostEditGutenberg.php:85
+msgid "Advance to Max Status"
+msgstr "Avansează la statutul maxim"
+
+#: PostEditGutenberg.php:86
+msgid "This post is currently published"
+msgstr "Această postare este în prezent publicată"
+
+#: PostEditGutenberg.php:87
+msgid "This post is currently scheduled"
+msgstr "Această postare este în prezent programată"
+
+#: PostEditGutenbergStatuses.php:160
+#: StatusesUI.php:1321
+msgid "Workflow"
+msgstr "Flux de lucru"
+
+#: PostEditGutenbergStatuses.php:166
+msgid "Submit Revision"
+msgstr "Trimite revizuirea"
+
+#: publishpress-module/ModuleAdminUI_Base.php:101
+#. translators: %1$s is the plugin name, %2$s is the rating stars
+#, php-format
+msgid "If you like %1$s, please leave us a %2$s rating. Thank you!"
+msgstr "Dacă îți place %1$s, te rugăm să ne lași un rating de %2$s. Mulțumim!"
+
+#: publishpress-module/ModuleAdminUI_Base.php:112
+#, php-format
+msgid "About %s"
+msgstr "Despre %s"
+
+#: publishpress-module/ModuleAdminUI_Base.php:112
+msgid "About"
+msgstr "Despre"
+
+#: publishpress-module/ModuleAdminUI_Base.php:114
+#, php-format
+msgid "%s Documentation"
+msgstr "%s Documentație"
+
+#: publishpress-module/ModuleAdminUI_Base.php:114
+msgid "Documentation"
+msgstr "Documentație"
+
+#: publishpress-module/ModuleAdminUI_Base.php:116
+msgid "Contact the PublishPress team"
+msgstr "Contactează echipa PublishPress"
+
+#: publishpress-module/ModuleAdminUI_Base.php:116, fuzzy
+msgid "Contact"
+msgstr "Contact"
+
+#: publishpress-statuses.php:118
+msgid "<strong>This plugin can be deleted.</strong>"
+msgstr "<strong>Acest plugin poate fi șters.</strong>"
+
+#: publishpress-statuses.php:196
+#. translators: %s is a version number
+#, php-format
+msgid "Manage Statuses plugin settings."
+msgstr "Gestionați setările pluginului Statuses."
+
+#: PublishPress_Statuses.php:397
+msgid "Can unpublish posts even if Visibility Status is locked."
+msgstr "Poate dezpublica postările chiar dacă Starea Vizibilității este blocată."
+
+#: PublishPress_Statuses.php:430
+msgid "Status"
+msgstr "Stare"
+
+#: PublishPress_Statuses.php:444
+msgid "Core Post Statuses"
+msgstr "Stările de bază ale postărilor"
+
+#: PublishPress_Statuses.php:707
+msgid "New post, not yet submitted."
+msgstr "Postare nouă, încă nesubmisă."
+
+#: PublishPress_Statuses.php:729
+msgid "Post is awaiting review."
+msgstr "Postarea așteaptă revizuirea."
+
+#: PublishPress_Statuses.php:749
+msgid "Post is scheduled for publication."
+msgstr "Postarea este programată pentru publicare."
+
+#: PublishPress_Statuses.php:768
+msgid "Post is published, publicly visible."
+msgstr "Postarea este publicată, vizibilă public."
+
+#: PublishPress_Statuses.php:787
+msgid "Post is published with private visibility."
+msgstr "Postarea este publicată cu vizibilitate privată."
+
+#: PublishPress_Statuses.php:847
+msgid "Pitch"
+msgstr "Propunere"
+
+#: PublishPress_Statuses.php:850
+msgid "Idea proposed; waiting for acceptance."
+msgstr "Ideea propusă; așteaptă acceptarea."
+
+#: PublishPress_Statuses.php:862
+msgid "Assigned"
+msgstr "Atribuit"
+
+#: PublishPress_Statuses.php:865
+msgid "Post idea assigned to writer."
+msgstr "Ideea postării a fost atribuită scriitorului."
+
+#: PublishPress_Statuses.php:877
+msgid "In Progress"
+msgstr "În desfășurare"
+
+#: PublishPress_Statuses.php:880
+msgid "Writer is working on the post."
+msgstr "Scriitorul lucrează la postare."
+
+#: PublishPress_Statuses.php:892
+msgid "Approved"
+msgstr "Aprobat"
+
+#: PublishPress_Statuses.php:895
+msgid "Post has been approved for publication."
+msgstr "Postarea a fost aprobată pentru publicare."
+
+#: PublishPress_Statuses.php:907
+msgid "Needs Work"
+msgstr "Necesită muncă"
+
+#: PublishPress_Statuses.php:909
+msgid "Set to Needs Work"
+msgstr "Setat pe Necesită muncă"
+
+#: PublishPress_Statuses.php:910
+msgid "Post needs work before further review."
+msgstr "Postarea necesită muncă înainte de o revizuire ulterioară."
+
+#: PublishPress_Statuses.php:922
+msgid "Rejected"
+msgstr "Respins"
+
+#: PublishPress_Statuses.php:924
+msgid "Reject"
+msgstr "Respinge"
+
+#: PublishPress_Statuses.php:925
+msgid "Post has been rejected."
+msgstr "Postarea a fost respinsă."
+
+#: PublishPress_Statuses.php:959
+msgid "Alternate Pre-Publication Workflow:"
+msgstr "Flux de lucru alternativ înainte de publicare:"
+
+#: PublishPress_Statuses.php:1054
+msgid "Disabled Statuses:"
+msgstr "Stări dezactivate:"
+
+#: PublishPress_Statuses.php:1070
+msgid "Deferred"
+msgstr "Amânat"
+
+#: PublishPress_Statuses.php:1072
+msgid "Defer"
+msgstr "Amână"
+
+#: PublishPress_Statuses.php:1073
+msgid "Post has been deferred for future consideration."
+msgstr "Postarea a fost amânată pentru o considerare ulterioară."
+
+#: PublishPress_Statuses.php:1085
+msgid "Committee"
+msgstr "Comitet"
+
+#: PublishPress_Statuses.php:1087
+msgid "Refer to Committee"
+msgstr "Trimite la Comitet"
+
+#: PublishPress_Statuses.php:1088
+msgid "Post has been referred to committee."
+msgstr "Postarea a fost trimisă comitetului."
+
+#: PublishPress_Statuses.php:1101
+msgid "Committee Review"
+msgstr "Revizuirea Comitetului"
+
+#: PublishPress_Statuses.php:1103
+msgid "Set to Committee Review"
+msgstr "Setare pentru Revizuirea Comitetului"
+
+#: PublishPress_Statuses.php:1104
+msgid "Committee is reviewing the post."
+msgstr "Comitetul revizuiește postarea."
+
+#: PublishPress_Statuses.php:1117
+msgid "Committee Progress"
+msgstr "Progresul Comitetului"
+
+#: PublishPress_Statuses.php:1119
+msgid "Set to Committee Progress"
+msgstr "Setare pentru Progresul Comitetului"
+
+#: PublishPress_Statuses.php:1120
+msgid "Committee is editing the post."
+msgstr "Comitetul editează postarea."
+
+#: PublishPress_Statuses.php:1133
+msgid "Committee Approved"
+msgstr "Aprobat de Comitet"
+
+#: PublishPress_Statuses.php:1135
+msgid "Set Committee Approval"
+msgstr "Setare Aprobat de Comitet"
+
+#: PublishPress_Statuses.php:1136
+msgid "Committee has approved the post."
+msgstr "Comitetul a aprobat postarea."
+
+#: StatusAddNewUI.php:30
+msgid "Add New Status"
+msgstr "Adaugă Statut Nou"
+
+#: StatusEditUI.php:41
+#: StatusEditUI.php:50
+#: StatusListTable.php:945
+msgid "Labels"
+msgstr "Etichete"
+
+#: StatusEditUI.php:56
+#: StatusEditUI.php:414
+#: StatusListTable.php:171
+msgid "Post Types"
+msgstr "Tipuri de Postare"
+
+#: StatusEditUI.php:64
+#: StatusListTable.php:170
+msgid "Roles"
+msgstr "Roluri"
+
+#: StatusEditUI.php:72
+msgid "Edit Status Labels"
+msgstr "Editează Etichetele de Statut"
+
+#: StatusEditUI.php:75
+msgid "Back to Statuses"
+msgstr "Înapoi la Statuturi"
+
+#: StatusEditUI.php:92
+msgid "Post Access"
+msgstr "Acces la Postare"
+
+#: StatusEditUI.php:184
+msgid "Update Status"
+msgstr "Actualizează Statut"
+
+#: StatusEditUI.php:293
+msgid "The slug is the unique ID for the status."
+msgstr "Slug-ul este ID-ul unic pentru statut."
+
+#: StatusEditUI.php:303
+msgid "Color"
+msgstr "Culoare"
+
+#: StatusEditUI.php:315
+msgid "The color is used to identify the status."
+msgstr "Culoarea este folosită pentru a identifica statutul."
+
+#: StatusEditUI.php:321
+#: StatusListTable.php:169
+msgid "Icon"
+msgstr "Iconiță"
+
+#: StatusEditUI.php:337
+msgid "Select Icon"
+msgstr "Selectează Iconița"
+
+#: StatusEditUI.php:343
+msgid "The icon is used to visually represent the status."
+msgstr "Iconița este folosită pentru a reprezenta vizual statutul."
+
+#: StatusEditUI.php:378
+msgid "Status Availability"
+msgstr "Disponibilitatea Statutului"
+
+#: StatusEditUI.php:381
+msgid "Choose which user roles can assign this status to a post."
+msgstr "Alege ce roluri de utilizator pot atribui acest statut unei postări."
+
+#: StatusEditUI.php:417
+msgid "Choose which post types can be set to this status."
+msgstr "Alege ce tipuri de postări pot fi setate la acest statut."
+
+#: StatusEditUI.php:454
+msgid "All Post Types"
+msgstr "Toate Tipurile de Postări"
+
+#: StatusEditUI.php:504
+msgid "Upgrade to choose who can manage posts in each status"
+msgstr "Upgradează pentru a alege cine poate gestiona postările în fiecare statut"
+
+#: StatusEditUI.php:507
+msgid "Get PublishPress Statuses Pro for status-specific post access control."
+msgstr "Obține PublishPress Statuses Pro pentru controlul accesului la postări specific pentru status."
+
+#: StatusEditUI.php:513
+msgid "Control which roles can assign a status"
+msgstr "Controlează care roluri pot atribui un status"
+
+#: StatusEditUI.php:516
+msgid "Control which roles can edit or delete posts per-status"
+msgstr "Controlează care roluri pot edita sau șterge postări pe baza statusului"
+
+#: StatusEditUI.php:519
+msgid "Set capabilities separately for each post type"
+msgstr "Setează capacitățile separat pentru fiecare tip de postare"
+
+#: StatusEditUI.php:522
+msgid "User-friendly checkbox grid to assign capabilities"
+msgstr ""
+"Grilă de checkbox-uri prietenoasă pentru utilizator pentru a atribui "
+"capacități"
+
+#: StatusEditUI.php:531
+#: StatusListTable.php:674
+msgid "Get PublishPress Statuses Pro"
+msgstr "Obține PublishPress Statuses Pro"
+
+#: StatusEditUI.php:536
+#: StatusListTable.php:229
+#: StatusListTable.php:246
+#: StatusListTable.php:679
+msgid "Learn More"
+msgstr "Află mai multe"
+
+#: StatusEditUI.php:545
+#, php-format
+msgid "Status Label"
+msgstr "Etichetă Status"
+
+#: StatusEditUI.php:578
+msgid "The name is used to identify the status. (Max: 20 characters)"
+msgstr "Numele este folosit pentru a identifica statusul. (Max: 20 caractere)"
+
+#: StatusEditUI.php:588
+msgid "Description"
+msgstr "Descriere"
+
+#: StatusEditUI.php:600
+msgid "Save As Label"
+msgstr "Salvează ca Etichetă"
+
+#: StatusEditUI.php:620
+msgid "Submit Button Label"
+msgstr "Etichetă Buton Trimitere"
+
+#: StatusesUI.php:64
+#. translators: %s is the status label
+#, php-format
+msgid "Edit Post Status: %s"
+msgstr "Editează Status Postare: %s"
+
+#: StatusesUI.php:67
+#. translators: %s is the status label
+#, php-format
+msgid "%s Status - Edit"
+msgstr "%s Status - Editează"
+
+#: StatusesUI.php:75
+#. translators: %s is status type: "Workflow", "Visibility", "Revision", etc.
+#, php-format
+msgid "Add %s Status"
+msgstr "Adaugă %s Status"
+
+#: StatusesUI.php:82
+msgid "Add Post Status"
+msgstr "Adaugă Status Postare"
+
+#: StatusesUI.php:83
+msgid "Add Status"
+msgstr "Adaugă Status"
+
+#: StatusesUI.php:87
+#: StatusesUI.php:1297
+msgid "PublishPress Statuses Settings"
+msgstr "Setări PublishPress Statuses"
+
+#: StatusesUI.php:88
+msgid "Statuses Settings"
+msgstr "Setările Statusurilor"
+
+#: StatusesUI.php:91
+msgid "Post Statuses"
+msgstr "Statusurile Postării"
+
+#: StatusesUI.php:98
+msgid "Visibility Statuses"
+msgstr "Statusurile Vizibilității"
+
+#: StatusesUI.php:217
+msgid "Post status created. Select a tab for further configuration."
+msgstr ""
+"Statusul postării a fost creat. Selectați un tab pentru configurare "
+"suplimentară."
+
+#: StatusesUI.php:219
+#: StatusesUI.php:224
+#. translators: %1$s is the status name, %2$s is the edit link
+#, php-format
+msgid "Post status %1$s updated. %2$s"
+msgstr "Statusul postării %1$s a fost actualizat. %2$s"
+
+#: StatusesUI.php:220
+msgid "Settings updated"
+msgstr "Setările au fost actualizate"
+
+#: StatusesUI.php:221
+msgid "Default post status has been changed."
+msgstr "Statusul implicit al postării a fost schimbat."
+
+#: StatusesUI.php:225
+msgid "Post status deleted."
+msgstr "Statusul postării a fost șters."
+
+#: StatusesUI.php:226
+#: StatusHandler.php:832
+msgid "Status order updated."
+msgstr "Ordinea statusurilor a fost actualizată."
+
+#: StatusesUI.php:250
+msgid "Use on these Post Types:"
+msgstr "Utilizați pe aceste Tipuri de Postări:"
+
+#: StatusesUI.php:259
+msgid "Workflow Guidance:"
+msgstr "Ghidare pentru Fluxul de Lucru:"
+
+#: StatusesUI.php:268
+msgid "Manual Status Selection:"
+msgstr "Selecția Manuală a Statusului:"
+
+#: StatusesUI.php:287
+msgid "Custom Visibility:"
+msgstr "Vizibilitate Personalizată:"
+
+#: StatusesUI.php:297
+msgid "Default Visibility Status:"
+msgstr "Statusul Implicit de Vizibilitate:"
+
+#: StatusesUI.php:307
+msgid "Custom Visibility Editing:"
+msgstr "Editarea Vizibilității Personalizate:"
+
+#: StatusesUI.php:319
+msgid "Pending Review Status:"
+msgstr "Statusul în Așteptare pentru Revizuire:"
+
+#: StatusesUI.php:329
+msgid "Planner Integration:"
+msgstr "Integrarea Planificatorului:"
+
+#: StatusesUI.php:340
+msgid "Permissions Integration:"
+msgstr "Integrarea Permisiunilor:"
+
+#: StatusesUI.php:350
+msgid "Gutenberg / Classic Editor:"
+msgstr "Gutenberg / Editor Clasic:"
+
+#: StatusesUI.php:359
+msgid "Status Label Customization:"
+msgstr "Personalizarea etichetei de stare:"
+
+#: StatusesUI.php:374
+msgid "Import Operation:"
+msgstr "Operațiune de import:"
+
+#: StatusesUI.php:385
+msgid "Backup / Restore:"
+msgstr "Backup / Restaurare:"
+
+#: StatusesUI.php:415
+msgid "Supplemental Role of Editor covers custom statuses"
+msgstr "Rolul suplimentar de Editor acoperă stările personalizate"
+
+#: StatusesUI.php:440
+msgid "Include custom statuses in Add New pop-up on Calendar"
+msgstr "Include stările personalizate în fereastra de adăugare nouă pe Calendar"
+
+#: StatusesUI.php:465
+msgid "Hide status selection dropdown from non-Administrators in Gutenberg editor"
+msgstr ""
+"Ascunde meniul derulant de selecție a stării de la utilizatorii "
+"non-Administratori în editorul Gutenberg"
+
+#: StatusesUI.php:492
+msgid "Sequence by default: Publish button defaults to next status in workflow"
+msgstr ""
+"Secvență implicită: Butonul Publicare se setează implicit la următoarea "
+"stare din fluxul de lucru"
+
+#: StatusesUI.php:506
+msgid "Bypass by default: Publish button defaults to maximum available status"
+msgstr ""
+"Ocolire implicită: Butonul Publicare se setează implicit la cea mai mare "
+"stare disponibilă"
+
+#: StatusesUI.php:520
+msgid "No workflow guidance"
+msgstr "Fără ghidare a fluxului de lucru"
+
+#: StatusesUI.php:570
+msgid "Available to all users"
+msgstr "Disponibil pentru toți utilizatorii"
+
+#: StatusesUI.php:608
+msgid "Available to specified roles only"
+msgstr "Disponibil doar pentru rolurile specificate"
+
+#: StatusesUI.php:614
+msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
+msgstr ""
+"Vizualizați sau setați roluri la %1$s Stări > Stări > În așteptare de "
+"revizuire > Roluri %2$s"
+
+#: StatusesUI.php:649
+msgid "Automatic Detection"
+msgstr "Detectare automată"
+
+#: StatusesUI.php:650
+msgid "Using Classic Editor"
+msgstr "Folosind Editorul clasic"
+
+#: StatusesUI.php:651
+msgid "Using Gutenberg Editor"
+msgstr "Folosind Editorul Gutenberg"
+
+#: StatusesUI.php:656
+msgid "For all plugin statuses"
+msgstr "Pentru toate stările pluginului"
+
+#: StatusesUI.php:678
+msgid "For user-created plugin statuses only"
+msgstr "Doar pentru stările pluginurilor create de utilizatori"
+
+#: StatusesUI.php:683
+msgid "Note: Post types can also be specified for each individual status."
+msgstr ""
+"Notă: Tipurile de posturi pot fi, de asemenea, specificate pentru fiecare "
+"stare individuală."
+
+#: StatusesUI.php:771
+msgid "Enable custom Visibility Statuses"
+msgstr "Activare stări de vizibilitate personalizate"
+
+#: StatusesUI.php:796
+msgid "lock"
+msgstr "blocat"
+
+#: StatusesUI.php:903
+msgid "If enabled, users need the %s to unpublish a post."
+msgstr ""
+"Dacă este activat, utilizatorii au nevoie de %s pentru a depublica o "
+"postare."
+
+#: StatusesUI.php:914
+msgid "Select..."
+msgstr "Selectați..."
+
+#: StatusesUI.php:934
+msgid "Re-run Planner import (with Status Control properties, ordering)"
+msgstr "Re-executați importul Planner (cu proprietățile Control Stare, ordonare)"
+
+#: StatusesUI.php:935
+msgid "Re-run Planner import (ignoring Status Control configuration)"
+msgstr "Re-executați importul Planner (ignorând configurația Control Stare)"
+
+#: StatusesUI.php:937
+msgid "Re-run Planner import"
+msgstr "Re-executați importul Planner"
+
+#: StatusesUI.php:943
+msgid "Back up current colors, icons, labels and post types"
+msgstr "Salvați culorile, iconițele, etichetele și tipurile de posturi curente"
+
+#: StatusesUI.php:996
+msgid "Restore backup of status colors"
+msgstr "Restaurare backup al culorilor stării"
+
+#: StatusesUI.php:1000
+msgid "Restore backup of status icons"
+msgstr "Restaurare backup al iconițelor stării"
+
+#: StatusesUI.php:1004
+msgid "Restore backup of status labels"
+msgstr "Restaurare backup al etichetelor stării"
+
+#: StatusesUI.php:1008
+msgid "Restore backup of status post types"
+msgstr "Restaurare backup-ul tipurilor de postări de status"
+
+#: StatusesUI.php:1014
+msgid "Restore auto-backup of status colors"
+msgstr "Restaurare backup-ul automat al culorilor de status"
+
+#: StatusesUI.php:1018
+msgid "Restore auto-backup of status icons"
+msgstr "Restaurare backup-ul automat al pictogramelor de status"
+
+#: StatusesUI.php:1022
+msgid "Restore auto-backup of status labels"
+msgstr "Restaurare backup-ul automat al etichetelor de status"
+
+#: StatusesUI.php:1026
+msgid "Restore auto-backup of status post types"
+msgstr "Restaurare backup-ul automat al tipurilor de postări de status"
+
+#: StatusesUI.php:1033
+msgid "Use default status colors"
+msgstr "Utilizați culorile de status implicite"
+
+#: StatusesUI.php:1037
+msgid "Use default status icons"
+msgstr "Utilizați pictogramele de status implicite"
+
+#: StatusesUI.php:1041
+msgid "Use default status labels"
+msgstr "Utilizați etichetele de status implicite"
+
+#: StatusesUI.php:1045
+msgid "Use default status post types"
+msgstr "Utilizați tipurile de postări de status implicite"
+
+#: StatusesUI.php:1049
+msgid "Use Planner plugin's default status colors"
+msgstr "Utilizați culorile de status implicite ale plugin-ului Planner"
+
+#: StatusesUI.php:1053
+msgid "Use Planner plugin's default status icons"
+msgstr "Utilizați pictogramele de status implicite ale plugin-ului Planner"
+
+#: StatusesUI.php:1092
+#. translators: %s is the status name
+#, php-format
+msgid "Edit Status: %s"
+msgstr "Editați Status: %s"
+
+#: StatusesUI.php:1095
+#. translators: %s is the status name
+#, php-format
+msgid "Edit %1$s: %2$s"
+msgstr "Editați %1$s: %2$s"
+
+#: StatusesUI.php:1115
+#. translators: %s is the status name
+#, php-format
+msgid "Edit Status Labels: %s"
+msgstr "Editați Etichetele de Status: %s"
+
+#: StatusesUI.php:1118
+#. translators: %s is the status name
+#, php-format
+msgid "Edit %1$s Labels: %2$s"
+msgstr "Editați Etichetele %1$s: %2$s"
+
+#: StatusesUI.php:1155
+#: StatusesUI.php:1283
+msgid "Add New Pre-Publication Status"
+msgstr "Adăugați un nou Status Pre-Publicare"
+
+#: StatusesUI.php:1171
+#. translators: %1$s and %2$s is link markup
+#, php-format
+msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
+msgstr "Notă: Statusurile de Vizibilitate personalizate sunt %1$sdezactivate%2$s."
+
+#: StatusesUI.php:1208
+msgid "Pre-Publication"
+msgstr "Pre-Publicare"
+
+#: StatusesUI.php:1216
+#: StatusesUI.php:1322
+msgid "Visibility"
+msgstr "Vizibilitate"
+
+#: StatusesUI.php:1227
+msgid "Revision"
+msgstr "Revizuire"
+
+#: StatusesUI.php:1287
+msgid "Integration"
+msgstr "Integrare"
+
+#: StatusesUI.php:1324, fuzzy
+msgid "Editor"
+msgstr "Editor"
+
+#: StatusesUI.php:1325
+msgid "Advanced"
+msgstr "Avansat"
+
+#: StatusesUI.php:1326
+msgid "License"
+msgstr "Licență"
+
+#: StatusHandler.php:17
+#: StatusHandler.php:186
+msgid "Sorry, you do not have permission to edit custom statuses."
+msgstr "Ne pare rău, nu aveți permisiunea de a edita statusuri personalizate."
+
+#: StatusHandler.php:53
+#: StatusHandler.php:417
+msgid "Please enter a name for the status"
+msgstr "Vă rugăm să introduceți un nume pentru status"
+
+#: StatusHandler.php:57
+msgid "Please enter a slug for the status"
+msgstr "Vă rugăm să introduceți un slug pentru status"
+
+#: StatusHandler.php:64
+#: StatusHandler.php:422
+msgid "Please enter a valid, non-numeric name for the status."
+msgstr "Vă rugăm să introduceți un nume valid, non-numeric pentru status."
+
+#: StatusHandler.php:81
+#: StatusHandler.php:441
+msgid "Status name cannot exceed 20 characters. Please try a shorter name."
+msgstr ""
+"Numele statusului nu poate depăși 20 de caractere. Vă rugăm să încercați un "
+"nume mai scurt."
+
+#: StatusHandler.php:100
+msgid "Status slug cannot exceed 20 characters. Please try a shorter name."
+msgstr ""
+"Slug-ul statusului nu poate depăși 20 de caractere. Vă rugăm să încercați "
+"un nume mai scurt."
+
+#: StatusHandler.php:110
+msgid "Name conflicts with existing status. Please choose another."
+msgstr "Numele este în conflict cu un status existent. Vă rugăm să alegeți altul."
+
+#: StatusHandler.php:117
+msgid "Status name is restricted. Please choose another name."
+msgstr "Numele statusului este restricționat. Vă rugăm să alegeți un alt nume."
+
+#: StatusHandler.php:141
+msgid "Could not add status: "
+msgstr "Nu s-a putut adăuga statusul: "
+
+#: StatusHandler.php:193
+#: StatusHandler.php:754
+msgid "Status does not exist."
+msgstr "Statusul nu există."
+
+#: StatusHandler.php:198
+#: StatusHandler.php:749
+msgid "Could not delete the status: "
+msgstr "Nu s-a putut șterge statusul: "
+
+#: StatusHandler.php:222
+#: StatusHandler.php:372
+msgid "Post status doesn't exist."
+msgstr "Statusul postării nu există."
+
+#: StatusHandler.php:350
+msgid "Error updating post status."
+msgstr "Eroare la actualizarea statutului postării."
+
+#: StatusHandler.php:501
+msgid "Error updating post status labels."
+msgstr "Eroare la actualizarea etichetelor statutului postării."
+
+#: StatusHandler.php:677
+msgid "Cannot reassign to the status you want to delete"
+msgstr "Nu se poate reasigna la starea pe care doriți să o ștergeți"
+
+#: StatusHandler.php:724
+msgid "Restricted status "
+msgstr "Stare restricționată "
+
+#: StatusHandler.php:751
+msgid "Status deleted"
+msgstr "Stare șters"
+
+#: StatusHandler.php:773
+msgid "Status positions were not sent."
+msgstr "Pozițiile stării nu au fost trimise."
+
+#: StatusListTable.php:166
+msgid "Position"
+msgstr "Poziție"
+
+#: StatusListTable.php:167
+msgid "Status Name"
+msgstr "Numele Stării"
+
+#: StatusListTable.php:197
+msgid "Upgrade to create an approval workflow for published content"
+msgstr "Actualizați pentru a crea un flux de aprobat pentru conținutul publicat"
+
+#: StatusListTable.php:200
+msgid "Each post type can have different Revisions statuses"
+msgstr "Fiecare tip de postare poate avea stări de Revisions diferite"
+
+#: StatusListTable.php:215
+msgid "You choose which users can manage content in each Revisions status"
+msgstr ""
+"Alegeți care utilizatori pot gestiona conținutul în fiecare stare de "
+"Revisions"
+
+#: StatusListTable.php:241
+msgid "Premium Feature"
+msgstr "Funcție Premium"
+
+#: StatusListTable.php:242
+msgid "Install Statuses Pro to unlock custom revision statuses."
+msgstr "Instalați Statuses Pro pentru a debloca stări personalizate de revizuire."
+
+#: StatusListTable.php:243
+msgid "Configure for any post type and role to match your editing workflow."
+msgstr ""
+"Configurați pentru orice tip de postare și rol pentru a se potrivi fluxului "
+"dvs. de editare."
+
+#: StatusListTable.php:308
+#, php-format
+msgid "Main Workflow:"
+msgstr "Flux principal:"
+
+#: StatusListTable.php:366
+msgid "Drop any status here to include it in main workflow for new posts."
+msgstr ""
+"Aruncați orice stare aici pentru a o include în fluxul principal pentru "
+"postări noi."
+
+#: StatusListTable.php:402
+msgid "Drop any status here to disable."
+msgstr "Trage orice statut aici pentru a dezactiva."
+
+#: StatusListTable.php:517
+msgid "Standard Publication:"
+msgstr "Publicație Standard:"
+
+#: StatusListTable.php:524
+msgid "Visibility Statuses for Private Publication:"
+msgstr "Statuturi de Vizibilitate pentru Publicație Privată:"
+
+#: StatusListTable.php:531
+msgid "Alternate Workflows:"
+msgstr "Fluxuri de lucru alternative:"
+
+#: StatusListTable.php:531
+#: StatusListTable.php:542
+#. translators: %s is the opening and closing <span> tags
+msgid "Disabled Statuses (drag to re-enable):"
+msgstr "Statuturi Dezactivate (trage pentru a re-activare):"
+
+#: StatusListTable.php:647
+msgid "Upgrade to choose who can view your non-public posts"
+msgstr "Upgrade pentru a alege cine poate vizualiza postările tale nepublice"
+
+#: StatusListTable.php:650
+msgid "Create multiple visibility statuses to show content to different users"
+msgstr ""
+"Creează multiple statuturi de vizibilitate pentru a arăta conținut "
+"diferitelor utilizatori"
+
+#: StatusListTable.php:659
+msgid "Choose which user roles can see posts in each status"
+msgstr "Alege ce roluri de utilizator pot vedea postările în fiecare statut"
+
+#: StatusListTable.php:662
+msgid "Select which user roles can move posts to each status"
+msgstr "Selectează ce roluri de utilizator pot muta postările în fiecare statut"
+
+#: StatusListTable.php:665
+msgid "Decide which user roles can edit posts in each status"
+msgstr "Decide ce roluri de utilizator pot edita postările în fiecare statut"
+
+#: StatusListTable.php:762
+#. translators: %s is the list of post types
+#, php-format
+msgid "%s, more..."
+msgstr "%s, mai multe..."
+
+#: StatusListTable.php:844
+msgid "No custom statuses found."
+msgstr "Niciun statut personalizat găsit."
+
+#: StatusListTable.php:915
+msgid "Core"
+msgstr "Nucleu"
+
+#: StatusListTable.php:919
+msgid "Default"
+msgstr "Implicit"
+
+#: StatusListTable.php:953
+msgid "Delete"
+msgstr "Șterge"
+
+#: PublishPress_Statuses.php:849
+msgctxt "post action/button label"

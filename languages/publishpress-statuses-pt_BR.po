@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-02-04 23:19-0300\n"
-"PO-Revision-Date: 2026-04-20 20:06+0000\n"
+"PO-Revision-Date: 2026-04-30 14:54+0000\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -512,7 +512,7 @@ msgstr "Adicionar novo status"
 
 #: StatusEditUI.php:41
 #: StatusEditUI.php:50
-#: StatusListTable.php:946
+#: StatusListTable.php:945
 msgid "Labels"
 msgstr "Rótulos"
 
@@ -740,7 +740,7 @@ msgid "Post status deleted."
 msgstr "Status do post excluído."
 
 #: StatusesUI.php:226
-#: StatusHandler.php:828
+#: StatusHandler.php:832
 msgid "Status order updated."
 msgstr "Ordem dos status atualizada."
 
@@ -1187,12 +1187,12 @@ msgid "Could not add status: "
 msgstr "Não foi possível adicionar o status: "
 
 #: StatusHandler.php:193
-#: StatusHandler.php:750
+#: StatusHandler.php:754
 msgid "Status does not exist."
 msgstr "O status não existe."
 
 #: StatusHandler.php:198
-#: StatusHandler.php:745
+#: StatusHandler.php:749
 msgid "Could not delete the status: "
 msgstr "Não foi possível excluir o status: "
 
@@ -1209,19 +1209,19 @@ msgstr "Erro ao atualizar o status do post."
 msgid "Error updating post status labels."
 msgstr "Erro ao atualizar os rótulos de status do post."
 
-#: StatusHandler.php:673
+#: StatusHandler.php:677
 msgid "Cannot reassign to the status you want to delete"
 msgstr "Não é possível reatribuir para o status que você quer excluir"
 
-#: StatusHandler.php:720
+#: StatusHandler.php:724
 msgid "Restricted status "
 msgstr "Status restrito "
 
-#: StatusHandler.php:747
+#: StatusHandler.php:751
 msgid "Status deleted"
 msgstr "Status excluído"
 
-#: StatusHandler.php:769
+#: StatusHandler.php:773
 msgid "Status positions were not sent."
 msgstr "As posições dos status não foram enviadas."
 
@@ -1391,7 +1391,7 @@ msgstr "Arquivos básicos"
 msgid "Default"
 msgstr "Padrão"
 
-#: StatusListTable.php:954
+#: StatusListTable.php:953
 msgid "Delete"
 msgstr "Excluir"
 
