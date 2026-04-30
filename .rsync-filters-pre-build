@@ -1,5 +1,6 @@
 - *.code-workspace
 - .babelrc
+- .cache
 - .distignore
 - .git
 - .gitattributes
