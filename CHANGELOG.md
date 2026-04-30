@@ -1,11 +1,12 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[1.3.1]
+[1.3.1] - 30 Apr 2026
 - Fixed : Workflow progression failed to save on some sites
 - Fixed : Status dropdown in post editor sidebar was mislocated in some cases
 - Fixed : Editing status properties converted label to dashed lowercase
 - Changed : Remove Edit row action links from Statuses Table to better prioritize screen space
+- Lang : Additional languages (Potomatic)
 
 [1.3.0] - 20 Apr 2026
 - Changed : Tabbed view for plugin settings
