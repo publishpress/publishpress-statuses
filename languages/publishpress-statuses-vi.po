@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:43:28+00:00\n"
-"PO-Revision-Date: 2026-04-29 19:59+0000\n"
+"PO-Revision-Date: 2026-04-30 15:04+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Language: vi\n"
@@ -65,6 +65,16 @@ msgid "Upgrade to Pro"
 msgstr "Nâng cấp lên Pro"
 
 #: Admin.php:369
+msgid ""
+"Are you sure you want to delete the post status? All posts with this status "
+"will be assigned to the default status."
+msgstr ""
+"Bạn có chắc chắn muốn xóa trạng thái bài viết không? Tất cả các bài viết "
+"với trạng thái này sẽ được gán cho trạng thái mặc định."
+
+#: Admin.php:441
+#: Admin.php:442
+#: StatusesUI.php:1156
 msgid "Add New"
 msgstr "Thêm mới"
 
@@ -115,6 +125,12 @@ msgstr "Tiến trình Trạng thái"
 
 #: includes-core/CoreAdmin.php:19
 #, php-format
+msgid ""
+"You're using PublishPress Statuses Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr "Bạn đang sử dụng PublishPress Statuses Free. Phiên bản Pro có nhiều tính năng và hỗ trợ hơn. %sNâng cấp lên Pro%s"
+
+#: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
 msgstr "Nâng cấp lên Statuses Pro"
 
@@ -285,6 +301,36 @@ msgstr "<strong>Plugin này có thể bị xóa.</strong>"
 #: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Planner to "
+"version %s or higher."
+msgstr "Để sử dụng PublishPress Statuses, vui lòng nâng cấp PublishPress Planner lên phiên bản %s hoặc cao hơn."
+
+#: publishpress-statuses.php:213
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
+"to version %s or higher."
+msgstr "Để sử dụng PublishPress Statuses, vui lòng nâng cấp PublishPress Permissions Pro lên phiên bản %s hoặc cao hơn."
+
+#: publishpress-statuses.php:230
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
+"to version %s or higher."
+msgstr "Để sử dụng PublishPress Statuses, vui lòng nâng cấp PublishPress Capabilities Pro lên phiên bản %s hoặc cao hơn."
+
+#: PublishPress_Statuses.php:391
+msgid ""
+"Can bypass normal status progression. User can publish immediately or move "
+"post to the furthest possible status."
+msgstr ""
+"Có thể bỏ qua tiến trình trạng thái bình thường. Người dùng có thể xuất bản "
+"ngay lập tức hoặc chuyển bài viết đến trạng thái xa nhất có thể."
+
+#: PublishPress_Statuses.php:392
 msgid "Manage Statuses plugin settings."
 msgstr "Quản lý cài đặt plugin Trạng thái."
 
@@ -478,6 +524,14 @@ msgid "Post Access"
 msgstr "Quyền Truy Cập Bài Đăng"
 
 #: StatusEditUI.php:184
+msgid ""
+"Enforce type-specific post capabilitities for this status, or share "
+"capabilities with another status."
+msgstr ""
+"Thực thi khả năng bài viết theo loại cụ thể cho trạng thái này, hoặc chia "
+"sẻ khả năng với một trạng thái khác."
+
+#: StatusEditUI.php:231
 msgid "Update Status"
 msgstr "Cập Nhật Trạng Thái"
 
@@ -560,6 +614,14 @@ msgstr "Tìm hiểu thêm"
 
 #: StatusEditUI.php:545
 #, php-format
+msgid ""
+"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
+"%3$schange this setting%4$s."
+msgstr ""
+"Khả năng bài viết theo trạng thái hiện tại đang %1$sbị vô hiệu hóa%2$s. Bạn "
+"có thể %3$sthay đổi cài đặt này%4$s."
+
+#: StatusEditUI.php:565
 msgid "Status Label"
 msgstr "Nhãn Trạng Thái"
 
@@ -572,6 +634,14 @@ msgid "Description"
 msgstr "Mô tả"
 
 #: StatusEditUI.php:600
+msgid ""
+"The description is primarily for administrative use, to give you some "
+"context on what the custom status is to be used for."
+msgstr ""
+"Mô tả này chủ yếu dành cho mục đích quản trị, để cung cấp cho bạn một số "
+"ngữ cảnh về việc trạng thái tùy chỉnh sẽ được sử dụng cho điều gì."
+
+#: StatusEditUI.php:612
 msgid "Save As Label"
 msgstr "Lưu Như Nhãn"
 
@@ -638,6 +708,14 @@ msgid "Settings updated"
 msgstr "Cài đặt đã được cập nhật"
 
 #: StatusesUI.php:221
+msgid ""
+"That post status doesn't seem to exist. Was a required plugin or setting "
+"deactivated?"
+msgstr ""
+"Trạng thái bài viết đó dường như không tồn tại. Có phải một plugin hoặc cài "
+"đặt cần thiết đã bị vô hiệu hóa?"
+
+#: StatusesUI.php:222
 msgid "Default post status has been changed."
 msgstr "Trạng thái bài viết mặc định đã được thay đổi."
 
@@ -731,6 +809,23 @@ msgid "No workflow guidance"
 msgstr "Không có hướng dẫn quy trình làm việc"
 
 #: StatusesUI.php:570
+msgid ""
+"Hide sub-statuses in the dropdown unless the post is set to the parent "
+"status or a sibling"
+msgstr ""
+"Ẩn các trạng thái con trong menu thả xuống trừ khi bài viết được đặt ở "
+"trạng thái cha hoặc một trạng thái anh chị em"
+
+#: StatusesUI.php:576
+msgid ""
+"Sub-statuses may be nested below any top-level status. They function as "
+"branches in the Main Workflow or in an Alternate Workflow."
+msgstr ""
+"Các trạng thái con có thể được lồng bên dưới bất kỳ trạng thái cấp cao nào. "
+"Chúng hoạt động như các nhánh trong Quy trình Chính hoặc trong Quy trình "
+"Thay thế."
+
+#: StatusesUI.php:607
 msgid "Available to all users"
 msgstr "Có sẵn cho tất cả người dùng"
 
@@ -739,6 +834,28 @@ msgid "Available to specified roles only"
 msgstr "Có sẵn chỉ cho các vai trò đã chỉ định"
 
 #: StatusesUI.php:614
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, the same control is applied to the Pending Review "
+"status."
+msgstr ""
+"Người dùng chỉ có thể gán trạng thái tùy chỉnh cho một bài viết nếu vai trò "
+"của họ cho phép. Với cài đặt hiện tại, cùng một điều khiển được áp dụng cho "
+"trạng thái Đang Chờ Xem."
+
+#: StatusesUI.php:616
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, those limitations will not be applied for the "
+"Pending Review status."
+msgstr ""
+"Người dùng chỉ có thể gán trạng thái tùy chỉnh cho một bài viết nếu vai trò "
+"của họ cho phép. Với cài đặt hiện tại, những hạn chế đó sẽ không được áp "
+"dụng cho trạng thái Đang Chờ Xem."
+
+#: StatusesUI.php:625
+#. translators: %1$s and %2$s are link markup
+#, php-format
 msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
 msgstr ""
 "Xem hoặc thiết lập vai trò tại %1$s Trạng thái > Trạng thái > Đang chờ xem "
@@ -757,6 +874,15 @@ msgid "Using Gutenberg Editor"
 msgstr "Sử dụng Trình biên tập Gutenberg"
 
 #: StatusesUI.php:656
+msgid ""
+"If custom statuses in the post editor are not loaded correctly, prevent "
+"incorrect detection of editor by specifying it here."
+msgstr ""
+"Nếu các trạng thái tùy chỉnh trong trình chỉnh sửa bài viết không được tải "
+"đúng cách, hãy ngăn chặn việc phát hiện sai trình chỉnh sửa bằng cách chỉ "
+"định nó ở đây."
+
+#: StatusesUI.php:677
 msgid "For all plugin statuses"
 msgstr "Đối với tất cả trạng thái plugin"
 
@@ -765,6 +891,26 @@ msgid "For user-created plugin statuses only"
 msgstr "Chỉ dành cho trạng thái plugin do người dùng tạo"
 
 #: StatusesUI.php:683
+msgid ""
+"This controls which statuses can have their labels customized by editing "
+"Status properties. If a non-default entry is stored, it will override any "
+"language file strings."
+msgstr ""
+"Điều này kiểm soát các trạng thái nào có thể được tùy chỉnh nhãn bằng cách "
+"chỉnh sửa thuộc tính Trạng thái. Nếu một mục không mặc định được lưu trữ, "
+"nó sẽ ghi đè bất kỳ chuỗi nào trong tệp ngôn ngữ."
+
+#: StatusesUI.php:737
+#. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
+#, php-format
+msgid ""
+"Disabled because add_post_type_support('%1$s', '%2$s') is included in a "
+"loaded file."
+msgstr ""
+"Đã bị vô hiệu hóa vì add_post_type_support('%1$s', '%2$s') được bao gồm "
+"trong một tệp đã được tải."
+
+#: StatusesUI.php:746
 msgid "Note: Post types can also be specified for each individual status."
 msgstr ""
 "Lưu ý: Các loại bài viết cũng có thể được chỉ định cho từng trạng thái "
@@ -775,14 +921,40 @@ msgid "Enable custom Visibility Statuses"
 msgstr "Kích hoạt trạng thái Hiển thị tùy chỉnh"
 
 #: StatusesUI.php:796
+msgid ""
+"Posts with custom Visibility also require status-specific capabilities for "
+"editing"
+msgstr ""
+"Các bài viết với Tính Năng Hiển Thị tùy chỉnh cũng yêu cầu khả năng theo "
+"trạng thái cụ thể để chỉnh sửa"
+
+#: StatusesUI.php:877
 msgid "lock"
 msgstr "khóa"
 
 #: StatusesUI.php:903
+msgid ""
+"If the Published visibility status is locked, also prevent posts from being "
+"unpublished."
+msgstr ""
+"Nếu trạng thái hiển thị đã xuất bản bị khóa, cũng ngăn các bài viết không "
+"được xuất bản."
+
+#: StatusesUI.php:910
+#, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr "Nếu được kích hoạt, người dùng cần có %s để hủy xuất bản một bài viết."
 
 #: StatusesUI.php:914
+msgid ""
+"If enabled, users will need an additional role capability to unpublish a "
+"post."
+msgstr ""
+"Nếu được bật, người dùng sẽ cần một khả năng vai trò bổ sung để hủy xuất "
+"bản một bài viết."
+
+#: StatusesUI.php:931
+#: StatusesUI.php:989
 msgid "Select..."
 msgstr "Chọn..."
 
@@ -799,6 +971,13 @@ msgid "Re-run Planner import"
 msgstr "Chạy lại nhập Planner"
 
 #: StatusesUI.php:943
+msgid ""
+"Status color, icon and position is automatically imported from PublishPress "
+"Planner. Select an option above to re-run the import, giving priority to "
+"Planner-defined status position."
+msgstr "Màu sắc, biểu tượng và vị trí trạng thái được tự động nhập từ PublishPress Planner. Chọn một tùy chọn ở trên để chạy lại việc nhập, ưu tiên cho vị trí trạng thái được xác định bởi Planner."
+
+#: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Sao lưu màu sắc, biểu tượng, nhãn và loại bài viết hiện tại"
 
@@ -890,6 +1069,14 @@ msgstr "Thêm Trạng Thái Trước Khi Xuất Bản Mới"
 #: StatusesUI.php:1171
 #. translators: %1$s and %2$s is link markup
 #, php-format
+msgid ""
+"For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
+"Pro%2$s."
+msgstr "Đối với trạng thái Hiển thị tùy chỉnh, %1$s nâng cấp lên PublishPress Statuses Pro %2$s."
+
+#: StatusesUI.php:1185
+#. translators: %1$s and %2$s is link markup
+#, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Lưu ý: Các Trạng Thái Hiển Thị tùy chỉnh đã %1$s bị vô hiệu hóa %2$s."
 
@@ -907,6 +1094,14 @@ msgid "Revision"
 msgstr "Phiên bản"
 
 #: StatusesUI.php:1287
+msgid ""
+"This status can be assigned to an unpublished post using the Post Status "
+"dropdown."
+msgstr ""
+"Trạng thái này có thể được gán cho một bài viết chưa công bố bằng cách sử "
+"dụng menu thả xuống Trạng thái Bài viết."
+
+#: StatusesUI.php:1323
 msgid "Integration"
 msgstr "Tích hợp"
 
@@ -1014,6 +1209,24 @@ msgid "Upgrade to create an approval workflow for published content"
 msgstr "Nâng cấp để tạo quy trình phê duyệt cho nội dung đã xuất bản"
 
 #: StatusListTable.php:200
+msgid ""
+"Create approval workflows using PublishPress Statuses Pro together with the "
+"PublishPress Revisions Pro plugin"
+msgstr "Tạo quy trình phê duyệt bằng cách sử dụng PublishPress Statuses Pro cùng với plugin PublishPress Revisions Pro"
+
+#: StatusListTable.php:206
+msgid ""
+"The PublishPress Revisions plugin allows users to submit changes to "
+"published posts"
+msgstr "Plugin PublishPress Revisions cho phép người dùng gửi thay đổi cho các bài viết đã được công bố"
+
+#: StatusListTable.php:209
+msgid ""
+"PublishPress Statuses plugin enables you to add statuses for post changes "
+"created with Revisions"
+msgstr "Plugin PublishPress Statuses cho phép bạn thêm trạng thái cho các thay đổi bài viết được tạo ra với Revisions"
+
+#: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
 msgstr "Mỗi loại bài viết có thể có các trạng thái Revisions khác nhau"
 
@@ -1039,6 +1252,12 @@ msgstr ""
 
 #: StatusListTable.php:308
 #, php-format
+msgid ""
+"To define and control Revision statuses, update the %1$sPublishPress "
+"Revisions%2$s plugin to version %3$s or higher."
+msgstr "Để xác định và kiểm soát các trạng thái Revision, hãy cập nhật plugin %1$s PublishPress Revisions %2$s lên phiên bản %3$s hoặc cao hơn."
+
+#: StatusListTable.php:340
 msgid "Main Workflow:"
 msgstr "Quy trình chính:"
 
@@ -1049,6 +1268,31 @@ msgstr ""
 "viết mới."
 
 #: StatusListTable.php:402
+msgid ""
+"Statuses in the main workflow are presented for convenient default "
+"selection when updating an unpublished post."
+msgstr ""
+"Các trạng thái trong quy trình chính được trình bày để lựa chọn mặc định "
+"thuận tiện khi cập nhật một bài viết chưa công bố."
+
+#: StatusListTable.php:410
+msgid ""
+"Statuses outside the main workflow are manually selectable when editing an "
+"unpublished post."
+msgstr ""
+"Các trạng thái bên ngoài quy trình chính có thể được chọn thủ công khi "
+"chỉnh sửa một bài viết chưa công bố."
+
+#: StatusListTable.php:442
+msgid ""
+"Drop any status here to make it manually selectable outside the main "
+"workflow."
+msgstr ""
+"Kéo bất kỳ trạng thái nào vào đây để làm cho nó có thể được chọn thủ công "
+"bên ngoài quy trình chính."
+
+#: StatusListTable.php:444
+#: StatusListTable.php:466
 msgid "Drop any status here to disable."
 msgstr "Kéo bất kỳ trạng thái nào vào đây để vô hiệu hóa."
 
@@ -1075,6 +1319,12 @@ msgid "Upgrade to choose who can view your non-public posts"
 msgstr "Nâng cấp để chọn ai có thể xem bài viết không công khai của bạn"
 
 #: StatusListTable.php:650
+msgid ""
+"Upgrade to PublishPress Statuses Pro to define your own custom visibility "
+"statuses."
+msgstr "Nâng cấp lên PublishPress Statuses Pro để xác định các trạng thái hiển thị tùy chỉnh của riêng bạn."
+
+#: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"
 msgstr "Tạo nhiều trạng thái hiển thị để hiển thị nội dung cho người dùng khác nhau"
 
@@ -1116,3 +1366,5 @@ msgstr "Xóa"
 
 #: PublishPress_Statuses.php:849, fuzzy
 msgctxt "post action/button label"
+msgid "Pitch"
+msgstr "Pitch"

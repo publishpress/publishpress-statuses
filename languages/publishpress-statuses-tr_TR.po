@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:43:28+00:00\n"
-"PO-Revision-Date: 2026-04-29 19:57+0000\n"
+"PO-Revision-Date: 2026-04-30 15:04+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Language: tr_TR\n"
@@ -67,6 +67,16 @@ msgid "Upgrade to Pro"
 msgstr "Pro'ya Yükselt"
 
 #: Admin.php:369
+msgid ""
+"Are you sure you want to delete the post status? All posts with this status "
+"will be assigned to the default status."
+msgstr ""
+"Gönderi durumunu silmek istediğinize emin misiniz? Bu duruma sahip tüm "
+"gönderiler varsayılan duruma atanacaktır."
+
+#: Admin.php:441
+#: Admin.php:442
+#: StatusesUI.php:1156
 msgid "Add New"
 msgstr "Yeni Ekle"
 
@@ -117,6 +127,12 @@ msgstr "Durumu İlerle"
 
 #: includes-core/CoreAdmin.php:19
 #, php-format
+msgid ""
+"You're using PublishPress Statuses Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr "PublishPress Statuses Free kullanıyorsunuz. Pro sürümü daha fazla özellik ve destek sunar. %sPro'ya yükselt%s"
+
+#: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
 msgstr "Statuses Pro'ya Yükselt"
 
@@ -287,6 +303,36 @@ msgstr "<strong>Bu eklenti silinebilir.</strong>"
 #: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Planner to "
+"version %s or higher."
+msgstr "PublishPress Statuses kullanmak için lütfen PublishPress Planner'ı %s veya daha yüksek bir sürüme yükseltin."
+
+#: publishpress-statuses.php:213
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
+"to version %s or higher."
+msgstr "PublishPress Statuses kullanmak için lütfen PublishPress Permissions Pro'yu %s veya daha yüksek bir sürüme yükseltin."
+
+#: publishpress-statuses.php:230
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
+"to version %s or higher."
+msgstr "PublishPress Statuses kullanmak için lütfen PublishPress Capabilities Pro'yu %s veya daha yüksek bir sürüme yükseltin."
+
+#: PublishPress_Statuses.php:391
+msgid ""
+"Can bypass normal status progression. User can publish immediately or move "
+"post to the furthest possible status."
+msgstr ""
+"Normal durum ilerlemesini atlayabilir. Kullanıcı hemen yayımlayabilir veya "
+"gönderiyi mümkün olan en uzak duruma taşıyabilir."
+
+#: PublishPress_Statuses.php:392
 msgid "Manage Statuses plugin settings."
 msgstr "Durumlar eklentisi ayarlarını yönet."
 
@@ -480,6 +526,14 @@ msgid "Post Access"
 msgstr "Gönderi Erişimi"
 
 #: StatusEditUI.php:184
+msgid ""
+"Enforce type-specific post capabilitities for this status, or share "
+"capabilities with another status."
+msgstr ""
+"Bu durum için tür spesifik gönderi yeteneklerini zorunlu kılın veya başka "
+"bir durumla yetenekleri paylaşın."
+
+#: StatusEditUI.php:231
 msgid "Update Status"
 msgstr "Durumu Güncelle"
 
@@ -564,6 +618,14 @@ msgstr "Daha Fazla Bilgi Edinin"
 
 #: StatusEditUI.php:545
 #, php-format
+msgid ""
+"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
+"%3$schange this setting%4$s."
+msgstr ""
+"Durum spesifik gönderi yetenekleri %1$sgüncel olarak devre dışı%2$s. Bu "
+"ayarı %3$s değiştirebilirsiniz%4$s."
+
+#: StatusEditUI.php:565
 msgid "Status Label"
 msgstr "Durum Etiketi"
 
@@ -576,6 +638,14 @@ msgid "Description"
 msgstr "Açıklama"
 
 #: StatusEditUI.php:600
+msgid ""
+"The description is primarily for administrative use, to give you some "
+"context on what the custom status is to be used for."
+msgstr ""
+"Açıklama öncelikle idari kullanım içindir, özel durumun ne için "
+"kullanılacağına dair size biraz bağlam sağlar."
+
+#: StatusEditUI.php:612
 msgid "Save As Label"
 msgstr "Etiket Olarak Kaydet"
 
@@ -642,6 +712,14 @@ msgid "Settings updated"
 msgstr "Ayarlar güncellendi"
 
 #: StatusesUI.php:221
+msgid ""
+"That post status doesn't seem to exist. Was a required plugin or setting "
+"deactivated?"
+msgstr ""
+"Bu gönderi durumu mevcut gibi görünmüyor. Gerekli bir eklenti veya ayar "
+"devre dışı mı bırakıldı?"
+
+#: StatusesUI.php:222
 msgid "Default post status has been changed."
 msgstr "Varsayılan gönderi durumu değiştirildi."
 
@@ -737,6 +815,22 @@ msgid "No workflow guidance"
 msgstr "İş akışı rehberliği yok"
 
 #: StatusesUI.php:570
+msgid ""
+"Hide sub-statuses in the dropdown unless the post is set to the parent "
+"status or a sibling"
+msgstr ""
+"Gönderi, üst durum veya bir kardeş duruma ayarlandığında dropdown'da alt "
+"durumları gizle"
+
+#: StatusesUI.php:576
+msgid ""
+"Sub-statuses may be nested below any top-level status. They function as "
+"branches in the Main Workflow or in an Alternate Workflow."
+msgstr ""
+"Alt durumlar, herhangi bir üst düzey durumun altında yer alabilir. Ana İş "
+"Akışı'nda veya Alternatif İş Akışı'nda dallar olarak işlev görürler."
+
+#: StatusesUI.php:607
 msgid "Available to all users"
 msgstr "Tüm kullanıcılara mevcut"
 
@@ -745,6 +839,28 @@ msgid "Available to specified roles only"
 msgstr "Sadece belirtilen rollere mevcut"
 
 #: StatusesUI.php:614
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, the same control is applied to the Pending Review "
+"status."
+msgstr ""
+"Kullanıcılar, rollerinin izin vermesi durumunda yalnızca bir gönderiye özel "
+"bir durum atayabilir. Mevcut ayarla, aynı kontrol Bekleyen İnceleme "
+"durumuna da uygulanmaktadır."
+
+#: StatusesUI.php:616
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, those limitations will not be applied for the "
+"Pending Review status."
+msgstr ""
+"Kullanıcılar, rollerinin izin vermesi durumunda yalnızca bir gönderiye özel "
+"bir durum atayabilir. Mevcut ayarla, bu kısıtlamalar Bekleyen İnceleme "
+"durumu için uygulanmayacaktır."
+
+#: StatusesUI.php:625
+#. translators: %1$s and %2$s are link markup
+#, php-format
 msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
 msgstr ""
 "Rolleri %1$s Durumları > Durumlar > Beklemede İnceleme > Roller %2$s "
@@ -763,6 +879,14 @@ msgid "Using Gutenberg Editor"
 msgstr "Gutenberg Editörü Kullanımı"
 
 #: StatusesUI.php:656
+msgid ""
+"If custom statuses in the post editor are not loaded correctly, prevent "
+"incorrect detection of editor by specifying it here."
+msgstr ""
+"Gönderi editöründeki özel durumlar doğru şekilde yüklenmiyorsa, burada "
+"belirterek editörün yanlış algılanmasını önleyin."
+
+#: StatusesUI.php:677
 msgid "For all plugin statuses"
 msgstr "Tüm eklenti durumları için"
 
@@ -771,6 +895,26 @@ msgid "For user-created plugin statuses only"
 msgstr "Sadece kullanıcı tarafından oluşturulan eklenti durumları için"
 
 #: StatusesUI.php:683
+msgid ""
+"This controls which statuses can have their labels customized by editing "
+"Status properties. If a non-default entry is stored, it will override any "
+"language file strings."
+msgstr ""
+"Bu, hangi durumların Durum özelliklerini düzenleyerek etiketlerinin "
+"özelleştirilmesine izin verileceğini kontrol eder. Varsayılan olmayan bir "
+"giriş depolandığında, herhangi bir dil dosyası dizesini geçersiz kılacaktır."
+
+#: StatusesUI.php:737
+#. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
+#, php-format
+msgid ""
+"Disabled because add_post_type_support('%1$s', '%2$s') is included in a "
+"loaded file."
+msgstr ""
+"Eklendiği için add_post_type_support(''%1$s', '%2$s') devre dışı "
+"bırakılmıştır."
+
+#: StatusesUI.php:746
 msgid "Note: Post types can also be specified for each individual status."
 msgstr "Not: Post tipleri, her bir bireysel durum için de belirtilabilir."
 
@@ -779,16 +923,42 @@ msgid "Enable custom Visibility Statuses"
 msgstr "Özel Görünürlük Durumlarını etkinleştir"
 
 #: StatusesUI.php:796
+msgid ""
+"Posts with custom Visibility also require status-specific capabilities for "
+"editing"
+msgstr ""
+"Özel Görünürlük olan gönderilerin düzenlenmesi için durum spesifik "
+"yeteneklere de ihtiyacı vardır."
+
+#: StatusesUI.php:877
 msgid "lock"
 msgstr "kilit"
 
 #: StatusesUI.php:903
+msgid ""
+"If the Published visibility status is locked, also prevent posts from being "
+"unpublished."
+msgstr ""
+"Yayımlanmış görünürlük durumu kilitliyse, gönderilerin yayımlanmaktan "
+"çıkarılmasını da engelleyin."
+
+#: StatusesUI.php:910
+#, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr ""
 "Etkinleştirilirse, kullanıcıların bir gönderiyi yayınlaması için %s "
 "gerekecektir."
 
 #: StatusesUI.php:914
+msgid ""
+"If enabled, users will need an additional role capability to unpublish a "
+"post."
+msgstr ""
+"Etkinleştirildiğinde, kullanıcıların bir gönderiyi yayımlamaktan çıkarmak "
+"için ek bir rol yeteneğine ihtiyaçları olacaktır."
+
+#: StatusesUI.php:931
+#: StatusesUI.php:989
 msgid "Select..."
 msgstr "Seç..."
 
@@ -809,6 +979,13 @@ msgid "Re-run Planner import"
 msgstr "Planlayıcı içe aktarımını yeniden çalıştır"
 
 #: StatusesUI.php:943
+msgid ""
+"Status color, icon and position is automatically imported from PublishPress "
+"Planner. Select an option above to re-run the import, giving priority to "
+"Planner-defined status position."
+msgstr "Durum rengi, simgesi ve konumu otomatik olarak PublishPress Planner'dan içe aktarılır. İçe aktarmayı yeniden başlatmak için yukarıdaki bir seçeneği seçin, Planner tarafından tanımlanan durum konumuna öncelik verin."
+
+#: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Mevcut renkleri, simgeleri, etiketleri ve post tiplerini yedekleyin"
 
@@ -900,6 +1077,14 @@ msgstr "Yeni Ön Yayın Durumu Ekle"
 #: StatusesUI.php:1171
 #. translators: %1$s and %2$s is link markup
 #, php-format
+msgid ""
+"For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
+"Pro%2$s."
+msgstr "Özel Görünürlük Durumları için, %1$sPublishPress Statuses Pro%2$s'ya yükseltin."
+
+#: StatusesUI.php:1185
+#. translators: %1$s and %2$s is link markup
+#, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Not: Özel Görünürlük Durumları %1$sdevre dışı%2$s bırakılmıştır."
 
@@ -917,6 +1102,14 @@ msgid "Revision"
 msgstr "Revizyon"
 
 #: StatusesUI.php:1287
+msgid ""
+"This status can be assigned to an unpublished post using the Post Status "
+"dropdown."
+msgstr ""
+"Bu durum, Yayınlanmamış bir gönderiye Post Durum açılır menüsü kullanılarak "
+"atanabilir."
+
+#: StatusesUI.php:1323
 msgid "Integration"
 msgstr "Entegrasyon"
 
@@ -1024,6 +1217,24 @@ msgid "Upgrade to create an approval workflow for published content"
 msgstr "Yayınlanmış içerik için bir onay iş akışı oluşturmak üzere yükseltin"
 
 #: StatusListTable.php:200
+msgid ""
+"Create approval workflows using PublishPress Statuses Pro together with the "
+"PublishPress Revisions Pro plugin"
+msgstr "PublishPress Statuses Pro ile birlikte PublishPress Revisions Pro eklentisini kullanarak onay iş akışları oluşturun."
+
+#: StatusListTable.php:206
+msgid ""
+"The PublishPress Revisions plugin allows users to submit changes to "
+"published posts"
+msgstr "PublishPress Revisions eklentisi, kullanıcıların yayımlanmış gönderilere değişiklik göndermesine olanak tanır."
+
+#: StatusListTable.php:209
+msgid ""
+"PublishPress Statuses plugin enables you to add statuses for post changes "
+"created with Revisions"
+msgstr "PublishPress Statuses eklentisi, Revisions ile oluşturulan gönderi değişiklikleri için durumlar eklemenizi sağlar."
+
+#: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
 msgstr "Her post type'ın farklı Revisions durumları olabilir"
 
@@ -1049,6 +1260,12 @@ msgstr ""
 
 #: StatusListTable.php:308
 #, php-format
+msgid ""
+"To define and control Revision statuses, update the %1$sPublishPress "
+"Revisions%2$s plugin to version %3$s or higher."
+msgstr "Revizyon durumlarını tanımlamak ve kontrol etmek için, %1$sPublishPress Revisions%2$s eklentisini %3$s veya daha yüksek bir sürüme güncelleyin."
+
+#: StatusListTable.php:340
 msgid "Main Workflow:"
 msgstr "Ana İş Akışı:"
 
@@ -1059,6 +1276,31 @@ msgstr ""
 "buraya bırakın."
 
 #: StatusListTable.php:402
+msgid ""
+"Statuses in the main workflow are presented for convenient default "
+"selection when updating an unpublished post."
+msgstr ""
+"Ana iş akışındaki durumlar, yayımlanmamış bir gönderiyi güncellerken "
+"kullanışlı varsayılan seçim için sunulur."
+
+#: StatusListTable.php:410
+msgid ""
+"Statuses outside the main workflow are manually selectable when editing an "
+"unpublished post."
+msgstr ""
+"Ana iş akışının dışındaki durumlar, yayımlanmamış bir gönderiyi düzenlerken "
+"manuel olarak seçilebilir."
+
+#: StatusListTable.php:442
+msgid ""
+"Drop any status here to make it manually selectable outside the main "
+"workflow."
+msgstr ""
+"Ana iş akışının dışında manuel olarak seçilebilir hale getirmek için buraya "
+"herhangi bir durumu bırakın."
+
+#: StatusListTable.php:444
+#: StatusListTable.php:466
 msgid "Drop any status here to disable."
 msgstr "Herhangi bir durumu devre dışı bırakmak için buraya bırakın."
 
@@ -1085,6 +1327,12 @@ msgid "Upgrade to choose who can view your non-public posts"
 msgstr "Gizli gönderilerinizi kimlerin görüntüleyebileceğini seçmek için yükseltin."
 
 #: StatusListTable.php:650
+msgid ""
+"Upgrade to PublishPress Statuses Pro to define your own custom visibility "
+"statuses."
+msgstr "Kendi özel görünürlük durumlarınızı tanımlamak için PublishPress Statuses Pro'ya yükseltin."
+
+#: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"
 msgstr ""
 "Farklı kullanıcılara içerik göstermek için birden fazla görünürlük durumu "
@@ -1128,3 +1376,5 @@ msgstr "Sil"
 
 #: PublishPress_Statuses.php:849
 msgctxt "post action/button label"
+msgid "Pitch"
+msgstr "Teklif"

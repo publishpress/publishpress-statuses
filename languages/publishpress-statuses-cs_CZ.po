@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-04-29T19:43:28+00:00\n"
-"PO-Revision-Date: 2026-04-29 20:04+0000\n"
+"PO-Revision-Date: 2026-04-30 14:55+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Language: cs_CZ\n"
@@ -67,6 +67,16 @@ msgid "Upgrade to Pro"
 msgstr "Přejít na Pro"
 
 #: Admin.php:369
+msgid ""
+"Are you sure you want to delete the post status? All posts with this status "
+"will be assigned to the default status."
+msgstr ""
+"Opravdu chcete smazat stav příspěvku? Všechny příspěvky s tímto stavem "
+"budou přiřazeny k výchozímu stavu."
+
+#: Admin.php:441
+#: Admin.php:442
+#: StatusesUI.php:1156
 msgid "Add New"
 msgstr "Přidat nový"
 
@@ -117,6 +127,12 @@ msgstr "Pokročit ve stavu"
 
 #: includes-core/CoreAdmin.php:19
 #, php-format
+msgid ""
+"You're using PublishPress Statuses Free. The Pro version has more features "
+"and support. %sUpgrade to Pro%s"
+msgstr "Používáte PublishPress Statuses Free. Pro verze má více funkcí a podporu. %sPřejít na Pro%s"
+
+#: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
 msgstr "Přejít na Statuses Pro"
 
@@ -287,6 +303,36 @@ msgstr "<strong>Tento plugin může být smazán.</strong>"
 #: publishpress-statuses.php:196
 #. translators: %s is a version number
 #, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Planner to "
+"version %s or higher."
+msgstr "Pro použití PublishPress Statuses, prosím, aktualizujte PublishPress Planner na verzi %s nebo vyšší."
+
+#: publishpress-statuses.php:213
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Permissions Pro "
+"to version %s or higher."
+msgstr "Pro použití PublishPress Statuses, prosím, aktualizujte PublishPress Permissions Pro na verzi %s nebo vyšší."
+
+#: publishpress-statuses.php:230
+#. translators: %s is a version number
+#, php-format
+msgid ""
+"To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
+"to version %s or higher."
+msgstr "Pro použití PublishPress Statuses, prosím, aktualizujte PublishPress Capabilities Pro na verzi %s nebo vyšší."
+
+#: PublishPress_Statuses.php:391
+msgid ""
+"Can bypass normal status progression. User can publish immediately or move "
+"post to the furthest possible status."
+msgstr ""
+"Může obejít normální progresi stavu. Uživatel může publikovat okamžitě nebo "
+"přesunout příspěvek do nejvzdálenějšího možného stavu."
+
+#: PublishPress_Statuses.php:392
 msgid "Manage Statuses plugin settings."
 msgstr "Spravovat nastavení pluginu Stavů."
 
@@ -480,6 +526,14 @@ msgid "Post Access"
 msgstr "Přístup k příspěvkům"
 
 #: StatusEditUI.php:184
+msgid ""
+"Enforce type-specific post capabilitities for this status, or share "
+"capabilities with another status."
+msgstr ""
+"Vynutit specifické schopnosti příspěvku pro tento stav, nebo sdílet "
+"schopnosti s jiným stavem."
+
+#: StatusEditUI.php:231
 msgid "Update Status"
 msgstr "Aktualizovat stav"
 
@@ -562,6 +616,14 @@ msgstr "Zjistit více"
 
 #: StatusEditUI.php:545
 #, php-format
+msgid ""
+"Status-specific post capabilities are %1$scurrently disabled%2$s. You can "
+"%3$schange this setting%4$s."
+msgstr ""
+"Specifické schopnosti příspěvku pro stav jsou %1$skomentáře aktuálně "
+"zakázané%2$s. Můžete %3$szměnit toto nastavení%4$s."
+
+#: StatusEditUI.php:565
 msgid "Status Label"
 msgstr "Štítek statusu"
 
@@ -574,6 +636,14 @@ msgid "Description"
 msgstr "Popis"
 
 #: StatusEditUI.php:600
+msgid ""
+"The description is primarily for administrative use, to give you some "
+"context on what the custom status is to be used for."
+msgstr ""
+"Popis je primárně určen pro administrativní použití, aby vám poskytl nějaký "
+"kontext k tomu, k čemu má být vlastní stav použit."
+
+#: StatusEditUI.php:612
 msgid "Save As Label"
 msgstr "Uložit jako štítek"
 
@@ -640,6 +710,14 @@ msgid "Settings updated"
 msgstr "Nastavení bylo aktualizováno"
 
 #: StatusesUI.php:221
+msgid ""
+"That post status doesn't seem to exist. Was a required plugin or setting "
+"deactivated?"
+msgstr ""
+"Tento stav příspěvku se nezdá být existující. Byl deaktivován potřebný "
+"plugin nebo nastavení?"
+
+#: StatusesUI.php:222
 msgid "Default post status has been changed."
 msgstr "Výchozí stav příspěvku byl změněn."
 
@@ -733,6 +811,22 @@ msgid "No workflow guidance"
 msgstr "Žádné pokyny pracovního postupu"
 
 #: StatusesUI.php:570
+msgid ""
+"Hide sub-statuses in the dropdown unless the post is set to the parent "
+"status or a sibling"
+msgstr ""
+"Skrýt pod-stavy v rozbalovacím menu, pokud není příspěvek nastaven na "
+"rodičovský stav nebo sourozenecký stav"
+
+#: StatusesUI.php:576
+msgid ""
+"Sub-statuses may be nested below any top-level status. They function as "
+"branches in the Main Workflow or in an Alternate Workflow."
+msgstr ""
+"Pod-stavy mohou být vnořeny pod jakýkoli nejvyšší stav. Fungují jako větve "
+"v Hlavním pracovním postupu nebo v Alternativním pracovním postupu."
+
+#: StatusesUI.php:607
 msgid "Available to all users"
 msgstr "Dostupné pro všechny uživatele"
 
@@ -741,6 +835,28 @@ msgid "Available to specified roles only"
 msgstr "Dostupné pouze pro určené role"
 
 #: StatusesUI.php:614
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, the same control is applied to the Pending Review "
+"status."
+msgstr ""
+"Uživatelé mohou přiřadit vlastní stav příspěvku pouze v případě, že to "
+"jejich role umožňuje. S aktuálním nastavením se stejná kontrola aplikuje na "
+"stav Čeká na kontrolu."
+
+#: StatusesUI.php:616
+msgid ""
+"Users can only assign a custom status to a post if their role allows it. "
+"With the current setting, those limitations will not be applied for the "
+"Pending Review status."
+msgstr ""
+"Uživatelé mohou přiřadit vlastní stav příspěvku pouze v případě, že to "
+"jejich role umožňuje. S aktuálním nastavením se tato omezení nebudou "
+"vztahovat na stav Čeká na kontrolu."
+
+#: StatusesUI.php:625
+#. translators: %1$s and %2$s are link markup
+#, php-format
 msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
 msgstr ""
 "Zobrazit nebo nastavit role na %1$s Stavy > Stavy > Čeká na recenzi > Role "
@@ -759,6 +875,14 @@ msgid "Using Gutenberg Editor"
 msgstr "Používání editoru Gutenberg"
 
 #: StatusesUI.php:656
+msgid ""
+"If custom statuses in the post editor are not loaded correctly, prevent "
+"incorrect detection of editor by specifying it here."
+msgstr ""
+"Pokud nejsou vlastní stavy v editoru příspěvků načteny správně, zabraňte "
+"nesprávnému rozpoznávání editoru tím, že ho zde určíme."
+
+#: StatusesUI.php:677
 msgid "For all plugin statuses"
 msgstr "Pro všechny stavy pluginu"
 
@@ -767,6 +891,26 @@ msgid "For user-created plugin statuses only"
 msgstr "Pouze pro stavy pluginu vytvořené uživateli"
 
 #: StatusesUI.php:683
+msgid ""
+"This controls which statuses can have their labels customized by editing "
+"Status properties. If a non-default entry is stored, it will override any "
+"language file strings."
+msgstr ""
+"To řídí, které stavy mohou mít své štítky přizpůsobené úpravou vlastností "
+"stavu. Pokud je uložený záznam, který není výchozí, přepíše jakékoli "
+"řetězce jazykového souboru."
+
+#: StatusesUI.php:737
+#. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
+#, php-format
+msgid ""
+"Disabled because add_post_type_support('%1$s', '%2$s') is included in a "
+"loaded file."
+msgstr ""
+"Zakázáno, protože add_post_type_support('%1$s', '%2$s') je obsaženo v "
+"načteném souboru."
+
+#: StatusesUI.php:746
 msgid "Note: Post types can also be specified for each individual status."
 msgstr ""
 "Poznámka: Typy příspěvků mohou být také specifikovány pro každý jednotlivý "
@@ -777,14 +921,40 @@ msgid "Enable custom Visibility Statuses"
 msgstr "Povolit vlastní stavy viditelnosti"
 
 #: StatusesUI.php:796
+msgid ""
+"Posts with custom Visibility also require status-specific capabilities for "
+"editing"
+msgstr ""
+"Příspěvky s vlastní viditelností také vyžadují specifické schopnosti pro "
+"stav pro úpravy"
+
+#: StatusesUI.php:877
 msgid "lock"
 msgstr "uzamknout"
 
 #: StatusesUI.php:903
+msgid ""
+"If the Published visibility status is locked, also prevent posts from being "
+"unpublished."
+msgstr ""
+"Pokud je stav Viditelnost publikováno uzamčený, také zabraňte příspěvkům "
+"být odpublikovány."
+
+#: StatusesUI.php:910
+#, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr "Pokud je povoleno, uživatelé potřebují %s k odpublikování příspěvku."
 
 #: StatusesUI.php:914
+msgid ""
+"If enabled, users will need an additional role capability to unpublish a "
+"post."
+msgstr ""
+"Pokud je povoleno, uživatelé budou potřebovat další schopnost role pro "
+"odpublikování příspěvku."
+
+#: StatusesUI.php:931
+#: StatusesUI.php:989
 msgid "Select..."
 msgstr "Vybrat..."
 
@@ -801,6 +971,13 @@ msgid "Re-run Planner import"
 msgstr "Znovu spustit import Plánovače"
 
 #: StatusesUI.php:943
+msgid ""
+"Status color, icon and position is automatically imported from PublishPress "
+"Planner. Select an option above to re-run the import, giving priority to "
+"Planner-defined status position."
+msgstr "Barva stavu, ikona a pozice se automaticky importují z PublishPress Planner. Vyberte výše uvedenou možnost pro opětovné spuštění importu a dejte přednost pozici stavu definované v Planneru."
+
+#: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Zálohovat aktuální barvy, ikony, štítky a typy příspěvků"
 
@@ -892,6 +1069,14 @@ msgstr "Přidat nový předpublikační stav"
 #: StatusesUI.php:1171
 #. translators: %1$s and %2$s is link markup
 #, php-format
+msgid ""
+"For custom Visibility Statuses, %1$supgrade to PublishPress Statuses "
+"Pro%2$s."
+msgstr "Pro vlastní viditelnost stavů, %1$supgradujte na PublishPress Statuses Pro%2$s."
+
+#: StatusesUI.php:1185
+#. translators: %1$s and %2$s is link markup
+#, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Poznámka: Vlastní stavy viditelnosti jsou %1$szakázány%2$s."
 
@@ -909,6 +1094,14 @@ msgid "Revision"
 msgstr "Revize"
 
 #: StatusesUI.php:1287
+msgid ""
+"This status can be assigned to an unpublished post using the Post Status "
+"dropdown."
+msgstr ""
+"Tento stav může být přiřazen k nepublikovanému příspěvku pomocí "
+"rozbalovacího seznamu stavů příspěvků."
+
+#: StatusesUI.php:1323
 msgid "Integration"
 msgstr "Integrace"
 
@@ -1018,6 +1211,24 @@ msgstr ""
 "obsah"
 
 #: StatusListTable.php:200
+msgid ""
+"Create approval workflows using PublishPress Statuses Pro together with the "
+"PublishPress Revisions Pro plugin"
+msgstr "Vytvořte pracovní postupy schvalování pomocí PublishPress Statuses Pro spolu s pluginem PublishPress Revisions Pro"
+
+#: StatusListTable.php:206
+msgid ""
+"The PublishPress Revisions plugin allows users to submit changes to "
+"published posts"
+msgstr "Plugin PublishPress Revisions umožňuje uživatelům předkládat změny k publikovaným příspěvkům"
+
+#: StatusListTable.php:209
+msgid ""
+"PublishPress Statuses plugin enables you to add statuses for post changes "
+"created with Revisions"
+msgstr "Plugin PublishPress Statuses vám umožňuje přidávat stavy pro změny příspěvků vytvořené pomocí Revisions"
+
+#: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
 msgstr "Každý post type může mít různé stavy Revisions"
 
@@ -1041,6 +1252,12 @@ msgstr ""
 
 #: StatusListTable.php:308
 #, php-format
+msgid ""
+"To define and control Revision statuses, update the %1$sPublishPress "
+"Revisions%2$s plugin to version %3$s or higher."
+msgstr "Chcete-li definovat a ovládat stavy revizí, aktualizujte plugin %1$sPublishPress Revisions%2$s na verzi %3$s nebo vyšší."
+
+#: StatusListTable.php:340
 msgid "Main Workflow:"
 msgstr "Hlavní pracovní postup:"
 
@@ -1051,6 +1268,31 @@ msgstr ""
 "postupu pro nové příspěvky."
 
 #: StatusListTable.php:402
+msgid ""
+"Statuses in the main workflow are presented for convenient default "
+"selection when updating an unpublished post."
+msgstr ""
+"Stavy v hlavním pracovním postupu jsou prezentovány pro pohodlný výchozí "
+"výběr při aktualizaci nepublikovaného příspěvku."
+
+#: StatusListTable.php:410
+msgid ""
+"Statuses outside the main workflow are manually selectable when editing an "
+"unpublished post."
+msgstr ""
+"Stavy mimo hlavní pracovní postup jsou ručně volitelné při úpravě "
+"nepublikovaného příspěvku."
+
+#: StatusListTable.php:442
+msgid ""
+"Drop any status here to make it manually selectable outside the main "
+"workflow."
+msgstr ""
+"Přetáhněte jakýkoli stav sem, aby byl ručně volitelný mimo hlavní pracovní "
+"postup."
+
+#: StatusListTable.php:444
+#: StatusListTable.php:466
 msgid "Drop any status here to disable."
 msgstr "Sem přetáhněte jakýkoli status, aby byl zakázán."
 
@@ -1077,6 +1319,12 @@ msgid "Upgrade to choose who can view your non-public posts"
 msgstr "Upgradujte, abyste mohli vybrat, kdo může vidět vaše nepřístupné příspěvky"
 
 #: StatusListTable.php:650
+msgid ""
+"Upgrade to PublishPress Statuses Pro to define your own custom visibility "
+"statuses."
+msgstr "Upgradujte na PublishPress Statuses Pro, abyste definovali své vlastní vlastní viditelnost stavů."
+
+#: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"
 msgstr ""
 "Vytvořte více viditelnostních statusů, abyste zobrazili obsah různým "
@@ -1118,3 +1366,5 @@ msgstr "Smazat"
 
 #: PublishPress_Statuses.php:849
 msgctxt "post action/button label"
+msgid "Pitch"
+msgstr "Návrh"
