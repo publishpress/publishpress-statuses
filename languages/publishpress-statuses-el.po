@@ -538,9 +538,7 @@ msgstr ""
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Αποκτήστε το PublishPress Statuses Pro για έλεγχο πρόσβασης σε αναρτήσεις "
-"ανά στάτους."
+msgstr "Αποκτήστε το PublishPress Statuses Pro για έλεγχο πρόσβασης σε αναρτήσεις ανά στάτους."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"
@@ -1067,9 +1065,7 @@ msgstr "Premium χαρακτηριστικό"
 
 #: StatusListTable.php:242
 msgid "Install Statuses Pro to unlock custom revision statuses."
-msgstr ""
-"Εγκαταστήστε το Statuses Pro για να ξεκλειδώσετε προσαρμοσμένες καταστάσεις "
-"αναθεώρησης."
+msgstr "Εγκαταστήστε το Statuses Pro για να ξεκλειδώσετε προσαρμοσμένες καταστάσεις αναθεώρησης."
 
 #: StatusListTable.php:243
 msgid "Configure for any post type and role to match your editing workflow."

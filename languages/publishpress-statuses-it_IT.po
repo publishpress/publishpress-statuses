@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PublishPress Statuses 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2026-04-20T20:04:25+00:00\n"
+"POT-Creation-Date: 2026-04-29T19:43:28+00:00\n"
 "PO-Revision-Date: 2026-04-17 15:53+0200\n"
 "Last-Translator: Angelo Giammarresi <info@wocmultimedia.biz>\n"
 "Language-Team: Italian <https://weblate.publishpress.com/projects/"
@@ -112,9 +112,7 @@ msgstr "Stato avanzato"
 msgid ""
 "You're using PublishPress Statuses Free. The Pro version has more features "
 "and support. %sUpgrade to Pro%s"
-msgstr ""
-"Stai utilizzando PublishPress Statuses Free. La versione Pro ha più "
-"caratteristiche e un miglior supporto. %sAggiorna a Pro%s"
+msgstr "Stai utilizzando PublishPress Statuses Free. La versione Pro ha più caratteristiche e un miglior supporto. %sAggiorna a Pro%s"
 
 #: includes-core/CoreAdmin.php:100
 msgid "Upgrade to Statuses Pro"
@@ -287,9 +285,7 @@ msgstr "<strong>Questo plugin può essere eliminato.</strong>"
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Planner to version "
 "%s or higher."
-msgstr ""
-"Per utilizzare PublishPress Status, aggiorna PublishPress Planner alla "
-"versione %s o superiore."
+msgstr "Per utilizzare PublishPress Status, aggiorna PublishPress Planner alla versione %s o superiore."
 
 #. translators: %s is a version number
 #: publishpress-statuses.php:213
@@ -297,9 +293,7 @@ msgstr ""
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Permissions Pro to "
 "version %s or higher."
-msgstr ""
-"Per utilizzare PublishPress Status, aggiorna PublishPress Permissions Pro "
-"alla versione %s o superiore."
+msgstr "Per utilizzare PublishPress Status, aggiorna PublishPress Permissions Pro alla versione %s o superiore."
 
 #. translators: %s is a version number
 #: publishpress-statuses.php:230
@@ -307,9 +301,7 @@ msgstr ""
 msgid ""
 "To use PublishPress Statuses, please upgrade PublishPress Capabilities Pro "
 "to version %s or higher."
-msgstr ""
-"Per utilizzare PublishPress Status, aggiorna PublishPress Capabilities Pro "
-"alla versione %s o superiore."
+msgstr "Per utilizzare PublishPress Status, aggiorna PublishPress Capabilities Pro alla versione %s o superiore."
 
 #: PublishPress_Statuses.php:391
 msgid ""
@@ -490,7 +482,7 @@ msgstr "Il comitato ha approvato l'articolo."
 msgid "Add New Status"
 msgstr "Aggiungi nuovo stato"
 
-#: StatusEditUI.php:41 StatusEditUI.php:50 StatusListTable.php:946
+#: StatusEditUI.php:41 StatusEditUI.php:50 StatusListTable.php:945
 msgid "Labels"
 msgstr "Etichette"
 
@@ -572,9 +564,7 @@ msgstr "Aggiorna per scegliere chi può gestire gli articoli in ogni stato"
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Ottieni PublishPress Statuses Pro per il controllo dell'accesso a stati "
-"specifici di un articolo."
+msgstr "Ottieni PublishPress Statuses Pro per il controllo dell'accesso a stati specifici di un articolo."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"
@@ -714,7 +704,7 @@ msgstr "Lo stato predefinito dell'articolo è stato modificato."
 msgid "Post status deleted."
 msgstr "Stato dell'articolo eliminato."
 
-#: StatusesUI.php:226 StatusHandler.php:828
+#: StatusesUI.php:226 StatusHandler.php:832
 msgid "Status order updated."
 msgstr "Ordine dello stato aggiornato."
 
@@ -974,11 +964,7 @@ msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
-msgstr ""
-"Il colore, l'icona e la posizione dello stato vengono importati "
-"automaticamente da PublishPress Planner. Seleziona un'opzione in alto per "
-"rieseguire l'importazione, dando priorità alla posizione dello stato "
-"definita da Planner."
+msgstr "Il colore, l'icona e la posizione dello stato vengono importati automaticamente da PublishPress Planner. Seleziona un'opzione in alto per rieseguire l'importazione, dando priorità alla posizione dello stato definita da Planner."
 
 #: StatusesUI.php:991
 msgid "Back up current colors, icons, labels and post types"
@@ -1073,9 +1059,7 @@ msgstr "Aggiungi nuovo stato di pre-pubblicazione"
 #, php-format
 msgid ""
 "For custom Visibility Statuses, %1$supgrade to PublishPress Statuses Pro%2$s."
-msgstr ""
-"Per gli stati di visibilità personalizzati, aggiorna il plugin a "
-"%1$sPublishPress Statuses Pro%2$s."
+msgstr "Per gli stati di visibilità personalizzati, aggiorna il plugin a %1$sPublishPress Statuses Pro%2$s."
 
 #. translators: %1$s and %2$s is link markup
 #: StatusesUI.php:1185
@@ -1160,11 +1144,11 @@ msgstr "Il nome dello stato è limitato. Scegli un altro nome."
 msgid "Could not add status: "
 msgstr "Impossibile aggiungere lo stato: "
 
-#: StatusHandler.php:193 StatusHandler.php:750
+#: StatusHandler.php:193 StatusHandler.php:754
 msgid "Status does not exist."
 msgstr "Lo stato non esiste."
 
-#: StatusHandler.php:198 StatusHandler.php:745
+#: StatusHandler.php:198 StatusHandler.php:749
 msgid "Could not delete the status: "
 msgstr "Impossibile eliminare lo stato: "
 
@@ -1180,19 +1164,19 @@ msgstr "Errore nell'aggiornamento dello stato dell'articolo."
 msgid "Error updating post status labels."
 msgstr "Errore nell'aggiornamento delle etichette dello stato dell'articolo."
 
-#: StatusHandler.php:673
+#: StatusHandler.php:677
 msgid "Cannot reassign to the status you want to delete"
 msgstr "Impossibile riassegnare allo stato che vuoi eliminare"
 
-#: StatusHandler.php:720
+#: StatusHandler.php:724
 msgid "Restricted status "
 msgstr "Stato limitato "
 
-#: StatusHandler.php:747
+#: StatusHandler.php:751
 msgid "Status deleted"
 msgstr "Stato eliminato"
 
-#: StatusHandler.php:769
+#: StatusHandler.php:773
 msgid "Status positions were not sent."
 msgstr "Le posizioni dello stato non sono state inviate."
 
@@ -1214,25 +1198,19 @@ msgstr ""
 msgid ""
 "Create approval workflows using PublishPress Statuses Pro together with the "
 "PublishPress Revisions Pro plugin"
-msgstr ""
-"Crea flusso di lavoro di approvazione utilizzando PublishPress Statuses Pro "
-"insieme al plugin PublishPress Revisions Pro"
+msgstr "Crea flusso di lavoro di approvazione utilizzando PublishPress Statuses Pro insieme al plugin PublishPress Revisions Pro"
 
 #: StatusListTable.php:206
 msgid ""
 "The PublishPress Revisions plugin allows users to submit changes to "
 "published posts"
-msgstr ""
-"Il plugin PublishPress Revisions permette agli utenti di inviare modifiche "
-"per gli articoli pubblicati"
+msgstr "Il plugin PublishPress Revisions permette agli utenti di inviare modifiche per gli articoli pubblicati"
 
 #: StatusListTable.php:209
 msgid ""
 "PublishPress Statuses plugin enables you to add statuses for post changes "
 "created with Revisions"
-msgstr ""
-"Il plugin PublishPress Statuses ti permette di aggiungere stati per le "
-"modifiche degli articoli creati con le revisioni"
+msgstr "Il plugin PublishPress Statuses ti permette di aggiungere stati per le modifiche degli articoli creati con le revisioni"
 
 #: StatusListTable.php:212
 msgid "Each post type can have different Revisions statuses"
@@ -1250,8 +1228,7 @@ msgstr "Caratteristica Premium"
 
 #: StatusListTable.php:242
 msgid "Install Statuses Pro to unlock custom revision statuses."
-msgstr ""
-"Installa Statuses Pro per sbloccare gli stati di revisione personalizzati."
+msgstr "Installa Statuses Pro per sbloccare gli stati di revisione personalizzati."
 
 #: StatusListTable.php:243
 msgid "Configure for any post type and role to match your editing workflow."
@@ -1264,9 +1241,7 @@ msgstr ""
 msgid ""
 "To define and control Revision statuses, update the %1$sPublishPress "
 "Revisions%2$s plugin to version %3$s or higher."
-msgstr ""
-"Per definire e controllare gli stati delle revisioni, aggiornare il plugin "
-"%1$sPublishPress Revisions%2$s alla versione %3$s o superiore."
+msgstr "Per definire e controllare gli stati delle revisioni, aggiornare il plugin %1$sPublishPress Revisions%2$s alla versione %3$s o superiore."
 
 #: StatusListTable.php:340
 msgid "Main Workflow:"
@@ -1331,9 +1306,7 @@ msgstr "Aggiorna per scegliere chi può vedere i tuoi articoli non pubblici"
 msgid ""
 "Upgrade to PublishPress Statuses Pro to define your own custom visibility "
 "statuses."
-msgstr ""
-"Aggiorna a PublishPress Statuses Pro per definire i tuo stati di visibilità "
-"personalizzati."
+msgstr "Aggiorna a PublishPress Statuses Pro per definire i tuo stati di visibilità personalizzati."
 
 #: StatusListTable.php:656
 msgid "Create multiple visibility statuses to show content to different users"
@@ -1371,7 +1344,7 @@ msgstr "Core"
 msgid "Default"
 msgstr "Predefinito"
 
-#: StatusListTable.php:954
+#: StatusListTable.php:953
 msgid "Delete"
 msgstr "Elimina"
 

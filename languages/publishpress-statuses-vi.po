@@ -528,9 +528,7 @@ msgstr "Nâng cấp để chọn ai có thể quản lý bài đăng trong từn
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Nhận PublishPress Statuses Pro để kiểm soát quyền truy cập bài viết theo "
-"trạng thái."
+msgstr "Nhận PublishPress Statuses Pro để kiểm soát quyền truy cập bài viết theo trạng thái."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"

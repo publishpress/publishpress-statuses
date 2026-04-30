@@ -536,9 +536,7 @@ msgstr ""
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Szerezd meg a PublishPress Statuses Pro-t a státusz-specifikus "
-"bejegyzéshozzáférés-ellenőrzéshez."
+msgstr "Szerezd meg a PublishPress Statuses Pro-t a státusz-specifikus bejegyzéshozzáférés-ellenőrzéshez."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"

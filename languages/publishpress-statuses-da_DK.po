@@ -1033,9 +1033,7 @@ msgstr "Premium-funktion"
 
 #: StatusListTable.php:242
 msgid "Install Statuses Pro to unlock custom revision statuses."
-msgstr ""
-"Installer Statuses Pro for at låse op for brugerdefinerede "
-"revisionsstatusser."
+msgstr "Installer Statuses Pro for at låse op for brugerdefinerede revisionsstatusser."
 
 #: StatusListTable.php:243
 msgid "Configure for any post type and role to match your editing workflow."

@@ -530,9 +530,7 @@ msgstr "Upgradujte, abyste si vybrali, kdo může spravovat příspěvky v každ
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Získejte PublishPress Statuses Pro pro řízení přístupu k příspěvkům podle "
-"statusu."
+msgstr "Získejte PublishPress Statuses Pro pro řízení přístupu k příspěvkům podle statusu."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"

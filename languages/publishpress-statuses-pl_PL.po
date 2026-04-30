@@ -533,9 +533,7 @@ msgstr "Ulepsz, aby wybrać, kto może zarządzać postami w każdym statusie"
 
 #: StatusEditUI.php:507
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
-msgstr ""
-"Uzyskaj PublishPress Statuses Pro do kontrolowania dostępu do postów w "
-"zależności od statusu."
+msgstr "Uzyskaj PublishPress Statuses Pro do kontrolowania dostępu do postów w zależności od statusu."
 
 #: StatusEditUI.php:513
 msgid "Control which roles can assign a status"
