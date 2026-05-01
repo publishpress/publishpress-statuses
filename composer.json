@@ -20,7 +20,8 @@
             "phpstan/extension-installer": true,
             "publishpress/dev-workspace": true,
             "php-http/discovery": true
-        }
+        },
+        "process-timeout": 0
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
