@@ -69,21 +69,5 @@ if (!class_exists('PublishPress\PPP_Module_Base')) {
             require_once(__DIR__ . '/ModuleAdminUI_Base.php');
             ModuleAdminUI_Base::instance($module);
         }
-
-        // Wrapper to prevent poEdit from adding core WordPress strings to the plugin .po
-        public static function __wp($string, $unused = '')
-        {
-            return __($string);
-        }
-
-        // Wrapper to prevent poEdit from adding core WordPress strings to the plugin .po
-        public static function _e_wp($string, $unused = '')
-        {
-            return _e($string);
-        }
-
-        public static function _x_wp($string, $context) {
-            return _x($string, $context);
-        }
     }
 }
