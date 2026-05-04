@@ -54,7 +54,7 @@ class PostEditGutenbergStatuses
 
         if (($current_status == $next_status_obj->name) || ( (!empty($current_status_obj->public) || !empty($current_status_obj->private)) && (!empty($next_status_obj->public) || !empty($next_status_obj->private)))) {
             if (!empty($next_status_obj->public) || !empty($next_status_obj->private)) {
-                $publish_label = esc_html(\PublishPress_Statuses::__wp('Save'));
+                $publish_label = esc_html(__('Save'));
                 $save_as_label = $publish_label;
             } else {
                 $publish_label = $next_status_obj->labels->save_as;
@@ -70,7 +70,7 @@ class PostEditGutenbergStatuses
             }
         }
 
-        $args['update'] = esc_html(\PublishPress_Statuses::__wp('Save'));
+        $args['update'] = esc_html(__('Save'));
 
         if (!isset($save_as_label)) {
             if ((!empty($next_status_obj->labels->publish))) {
@@ -162,7 +162,7 @@ class PostEditGutenbergStatuses
 
         $args['scheduleCaption'] = __('Schedule');
 
-        $args['saveDraftCaption'] = esc_html(\PublishPress_Statuses::__wp('Save Draft')); // this is used for reference in js
+        $args['saveDraftCaption'] = esc_html(__('Save Draft')); // this is used for reference in js
         $args['submitRevisionCaption'] = esc_html__('Submit Revision', 'publishpress-statuses'); // identify Revisions caption, to avoid overriding it
 
         $args['disableRecaption'] = defined('PRESSPERMIT_EDITOR_NO_RECAPTION');
