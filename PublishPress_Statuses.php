@@ -119,7 +119,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             add_action('wp_ajax_pp_delete_custom_status', [$this, 'handle_ajax_delete_custom_status']);
 
             add_filter('presspermit_get_post_statuses', [$this, 'flt_get_post_statuses'], 99, 5);
-            add_filter('_presspermit_get_post_statuses', [$this, '_flt_get_post_statuses'], 99, 4);
+            add_filter('_presspermit_get_post_statuses', [$this, 'flt_get_post_statuses_internal'], 99, 4);
 
             add_filter('presspermit_order_statuses', [$this, 'orderStatuses'], 10, 2);
         }
@@ -697,12 +697,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         $statuses = [
             'draft' =>  (object) [
                 'default_label' => 'Draft',
-                'label' => !empty($wp_post_statuses['draft']) && !empty($wp_post_statuses['draft']->label) ? $wp_post_statuses['draft']->label : \PublishPress_Statuses::__wp('Draft'),
+                'label' => !empty($wp_post_statuses['draft']) && !empty($wp_post_statuses['draft']->label) ? $wp_post_statuses['draft']->label : __('Draft'),
                 'default_labels' => (object) [
                     'save_as' => 'Save Draft'
                 ],
                 'labels' => (object) [
-                    'save_as' => \PublishPress_Statuses::__wp('Save Draft')
+                    'save_as' => __('Save Draft')
                 ],
                 'description' => __('New post, not yet submitted.', 'publishpress-statuses'),
                 'default_description' => 'New post, not yet submitted.',
@@ -716,15 +716,15 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             'pending' => (object) [
                 'default_label' => 'Pending Review',
-                'label' => !empty($wp_post_statuses['pending']) && !empty($wp_post_statuses['pending']->label) && ('Pending' != $wp_post_statuses['pending']->label) ? $wp_post_statuses['pending']->label : \PublishPress_Statuses::__wp('Pending Review'),
-                'label_friendly' => !empty($wp_post_statuses['pending']) && !empty($wp_post_statuses['pending']->label) && ('Pending' != $wp_post_statuses['pending']->label) ? $wp_post_statuses['pending']->label : \PublishPress_Statuses::__wp('Pending Review'),
+                'label' => !empty($wp_post_statuses['pending']) && !empty($wp_post_statuses['pending']->label) && ('Pending' != $wp_post_statuses['pending']->label) ? $wp_post_statuses['pending']->label : __('Pending Review'),
+                'label_friendly' => !empty($wp_post_statuses['pending']) && !empty($wp_post_statuses['pending']->label) && ('Pending' != $wp_post_statuses['pending']->label) ? $wp_post_statuses['pending']->label : __('Pending Review'),
                 'default_labels' => (object) [
                     'save_as' => 'Save as Pending',
                     'publish' => 'Submit for Review'
                 ],
                 'labels' => (object) [
-                    'save_as' => \PublishPress_Statuses::__wp('Save as Pending'),
-                    'publish' => \PublishPress_Statuses::__wp('Submit for Review')
+                    'save_as' => __('Save as Pending'),
+                    'publish' => __('Submit for Review')
                 ],
                 'description' => __('Post is awaiting review.', 'publishpress-statuses'),
                 'default_description' => 'Post is awaiting review.',
@@ -739,12 +739,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             'future' => (object) [
                 'default_label' => 'Scheduled',
-                'label' => !empty($wp_post_statuses['future']) && !empty($wp_post_statuses['future']->label) ? $wp_post_statuses['future']->label : \PublishPress_Statuses::__wp('Scheduled'),
+                'label' => !empty($wp_post_statuses['future']) && !empty($wp_post_statuses['future']->label) ? $wp_post_statuses['future']->label : __('Scheduled'),
                 'default_labels' => (object) [
                     'publish' => 'Schedule'
                 ],
                 'labels' => (object) [
-                    'publish' => \PublishPress_Statuses::__wp('Schedule')
+                    'publish' => __('Schedule')
                 ],
                 'description' => __('Post is scheduled for publication.', 'publishpress-statuses'),
                 'default_description' => 'Post is scheduled for publication.',
@@ -758,12 +758,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             'publish' => (object) [
                 'default_label' => 'Published',
-                'label' => !empty($wp_post_statuses['publish']) && !empty($wp_post_statuses['publish']->label) ? $wp_post_statuses['publish']->label : \PublishPress_Statuses::__wp('Published'),
+                'label' => !empty($wp_post_statuses['publish']) && !empty($wp_post_statuses['publish']->label) ? $wp_post_statuses['publish']->label : __('Published'),
                 'default_labels' => (object) [
                     'publish' => 'Publish'
                 ],
                 'labels' => (object) [
-                    'publish' => \PublishPress_Statuses::__wp('Publish')
+                    'publish' => __('Publish')
                 ],
                 'description' => __('Post is published, publicly visible.', 'publishpress-statuses'),
                 'default_description' => 'Post is published, publicly visible.',
@@ -777,12 +777,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             'private' => (object) [
                 'default_label' => 'Private',
-                'label' => !empty($wp_post_statuses['private']) && !empty($wp_post_statuses['private']->label) ? $wp_post_statuses['private']->label : \PublishPress_Statuses::__wp('Private'),
+                'label' => !empty($wp_post_statuses['private']) && !empty($wp_post_statuses['private']->label) ? $wp_post_statuses['private']->label : __('Private'),
                 'default_labels' => (object) [
                     'publish' => 'Save'
                 ],
                 'labels' => (object) [
-                    'publish' => \PublishPress_Statuses::__wp('Save')
+                    'publish' => __('Save')
                 ],
                 'description' => __('Post is published with private visibility.', 'publishpress-statuses'),
                 'default_description' => 'Post is published with private visibility.',
@@ -1226,22 +1226,22 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if (is_admin()) {
-            $wp_post_statuses['publish']->labels->publish = esc_attr(self::__wp('Publish'));
-            $wp_post_statuses['future']->labels->publish = esc_attr(self::_x_wp('Schedule', 'post action/button label'));
+            $wp_post_statuses['publish']->labels->publish = esc_attr(__('Publish'));
+            $wp_post_statuses['future']->labels->publish = esc_attr(_x('Schedule', 'post action/button label'));
     
             if (empty($wp_post_statuses['pending']->labels->publish)) {
-                $wp_post_statuses['pending']->labels->save_as = esc_attr(self::__wp('Save as Pending'));
-                $wp_post_statuses['pending']->labels->publish = esc_attr(self::__wp('Submit for Review'));
+                $wp_post_statuses['pending']->labels->save_as = esc_attr(__('Save as Pending'));
+                $wp_post_statuses['pending']->labels->publish = esc_attr(__('Submit for Review'));
             }
 
-            $wp_post_statuses['draft']->labels->save_as = esc_attr(self::__wp('Save Draft'));
-            $wp_post_statuses['draft']->labels->publish = esc_attr(self::__wp('Save Draft'));
+            $wp_post_statuses['draft']->labels->save_as = esc_attr(__('Save Draft'));
+            $wp_post_statuses['draft']->labels->publish = esc_attr(__('Save Draft'));
     
             if (empty($wp_post_statuses['pending']->labels->caption)) {
                 $wp_post_statuses['pending']->labels->caption = $wp_post_statuses['pending']->label;
             }
 
-            $wp_post_statuses['private']->labels->caption = self::__wp('Privately Published');
+            $wp_post_statuses['private']->labels->caption = __('Privately Published');
         }
     }
 
@@ -2372,7 +2372,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     // filter our own results
-    function _flt_get_post_statuses($statuses, $status_args, $return_args, $function_args) {
+    function flt_get_post_statuses_internal($statuses, $status_args, $return_args, $function_args) {
         global $current_user;
         
         $context = (!empty($function_args['context'])) ? $function_args['context'] : '';
@@ -3860,11 +3860,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         register_post_status(
             '_pending', 
             [
-                'label'                     => esc_html(\PublishPress_Statuses::__wp('Pending')),
+                'label'                     => esc_html(__('Pending')),
                 'label_count'               => false,
                 'labels' => (object) [
-                    'save_as' => \PublishPress_Statuses::__wp('Save as Pending'),
-                    'publish' => \PublishPress_Statuses::__wp('Submit for Review')
+                    'save_as' => __('Save as Pending'),
+                    'publish' => __('Submit for Review')
                 ],
                 'exclude_from_search'       => true,
                 'public'                    => false,
