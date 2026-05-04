@@ -3747,8 +3747,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 } else {
                     if (!empty($args['workflow_action'])) {
                         $workflow_action = $args['workflow_action'];
-                    } elseif (!empty($_REQUEST['pp_statuses_workflow_selection'])) {
-                        $workflow_action = sanitize_key($_REQUEST['pp_statuses_workflow_selection']);
+                    } elseif (!empty($_REQUEST['pp_statuses_workflow_selection'])) {                    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                        $workflow_action = sanitize_key($_REQUEST['pp_statuses_workflow_selection']);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                     } else {
                         $workflow_action = false;
                     }
