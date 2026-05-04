@@ -698,8 +698,8 @@ class StatusesUI {
 
         if (empty($post_types)) {
             $post_types = [
-                'post' => \PublishPress_Statuses::__wp('Posts'),
-                'page' => \PublishPress_Statuses::__wp('Pages'),
+                'post' => __('Posts'),
+                'page' => __('Pages'),
             ];
 
             $custom_post_types = $pp->get_supported_post_types();
@@ -809,8 +809,8 @@ class StatusesUI {
 
         if (empty($post_types)) {
             $post_types = [
-                'post' => \PublishPress_Statuses::__wp('Posts'),
-                'page' => \PublishPress_Statuses::__wp('Pages'),
+                'post' => __('Posts'),
+                'page' => __('Pages'),
             ];
 
             $custom_post_types = $pp->get_supported_post_types();

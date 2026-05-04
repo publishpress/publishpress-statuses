@@ -8,8 +8,10 @@ extensions:
   - php
 exclude:
   - .github
-  - .dev-workspace
+  - dev-workspace-cache
   - dist
   - vendor
   - lib/vendor
   - .wordpress-org
+  - .node_modules
+  - languages
