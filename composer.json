@@ -24,7 +24,7 @@
         "process-timeout": 0
     },
     "prefer-stable": true,
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.2.5",
         "ext-json": "*"
