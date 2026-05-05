@@ -447,8 +447,8 @@ class Admin
 
         add_submenu_page(
             'publishpress-statuses',
-            esc_html(\PublishPress_Statuses::__wp('Settings', 'publishpress-statuses')), 
-            esc_html(\PublishPress_Statuses::__wp('Settings', 'publishpress-statuses')), 
+            esc_html__('Settings'), 
+            esc_html__('Settings'), 
             'manage_options',   // @todo: custom capability?
             'publishpress-statuses-settings', 
             [$this, 'render_admin_page']
@@ -523,7 +523,7 @@ class Admin
         if (empty($status->labels->publish)) {
             // @todo: redundant with status definition?
             if ('pending' == $status->name) {
-                $status->labels->publish = esc_html(\PublishPress_Statuses::__wp('Submit for Review'));
+                $status->labels->publish = esc_html(__('Submit for Review'));
             } elseif ('approved' == $status->name) {
                 $status->labels->publish = esc_html__('Approve', 'publishpress-statuses');
             } elseif ('assigned' == $status->name) {
@@ -531,15 +531,15 @@ class Admin
             } elseif ('in-progress' == $status->name) {
                 $status->labels->publish = esc_html__('Mark In Progress', 'publishpress-statuses');
             } elseif ('publish' == $status->name) {
-                $status->labels->publish = esc_html(\PublishPress_Statuses::__wp('Publish'));
+                $status->labels->publish = esc_html(__('Publish'));
             } elseif ('future' == $status->name) {
-                $status->labels->publish = esc_html(\PublishPress_Statuses::_x_wp('Schedule', 'post action/button label'));
+                $status->labels->publish = esc_html(_x('Schedule', 'post action/button label'));
             } else {
                 $submit_caption_length_limit = (defined('PP_STATUSES_CLASSIC_EDITOR_MAX_BUTTON_CAPTION_LENGTH'))
                 ? PP_STATUSES_CLASSIC_EDITOR_MAX_BUTTON_CAPTION_LENGTH : 16;
 
                 if (strlen($status->label) > $submit_caption_length_limit) {
-                    $status->labels->publish = \PublishPress_Statuses::__wp('Submit');
+                    $status->labels->publish = __('Submit');
                 } else {
                     // translators: %s is the status label
                     $status->labels->publish = esc_attr(sprintf(__('Set to %s', 'publishpress-statuses'), $status->label));
@@ -549,7 +549,7 @@ class Admin
 
         if (empty($status->labels->save_as)) {
             if ('pending' == $status->name) {
-                $status->labels->save_as = esc_html(\PublishPress_Statuses::__wp('Save as Pending'));
+                $status->labels->save_as = esc_html(__('Save as Pending'));
             } elseif (!in_array($status->name, ['publish', 'private']) && empty($status->public) && empty($status->private)) {
                 $status->labels->save_as = esc_attr(sprintf(__('Save as %s', 'publishpress-statuses'), $status->label));
             } else {
@@ -559,7 +559,7 @@ class Admin
 
         if (empty($status->labels->visibility)) {
             if ('publish' == $status->name) {
-                $status->labels->visibility = esc_html(\PublishPress_Statuses::__wp('Published'));
+                $status->labels->visibility = esc_html(__('Published'));
 
             } elseif (!empty($status->public)) {
                 $status->labels->visibility = (!defined('WPLANG') || ('en_EN' == WPLANG))  // translators: %s is the name of a custom public status
@@ -633,7 +633,7 @@ class Admin
         && (did_action('load-post.php') || did_action('load-post-new.php')) && !did_action('wp_ajax_pp_get_selectable_statuses')
         ) { // Add this item only for Classic Editor
             $_publish_obj = get_post_status_object('publish');
-            $_publish_obj->save_as = \PublishPress_Statuses::__wp('Publish');
+            $_publish_obj->save_as = __('Publish');
             $_publish_obj->publish = __('Advance Status', 'publishpress-statuses');
             $moderation_statuses['_public'] = $_publish_obj;
         }

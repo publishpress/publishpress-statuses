@@ -20,7 +20,8 @@
             "phpstan/extension-installer": true,
             "publishpress/dev-workspace": true,
             "php-http/discovery": true
-        }
+        },
+        "process-timeout": 0
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
@@ -29,15 +30,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "publishpress/dev-workspace": "dev-development"
-    },
-    "scripts": {
-        "check:lint": "phplint",
-        "check:phpcs": "phpcs",
-        "-pre-autoload-dump": "composer dumpautoload --working-dir=./lib",
-        "-pre-update-cmd": "composer update --working-dir=./lib",
-        "-pre-install-cmd": "composer install --working-dir=./lib",
-        "term": "cd dev-workspace && ./run"
+        "publishpress/dev-workspace": "^1.3"
     },
     "extra": {
         "plugin-slug": "publishpress-statuses",

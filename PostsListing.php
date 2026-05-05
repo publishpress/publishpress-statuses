@@ -10,8 +10,8 @@ class PostsListing
 
         if (defined('PP_STATUSES_POSTS_STATUS_COLUMN')) {
             // Hook to add the status column to Manage Posts
-            add_filter('manage_posts_columns', [$this, '_filter_manage_posts_columns']);
-            add_filter('manage_pages_columns', [$this, '_filter_manage_posts_columns']);
+            add_filter('manage_posts_columns', [$this, 'flt_manage_posts_cols']);
+            add_filter('manage_pages_columns', [$this, 'flt_manage_posts_cols']);
 
             add_action('manage_posts_custom_column', [$this, 'flt_manage_posts_custom_column']);
             add_action('manage_pages_custom_column', [$this, 'flt_manage_posts_custom_column']);
@@ -38,7 +38,7 @@ class PostsListing
      *
      * @return array Same array as the input array with a "status" column added after the "title" column
      */
-    public function _filter_manage_posts_columns($posts_columns)
+    public function flt_manage_posts_cols($posts_columns)
     {
         // Return immediately if the supplied parameter isn't an array (which shouldn't happen in practice?)
         // http://wordpress.org/support/topic/plugin-publishpress-bug-shows-2-drafts-when-there-are-none-leads-to-error-messages
@@ -55,7 +55,7 @@ class PostsListing
         foreach ($posts_columns as $key => $value) {
             if ($key == 'title') {
                 $result[$key] = $value;
-                $result['status'] = \PublishPress_Statuses::__wp('Status');
+                $result['status'] = __('Status');
             } else {
                 $result[$key] = $value;
             }

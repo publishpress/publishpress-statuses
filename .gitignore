@@ -1,6 +1,8 @@
 *.log
 /vendor
 /lib/**/.git
+/lib/**/.env.example
+/lib/**/.phpcs*
 .idea
 .DS_Store
 /dist
@@ -8,7 +10,6 @@
 *.code-workspace
 /version.txt
 .php-cs-fixer.cache
-
 dev-workspace/.cache
 dev-workspace-cache/
 .env

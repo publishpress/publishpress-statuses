@@ -73,8 +73,8 @@ class PostEditGutenberg
 
         $captions = (object) [
             'publicationWorkflow' => __('Publication Workflow', 'publishpress-statuses'),
-            'publish' => \PublishPress_Statuses::__wp('Publish'),
-            'schedule' => \PublishPress_Statuses::_x_wp('Schedule', 'post action/button label'),
+            'publish' => __('Publish'),
+            'schedule' => _x('Schedule', 'post action/button label'),
             'advance' => __('Advance Status', 'publishpress-statuses'),
             'postStatus' => __('Post Status', 'publishpress-statuses'),
             // translators: %s is the status label
@@ -189,15 +189,15 @@ class PostEditGutenberg
             $icon = (isset($draft_obj->icon)) ? $draft_obj->icon : '';
 
 	        $ordered_statuses = array_merge(
-	            ['draft' => (object)['name' => 'draft', 'label' => esc_html(\PublishPress_Statuses::__wp('Draft')), 'icon' => $icon, 'color' => $draft_obj->color]],
+	            ['draft' => (object)['name' => 'draft', 'label' => esc_html(__('Draft')), 'icon' => $icon, 'color' => $draft_obj->color]],
 	
 	            array_diff_key(
 	                    \PublishPress_Statuses::getPostStati($args, 'object'),
 	                ['future' => true]
 	            ),
 	
-	            ['publish' => (object)['name' => 'publish', 'label' => esc_html(\PublishPress_Statuses::__wp('Published'))]],
-	            ['future' => (object)['name' => 'future', 'label' => esc_html(\PublishPress_Statuses::__wp('Scheduled'))]]
+	            ['publish' => (object)['name' => 'publish', 'label' => esc_html(__('Published'))]],
+	            ['future' => (object)['name' => 'future', 'label' => esc_html(__('Scheduled'))]]
 	        );
         } else {
             $ordered_statuses = \PublishPress_Statuses::getPostStati($args, 'object');
@@ -235,16 +235,16 @@ class PostEditGutenberg
 
                 if ('pending' == $status_obj->name) {
                     $status_obj = get_post_status_object('pending');
-                    $status_label = (!empty($status_obj)) ? $status_obj->label : esc_html(\PublishPress_Statuses::__wp('Pending Review'));
+                    $status_label = (!empty($status_obj)) ? $status_obj->label : esc_html(__('Pending Review'));
 
                     $labels = (object) [
                         'save_as' => (!empty($status_obj) && !empty($status_obj->labels) && !empty($status_obj->labels->save_as)) 
                         ? $status_obj->labels->save_as 
-                        : \PublishPress_Statuses::__wp('Save as Pending'),
+                        : __('Save as Pending'),
                         
                         'publish' => (!empty($status_obj) && !empty($status_obj->labels) && !empty($status_obj->labels->publish)) 
                         ? $status_obj->labels->publish 
-                        : \PublishPress_Statuses::__wp('Submit for Review'),
+                        : __('Submit for Review'),
                     ];
 
                     // Alternate item to allow use of "Save as Pending" button
@@ -279,10 +279,10 @@ class PostEditGutenberg
             }
 
             if ('draft' == $status_obj->name) {
-                $ordered_statuses[$key]->save_as = \PublishPress_Statuses::__wp('Save Draft', 'publishpress-statuses');
+                $ordered_statuses[$key]->save_as = __('Save Draft', 'publishpress-statuses');
                 $ordered_statuses[$key]->submit = $ordered_statuses[$key]->save_as;
             } else {
-            	$ordered_statuses[$key]->save_as = (!empty($status_obj->labels->save_as)) ? $status_obj->labels->save_as : \PublishPress_Statuses::__wp('Save');
+            	$ordered_statuses[$key]->save_as = (!empty($status_obj->labels->save_as)) ? $status_obj->labels->save_as : __('Save');
             	$ordered_statuses[$key]->submit = (!empty($status_obj->labels->publish)) ? $status_obj->labels->publish : __('Advance Status', 'publishpress-statuses');
             }
         }
