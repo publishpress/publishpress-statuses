@@ -29,7 +29,7 @@ class StatusEditUI
 
         $editable_taxonomies = apply_filters('publishpress_statuses_editable_taxonomies', ['post_status']);
 
-        $tabs = ['name' => \PublishPress_Statuses::__wp('Name')];
+        $tabs = ['name' => __('Name')];
 
         if (empty($status->publish) && !in_array($name, ['draft', 'future', 'publish', 'private'])) {
             if (empty($status->private)) {
@@ -278,7 +278,7 @@ class StatusEditUI
 
             <tr class="form-field">
                 <th scope="row" valign="top"><?php
-                    \PublishPress_Statuses::_e_wp('Slug', 'publishpress-statuses'); ?></th>
+                    _e('Slug', 'publishpress-statuses'); ?></th>
                 <td>
                     <input type="text" name="slug" id="slug" 
                             value="<?php

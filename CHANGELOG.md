@@ -1,6 +1,9 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.3.2] - 4 May 2026
+- Change : Change some translation calls for compliance with packaging script
+
 [1.3.1] - 30 Apr 2026
 - Fixed : Workflow progression failed to save on some sites
 - Fixed : Status dropdown in post editor sidebar was mislocated in some cases
