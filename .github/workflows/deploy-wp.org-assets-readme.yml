@@ -11,4 +11,4 @@ on:
 jobs:
   check:
     # v2.0.0
-    uses: publishpress/github-workflows/.github/workflows/deploy-free-assets.yml@master
+    uses: publishpress/github-workflows/.github/workflows/deploy-free-assets.yml@v1

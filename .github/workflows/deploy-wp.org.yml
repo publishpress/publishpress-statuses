@@ -11,5 +11,5 @@ jobs:
 
   deploy-wp-org:
     # v2.0.0
-    uses: publishpress/github-workflows/.github/workflows/deploy-free.yml@master
+    uses: publishpress/github-workflows/.github/workflows/deploy-free.yml@v1
     needs: [code-check]
