@@ -14,3 +14,4 @@ jobs:
       contents: write
     uses: publishpress/github-workflows/.github/workflows/deploy-free.yml@v1
     needs: [code-check]
+    secrets: inherit

@@ -11,3 +11,4 @@ on:
 jobs:
   check:
     uses: publishpress/github-workflows/.github/workflows/deploy-free-assets.yml@v1
+    secrets: inherit
