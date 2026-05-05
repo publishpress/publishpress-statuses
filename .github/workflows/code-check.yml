@@ -11,4 +11,4 @@ on:
 jobs:
   check:
     # v2.0.0
-    uses: publishpress/github-workflows/.github/workflows/code-check.yml@master
+    uses: publishpress/github-workflows/.github/workflows/code-check.yml@v1
