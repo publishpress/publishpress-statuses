@@ -264,7 +264,6 @@ function PPCS_RecaptionButton(btnSelector, btnCaption) {
 
 	  $('span.presspermit-save-button button').removeClass('editor-post-save-draft').removeClass(hideClass).html(btnCaption);
 
-      // Clone the stock button
       node.addClass(hideClass).attr('aria-disabled', true);
     }
   });
