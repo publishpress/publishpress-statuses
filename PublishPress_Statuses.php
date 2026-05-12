@@ -3460,13 +3460,17 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
         
         if ($post_id) {
+            $post_type = get_post_field('post_type', $post_id);
+
+            if (!in_array($post_type, self::instance()->get_enabled_post_types())) {
+                return $status;
+            }
+            
             if ($orig_status != $status) {
                 if (!in_array($status, ['draft'])) {
                     $this->filtered_post_status[$post_id] = $status;
                 }
             }
-
-            $post_type = get_post_field('post_type', $post_id);
 
             if (!in_array($post_type, apply_filters('publishpress_statuses_basic_filtering_post_types', ['forum', 'topic', 'reply']))) {
                 if (!\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $status)) {
@@ -3515,6 +3519,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             if (!$post_type = \PP_Statuses_Functions::findPostType()) {
                 return $post_status;
             }
+        }
+
+        if (!in_array($post_type, self::instance()->get_enabled_post_types())) {
+            return $post_status;
         }
         
         $options = \PublishPress_Statuses::instance()->options;
