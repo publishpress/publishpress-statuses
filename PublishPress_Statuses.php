@@ -3366,7 +3366,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $rest = \PublishPress_Statuses\REST::instance();
 
             if (!empty($rest->params['pp_status_selection'])) {
-                $post_status = $rest->params['pp_status_selection'];
+                if ($post_type = \PP_Statuses_Functions::findPostType()) {
+                    if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
+                        $post_status = $rest->params['pp_status_selection'];
+                    }
+                }
             }
         }
 
@@ -3463,7 +3467,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $post_type = get_post_field('post_type', $post_id);
 
             if (!in_array($post_type, self::instance()->get_enabled_post_types())) {
-                return $status;
+                return $orig_status;
             }
             
             if ($orig_status != $status) {
@@ -3664,7 +3668,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if ($doing_rest && !empty($rest->params['pp_status_selection'])) {
-            $_post_status = $rest->params['pp_status_selection'];
+            if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
+                $_post_status = $rest->params['pp_status_selection'];
+            }
         } else {
             if (('_public' === \PP_Statuses_Functions::REQUEST_key('post_status')) && !$doing_rest) {
                 $_post_status = 'public';
