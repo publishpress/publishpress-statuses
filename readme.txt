@@ -5,7 +5,7 @@ Author URI: https://publishpress.com
 Tags: custom statuses, workflow, pending review, status manager, archived status
 Requires at least: 5.5
 Requires PHP: 7.2.5
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 1.3.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -80,7 +80,7 @@ You can take this further and decide who assign, edit, and delete content in eac
 
 The Pro versions of the PublishPress plugins are well worth your investment. The Pro versions have extra features and faster support. [Click here to join PublishPress](https://publishpress.com/pricing/).
 
-Join PublishPress and you'll get access to these ten Pro plugins:
+Join PublishPress and you'll get access to these Pro plugins:
 
 * [PublishPress Authors Pro](https://publishpress.com/authors) allows you to add multiple authors and guest authors to WordPress posts.
 * [PublishPress Blocks Pro](https://publishpress.com/blocks) has everything you need to build professional websites with the WordPress block editor.
@@ -91,7 +91,8 @@ Join PublishPress and you'll get access to these ten Pro plugins:
 * [PublishPress Planner Pro](https://publishpress.com/publishpress) is the plugin for managing and scheduling WordPress content.
 * [PublishPress Revisions Pro](https://publishpress.com/revisions) allows you to update your published pages with teamwork and precision.
 * [PublishPress Series Pro](https://publishpress.com/series) enables you to group content together into a series.
-* [PublishPress Statuses Pro](https://publishpress.com/series) enables you to create additional publishing steps for your posts.
+* [PublishPress Shortlinks Pro](https://publishpress.com/shortlinks) allows you to create custom URLs for your posts and external links. 
+* [PublishPress Statuses Pro](https://publishpress.com/statuses) enables you to create additional publishing steps for your posts.
 
 Together, these plugins are a suite of powerful publishing tools for WordPress. If you need to create a professional workflow in WordPress, with moderation, revisions, permissions and more, then you should try PublishPress.
 
