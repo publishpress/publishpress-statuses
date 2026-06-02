@@ -3491,6 +3491,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             return $post_status;
         }
         
+        if (function_exists('rvy_is_revision_status') && rvy_is_revision_status($post_status)) {
+            return $post_status;
+        }
+        
         if ('public' == $post_status) {
             $post_status = 'publish';
         }
