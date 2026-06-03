@@ -14,3 +14,7 @@ div.pp-statuses-workflow span.pp-status-color-title {
 margin-left: 5px;
 margin-top: 1px;
 }
+
+.publishpress-extended-post-status select {
+line-height: 1.5 !important;
+}
