@@ -651,6 +651,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             $statuses = array_keys(\PublishPress_Statuses\Admin::get_selectable_statuses($post_id, $args));
 
+            if ($type_obj = get_post_type_object($_post->post_type)) {
+                if (!empty($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->publish_posts)) {
+                    $statuses[] = 'publish';
+                }
+            }
+
             \PP_Statuses_Functions::printAjaxResponse('success', '', $statuses, $params);
         } else {
             \PP_Statuses_Functions::printAjaxResponse('success', '', [], []);
