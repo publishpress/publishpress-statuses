@@ -18,3 +18,8 @@ margin-top: 1px;
 .publishpress-extended-post-status select {
 line-height: 1.5 !important;
 }
+
+.presspermit-save-button button {
+background: #655997 !important;
+color: white !important;
+}
