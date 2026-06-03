@@ -23,3 +23,7 @@ line-height: 1.5 !important;
 background: #655997 !important;
 color: white !important;
 }
+
+.editor-post-schedule__panel-dropdown {
+width: inherit;
+}
