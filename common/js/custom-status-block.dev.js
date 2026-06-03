@@ -48,11 +48,6 @@ var publishedStatuses = window.PPCustomStatuses.publishedStatusObjects.map(funct
 
 var ppsCaptions = window.PPCustomStatuses.captions;
 
-// Remove the "Published" item from statuses array
-ppStatuses = ppStatuses.filter(function (item) {
-  return item.value !== 'publish';
-});
-
 var ppGetStatusLabel = function ppGetStatusLabel(slug) {
   var item = ppStatuses.find(function (s) {
     return s.value === slug;
@@ -161,6 +156,8 @@ var querySelectableStatuses = function(status, post_id) {
             $('div.publishpress-extended-post-status select option[value="pending"]').hide();
           }
         }
+
+        $('div.publishpress-extended-post-status select option[value="publish"]').insertBefore('div.publishpress-extended-post-status select option[value="_"]');
       });
 
       if (typeof (retval['params']) != 'undefined') {
@@ -301,6 +298,14 @@ jQuery(document).ready(function ($) {
     }
   });
 
+  $(document).on('click', '.editor-change-status__options input', function() {
+    $('.editor-post-publish-button button').removeAttr('aria-disabled').css('z-index', '999');
+  });
+
+  $(document).on('click', '.editor-change-status__options .components-radio-control__option input[value="draft"]', function() {
+    $('div.publishpress-extended-post-status select').val('draft');
+  });
+
   setInterval(function() {
     if ($('editor-change-status__content:visible'.length)) {
       if ($('div.publishpress-extended-post-status select:visible').length) {
@@ -358,13 +363,11 @@ var sideEffectL10nManipulation = function sideEffectL10nManipulation(status) {
       }
     }
 
-    if (('publish' != status) && (-1 == PPCustomStatuses.publishedStatuses.indexOf(status))) {
+    if (-1 == PPCustomStatuses.publishedStatuses.indexOf(status)) {
       $('div.publishpress-extended-post-status select').show();
-      $('div.publishpress-extended-post-status-published').hide();
       $('div.publishpress-extended-post-status-scheduled').hide();
-      $('div.publishpress-extended-post-status select option[value="publish"]').hide();
     } else {
-      if (('publish' != status) && ('private' != status) && (-1 != PPCustomStatuses.publishedStatuses.indexOf(status))) {
+      if (('private' != status) && (-1 != PPCustomStatuses.publishedStatuses.indexOf(status))) {
         $('.editor-post-publish-panel__toggle').hide();
       }
 
