@@ -541,15 +541,24 @@ class StatusEditUI
                     <br>
                     <div class="pp-statuses-warning">
                         <?php 
-                        printf(
-                            esc_html__('Status-specific post capabilities are %1$scurrently disabled%2$s. You can %3$schange this setting%4$s.', 'publishpress-statuses'),
-                            '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
-                            '</a>',
-                            '<a href="' . esc_url(admin_url('admin.php?page=pp-capabilities-settings&pp_tab=capabilities')) . '">',
-                            '</a>'
-                        );
+                        esc_html_e('Post Access for this status cannot be customized until status-specific capability requirements are enabled.', 'publishpress-statuses');
                         ?>
                     </div>
+
+                    <table class="form-table pp-statuses-options" style="margin: 0px;">                
+                    <tbody><tr class="form-field">
+                    <th><label><?php _e('Status Capabilities', 'publishpress-statuses');?></label>
+                    </th>
+
+                    <td class="set-status-roles">
+                        <label for="pp_statuses_enable_status_post_caps"><input type="checkbox" name="pp_statuses_enable_status_post_caps" id="pp_statuses_enable_status_post_caps"> 
+                        <?php 
+                        _e('Require status-specific capabilities for post editing, deletion', 'publishpress-statuses');
+                        ?>
+                        </label>
+                    </td></tr>
+                    </tbody>
+                    </table>
                 <?php endif;
 
                 break;
@@ -607,6 +616,7 @@ class StatusEditUI
 
         <?php if (!empty($status_obj) && ('future' != $status_obj->name)) :
             $save_as_label = (!empty($status_obj) && !empty($status_obj->labels->save_as)) ? $status_obj->labels->save_as : '';
+
             ?>
             <tr class="form-field">
                 <th><label for="status_save_as_label"><?php esc_html_e('Save As Label', 'publishpress-statuses') ?></label></th>

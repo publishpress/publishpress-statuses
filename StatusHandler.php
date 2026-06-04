@@ -342,6 +342,11 @@ class StatusHandler {
             }
         }
 
+        if (!empty($_POST['pp_statuses_enable_status_post_caps'])) {
+            update_option('cme_custom_status_control', true);
+            update_option('cme_custom_status_postmeta_caps', true);
+        }
+
         do_action('publishpress_statuses_edit_status', $existing_status->name, $args);
 
         $return = self::updateCustomStatus($existing_status->name, $args);
