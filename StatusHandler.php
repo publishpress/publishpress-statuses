@@ -165,6 +165,17 @@ class StatusHandler {
             $redirect_args['status_type'] = $status_type;
         }
 
+        if ($status_positions = get_option('publishpress_status_positions')) {
+            $first_statuses = (in_array('draft-revision', $status_positions)) ? ['draft', 'draft-revision', $status_name] : ['draft', $status_name];
+            
+            $status_positions = array_merge(
+                $first_statuses,
+                array_diff($status_positions, $first_statuses)
+            );
+
+            update_option('publishpress_status_positions', $status_positions);
+        }
+
         // Redirect if successful
         $redirect_url = \PublishPress_Statuses::getLink($redirect_args);
 
