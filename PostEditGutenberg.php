@@ -184,9 +184,10 @@ class PostEditGutenberg
 
         if (!empty($args['moderation'])) {
 	        $draft_obj = get_post_status_object('draft');
-	
-
             $icon = (isset($draft_obj->icon)) ? $draft_obj->icon : '';
+
+            $published_obj = get_post_status_object('publish');
+            $future_obj = get_post_status_object('future');
 
 	        $ordered_statuses = array_merge(
 	            ['draft' => (object)['name' => 'draft', 'label' => esc_html(__('Draft')), 'icon' => $icon, 'color' => $draft_obj->color]],
@@ -196,8 +197,8 @@ class PostEditGutenberg
 	                ['future' => true]
 	            ),
 	
-	            ['publish' => (object)['name' => 'publish', 'label' => esc_html(__('Published'))]],
-	            ['future' => (object)['name' => 'future', 'label' => esc_html(__('Scheduled'))]]
+	            ['publish' => (object)['name' => 'publish', 'label' => esc_html(__('Published')), 'icon' => $published_obj->icon, 'color' => $published_obj->color]],
+	            ['future' => (object)['name' => 'future', 'label' => esc_html(__('Scheduled')), 'icon' => $future_obj->icon, 'color' => $future_obj->color]]
 	        );
         } else {
             $ordered_statuses = \PublishPress_Statuses::getPostStati($args, 'object');
