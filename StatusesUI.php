@@ -1300,11 +1300,11 @@ class StatusesUI {
             }
 
         	if (!$title = apply_filters('publishpress_statuses_management_title', '', $status_type)) {
-        		$title = __('Add New Pre-Publication Status', 'publishpress-statuses');
+        		$title = ('visibility' == $status_type) ? __('Add New Visibility Status', 'publishpress-statuses') : __('Add New Pre-Publication Status', 'publishpress-statuses');
         	}
         
         	if (!$descript = apply_filters('publishpress_statuses_management_descript', '', $status_type)) {
-        		$descript = __('This status can be assigned to an unpublished post using the Post Status dropdown.', 'publishpress-statuses');
+        		$descript = ('visibility' == $status_type) ? __('This status can be assigned to customize post privacy.', 'publishpress-statuses') : __('This status can be assigned to an unpublished post using the Post Status dropdown.', 'publishpress-statuses');
         	}
 
             \PublishPress\ModuleAdminUI_Base::instance()->module->title = $title;
