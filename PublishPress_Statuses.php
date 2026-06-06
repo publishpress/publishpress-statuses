@@ -228,6 +228,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             'label_storage' => '',
             'pending_status_regulation' => '',
             'auto_import' => 1,
+            'new_statuses_main_workflow' => 1,
 
             'custom_privacy_edit_caps' => defined('PPS_CUSTOM_PRIVACY_EDIT_CAPS') ? PPS_CUSTOM_PRIVACY_EDIT_CAPS : 0,
             'quick_edit_custom_privacy_dropdown' => 1,
@@ -1712,6 +1713,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
+        asort($stored_status_positions);
+
         // Make sure Revision statuses are not improperly disabled
         if ($positions && !empty($stored_status_positions)) {
             foreach (array_keys($stored_status_positions) as $status_name) {
@@ -1898,7 +1901,16 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if (!empty($did_status_maint)) {
             do_action('publishpress_statuses_maintenance_done');
         }
+
+        if (!empty(\PublishPress_Statuses::instance()->options->new_statuses_main_workflow)) {
+            $statuses_defaulted_to_main = (array) get_option('publishpress_statuses_defaulted_to_main', []);
+        } else {
+            $statuses_defaulted_to_main = [];
+        }
         
+        $default_positions = [];
+        $default_main_positions = [];
+
         // restore previously merged status positions (@todo: restore any other properties?)
         foreach ($all_statuses as $status_name => $status) {
             if (isset($stored_status_positions[$status_name])) {
@@ -1936,17 +1948,37 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 } else {
                     $taxonomy = (!empty($status->taxonomy)) ? $status->taxonomy : 'post_status';
 
-                    if (!isset($default_positions[$taxonomy])) {
-                        $default_positions[$taxonomy] = apply_filters(
-                            'publishpress_statuses_default_position',
-                            $all_statuses['_pre-publish-alternate']->position,
-                            $taxonomy,
-                            $all_statuses
-                        );
-                    }
+                    if (!empty($statuses_defaulted_to_main[$status_name]) || !empty($all_statuses[$status_name]->pp_builtin)) {
+                        if (!isset($default_main_positions[$taxonomy])) {
+                            $set_pos = $all_statuses['_pre-publish-alternate']->position - 1;
 
-                    $all_statuses[$status_name]->position = $default_positions[$taxonomy];
-                    $stored_status_positions[$status_name] = $default_positions[$taxonomy];
+                            $default_main_positions[$taxonomy] = apply_filters(
+                                'publishpress_statuses_default_main_position',
+                                $set_pos,
+                                $taxonomy,
+                                $all_statuses
+                            );
+                        }
+
+                        $all_statuses[$status_name]->position = $default_main_positions[$taxonomy];
+                        $stored_status_positions[$status_name] = $default_main_positions[$taxonomy];
+                    } else {
+                        $all_statuses['_pre-publish-alternate']->position;
+
+                        if (!isset($default_positions[$taxonomy])) {
+                            $set_pos = $all_statuses['_pre-publish-alternate']->position;
+    
+                            $default_positions[$taxonomy] = apply_filters(
+                                'publishpress_statuses_default_position',
+                                $set_pos,
+                                $taxonomy,
+                                $all_statuses
+                            );
+                        }
+
+                        $all_statuses[$status_name]->position = $default_positions[$taxonomy];
+                        $stored_status_positions[$status_name] = $default_positions[$taxonomy];
+                    }
                 }
             }
 

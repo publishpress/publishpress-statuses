@@ -165,15 +165,36 @@ class StatusHandler {
             $redirect_args['status_type'] = $status_type;
         }
 
-        if ($status_positions = get_option('publishpress_status_positions')) {
-            $first_statuses = (in_array('draft-revision', $status_positions)) ? ['draft', 'draft-revision', $status_name] : ['draft', $status_name];
-            
-            $status_positions = array_merge(
-                $first_statuses,
-                array_diff($status_positions, $first_statuses)
-            );
-
-            update_option('publishpress_status_positions', $status_positions);
+        if (!empty(\PublishPress_Statuses::instance()->options->new_statuses_main_workflow)) {
+            $defaulted_to_main = (array) get_option('publishpress_statuses_defaulted_to_main', []);
+            $defaulted_to_main[$status_name] = true;
+            update_option('publishpress_statuses_defaulted_to_main', $defaulted_to_main);
+        
+            if ($status_positions = get_option('publishpress_status_positions')) {
+                $status_positions = array_values($status_positions);
+    
+                if ('post_status' == $taxonomy) {
+                    if ($alternate_pos = array_search('_pre-publish-alternate', $status_positions)) {
+                        $status_positions = array_merge(
+                            array_slice($status_positions, 0, $alternate_pos - 1),
+                            [$status_name],
+                            array_slice($status_positions, $alternate_pos)
+                        );
+    
+                        update_option('publishpress_status_positions', $status_positions);
+                    }
+                } elseif ('pp_revision_status' == $taxonomy) {
+                    if ($alternate_pos) {
+                        $status_positions = array_merge(
+                            array_slice($status_positions, 0, $alternate_pos - 1),
+                            [$status_name],
+                            array_slice($status_positions, $alternate_pos)
+                        );
+    
+                        update_option('publishpress_status_positions', $status_positions);
+                    }
+                }
+            }
         }
 
         // Redirect if successful
