@@ -314,7 +314,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
                     global $l10n;
 
                     if ( !isset( $l10n[ 'capabilities-pro' ] ) ) {
-                        $l10n[ 'capabilities-pro' ] = new NOOP_Translations();
+                        $l10n[ 'capabilities-pro' ] = new NOOP_Translations();  // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
                     }
                 }
             }, 9
@@ -325,7 +325,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             function() {
                 if (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && version_compare(PUBLISHPRESS_CAPS_PRO_VERSION, '2.45.0', '<')) {
                     global $l10n;
-                    unset( $l10n[ 'capabilities-pro' ] );
+                    unset( $l10n[ 'capabilities-pro' ] );   // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
                 }
             }, 11
         );
