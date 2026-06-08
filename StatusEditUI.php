@@ -392,7 +392,7 @@ class StatusEditUI
                                 $can_set_status = $is_administrator || !empty($role->capabilities[$cap_name]);
                         ?>
                                 <div>
-                                <input type="hidden" name="roles_set_status[<?php echo esc_attr($role_name);?>]" value="<?php if ($is_administrator) echo '1'; else echo '0';?>" />
+                                <input type="hidden" name="roles_set_status[<?php echo esc_attr($role_name);?>]" value="0" />
 
                                 <label>
                                 <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status" autocomplete="off"
