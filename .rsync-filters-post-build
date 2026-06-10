@@ -1,4 +1,6 @@
 - .distignore
+- .env
+- .env.example
 - .git
 - .gitattributes
 - .github
@@ -6,7 +8,5 @@
 - .rsync-filters-post-build
 - .rsync-filters-pre-build
 - /vendor
-- composer.lock
 - composer.json
-- .env
-- .env.example
+- composer.lock
