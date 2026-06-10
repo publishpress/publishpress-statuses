@@ -328,8 +328,16 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public function fltForcePrepublishPanel($meta_value, $object_id, $meta_key, $single, $meta_type) {
-        if (('wp_persisted_preferences' != $meta_key) && !defined('PP_STATUSES_NO_FORCED_PREPUBLISH') || \PublishPress_Statuses::DisabledForPostType()) {
+        if (('wp_persisted_preferences' != $meta_key) || defined('PP_STATUSES_NO_FORCED_PREPUBLISH') || \PublishPress_Statuses::DisabledForPostType()) {
             return $meta_value;
+        }
+
+        global $post;
+
+        if (!empty($post)) {
+            if (\PublishPress_Statuses::isPostBlacklisted($post->ID)) {
+                return $meta_value;
+            }
         }
 
         $meta_cache = wp_cache_get( $object_id, $meta_type . '_meta' );
@@ -343,20 +351,17 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
  
-        global $post;
-
-        if (!empty($post)) {
-            if (\PublishPress_Statuses::isPostBlacklisted($post->ID)) {
-                return $meta_value;
-            }
-        }
-
         if ( isset( $meta_cache[ $meta_key ] ) ) {
+            // This is serialized by WP Core, and we have no other way to modify it.
             $meta_value = array_map( 'maybe_unserialize', $meta_cache[ $meta_key ] );
         }
 
         if ($meta_value) {
-            if (isset($meta_value[0]) && isset($meta_value[0]['core/edit-post']) && isset($meta_value[0]['core/edit-post']['isPublishSidebarEnabled']) && !$meta_value[0]['core/edit-post']['isPublishSidebarEnabled']) {
+            if (isset($meta_value['core/edit-post']) && isset($meta_value['core/edit-post'])) {
+                $meta_value['core/edit-post']['isPublishSidebarEnabled'] = true;
+            }
+
+            if (isset($meta_value[0]) && isset($meta_value[0]['core/edit-post'])) {
                 $meta_value[0]['core/edit-post']['isPublishSidebarEnabled'] = true;
             }
         }
@@ -1792,7 +1797,21 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                         if (in_array($meta_key, $term_meta_fields)) {
                             $value = maybe_unserialize($value);
                             $value = (is_array($value)) ? reset($value) : $value;
-                            $term->$meta_key = maybe_unserialize($value);
+                            $value = maybe_unserialize($value);
+
+                            if (is_object($value)) {
+                                foreach (get_object_vars($value) as $k => $val) {
+                                    $value->$k = sanitize_title($val);
+                                }
+                            } elseif (is_array($value)) {
+                                foreach ($value as $k => $val) {
+                                    $value[$k] = sanitize_title($val);
+                                }
+                            } else {
+                                $value = sanitize_title($value);
+                            }
+
+                            $term->$meta_key = $value;
                         }
                     }
                 }
