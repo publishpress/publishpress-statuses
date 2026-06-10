@@ -211,6 +211,21 @@ class PostSave
             return $status;
         }
 
+        /*
+        * On frontend requests, PP_Statuses_Functions::getPostID() can fall back
+        * to the globally queried post. During wp_insert_post() sanitization this
+        * may be unrelated to the post currently being inserted. In that case,
+        * applying forced/default visibility can overwrite third-party internal
+        * post statuses, such as Tutor LMS enrollment status "completed".
+        */
+        if (!is_admin()
+        && (!defined('REST_REQUEST') || !REST_REQUEST)
+        && (!defined('DOING_AJAX') || !DOING_AJAX)
+        && empty($_REQUEST['post']) && empty($_REQUEST['post_ID']) && empty($_REQUEST['post_id'])   // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        ) {
+            return $status;
+        }
+
         static $done;
         if (!empty($done)) return $status;  // Important: if other plugin code inserts additional posts in response, don't filter those
         $done = true;
