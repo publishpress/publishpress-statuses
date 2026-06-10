@@ -1801,14 +1801,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                             if (is_object($value)) {
                                 foreach (get_object_vars($value) as $k => $val) {
-                                    $value->$k = sanitize_title($val);
+                                    $value->$k = sanitize_text_field($val);
                                 }
                             } elseif (is_array($value)) {
                                 foreach ($value as $k => $val) {
-                                    $value[$k] = sanitize_title($val);
+                                    $value[$k] = sanitize_text_field($val);
                                 }
                             } else {
-                                $value = sanitize_title($value);
+                                $value = sanitize_text_field($value);
                             }
 
                             $term->$meta_key = $value;
