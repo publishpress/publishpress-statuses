@@ -43,7 +43,7 @@ padding-top: 0;
 }
 
 div.pp-statuses-workflow div.components-radio-control__option label {
-vertical-align: text-top !important;
+vertical-align: text-bottom !important;
 padding-left: 5px;
 }
 

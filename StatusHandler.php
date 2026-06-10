@@ -165,6 +165,38 @@ class StatusHandler {
             $redirect_args['status_type'] = $status_type;
         }
 
+        if (!empty(\PublishPress_Statuses::instance()->options->new_statuses_main_workflow)) {
+            $defaulted_to_main = (array) get_option('publishpress_statuses_defaulted_to_main', []);
+            $defaulted_to_main[$status_name] = true;
+            update_option('publishpress_statuses_defaulted_to_main', $defaulted_to_main);
+        
+            if ($status_positions = get_option('publishpress_status_positions')) {
+                $status_positions = array_values($status_positions);
+    
+                if ('post_status' == $taxonomy) {
+                    if ($alternate_pos = array_search('_pre-publish-alternate', $status_positions)) {
+                        $status_positions = array_merge(
+                            array_slice($status_positions, 0, $alternate_pos - 1),
+                            [$status_name],
+                            array_slice($status_positions, $alternate_pos)
+                        );
+    
+                        update_option('publishpress_status_positions', $status_positions);
+                    }
+                } elseif ('pp_revision_status' == $taxonomy) {
+                    if ($alternate_pos) {
+                        $status_positions = array_merge(
+                            array_slice($status_positions, 0, $alternate_pos - 1),
+                            [$status_name],
+                            array_slice($status_positions, $alternate_pos)
+                        );
+    
+                        update_option('publishpress_status_positions', $status_positions);
+                    }
+                }
+            }
+        }
+
         // Redirect if successful
         $redirect_url = \PublishPress_Statuses::getLink($redirect_args);
 
@@ -340,6 +372,11 @@ class StatusHandler {
                     unset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"]);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
                 }
             }
+        }
+
+        if (!empty($_POST['pp_statuses_enable_status_post_caps'])) {
+            update_option('cme_custom_status_control', true);
+            update_option('cme_custom_status_postmeta_caps', true);
         }
 
         do_action('publishpress_statuses_edit_status', $existing_status->name, $args);

@@ -228,6 +228,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             'label_storage' => '',
             'pending_status_regulation' => '',
             'auto_import' => 1,
+            'new_statuses_main_workflow' => 1,
 
             'custom_privacy_edit_caps' => defined('PPS_CUSTOM_PRIVACY_EDIT_CAPS') ? PPS_CUSTOM_PRIVACY_EDIT_CAPS : 0,
             'quick_edit_custom_privacy_dropdown' => 1,
@@ -327,8 +328,16 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public function fltForcePrepublishPanel($meta_value, $object_id, $meta_key, $single, $meta_type) {
-        if (('wp_persisted_preferences' != $meta_key) && !defined('PP_STATUSES_NO_FORCED_PREPUBLISH') || \PublishPress_Statuses::DisabledForPostType()) {
+        if (('wp_persisted_preferences' != $meta_key) || defined('PP_STATUSES_NO_FORCED_PREPUBLISH') || \PublishPress_Statuses::DisabledForPostType()) {
             return $meta_value;
+        }
+
+        global $post;
+
+        if (!empty($post)) {
+            if (\PublishPress_Statuses::isPostBlacklisted($post->ID)) {
+                return $meta_value;
+            }
         }
 
         $meta_cache = wp_cache_get( $object_id, $meta_type . '_meta' );
@@ -342,20 +351,17 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
  
-        global $post;
-
-        if (!empty($post)) {
-            if (\PublishPress_Statuses::isPostBlacklisted($post->ID)) {
-                return $meta_value;
-            }
-        }
-
         if ( isset( $meta_cache[ $meta_key ] ) ) {
+            // This is serialized by WP Core, and we have no other way to modify it.
             $meta_value = array_map( 'maybe_unserialize', $meta_cache[ $meta_key ] );
         }
 
         if ($meta_value) {
-            if (isset($meta_value[0]) && isset($meta_value[0]['core/edit-post']) && isset($meta_value[0]['core/edit-post']['isPublishSidebarEnabled']) && !$meta_value[0]['core/edit-post']['isPublishSidebarEnabled']) {
+            if (isset($meta_value['core/edit-post']) && isset($meta_value['core/edit-post'])) {
+                $meta_value['core/edit-post']['isPublishSidebarEnabled'] = true;
+            }
+
+            if (isset($meta_value[0]) && isset($meta_value[0]['core/edit-post'])) {
                 $meta_value[0]['core/edit-post']['isPublishSidebarEnabled'] = true;
             }
         }
@@ -650,6 +656,12 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
 
             $statuses = array_keys(\PublishPress_Statuses\Admin::get_selectable_statuses($post_id, $args));
+
+            if ($type_obj = get_post_type_object($_post->post_type)) {
+                if (!empty($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->publish_posts)) {
+                    $statuses[] = 'publish';
+                }
+            }
 
             \PP_Statuses_Functions::printAjaxResponse('success', '', $statuses, $params);
         } else {
@@ -1706,6 +1718,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
+        asort($stored_status_positions);
+
         // Make sure Revision statuses are not improperly disabled
         if ($positions && !empty($stored_status_positions)) {
             foreach (array_keys($stored_status_positions) as $status_name) {
@@ -1783,7 +1797,21 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                         if (in_array($meta_key, $term_meta_fields)) {
                             $value = maybe_unserialize($value);
                             $value = (is_array($value)) ? reset($value) : $value;
-                            $term->$meta_key = maybe_unserialize($value);
+                            $value = maybe_unserialize($value);
+
+                            if (is_object($value)) {
+                                foreach (get_object_vars($value) as $k => $val) {
+                                    $value->$k = sanitize_text_field($val);
+                                }
+                            } elseif (is_array($value)) {
+                                foreach ($value as $k => $val) {
+                                    $value[$k] = sanitize_text_field($val);
+                                }
+                            } else {
+                                $value = sanitize_text_field($value);
+                            }
+
+                            $term->$meta_key = $value;
                         }
                     }
                 }
@@ -1892,7 +1920,16 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         if (!empty($did_status_maint)) {
             do_action('publishpress_statuses_maintenance_done');
         }
+
+        if (!empty(\PublishPress_Statuses::instance()->options->new_statuses_main_workflow)) {
+            $statuses_defaulted_to_main = (array) get_option('publishpress_statuses_defaulted_to_main', []);
+        } else {
+            $statuses_defaulted_to_main = [];
+        }
         
+        $default_positions = [];
+        $default_main_positions = [];
+
         // restore previously merged status positions (@todo: restore any other properties?)
         foreach ($all_statuses as $status_name => $status) {
             if (isset($stored_status_positions[$status_name])) {
@@ -1930,17 +1967,37 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 } else {
                     $taxonomy = (!empty($status->taxonomy)) ? $status->taxonomy : 'post_status';
 
-                    if (!isset($default_positions[$taxonomy])) {
-                        $default_positions[$taxonomy] = apply_filters(
-                            'publishpress_statuses_default_position',
-                            $all_statuses['_pre-publish-alternate']->position,
-                            $taxonomy,
-                            $all_statuses
-                        );
-                    }
+                    if (!empty($statuses_defaulted_to_main[$status_name]) || !empty($all_statuses[$status_name]->pp_builtin)) {
+                        if (!isset($default_main_positions[$taxonomy])) {
+                            $set_pos = $all_statuses['_pre-publish-alternate']->position - 1;
 
-                    $all_statuses[$status_name]->position = $default_positions[$taxonomy];
-                    $stored_status_positions[$status_name] = $default_positions[$taxonomy];
+                            $default_main_positions[$taxonomy] = apply_filters(
+                                'publishpress_statuses_default_main_position',
+                                $set_pos,
+                                $taxonomy,
+                                $all_statuses
+                            );
+                        }
+
+                        $all_statuses[$status_name]->position = $default_main_positions[$taxonomy];
+                        $stored_status_positions[$status_name] = $default_main_positions[$taxonomy];
+                    } else {
+                        $all_statuses['_pre-publish-alternate']->position;
+
+                        if (!isset($default_positions[$taxonomy])) {
+                            $set_pos = $all_statuses['_pre-publish-alternate']->position;
+    
+                            $default_positions[$taxonomy] = apply_filters(
+                                'publishpress_statuses_default_position',
+                                $set_pos,
+                                $taxonomy,
+                                $all_statuses
+                            );
+                        }
+
+                        $all_statuses[$status_name]->position = $default_positions[$taxonomy];
+                        $stored_status_positions[$status_name] = $default_positions[$taxonomy];
+                    }
                 }
             }
 
@@ -3366,7 +3423,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $rest = \PublishPress_Statuses\REST::instance();
 
             if (!empty($rest->params['pp_status_selection'])) {
-                $post_status = $rest->params['pp_status_selection'];
+                if ($post_type = \PP_Statuses_Functions::findPostType()) {
+                    if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
+                        $post_status = $rest->params['pp_status_selection'];
+                    }
+                }
             }
         }
 
@@ -3460,13 +3521,17 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
         
         if ($post_id) {
+            $post_type = get_post_field('post_type', $post_id);
+
+            if (!in_array($post_type, self::instance()->get_enabled_post_types())) {
+                return $orig_status;
+            }
+            
             if ($orig_status != $status) {
                 if (!in_array($status, ['draft'])) {
                     $this->filtered_post_status[$post_id] = $status;
                 }
             }
-
-            $post_type = get_post_field('post_type', $post_id);
 
             if (!in_array($post_type, apply_filters('publishpress_statuses_basic_filtering_post_types', ['forum', 'topic', 'reply']))) {
                 if (!\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $status)) {
@@ -3483,7 +3548,26 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     // If a public or private status is selected, change it to the specified force_visibility status
     public static function flt_force_visibility($post_status)
     {
+        /*
+        * On frontend requests, PP_Statuses_Functions::getPostID() can fall back
+        * to the globally queried post. During wp_insert_post() sanitization this
+        * may be unrelated to the post currently being inserted. In that case,
+        * applying forced/default visibility can overwrite third-party internal
+        * post statuses, such as Tutor LMS enrollment status "completed".
+        */
+        if (!is_admin()
+        && (!defined('REST_REQUEST') || !REST_REQUEST)
+        && (!defined('DOING_AJAX') || !DOING_AJAX)
+        && empty($_REQUEST['post']) && empty($_REQUEST['post_ID']) && empty($_REQUEST['post_id'])   // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        ) {
+            return $post_status;
+        }
+
         if (defined('PRESSPERMIT_PRO_VERSION') && version_compare(PRESSPERMIT_PRO_VERSION, '4.6.4', '<')) {
+            return $post_status;
+        }
+        
+        if (function_exists('rvy_is_revision_status') && rvy_is_revision_status($post_status)) {
             return $post_status;
         }
         
@@ -3515,6 +3599,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             if (!$post_type = \PP_Statuses_Functions::findPostType()) {
                 return $post_status;
             }
+        }
+
+        if (!in_array($post_type, self::instance()->get_enabled_post_types())) {
+            return $post_status;
         }
         
         $options = \PublishPress_Statuses::instance()->options;
@@ -3656,7 +3744,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if ($doing_rest && !empty($rest->params['pp_status_selection'])) {
-            $_post_status = $rest->params['pp_status_selection'];
+            if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
+                $_post_status = $rest->params['pp_status_selection'];
+            }
         } else {
             if (('_public' === \PP_Statuses_Functions::REQUEST_key('post_status')) && !$doing_rest) {
                 $_post_status = 'public';

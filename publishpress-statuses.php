@@ -3,7 +3,7 @@
  * Plugin Name: PublishPress Statuses Free
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
- * Version: 1.3.2
+ * Version: 1.3.3
  * Author: PublishPress
  * Author URI:  https://publishpress.com/
  * Text Domain: publishpress-statuses
@@ -245,7 +245,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         }
         
         if (empty($interrupt_load)) {
-            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.2');
+            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.3');
 
             define('PUBLISHPRESS_STATUSES_URL', trailingslashit(plugins_url('', __FILE__)));    // @todo: vendor lib
 
@@ -305,6 +305,30 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         publishpress_statuses_load();	// Pro support
     } else {
         add_action('plugins_loaded', 'publishpress_statuses_load', -5);
+
+        // Disable early loading of capabilities-pro textdomain with Capabilities Pro 2.44.0
+        add_action(
+            'plugins_loaded',
+            function() {
+                if (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && version_compare(PUBLISHPRESS_CAPS_PRO_VERSION, '2.45.0', '<')) {
+                    global $l10n;
+
+                    if ( !isset( $l10n[ 'capabilities-pro' ] ) ) {
+                        $l10n[ 'capabilities-pro' ] = new NOOP_Translations();  // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+                    }
+                }
+            }, 9
+        );
+
+        add_action(
+            'plugins_loaded',
+            function() {
+                if (defined('PUBLISHPRESS_CAPS_PRO_VERSION') && version_compare(PUBLISHPRESS_CAPS_PRO_VERSION, '2.45.0', '<')) {
+                    global $l10n;
+                    unset( $l10n[ 'capabilities-pro' ] );   // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+                }
+            }, 11
+        );
     }
 
     register_activation_hook(

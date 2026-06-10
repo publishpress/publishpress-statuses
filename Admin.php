@@ -767,8 +767,8 @@ class Admin
                 foreach (['color', 'icon', 'labels', 'post_type'] as $prop) {
                     if (isset($term_meta[$prop]) && !isset($term_meta["{$prop}_backup"])) {
                         $value = (is_array($term_meta[$prop])) ? reset($term_meta[$prop]) : $term_meta[$prop];
-                        update_term_meta($term->term_id, "{$prop}_backup_", maybe_unserialize($value));
-                        update_term_meta($term->term_id, "{$prop}_backup_preimport", maybe_unserialize($value));
+                        update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
+                        update_term_meta($term->term_id, "{$prop}_backup_preimport_json", json_decode($value));
                     }
                 }
             }
@@ -850,7 +850,7 @@ class Admin
         // Save a backup of the original Planner term properties archive. 
         // This can be useful in distinguishing Planner-created statuses from Statuses-based entries which Planner re-saved after being re-activated.
         if ($archived_term_descriptions && !get_option('pp_statuses_original_archived_term_properties')) {
-            update_option('pp_statuses_original_archived_term_properties', maybe_unserialize($archived_term_descriptions));
+            update_option('pp_statuses_original_archived_term_properties_json', json_decode($archived_term_descriptions));
         }
 
         // Auto-import failsafe
@@ -867,44 +867,6 @@ class Admin
             }
         }
 
-        // Plugin version from last import run
-        $import_run_version = get_option('publishpress_statuses_planner_import');
-
-        if (is_array($import_run_version) && isset($import_run_version['version'])) {
-            $import_run_version = $import_run_version['version'];
-        }
-
-        if ($force_planner_import || (
-        $auto_import                     // Statuses < 1.0.3.2 updated archive array without performing import, and earlier versions did not save import version
-        && ($queued_term_descriptions || empty($import_run_version) || version_compare($import_run_version, '1.0.3.2', '<')) 
-        && defined('PUBLISHPRESS_STATUSES_PLANNER_AUTO_IMPORT') && !defined('PUBLISHPRESS_STATUSES_NO_PLANNER_IMPORT')
-        )) {
-            // Failsafe mechanism will disable auto-import if this option is not deleted by the Planner import function.
-            update_option('publishpress_statuses_planner_import_gmt', gmdate("Y-m-d H:i:s"));
-
-            require_once(__DIR__ . '/PlannerImport.php');
-            $import = new \PP_Statuses_PlannerImport();
-
-            if ($terms = $import->applyRequestedImport(
-                $terms, 
-                [
-                    'archived_term_descriptions' => $archived_term_descriptions,
-                    'queued_term_descriptions' => $queued_term_descriptions,
-                    'new_archived_descriptions' => $new_archived_descriptions,
-                    'force_planner_import' => !empty($force_planner_import),
-                    'did_options_update' => !empty($do_options_update),
-                    'last_import_run_version' => !empty($import_run_version) && is_scalar($import_run_version) ? $import_run_version : ''
-                ]
-            )) {
-            	// Ensure stases reload following import
-                wp_cache_delete('publishpress_status_positions', 'options');
-
-                if (('admin.php' == $pagenow) && \PP_Statuses_Functions::is_REQUEST('publishpress-statuses')) {
-                    \PublishPress_Statuses::instance(true);
-                }
-            }
-        }
-    
         delete_transient('publishpress_statuses_maintenance');
 
     	$busy = false;
@@ -928,7 +890,7 @@ class Admin
 
                 foreach (['color', 'icon', 'labels', 'post_type'] as $prop) {
                     if ($meta_val = get_term_meta($term->term_id, $prop, true)) {
-                        update_term_meta($term->term_id, "{$prop}_backup", maybe_unserialize($meta_val));
+                        update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($meta_val));
                     }
                 }
             }
@@ -998,9 +960,9 @@ class Admin
                 $term_meta = get_term_meta($term->term_id);
 
                 foreach (['labels'] as $prop) {
-                    if (isset($term_meta["{$prop}_backup"])) {
-                        $value = (is_array($term_meta["{$prop}_backup"])) ? reset($term_meta["{$prop}_backup"]) : $term_meta["{$prop}_backup"];
-                        update_term_meta($term->term_id, $prop, maybe_unserialize($value));
+                    if (isset($term_meta["{$prop}_backup_json"])) {
+                        $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
+                        update_term_meta($term->term_id, $prop, json_decode($value));
                     }
                 }
             }
@@ -1022,9 +984,9 @@ class Admin
                 $term_meta = get_term_meta($term->term_id);
 
                 foreach (['post_type'] as $prop) {
-                    if (isset($term_meta["{$prop}_backup"])) {
-                        $value = (is_array($term_meta["{$prop}_backup"])) ? reset($term_meta["{$prop}_backup"]) : $term_meta["{$prop}_backup"];
-                        update_term_meta($term->term_id, $prop, maybe_unserialize($value));
+                    if (isset($term_meta["{$prop}_backup_json"])) {
+                        $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
+                        update_term_meta($term->term_id, $prop, json_decode($value));
                     }
                 }
             }
@@ -1106,14 +1068,14 @@ class Admin
                 $term_meta = get_term_meta($term->term_id);
 
                 foreach (['labels'] as $prop) {
-                    if (isset($term_meta["{$prop}_backup_"])) {
-                        $value = (is_array($term_meta["{$prop}_backup_"])) ? reset($term_meta["{$prop}_backup_"]) : $term_meta["{$prop}_backup_"];
-                        update_term_meta($term->term_id, $prop, maybe_unserialize($value));
+                    if (isset($term_meta["{$prop}_backup_json"])) {
+                        $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
+                        update_term_meta($term->term_id, $prop, json_decode($value));
 
                         // Swap current value into autobackup slot
                         if (isset($term_meta[$prop])) {
                             $value = (is_array($term_meta[$prop])) ? reset($term_meta[$prop]) : $term_meta[$prop];
-                            update_term_meta($term->term_id, "{$prop}_backup_", maybe_unserialize($value));
+                            update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
                         }
                     }
                 }
@@ -1137,13 +1099,13 @@ class Admin
 
                 foreach (['post_type'] as $prop) {
                     if (isset($term_meta["{$prop}_backup_"])) {
-                        $value = (is_array($term_meta["{$prop}_backup_"])) ? reset($term_meta["{$prop}_backup_"]) : $term_meta["{$prop}_backup_"];
-                        update_term_meta($term->term_id, $prop, maybe_unserialize($value));
+                        $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
+                        update_term_meta($term->term_id, $prop, json_decode($value));
 
                         // Swap current value into autobackup slot
                         if (isset($term_meta[$prop])) {
                             $value = (is_array($term_meta[$prop])) ? reset($term_meta[$prop]) : $term_meta[$prop];
-                            update_term_meta($term->term_id, "{$prop}_backup_", maybe_unserialize($value));
+                            update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
                         }
                     }
                 }

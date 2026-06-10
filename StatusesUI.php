@@ -273,9 +273,9 @@ class StatusesUI {
             );
 
             add_settings_field(
-                'status_dropdown_show_current_branch_only',
-                '',
-                [$this, 'settings_status_dropdown_show_current_branch_only_option'],
+                'hide_manual_status_selectors',
+                __('New Status Position:', 'publishpress-statuses'),
+                [$this, 'settings_new_statuses_main_workflow_option'],
                 $group_name,
                 $group_name . '_general',
                 ['class' => 'pp-settings-workflow']
@@ -542,14 +542,9 @@ class StatusesUI {
         </script>
 
         <?php
-    }
-
-    public function settings_status_dropdown_show_current_branch_only_option() {
-        $module = \PublishPress_Statuses::instance();
-
         $status_dropdown_disabled = $module->options->hide_manual_status_selectors;
 
-        echo '<div class="c-input-group status_dropdown_current_branch_only" ';
+        echo '<br><br><div class="c-input-group status_dropdown_current_branch_only" ';
         if ($status_dropdown_disabled) echo 'style="display: none"'; 
         echo ' >';
 
@@ -588,6 +583,31 @@ class StatusesUI {
         </script>
 
         <?php
+        echo '</div>';
+    }
+
+    public function settings_new_statuses_main_workflow_option() {
+        $module = \PublishPress_Statuses::instance();
+        
+        echo '<div class="c-input-group">';
+
+        echo sprintf(
+            '<input type="hidden" name="%s" value="0" />',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[new_statuses_main_workflow]'
+        ) . ' ';
+
+        $checked = $module->options->new_statuses_main_workflow ? 'checked' : '';
+
+        echo sprintf(
+            '<input type="checkbox" name="%s" id="new_statuses_main_workflow" value="1" autocomplete="off" %s>',
+            esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[new_statuses_main_workflow]',
+            esc_attr($checked)
+        ) . ' ';
+
+        echo '<label for="new_statuses_main_workflow">';
+        esc_html_e('Add new statuses to Main Workflow by default', 'publishpress-statuses');
+        echo '</label>';
+
         echo '</div>';
     }
 
@@ -1280,11 +1300,11 @@ class StatusesUI {
             }
 
         	if (!$title = apply_filters('publishpress_statuses_management_title', '', $status_type)) {
-        		$title = __('Add New Pre-Publication Status', 'publishpress-statuses');
+        		$title = ('visibility' == $status_type) ? __('Add New Visibility Status', 'publishpress-statuses') : __('Add New Pre-Publication Status', 'publishpress-statuses');
         	}
         
         	if (!$descript = apply_filters('publishpress_statuses_management_descript', '', $status_type)) {
-        		$descript = __('This status can be assigned to an unpublished post using the Post Status dropdown.', 'publishpress-statuses');
+        		$descript = ('visibility' == $status_type) ? __('This status can be assigned to customize post privacy.', 'publishpress-statuses') : __('This status can be assigned to an unpublished post using the Post Status dropdown.', 'publishpress-statuses');
         	}
 
             \PublishPress\ModuleAdminUI_Base::instance()->module->title = $title;

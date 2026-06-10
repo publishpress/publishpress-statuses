@@ -1,6 +1,28 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.3.3] - 10 Jun 2026
+- Changed : Remove Pending Review checkbox from Gutenberg editor
+- Fixed : Status filtering was applied for non-enabled post types
+- Changed : Improve UI to enable Post Access in free version with Capabilities Pro active
+- Changed : Default new statuses to Main Workflow
+- Changed : Remove Pending Review checkbox in editor
+- Changed : Post editor - Include Published status in dropdown
+- Fixed : Captions in status dropdown are vertically truncated
+- Changed : Standard button styling forr Save as Status button
+- Fixed : Publication date field in post editor is misaligned
+- Fixed : Lang - Potomatic translation of Hungarian is missing some strings
+- Fixed : Icon selector button has off-centered icon
+- Fixed : Icon and color missing for Published status
+- Changed : Remove N/A caption
+- Added : More tooltips on Post Access screen
+- Fixed : Wrong title on Add New Status screen for Visibility or Revision Status
+- Fixed : Compat - Capabilities Pro textdomain loaded too early with Statuses Free
+- Fixed : Can't remove Status assignment capability with Post Access screen
+- Fixed : Compat - Status filtering breaks some third party custom status implementations
+- Security : Replace unserialize() with wp_json_encode()
+- Security : Status selection does not apply capability check
+
 [1.3.2] - 4 May 2026
 - Change : Change some translation calls for compliance with packaging script
 
@@ -9,7 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Status dropdown in post editor sidebar was mislocated in some cases
 - Fixed : Editing status properties converted label to dashed lowercase
 - Changed : Remove Edit row action links from Statuses Table to better prioritize screen space
-- Lang : Additional languages (Potomatic)
+- Changed : Lang - Additional languages (Potomatic)
 
 [1.3.0] - 20 Apr 2026
 - Changed : Tabbed view for plugin settings
