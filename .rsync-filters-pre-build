@@ -1,7 +1,7 @@
-- *.code-workspace
 - .babelrc
 - .cache
 - .distignore
+- .DS_Store
 - .git
 - .gitattributes
 - .github
@@ -14,14 +14,11 @@
 - .phplint.yml
 - .vscode
 - .wordpress-org
+- *.code-workspace
 - /vendor
 - /version.txt
 - /webpack.config.js
 - /yarn.lock
-- Gruntfile.js
-- README-build.md
-- README.md
-- RoboFile.php
 - assets/jsx
 - bin
 - builder
@@ -29,7 +26,9 @@
 - codeception.dist.yml
 - cs
 - dev-workspace
+- dev-workspace-cache
 - dist
+- Gruntfile.js
 - jsconfig.json
 - node_modules
 - package-lock.json
@@ -37,4 +36,7 @@
 - psalm.xml
 - ray-dist.php
 - ray.php
+- README-build.md
+- README.md
+- RoboFile.php
 - screenshot-*.png
