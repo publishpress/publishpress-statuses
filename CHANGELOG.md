@@ -1,7 +1,7 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[1.3.3] - 9 Jun 2026
+[1.3.3] - 10 Jun 2026
 - Changed : Remove Pending Review checkbox from Gutenberg editor
 - Fixed : Status filtering was applied for non-enabled post types
 - Changed : Improve UI to enable Post Access in free version with Capabilities Pro active
@@ -16,9 +16,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Icon and color missing for Published status
 - Changed : Remove N/A caption
 - Added : More tooltips on Post Access screen
-- Fixed : Wrrong title on Add New Status screen for Visibility or Revision Status
+- Fixed : Wrong title on Add New Status screen for Visibility or Revision Status
 - Fixed : Compat - Capabilities Pro textdomain loaded too early with Statuses Free
 - Fixed : Can't remove Status assignment capability with Post Access screen
+- Fixed : Compat - Status filtering breaks some third party custom status implementations
+- Security : Replace unserialize() with wp_json_encode()
+- Security : Status selection does not apply capability check
 
 [1.3.2] - 4 May 2026
 - Change : Change some translation calls for compliance with packaging script
