@@ -252,7 +252,15 @@
         ppInitializeNestedStatusList();
 
         $('#the_status_list td.name .disable').click(function() {
-            $(this).hide().closest('li.page-row').addClass('disabled-status').insertAfter($('#the_status_list > li.disabled-status:last'));
+            $(this).hide().closest('li.page-row').addClass('disabled-status').removeClass('moderation-status').removeClass('alternate-moderation-status').insertAfter($('#the_status_list > li.disabled-status:last'));
+            $(this).parent().find('span.enable').show();
+            ppUpdateStatusPositions();
+            return false;
+        });
+
+        $('#the_status_list td.name .enable').click(function() {
+            $(this).hide().closest('li.page-row').removeClass('disabled-status').addClass('moderation-status').insertAfter($('#the_status_list > li.main-section:visible:first'));
+            $(this).parent().find('span.disable').show();
             ppUpdateStatusPositions();
             return false;
         });
