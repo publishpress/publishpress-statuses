@@ -1700,7 +1700,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
-        $disabled_position = count($all_statuses) + 100;
+        $disabled_position = (is_array($positions)) ? array_search('_disabled', $positions) : 0;
+        if (!$disabled_position) {$disabled_position = count($all_statuses) + 100;}
         $stored_status_positions['_disabled'] = $disabled_position;
         $pos = $disabled_position;
 
