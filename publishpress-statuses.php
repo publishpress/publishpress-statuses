@@ -334,7 +334,10 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
     register_activation_hook(
         __FILE__, 
         function() {
-            update_option('publishpress_statuses_activate', true);
+            if (!get_option('publishpress_statuses_activation_done')) {
+                update_option('publishpress_statuses_activation_done', true);
+                update_option('publishpress_statuses_activate', true);
+            }
         }
     );
     

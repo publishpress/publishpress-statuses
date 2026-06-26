@@ -522,8 +522,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
         do_action('pp_statuses_init');
 
-        if (is_admin() && $activated && (!defined('WP_DEBUG') || !WP_DEBUG)) {
-            wp_redirect(admin_url("admin.php?page=publishpress-statuses"));
+        if (is_admin() && $activated) {
+            wp_safe_redirect(admin_url("admin.php?page=publishpress-statuses"));
             exit;
         }
     }
