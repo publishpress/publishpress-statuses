@@ -1,6 +1,17 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.3.4] - 30 Jun 2026
+- Fixed : Plugin-defined Alternate statuses could not be disabled
+- Changed : Capital case on Post Access tab
+- Changed : Caption Status assignment caption as "Set"
+- Added : Enable link in Disabled Statuses table rows
+- Changed : Remove Pro promo sidebar
+- Changed : Relocate save button on Edit Status screen
+- Fixed : Capability label click doesn't toggle checkbox on some browsers
+- Fixed : Lang - Incorrect textdomain for one string
+- Changed : Redirect to Statuses screen on first plugin activation only
+
 [1.3.3] - 10 Jun 2026
 - Changed : Remove Pending Review checkbox from Gutenberg editor
 - Fixed : Status filtering was applied for non-enabled post types
