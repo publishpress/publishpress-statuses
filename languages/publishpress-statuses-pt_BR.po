@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-06-04T19:24:29+00:00\n"
-"PO-Revision-Date: 2026-06-06 04:15+0000\n"
+"PO-Revision-Date: 2026-06-30 13:57+0000\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -651,16 +651,18 @@ msgid ""
 "Post Access for this status cannot be customized until status-specific "
 "capability requirements are enabled."
 msgstr ""
-"O acesso ao post para este status não pode ser personalizado até que os "
-"requisitos de capacidades específicas do status sejam ativados."
+"Não é possível personalizar o acesso ao post com esse status, até que os "
+"requisitos de permissão específicos do status sejam ativados."
 
 #: StatusEditUI.php:550
 msgid "Status Capabilities"
-msgstr "Capacidades do Status"
+msgstr "Permissões de status"
 
 #: StatusEditUI.php:556
 msgid "Require status-specific capabilities for post editing, deletion"
-msgstr "Requerer capacidades específicas do status para edição e exclusão de posts"
+msgstr ""
+"Exija permissões específicas para cada status, para edição e exclusão de "
+"posts"
 
 #: StatusEditUI.php:574
 msgid "Status Label"
@@ -784,7 +786,7 @@ msgstr "Seleção manual de status:"
 
 #: StatusesUI.php:277
 msgid "New Status Position:"
-msgstr "Nova Posição de Status:"
+msgstr "Posição do novo status:"
 
 #: StatusesUI.php:287
 msgid "Custom Visibility:"
@@ -875,7 +877,7 @@ msgstr ""
 
 #: StatusesUI.php:608
 msgid "Add new statuses to Main Workflow by default"
-msgstr "Adicionar novos status ao Fluxo de Trabalho Principal por padrão"
+msgstr "Adicionar novos status ao fluxo de trabalho principal por padrão"
 
 #: StatusesUI.php:627
 msgid "Available to all users"
@@ -1159,11 +1161,11 @@ msgstr "Revisão"
 
 #: StatusesUI.php:1303
 msgid "Add New Visibility Status"
-msgstr "Adicionar Novo Status de Visibilidade"
+msgstr "Adicionar novo status de visibilidade"
 
 #: StatusesUI.php:1307
 msgid "This status can be assigned to customize post privacy."
-msgstr "Este status pode ser atribuído para personalizar a privacidade do post."
+msgstr "Este status pode ser atribuído para personalizar a privacidade dos posts."
 
 #: StatusesUI.php:1307
 msgid ""
