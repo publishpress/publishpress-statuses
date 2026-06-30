@@ -1,9 +1,6 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-[1.3.4.0] - 30 Jun 2026
-* Changed : Version number to trigger wordpress.org processing
-
 [1.3.4] - 30 Jun 2026
 - Fixed : Plugin-defined Alternate statuses could not be disabled
 - Changed : Capital case on Post Access tab
