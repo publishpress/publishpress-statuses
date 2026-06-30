@@ -928,7 +928,7 @@ class StatusesUI {
         if (defined('PUBLISHPRESS_CAPS_VERSION') && !empty($options) && !empty($options->lock_publication)) {
             printf(
                 esc_html__('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
-                "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>" . sprintf(__('%s capability', 'revisionary'), 'pp_unpublish_posts') . '</a>'                                                                               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>" . sprintf(__('%s capability', 'publishpress-statuses'), 'pp_unpublish_posts') . '</a>'                                                                               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             );
         } else {
             esc_html_e('If enabled, users will need an additional role capability to unpublish a post.', 'publishpress-statuses');

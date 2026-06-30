@@ -73,7 +73,24 @@ class StatusEditUI
             <?php endif;?>
 
             <a href="<?php echo esc_url($url); ?>"><?php esc_html_e('Back to Statuses', 'publishpress-statuses'); ?></a>
+
+            <span>
+            <?php
+                submit_button(esc_html__('Update Status', 'publishpress-statuses'), 'primary', 'top_submit', false, ['style' => 'vertical-align:baseline; margin-left: 10px;']); 
+            ?>
+            </span>
         </div>
+
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            jQuery(document).ready(function ($) {
+                $('#top_submit').on('click', function (e) {
+                    $('#editstatus #submit').trigger('click');
+                });
+            });
+            /* ]]> */
+        </script>
+
         <?php
 
         $edit_status_link = \PublishPress_Statuses::getLink(['action' => 'edit-status', 'name' => $name]);

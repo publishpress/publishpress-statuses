@@ -568,14 +568,14 @@ do_action('publishpress_statuses_table_row', $key, []);
             }
 
         } elseif ((!empty($item->moderation) || ('draft' == $item->name)) && ('future' != $item->name)) {
-            $class = ' moderation-status';
+            $class = ' main-section moderation-status';
 
             if ('moderation' != $status_type) {
                 $hidden = true;
             }
 
         } elseif (!empty($item->private)) {
-            $class = ' private-status';
+            $class = ' main-section private-status';
 
             if ('visibility' != $status_type) {
                 $hidden = true;
@@ -945,8 +945,12 @@ do_action('publishpress_statuses_table_row', $key, []);
             $actions['labels'] =  ['url' => esc_url($url), 'label' => esc_html__('Labels', 'publishpress-statuses')];
         }
 
-        if ((empty($status_obj) || (empty($status_obj->_builtin))) && empty($status_obj->disabled)) {
+        if (empty($status_obj) || empty($status_obj->_builtin)) {
             $actions['disable'] = ['url' => '#', 'label' => __('Disable', 'publishpress-statuses')];
+        }
+
+        if (empty($status_obj) || empty($status_obj->_builtin)) {
+            $actions['enable'] = ['url' => '#', 'label' => __('Enable', 'publishpress-statuses')];
         }
 
         if (empty($status_obj) || (empty($status_obj->_builtin) && empty($status_obj->pp_builtin))) {
@@ -955,10 +959,10 @@ do_action('publishpress_statuses_table_row', $key, []);
 
         $actions = apply_filters('publishpress_statuses_row-actions', $actions, $item);
         
-        $this->row_actions($actions, false);
+        $this->row_actions($actions, false, $item);
     }
 
-    protected function row_actions( $actions, $always_visible = false ) {
+    protected function row_actions( $actions, $always_visible = false, $item = false ) {
 		$action_count = count( $actions );
 
 		if ( ! $action_count ) {
@@ -982,7 +986,15 @@ do_action('publishpress_statuses_table_row', $key, []);
 		foreach ( $actions as $action => $arr ) {
 			++$i;
 			$sep = ( $i < $action_count ) ? ' | ' : '';
-			echo "<span class='" . esc_attr($action) . "'>";
+			echo "<span class='" . esc_attr($action) . "'";
+             
+            if ((('disable' == $action) && is_object($item) && !empty($item->disabled)) 
+            || (('enable' == $action) && is_object($item) && empty($item->disabled))
+            ) {
+                echo " style='display:none;'";
+            }
+
+            echo ">";
             echo '<a href="' . esc_url($arr['url']) . '">' . esc_html($arr['label']) . '</a>';
             echo esc_html($sep) . "</span>";
 		}
