@@ -353,7 +353,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
  
         if ( isset( $meta_cache[ $meta_key ] ) ) {
             // This is serialized by WP Core, and we have no other way to modify it.
-            $meta_value = array_map( 'maybe_unserialize', $meta_cache[ $meta_key ] );
+            $meta_value = array_map( 'maybe_unserialize', $meta_cache[ $meta_key ] );   // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
         }
 
         if ($meta_value) {
@@ -1796,9 +1796,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 if (is_array($term_meta)) {
                     foreach ($term_meta as $meta_key => $value) {
                         if (in_array($meta_key, $term_meta_fields)) {
-                            $value = maybe_unserialize($value);
+                            $value = maybe_unserialize($value);                     // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
                             $value = (is_array($value)) ? reset($value) : $value;
-                            $value = maybe_unserialize($value);
+                            $value = maybe_unserialize($value);                     // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
 
                             if (is_object($value)) {
                                 foreach (get_object_vars($value) as $k => $val) {
