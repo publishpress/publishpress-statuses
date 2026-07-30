@@ -72,7 +72,7 @@ class StatusEditUI
                 <a href="<?php echo esc_url($labels_url); ?>"><?php esc_html_e('Edit Status Labels', 'publishpress-statuses'); ?></a> &nbsp;&bull;&nbsp; 
             <?php endif;?>
 
-            <a href="<?php echo esc_url($url); ?>"><?php esc_html_e('Back to Statuses', 'publishpress-statuses'); ?></a>
+            <a href="<?php echo esc_url($url); ?>"><?php esc_html_e('Statuses', 'publishpress-statuses'); ?></a>
 
             <span>
             <?php
@@ -414,7 +414,12 @@ class StatusEditUI
                                 <label>
                                 <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status" autocomplete="off"
                                 <?php checked($can_set_status);?> <?php disabled($is_administrator);?> value="1" class="regular-text" />
+                                <span class="pp-full-label">
                                 <?php echo esc_html($role_label);?>
+                                </span>
+                                <span class="pp-mobile-label" style="display: none">
+                                <?php echo esc_html(ucwords(str_replace('_', ' ', $cap_name)));?>
+                                </span>
                                 </label>
                                 </div>
                             <?php endif;
