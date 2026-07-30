@@ -997,6 +997,17 @@ div.pp-statuses-warning {
     margin-bottom: 10px;
     }
 
+  #pp_edit_status_caps .toggle_status_caps {
+  margin-top: 5px;
+  }
+
+  #pp-roles-search {
+  width: 250px;
+  }
+
+  #pp-search-results-summary {
+  padding: 3px;
+  }
 
   @media (max-width: 540px) {
     .pp-pro-banner {
