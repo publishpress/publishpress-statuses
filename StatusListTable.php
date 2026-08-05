@@ -985,7 +985,6 @@ do_action('publishpress_statuses_table_row', $key, []);
 
 		foreach ( $actions as $action => $arr ) {
 			++$i;
-			$sep = ( $i < $action_count ) ? ' | ' : '';
 			echo "<span class='" . esc_attr($action) . "'";
              
             if ((('disable' == $action) && is_object($item) && !empty($item->disabled)) 
@@ -993,6 +992,12 @@ do_action('publishpress_statuses_table_row', $key, []);
             ) {
                 echo " style='display:none;'";
             }
+
+            if (('enable' == $action) && is_object($item) && !empty($item->disabled)) {
+                $action_count++;
+            }
+
+            $sep = ( $i < $action_count - 1 ) ? ' | ' : ' ';
 
             echo ">";
             echo '<a href="' . esc_url($arr['url']) . '">' . esc_html($arr['label']) . '</a>';
