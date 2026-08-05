@@ -618,12 +618,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $args = [];
             $params = [];
 
+            $_post = get_post($post_id);
+
             if (!empty($_REQUEST['selected_status']) && ('auto-draft' != $_REQUEST['selected_status'])) {
                 $args['post_status'] = sanitize_key($_REQUEST['selected_status']);
 
                 // @todo: separate ajax call for setting status
                 if ($status_obj = get_post_status_object($args['post_status'])) {
-                    if ($_post = get_post($post_id)) {
+                    if ($_post) {
 
                         if (($_post->post_status != $args['post_status'])
                         && \PublishPress_Statuses::haveStatusPermission('set_status', $_post->post_type, $status_obj->name)
@@ -657,9 +659,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             $statuses = array_keys(\PublishPress_Statuses\Admin::get_selectable_statuses($post_id, $args));
 
-            if ($type_obj = get_post_type_object($_post->post_type)) {
-                if (!empty($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->publish_posts)) {
-                    $statuses[] = 'publish';
+            if (!empty($_post)) {
+                if ($type_obj = get_post_type_object($_post->post_type)) {
+                    if (!empty($type_obj->cap->publish_posts) && current_user_can($type_obj->cap->publish_posts)) {
+                        $statuses[] = 'publish';
+                    }
                 }
             }
 
