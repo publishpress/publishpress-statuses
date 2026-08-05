@@ -3422,7 +3422,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public function fltApplySelectedPostStatus($post_status) {
-        if (defined('REST_REQUEST') && REST_REQUEST
+        if ($this->doing_rest
         && (!defined('DOING_AUTOSAVE') || ! DOING_AUTOSAVE)
         ) {
             $rest = \PublishPress_Statuses\REST::instance();
@@ -3507,6 +3507,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     {
         global $pagenow;
         if (in_array($status, ['auto-draft', 'inherit', 'trash']) 
+        || (!is_admin() && !$this->doing_rest)
         || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
         || ('async-upload.php' == $pagenow) 
         || ((strpos($status, 'wc-') === 0) && class_exists('WooCommerce') && !empty($_GET) && !empty($_GET['wc-ajax']) && ('checkout' == $_GET['wc-ajax']))     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -3561,7 +3562,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         * post statuses, such as Tutor LMS enrollment status "completed".
         */
         if (!is_admin()
-        && (!defined('REST_REQUEST') || !REST_REQUEST)
+        && !\PublishPress_Statuses::instance()->doing_rest
         && (!defined('DOING_AJAX') || !DOING_AJAX)
         && empty($_REQUEST['post']) && empty($_REQUEST['post_ID']) && empty($_REQUEST['post_id'])   // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         ) {
@@ -3944,10 +3945,15 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     // log request and handler parameters for possible reference by subsequent PP filters; block unpermitted create/edit/delete requests 
     function fltRestPreDispatch($rest_response, $rest_server, $request)
     {
-        $this->doing_rest = true;
-
         require_once(__DIR__ . '/REST.php');
-        return \PublishPress_Statuses\REST::instance()->pre_dispatch($rest_response, $rest_server, $request);
+        $rest = \PublishPress_Statuses\REST::instance();
+        $rest_response = $rest->pre_dispatch($rest_response, $rest_server, $request);
+
+        if (!empty($rest->is_posts_request)) {
+            $this->doing_rest = true;
+        }
+
+        return $rest_response;
     }
 
     function actRestInit()
