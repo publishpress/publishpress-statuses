@@ -16,6 +16,8 @@ class PostEditGutenberg
             ) {
                 return;
             }
+
+            $post_status = $post->post_status;
         }
 
         if ($post_id = \PP_Statuses_Functions::getPostID()) {
@@ -59,6 +61,14 @@ class PostEditGutenberg
             ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-hooks'],
             PUBLISHPRESS_STATUSES_VERSION,
             true
+        );
+
+        wp_localize_script(
+            'publishpress-custom-status-block',
+            'objCustomStatusBlock',
+            [
+                'currentStatus' => !empty($post_status) ? $post_status : 'draft'
+            ]
         );
 
         $custom_privacy_statuses = apply_filters('presspermit_block_editor_privacy_statuses', []);
