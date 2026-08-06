@@ -2456,6 +2456,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             if (!empty($obj->moderation) 
             && !in_array($status_name, ['draft', 'future']) 
+            && (empty($current_user->allcaps['pp_moderate_any']) || !empty($obj->public) || !empty($obj->private))
             && (!$pp_status_capabilities_active || !\PublishPress\StatusCapabilities::postStatusHasCustomCaps($status_name))
             && (('pending' != $status_name) || !\PublishPress_Statuses::instance()->options->pending_status_regulation)
             && empty($current_user->allcaps["status_change_{$_status}"])) {
