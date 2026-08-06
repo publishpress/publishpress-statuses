@@ -2435,7 +2435,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
     // filter our own results
     function flt_get_post_statuses_internal($statuses, $status_args, $return_args, $function_args) {
-        global $current_user;
+        global $current_user, $post;
         
         $context = (!empty($function_args['context'])) ? $function_args['context'] : '';
 
@@ -2456,6 +2456,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             if (!empty($obj->moderation) 
             && !in_array($status_name, ['draft', 'future']) 
+            && (empty($post) || empty($post->post_status) || ($obj->name != $post->post_status))
             && (empty($current_user->allcaps['pp_moderate_any']) || !empty($obj->public) || !empty($obj->private))
             && (!$pp_status_capabilities_active || !\PublishPress\StatusCapabilities::postStatusHasCustomCaps($status_name))
             && (('pending' != $status_name) || !\PublishPress_Statuses::instance()->options->pending_status_regulation)
