@@ -3437,7 +3437,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             if (!empty($rest->params['pp_status_selection'])) {
                 if ($post_type = \PP_Statuses_Functions::findPostType()) {
-                    if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
+                    $check_status_selection = ('_pending' == $rest->params['pp_status_selection']) ? 'pending' : $rest->params['pp_status_selection'];
+                    
+                    if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $check_status_selection)) {
                         $post_status = $rest->params['pp_status_selection'];
                     }
                 }
@@ -3758,7 +3760,9 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if ($doing_rest && !empty($rest->params['pp_status_selection'])) {
-            if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
+            $check_status_selection = ('_pending' == $rest->params['pp_status_selection']) ? 'pending' : $rest->params['pp_status_selection'];
+            
+            if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $check_status_selection)) {
                 $_post_status = $rest->params['pp_status_selection'];
             }
         } else {
