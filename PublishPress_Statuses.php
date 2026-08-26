@@ -3299,15 +3299,21 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 continue;
             }
 
+            $orig_status = (string) $_status;
+
             if (in_array($_status, ['publish', 'private', 'future'])) {
                 $check_caps = [$type_obj->cap->publish_posts];
             } else {
+                if ('_pending' == $_status) {
+                    $_status = 'pending';
+                }
+
                 $status_change_cap = str_replace('-', '_', "status_change_{$_status}");
                 $check_caps = [$status_change_cap];
                 $check_caps = apply_filters('publishpress_statuses_required_caps', $check_caps, 'set_status', $_status, $post_type);
             }
 
-            $return[$_status] = !array_diff($check_caps, array_keys($current_user->allcaps));
+            $return[$orig_status] = !array_diff($check_caps, array_keys($current_user->allcaps));
         }
 
         return $return;
@@ -3431,9 +3437,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
             if (!empty($rest->params['pp_status_selection'])) {
                 if ($post_type = \PP_Statuses_Functions::findPostType()) {
-                    $check_status_selection = ('_pending' == $rest->params['pp_status_selection']) ? 'pending' : $rest->params['pp_status_selection'];
-                    
-                    if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $check_status_selection)) {
+                    if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
                         $post_status = $rest->params['pp_status_selection'];
                     }
                 }
@@ -3754,9 +3758,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
         }
 
         if ($doing_rest && !empty($rest->params['pp_status_selection'])) {
-            $check_status_selection = ('_pending' == $rest->params['pp_status_selection']) ? 'pending' : $rest->params['pp_status_selection'];
-            
-            if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $check_status_selection)) {
+            if (\PublishPress_Statuses::haveStatusPermission('set_status', $post_type, $rest->params['pp_status_selection'])) {
                 $_post_status = $rest->params['pp_status_selection'];
             }
         } else {
