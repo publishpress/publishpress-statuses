@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-04T19:24:29+00:00\n"
-"PO-Revision-Date: 2026-08-27 00:25+0000\n"
+"POT-Creation-Date: 2026-08-27T16:10:36+00:00\n"
+"PO-Revision-Date: 2026-08-27 18:44+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Language: pt_PT\n"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: Admin.php:441
 #: Admin.php:442
-#: StatusesUI.php:1176
+#: StatusesUI.php:1189
 msgid "Add New"
 msgstr "Adicionar Novo"
 
@@ -222,7 +222,7 @@ msgid "Save Draft"
 msgstr "Guardar Rascunho"
 
 #: PostEditGutenbergStatuses.php:160
-#: StatusesUI.php:1341
+#: StatusesUI.php:1354
 msgid "Workflow"
 msgstr "Fluxo de Trabalho"
 
@@ -667,7 +667,7 @@ msgid "Add Status"
 msgstr "Adicionar Estado"
 
 #: StatusesUI.php:87
-#: StatusesUI.php:1317
+#: StatusesUI.php:1330
 msgid "PublishPress Statuses Settings"
 msgstr "Configurações do PublishPress Statuses"
 
@@ -932,54 +932,58 @@ msgstr ""
 msgid "lock"
 msgstr "bloquear"
 
-#: StatusesUI.php:923
-msgid ""
-"If the Published visibility status is locked, also prevent posts from being "
-"unpublished."
-msgstr ""
-"Se o status de visibilidade Publicado estiver bloqueado, também impede que "
-"os posts sejam despublicados."
-
-#: StatusesUI.php:930
-#, php-format
-msgid "If enabled, users need the %s to unpublish a post."
-msgstr "Se ativado, os utilizadores precisam do %s para despublicar um post."
-
-#: StatusesUI.php:931
-#, php-format
-msgid "%s capability"
-msgstr "%s capacidade"
+#: StatusesUI.php:924
+msgid "Locking also prevents posts from being unpublished"
+msgstr "O bloqueio também impede que as publicações sejam despublicadas"
 
 #: StatusesUI.php:934
-msgid ""
-"If enabled, users will need an additional role capability to unpublish a "
-"post."
-msgstr ""
-"Se ativado, os usuários precisarão de uma capacidade adicional de função "
-"para despublicar um post."
+#, php-format
+msgid "This setting does not apply to %1$s Administrators%2$s."
+msgstr "Esta configuração não se aplica a %1$s Administradores%2$s."
 
-#: StatusesUI.php:951
-#: StatusesUI.php:1009
+#: StatusesUI.php:935
+#, php-format
+msgid "You may assign a %1$s role capability %2$s to bypass this locking."
+msgstr ""
+"Você pode atribuir uma %1$s capacidade de função %2$s para contornar este "
+"bloqueio."
+
+#: StatusesUI.php:939
+msgid "This setting does not apply to Administrators."
+msgstr "Esta configuração não se aplica a Administradores."
+
+#: StatusesUI.php:944
+#, php-format
+msgid ""
+"If this setting is unchecked, the lock will only prevent selection of a "
+"different visibility status. %1$s %2$s See documentation%3$s."
+msgstr ""
+"Se esta configuração não estiver marcada, o bloqueio apenas impedirá a "
+"seleção de um estado de visibilidade diferente. %1$s %2$s Veja a "
+"documentação%3$s."
+
+#: StatusesUI.php:964
+#: StatusesUI.php:1022
 msgid "Select..."
 msgstr "Selecionar..."
 
-#: StatusesUI.php:954
+#: StatusesUI.php:967
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr ""
 "Reexecutar importação do Planeador (com propriedades de Controle de Estado, "
 "ordenação)"
 
-#: StatusesUI.php:955
+#: StatusesUI.php:968
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr ""
 "Reexecutar importação do Planeador (ignorando a configuração de Controle de "
 "Estado)"
 
-#: StatusesUI.php:957
+#: StatusesUI.php:970
 msgid "Re-run Planner import"
 msgstr "Reexecutar importação do Planeador"
 
-#: StatusesUI.php:963
+#: StatusesUI.php:976
 msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
@@ -989,96 +993,96 @@ msgstr ""
 "PublishPress Planner. Selecione uma opção acima para reiniciar a "
 "importação, dando prioridade à posição de status definida pelo Planner."
 
-#: StatusesUI.php:1011
+#: StatusesUI.php:1024
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Fazer backup das cores, ícones, rótulos e tipos de post atuais"
 
-#: StatusesUI.php:1016
+#: StatusesUI.php:1029
 msgid "Restore backup of status colors"
 msgstr "Restaurar backup das cores dos estados"
 
-#: StatusesUI.php:1020
+#: StatusesUI.php:1033
 msgid "Restore backup of status icons"
 msgstr "Restaurar backup dos ícones dos estados"
 
-#: StatusesUI.php:1024
+#: StatusesUI.php:1037
 msgid "Restore backup of status labels"
 msgstr "Restaurar backup dos rótulos dos estados"
 
-#: StatusesUI.php:1028
+#: StatusesUI.php:1041
 msgid "Restore backup of status post types"
 msgstr "Restaurar backup dos tipos de post de estado"
 
-#: StatusesUI.php:1034
+#: StatusesUI.php:1047
 msgid "Restore auto-backup of status colors"
 msgstr "Restaurar auto-backup das cores de estado"
 
-#: StatusesUI.php:1038
+#: StatusesUI.php:1051
 msgid "Restore auto-backup of status icons"
 msgstr "Restaurar auto-backup dos ícones de estado"
 
-#: StatusesUI.php:1042
+#: StatusesUI.php:1055
 msgid "Restore auto-backup of status labels"
 msgstr "Restaurar auto-backup dos rótulos de estado"
 
-#: StatusesUI.php:1046
+#: StatusesUI.php:1059
 msgid "Restore auto-backup of status post types"
 msgstr "Restaurar auto-backup dos tipos de post de estado"
 
-#: StatusesUI.php:1053
+#: StatusesUI.php:1066
 msgid "Use default status colors"
 msgstr "Usar cores de estado padrão"
 
-#: StatusesUI.php:1057
+#: StatusesUI.php:1070
 msgid "Use default status icons"
 msgstr "Usar ícones de estado padrão"
 
-#: StatusesUI.php:1061
+#: StatusesUI.php:1074
 msgid "Use default status labels"
 msgstr "Usar rótulos de estado padrão"
 
-#: StatusesUI.php:1065
+#: StatusesUI.php:1078
 msgid "Use default status post types"
 msgstr "Usar tipos de post de estado padrão"
 
-#: StatusesUI.php:1069
+#: StatusesUI.php:1082
 msgid "Use Planner plugin's default status colors"
 msgstr "Usar as cores de estado padrão do plugin Planner"
 
-#: StatusesUI.php:1073
+#: StatusesUI.php:1086
 msgid "Use Planner plugin's default status icons"
 msgstr "Usar os ícones de estado padrão do plugin Planner"
 
-#: StatusesUI.php:1112
+#: StatusesUI.php:1125
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status: %s"
 msgstr "Editar Estado: %s"
 
-#: StatusesUI.php:1115
+#: StatusesUI.php:1128
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s: %2$s"
 msgstr "Editar %1$s: %2$s"
 
-#: StatusesUI.php:1135
+#: StatusesUI.php:1148
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status Labels: %s"
 msgstr "Editar Rótulos de Estado: %s"
 
-#: StatusesUI.php:1138
+#: StatusesUI.php:1151
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s Labels: %2$s"
 msgstr "Editar Rótulos de %1$s: %2$s"
 
-#: StatusesUI.php:1175
-#: StatusesUI.php:1303
+#: StatusesUI.php:1188
+#: StatusesUI.php:1316
 msgid "Add New Pre-Publication Status"
 msgstr "Adicionar Novo Estado de Pré-Publicação"
 
-#: StatusesUI.php:1191
+#: StatusesUI.php:1204
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid ""
@@ -1088,36 +1092,36 @@ msgstr ""
 "Para Status de Visibilidade personalizados, %1$satualize para PublishPress "
 "Statuses Pro%2$s."
 
-#: StatusesUI.php:1205
+#: StatusesUI.php:1218
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Nota: Estados de Visibilidade personalizados estão %1$sdesativados%2$s."
 
-#: StatusesUI.php:1228
+#: StatusesUI.php:1241
 msgid "Pre-Publication"
 msgstr "Pré-Publicação"
 
-#: StatusesUI.php:1236
-#: StatusesUI.php:1342
+#: StatusesUI.php:1249
+#: StatusesUI.php:1355
 msgid "Visibility"
 msgstr "Visibilidade"
 
-#: StatusesUI.php:1247
+#: StatusesUI.php:1260
 msgid "Revision"
 msgstr "Revisão"
 
-#: StatusesUI.php:1303
+#: StatusesUI.php:1316
 msgid "Add New Visibility Status"
 msgstr "Adicionar Novo Status de Visibilidade"
 
-#: StatusesUI.php:1307
+#: StatusesUI.php:1320
 msgid "This status can be assigned to customize post privacy."
 msgstr ""
 "Este status pode ser atribuído para personalizar a privacidade das "
 "publicações."
 
-#: StatusesUI.php:1307
+#: StatusesUI.php:1320
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
@@ -1125,19 +1129,19 @@ msgstr ""
 "Este status pode ser atribuído a um post não publicado usando o dropdown de "
 "Status do Post."
 
-#: StatusesUI.php:1343
+#: StatusesUI.php:1356
 msgid "Integration"
 msgstr "Integração"
 
-#: StatusesUI.php:1344, fuzzy
+#: StatusesUI.php:1357, fuzzy
 msgid "Editor"
 msgstr "Editor"
 
-#: StatusesUI.php:1345
+#: StatusesUI.php:1358
 msgid "Advanced"
 msgstr "Avançado"
 
-#: StatusesUI.php:1346
+#: StatusesUI.php:1359
 msgid "License"
 msgstr "Licença"
 

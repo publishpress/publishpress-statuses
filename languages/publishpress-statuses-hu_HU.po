@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-04T19:24:29+00:00\n"
-"PO-Revision-Date: 2026-08-27 00:25+0000\n"
+"POT-Creation-Date: 2026-08-27T16:10:36+00:00\n"
+"PO-Revision-Date: 2026-08-27 18:42+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: Admin.php:441
 #: Admin.php:442
-#: StatusesUI.php:1176
+#: StatusesUI.php:1189
 msgid "Add New"
 msgstr "Új hozzáadása"
 
@@ -222,7 +222,7 @@ msgid "Save Draft"
 msgstr "Vázlat mentése"
 
 #: PostEditGutenbergStatuses.php:160
-#: StatusesUI.php:1341
+#: StatusesUI.php:1354
 msgid "Workflow"
 msgstr "Munkafolyamat"
 
@@ -669,7 +669,7 @@ msgid "Add Status"
 msgstr "Add Status"
 
 #: StatusesUI.php:87
-#: StatusesUI.php:1317, fuzzy
+#: StatusesUI.php:1330, fuzzy
 msgid "PublishPress Statuses Settings"
 msgstr "PublishPress Statuses Settings"
 
@@ -932,54 +932,55 @@ msgstr ""
 msgid "lock"
 msgstr "zár"
 
-#: StatusesUI.php:923
-msgid ""
-"If the Published visibility status is locked, also prevent posts from being "
-"unpublished."
-msgstr ""
-"Ha a Közzétett láthatósági státusz zárva van, megakadályozza a bejegyzések "
-"közzétételének visszavonását is."
-
-#: StatusesUI.php:930
-#, php-format
-msgid "If enabled, users need the %s to unpublish a post."
-msgstr ""
-"Ha engedélyezve van, a felhasználóknak szükségük van a %s-ra a bejegyzés "
-"visszavonásához."
-
-#: StatusesUI.php:931
-#, php-format
-msgid "%s capability"
-msgstr "%s képesség"
+#: StatusesUI.php:924
+msgid "Locking also prevents posts from being unpublished"
+msgstr "A zárolás megakadályozza a bejegyzések közzétételének visszavonását is"
 
 #: StatusesUI.php:934
-msgid ""
-"If enabled, users will need an additional role capability to unpublish a "
-"post."
-msgstr ""
-"Ha engedélyezve van, a felhasználóknak további szerepkör jogosultság "
-"szükséges a bejegyzés visszavonásához."
+#, php-format
+msgid "This setting does not apply to %1$s Administrators%2$s."
+msgstr "Ez a beállítás nem vonatkozik a %1$s rendszergazdákra %2$s."
 
-#: StatusesUI.php:951
-#: StatusesUI.php:1009
+#: StatusesUI.php:935
+#, php-format
+msgid "You may assign a %1$s role capability %2$s to bypass this locking."
+msgstr ""
+"Hozzárendelhetsz egy %1$s szerepképességet %2$s, hogy megkerüld ezt a "
+"zárolást."
+
+#: StatusesUI.php:939
+msgid "This setting does not apply to Administrators."
+msgstr "Ez a beállítás nem vonatkozik a rendszergazdákra."
+
+#: StatusesUI.php:944
+#, php-format
+msgid ""
+"If this setting is unchecked, the lock will only prevent selection of a "
+"different visibility status. %1$s %2$s See documentation%3$s."
+msgstr ""
+"Ha ez a beállítás ki van kapcsolva, a zárolás csak egy másik láthatósági "
+"állapot kiválasztását akadályozza meg. %1$s %2$s Lásd a dokumentációt %3$s."
+
+#: StatusesUI.php:964
+#: StatusesUI.php:1022
 msgid "Select..."
 msgstr "Válasszon..."
 
-#: StatusesUI.php:954
+#: StatusesUI.php:967
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr "A Planner import újra futtatása (Státuszvezérlés tulajdonságokkal, sorrend)"
 
-#: StatusesUI.php:955
+#: StatusesUI.php:968
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr ""
 "A Planner import újra futtatása (a Státuszvezérlés konfiguráció figyelmen "
 "kívül hagyásával)"
 
-#: StatusesUI.php:957
+#: StatusesUI.php:970
 msgid "Re-run Planner import"
 msgstr "A Planner import újra futtatása"
 
-#: StatusesUI.php:963
+#: StatusesUI.php:976
 msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
@@ -990,96 +991,96 @@ msgstr ""
 "futtatásához, prioritást adva a Planner által meghatározott státusz "
 "pozíciónak."
 
-#: StatusesUI.php:1011
+#: StatusesUI.php:1024
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Jelenlegi színek, ikonok, címkék és bejegyzéstípusok biztonsági mentése"
 
-#: StatusesUI.php:1016
+#: StatusesUI.php:1029
 msgid "Restore backup of status colors"
 msgstr "A státusz színek biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1020
+#: StatusesUI.php:1033
 msgid "Restore backup of status icons"
 msgstr "A státusz ikonok biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1024
+#: StatusesUI.php:1037
 msgid "Restore backup of status labels"
 msgstr "A státusz címkék biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1028
+#: StatusesUI.php:1041
 msgid "Restore backup of status post types"
 msgstr "A státusz bejegyzéstípusok biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1034
+#: StatusesUI.php:1047
 msgid "Restore auto-backup of status colors"
 msgstr "A státusz színek automatikus biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1038
+#: StatusesUI.php:1051
 msgid "Restore auto-backup of status icons"
 msgstr "A státusz ikonok automatikus biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1042
+#: StatusesUI.php:1055
 msgid "Restore auto-backup of status labels"
 msgstr "A státusz címkék automatikus biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1046
+#: StatusesUI.php:1059
 msgid "Restore auto-backup of status post types"
 msgstr "A státusz bejegyzéstípusok automatikus biztonsági mentésének visszaállítása"
 
-#: StatusesUI.php:1053
+#: StatusesUI.php:1066
 msgid "Use default status colors"
 msgstr "Alapértelmezett státusz színek használata"
 
-#: StatusesUI.php:1057
+#: StatusesUI.php:1070
 msgid "Use default status icons"
 msgstr "Alapértelmezett státusz ikonok használata"
 
-#: StatusesUI.php:1061
+#: StatusesUI.php:1074
 msgid "Use default status labels"
 msgstr "Alapértelmezett státusz címkék használata"
 
-#: StatusesUI.php:1065
+#: StatusesUI.php:1078
 msgid "Use default status post types"
 msgstr "Alapértelmezett státusz bejegyzéstípusok használata"
 
-#: StatusesUI.php:1069
+#: StatusesUI.php:1082
 msgid "Use Planner plugin's default status colors"
 msgstr "A Planner bővítmény alapértelmezett státusz színeinek használata"
 
-#: StatusesUI.php:1073
+#: StatusesUI.php:1086
 msgid "Use Planner plugin's default status icons"
 msgstr "A Planner bővítmény alapértelmezett státusz ikonjainak használata"
 
-#: StatusesUI.php:1112
+#: StatusesUI.php:1125
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status: %s"
 msgstr "Státusz szerkesztése: %s"
 
-#: StatusesUI.php:1115
+#: StatusesUI.php:1128
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s: %2$s"
 msgstr "Szerkesztés %1$s: %2$s"
 
-#: StatusesUI.php:1135
+#: StatusesUI.php:1148
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status Labels: %s"
 msgstr "Státusz címkék szerkesztése: %s"
 
-#: StatusesUI.php:1138
+#: StatusesUI.php:1151
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s Labels: %2$s"
 msgstr "%1$s címkék szerkesztése: %2$s"
 
-#: StatusesUI.php:1175
-#: StatusesUI.php:1303
+#: StatusesUI.php:1188
+#: StatusesUI.php:1316
 msgid "Add New Pre-Publication Status"
 msgstr "Új előkiadási státusz hozzáadása"
 
-#: StatusesUI.php:1191
+#: StatusesUI.php:1204
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid ""
@@ -1089,34 +1090,34 @@ msgstr ""
 "A testreszabott láthatósági állapotokhoz, %1$sfrissíts a PublishPress "
 "Statuses Pro%2$s verzióra."
 
-#: StatusesUI.php:1205
+#: StatusesUI.php:1218
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Megjegyzés: A testreszabott láthatósági állapotok %1$sletiltva%2$s vannak."
 
-#: StatusesUI.php:1228
+#: StatusesUI.php:1241
 msgid "Pre-Publication"
 msgstr "Előkiadás"
 
-#: StatusesUI.php:1236
-#: StatusesUI.php:1342
+#: StatusesUI.php:1249
+#: StatusesUI.php:1355
 msgid "Visibility"
 msgstr "Láthatóság"
 
-#: StatusesUI.php:1247
+#: StatusesUI.php:1260
 msgid "Revision"
 msgstr "Revízió"
 
-#: StatusesUI.php:1303
+#: StatusesUI.php:1316
 msgid "Add New Visibility Status"
 msgstr "Új láthatósági státusz hozzáadása"
 
-#: StatusesUI.php:1307
+#: StatusesUI.php:1320
 msgid "This status can be assigned to customize post privacy."
 msgstr "Ez a státusz hozzárendelhető a bejegyzés adatvédelmének testreszabásához."
 
-#: StatusesUI.php:1307
+#: StatusesUI.php:1320
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
@@ -1124,19 +1125,19 @@ msgstr ""
 "Ez az állapot egy közzé nem tett bejegyzéshez rendelhető a Bejegyzés "
 "állapot legördülő menü segítségével."
 
-#: StatusesUI.php:1343
+#: StatusesUI.php:1356
 msgid "Integration"
 msgstr "Integráció"
 
-#: StatusesUI.php:1344
+#: StatusesUI.php:1357
 msgid "Editor"
 msgstr "Szerkesztő"
 
-#: StatusesUI.php:1345
+#: StatusesUI.php:1358
 msgid "Advanced"
 msgstr "Haladó"
 
-#: StatusesUI.php:1346
+#: StatusesUI.php:1359
 msgid "License"
 msgstr "Licenc"
 
