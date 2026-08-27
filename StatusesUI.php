@@ -920,19 +920,32 @@ class StatusesUI {
                 name="<?php echo esc_attr($pp->options_group_name) . '[lock_publication]'; ?>"
                 value="1" />
 
-        <?php esc_html_e('If the Published visibility status is locked, also prevent posts from being unpublished.', 'publishpress-statuses'); ?>
+        <?php 
+            esc_html_e('Locking also prevents posts from being unpublished', 'publishpress-statuses');
+        ?>
         </label>
 
         <p class="pp-option-footnote">
         <?php
+        $role = @get_role('administrator');
+
         if (defined('PUBLISHPRESS_CAPS_VERSION') && !empty($options) && !empty($options->lock_publication)) {
-            printf(
-                esc_html__('If enabled, users need the %s to unpublish a post.', 'publishpress-statuses'),
-                "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>" . sprintf(__('%s capability', 'publishpress-statuses'), 'pp_unpublish_posts') . '</a>'                                                                               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            );
+            $admin_disclaimer = (!empty($role) && $role->has_cap('pp_unpublish_posts'))
+            ? sprintf(__('This setting does not apply to %1$s Administrators%2$s.', 'publishpress-statuses'), "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>", '</a>')
+            : sprintf(__('You may assign a %1$s role capability %2$s to bypass this locking.', 'publishpress-statuses'), "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>", '</a>');
+
         } else {
-            esc_html_e('If enabled, users will need an additional role capability to unpublish a post.', 'publishpress-statuses');
+            $admin_disclaimer = (!empty($role) && $role->has_cap('pp_unpublish_posts'))
+            ? __('This setting does not apply to Administrators.', 'publishpress-statuses')
+            : '';
         }
+
+        printf(
+            esc_html__('If this setting is unchecked, the lock will only prevent selection of a different visibility status. %1$s %2$s See documentation%3$s.', 'publishpress-statuses'),
+            $admin_disclaimer,
+            '<a href="https://publishpress.com/knowledge-base/how-to-lock-visibility-statuses/" target="_blank">',
+            '</a>'
+        );
         ?>
         </p>
 
