@@ -884,7 +884,7 @@ class StatusesUI {
                 $force_default_privacy = (is_object($options) && !empty($options->force_default_privacy) && !empty($options->force_default_privacy[$post_type])) ? $options->force_default_privacy[$post_type] : false;
 
                 $id = 'force_default_privacy-' . $post_type;
-                $name = "force_default_privacy[$post_type]";
+                $name = esc_attr($pp->options_group_name) . "[force_default_privacy[$post_type]]";
                 $style = 'display:inline';
 
                 $checked = ($force_default_privacy) ? ' checked ' : '';
@@ -894,7 +894,7 @@ class StatusesUI {
                 &nbsp;<label style='<?php echo esc_attr($style); ?>' for="<?php echo esc_attr($id); ?>"><input
                         type="checkbox" <?php echo esc_attr($checked); ?><?php echo esc_attr($disabled); ?>id="<?php echo esc_attr($id); ?>"
                         name="<?php echo esc_attr($pp->options_group_name) . '[force_default_privacy][' . esc_attr($post_type) . ']'; ?>"
-                        value="1" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'publishpress-statuses'); ?><?php endif; ?>
+                        value="1" autocomplete="off" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'publishpress-statuses'); ?><?php endif; ?>
                 </label>
             <?php endif; ?>
 
@@ -910,7 +910,7 @@ class StatusesUI {
         $lock_publication = is_object($options) && !empty($options->lock_publication);
 
         $id = 'lock_publication';
-        $name = 'lock_publication';
+        $name = esc_attr($pp->options_group_name) . '[lock_publication]';
         $checked = ($lock_publication) ? ' checked ' : '';
         ?>
 
