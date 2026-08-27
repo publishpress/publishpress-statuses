@@ -564,6 +564,14 @@ font-style: normal;
 font-style: italic;
 }
 
+.pp-option-footnote a,
+.pp-option-footnote a:link,
+.pp-option-footnote a:hover,
+.pp-option-footnote a:visited
+{
+text-decoration: underline !important;  
+}
+
 .form-wrap .c-input-group label {
 display: inline !important;
 -webkit-user-select: none;  
