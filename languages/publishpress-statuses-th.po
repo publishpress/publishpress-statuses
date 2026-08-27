@@ -10,33 +10,33 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-06-04T19:24:29+00:00\n"
-"PO-Revision-Date: 2026-06-30 13:57+0000\n"
+"PO-Revision-Date: 2026-08-27 00:25+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: publishpress-statuses.php:3
+#: publishpress-statuses.php:5
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
 msgstr "PublishPress Statuses Free"
 
-#: publishpress-statuses.php:4, fuzzy
+#: publishpress-statuses.php:7, fuzzy
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/statuses"
 msgstr "https://publishpress.com/statuses"
 
-#: publishpress-statuses.php:5
+#: publishpress-statuses.php:9
 #. Description of the plugin
 msgid "Manage and create post statuses to customize your editorial workflow"
 msgstr "จัดการและสร้างสถานะโพสต์เพื่อปรับแต่งเวิร์กโฟลว์การแก้ไขของคุณ"
 
-#: publishpress-statuses.php:7
+#: publishpress-statuses.php:13
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: publishpress-statuses.php:8, fuzzy
+#: publishpress-statuses.php:15, fuzzy
 #. Author URI of the plugin
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
@@ -46,6 +46,7 @@ msgstr "https://publishpress.com/"
 #: Admin.php:431
 #: PublishPress_Statuses.php:435
 #: PublishPress_Statuses.php:436
+#: StatusEditUI.php:75
 #: StatusesUI.php:92
 msgid "Statuses"
 msgstr "สถานะ"
@@ -57,7 +58,6 @@ msgstr "ตั้งค่า"
 #: Admin.php:22
 #: includes-core/CoreAdmin.php:40
 #: includes-core/CoreAdmin.php:41
-#: includes-core/CoreAdmin.php:117
 #: includes-core/PromoBanner.php:225
 #: StatusListTable.php:224
 #: StatusListTable.php:250
@@ -79,17 +79,17 @@ msgid "Add New"
 msgstr "เพิ่มใหม่"
 
 #: Admin.php:528
-#: PublishPress_Statuses.php:906
+#: PublishPress_Statuses.php:910
 msgid "Approve"
 msgstr "อนุมัติ"
 
 #: Admin.php:530
-#: PublishPress_Statuses.php:876
+#: PublishPress_Statuses.php:880
 msgid "Assign"
 msgstr "กำหนด"
 
 #: Admin.php:532
-#: PublishPress_Statuses.php:891
+#: PublishPress_Statuses.php:895
 msgid "Mark In Progress"
 msgstr "ทำเครื่องหมายในระหว่างดำเนินการ"
 
@@ -100,8 +100,8 @@ msgid "Set to %s"
 msgstr "ตั้งค่าเป็น %s"
 
 #: Admin.php:554
-#: PostEditGutenberg.php:81
-#: PostEditGutenberg.php:101
+#: PostEditGutenberg.php:91
+#: PostEditGutenberg.php:111
 #. translators: %s is the status label
 #, php-format
 msgid "Save as %s"
@@ -115,8 +115,8 @@ msgstr "สาธารณะ (%s)"
 
 #: Admin.php:637
 #: PostEditClassic.php:179
-#: PostEditGutenberg.php:78
-#: PostEditGutenberg.php:287
+#: PostEditGutenberg.php:88
+#: PostEditGutenberg.php:297
 #: PostEditGutenbergStatuses.php:49
 #: PostEditGutenbergStatuses.php:69
 #: PostEditGutenbergStatuses.php:77
@@ -132,58 +132,18 @@ msgstr ""
 "คุณกำลังใช้ PublishPress Statuses Free. รุ่น Pro "
 "มีคุณสมบัติและการสนับสนุนเพิ่มเติม. %sอัปเกรดเป็น Pro%s"
 
-#: includes-core/CoreAdmin.php:100
-msgid "Upgrade to Statuses Pro"
-msgstr "อัปเกรดเป็น Statuses Pro"
-
-#: includes-core/CoreAdmin.php:105
-msgid "Upgrade to PublishPress Statuses Pro for additional benefits:"
-msgstr "อัปเกรดเป็น PublishPress Statuses Pro เพื่อประโยชน์เพิ่มเติม:"
-
-#: includes-core/CoreAdmin.php:108
-msgid "Define revision statuses"
-msgstr "กำหนดสถานะการแก้ไข"
-
-#: includes-core/CoreAdmin.php:109
-msgid "Control revision status selection"
-msgstr "ควบคุมการเลือกสถานะการแก้ไข"
-
-#: includes-core/CoreAdmin.php:110
-msgid "Customize revision workflow sequence"
-msgstr "ปรับแต่งลำดับการทำงานของการแก้ไข"
-
-#: includes-core/CoreAdmin.php:111
-msgid "Custom notifications, with PublishPress Planner"
-msgstr "การแจ้งเตือนที่กำหนดเอง โดยใช้ PublishPress Planner"
-
-#: includes-core/CoreAdmin.php:112
-msgid "No ads inside the plugin"
-msgstr "ไม่มีโฆษณาภายในปลั๊กอิน"
-
-#: includes-core/CoreAdmin.php:113
-msgid "Prompt, professional support"
-msgstr "การสนับสนุนที่รวดเร็วและเป็นมืออาชีพ"
-
-#: includes-core/CoreAdmin.php:124
-msgid "Need Statuses Support?"
-msgstr "ต้องการการสนับสนุนสถานะหรือไม่?"
-
-#: includes-core/CoreAdmin.php:129
 #: includes-core/PromoBanner.php:68
 msgid "If you need help or have a new feature request, let us know."
 msgstr "หากคุณต้องการความช่วยเหลือหรือมีคำขอฟีเจอร์ใหม่ โปรดแจ้งให้เราทราบ."
 
-#: includes-core/CoreAdmin.php:131
 #: includes-core/PromoBanner.php:241
 msgid "Request Support"
 msgstr "ขอรับการสนับสนุน"
 
-#: includes-core/CoreAdmin.php:140
 #: includes-core/PromoBanner.php:248
 msgid "Detailed documentation is also available on the plugin website."
 msgstr "เอกสารรายละเอียดเพิ่มเติมสามารถดูได้ที่เว็บไซต์ของปลั๊กอิน."
 
-#: includes-core/CoreAdmin.php:142
 #: includes-core/PromoBanner.php:251
 msgid "View Knowledge Base"
 msgstr "ดูฐานความรู้"
@@ -223,39 +183,39 @@ msgstr "ข้ามลำดับ"
 msgid "Publish %1$s on approval %2$s"
 msgstr "เผยแพร่ %1$s เมื่อได้รับอนุมัติ %2$s"
 
-#: PostEditGutenberg.php:75
+#: PostEditGutenberg.php:85
 msgid "Publication Workflow"
 msgstr "การทำงานของการเผยแพร่"
 
-#: PostEditGutenberg.php:79
+#: PostEditGutenberg.php:89
 msgid "Post Status"
 msgstr "สถานะโพสต์"
 
-#: PostEditGutenberg.php:82
+#: PostEditGutenberg.php:92
 msgid "Set Selected Status"
 msgstr "ตั้งสถานะที่เลือก"
 
-#: PostEditGutenberg.php:83
+#: PostEditGutenberg.php:93
 msgid "Keep Current Status"
 msgstr "เก็บสถานะปัจจุบัน"
 
-#: PostEditGutenberg.php:84
+#: PostEditGutenberg.php:94
 msgid "Advance to Next Status"
 msgstr "ไปยังสถานะถัดไป"
 
-#: PostEditGutenberg.php:85
+#: PostEditGutenberg.php:95
 msgid "Advance to Max Status"
 msgstr "ไปยังสถานะสูงสุด"
 
-#: PostEditGutenberg.php:86
+#: PostEditGutenberg.php:96
 msgid "This post is currently published"
 msgstr "โพสต์นี้ถูกเผยแพร่แล้ว"
 
-#: PostEditGutenberg.php:87
+#: PostEditGutenberg.php:97
 msgid "This post is currently scheduled"
 msgstr "โพสต์นี้ถูกกำหนดเวลาไว้แล้ว"
 
-#: PostEditGutenberg.php:283
+#: PostEditGutenberg.php:293
 msgid "Save Draft"
 msgstr "บันทึกแบบร่าง"
 
@@ -358,147 +318,147 @@ msgstr "สถานะ"
 msgid "Core Post Statuses"
 msgstr "สถานะโพสต์หลัก"
 
-#: PublishPress_Statuses.php:719
+#: PublishPress_Statuses.php:723
 msgid "New post, not yet submitted."
 msgstr "โพสต์ใหม่ ยังไม่ได้ส่ง"
 
-#: PublishPress_Statuses.php:741
+#: PublishPress_Statuses.php:745
 msgid "Post is awaiting review."
 msgstr "โพสต์รอการตรวจสอบ"
 
-#: PublishPress_Statuses.php:761
+#: PublishPress_Statuses.php:765
 msgid "Post is scheduled for publication."
 msgstr "โพสต์กำหนดเวลาสำหรับการเผยแพร่"
 
-#: PublishPress_Statuses.php:780
+#: PublishPress_Statuses.php:784
 msgid "Post is published, publicly visible."
 msgstr "โพสต์ถูกเผยแพร่ สามารถมองเห็นได้ต่อสาธารณะ"
 
-#: PublishPress_Statuses.php:799
+#: PublishPress_Statuses.php:803
 msgid "Post is published with private visibility."
 msgstr "โพสต์ถูกเผยแพร่ด้วยการมองเห็นแบบส่วนตัว"
 
-#: PublishPress_Statuses.php:859
+#: PublishPress_Statuses.php:863
 msgid "Pitch"
 msgstr "เสนอ"
 
-#: PublishPress_Statuses.php:862
+#: PublishPress_Statuses.php:866
 msgid "Idea proposed; waiting for acceptance."
 msgstr "แนวคิดถูกเสนอ รอการยอมรับ"
 
-#: PublishPress_Statuses.php:874
+#: PublishPress_Statuses.php:878
 msgid "Assigned"
 msgstr "มอบหมาย"
 
-#: PublishPress_Statuses.php:877
+#: PublishPress_Statuses.php:881
 msgid "Post idea assigned to writer."
 msgstr "แนวคิดโพสต์ที่มอบหมายให้กับนักเขียน"
 
-#: PublishPress_Statuses.php:889
+#: PublishPress_Statuses.php:893
 msgid "In Progress"
 msgstr "กำลังดำเนินการ"
 
-#: PublishPress_Statuses.php:892
+#: PublishPress_Statuses.php:896
 msgid "Writer is working on the post."
 msgstr "นักเขียนกำลังทำงานบนโพสต์"
 
-#: PublishPress_Statuses.php:904
+#: PublishPress_Statuses.php:908
 msgid "Approved"
 msgstr "ได้รับการอนุมัติ"
 
-#: PublishPress_Statuses.php:907
+#: PublishPress_Statuses.php:911
 msgid "Post has been approved for publication."
 msgstr "โพสต์ได้รับการอนุมัติสำหรับการเผยแพร่"
 
-#: PublishPress_Statuses.php:919
+#: PublishPress_Statuses.php:923
 msgid "Needs Work"
 msgstr "ต้องการการปรับปรุง"
 
-#: PublishPress_Statuses.php:921
+#: PublishPress_Statuses.php:925
 msgid "Set to Needs Work"
 msgstr "ตั้งค่าเป็นต้องการการปรับปรุง"
 
-#: PublishPress_Statuses.php:922
+#: PublishPress_Statuses.php:926
 msgid "Post needs work before further review."
 msgstr "โพสต์ต้องการการปรับปรุงก่อนการตรวจสอบเพิ่มเติม"
 
-#: PublishPress_Statuses.php:934
+#: PublishPress_Statuses.php:938
 msgid "Rejected"
 msgstr "ปฏิเสธ"
 
-#: PublishPress_Statuses.php:936
+#: PublishPress_Statuses.php:940
 msgid "Reject"
 msgstr "ปฏิเสธ"
 
-#: PublishPress_Statuses.php:937
+#: PublishPress_Statuses.php:941
 msgid "Post has been rejected."
 msgstr "โพสต์ถูกปฏิเสธแล้ว."
 
-#: PublishPress_Statuses.php:971
+#: PublishPress_Statuses.php:975
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "กระบวนการทำงานก่อนเผยแพร่ทางเลือก:"
 
-#: PublishPress_Statuses.php:1066
+#: PublishPress_Statuses.php:1070
 msgid "Disabled Statuses:"
 msgstr "สถานะที่ถูกปิดใช้งาน:"
 
-#: PublishPress_Statuses.php:1082
+#: PublishPress_Statuses.php:1086
 msgid "Deferred"
 msgstr "ระงับ"
 
-#: PublishPress_Statuses.php:1084
+#: PublishPress_Statuses.php:1088
 msgid "Defer"
 msgstr "ระงับ"
 
-#: PublishPress_Statuses.php:1085
+#: PublishPress_Statuses.php:1089
 msgid "Post has been deferred for future consideration."
 msgstr "โพสต์ถูกระงับเพื่อพิจารณาในอนาคต."
 
-#: PublishPress_Statuses.php:1097
+#: PublishPress_Statuses.php:1101
 msgid "Committee"
 msgstr "คณะกรรมการ"
 
-#: PublishPress_Statuses.php:1099
+#: PublishPress_Statuses.php:1103
 msgid "Refer to Committee"
 msgstr "ส่งต่อไปยังคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1100
+#: PublishPress_Statuses.php:1104
 msgid "Post has been referred to committee."
 msgstr "โพสต์ถูกส่งต่อไปยังคณะกรรมการ."
 
-#: PublishPress_Statuses.php:1113
+#: PublishPress_Statuses.php:1117
 msgid "Committee Review"
 msgstr "การตรวจสอบของคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1115
+#: PublishPress_Statuses.php:1119
 msgid "Set to Committee Review"
 msgstr "ตั้งค่าเป็นการตรวจสอบของคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1116
+#: PublishPress_Statuses.php:1120
 msgid "Committee is reviewing the post."
 msgstr "คณะกรรมการกำลังตรวจสอบโพสต์."
 
-#: PublishPress_Statuses.php:1129
+#: PublishPress_Statuses.php:1133
 msgid "Committee Progress"
 msgstr "ความก้าวหน้าของคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1131
+#: PublishPress_Statuses.php:1135
 msgid "Set to Committee Progress"
 msgstr "ตั้งค่าเป็นความก้าวหน้าของคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1132
+#: PublishPress_Statuses.php:1136
 msgid "Committee is editing the post."
 msgstr "คณะกรรมการกำลังแก้ไขโพสต์."
 
-#: PublishPress_Statuses.php:1145
+#: PublishPress_Statuses.php:1149
 msgid "Committee Approved"
 msgstr "ได้รับการอนุมัติโดยคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1147
+#: PublishPress_Statuses.php:1151
 msgid "Set Committee Approval"
 msgstr "ตั้งค่าอนุมัติโดยคณะกรรมการ"
 
-#: PublishPress_Statuses.php:1148
+#: PublishPress_Statuses.php:1152
 msgid "Committee has approved the post."
 msgstr "คณะกรรมการได้อนุมัติโพสต์แล้ว."
 
@@ -513,7 +473,7 @@ msgid "Labels"
 msgstr "ป้ายกำกับ"
 
 #: StatusEditUI.php:56
-#: StatusEditUI.php:414
+#: StatusEditUI.php:436
 #: StatusListTable.php:171
 msgid "Post Types"
 msgstr "ประเภทโพสต์"
@@ -527,15 +487,16 @@ msgstr "บทบาท"
 msgid "Edit Status Labels"
 msgstr "แก้ไขป้ายกำกับสถานะ"
 
-#: StatusEditUI.php:75
-msgid "Back to Statuses"
-msgstr "กลับไปที่สถานะ"
+#: StatusEditUI.php:79
+#: StatusEditUI.php:248
+msgid "Update Status"
+msgstr "อัปเดตสถานะ"
 
-#: StatusEditUI.php:92
+#: StatusEditUI.php:109
 msgid "Post Access"
 msgstr "การเข้าถึงโพสต์"
 
-#: StatusEditUI.php:184
+#: StatusEditUI.php:201
 msgid ""
 "Enforce type-specific post capabilitities for this status, or share "
 "capabilities with another status."
@@ -543,92 +504,88 @@ msgstr ""
 "บังคับให้มีความสามารถในการโพสต์เฉพาะประเภทสำหรับสถานะนี้ "
 "หรือแบ่งปันความสามารถกับสถานะอื่น."
 
-#: StatusEditUI.php:231
-msgid "Update Status"
-msgstr "อัปเดตสถานะ"
-
-#: StatusEditUI.php:281
+#: StatusEditUI.php:298
 msgid "Slug"
 msgstr "สลัก"
 
-#: StatusEditUI.php:293
+#: StatusEditUI.php:310
 msgid "The slug is the unique ID for the status."
 msgstr "Slug คือรหัสประจำตัวที่ไม่ซ้ำสำหรับสถานะนี้."
 
-#: StatusEditUI.php:303
+#: StatusEditUI.php:320
 msgid "Color"
 msgstr "สี"
 
-#: StatusEditUI.php:315
+#: StatusEditUI.php:332
 msgid "The color is used to identify the status."
 msgstr "สีใช้เพื่อระบุสถานะ."
 
-#: StatusEditUI.php:321
+#: StatusEditUI.php:338
 #: StatusListTable.php:169
 msgid "Icon"
 msgstr "ไอคอน"
 
-#: StatusEditUI.php:337
+#: StatusEditUI.php:354
 msgid "Select Icon"
 msgstr "เลือกไอคอน"
 
-#: StatusEditUI.php:343
+#: StatusEditUI.php:360
 msgid "The icon is used to visually represent the status."
 msgstr "ไอคอนใช้เพื่อแสดงสถานะในรูปแบบภาพ."
 
-#: StatusEditUI.php:378
+#: StatusEditUI.php:395
 msgid "Status Availability"
 msgstr "ความพร้อมใช้งานของสถานะ"
 
-#: StatusEditUI.php:381
+#: StatusEditUI.php:398
 msgid "Choose which user roles can assign this status to a post."
 msgstr "เลือกบทบาทผู้ใช้ที่สามารถกำหนดสถานะนี้ให้กับโพสต์."
 
-#: StatusEditUI.php:417
+#: StatusEditUI.php:439
 msgid "Choose which post types can be set to this status."
 msgstr "เลือกประเภทโพสต์ที่สามารถตั้งค่าสถานะนี้ได้."
 
-#: StatusEditUI.php:454
+#: StatusEditUI.php:476
 msgid "All Post Types"
 msgstr "ประเภทโพสต์ทั้งหมด"
 
-#: StatusEditUI.php:504
+#: StatusEditUI.php:526
 msgid "Upgrade to choose who can manage posts in each status"
 msgstr "อัปเกรดเพื่อเลือกว่าผู้ใดสามารถจัดการโพสต์ในแต่ละสถานะ"
 
-#: StatusEditUI.php:507
+#: StatusEditUI.php:529
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
 msgstr "รับ PublishPress Statuses Pro สำหรับการควบคุมการเข้าถึงโพสต์ตามสถานะเฉพาะ"
 
-#: StatusEditUI.php:513
+#: StatusEditUI.php:535
 msgid "Control which roles can assign a status"
 msgstr "ควบคุมว่าใครสามารถกำหนดสถานะได้"
 
-#: StatusEditUI.php:516
+#: StatusEditUI.php:538
 msgid "Control which roles can edit or delete posts per-status"
 msgstr "ควบคุมว่าใครสามารถแก้ไขหรือลบโพสต์ตามสถานะได้"
 
-#: StatusEditUI.php:519
+#: StatusEditUI.php:541
 msgid "Set capabilities separately for each post type"
 msgstr "ตั้งค่าความสามารถแยกตามแต่ละ post type"
 
-#: StatusEditUI.php:522
+#: StatusEditUI.php:544
 msgid "User-friendly checkbox grid to assign capabilities"
 msgstr "กริดช่องทำเครื่องหมายที่ใช้งานง่ายเพื่อกำหนดความสามารถ"
 
-#: StatusEditUI.php:531
+#: StatusEditUI.php:553
 #: StatusListTable.php:674
 msgid "Get PublishPress Statuses Pro"
 msgstr "รับ PublishPress Statuses Pro"
 
-#: StatusEditUI.php:536
+#: StatusEditUI.php:558
 #: StatusListTable.php:229
 #: StatusListTable.php:246
 #: StatusListTable.php:679
 msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
 
-#: StatusEditUI.php:544
+#: StatusEditUI.php:566
 msgid ""
 "Post Access for this status cannot be customized until status-specific "
 "capability requirements are enabled."
@@ -636,28 +593,28 @@ msgstr ""
 "ไม่สามารถปรับแต่งการเข้าถึงโพสต์สำหรับสถานะนี้ได้จนกว่าจะเปิดใช้งานความสามาร"
 "ถเฉพาะสถานะ"
 
-#: StatusEditUI.php:550
+#: StatusEditUI.php:572
 msgid "Status Capabilities"
 msgstr "ความสามารถของสถานะ"
 
-#: StatusEditUI.php:556
+#: StatusEditUI.php:578
 msgid "Require status-specific capabilities for post editing, deletion"
 msgstr "ต้องการความสามารถเฉพาะสถานะสำหรับการแก้ไขและลบโพสต์"
 
-#: StatusEditUI.php:574
+#: StatusEditUI.php:596
 msgid "Status Label"
 msgstr "ป้ายสถานะ"
 
-#: StatusEditUI.php:587
+#: StatusEditUI.php:609
 msgid "The name is used to identify the status. (Max: 20 characters)"
 msgstr "ชื่อที่ใช้เพื่อระบุสถานะ (สูงสุด: 20 ตัวอักษร)"
 
-#: StatusEditUI.php:597
+#: StatusEditUI.php:619
 #: StatusListTable.php:172
 msgid "Description"
 msgstr "คำอธิบาย"
 
-#: StatusEditUI.php:609
+#: StatusEditUI.php:631
 msgid ""
 "The description is primarily for administrative use, to give you some "
 "context on what the custom status is to be used for."
@@ -665,11 +622,11 @@ msgstr ""
 "คำอธิบายนี้ใช้สำหรับการบริหารเป็นหลัก "
 "เพื่อให้คุณมีบริบทเกี่ยวกับว่าสถานะที่กำหนดเองจะใช้สำหรับอะไร."
 
-#: StatusEditUI.php:622
+#: StatusEditUI.php:644
 msgid "Save As Label"
 msgstr "บันทึกเป็นป้าย"
 
-#: StatusEditUI.php:630
+#: StatusEditUI.php:652
 msgid "Submit Button Label"
 msgstr "ป้ายปุ่มส่ง"
 
@@ -963,6 +920,11 @@ msgstr ""
 #, php-format
 msgid "If enabled, users need the %s to unpublish a post."
 msgstr "หากเปิดใช้งาน ผู้ใช้ต้องการ %s เพื่อยกเลิกการเผยแพร่โพสต์"
+
+#: StatusesUI.php:931
+#, php-format
+msgid "%s capability"
+msgstr "%s ความสามารถ"
 
 #: StatusesUI.php:934
 msgid ""
@@ -1401,10 +1363,14 @@ msgid "Disable"
 msgstr "ปิดใช้งาน"
 
 #: StatusListTable.php:953
+msgid "Enable"
+msgstr "เปิดใช้งาน"
+
+#: StatusListTable.php:957
 msgid "Delete"
 msgstr "ลบ"
 
-#: PublishPress_Statuses.php:861
+#: PublishPress_Statuses.php:865
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "เสนอ"

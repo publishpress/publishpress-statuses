@@ -767,8 +767,11 @@ class Admin
                 foreach (['color', 'icon', 'labels', 'post_type'] as $prop) {
                     if (isset($term_meta[$prop]) && !isset($term_meta["{$prop}_backup"])) {
                         $value = (is_array($term_meta[$prop])) ? reset($term_meta[$prop]) : $term_meta[$prop];
-                        update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
-                        update_term_meta($term->term_id, "{$prop}_backup_preimport_json", json_decode($value));
+                        
+                        if (is_string($value)) {
+                            update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
+                            update_term_meta($term->term_id, "{$prop}_backup_preimport_json", json_decode($value));
+                        }
                     }
                 }
             }
@@ -850,7 +853,9 @@ class Admin
         // Save a backup of the original Planner term properties archive. 
         // This can be useful in distinguishing Planner-created statuses from Statuses-based entries which Planner re-saved after being re-activated.
         if ($archived_term_descriptions && !get_option('pp_statuses_original_archived_term_properties')) {
-            update_option('pp_statuses_original_archived_term_properties_json', json_decode($archived_term_descriptions));
+            if (is_string($archived_term_descriptions)) {
+                update_option('pp_statuses_original_archived_term_properties_json', json_decode($archived_term_descriptions));
+            }
         }
 
         // Auto-import failsafe
@@ -890,7 +895,9 @@ class Admin
 
                 foreach (['color', 'icon', 'labels', 'post_type'] as $prop) {
                     if ($meta_val = get_term_meta($term->term_id, $prop, true)) {
-                        update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($meta_val));
+                        if (is_string($meta_val)) {
+                            update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($meta_val));
+                        }
                     }
                 }
             }
@@ -962,7 +969,10 @@ class Admin
                 foreach (['labels'] as $prop) {
                     if (isset($term_meta["{$prop}_backup_json"])) {
                         $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
-                        update_term_meta($term->term_id, $prop, json_decode($value));
+                        
+                        if (is_string($value)) {
+                            update_term_meta($term->term_id, $prop, json_decode($value));
+                        }
                     }
                 }
             }
@@ -986,7 +996,10 @@ class Admin
                 foreach (['post_type'] as $prop) {
                     if (isset($term_meta["{$prop}_backup_json"])) {
                         $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
-                        update_term_meta($term->term_id, $prop, json_decode($value));
+                        
+                        if (is_string($value)) {
+                            update_term_meta($term->term_id, $prop, json_decode($value));
+                        }
                     }
                 }
             }
@@ -1070,12 +1083,18 @@ class Admin
                 foreach (['labels'] as $prop) {
                     if (isset($term_meta["{$prop}_backup_json"])) {
                         $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
-                        update_term_meta($term->term_id, $prop, json_decode($value));
+                        
+                        if (is_string($value)) {
+                            update_term_meta($term->term_id, $prop, json_decode($value));
+                        }
 
                         // Swap current value into autobackup slot
                         if (isset($term_meta[$prop])) {
                             $value = (is_array($term_meta[$prop])) ? reset($term_meta[$prop]) : $term_meta[$prop];
-                            update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
+
+                            if (is_string($value)) {
+                                update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
+                            }
                         }
                     }
                 }
@@ -1100,12 +1119,18 @@ class Admin
                 foreach (['post_type'] as $prop) {
                     if (isset($term_meta["{$prop}_backup_"])) {
                         $value = (is_array($term_meta["{$prop}_backup_json"])) ? reset($term_meta["{$prop}_backup_json"]) : $term_meta["{$prop}_backup_json"];
-                        update_term_meta($term->term_id, $prop, json_decode($value));
+                        
+                        if (is_string($value)) {
+                            update_term_meta($term->term_id, $prop, json_decode($value));
+                        }
 
                         // Swap current value into autobackup slot
                         if (isset($term_meta[$prop])) {
                             $value = (is_array($term_meta[$prop])) ? reset($term_meta[$prop]) : $term_meta[$prop];
-                            update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
+
+                            if (is_string($value)) {
+                                update_term_meta($term->term_id, "{$prop}_backup_json", json_decode($value));
+                            }
                         }
                     }
                 }

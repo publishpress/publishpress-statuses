@@ -1,6 +1,17 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.3.5] - 27 Aug 2026
+- Added : Search filter for Roles on Post Access tab 
+- Fixed : Post Access tab does not show implicitly assigned Administrator capabilities
+- Fixed : New Revisions "All" count is doubled when Statuses Pro active
+- Fixed : Post Access tab mobile display is unclear
+- Fixed : Some row action links in Statuses table have trailing separator
+- Fixed : Statuses auto-import causes fatal error under some conditions
+- Fixed : Custom Post Status displays as Draft to non-admin Editor roles in post editor
+- Fixed : Post update after manual selection of Pending status corrupts stored status
+- Compat : JetFormBuilder - New Posts are automatically published
+
 [1.3.4] - 30 Jun 2026
 - Fixed : Plugin-defined Alternate statuses could not be disabled
 - Changed : Capital case on Post Access tab

@@ -128,6 +128,10 @@ var querySelectableStatuses = function(status, post_id) {
   if (!ppQueriedStatuses) {
     jQuery(document).ready(function ($) {
       $('div.publishpress-extended-post-status select option').hide();
+
+      if (objCustomStatusBlock.currentStatus) {
+        $('div.publishpress-extended-post-status select option[value="' + objCustomStatusBlock.currentStatus + '"]').hide();
+      }
     });
 
     ppQueriedStatuses = true;
@@ -145,7 +149,7 @@ var querySelectableStatuses = function(status, post_id) {
         });
 
         $('div.publishpress-extended-post-status select option').each(function() {
-          if (selectable_statuses.indexOf($(this).val()) != -1) {
+          if (selectable_statuses.indexOf($(this).val()) != -1 || $(this).val() == objCustomStatusBlock.currentStatus) {
            $(this).show();
           } 
         });

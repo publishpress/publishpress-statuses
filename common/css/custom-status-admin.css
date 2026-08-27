@@ -448,7 +448,6 @@ color: #c00;
 
 div.pp-edit-status-back {
 float: right;
-padding-right: 50px;
 font-size: 14px;
 }
 
@@ -997,6 +996,17 @@ div.pp-statuses-warning {
     margin-bottom: 10px;
     }
 
+  #pp_edit_status_caps .toggle_status_caps {
+  margin-top: 5px;
+  }
+
+  #pp-roles-search {
+  width: 250px;
+  }
+
+  #pp-search-results-summary {
+  padding: 3px;
+  }
 
   @media (max-width: 540px) {
     .pp-pro-banner {
@@ -1036,6 +1046,63 @@ div.pp-statuses-warning {
     }
 }
 
+@media screen and (max-width: 782px) {
+  td.post-cap label span.pp-full-label {display: none;}
+
+  td.post-cap label span.pp-mobile-label,
+  td.status-caps-set label span.pp-mobile-label {
+    display: inline !important;
+  }
+
+  #pp_edit_status_caps th.status-label {
+    font-size: 18px;
+  }
+
+  td.post-cap label,
+  td.status-caps-set label {
+    vertical-align: top;
+  }
+
+  #pp_edit_status_caps tr.roles-header,
+  #pp_edit_status_caps tr.roles-header th
+  {
+    display: none !important;
+  }
+
+  #pp_edit_status_caps td.post-cap {
+    padding: 8px !important;
+  }
+
+  table.pp-statuses-options table.cme-typecaps td.status-caps-edit,
+  table.pp-statuses-options table.cme-typecaps td.status-caps-edit_others,
+  table.pp-statuses-options table.cme-typecaps td.status-caps-delete,
+  table.pp-statuses-options table.cme-typecaps td.status-caps-delete_others
+  {
+  padding-top: 15px;
+  }
+
+  #pp_edit_status_caps {
+    padding-left: 35%;
+    background-color: #e8e8e8;
+  }
+
+  #pp_edit_status_caps th {
+    padding-right: 50% !important;
+  }
+
+  div.pp-edit-status-back {
+    float: none;
+    text-align: right;
+  }
+
+  #pp_edit_status_caps input.toggle_status_caps {
+    margin-top: 5px;
+  }
+
+  table.cme-typecaps > tbody > tr > td {
+    border-right: none !important;
+  }
+}
 
 @media (max-width: 768px) {
     table.status-row div.row-actions {
