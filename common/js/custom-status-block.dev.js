@@ -368,14 +368,14 @@ var sideEffectL10nManipulation = function sideEffectL10nManipulation(status) {
     }
 
     if (-1 == PPCustomStatuses.publishedStatuses.indexOf(status)) {
-      $('div.publishpress-extended-post-status select').show();
+      $('div.publishpress-extended-post-status').show();
       $('div.publishpress-extended-post-status-scheduled').hide();
     } else {
       if (('private' != status) && (-1 != PPCustomStatuses.publishedStatuses.indexOf(status))) {
         $('.editor-post-publish-panel__toggle').hide();
       }
 
-      $('div.publishpress-extended-post-status select').hide();
+      $('div.publishpress-extended-post-status').hide();
     }
 
     var extendedStatusVisible = $('div.extended-post-status select:visible').length;

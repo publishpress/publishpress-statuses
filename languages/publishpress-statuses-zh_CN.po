@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-04T19:24:29+00:00\n"
-"PO-Revision-Date: 2026-08-27 00:25+0000\n"
+"POT-Creation-Date: 2026-08-27T16:10:36+00:00\n"
+"PO-Revision-Date: 2026-08-27 18:44+0000\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: publishpress-statuses\n"
 "Language: zh_CN\n"
@@ -72,7 +72,7 @@ msgstr "您确定要删除该帖子状态吗？所有具有此状态的帖子将
 
 #: Admin.php:441
 #: Admin.php:442
-#: StatusesUI.php:1176
+#: StatusesUI.php:1189
 msgid "Add New"
 msgstr "添加新状态"
 
@@ -216,7 +216,7 @@ msgid "Save Draft"
 msgstr "保存草稿"
 
 #: PostEditGutenbergStatuses.php:160
-#: StatusesUI.php:1341
+#: StatusesUI.php:1354
 msgid "Workflow"
 msgstr "工作流"
 
@@ -639,7 +639,7 @@ msgid "Add Status"
 msgstr "添加状态"
 
 #: StatusesUI.php:87
-#: StatusesUI.php:1317
+#: StatusesUI.php:1330
 msgid "PublishPress Statuses Settings"
 msgstr "PublishPress Statuses 设置"
 
@@ -872,142 +872,145 @@ msgstr "具有自定义可见性的帖子还需要特定状态的编辑权限"
 msgid "lock"
 msgstr "锁定"
 
-#: StatusesUI.php:923
-msgid ""
-"If the Published visibility status is locked, also prevent posts from being "
-"unpublished."
-msgstr "如果已发布的可见性状态被锁定，也要防止帖子被取消发布。"
-
-#: StatusesUI.php:930
-#, php-format
-msgid "If enabled, users need the %s to unpublish a post."
-msgstr "如果启用，用户需要 %s 才能取消发布帖子。"
-
-#: StatusesUI.php:931
-#, php-format
-msgid "%s capability"
-msgstr "%s 功能"
+#: StatusesUI.php:924
+msgid "Locking also prevents posts from being unpublished"
+msgstr "锁定还可以防止帖子被取消发布"
 
 #: StatusesUI.php:934
-msgid ""
-"If enabled, users will need an additional role capability to unpublish a "
-"post."
-msgstr "如果启用，用户将需要额外的角色权限才能取消发布帖子。"
+#, php-format
+msgid "This setting does not apply to %1$s Administrators%2$s."
+msgstr "此设置不适用于 %1$s 管理员 %2$s。"
 
-#: StatusesUI.php:951
-#: StatusesUI.php:1009
+#: StatusesUI.php:935
+#, php-format
+msgid "You may assign a %1$s role capability %2$s to bypass this locking."
+msgstr "您可以分配一个 %1$s 角色权限 %2$s 来绕过此锁定。"
+
+#: StatusesUI.php:939
+msgid "This setting does not apply to Administrators."
+msgstr "此设置不适用于管理员。"
+
+#: StatusesUI.php:944
+#, php-format
+msgid ""
+"If this setting is unchecked, the lock will only prevent selection of a "
+"different visibility status. %1$s %2$s See documentation%3$s."
+msgstr "如果此设置未选中，锁定将只会阻止选择其他可见性状态。 %1$s %2$s 请参见文档 %3$s。"
+
+#: StatusesUI.php:964
+#: StatusesUI.php:1022
 msgid "Select..."
 msgstr "选择..."
 
-#: StatusesUI.php:954
+#: StatusesUI.php:967
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr "重新运行规划器导入（带状态控制属性，排序）"
 
-#: StatusesUI.php:955
+#: StatusesUI.php:968
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr "重新运行规划器导入（忽略状态控制配置）"
 
-#: StatusesUI.php:957
+#: StatusesUI.php:970
 msgid "Re-run Planner import"
 msgstr "重新运行规划器导入"
 
-#: StatusesUI.php:963
+#: StatusesUI.php:976
 msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
 "Planner-defined status position."
 msgstr "状态颜色、图标和位置会自动从 PublishPress Planner 导入。选择上面的选项以重新运行导入，优先考虑 Planner 定义的状态位置。"
 
-#: StatusesUI.php:1011
+#: StatusesUI.php:1024
 msgid "Back up current colors, icons, labels and post types"
 msgstr "备份当前的颜色、图标、标签和帖子类型"
 
-#: StatusesUI.php:1016
+#: StatusesUI.php:1029
 msgid "Restore backup of status colors"
 msgstr "恢复状态颜色的备份"
 
-#: StatusesUI.php:1020
+#: StatusesUI.php:1033
 msgid "Restore backup of status icons"
 msgstr "恢复状态图标的备份"
 
-#: StatusesUI.php:1024
+#: StatusesUI.php:1037
 msgid "Restore backup of status labels"
 msgstr "恢复状态标签的备份"
 
-#: StatusesUI.php:1028
+#: StatusesUI.php:1041
 msgid "Restore backup of status post types"
 msgstr "恢复状态帖子类型的备份"
 
-#: StatusesUI.php:1034
+#: StatusesUI.php:1047
 msgid "Restore auto-backup of status colors"
 msgstr "恢复状态颜色的自动备份"
 
-#: StatusesUI.php:1038
+#: StatusesUI.php:1051
 msgid "Restore auto-backup of status icons"
 msgstr "恢复状态图标的自动备份"
 
-#: StatusesUI.php:1042
+#: StatusesUI.php:1055
 msgid "Restore auto-backup of status labels"
 msgstr "恢复状态标签的自动备份"
 
-#: StatusesUI.php:1046
+#: StatusesUI.php:1059
 msgid "Restore auto-backup of status post types"
 msgstr "恢复状态帖子类型的自动备份"
 
-#: StatusesUI.php:1053
+#: StatusesUI.php:1066
 msgid "Use default status colors"
 msgstr "使用默认状态颜色"
 
-#: StatusesUI.php:1057
+#: StatusesUI.php:1070
 msgid "Use default status icons"
 msgstr "使用默认状态图标"
 
-#: StatusesUI.php:1061
+#: StatusesUI.php:1074
 msgid "Use default status labels"
 msgstr "使用默认状态标签"
 
-#: StatusesUI.php:1065
+#: StatusesUI.php:1078
 msgid "Use default status post types"
 msgstr "使用默认状态帖子类型"
 
-#: StatusesUI.php:1069
+#: StatusesUI.php:1082
 msgid "Use Planner plugin's default status colors"
 msgstr "使用 Planner 插件的默认状态颜色"
 
-#: StatusesUI.php:1073
+#: StatusesUI.php:1086
 msgid "Use Planner plugin's default status icons"
 msgstr "使用 Planner 插件的默认状态图标"
 
-#: StatusesUI.php:1112
+#: StatusesUI.php:1125
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status: %s"
 msgstr "编辑状态: %s"
 
-#: StatusesUI.php:1115
+#: StatusesUI.php:1128
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s: %2$s"
 msgstr "编辑 %1$s: %2$s"
 
-#: StatusesUI.php:1135
+#: StatusesUI.php:1148
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status Labels: %s"
 msgstr "编辑状态标签: %s"
 
-#: StatusesUI.php:1138
+#: StatusesUI.php:1151
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s Labels: %2$s"
 msgstr "编辑 %1$s 标签: %2$s"
 
-#: StatusesUI.php:1175
-#: StatusesUI.php:1303
+#: StatusesUI.php:1188
+#: StatusesUI.php:1316
 msgid "Add New Pre-Publication Status"
 msgstr "添加新的预发布状态"
 
-#: StatusesUI.php:1191
+#: StatusesUI.php:1204
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid ""
@@ -1015,52 +1018,52 @@ msgid ""
 "Pro%2$s."
 msgstr "对于自定义可见性状态，%1$s升级到 PublishPress Statuses Pro%2$s。"
 
-#: StatusesUI.php:1205
+#: StatusesUI.php:1218
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "注意: 自定义可见性状态是 %1$s禁用%2$s。"
 
-#: StatusesUI.php:1228
+#: StatusesUI.php:1241
 msgid "Pre-Publication"
 msgstr "预发布"
 
-#: StatusesUI.php:1236
-#: StatusesUI.php:1342
+#: StatusesUI.php:1249
+#: StatusesUI.php:1355
 msgid "Visibility"
 msgstr "可见性"
 
-#: StatusesUI.php:1247
+#: StatusesUI.php:1260
 msgid "Revision"
 msgstr "修订"
 
-#: StatusesUI.php:1303
+#: StatusesUI.php:1316
 msgid "Add New Visibility Status"
 msgstr "添加新可见性状态"
 
-#: StatusesUI.php:1307
+#: StatusesUI.php:1320
 msgid "This status can be assigned to customize post privacy."
 msgstr "该状态可以分配以自定义帖子隐私。"
 
-#: StatusesUI.php:1307
+#: StatusesUI.php:1320
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
 msgstr "该状态可以通过帖子状态下拉菜单分配给未发布的帖子。"
 
-#: StatusesUI.php:1343
+#: StatusesUI.php:1356
 msgid "Integration"
 msgstr "集成"
 
-#: StatusesUI.php:1344
+#: StatusesUI.php:1357
 msgid "Editor"
 msgstr "编辑器"
 
-#: StatusesUI.php:1345
+#: StatusesUI.php:1358
 msgid "Advanced"
 msgstr "高级"
 
-#: StatusesUI.php:1346
+#: StatusesUI.php:1359
 msgid "License"
 msgstr "许可证"
 

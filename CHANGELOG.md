@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed : Statuses auto-import causes fatal error under some conditions
 - Fixed : Custom Post Status displays as Draft to non-admin Editor roles in post editor
 - Fixed : Post update after manual selection of Pending status corrupts stored status
+- Fixed : Extra vertical gap below Status selector in post editor sidebar
+- Changed : Clarify Lock Visibility settings
+- Changed : By default, Visibility locking also prevents unpublication
 - Compat : JetFormBuilder - New Posts are automatically published
 
 [1.3.4] - 30 Jun 2026

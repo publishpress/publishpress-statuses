@@ -218,7 +218,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 'post' => false,
                 'page' => false,
             ],
-            'lock_publication' => false,
+            'lock_publication' => true,
             'supplemental_cap_moderate_any' => 0,
             'planner_add_post_custom_statuses' => 1,
             'moderation_statuses_default_by_sequence' => 0,
