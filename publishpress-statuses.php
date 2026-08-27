@@ -9,7 +9,7 @@
  * Text Domain: publishpress-statuses
  * Domain Path: /languages/
  * Requires at least: 5.5
- * Requires PHP: 7.2.5
+ * Requires PHP: 7.4.0
  * License: GPLv3
  *
  * Copyright (c) 2026 PublishPress
@@ -41,7 +41,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
  global $wp_version;
 
- $min_php_version = '7.2.5';
+ $min_php_version = '7.4.0';
  $min_wp_version  = '5.5';
  
  $invalid_php_version = version_compare(phpversion(), $min_php_version, '<');

@@ -4,7 +4,7 @@ Author: publishpress
 Author URI: https://publishpress.com
 Tags: custom statuses, workflow, pending review, status manager, archived status
 Requires at least: 5.5
-Requires PHP: 7.2.5
+Requires PHP: 7.4.0
 Tested up to: 7.0
 Stable tag: 1.3.4
 License: GPLv3
