@@ -660,8 +660,12 @@ class StatusesUI {
 
         $option_val = !empty($module->options->force_editor_detection) ? $module->options->force_editor_detection : '';
 
+        echo '<label class="screen-reader-text" for="force_editor_detection">';
+        esc_html_e('Gutenberg / Classic Editor', 'publishpress-statuses');
+        echo '</label>';
+
         echo sprintf(
-            '<select name="%s" autocomplete="off">',
+            '<select id="force_editor_detection" name="%s" autocomplete="off">',
             esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[force_editor_detection]'
         );
 
@@ -688,8 +692,12 @@ class StatusesUI {
 
         $option_val = !empty($module->options->label_storage) ? $module->options->label_storage : '';
 
+        echo '<label class="screen-reader-text" for="label_storage">';
+        esc_html_e('Status Label Customization', 'publishpress-statuses');
+        echo '</label>';
+
         echo sprintf(
-            '<select name="%s" autocomplete="off">',
+            '<select id="label_storage" name="%s" autocomplete="off">',
             esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[label_storage]'
         );
 
@@ -854,6 +862,7 @@ class StatusesUI {
 
         foreach ($post_types as $post_type => $title) {
             $setting = (isset($pp->options->default_privacy[$post_type])) ?  $pp->options->default_privacy[$post_type] : '';
+            $select_id = 'default_privacy-' . sanitize_key($post_type);
 
             echo sprintf(
                 '<input type="hidden" name="%s" value="" />',
@@ -865,12 +874,12 @@ class StatusesUI {
 
             <th>
             <?php
-            esc_html_e($title) . ' ';
+            echo '<label for="' . esc_attr($select_id) . '">' . esc_html($title) . '</label> ';
             ?>
             </th>
 
             <td style="text-align: left">
-            <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
+            <select id="<?php echo esc_attr($select_id); ?>" name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
                 <option value=""><?php esc_html_e('Published'); ?></option>
 
                 <?php foreach (get_post_stati(['private' => true], 'object') as $status_obj) :
@@ -959,7 +968,11 @@ class StatusesUI {
 
         <div class="c-input-group">
 
-        <select name="publishpress_statuses_import_operation" autocomplete="off">
+        <label class="screen-reader-text" for="publishpress_statuses_import_operation">
+        <?php esc_html_e('Import Operation', 'publishpress-statuses'); ?>
+        </label>
+
+        <select id="publishpress_statuses_import_operation" name="publishpress_statuses_import_operation" autocomplete="off">
 
         <option value=''><?php esc_html_e('Select...', 'publishpress-statuses');?></option>
 
@@ -1017,7 +1030,11 @@ class StatusesUI {
 
         <div class="c-input-group">
 
-        <select name="publishpress_statuses_backup_operation" autocomplete="off">
+        <label class="screen-reader-text" for="publishpress_statuses_backup_operation">
+        <?php esc_html_e('Backup / Restore', 'publishpress-statuses'); ?>
+        </label>
+
+        <select id="publishpress_statuses_backup_operation" name="publishpress_statuses_backup_operation" autocomplete="off">
 
         <option value=''><?php esc_html_e('Select...', 'publishpress-statuses');?></option>
 
@@ -1460,7 +1477,7 @@ class StatusesUI {
             $pp_color = \PublishPress_Statuses::DEFAULT_COLOR;
         }
 
-        echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($fieldname) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($pp_color) . '" />';
+        echo '<input type="text" id="' . esc_attr($fieldname) . '" aria-required="true" size="7" maxlength="7" name="' . esc_attr($fieldname) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($pp_color) . '" />';
     }
 
     /**
