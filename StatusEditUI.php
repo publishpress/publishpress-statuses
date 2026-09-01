@@ -294,8 +294,8 @@ class StatusEditUI
             endif;?>
 
             <tr class="form-field">
-                <th scope="row" valign="top"><?php
-                    _e('Slug', 'publishpress-statuses'); ?></th>
+                <th scope="row" valign="top"><label for="slug"><?php
+                    _e('Slug', 'publishpress-statuses'); ?></label></th>
                 <td>
                     <input type="text" name="slug" id="slug" 
                             value="<?php
@@ -316,7 +316,7 @@ class StatusEditUI
             </tr>
 
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="color"><?php
+                <th scope="row" valign="top"><label for="status_color"><?php
                         _e(
                             'Color',
                             'publishpress-statuses'
@@ -392,7 +392,7 @@ class StatusEditUI
                 $roles = \PP_Statuses_Functions::getRoles(true);
                 ?>
                 <tr class="form-field">
-                    <th><label for="status_assign"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
+                    <th><span><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></span>
                     <br /><br />
                     <span class="pp-statuses-field-descript" style="font-weight: normal">
                     <?php esc_html_e('Choose which user roles can assign this status to a post.', 'publishpress-statuses');?>
@@ -411,8 +411,8 @@ class StatusEditUI
                                 <div>
                                 <input type="hidden" name="roles_set_status[<?php echo esc_attr($role_name);?>]" value="0" />
 
-                                <label>
-                                <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status" autocomplete="off"
+                                <label for="roles_set_status-<?php echo esc_attr($role_name);?>">
+                                <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status-<?php echo esc_attr($role_name);?>" autocomplete="off"
                                 <?php checked($can_set_status);?> <?php disabled($is_administrator);?> value="1" class="regular-text" />
                                 <span class="pp-full-label">
                                 <?php echo esc_html($role_label);?>
@@ -433,7 +433,7 @@ class StatusEditUI
             case 'post_types' :
                 ?>
                 <tr class="form-field">
-                <th><label for="status_label"><?php esc_html_e('Post Types', 'publishpress-statuses') ?></label>
+                <th><span><?php esc_html_e('Post Types', 'publishpress-statuses') ?></span>
                 <br /><br />
                 <span class="pp-statuses-field-descript" style="font-weight: normal">
                 <?php esc_html_e('Choose which post types can be set to this status.', 'publishpress-statuses');?>
