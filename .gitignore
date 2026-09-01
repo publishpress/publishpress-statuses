@@ -14,3 +14,5 @@ dev-workspace/.cache
 dev-workspace-cache/
 .env
 .phplint-cache
+.web/
+.ddev/
