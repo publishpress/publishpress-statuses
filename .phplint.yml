@@ -15,3 +15,5 @@ exclude:
   - .wordpress-org
   - .node_modules
   - languages
+  - .web
+  - .ddev
