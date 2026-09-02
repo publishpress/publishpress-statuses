@@ -18,13 +18,13 @@ class StatusHandler {
         }
 
         // Validate and sanitize the form data
-        $status_label = !empty($_POST['status_label']) ? sanitize_text_field(trim(sanitize_text_field($_POST['status_label']))) : '';
+        $status_label = !empty($_POST['status_label']) ? sanitize_text_field(trim(sanitize_text_field(wp_unslash($_POST['status_label'])))) : '';
 
-        $status_name = !empty($_POST['slug']) ? sanitize_title($_POST['slug']) : '';
+        $status_name = !empty($_POST['slug']) ? sanitize_title(wp_unslash($_POST['slug'])) : '';
 
-        $status_description = !empty($_POST['description']) ? stripslashes(wp_filter_nohtml_kses(trim(sanitize_text_field($_POST['description'])))) : '';
+        $status_description = !empty($_POST['description']) ? stripslashes(wp_filter_nohtml_kses(trim(sanitize_text_field(wp_unslash($_POST['description']))))) : '';
 
-        $status_color = !empty($_POST['status_color']) ? sanitize_hex_color($_POST['status_color']) : '';
+        $status_color = !empty($_POST['status_color']) ? sanitize_hex_color(wp_unslash($_POST['status_color'])) : '';
 
         $status_icon = !empty($_POST['icon']) ? str_replace('dashicons|', '', sanitize_key($_POST['icon'])) : '';
 
@@ -254,8 +254,8 @@ class StatusHandler {
             wp_die(esc_html__("Post status doesn't exist.", 'publishpress-statuses'));
         }
 
-        $color = !empty($_POST['status_color']) ? sanitize_hex_color($_POST['status_color']) : '';
-        $icon = !empty($_POST['icon']) ? sanitize_text_field($_POST['icon']) : '';
+        $color = !empty($_POST['status_color']) ? sanitize_hex_color(wp_unslash($_POST['status_color'])) : '';
+        $icon = !empty($_POST['icon']) ? sanitize_text_field(wp_unslash($_POST['icon'])) : '';
         $icon = str_replace('dashicons|', '', $icon);
 
         $status_obj = $existing_status;
@@ -367,7 +367,7 @@ class StatusHandler {
 
         // work around bug in status capabilities library (displaying Set capability checkbox for disabled post types)
         if (isset($_REQUEST['status_caps'])) {                                                          // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
-            foreach (array_keys($_REQUEST['status_caps']) as $role_name) {                              // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+            foreach (array_keys($_REQUEST['status_caps']) as $role_name) {                              // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.MissingUnslash
                 if (isset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
                     unset($_REQUEST['status_caps'][$role_name]["status_change_{$status_obj->name}"]);   // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
                 }
@@ -403,7 +403,7 @@ class StatusHandler {
             wp_die(esc_html(__('Sorry, you are not allowed to access this page.')));
         }
 
-        $name = !empty($_REQUEST['name']) ? trim(sanitize_text_field($_REQUEST['name'])) : '';
+        $name = !empty($_REQUEST['name']) ? trim(sanitize_text_field(wp_unslash($_REQUEST['name']))) : '';
 
         if (!$existing_status = \PublishPress_Statuses::getStatusBy('name', sanitize_key($name))) {
             wp_die(esc_html__("Post status doesn't exist.", 'publishpress-statuses'));
@@ -435,7 +435,7 @@ class StatusHandler {
         $form_errors = [];
 
         if (isset($_REQUEST['description'])) {
-            $description = stripslashes(wp_filter_nohtml_kses(trim(sanitize_text_field($_REQUEST['description']))));
+            $description = stripslashes(wp_filter_nohtml_kses(trim(sanitize_text_field(wp_unslash($_REQUEST['description'])))));
         }
 
         if (isset($_REQUEST['status_label'])) {
@@ -447,7 +447,7 @@ class StatusHandler {
              * - 'description' is optional
              */
 
-            $label = !empty($_POST['status_label']) ? trim(sanitize_text_field($_POST['status_label'])) : '';
+            $label = !empty($_POST['status_label']) ? trim(sanitize_text_field(wp_unslash($_POST['status_label']))) : '';
 
             // Check if name field was filled in
             if (empty($label)) {
@@ -501,8 +501,8 @@ class StatusHandler {
 
 
         $labels = [];
-        $labels['save_as'] = !empty($_REQUEST['status_save_as_label']) ? sanitize_text_field($_REQUEST['status_save_as_label']) : '';
-        $labels['publish'] = !empty($_REQUEST['status_publish_label']) ? sanitize_text_field($_REQUEST['status_publish_label']) : '';
+        $labels['save_as'] = !empty($_REQUEST['status_save_as_label']) ? sanitize_text_field(wp_unslash($_REQUEST['status_save_as_label'])) : '';
+        $labels['publish'] = !empty($_REQUEST['status_publish_label']) ? sanitize_text_field(wp_unslash($_REQUEST['status_publish_label'])) : '';
         $args['labels'] = (object) $labels;
 
         $name = apply_filters('publishpress_statuses_sanitize_status_name', sanitize_key($name), $taxonomy);
@@ -639,7 +639,7 @@ class StatusHandler {
                         $meta_val = \get_object_vars($set_value);
 
                         foreach($meta_val as $k => $val) {
-                            $meta_val[$k] = sanitize_text_field($val);
+                            $meta_val[$k] = sanitize_text_field(wp_unslash($val));
                         }
 
                         $meta_val = (object) $meta_val;
@@ -823,8 +823,8 @@ class StatusHandler {
         if (!empty($_REQUEST['status_hierarchy'])) {
             $status_parents = [];
 			
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            foreach ($_REQUEST['status_hierarchy'] as $arr) { // elements of multi-dim array sanitized below
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+            foreach ($_REQUEST['status_hierarchy'] as $arr) { // (elements of multi-dim array sanitized below)
                 $status_name = str_replace('status_row_', '', sanitize_key($arr['id']));
                 
                 $status_parents[$status_name] = '';
@@ -1045,7 +1045,7 @@ class StatusHandler {
         $goback = add_query_arg('message', 'settings-updated', remove_query_arg(['message'], wp_get_referer()));
 
         if (!empty($_REQUEST['pp_tab']) && ('workflow' != $_REQUEST['pp_tab'])) {
-            $goback = add_query_arg('pp_tab', esc_attr($_REQUEST['pp_tab']), $goback);      // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            $goback = add_query_arg('pp_tab', esc_attr(wp_unslash($_REQUEST['pp_tab'])), $goback);      // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         }
 
         wp_safe_redirect($goback);

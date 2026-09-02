@@ -44,7 +44,7 @@ class ModuleAdminUI_Base {
 
         // If there's been an error, let's display it
         if ($error = \PublishPress_Statuses::instance()->last_error) {
-            $error = sanitize_text_field($error);
+            $error = sanitize_text_field(wp_unslash($error));
         } else {
             $error = false;
         }

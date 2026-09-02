@@ -617,12 +617,12 @@ class PP_Statuses_Functions
 
     public static function SERVER_url($var) {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        return (!empty($_SERVER[$var])) ? sanitize_url(sanitize_text_field($_SERVER[$var])) : '';
+        return (!empty($_SERVER[$var])) ? sanitize_url(sanitize_text_field(wp_unslash($_SERVER[$var]))) : '';
     }
 
     public static function REQUEST_url($var) {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        return (!empty($_REQUEST) && !empty($_REQUEST[$var])) ? sanitize_url(sanitize_text_field($_REQUEST[$var])) : '';
+        return (!empty($_REQUEST) && !empty($_REQUEST[$var])) ? sanitize_url(sanitize_text_field(wp_unslash($_REQUEST[$var]))) : '';
     }
 
     /**
