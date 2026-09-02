@@ -19,7 +19,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true,
             "publishpress/dev-workspace": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "composer/installers": true
         },
         "process-timeout": 0
     },
