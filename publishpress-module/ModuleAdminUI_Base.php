@@ -120,7 +120,7 @@ class ModuleAdminUI_Base {
 
         <div class="pp-publishpress-logo">
         <a href="//publishpress.com" target="_blank" rel="noopener noreferrer">
-        <img src="<?php echo esc_url($local_img_url);?>" />
+        <img src="<?php echo esc_url($local_img_url);?>" alt="<?php echo esc_attr($plugin_title);?>" />
         </a>
         </div>
 
