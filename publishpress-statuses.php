@@ -287,7 +287,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             add_action(
                 'init', 
                 function() {
-                    @load_plugin_textdomain('publishpress-statuses', false, dirname(plugin_basename(__FILE__)) . '/languages');
+                    @load_plugin_textdomain('publishpress-statuses', false, dirname(plugin_basename(__FILE__)) . '/languages');     // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
                 },
                 5
             );
@@ -356,7 +356,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             if ($archived_term_descriptions = get_option('pp_statuses_archived_term_properties')) {
     
                 // Use hardcoded taxonomy string here because class PublishPress_Statuses is not loaded
-                $terms = get_terms('post_status', ['hide_empty' => false]);
+                $terms = get_terms(['taxonomy' => 'post_status', 'hide_empty' => false]);
     
                 if (is_array($terms)) {
                     foreach ($terms as $term) {

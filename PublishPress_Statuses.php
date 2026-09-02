@@ -702,7 +702,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             in_array($plugin_page, ['publishpress-statuses', 'pp-capabilities'])
             || (
                 isset($_SERVER['SCRIPT_NAME']) 
-                && false !== strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'admin-ajax.php') 
+                && false !== strpos(sanitize_text_field(wp_unslash($_SERVER['SCRIPT_NAME'])), 'admin-ajax.php') 
                 && \PP_Statuses_Functions::is_REQUEST('action', ['pp_update_status_positions', 'pp_statuses_toggle', 'pp_delete_custom_status'])
             );
     }
@@ -1755,8 +1755,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $stored_status_terms[$taxonomy] = [];
 
             $_terms = get_terms(
-                $taxonomy, 
-                ['hide_empty' => false] // @todo: support other args?
+                ['taxonomy' => $taxonomy, 'hide_empty' => false] // @todo: support other args?
             );
 
             if (is_wp_error($_terms) || empty($_terms)) {
@@ -1806,14 +1805,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                             if (is_object($value)) {
                                 foreach (get_object_vars($value) as $k => $val) {
-                                    $value->$k = sanitize_text_field($val);
+                                    $value->$k = sanitize_text_field(wp_unslash($val));
                                 }
                             } elseif (is_array($value)) {
                                 foreach ($value as $k => $val) {
-                                    $value[$k] = sanitize_text_field($val);
+                                    $value[$k] = sanitize_text_field(wp_unslash($val));
                                 }
                             } else {
-                                $value = sanitize_text_field($value);
+                                $value = sanitize_text_field(wp_unslash($value));
                             }
 
                             $term->$meta_key = $value;
@@ -2653,18 +2652,18 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                         $meta_val = [];
 
                         foreach ($set_value as $k => $val) {
-                            $meta_val[$k] = sanitize_textarea_field($val);
+                            $meta_val[$k] = sanitize_textarea_field(wp_unslash($val));
                         }
                     } elseif (is_object($set_value)) {
                         $meta_val = \get_object_vars($set_value);
 
                         foreach($meta_val as $k => $val) {
-                            $meta_val[$k] = sanitize_text_field($val);
+                            $meta_val[$k] = sanitize_text_field(wp_unslash($val));
                         }
 
                         $meta_val = (object) $meta_val;
                     } else {
-                        $meta_val = sanitize_textarea_field($set_value);
+                        $meta_val = sanitize_textarea_field(wp_unslash($set_value));
                     }
 
                     $result = update_term_meta($term_id, $field, $meta_val);

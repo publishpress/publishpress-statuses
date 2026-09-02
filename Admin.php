@@ -716,7 +716,7 @@ class Admin
     	}
     
         if (!$terms) {
-            if (!$terms = get_terms($taxonomy, ['hide_empty' => false])) {
+            if (!$terms = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false])) {
                 $busy = false;
                 return $terms;
             }
@@ -788,7 +788,7 @@ class Admin
         }
 
         if (\PublishPress_Statuses::TAXONOMY_PRE_PUBLISH == $taxonomy) {
-        	$default_terms = get_terms(\PublishPress_Statuses::TAXONOMY_CORE_STATUS, ['hide_empty' => false]);
+        	$default_terms = get_terms(['taxonomy' => \PublishPress_Statuses::TAXONOMY_CORE_STATUS, 'hide_empty' => false]);
 
         	self::applyBackupOperations($default_terms, \PublishPress_Statuses::TAXONOMY_CORE_STATUS);
         }

@@ -364,7 +364,7 @@ class StatusesUI {
             );
 
             if (!defined('PUBLISHPRESS_STATUSES_NO_PLANNER_IMPORT')) {
-                $terms = get_terms('post_status', ['hide_empty' => false]);
+                $terms = get_terms(['taxonomy' => 'post_status', 'hide_empty' => false]);
 
                 if ($show_import_setting = !empty($terms) 
                 && (get_option('publishpress_version') || get_site_option('edit_flow_version', false) || get_option('pps_version') || defined('PP_STATUSES_ENABLE_PLANNER_IMPORT'))
@@ -931,18 +931,18 @@ class StatusesUI {
 
         if (defined('PUBLISHPRESS_CAPS_VERSION') && !empty($options) && !empty($options->lock_publication)) {
             $admin_disclaimer = (!empty($role) && $role->has_cap('pp_unpublish_posts'))
-            ? sprintf(__('This setting does not apply to %1$s Administrators%2$s.', 'publishpress-statuses'), "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>", '</a>')
-            : sprintf(__('You may assign a %1$s role capability %2$s to bypass this locking.', 'publishpress-statuses'), "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>", '</a>');
+            ? sprintf(esc_html__('This setting does not apply to %1$s Administrators%2$s.', 'publishpress-statuses'), "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>", '</a>')
+            : sprintf(esc_html__('You may assign a %1$s role capability %2$s to bypass this locking.', 'publishpress-statuses'), "<a href='" . admin_url('admin.php?page=pp-capabilities&pp_caps_tab=publishpress-statuses') . "'>", '</a>');
 
         } else {
             $admin_disclaimer = (!empty($role) && $role->has_cap('pp_unpublish_posts'))
-            ? __('This setting does not apply to Administrators.', 'publishpress-statuses')
+            ? esc_html__('This setting does not apply to Administrators.', 'publishpress-statuses')
             : '';
         }
 
         printf(
             esc_html__('If this setting is unchecked, the lock will only prevent selection of a different visibility status. %1$s %2$s See documentation%3$s.', 'publishpress-statuses'),
-            $admin_disclaimer,
+            $admin_disclaimer,  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             '<a href="https://publishpress.com/knowledge-base/how-to-lock-visibility-statuses/" target="_blank">',
             '</a>'
         );
@@ -989,7 +989,7 @@ class StatusesUI {
 
         $all_statuses = \PublishPress_Statuses::getPostStati(['internal' => false], 'object');
 
-        $_terms = get_terms(\PublishPress_Statuses::TAXONOMY_PRE_PUBLISH, ['hide_empty' => false]);
+        $_terms = get_terms(['taxonomy' => \PublishPress_Statuses::TAXONOMY_PRE_PUBLISH, 'hide_empty' => false]);
 
         if ($_terms) {
             foreach($_terms as $term) {
@@ -1339,7 +1339,7 @@ class StatusesUI {
                 <div class='col-wrap'>
                     <div class='form-wrap'>
                         <?php
-                        $current_tab = (!empty($_REQUEST['pp_tab'])) ? $_REQUEST['pp_tab'] : 'workflow';            // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                        $current_tab = (!empty($_REQUEST['pp_tab'])) ? wp_unslash($_REQUEST['pp_tab']) : 'workflow';            // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
                         if ('publishpress-statuses-add-new' === $plugin_page) :
                             require_once(__DIR__ . '/StatusAddNewUI.php');
