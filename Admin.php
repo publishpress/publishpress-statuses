@@ -852,7 +852,7 @@ class Admin
 
         // Save a backup of the original Planner term properties archive. 
         // This can be useful in distinguishing Planner-created statuses from Statuses-based entries which Planner re-saved after being re-activated.
-        if ($archived_term_descriptions && !get_option('pp_statuses_original_archived_term_properties')) {
+        if ($archived_term_descriptions && !get_option('pp_statuses_original_archived_term_properties_json')) {
             if (is_string($archived_term_descriptions)) {
                 update_option('pp_statuses_original_archived_term_properties_json', json_decode($archived_term_descriptions));
             }

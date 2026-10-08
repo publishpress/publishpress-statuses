@@ -434,6 +434,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'hierarchical'          => false,
                     'label'                 => __('Statuses', 'publishpress-statuses'),
                     'labels'                => (object) ['name' => __('Statuses', 'publishpress-statuses'), 'singular_name' => __('Status', 'publishpress-statuses')],
+                    'public'                => false,
                     'query_var'             => false,
                     'rewrite'               => false,
                     'show_ui'               => false,
@@ -448,6 +449,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 [
                     'hierarchical' => false,
                     'label' => __('Core Post Statuses', 'publishpress-statuses'),
+                    'public' => false,
                     'query_var' => false,
                     'rewrite' => false,
                     'show_ui' => false,
@@ -455,21 +457,22 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             );
         }
 
-        if (self::isStatusManagement()) {
-            if (! taxonomy_exists(self::TAXONOMY_PSEUDO_STATUS)) {
-                register_taxonomy(
-                    self::TAXONOMY_PSEUDO_STATUS,
-                    [],
-                    [
-                        'hierarchical' => false,
-                        'label' => 'Pseudo Statuses',
-                        'query_var' => false,
-                        'rewrite' => false,
-                        'show_ui' => false,
-                    ]
-                );
-            }
-        } else {
+        if (!taxonomy_exists(self::TAXONOMY_PSEUDO_STATUS)) {
+            register_taxonomy(
+                self::TAXONOMY_PSEUDO_STATUS,
+                [],
+                [
+                    'hierarchical' => false,
+                    'label' => 'Pseudo Statuses',
+                    'public' => false,
+                    'query_var' => false,
+                    'rewrite' => false,
+                    'show_ui' => false,
+                ]
+            );
+        }
+
+        if (!self::isStatusManagement()) {
             $disable_statuses = self::disable_custom_statuses_for_post_type(null, ['override_exemptions' => true]);
         }
 
@@ -2235,8 +2238,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                                     }
                             }
 
-                            if (is_object($val) && !empty($val->name)) {
-                                $wp_post_statuses[$status_name]->label = $val->name;
+                            if (!empty($val)) {
+                                $wp_post_statuses[$status_name]->label = $val;
                             }
                         }
 
