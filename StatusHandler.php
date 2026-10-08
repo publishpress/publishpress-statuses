@@ -771,7 +771,10 @@ class StatusHandler {
 
         if ($status_name = \PP_Statuses_Functions::REQUEST_key('delete_status')) {
             if (!current_user_can('manage_options') && !current_user_can('pp_manage_statuses')) {
-                self::printAjaxResponse('error', esc_html(__('Sorry, you are not allowed to access this page.')));
+                wp_send_json_error(
+                    ['message' => esc_html(__('Sorry, you are not allowed to access this page.'))],
+                    403
+                );
             }
 
             if ($status = \PublishPress_Statuses::getStatusBy('slug', $status_name)) {
@@ -803,7 +806,10 @@ class StatusHandler {
         check_ajax_referer('custom-status-sortable');
 
         if (!current_user_can('manage_options') && !current_user_can('pp_manage_statuses')) {
-            self::printAjaxResponse('error', esc_html(__('Sorry, you are not allowed to access this page.')));
+            wp_send_json_error(
+                ['message' => esc_html(__('Sorry, you are not allowed to access this page.'))],
+                403
+            );
         }
 
         if (!isset($_POST['status_positions']) || !is_array($_POST['status_positions'])) {
