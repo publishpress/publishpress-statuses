@@ -2238,8 +2238,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                                     }
                             }
 
-                            if (is_object($val) && !empty($val->name)) {
-                                $wp_post_statuses[$status_name]->label = $val->name;
+                            if (!empty($val)) {
+                                $wp_post_statuses[$status_name]->label = $val;
                             }
                         }
 
