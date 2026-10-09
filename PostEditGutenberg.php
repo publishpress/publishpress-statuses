@@ -238,44 +238,8 @@ class PostEditGutenberg
             }
         }
 
-        if (!empty($ordered_statuses['pending'])) {
-            $_ordered = [];
-
-            foreach ($ordered_statuses as $key => $status_obj) {
-                $_ordered []= $status_obj;
-
-                if ('pending' == $status_obj->name) {
-                    $status_obj = get_post_status_object('pending');
-                    $status_label = (!empty($status_obj)) ? $status_obj->label : esc_html(__('Pending Review'));
-
-                    $labels = (object) [
-                        'save_as' => (!empty($status_obj) && !empty($status_obj->labels) && !empty($status_obj->labels->save_as)) 
-                        ? $status_obj->labels->save_as 
-                        : __('Save as Pending'),
-                        
-                        'publish' => (!empty($status_obj) && !empty($status_obj->labels) && !empty($status_obj->labels->publish)) 
-                        ? $status_obj->labels->publish 
-                        : __('Submit for Review'),
-                    ];
-
-                    // Alternate item to allow use of "Save as Pending" button
-                    //
-                    // This will allow different behavior from the Submit button, 
-                    // which may default to next/highest available workflow status.
-
-                    $_ordered[]= (object)[
-                        'name' => '_pending',
-                        'label' => $status_label,
-                        'labels' => $labels,
-                        'icon' => $status_obj->icon,
-                        'color' => $status_obj->color
-                    ];
-                } 
-            }
-
-            $ordered_statuses = $_ordered;
-        }
-
+        // Manual selections use the separate pp_status_selection REST field.
+        // Keep one Pending option; the stored status must not imply user intent.
         $ordered_statuses = array_values($ordered_statuses);
 
         if (!$ordered_statuses) {

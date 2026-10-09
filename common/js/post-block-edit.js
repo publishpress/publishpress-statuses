@@ -1,1 +1,618 @@
-jQuery(document).ready(function(t){wp.i18n.__;var e,s,i=!1,o=!1,p=null,n=[],d=[];function r(t){var e=setInterval(function(){t()&&i()},100),s=setTimeout(i,2e4);function i(){clearInterval(e),clearTimeout(s),n=n.filter(function(t){return t!==e}),d=d.filter(function(t){return t!==s})}return n.push(e),d.push(s),i}var u=null,l=null,a=null;function b(e,s,i){if(!ppObjEdit.disableRecaption&&!wp.data.select("core/editor").isSavingPost()){var o,p,n=t(s);if(o="button.editor-post-publish-button"==s?"presspermit-editor-button":"presspermit-editor-toggle",t(s).length&&i&&(i!=t("span."+o+" button").html()||!t("span."+o+":visible").length)){if(t(s).html()==ppObjEdit.submitRevisionCaption)return;t("span.presspermit-editor-toggle").remove(),t("div.editor-post-publish-panel__prepublish").length||t("span.presspermit-editor-button").remove(),"presspermit-editor-button"==o&&t("div.editor-post-publish-panel__prepublish").length&&t("span."+o+" button").length?t("span."+o+" button").html(i).show():(t(".presspermit-editor-hidden").not(t(s)).show(),p="button.editor-post-publish-button"==s?"presspermit-editor-hidden presspermit-editor-button-hidden":"presspermit-editor-hidden presspermit-editor-toggle-hidden",n.addClass(p).hide().css("z-index",-999),n.after('<span class="'+o+'">'+n.clone().css("z-index",0).removeClass(p).removeClass("editor-post-publish-button").removeAttr("aria-disabled").css("position","relative").css("background-color","var(--wp-admin-theme-color)").show().html(i).wrap("<span>").parent().html()+"</span>"),(null!=typeof ppObjEdit.isGutenbergLegacy&&ppObjEdit.isGutenbergLegacy||"button.editor-post-publish-button"==s&&(t(".presspermit-save-button:visible").length||t("div.editor-post-publish-panel__content:visible").length||t(".presspermit-editor-button button:visible").length&&t(".publishpress-extended-post-status select:visible").length))&&n.not(".editor-post-publish-panel__toggle").addClass(p).css("background-color","inherit").css("position","fixed").attr("aria-disabled",!0))}g()}}function c(e,s){if(ppObjEdit.publishCaptionCurrent!=ppObjEdit.saveDraftCaption&&!wp.data.select("core/editor").isSavingPost())if(""==e&&null!=typeof ppObjEdit.publishCaptionCurrent?e=ppObjEdit.publishCaptionCurrent:ppObjEdit.publishCaptionCurrent=e,void 0===s&&(s=!1),u&&(u(),u=null),s&&!t("button.editor-post-save-draft").filter(":visible").length&&t(".is-saving").length||!t("button.editor-post-publish-button").length){u=r(function(){if(!s||t("button.editor-post-save-draft").filter(":visible").length||!t(".is-saving").length)return b(0,"button.editor-post-publish-button",e),t(".publishpress-extended-post-status-note").hide(),t("span.presspermit-editor-button button").removeAttr("aria-disabled"),!0;return!1})}else b(0,"button.editor-post-publish-button",e),t("span.presspermit-editor-button button").removeAttr("aria-disabled")}ppObjEdit.publishCaptionCurrent=ppObjEdit.publish;var h=function(e){if(ppObjEdit.hidePending){var s=window.wp.i18n;if(void 0!==s)(0,s.__)("Pending review")&&t("input.components-checkbox-control__input").closest("div.components-base-control__field").find('label:contains("")').closest("div.components-panel__row").hide()}if(void 0!==e&&e||(t("button.editor-post-publish-button").length||t("button.editor-post-publish-panel__toggle").length)&&(t("button.editor-post-save-draft").length||t("button.editor-post-saved-state.is-saved").length||void 0!==window.PPCustomStatuses&&-1!==window.PPCustomStatuses.publishedStatuses.indexOf(wp.data.select("core/editor").getEditedPostAttribute("status"))||t('div.publishpress-extended-post-status select option[value="_pending"]').length&&("pending"==t("div.publishpress-extended-post-status select").val()||"_pending"==t("div.publishpress-extended-post-status select").val()))||void 0!==window.PPCustomStatuses&&void 0!==window.PPCustomStatuses.isRevision&&window.PPCustomStatuses.isRevision)if(t("button.editor-post-publish-panel__toggle").length){if(void 0!==ppObjEdit.prePublish&&ppObjEdit.prePublish){let t=wp.data.select("core/editor").getEditedPostAttribute("status");-1==window.PPCustomStatuses.publishedStatuses.indexOf(t)&&b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish)}}else c(ppObjEdit.publish,!1);ppObjEdit.lockStatus&&(t(".editor-change-status__options input").prop("disabled",!0),t(".publishpress-extended-post-privacy select").prop("disabled",!0))};t(document).on("click","button.editor-post-publish-panel__toggle,span.pp-recaption-prepublish-button",function(){c("",!1)});var v="";var g=function(){t("div.publishpress-extended-post-status select").length&&(t('div.publishpress-extended-post-status select option[value="_pending"]').length&&("pending"==t("div.publishpress-extended-post-status select").val()&&t("div.publishpress-extended-post-status select").val("_pending"),t('div.publishpress-extended-post-status select > option[value="pending"]').html("").hide()),t("div.publishpress-extended-post-status select").val())};t(document).on("click",'div.publishpress-extended-post-status select option[value="pending"]',function(){t("div.publishpress-extended-post-status select").val("_pending")}),t(document).on("click","button.editor-post-save-draft",function(){ppObjEdit.publishCaptionCurrent=ppObjEdit.publish}),t(document).on("change","div.publishpress-extended-post-status select",function(){t("#ppcs_save_draft_label").hide()}),t(document).on("click","div.publishpress-extended-post-status select",function(){t('div.publishpress-extended-post-status select option[value="_pending"]').length&&t('div.publishpress-extended-post-status select option[value="pending"]').length&&t('div.publishpress-extended-post-status select option[value="pending"]').hide()}),t(document).on("click","span.presspermit-editor-button button",function(){wp.data.select("core/editor").isSavingPost()||t("span.presspermit-editor-button button").attr("aria-disabled")||t(this).parent().prev("button.editor-post-publish-button").trigger("click").hide()}),t(document).on("click","span.presspermit-editor-toggle button",function(){wp.data.select("core/editor").isSavingPost()||t("span.presspermit-editor-toggle button").attr("aria-disabled")||t(this).parent().prev("button.editor-post-publish-panel__toggle").trigger("click").hide()});let m=function(){t("div.publishpress-extended-post-status select").removeAttr("locked"),jQuery(document).ready(function(t){l&&l(),l=r(function(){return!!(t("span.presspermit-editor-toggle button:visible").length&&"false"==t("span.presspermit-editor-toggle button").parent().prev("button").attr("aria-disabled")||t("span.presspermit-editor-button button:visible").length&&"false"==t("span.presspermit-editor-button button").parent().prev("button").attr("aria-disabled"))&&(t("span.presspermit-editor-toggle button").removeAttr("aria-disabled"),t("span.presspermit-editor-button button").removeAttr("aria-disabled"),!0)}),t("div.publishpress-extended-post-status select").removeAttr("disabled")});let e=wp.data.select("core/editor").getEditedPostAttribute(PPCustomStatuses.statusRestProperty);var s="redirectURL"+e;null!=typeof ppObjEdit[s]?t(location).attr("href",ppObjEdit[s]):e,i=!1,setTimeout(function(){i=!1,b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish),c(ppObjEdit.publish,!1),setTimeout(function(){PPCS_RecaptionOnDisplay("")},500),f()},500),querySelectableStatuses(e),_=!1};var f=function(){t("div.publishpress-extended-post-status select").removeAttr("disabled")},_=!1;let E=function(){if(wp.data.select("core/editor").isSavingPost()){if(wp.data.select("core/editor").isAutosavingPost())return;_||(_=!0,wp.data.select("core/editor").getEditedPostAttribute("status"),t("div.publishpress-extended-post-status select").attr("locked",!0),t("span.presspermit-editor-button button").attr("aria-disabled",!0),t("div.publishpress-extended-post-status select").attr("disabled",!0),t("span.presspermit-editor-toggle button").attr("aria-disabled",!0))}else _&&m()};t(document).on("click","button.editor-post-publish-button:not(.presspermit-editor-hidden),button.editor-post-save-draft",function(){E()}),t(document).on("click","button.editor-post-publish-button",function(){if(t("div.editor-post-publish-panel__prepublish").length||t("button.editor-post-publish-panel__toggle").length){t("span.presspermit-editor-button button").remove();a&&a(),a=r(function(){if(t("button.editor-post-publish-panel__toggle").not('[aria-disabled="true"]').length)return b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish),!0;t("button.editor-post-publish-panel__toggle").length?t("span.presspermit-editor-toggle").length||b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish):t("span.presspermit-editor-button button").length||(c(ppObjEdit.publish,!1),t("span.presspermit-editor-button button").attr("aria-disabled","true"))})}else c(ppObjEdit.saveAs,!0),t("span.presspermit-editor-button button").attr("aria-disabled","true");setTimeout(function(){c(ppObjEdit.saveAs,!0)},100)}),t(document).on("click",'fieldset.editor-change-status__options div.components-radio-control__option input[value="publish"]',function(){t("span.presspermit-editor-toggle").hide(),t(".presspermit-editor-hidden").show().css("z-index",0)}),t(document).on("click","div.editor-post-publish-panel__header-cancel-button button",function(){setTimeout(function(){t("button.editor-post-publish-panel__toggle").removeClass("presspermit-editor-hidden").css("z-index",1),b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish),PPCS_RecaptionOnDisplay("")},100)}),t(document).on("change",".e1mv6sxx2",function(){"draft"===t(this).val()&&setTimeout(function(){t("span.presspermit-save-button").length?t("span.presspermit-save-button button").css({display:"flex","z-index":"999"}).attr("aria-disabled","false"):t(".editor-header__settings .editor-post-save-draft").css({display:"flex","z-index":"999"}).attr("aria-disabled","false")},100)}),t(document).on("click","button.editor-post-save-draft",function(){t("span.presspermit-editor-button button").attr("aria-disabled","true"),setTimeout(function(){c(ppObjEdit.publish,!0)},50)}),t(document).on("click","div.editor-post-publish-panel__header button.components-icon-button",function(){setTimeout(function(){h()},100)});var O=!1;function j(){if(p=null,!o){e.disconnect();try{var s=t("div.components-modal__header").length>0;O&&!s&&(t("span.presspermit-editor-button").remove(),t("span.presspermit-editor-toggle").remove(),t(".presspermit-editor-hidden").show(),b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish),c(ppObjEdit.publish,!0)),O=s,h(),g(),t("span.presspermit-editor-button button.is-busy").length&&(wp.data.select("core/editor").isSavingPost()||t("span.presspermit-editor-button button.is-busy").removeClass("is-busy")),function(){if(ppObjEdit.moveParentUI&&t("div.editor-post-panel__row-label").each(function(e,s){t(s).html()==ppObjEdit.parentLabel&&t(s).closest("div.editor-post-panel__row").insertAfter(t("div.editor-post-panel__row-label:contains("+ppObjEdit.publishLabel+")").closest("div.editor-post-panel__row").next())}),t("div.editor-post-publish-panel__header-cancel-button").length&&c(ppObjEdit.publish,!1),ppObjEdit.workflowSequence&&!wp.data.select("core/editor").isSavingPost()){let e=wp.data.select("core/editor").getEditedPostAttribute("status");ppObjEdit.publish==v&&e===i||(-1!==PPCustomStatuses.publishedStatuses.indexOf(e)?(ppObjEdit.publish=ppObjEdit.update,ppObjEdit.saveAs=""):e==ppObjEdit.maxStatus?(ppObjEdit.publish=ppObjEdit.update,ppObjEdit.saveAs=ppObjEdit.update):t("button.editor-post-publish-panel__toggle").length?void 0!==ppObjEdit.prePublish&&ppObjEdit.prePublish&&t("button.editor-post-publish-panel__toggle").html()!=ppObjEdit.scheduleCaption&&(-1!=new Array("pending","_pending").indexOf(e)?c(ppObjEdit.publish,!1):b(0,"button.editor-post-publish-panel__toggle",ppObjEdit.prePublish)):c(ppObjEdit.publish,!1),i=e,v=ppObjEdit.publish,ppObjEdit.publishCaptionCurrent!=ppObjEdit.publish&&setTimeout(function(){h(!0)},100),ppObjEdit.publishCaptionCurrent=ppObjEdit.publish)}}()}finally{o||e.observe(document.body,{childList:!0,subtree:!0})}}}function P(){o||null!==p||(p=setTimeout(j,100))}(e=new MutationObserver(P)).observe(document.body,{childList:!0,subtree:!0});var w="";s=wp.data.subscribe(function(){var t=wp.data.select("core/editor"),e=[t.getEditedPostAttribute("status"),t.isSavingPost(),t.isAutosavingPost()].join("|");e!==w&&(w=e,E(),P())}),P(),t(window).on("pagehide.ppStatusesBlockEditor",function(){o=!0,e.disconnect(),s(),clearTimeout(p),n.forEach(clearInterval),d.forEach(clearTimeout),n=[],d=[]})});
+/**
+ * Block Editor Modifications for PressPermit / PublishPress
+ *
+ * By Kevin Behrens
+ *
+ * Copyright 2024, PublishPress
+ */
+jQuery(document).ready(function ($) {
+
+    var __ = wp.i18n.__;
+    var ppCurrentStatus = '';
+    var ppLastStatus = false;
+    var ppEditorDisposed = false;
+    var ppRefreshTimeout = null;
+    var ppEditorObserver;
+    var ppEditorUnsubscribe;
+    var ppToolbarWorkflowSelected = false;
+    var ppWaitIntervals = [];
+    var ppWaitTimeouts = [];
+
+    // Temporary React/save waits are bounded and have one owner per purpose.
+    function PP_StartWait(callback) {
+        var interval = setInterval(function () {
+            if (callback()) {
+                stop();
+            }
+        }, 100);
+        var timeout = setTimeout(stop, 20000);
+        ppWaitIntervals.push(interval);
+        ppWaitTimeouts.push(timeout);
+        function stop() {
+            clearInterval(interval);
+            clearTimeout(timeout);
+            ppWaitIntervals = ppWaitIntervals.filter(function (id) { return id !== interval; });
+            ppWaitTimeouts = ppWaitTimeouts.filter(function (id) { return id !== timeout; });
+        }
+        return stop;
+    }
+    var ppStopRecaptionWait = null;
+    var ppStopRestoreWait = null;
+    var ppStopPrepublishWait = null;
+
+    ppObjEdit.publishCaptionCurrent = ppObjEdit.publish;
+
+
+    /******************** FUNCTIONS FOR RECAPTIONING PUBLISH AND PRE-PUBLISH BUTTONS **************************/
+
+    /*
+     * The goal is to allow recaptioning "Publish..." to "Workflow...",  "Submit for Review" to "Submit as Pitch" etc.
+     */
+    function PP_RecaptionButton(btnName, btnSelector, btnCaption) {
+        if (ppObjEdit.disableRecaption || wp.data.select('core/editor').isSavingPost()) {
+            return;
+        }
+
+        var node = $(btnSelector);
+
+        var ppClass;
+        var hideClass;
+        
+        if ('button.editor-post-publish-button' == btnSelector) {
+            ppClass = 'presspermit-editor-button';
+        } else {
+            ppClass = 'presspermit-editor-toggle';
+        }
+
+        if ($(btnSelector).length && btnCaption && (btnCaption != $('span.' + ppClass + ' button').html() || !$('span.' + ppClass + ':visible').length)) {
+            if ($(btnSelector).html() == ppObjEdit.submitRevisionCaption) {
+                return;
+            }
+
+            $('span.presspermit-editor-toggle').remove();
+
+            if (!$('div.editor-post-publish-panel__prepublish').length) {
+                $('span.presspermit-editor-button').remove();
+            }
+
+            if ((ppClass == 'presspermit-editor-button') && $('div.editor-post-publish-panel__prepublish').length && $('span.' + ppClass + ' button').length) {
+                $('span.' + ppClass + ' button').html(btnCaption).show();
+            } else {
+                $('.presspermit-editor-hidden').not($(btnSelector)).show();
+
+                if ('button.editor-post-publish-button' == btnSelector) {
+                    hideClass = 'presspermit-editor-hidden presspermit-editor-button-hidden';
+                } else {
+                    hideClass = 'presspermit-editor-hidden presspermit-editor-toggle-hidden';
+                }
+
+                // Hide the stock button
+                node.addClass(hideClass).hide().css('z-index', -999);
+
+                // Clone the stock button
+                node.after('<span class="' + ppClass + '">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-publish-button').removeAttr('aria-disabled').css('position', 'relative').css('background-color', 'var(--wp-admin-theme-color)').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+        
+                // If the stock button is not the pre-publish toggle, really hide it (re-add hide class; set background color, position and aria-disabled properties)
+                if ((typeof ppObjEdit['isGutenbergLegacy'] != undefined) && ppObjEdit.isGutenbergLegacy) {
+                	node.not('.editor-post-publish-panel__toggle').addClass(hideClass).css('background-color', 'inherit').css('position', 'fixed').attr('aria-disabled', true);
+            	} else {
+	                if ('button.editor-post-publish-button' == btnSelector) {
+	                    if ($('.presspermit-save-button:visible').length || $('div.editor-post-publish-panel__content:visible').length 
+	                    || ($('.presspermit-editor-button button:visible').length && $('.publishpress-extended-post-status select:visible').length)) {
+	                        node.not('.editor-post-publish-panel__toggle').addClass(hideClass).css('background-color', 'inherit').css('position', 'fixed').attr('aria-disabled', true);
+	                    }
+	                }
+	            }
+            }
+        }
+
+        PP_InitializeStatuses();
+    }
+
+    // Update main publish ("Publish" / "Submit Pending") button width and span caption
+    function PP_SetPublishButtonCaption(caption, waitForSaveDraftButton) {
+        if ((ppObjEdit.publishCaptionCurrent == ppObjEdit.saveDraftCaption) || wp.data.select('core/editor').isSavingPost()) {
+            return;
+        }
+
+        if (caption == '' && (typeof ppObjEdit['publishCaptionCurrent'] != undefined)) {
+            caption = ppObjEdit.publishCaptionCurrent;
+        } else {
+            ppObjEdit.publishCaptionCurrent = caption;
+        }
+
+        if (typeof waitForSaveDraftButton == 'undefined') {
+            waitForSaveDraftButton = false;
+        }
+
+        if (ppStopRecaptionWait) {
+            ppStopRecaptionWait();
+            ppStopRecaptionWait = null;
+        }
+
+        if ((!waitForSaveDraftButton 
+        || ($('button.editor-post-save-draft').filter(':visible').length || !$('.is-saving').length)) 
+        && $('button.editor-post-publish-button').length) {  // indicates save operation (or return from Pre-Publish) is done
+            PP_RecaptionButton('publish', 'button.editor-post-publish-button', caption);
+            $('span.presspermit-editor-button button').removeAttr('aria-disabled');
+
+        } else {
+            ppStopRecaptionWait = PP_StartWait(WaitForRecaption);
+
+            function WaitForRecaption() {
+                if (!waitForSaveDraftButton || $('button.editor-post-save-draft').filter(':visible').length || !$('.is-saving').length) { // indicates save operation (or return from Pre-Publish) is done
+
+                    // will set Pre-pub button instead when applicable
+                    PP_RecaptionButton('publish', 'button.editor-post-publish-button', caption);
+
+                    $('.publishpress-extended-post-status-note').hide();
+
+                    $('span.presspermit-editor-button button').removeAttr('aria-disabled');
+                    return true;
+                }
+                return false;
+            }
+        }
+    }
+    /*****************************************************************************************************************/
+
+
+    /************* RECAPTION PRE-PUBLISH AND PUBLISH BUTTONS ****************/
+    
+    // Initialization operations to perform once React loads the relevant elements
+    var PP_InitializeBlockEditorModifications = function (forceRefresh) {
+        if (ppObjEdit.hidePending) {
+            var wp_i8n_helper = window["wp"]["i18n"];
+
+            if (typeof wp_i8n_helper != 'undefined') {
+                var pendingCaption = (0,wp_i8n_helper.__)('Pending review');
+                
+                if (pendingCaption) {
+                    $('input.components-checkbox-control__input').closest('div.components-base-control__field').find('label:contains("")').closest('div.components-panel__row').hide();
+                }
+            }
+        }
+
+        if (
+        (typeof forceRefresh != "undefined" && forceRefresh) 
+        || (
+        	($('button.editor-post-publish-button').length || $('button.editor-post-publish-panel__toggle').length) 
+        	&& (
+        		$('button.editor-post-save-draft').length
+                || $('button.editor-post-saved-state.is-saved').length
+                || ((typeof window.PPCustomStatuses != 'undefined')
+                    && window.PPCustomStatuses.publishedStatuses.indexOf(wp.data.select('core/editor').getEditedPostAttribute('status')) !== -1)
+        		|| (
+	        		'pending' == $('div.publishpress-extended-post-status select').val()
+	        	)
+	        )
+        )
+        || ((typeof window.PPCustomStatuses != 'undefined') && (typeof window.PPCustomStatuses['isRevision'] != 'undefined') && (window.PPCustomStatuses.isRevision))
+        ) {
+            if ($('button.editor-post-publish-panel__toggle').length) {
+                if (typeof ppObjEdit.prePublish != 'undefined' && ppObjEdit.prePublish) { // && ($('button.editor-post-publish-panel__toggle').html() != __('Schedule…'))) {
+                    let status = wp.data.select('core/editor').getEditedPostAttribute('status');
+
+                    if (-1 == window.PPCustomStatuses.publishedStatuses.indexOf(status)) {
+                        PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+                    }
+                }
+
+            } else {
+                PP_SetPublishButtonCaption(ppObjEdit.publish, false);
+            }
+        }
+
+        if (ppObjEdit.lockStatus) {
+            $('.editor-change-status__options input').prop('disabled', true);
+            $('.publishpress-extended-post-privacy select').prop('disabled', true);
+        }
+    }
+    // Bind once; React may recreate the toggle after a modal closes.
+    $(document).on('click', 'button.editor-post-publish-panel__toggle,span.pp-recaption-prepublish-button', function () {
+        PP_SetPublishButtonCaption('', false);
+    });
+
+    function PP_ClearBusyButtons() {
+        if ($('span.presspermit-editor-button button.is-busy').length) {
+            let saving = wp.data.select('core/editor').isSavingPost();
+
+            if (!saving) {
+                $('span.presspermit-editor-button button.is-busy').removeClass('is-busy');
+            }
+        }
+    }
+
+    var ppLastPublishCaption = '';
+
+    function PP_RefreshWorkflow() {
+			if (ppObjEdit.moveParentUI) {
+	            $('div.editor-post-panel__row-label').each(function (i, e) {
+	                if ($(e).html() == ppObjEdit.parentLabel) {
+	                    $(e).closest('div.editor-post-panel__row').insertAfter(
+	                        $('div.editor-post-panel__row-label:contains(' + ppObjEdit.publishLabel + ')').closest('div.editor-post-panel__row').next()
+	                    ); 
+	                }
+	            });
+        	}
+        	
+            if ($('div.editor-post-publish-panel__header-cancel-button').length) {
+                PP_SetPublishButtonCaption(ppObjEdit.publish, false);
+            }
+
+            if (ppObjEdit.workflowSequence && !wp.data.select('core/editor').isSavingPost()) {
+                let status = wp.data.select('core/editor').getEditedPostAttribute('status');
+
+                if (ppObjEdit.publish != ppLastPublishCaption || status !== ppLastStatus) {
+                    if (-1 !== PPCustomStatuses.publishedStatuses.indexOf(status)) {
+                        ppObjEdit.publish = ppObjEdit.update;
+                        ppObjEdit.saveAs = '';
+                    } else {
+                        if (status == ppObjEdit.maxStatus) {
+                            ppObjEdit.publish = ppObjEdit.update;
+                            ppObjEdit.saveAs = ppObjEdit.update;
+                        } else {
+                            if ($('button.editor-post-publish-panel__toggle').length) {
+                                if (typeof ppObjEdit.prePublish != 'undefined' && ppObjEdit.prePublish && ($('button.editor-post-publish-panel__toggle').html() != ppObjEdit.scheduleCaption)) {
+                                    
+                                    var pendingStatusArr = ['pending'];
+                                    
+                                    if (pendingStatusArr.indexOf(status) != -1) {
+                                        PP_SetPublishButtonCaption(ppObjEdit.publish, false);
+                                    } else {
+                                        PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+                                    }
+                                }
+                            } else {
+                                PP_SetPublishButtonCaption(ppObjEdit.publish, false);
+                            }
+                        }
+                    }
+
+                    ppLastStatus = status;
+                    ppLastPublishCaption = ppObjEdit.publish;
+
+                    if (ppObjEdit.publishCaptionCurrent != ppObjEdit.publish) {
+                        setTimeout(function () {
+                            PP_InitializeBlockEditorModifications(true);
+                        }, 100);
+                    }
+
+                    ppObjEdit.publishCaptionCurrent = ppObjEdit.publish;
+                }
+            }
+    }
+
+    var PP_InitializeStatuses = function () {
+        if ($('div.publishpress-extended-post-status select').length) {
+
+            ppCurrentStatus = $('div.publishpress-extended-post-status select').val();
+        }
+    }
+    function PP_SelectPendingForSave() {
+        var editor = wp.data.select('core/editor');
+        // Save as Pending retains the current status; Approve still uses normal
+        // progression when no manual status choice was made.
+        if ('status' === PPCustomStatuses.statusRestProperty
+            && !editor.getEditedPostAttribute('pp_status_selection')
+            && 'pending' === editor.getEditedPostAttribute('status')) {
+            wp.data.dispatch('core/editor').editPost({pp_status_selection: 'pending'});
+        }
+    }
+    function PP_SelectToolbarWorkflow() {
+        var editor = wp.data.select('core/editor');
+        if ('status' === PPCustomStatuses.statusRestProperty
+            && !ppObjEdit.workflowDisabled
+            && !editor.isSavingPost()
+            && !editor.getEditedPostAttribute('pp_status_selection')
+            && !editor.getEditedPostAttribute('pp_statuses_selecting_workflow')
+            && -1 === PPCustomStatuses.publishedStatuses.indexOf(editor.getEditedPostAttribute('status'))) {
+            // The toolbar can save without opening the Workflow panel. Supply
+            // the same progression signal before React builds its REST request.
+            ppToolbarWorkflowSelected = true;
+            wp.data.dispatch('core/editor').editPost({pp_statuses_selecting_workflow: true});
+        }
+    }
+    // Capture native clicks before React starts the save request, including the
+    // cloned toolbar buttons which forward clicks through jQuery. Newer editors
+    // use editor-post-publish-button__button for the native submit button.
+    function PP_CapturePendingSave(event) {
+        if (event.target.closest('button.editor-post-save-draft,span.presspermit-save-button button')) {
+            PP_SelectPendingForSave();
+        } else if (event.target.closest('button.editor-post-publish-button,button.editor-post-publish-button__button,span.presspermit-editor-button button')) {
+            PP_SelectToolbarWorkflow();
+        }
+    }
+    document.addEventListener('click', PP_CapturePendingSave, true);
+    $(document).on('click', 'button.editor-post-save-draft', function () {
+        ppObjEdit.publishCaptionCurrent = ppObjEdit.publish;
+        PP_SelectPendingForSave();
+    });
+
+    $(document).on('change', 'div.publishpress-extended-post-status select', function () {
+        // Reduce visible re-sizing of new label. It will be re-shown after width property is updated.
+        $('#ppcs_save_draft_label').hide();
+    });
+
+    $(document).on('click', 'span.presspermit-editor-button button', function() {
+        if (!wp.data.select('core/editor').isSavingPost() && !$('span.presspermit-editor-button button').attr('aria-disabled')) {
+            PP_SelectToolbarWorkflow();
+            $(this).parent().prev('button.editor-post-publish-button').trigger('click').hide();
+        }
+    });
+
+    $(document).on('click', 'span.presspermit-editor-toggle button', function() {
+        if (!wp.data.select('core/editor').isSavingPost() && !$('span.presspermit-editor-toggle button').attr('aria-disabled')) {
+            $(this).parent().prev('button.editor-post-publish-panel__toggle').trigger('click').hide();
+        }
+    });
+
+    var ppcsDisablePostUpdate = function ppDisablePostUpdate() {
+    jQuery(document).ready(function ($) {
+        $('span.presspermit-editor-toggle button').attr('aria-disabled', true);
+        $('span.presspermit-editor-button button').attr('aria-disabled', true);
+        $('div.publishpress-extended-post-status select').attr('disabled', true);
+    });
+    }
+    
+    var ppcsEnablePostUpdate = function ppEnablePostUpdate() {
+    jQuery(document).ready(function ($) {
+        if (ppStopRestoreWait) {
+            ppStopRestoreWait();
+        }
+        ppStopRestoreWait = PP_StartWait(function() {
+        if ($('span.presspermit-editor-toggle button:visible').length && $('span.presspermit-editor-toggle button').parent().prev('button').attr('aria-disabled') == 'false'
+        || ($('span.presspermit-editor-button button:visible').length && $('span.presspermit-editor-button button').parent().prev('button').attr('aria-disabled') == 'false')
+        ) {
+            $('span.presspermit-editor-toggle button').removeAttr('aria-disabled');
+            $('span.presspermit-editor-button button').removeAttr('aria-disabled');
+            return true;
+        }
+        return false;
+        });
+    
+        $('div.publishpress-extended-post-status select').removeAttr('disabled');
+    });
+    }
+
+    let ppPostSavingDone = function() {
+        $('div.publishpress-extended-post-status select').removeAttr('locked');
+
+        ppcsEnablePostUpdate();
+
+        let status = wp.data.select('core/editor').getEditedPostAttribute(PPCustomStatuses.statusRestProperty);
+
+        var redirectProp = 'redirectURL' + status;
+        if (typeof ppObjEdit[redirectProp] != undefined) {
+            $(location).attr("href", ppObjEdit[redirectProp]);
+        } else {
+            ppCurrentStatus = status;
+        }
+
+        ppLastStatus = false;
+
+        setTimeout(function() {
+            ppLastStatus = false;
+            PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+            PP_SetPublishButtonCaption(ppObjEdit.publish, false);
+
+            setTimeout(function() {
+            PPCS_RecaptionOnDisplay('');
+            }, 500);
+
+            ppEnablePostUpdate();
+        }, 500);
+
+        var editor = wp.data.select('core/editor');
+        if (ppToolbarWorkflowSelected
+            && (!editor.didPostSaveRequestSucceed || editor.didPostSaveRequestSucceed())) {
+            ppToolbarWorkflowSelected = false;
+            wp.data.dispatch('core/editor').editPost({pp_statuses_selecting_workflow: false});
+        }
+        if ('status' === PPCustomStatuses.statusRestProperty
+            && editor.getEditedPostAttribute('pp_status_selection')
+            && (!editor.didPostSaveRequestSucceed || editor.didPostSaveRequestSucceed())) {
+            // A completed manual choice must not override the next Approve action.
+            wp.data.dispatch('core/editor').editPost({pp_status_selection: ''});
+        }
+
+        querySelectableStatuses(status);
+
+        ppLoggedPostSave = false;
+    }
+
+    var ppDisablePostUpdate = function ppDisablePostUpdate() {
+        $('span.presspermit-editor-button button').attr('aria-disabled', true);
+        $('div.publishpress-extended-post-status select').attr('disabled', true);
+    }
+
+    var ppEnablePostUpdate = function ppEnablePostUpdate() {
+        $('div.publishpress-extended-post-status select').removeAttr('disabled');
+    }
+
+    var ppLoggedPostSave = false;
+
+    let ppPostSaveCheck = function() {
+        let saving = wp.data.select('core/editor').isSavingPost();
+
+        if (saving) {
+            if (wp.data.select('core/editor').isAutosavingPost()) {
+                return;
+            }
+
+            if (!ppLoggedPostSave) {
+                ppLoggedPostSave = true;
+
+                ppCurrentStatus = wp.data.select('core/editor').getEditedPostAttribute('status');
+
+                //$('div.publishpress-extended-post-status select').parent().hide();
+                $('div.publishpress-extended-post-status select').attr('locked', true);
+
+                ppDisablePostUpdate();
+                $('span.presspermit-editor-toggle button').attr('aria-disabled', true);
+            }
+        } else if (ppLoggedPostSave) {
+            ppPostSavingDone();
+        }
+    }
+
+    /***** Redirect back to edit.php if user won't be able to futher edit after changing post status *******/
+    $(document).on('click', 'button.editor-post-publish-button:not(.presspermit-editor-hidden),button.editor-post-save-draft', function () {
+        ppPostSaveCheck();
+    });
+
+    // If Publish button is clicked, current post status will be set to [user's next/max status progression]
+    // So set Publish button caption to "Save As %s" to show that no further progression is needed / offered.
+    $(document).on('click', 'button.editor-post-publish-button', function () {
+        if ($('div.editor-post-publish-panel__prepublish').length || $('button.editor-post-publish-panel__toggle').length) {
+            $('span.presspermit-editor-button button').remove();
+            
+            var RvyRecaptionPrepub = function () {
+                if ($('button.editor-post-publish-panel__toggle').not('[aria-disabled="true"]').length) {
+
+
+                    PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+                    return true;
+                } else {
+                    if ($('button.editor-post-publish-panel__toggle').length) {
+                        if (!$('span.presspermit-editor-toggle').length) {
+                            PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+                        }
+                    } else {
+                        if (!$('span.presspermit-editor-button button').length) {
+                            PP_SetPublishButtonCaption(ppObjEdit.publish, false);
+                            $('span.presspermit-editor-button button').attr('aria-disabled', 'true');
+                        }
+                    }
+                }
+            }
+            if (ppStopPrepublishWait) {
+                ppStopPrepublishWait();
+            }
+            ppStopPrepublishWait = PP_StartWait(RvyRecaptionPrepub);
+        } else {
+            PP_SetPublishButtonCaption(ppObjEdit.saveAs, true);
+            $('span.presspermit-editor-button button').attr('aria-disabled', 'true');
+        }
+
+        // Wait for Save Draft button to reappear; this will have no effect on Publish Button if Pre-Publish is enabled (but will update ppObjEdit property for next button refresh)
+        setTimeout(function () {
+            PP_SetPublishButtonCaption(ppObjEdit.saveAs, true);
+        }, 100);
+    });
+
+    $(document).on('click', 'fieldset.editor-change-status__options div.components-radio-control__option input[value="publish"]', function() {
+        $('span.presspermit-editor-toggle').hide();
+        $('.presspermit-editor-hidden').show().css('z-index', 0);
+    });
+
+    $(document).on('click', 'div.editor-post-publish-panel__header-cancel-button button', function() {
+        setTimeout(function () {
+            $('button.editor-post-publish-panel__toggle').removeClass('presspermit-editor-hidden').css('z-index', 1);
+            PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+
+            PPCS_RecaptionOnDisplay('');
+        }, 100);
+    });
+
+    $(document).on('change', '.e1mv6sxx2', function() {
+        if ($(this).val() === 'draft') {
+            setTimeout(function() {
+                if ($('span.presspermit-save-button').length) {
+                    $('span.presspermit-save-button button').css(
+                        {
+                            'display': 'flex',
+                            'z-index': '999'
+                        }
+                    ).attr('aria-disabled', 'false');
+                } else {
+                    $('.editor-header__settings .editor-post-save-draft').css(
+                        {
+                            'display': 'flex',
+                            'z-index': '999'
+                        }
+                    ).attr('aria-disabled', 'false');
+                }
+            }, 100);
+        }
+    });
+
+    $(document).on('click', 'button.editor-post-save-draft', function () {
+        $('span.presspermit-editor-button button').attr('aria-disabled', 'true');
+
+        // Wait for Save Draft button; this will have no effect on Publish Button if Pre-Publish is enabled 
+        // (but will clear disabled attribute on current button and update ppObjEdit property with current button caption)
+        setTimeout(function () {
+            PP_SetPublishButtonCaption(ppObjEdit.publish, true);
+        }, 50);
+    });
+
+
+
+    $(document).on('click', 'div.editor-post-publish-panel__header button.components-icon-button', function() {
+        setTimeout(function () {
+            PP_InitializeBlockEditorModifications();
+        }, 100);
+    });
+
+    // React UI changes and editor-state transitions replace permanent DOM polling.
+    var ppModalWasOpen = false;
+    function PP_RefreshEditorUI() {
+        ppRefreshTimeout = null;
+        if (ppEditorDisposed) {
+            return;
+        }
+        // Ignore our own caption/visibility mutations to avoid a refresh feedback loop.
+        ppEditorObserver.disconnect();
+        try {
+            var modalIsOpen = $('div.components-modal__header').length > 0;
+            if (ppModalWasOpen && !modalIsOpen) {
+                $('span.presspermit-editor-button').remove();
+                $('span.presspermit-editor-toggle').remove();
+                $('.presspermit-editor-hidden').show();
+                PP_RecaptionButton('prePublish', 'button.editor-post-publish-panel__toggle', ppObjEdit.prePublish);
+                PP_SetPublishButtonCaption(ppObjEdit.publish, true);
+            }
+            ppModalWasOpen = modalIsOpen;
+            PP_InitializeBlockEditorModifications();
+            PP_InitializeStatuses();
+            PP_ClearBusyButtons();
+            PP_RefreshWorkflow();
+        } finally {
+            if (!ppEditorDisposed) {
+                ppEditorObserver.observe(document.body, {childList: true, subtree: true});
+            }
+        }
+    }
+    function PP_QueueEditorRefresh() {
+        if (!ppEditorDisposed && ppRefreshTimeout === null) {
+            ppRefreshTimeout = setTimeout(PP_RefreshEditorUI, 100);
+        }
+    }
+    ppEditorObserver = new MutationObserver(PP_QueueEditorRefresh);
+    ppEditorObserver.observe(document.body, {childList: true, subtree: true});
+
+    var ppLastEditorState = '';
+    ppEditorUnsubscribe = wp.data.subscribe(function () {
+        var editor = wp.data.select('core/editor');
+        var state = [editor.getEditedPostAttribute('status'), editor.isSavingPost(), editor.isAutosavingPost()].join('|');
+        if (state !== ppLastEditorState) {
+            ppLastEditorState = state;
+            ppPostSaveCheck();
+            PP_QueueEditorRefresh();
+        }
+    });
+    PP_QueueEditorRefresh();
+
+    $(window).on('pagehide.ppStatusesBlockEditor', function () {
+        ppEditorDisposed = true;
+        ppEditorObserver.disconnect();
+        document.removeEventListener('click', PP_CapturePendingSave, true);
+        ppEditorUnsubscribe();
+        clearTimeout(ppRefreshTimeout);
+        ppWaitIntervals.forEach(clearInterval);
+        ppWaitTimeouts.forEach(clearTimeout);
+        ppWaitIntervals = [];
+        ppWaitTimeouts = [];
+    });
+});
