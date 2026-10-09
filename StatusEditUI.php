@@ -390,6 +390,39 @@ class StatusEditUI
         switch ($tab) {
             case 'roles' :
                 $roles = \PP_Statuses_Functions::getRoles(true);
+                $capabilities_active = defined('PUBLISHPRESS_CAPS_VERSION');
+                $capabilities_url = '';
+                $capabilities_plugin = '';
+
+                if (!$capabilities_active) {
+                    if (!function_exists('get_plugins')) {
+                        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                    }
+
+                    $capabilities_installed = false;
+                    foreach (get_plugins() as $plugin_file => $plugin_data) {
+                        if (0 === strpos($plugin_file, 'capability-manager-enhanced/')
+                            || 0 === strpos($plugin_file, 'publishpress-capabilities-pro/')) {
+                            $capabilities_installed = true;
+                            $capabilities_plugin = $plugin_file;
+                            break;
+                        }
+                    }
+
+                    if (current_user_can($capabilities_installed ? 'activate_plugins' : 'install_plugins')) {
+                        add_thickbox();
+                        wp_enqueue_script('plugin-install');
+                        wp_localize_script('publishpress-status-edit', 'ppStatusesCapabilities', [
+                            'ajaxUrl' => admin_url('admin-ajax.php'),
+                            'nonce' => wp_create_nonce('pp-statuses-capabilities'),
+                            'installNonce' => wp_create_nonce('updates'),
+                            'plugin' => $capabilities_plugin,
+                            'canActivate' => current_user_can('activate_plugins'),
+                            'error' => __('The plugin action could not be completed. Please try again.', 'publishpress-statuses'),
+                        ]);
+                        $capabilities_url = self_admin_url('plugin-install.php?tab=plugin-information&plugin=capability-manager-enhanced&TB_iframe=true&width=600&height=550');
+                    }
+                }
                 ?>
                 <tr class="form-field">
                     <th><label for="status_assign"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
@@ -405,12 +438,15 @@ class StatusEditUI
                                 $role = get_role($role_name);
                                 $cap_name = str_replace('-', '_', "status_change_{$status->name}");
 
-                                $is_administrator = !empty($role->capabilities['administrator']) || !empty($role->capabilities['pp_moderate_any']);
+                                $is_administrator = ('administrator' == $role_name) || !empty($role->capabilities['pp_administer_content']) || !empty($role->capabilities['pp_moderate_any']);
                                 $can_set_status = $is_administrator || !empty($role->capabilities[$cap_name]);
                         ?>
                                 <div>
                                 <input type="hidden" name="roles_set_status[<?php echo esc_attr($role_name);?>]" value="0" />
 
+                                <?php if ($is_administrator) : ?>
+                                <span class="pp-statuses-role-tooltip" data-toggle="tooltip" data-placement="top" tabindex="0">
+                                <?php endif; ?>
                                 <label>
                                 <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status" autocomplete="off"
                                 <?php checked($can_set_status);?> <?php disabled($is_administrator);?> value="1" class="regular-text" />
@@ -421,6 +457,38 @@ class StatusEditUI
                                 <?php echo esc_html(ucwords(str_replace('_', ' ', $cap_name)));?>
                                 </span>
                                 </label>
+                                <?php if ($is_administrator) : ?>
+                                    <span class="tooltip-text" role="tooltip"><span>
+                                    <?php
+                                    if ('administrator' === $role_name) {
+                                        echo esc_html__('Administrators can always', 'publishpress-statuses') . '<br />';
+                                        esc_html_e('assign this status.', 'publishpress-statuses');
+                                    } else {
+                                        $role_capabilities_url = $capabilities_active
+                                            ? add_query_arg(['page' => 'pp-capabilities', 'role' => $role_name, 'pp_caps_tab' => 'publishpress-statuses'], admin_url('admin.php'))
+                                            : $capabilities_url;
+
+                                        echo esc_html__('Roles with the', 'publishpress-statuses') . '<br />';
+                                        if ($role_capabilities_url) {
+                                            if ($capabilities_active) {
+                                                printf('<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>', esc_url($role_capabilities_url), esc_html__('pp_moderate_any capability', 'publishpress-statuses'));
+                                            } else {
+                                                printf('<a href="%s" class="thickbox open-plugin-details-modal">%s</a>', esc_url($role_capabilities_url), esc_html__('pp_moderate_any capability', 'publishpress-statuses'));
+                                            }
+                                        } else {
+                                            esc_html_e('pp_moderate_any capability', 'publishpress-statuses');
+                                        }
+                                        echo '<br />' . esc_html__('can always assign this status.', 'publishpress-statuses');
+
+                                        if (!$capabilities_active && !$capabilities_url) {
+                                            echo '<br /><br />' . esc_html__('Install the PublishPress Capabilities', 'publishpress-statuses') . '<br />';
+                                            esc_html_e("plugin to change this role's access.", 'publishpress-statuses');
+                                        }
+                                    }
+                                    ?>
+                                    </span><i></i></span>
+                                </span>
+                                <?php endif; ?>
                                 </div>
                             <?php endif;
                         endforeach;?>

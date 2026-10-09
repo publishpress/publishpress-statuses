@@ -1117,3 +1117,18 @@ div.pp-statuses-warning {
     padding-top: 20px;
     }
 }
+/* Let the focusable tooltip wrapper receive clicks on disabled role inputs. */
+.pp-statuses-role-tooltip input:disabled {
+    pointer-events: none;
+}
+.pp-statuses-role-tooltip .tooltip-text {
+    top: 0;
+    min-width: 200px;
+    width: max-content;
+    max-width: 280px;
+    padding-right: 12px;
+}
+.pp-statuses-role-tooltip .tooltip-text a,
+.pp-statuses-role-tooltip .tooltip-text a:hover {
+    text-decoration: underline;
+}

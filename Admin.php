@@ -9,6 +9,8 @@ class Admin
 
     function __construct($activated = false) {
         add_action('admin_menu', [$this, 'act_admin_menu'], 21);
+        add_action('wp_ajax_pp_statuses_activate_capabilities', [$this, 'ajaxActivateCapabilities']);
+        add_filter('wp_redirect', [$this, 'filterCapabilitiesActivationRedirect'], PHP_INT_MAX);
 
         add_filter('plugin_row_meta', 
             function ($links, $file) {
@@ -216,6 +218,63 @@ class Admin
         foreach (array_keys($changed_statuses) as $status_name) {
             \PublishPress_Statuses::updateStatusNumRoles($status_name, ['force_refresh' => true]);
         }
+    }
+
+    public function filterCapabilitiesActivationRedirect($location) {
+        $query = wp_parse_url($location, PHP_URL_QUERY);
+        $args = [];
+        if (is_string($query)) {
+            parse_str($query, $args);
+        }
+        if (empty($args['page']) || 'pp-capabilities-dashboard' !== $args['page']) {
+            return $location;
+        }
+
+        $key = 'pp_statuses_caps_return_' . get_current_user_id();
+        $return_url = get_transient($key);
+        if (!$return_url) {
+            return $location;
+        }
+        delete_transient($key);
+        return $return_url;
+    }
+
+    public function ajaxActivateCapabilities() {
+        check_ajax_referer('pp-statuses-capabilities', 'nonce');
+        if (!current_user_can('activate_plugins')) {
+            wp_send_json_error(['message' => __('You are not allowed to activate plugins.', 'publishpress-statuses')], 403);
+        }
+
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        $plugin_file = isset($_POST['plugin']) ? sanitize_text_field(wp_unslash($_POST['plugin'])) : '';
+        $plugins = get_plugins();
+        if (!isset($plugins[$plugin_file]) || !in_array(dirname($plugin_file), ['capability-manager-enhanced', 'publishpress-capabilities-pro'], true)) {
+            wp_send_json_error(['message' => __('PublishPress Capabilities is not installed.', 'publishpress-statuses')], 400);
+        }
+
+        $return_url = isset($_POST['returnUrl']) ? esc_url_raw(wp_unslash($_POST['returnUrl'])) : '';
+        $return_url = wp_validate_redirect($return_url, '');
+        $return_query = wp_parse_url($return_url, PHP_URL_QUERY);
+        $return_args = [];
+        if (is_string($return_query)) {
+            parse_str($return_query, $return_args);
+        }
+        if (!$return_url || wp_parse_url($return_url, PHP_URL_PATH) !== wp_parse_url(admin_url('admin.php'), PHP_URL_PATH)
+            || empty($return_args['page']) || 'publishpress-statuses' !== $return_args['page']
+            || empty($return_args['action']) || 'edit-status' !== $return_args['action']) {
+            wp_send_json_error(['message' => __('Invalid status return URL.', 'publishpress-statuses')], 400);
+        }
+        $return_url = add_query_arg('pp_tab', 'roles', $return_url);
+        $return_key = 'pp_statuses_caps_return_' . get_current_user_id();
+        // Capabilities may defer its welcome redirect until the next admin request.
+        set_transient($return_key, $return_url, 5 * MINUTE_IN_SECONDS);
+
+        $result = activate_plugin($plugin_file);
+        if (is_wp_error($result)) {
+            delete_transient($return_key);
+            wp_send_json_error(['message' => $result->get_error_message()], 400);
+        }
+        wp_send_json_success();
     }
 
     // status display in Edit Posts table rows
