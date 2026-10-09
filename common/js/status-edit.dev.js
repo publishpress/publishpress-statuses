@@ -137,3 +137,89 @@ jQuery(document).ready(function ($) {
         }).join("");
     }
 });
+jQuery(function ($) {
+    $('.pp-statuses-role-tooltip').on('click', function (event) {
+        if (!$(event.target).closest('.tooltip-text').length) {
+            this.focus();
+        }
+    });
+});
+
+jQuery(function ($) {
+    if (typeof ppStatusesCapabilities === 'undefined') {
+        return;
+    }
+    var config = ppStatusesCapabilities;
+    var returnUrl = new URL(window.location.href);
+    returnUrl.searchParams.set('pp_tab', 'roles');
+
+    // Thickbox stops click bubbling. Observe the trigger during capture so
+    // popup activation is bound before the iframe's default controls run.
+    document.addEventListener('click', function (event) {
+        if (!$(event.target).closest('.pp-statuses-role-tooltip a.thickbox').length) {
+            return;
+        }
+        // Thickbox creates its iframe synchronously during this click.
+        window.setTimeout(function () {
+            var frame = document.getElementById('TB_iframeContent');
+            if (!frame) {
+                return;
+            }
+            $(frame).on('load.ppStatusesCapabilities', function () {
+                var doc = frame.contentDocument;
+                if (!doc) {
+                    return;
+                }
+                // Capture before WordPress's default install/activate handlers.
+                doc.addEventListener('click', function (event) {
+                    var button = $(event.target).closest('#plugin_install_from_iframe, #plugin_activate_from_iframe, a[href*="action=activate"]')[0];
+                    if (!button) {
+                        return;
+                    }
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    if ($(button).data('pp-statuses-busy')) {
+                        return;
+                    }
+                    $(button).data('pp-statuses-busy', true).attr('aria-disabled', 'true');
+                    $(doc).find('.pp-statuses-plugin-error').remove();
+
+                    function fail(response) {
+                        var data = response && response.responseJSON ? response.responseJSON.data : response && response.data;
+                        var message = data && (data.message || data.errorMessage);
+                        $('<div class="notice notice-error pp-statuses-plugin-error"><p></p></div>')
+                            .find('p').text(message || config.error).end().insertBefore(button);
+                        $(button).data('pp-statuses-busy', false).removeAttr('aria-disabled');
+                    }
+                    function activate(plugin) {
+                        if (!config.canActivate) {
+                            window.location.assign(returnUrl.href);
+                            return;
+                        }
+                        $.post(config.ajaxUrl, {action: 'pp_statuses_activate_capabilities', nonce: config.nonce, plugin: plugin, returnUrl: returnUrl.href})
+                            .done(function (response) {
+                                if (response.success) {
+                                    window.location.assign(returnUrl.href);
+                                } else {
+                                    fail(response);
+                                }
+                            }).fail(fail);
+                    }
+                    if (config.plugin) {
+                        activate(config.plugin);
+                    } else {
+                        $.post(config.ajaxUrl, {action: 'install-plugin', slug: 'capability-manager-enhanced', _ajax_nonce: config.installNonce})
+                            .done(function (response) {
+                                if (response.success && response.data && response.data.plugin) {
+                                    config.plugin = response.data.plugin;
+                                    activate(config.plugin);
+                                } else {
+                                    fail(response);
+                                }
+                            }).fail(fail);
+                    }
+                }, true);
+            });
+        }, 0);
+    }, true);
+});
