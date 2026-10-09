@@ -130,12 +130,7 @@ var querySelectableStatuses = function(status) {
           } 
         });
 
-        if ($('div.publishpress-extended-post-status select option[value="_pending"]').length) {
-          if (selectable_statuses.indexOf('pending') != -1) {
-            $('div.publishpress-extended-post-status select option[value="_pending"]').show();
-            $('div.publishpress-extended-post-status select option[value="pending"]').hide();
-          }
-        }
+
       });
 
       if (typeof (retval['params']) != 'undefined') {
@@ -536,14 +531,15 @@ var PPCustomPostStatusInfo = function PPCustomPostStatusInfo(_ref) {
 
 var plugin = compose(withSelect(function (select) {
   return {
-    status: select('core/editor').getEditedPostAttribute('status')
+    status: select('core/editor').getEditedPostAttribute('pp_status_selection') || select('core/editor').getEditedPostAttribute('status')
   };
 }), withDispatch(function (dispatch) {
   return {
     onUpdate: function onUpdate(status) {
 
       dispatch('core/editor').editPost({
-        status: status
+        status: status,
+        pp_status_selection: status
       });
       
       refreshSelectableStatuses(status);

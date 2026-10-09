@@ -10,6 +10,7 @@ jQuery(document).ready(function ($) {
     var ppRefreshTimeout = null;
     var ppEditorObserver;
     var ppEditorUnsubscribe;
+    var ppToolbarWorkflowSelected = false;
     var ppWaitIntervals = [];
     var ppWaitTimeouts = [];
 
@@ -178,8 +179,7 @@ jQuery(document).ready(function ($) {
                 || ((typeof window.PPCustomStatuses != 'undefined')
                     && window.PPCustomStatuses.publishedStatuses.indexOf(wp.data.select('core/editor').getEditedPostAttribute('status')) !== -1)
         		|| (
-	        		$('div.publishpress-extended-post-status select option[value="_pending"]').length 
-	        		&& ('pending' == $('div.publishpress-extended-post-status select').val() || '_pending' == $('div.publishpress-extended-post-status select').val())
+	        		'pending' == $('div.publishpress-extended-post-status select').val()
 	        	)
 	        )
         )
@@ -251,7 +251,7 @@ jQuery(document).ready(function ($) {
                             if ($('button.editor-post-publish-panel__toggle').length) {
                                 if (typeof ppObjEdit.prePublish != 'undefined' && ppObjEdit.prePublish && ($('button.editor-post-publish-panel__toggle').html() != ppObjEdit.scheduleCaption)) {
                                     
-                                    var pendingStatusArr = new Array('pending', '_pending');
+                                    var pendingStatusArr = ['pending'];
                                     
                                     if (pendingStatusArr.indexOf(status) != -1) {
                                         PP_SetPublishButtonCaption(ppObjEdit.publish, false);
@@ -282,29 +282,46 @@ jQuery(document).ready(function ($) {
     var PP_InitializeStatuses = function () {
         if ($('div.publishpress-extended-post-status select').length) {
 
-            // Users without the publish capability get an alternate 'pending' option item 
-            // to allow a "Save as Pending Review" button which does not trigger automatic workflow status progression.
-            if ($('div.publishpress-extended-post-status select option[value="_pending"]').length) {
-                if ($('div.publishpress-extended-post-status select').val() == 'pending') {
-                    $('div.publishpress-extended-post-status select').val('_pending');
-                }
-
-                // Blank option for Safari, which cannot hide it
-				$('div.publishpress-extended-post-status select > option[value="pending"]').html('').hide();
-
-
-            }
-
             ppCurrentStatus = $('div.publishpress-extended-post-status select').val();
         }
     }
-    $(document).on('click', 'div.publishpress-extended-post-status select option[value="pending"]', function () {
-        $('div.publishpress-extended-post-status select').val('_pending');
-    });
-
-    // The save handler is delegated once, rather than added on each dropdown click.
+    function PP_SelectPendingForSave() {
+        var editor = wp.data.select('core/editor');
+        // Save as Pending retains the current status; Approve still uses normal
+        // progression when no manual status choice was made.
+        if ('status' === PPCustomStatuses.statusRestProperty
+            && !editor.getEditedPostAttribute('pp_status_selection')
+            && 'pending' === editor.getEditedPostAttribute('status')) {
+            wp.data.dispatch('core/editor').editPost({pp_status_selection: 'pending'});
+        }
+    }
+    function PP_SelectToolbarWorkflow() {
+        var editor = wp.data.select('core/editor');
+        if ('status' === PPCustomStatuses.statusRestProperty
+            && ppObjEdit.workflowSequence
+            && !editor.isSavingPost()
+            && !editor.getEditedPostAttribute('pp_status_selection')
+            && !editor.getEditedPostAttribute('pp_statuses_selecting_workflow')
+            && -1 === PPCustomStatuses.publishedStatuses.indexOf(editor.getEditedPostAttribute('status'))) {
+            // The toolbar can save without opening the Workflow panel. Supply
+            // the same progression signal before React builds its REST request.
+            ppToolbarWorkflowSelected = true;
+            wp.data.dispatch('core/editor').editPost({pp_statuses_selecting_workflow: true});
+        }
+    }
+    // Capture native clicks before React starts the save request, including the
+    // cloned toolbar buttons which forward clicks through jQuery.
+    function PP_CapturePendingSave(event) {
+        if (event.target.closest('button.editor-post-save-draft,span.presspermit-save-button button')) {
+            PP_SelectPendingForSave();
+        } else if (event.target.closest('button.editor-post-publish-button,span.presspermit-editor-button button')) {
+            PP_SelectToolbarWorkflow();
+        }
+    }
+    document.addEventListener('click', PP_CapturePendingSave, true);
     $(document).on('click', 'button.editor-post-save-draft', function () {
         ppObjEdit.publishCaptionCurrent = ppObjEdit.publish;
+        PP_SelectPendingForSave();
     });
 
     $(document).on('change', 'div.publishpress-extended-post-status select', function () {
@@ -312,15 +329,9 @@ jQuery(document).ready(function ($) {
         $('#ppcs_save_draft_label').hide();
     });
 
-    // Fallback safeguard against redundant visible Pending options
-    $(document).on('click', 'div.publishpress-extended-post-status select', function() {
-        if ($('div.publishpress-extended-post-status select option[value="_pending"]').length && $('div.publishpress-extended-post-status select option[value="pending"]').length) {
-            $('div.publishpress-extended-post-status select option[value="pending"]').hide();
-        }
-    });
-
     $(document).on('click', 'span.presspermit-editor-button button', function() {
         if (!wp.data.select('core/editor').isSavingPost() && !$('span.presspermit-editor-button button').attr('aria-disabled')) {
+            PP_SelectToolbarWorkflow();
             $(this).parent().prev('button.editor-post-publish-button').trigger('click').hide();
         }
     });
@@ -386,6 +397,19 @@ jQuery(document).ready(function ($) {
 
             ppEnablePostUpdate();
         }, 500);
+
+        var editor = wp.data.select('core/editor');
+        if (ppToolbarWorkflowSelected
+            && (!editor.didPostSaveRequestSucceed || editor.didPostSaveRequestSucceed())) {
+            ppToolbarWorkflowSelected = false;
+            wp.data.dispatch('core/editor').editPost({pp_statuses_selecting_workflow: false});
+        }
+        if ('status' === PPCustomStatuses.statusRestProperty
+            && editor.getEditedPostAttribute('pp_status_selection')
+            && (!editor.didPostSaveRequestSucceed || editor.didPostSaveRequestSucceed())) {
+            // A completed manual choice must not override the next Approve action.
+            wp.data.dispatch('core/editor').editPost({pp_status_selection: ''});
+        }
 
         querySelectableStatuses(status);
 
@@ -578,6 +602,7 @@ jQuery(document).ready(function ($) {
     $(window).on('pagehide.ppStatusesBlockEditor', function () {
         ppEditorDisposed = true;
         ppEditorObserver.disconnect();
+        document.removeEventListener('click', PP_CapturePendingSave, true);
         ppEditorUnsubscribe();
         clearTimeout(ppRefreshTimeout);
         ppWaitIntervals.forEach(clearInterval);

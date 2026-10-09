@@ -154,12 +154,7 @@ var querySelectableStatuses = function(status, post_id) {
           } 
         });
 
-        if ($('div.publishpress-extended-post-status select option[value="_pending"]').length) {
-          if (selectable_statuses.indexOf('pending') != -1) {
-            $('div.publishpress-extended-post-status select option[value="_pending"]').show();
-            $('div.publishpress-extended-post-status select option[value="pending"]').hide();
-          }
-        }
+
 
         $('div.publishpress-extended-post-status select option[value="publish"]').insertBefore('div.publishpress-extended-post-status select option[value="_"]');
       });
@@ -434,7 +429,7 @@ setInterval(function () {
   var selectedStatus = '';
   
   if ('status' == PPCustomStatuses.statusRestProperty) {
-    wp.data.select('core/editor').getEditedPostAttribute('pp_status_selection');
+    selectedStatus = wp.data.select('core/editor').getEditedPostAttribute('pp_status_selection');
   }
 
   if (!selectedStatus) {

@@ -4074,17 +4074,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public static function getStatusSelection( $object ) {
-        $status_selection = '';
-
-        if ($post_id = \PP_Statuses_Functions::getPostID()) {
-            if ($post_status = get_post_field('post_status', $post_id)) {
-                if (get_post_status_object($post_status)) {
-                    $status_selection = $post_status;
-                }
-            }
-        }
-
-        return $status_selection;
+        // This transient REST field records an explicit editor selection only.
+        // Returning the stored status makes an untouched dropdown look like a
+        // manual choice and prevents the toolbar from advancing the workflow.
+        // The dropdown already falls back to the post's actual status.
+        return '';
     }
 
     public static function updateStatusSelection( $value, $object ) {
