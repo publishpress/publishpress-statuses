@@ -262,13 +262,20 @@ class StatusListTable extends \WP_List_Table
 
         <div class="row tpl-default">
             <div class="check-column">
-                <input type="checkbox" data-np-check-all="pp-nested_bulk[]" data-np-bulk-checkbox="">
+                <label class="screen-reader-text" for="cb-select-all-statuses">
+                    <?php esc_html_e('Select all statuses', 'publishpress-statuses'); ?>
+                </label>
+                <input id="cb-select-all-statuses" type="checkbox" data-np-check-all="pp-nested_bulk[]" data-np-bulk-checkbox="">
             </div>
 
             <div class="child-toggle" style="padding-left: 0"><div class="child-toggle-spacer"></div></div>
 
             <div class="row-inner">
-                <table class="status-row" style="float:right; width:100%"><tbody>
+                <table class="status-row" style="float:right; width:100%">
+                <caption class="screen-reader-text">
+                    <?php esc_html_e('Status columns', 'publishpress-statuses'); ?>
+                </caption>
+                <tbody>
                 <tr>
 
                 <?php
@@ -276,7 +283,7 @@ class StatusListTable extends \WP_List_Table
 
                 foreach ($columns as $column_name => $column_display_name) {
                     $is_hidden = in_array($column_name, $hidden, true);?>
-                    <th class="<?php echo esc_attr($column_name);?>" <?php if ($is_hidden) echo 'style="width:0"';?>>
+                    <th scope="col" class="<?php echo esc_attr($column_name);?>" <?php if ($is_hidden) echo 'style="width:0"';?>>
                         <div class="<?php echo esc_attr($column_name);?> column-<?php echo esc_attr($column_name);?>" <?php if ($is_hidden) echo 'hidden';?>>
                             <?php echo esc_html($column_display_name);?>
                         </div>
@@ -612,6 +619,14 @@ do_action('publishpress_statuses_table_row', $key, []);
 
         <div class="row tpl-default">
             <div class="check-column">
+                <label class="screen-reader-text" for="cb-select-<?php echo esc_attr($item->name);?>">
+                    <?php
+                    printf(
+                        esc_html__('Select %s', 'publishpress-statuses'),
+                        esc_html($item->label)
+                    );
+                    ?>
+                </label>
                 <input id="cb-select-<?php echo esc_attr($item->name);?>" type="checkbox" name="status[]" value="<?php echo esc_attr($item->name);?>" />
             </div>
 
@@ -703,7 +718,16 @@ do_action('publishpress_statuses_table_row', $key, []);
 	 */
 	protected function single_row_columns( $item ) {
         ?>
-        <table class="status-row" style="float:right; width:100%"><tr>
+        <table class="status-row" style="float:right; width:100%">
+        <caption class="screen-reader-text">
+            <?php
+            printf(
+                esc_html__('Details for %s', 'publishpress-statuses'),
+                esc_html($item->label)
+            );
+            ?>
+        </caption>
+        <tbody><tr>
 
         <?php
         list( $columns, $hidden, $sortable, $primary ) = $this->get_column_info();
@@ -725,7 +749,8 @@ do_action('publishpress_statuses_table_row', $key, []);
 			// Comments column uses HTML in the display name with screen reader text.
 			// Strip tags to get closer to a user-friendly string.
 
-            echo '<td class="' . esc_attr($column_name) . '" ';
+            $row_header = ('name' === $column_name) ? ' role="rowheader"' : '';
+            echo '<td class="' . esc_attr($column_name) . '"' . $row_header . ' ';
             if ( in_array( $column_name, $hidden, true ) ) echo 'style="width:0"';
             echo '>';
 
@@ -806,7 +831,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         }
         ?>
 
-        </tr></table>
+        </tr></tbody></table>
 
         <div style="float:left"></div>
 		
@@ -890,7 +915,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         ? 'handle '
         : 'handle-disabled ';
         
-        echo "<img src='" . esc_url(PUBLISHPRESS_STATUSES_URL . "common/assets/handle.svg") . "' alt='Sorting Handle' class='" . esc_attr($handle_class) . "}np-icon-menu'>";
+        echo "<img src='" . esc_url(PUBLISHPRESS_STATUSES_URL . "common/assets/handle.svg") . "' alt='' aria-hidden='true' class='" . esc_attr($handle_class) . " np-icon-menu'>";
 
         echo '<span class="pp-statuses-color" style="background:' . esc_attr($item->color) . ';"></span>';
 
@@ -942,19 +967,35 @@ do_action('publishpress_statuses_table_row', $key, []);
             && (empty($status_obj->pp_builtin) || (empty($options->label_storage) && ('user' != $options->label_storage)))
         ) {
             $url = admin_url("admin.php?action=edit-status-labels&name={$status_obj->name}&page=publishpress-statuses");
-            $actions['labels'] =  ['url' => esc_url($url), 'label' => esc_html__('Labels', 'publishpress-statuses')];
+            $actions['labels'] = [
+                'url' => esc_url($url),
+                'label' => esc_html__('Labels', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Edit labels for %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         if (empty($status_obj) || empty($status_obj->_builtin)) {
-            $actions['disable'] = ['url' => '#', 'label' => __('Disable', 'publishpress-statuses')];
+            $actions['disable'] = [
+                'url' => '#',
+                'label' => __('Disable', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Disable %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         if (empty($status_obj) || empty($status_obj->_builtin)) {
-            $actions['enable'] = ['url' => '#', 'label' => __('Enable', 'publishpress-statuses')];
+            $actions['enable'] = [
+                'url' => '#',
+                'label' => __('Enable', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Enable %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         if (empty($status_obj) || (empty($status_obj->_builtin) && empty($status_obj->pp_builtin))) {
-            $actions['delete'] = ['url' => '#', 'label' => __('Delete', 'publishpress-statuses')];
+            $actions['delete'] = [
+                'url' => '#',
+                'label' => __('Delete', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Delete %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         $actions = apply_filters('publishpress_statuses_row-actions', $actions, $item);
@@ -1000,7 +1041,8 @@ do_action('publishpress_statuses_table_row', $key, []);
             $sep = ( $i < $action_count - 1 ) ? ' | ' : ' ';
 
             echo ">";
-            echo '<a href="' . esc_url($arr['url']) . '">' . esc_html($arr['label']) . '</a>';
+            $aria_label = !empty($arr['aria_label']) ? ' aria-label="' . esc_attr($arr['aria_label']) . '"' : '';
+            echo '<a href="' . esc_url($arr['url']) . '"' . $aria_label . '>' . esc_html($arr['label']) . '</a>';
             echo esc_html($sep) . "</span>";
 		}
 
@@ -1018,11 +1060,12 @@ do_action('publishpress_statuses_table_row', $key, []);
      */
     public function column_description($item)
     {
-        $descript = (!empty($item->description && ('-' != $item->description)) ? $item->description : '&nbsp;');
+        $descript = (!empty($item->description) && ('-' != $item->description)) ? $item->description : '';
 
         $url = admin_url("admin.php?action=edit-status&name={$item->name}&page=publishpress-statuses");
 
-        echo "<a href='" . esc_url($url) . "'>" . esc_html($descript) . "</a>";
+        $aria_label = empty($descript) ? ' aria-label="' . esc_attr(sprintf(__('Edit description for %s', 'publishpress-statuses'), $item->label)) . '"' : '';
+        echo "<a href='" . esc_url($url) . "'" . $aria_label . ">" . esc_html($descript) . "</a>";
     }
 
     /**
@@ -1038,7 +1081,7 @@ do_action('publishpress_statuses_table_row', $key, []);
     {
         $url = admin_url("admin.php?action=edit-status&name={$item->name}&page=publishpress-statuses");
 
-        echo '<a href="' . esc_url($url) . '"><span class="dashicons ' . esc_html($item->icon) . '"></span></a>';
+        echo '<a href="' . esc_url($url) . '" aria-label="' . esc_attr(sprintf(__('Edit icon for %s', 'publishpress-statuses'), $item->label)) . '"><span class="dashicons ' . esc_attr($item->icon) . '" aria-hidden="true"></span></a>';
     }
 
     private function generateTooltip($tooltip, $text = '', $position = 'top', $useIcon = true)
