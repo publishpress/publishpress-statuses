@@ -193,9 +193,9 @@ class StatusListTable extends \WP_List_Table
     
     <!-- CTA Section -->
 	<div class="pp-cta-section">
-		<h4>
+		<h2 class="pp-cta-heading">
 			<?php esc_html_e('Upgrade to create an approval workflow for published content', 'publishpress-statuses'); ?>
-		</h4>
+		</h2>
 		<p>
 			<?php esc_html_e('Create approval workflows using PublishPress Statuses Pro together with the PublishPress Revisions Pro plugin', 'publishpress-statuses'); ?>
 		</p>
@@ -221,12 +221,12 @@ class StatusListTable extends \WP_List_Table
 			<a href="https://publishpress.com/statuses/" 
 				class="button-primary button-large pp-upgrade-btn" 
 				target="_blank">
-				<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses'); ?>
+				<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses'); ?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span>
 			</a>
 			<a href="https://publishpress.com/knowledge-base/revisions-statuses/" 
 				target="_blank"
 				class="pp-learn-more-link">
-				<?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
+				<?php esc_html_e('Learn More', 'publishpress-statuses'); ?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span>
 			</a>
 		</div>
 	</div>
@@ -234,20 +234,20 @@ class StatusListTable extends \WP_List_Table
 	<?php if (!empty($_REQUEST['rvy_promo_img'])):  // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 	<div class="pp-integration-card">
 	<div>
-	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 797px;" />
+	<img src="<?php echo esc_url(trailingslashit(PUBLISHPRESS_STATUSES_URL) . 'revision-statuses.png');?>" style="width: 797px;" alt="" />
 	</div>
 
 	<div class="pp-upgrade-overlay">
-		<h4><?php esc_html_e('Premium Feature', 'publishpress-statuses'); ?></h4>
+		<h3><?php esc_html_e('Premium Feature', 'publishpress-statuses'); ?></h3>
 		<p><?php esc_html_e('Install Statuses Pro to unlock custom revision statuses.', 'publishpress-statuses');?></p>
 		<p><?php esc_html_e('Configure for any post type and role to match your editing workflow.', 'publishpress-statuses');?></p>
 		<div class="pp-upgrade-buttons">
 			<a href="<?php echo esc_url('https://publishpress.com/knowledge-base/revisions-statuses/'); ?>" target="_blank" class="pp-upgrade-btn-secondary">
-				<?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
+				<?php esc_html_e('Learn More', 'publishpress-statuses'); ?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span>
 			</a>
 
 			<a href="https://publishpress.com/statuses/" target="_blank" class="pp-upgrade-btn-primary">
-			<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses');?>
+			<?php esc_html_e('Upgrade to Pro', 'publishpress-statuses');?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span>
 			</a>
 		</div>
 	</div>
@@ -258,17 +258,18 @@ class StatusListTable extends \WP_List_Table
 
 <?php else:?>
 <div class="pp-nested-list">
-	<div id="status_list_header" class="status-list-header">
+	<?php // Column names are repeated as screen reader text in each cell, so this visual header is hidden from assistive technology. ?>
+	<div id="status_list_header" class="status-list-header" aria-hidden="true">
 
         <div class="row tpl-default">
             <div class="check-column">
-                <input type="checkbox" data-np-check-all="pp-nested_bulk[]" data-np-bulk-checkbox="">
+                <input type="checkbox" data-np-check-all="pp-nested_bulk[]" data-np-bulk-checkbox="" aria-label="<?php esc_attr_e('Select all statuses', 'publishpress-statuses');?>">
             </div>
 
             <div class="child-toggle" style="padding-left: 0"><div class="child-toggle-spacer"></div></div>
 
             <div class="row-inner">
-                <table class="status-row" style="float:right; width:100%"><tbody>
+                <table class="status-row" role="presentation" style="float:right; width:100%"><tbody>
                 <tr>
 
                 <?php
@@ -307,7 +308,7 @@ class StatusListTable extends \WP_List_Table
         printf(
             esc_html__('To define and control Revision statuses, update the %1$sPublishPress Revisions%2$s plugin to version %3$s or higher.', 'publishpress-statuses'),
             '<a href="https://publishpress.com/revisions/" target="_blank">',
-            '</a>',
+            '<span class="screen-reader-text"> ' . esc_html__('(opens in a new tab)', 'publishpress-statuses') . '</span></a>',
             '3.6.0'
         );
         echo '</div>';
@@ -362,7 +363,7 @@ class StatusListTable extends \WP_List_Table
                 </div>
 
                 <div class="row-inner">
-                    <table class="status-row" style="width:100%"><tbody><tr>
+                    <table class="status-row" role="presentation" style="width:100%"><tbody><tr>
                     <td colspan="7" style="text-align: center"><?php _e('Drop any status here to include it in main workflow for new posts.', 'publishpress-statuses');?></td>
                     </tr></tbody></table>
                 </div>
@@ -383,7 +384,7 @@ class StatusListTable extends \WP_List_Table
 <div class="row tpl-default">
 <div class="row-inner has-row-actions">
 
-<table class="status-row" style="float:right; width:100%"><tbody><tr>
+<table class="status-row" role="presentation" style="float:right; width:100%"><tbody><tr>
 
 <?php if (\PublishPress_Statuses::getCustomStatus($key)) :?>
 <td class="status_name" style="width:0"><div class="status_name <?php echo esc_attr($key);?> column-<?php echo esc_attr($key);?> hidden"><?php echo esc_html($key);?></div></td>
@@ -401,7 +402,10 @@ if ('_pre-publish' == $key) {
     $this->generateTooltip(
         esc_html__('Statuses in the main workflow are presented for convenient default selection when updating an unpublished post.', 'publishpress-statuses'),
         '',
-        'bottom'
+        'bottom',
+        true,
+        // translators: %s is a section name, such as "Main Workflow"
+        sprintf(__('About %s', 'publishpress-statuses'), rtrim(trim($label), ':'))
     );
 
 } elseif ('_pre-publish-alternate' == $key) {
@@ -409,7 +413,10 @@ if ('_pre-publish' == $key) {
         $this->generateTooltip(
             esc_html__('Statuses outside the main workflow are manually selectable when editing an unpublished post.', 'publishpress-statuses'),
             '',
-            'bottom'
+            'bottom',
+            true,
+            // translators: %s is a section name, such as "Alternate Workflows"
+            sprintf(__('About %s', 'publishpress-statuses'), rtrim(trim($label), ':'))
         );
     }
 }
@@ -435,7 +442,7 @@ do_action('publishpress_statuses_table_row', $key, []);
                     </div>
     
                     <div class="row-inner">
-                        <table class="status-row" style="width:100%"><tbody><tr>
+                        <table class="status-row" role="presentation" style="width:100%"><tbody><tr>
                         <td colspan="7" style="text-align: center">
                         <?php 
                         if (!$hide_status_dropdown) {
@@ -462,7 +469,7 @@ do_action('publishpress_statuses_table_row', $key, []);
                     </div>
     
                     <div class="row-inner">
-                        <table class="status-row" style="width:100%"><tbody><tr>
+                        <table class="status-row" role="presentation" style="width:100%"><tbody><tr>
                         <td colspan="7" style="text-align: center"><?php _e('Drop any status here to disable.', 'publishpress-statuses');?></td>
                         </tr></tbody></table>
                     </div>
@@ -612,7 +619,9 @@ do_action('publishpress_statuses_table_row', $key, []);
 
         <div class="row tpl-default">
             <div class="check-column">
-                <input id="cb-select-<?php echo esc_attr($item->name);?>" type="checkbox" name="status[]" value="<?php echo esc_attr($item->name);?>" />
+                <input id="cb-select-<?php echo esc_attr($item->name);?>" type="checkbox" name="status[]" value="<?php echo esc_attr($item->name);?>" aria-label="<?php
+                // translators: %s is the status label
+                echo esc_attr(sprintf(__('Select %s', 'publishpress-statuses'), $item->label));?>" />
             </div>
 
             <div class="child-toggle" style="padding-left: 0">
@@ -643,9 +652,9 @@ do_action('publishpress_statuses_table_row', $key, []);
 
         if (('private' == $item->name) && ('visibility' == $status_type) && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) :?>
             <li class="pp-cta-section pp-visibility-statuses-promo">
-                <h4>
+                <h2 class="pp-cta-heading">
                     <?php esc_html_e('Upgrade to choose who can view your non-public posts', 'publishpress-statuses'); ?>
-                </h4>
+                </h2>
                 <p>
                     <?php esc_html_e('Upgrade to PublishPress Statuses Pro to define your own custom visibility statuses.', 'publishpress-statuses'); ?>
                 </p>
@@ -671,12 +680,12 @@ do_action('publishpress_statuses_table_row', $key, []);
                     <a href="https://publishpress.com/statuses/" 
                         class="button-primary button-large pp-upgrade-btn" 
                         target="_blank">
-                        <?php esc_html_e('Get PublishPress Statuses Pro', 'publishpress-statuses'); ?>
+                        <?php esc_html_e('Get PublishPress Statuses Pro', 'publishpress-statuses'); ?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span>
                     </a>
                     <a href="https://publishpress.com/knowledge-base/custom-post-visibility/" 
                         target="_blank"
                         class="pp-learn-more-link">
-                        <?php esc_html_e('Learn More', 'publishpress-statuses'); ?>
+                        <?php esc_html_e('Learn More', 'publishpress-statuses'); ?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span>
                     </a>
                 </div>
             </li>
@@ -703,7 +712,7 @@ do_action('publishpress_statuses_table_row', $key, []);
 	 */
 	protected function single_row_columns( $item ) {
         ?>
-        <table class="status-row" style="float:right; width:100%"><tr>
+        <table class="status-row" role="presentation" style="float:right; width:100%"><tr>
 
         <?php
         list( $columns, $hidden, $sortable, $primary ) = $this->get_column_info();
@@ -728,6 +737,10 @@ do_action('publishpress_statuses_table_row', $key, []);
             echo '<td class="' . esc_attr($column_name) . '" ';
             if ( in_array( $column_name, $hidden, true ) ) echo 'style="width:0"';
             echo '>';
+
+            // Each row is its own table, so cells have no header association. Prefix visible, non-empty
+            // cells (other than the Name cell, which identifies the row) with the column name for screen readers.
+            ob_start();
 
 			if ( 'cb' === $column_name ) {
 				echo '<div scope="row" class="check-column">';
@@ -801,6 +814,16 @@ do_action('publishpress_statuses_table_row', $key, []);
                 do_action('publishpress_statuses_custom_column', $column_name, $item, compact('column_display_name'));
                 echo '</div>';
             }
+
+            $cell_html = ob_get_clean();
+
+            if (('name' !== $column_name) && ('cb' !== $column_name) && !in_array($column_name, $hidden, true)
+            && ('' !== trim(str_replace('&nbsp;', '', wp_strip_all_tags($cell_html))))
+            ) {
+                echo '<span class="screen-reader-text">' . esc_html(wp_strip_all_tags($column_display_name)) . ': </span>';
+            }
+
+            echo $cell_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped when generated above
 
             echo '</td>';
         }
@@ -890,7 +913,8 @@ do_action('publishpress_statuses_table_row', $key, []);
         ? 'handle '
         : 'handle-disabled ';
         
-        echo "<img src='" . esc_url(PUBLISHPRESS_STATUSES_URL . "common/assets/handle.svg") . "' alt='Sorting Handle' class='" . esc_attr($handle_class) . "}np-icon-menu'>";
+        // The drag handle is mouse-only; the Move buttons below provide the keyboard equivalent.
+        echo "<img src='" . esc_url(PUBLISHPRESS_STATUSES_URL . "common/assets/handle.svg") . "' alt='' class='" . esc_attr($handle_class) . "np-icon-menu'>";
 
         echo '<span class="pp-statuses-color" style="background:' . esc_attr($item->color) . ';"></span>';
 
@@ -928,6 +952,10 @@ do_action('publishpress_statuses_table_row', $key, []);
         }
 
         echo '</strong>';
+
+        if (0 === strpos($handle_class, 'handle ')) {
+            $this->moveControls($item);
+        }
 
         $actions = [];
  
@@ -1018,7 +1046,12 @@ do_action('publishpress_statuses_table_row', $key, []);
      */
     public function column_description($item)
     {
-        $descript = (!empty($item->description && ('-' != $item->description)) ? $item->description : '&nbsp;');
+        $descript = (!empty($item->description) && ('-' != $item->description)) ? $item->description : '';
+
+        if ('' === $descript) {
+            echo '&nbsp;'; // no empty link
+            return;
+        }
 
         $url = admin_url("admin.php?action=edit-status&name={$item->name}&page=publishpress-statuses");
 
@@ -1038,18 +1071,56 @@ do_action('publishpress_statuses_table_row', $key, []);
     {
         $url = admin_url("admin.php?action=edit-status&name={$item->name}&page=publishpress-statuses");
 
-        echo '<a href="' . esc_url($url) . '"><span class="dashicons ' . esc_html($item->icon) . '"></span></a>';
+        // Duplicates the Name link, so it is removed from the tab order and the accessibility tree.
+        echo '<a href="' . esc_url($url) . '" aria-hidden="true" tabindex="-1"><span class="dashicons ' . esc_attr($item->icon) . '"></span></a>';
     }
 
-    private function generateTooltip($tooltip, $text = '', $position = 'top', $useIcon = true)
+    /**
+     * Keyboard alternatives to drag-and-drop ordering and nesting (WCAG 2.1.1, 2.5.7)
+     */
+    private function moveControls($item)
     {
+        $controls = [
+            // translators: %s is the status label
+            'up' =>      ['dashicons-arrow-up-alt2',    __('Move %s up', 'publishpress-statuses')],
+            // translators: %s is the status label
+            'down' =>    ['dashicons-arrow-down-alt2',  __('Move %s down', 'publishpress-statuses')],
+            // translators: %s is the status label
+            'indent' =>  ['dashicons-arrow-right-alt2', __('Make %s a sub-status of the status above', 'publishpress-statuses')],
+            // translators: %s is the status label
+            'outdent' => ['dashicons-arrow-left-alt2',  __('Move %s out of its parent status', 'publishpress-statuses')],
+        ];
+
+        echo '<span class="pp-status-move-controls">';
+
+        foreach ($controls as $move => $control) {
+            $text = sprintf($control[1], $item->label);
+
+            echo '<button type="button" class="button-link pp-status-move" data-move="' . esc_attr($move) . '" title="' . esc_attr($text) . '">'
+                . '<span class="dashicons ' . esc_attr($control[0]) . '" aria-hidden="true"></span>'
+                . '<span class="screen-reader-text">' . esc_html($text) . '</span>'
+                . '</button>';
+        }
+
+        echo '</span>';
+    }
+
+    private function generateTooltip($tooltip, $text = '', $position = 'top', $useIcon = true, $trigger_label = '')
+    {
+        static $tooltip_count = 0;
+        $tooltip_count++;
+        $tooltip_id = 'pp-statuses-tooltip-' . $tooltip_count;
+
+        if (!$trigger_label) {
+            $trigger_label = ($text) ? $text : __('More information', 'publishpress-statuses');
+        }
         ?>
-        <span data-toggle="tooltip" data-placement="<?php esc_attr_e($position); ?>">
-        <?php esc_html_e($text);?>
-        <span class="tooltip-text"><span><?php esc_html_e($tooltip);?></span><i></i></span>
+        <span data-toggle="tooltip" data-placement="<?php echo esc_attr($position); ?>" tabindex="0" role="button" aria-label="<?php echo esc_attr($trigger_label);?>" aria-describedby="<?php echo esc_attr($tooltip_id);?>">
+        <?php echo esc_html($text);?>
+        <span class="tooltip-text" id="<?php echo esc_attr($tooltip_id);?>" role="tooltip"><span><?php echo esc_html($tooltip);?></span><i></i></span>
         <?php 
         if ($useIcon) : ?>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="margin-left: 4px; vertical-align: text-bottom;">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="margin-left: 4px; vertical-align: text-bottom;">
                 <path d="M 25 2 C 12.264481 2 2 12.264481 2 25 C 2 37.735519 12.264481 48 25 48 C 37.735519 48 48 37.735519 48 25 C 48 12.264481 37.735519 2 25 2 z M 25 4 C 36.664481 4 46 13.335519 46 25 C 46 36.664481 36.664481 46 25 46 C 13.335519 46 4 36.664481 4 25 C 4 13.335519 13.335519 4 25 4 z M 25 11 A 3 3 0 0 0 25 17 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 23 23 L 23 36 L 21 36 L 21 38 L 29 38 L 29 36 L 27 36 L 27 21 L 21 21 z"></path>
             </svg>
         <?php

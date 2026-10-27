@@ -62,7 +62,7 @@ class ModuleAdminUI_Base {
                 </div>
                 -->
 
-                <h1 class="wp-heading-inline"><?php echo esc_html($this->module->title); do_action('publishpress_header_button');?></h1>
+                <h1 class="wp-heading-inline"><?php echo esc_html($this->module->title);?></h1><?php do_action('publishpress_header_button');?>
 
                 <?php 
                 if (!empty($display_messages)) {
@@ -100,27 +100,28 @@ class ModuleAdminUI_Base {
                 // translators: %1$s is the plugin name, %2$s is the rating stars
             esc_html__('If you like %1$s, please leave us a %2$s rating. Thank you!', 'publishpress-statuses'),
             esc_html($plugin_title),
-            '<span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span>'
+            '<span aria-hidden="true"><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span></span><span class="screen-reader-text">' . esc_html__('five-star', 'publishpress-statuses') . '</span>'
             );
         ?>
+        <span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses');?></span>
         </a>
         </div>
 
         <hr>
         <nav>
         <ul>
-        <li><a href="<?php echo esc_url($ppcom_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('About %s', 'publishpress-statuses'), esc_html($plugin_title));?>"><?php esc_html_e('About', 'publishpress-statuses');?>
+        <li><a href="<?php echo esc_url($ppcom_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('About %s', 'publishpress-statuses'), esc_html($plugin_title));?>"><?php esc_html_e('About', 'publishpress-statuses');?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses');?></span>
         </a></li>
-        <li><a href="<?php echo esc_url($ppcom_doc_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('%s Documentation', 'publishpress-statuses'), esc_html($plugin_title));?>"><?php esc_html_e('Documentation', 'publishpress-statuses');?>
+        <li><a href="<?php echo esc_url($ppcom_doc_url);?>" target="_blank" rel="noopener noreferrer" title="<?php printf(esc_attr__('%s Documentation', 'publishpress-statuses'), esc_html($plugin_title));?>"><?php esc_html_e('Documentation', 'publishpress-statuses');?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses');?></span>
         </a></li>
-        <li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php esc_attr_e('Contact the PublishPress team', 'publishpress-statuses');?>"><?php esc_html_e('Contact', 'publishpress-statuses');?>
+        <li><a href="https://publishpress.com/contact" target="_blank" rel="noopener noreferrer" title="<?php esc_attr_e('Contact the PublishPress team', 'publishpress-statuses');?>"><?php esc_html_e('Contact', 'publishpress-statuses');?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses');?></span>
         </a></li>
         </ul>
         </nav>
 
         <div class="pp-publishpress-logo">
         <a href="//publishpress.com" target="_blank" rel="noopener noreferrer">
-        <img src="<?php echo esc_url($local_img_url);?>" />
+        <img src="<?php echo esc_url($local_img_url);?>" alt="<?php esc_attr_e('PublishPress', 'publishpress-statuses');?>" /><?php echo '<span class="screen-reader-text"> ' . esc_html__('(opens in a new tab)', 'publishpress-statuses') . '</span>';?>
         </a>
         </div>
 

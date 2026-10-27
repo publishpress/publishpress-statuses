@@ -329,13 +329,37 @@
             ''
         ];
 
+        var l10n = $.extend({
+            dialogLabel: 'Select an icon',
+            searchLabel: 'Search icons',
+            searchPlaceholder: 'Search',
+            previous: 'Previous icons',
+            next: 'Next icons',
+            current: 'Current icon: %s'
+        }, (typeof window.ppIconPickerL10n === 'object') ? window.ppIconPickerL10n : {});
+
+        // Convert an icon slug such as "arrow-left-alt2" into readable words ("Arrow left alt 2").
+        var iconToWords = function (slug) {
+            var words = String(slug).replace(/^dashicons-/, '').replace(/[-_]+/g, ' ').replace(/([a-z])(\d)/gi, '$1 $2');
+            return words.charAt(0).toUpperCase() + words.slice(1);
+        };
+
         return this.each(function () {
 
             var button = $(this),
                 offsetTop,
                 offsetLeft;
 
+            button.attr('aria-expanded', 'false');
+
             button.on('click.dashiconsPicker', function (e) {
+                e.preventDefault();
+
+                if ($('.dashicon-picker-container').length) {
+                    removePopup(true);
+                    return;
+                }
+
                 offsetTop = $(e.currentTarget).offset().top;
                 offsetLeft = $(e.currentTarget).offset().left;
                 createPopup(button);
@@ -345,7 +369,9 @@
 
                 var target = $(button.data('target')),
                     preview = $(button.data('preview')),
-                    popup = $('<div class="dashicon-picker-container">' +
+                    currentLabel = $(button.data('current')),
+                    currentIcon = String(target.val() || '').replace(/^dashicons-/, ''),
+                    popup = $('<div class="dashicon-picker-container" role="dialog">' +
                         '<div class="dashicon-picker-control"></div>' +
                         '<ul class="dashicon-picker-list"></ul>' +
                         '</div>').css({
@@ -354,48 +380,68 @@
                     }),
                     list = popup.find('.dashicon-picker-list');
 
+                popup.attr('aria-label', l10n.dialogLabel);
+
                 for (var i in icons) {
-                    if (icons.hasOwnProperty(i)) {
-                        list.append('<li data-icon="' + icons[i] + '"><a href="#" title="' + icons[i] + '"><span class="dashicons dashicons-' + icons[i] + '"></span></a></li>');
+                    if (icons.hasOwnProperty(i) && icons[i]) {
+                        var item = $('<li></li>').attr('data-icon', icons[i]),
+                            iconButton = $('<button type="button"></button>')
+                                .attr('data-icon', icons[i])
+                                .attr('aria-label', iconToWords(icons[i]))
+                                .attr('aria-pressed', (icons[i] === currentIcon) ? 'true' : 'false')
+                                .append($('<span class="dashicons" aria-hidden="true"></span>').addClass('dashicons-' + icons[i]));
+
+                        list.append(item.append(iconButton));
                     }
                 }
 
-                $('a', list).on('click', function (e) {
+                $('button', list).on('click', function (e) {
                     e.preventDefault();
-                    var title = $(this).attr('title');
-                    target.val('dashicons-' + title);
+                    var icon = $(this).attr('data-icon');
+                    target.val('dashicons-' + icon);
                     preview
                         .prop('class', 'dashicons')
-                        .addClass('dashicons-' + title);
-                    removePopup();
+                        .addClass('dashicons-' + icon);
+
+                    if (currentLabel.length) {
+                        currentLabel.text(l10n.current.replace('%s', iconToWords(icon)));
+                    }
+
+                    removePopup(true);
                 });
 
                 var control = popup.find('.dashicon-picker-control');
 
-                control.html('<a data-direction="back" href="#">' +
-                    '<span class="dashicons dashicons-arrow-left-alt2"></span></a>' +
-                    '<input type="text" class="" placeholder="Search" />' +
-                    '<a data-direction="forward" href="#"><span class="dashicons dashicons-arrow-right-alt2"></span></a>'
+                control.append(
+                    $('<button type="button" class="dashicon-picker-nav" data-direction="back"><span class="dashicons dashicons-arrow-left-alt2" aria-hidden="true"></span></button>').attr('aria-label', l10n.previous),
+                    $('<input type="search" class="" />').attr({'aria-label': l10n.searchLabel, 'placeholder': l10n.searchPlaceholder}),
+                    $('<button type="button" class="dashicon-picker-nav" data-direction="forward"><span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span></button>').attr('aria-label', l10n.next)
                 );
 
-                $('a', control).on('click', function (e) {
+                $('button', control).on('click', function (e) {
                     e.preventDefault();
+                    var count = $('li', list).length;
+
                     if ($(this).data('direction') === 'back') {
-                        $('li:gt(' + (icons.length - 26) + ')', list).prependTo(list);
+                        $('li:gt(' + (count - 26) + ')', list).prependTo(list);
                     } else {
                         $('li:lt(25)', list).appendTo(list);
                     }
                 });
 
                 popup.appendTo('body').show();
+                button.attr('aria-expanded', 'true');
 
-                $('input', control).on('keyup', function (e) {
+                $('input', control).on('keyup search', function (e) {
                     var search = $(this).val();
                     if (search === '') {
-                        $('li:lt(25)', list).show();
+                        $('li', list).show();
                     } else {
                         $('li', list).each(function () {
-                            if ($(this).data('icon').toLowerCase().indexOf(search.toLowerCase()) !== -1) {
+                            var icon = String($(this).data('icon'));
+                            if (icon.toLowerCase().indexOf(search.toLowerCase()) !== -1
+                            || iconToWords(icon).toLowerCase().indexOf(search.toLowerCase()) !== -1
+                            ) {
                                 $(this).show();
                             } else {
                                 $(this).hide();
@@ -404,16 +450,54 @@
                     }
                 });
 
-                $(document).on('mouseup.dashicons-picker', function (e) {
-                    if (!popup.is(e.target) && popup.has(e.target).length === 0) {
-                        removePopup();
+                // Keyboard: Escape closes and returns focus to the trigger; Tab cycles within the popup.
+                popup.on('keydown', function (e) {
+                    if (e.key === 'Escape' || e.keyCode === 27) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        removePopup(true);
+                        return;
+                    }
+
+                    if (e.key === 'Tab' || e.keyCode === 9) {
+                        var focusable = popup.find('button, input').filter(':visible');
+                        if (!focusable.length) {
+                            return;
+                        }
+
+                        var first = focusable.first()[0],
+                            last = focusable.last()[0];
+
+                        if (e.shiftKey && document.activeElement === first) {
+                            e.preventDefault();
+                            last.focus();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            e.preventDefault();
+                            first.focus();
+                        }
                     }
                 });
+
+                $(document).on('mouseup.dashicons-picker', function (e) {
+                    if (!popup.is(e.target) && popup.has(e.target).length === 0
+                    && !button.is(e.target) && button.has(e.target).length === 0
+                    ) {
+                        removePopup(false);
+                    }
+                });
+
+                // Move focus into the popup.
+                $('input', control).trigger('focus');
             }
 
-            function removePopup() {
+            function removePopup(returnFocus) {
                 $('.dashicon-picker-container').remove();
                 $(document).off('.dashicons-picker');
+                button.attr('aria-expanded', 'false');
+
+                if (returnFocus) {
+                    button.trigger('focus');
+                }
             }
         });
     };
