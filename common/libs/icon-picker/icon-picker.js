@@ -418,6 +418,15 @@
                     $('<button type="button" class="dashicon-picker-nav" data-direction="forward"><span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span></button>').attr('aria-label', l10n.next)
                 );
 
+                // Only the 25 icons shown in the popup's window are Tab stops; the rest are clipped
+                // by overflow:hidden, and tabbing to them would scroll the search box out of view.
+                var updateTabStops = function () {
+                    $('li', list).find('button').attr('tabindex', '-1');
+                    $('li', list).filter(function () {
+                        return this.style.display !== 'none';
+                    }).slice(0, 25).find('button').removeAttr('tabindex');
+                };
+
                 $('button', control).on('click', function (e) {
                     e.preventDefault();
                     var count = $('li', list).length;
@@ -427,7 +436,10 @@
                     } else {
                         $('li:lt(25)', list).appendTo(list);
                     }
+                    updateTabStops();
                 });
+
+                updateTabStops();
 
                 popup.appendTo('body').show();
                 button.attr('aria-expanded', 'true');
@@ -448,6 +460,7 @@
                             }
                         });
                     }
+                    updateTabStops();
                 });
 
                 // Keyboard: Escape closes and returns focus to the trigger; Tab cycles within the popup.

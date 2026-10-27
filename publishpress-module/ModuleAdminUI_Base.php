@@ -63,6 +63,7 @@ class ModuleAdminUI_Base {
                 -->
 
                 <h1 class="wp-heading-inline"><?php echo esc_html($this->module->title);?></h1><?php do_action('publishpress_header_button');?>
+                <hr class="wp-header-end">
 
                 <?php 
                 if (!empty($display_messages)) {

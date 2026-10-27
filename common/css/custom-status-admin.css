@@ -1142,12 +1142,6 @@ div.publishpress-admin-wrapper .pp-cta-section h2.pp-cta-heading,
 }
 
 /* Page description (formerly an h2 in the header) */
-div.publishpress-admin-wrapper header p.pp-admin-description {
-font-size: 1.1em;
-margin-top: 5px;
-margin-bottom: 0;
-padding-top: 5px;
-}
 
 div.publishpress-admin-wrapper header a.add-new {
 vertical-align: top;
