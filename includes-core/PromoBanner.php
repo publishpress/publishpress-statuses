@@ -222,7 +222,7 @@ class PromoBanner
             <?php endforeach; ?>
           </ul>
           <div class="upgrade-btn">
-            <a href="<?php echo esc_url($this->pluginUrl); ?>" target="__blank"><?php echo esc_html__('Upgrade to Pro', 'publishpress-statuses'); ?></a>
+            <a href="<?php echo esc_url($this->pluginUrl); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html__('Upgrade to Pro', 'publishpress-statuses'); ?><span class="screen-reader-text"> <?php esc_html_e('(opens in a new tab)', 'publishpress-statuses'); ?></span></a>
           </div>
         </div>
       </div>

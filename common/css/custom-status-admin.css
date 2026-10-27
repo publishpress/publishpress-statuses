@@ -10,7 +10,8 @@ margin-bottom: 0;
 padding-top: 5px;
 }
 
-body.toplevel_page_publishpress-statuses div.nav-tab-wrapper {
+body.toplevel_page_publishpress-statuses div.nav-tab-wrapper,
+body.toplevel_page_publishpress-statuses nav.nav-tab-wrapper {
 margin-top: 0;
 padding-top: 0;
 }
@@ -139,7 +140,7 @@ width: 30px;
 text-align: center;
 vertical-align: middle;
 display:inline-block;
-opacity:.2;
+opacity:.55; /* at least 3:1 against the row backgrounds */
 cursor:move;
 position:relative;
 top:-1px;
@@ -181,19 +182,19 @@ font-size: 14px;
 
 .pp-nested-list .ui-temp-placeholder table.status-row td {
 font-style: italic;
-color: #777;
+color: #50575e;
 padding: 0;
 }
 
 .pp-nested-list .disabled-status table.status-row td,
 .pp-nested-list .disabled-status table.status-row td a {
-color: black !important;
+color: #646970 !important; /* was black at 50% opacity; 5:1 on #f4f4f4 without opacity */
 }
 
 #status_row__disabled table.status-row td,
 #status_row__disabled table.status-row td a
 {
-color: #777 !important;
+color: #50575e !important;
 }
 
 
@@ -221,8 +222,8 @@ background-color: #fcf0ea;
 
 
 /* Statuses Table: Disabled Statuses section */
-#the_status_list > li.disabled-status {
-opacity: 50%;
+#the_status_list li.disabled-status:not(.section-row) table.status-row td.name strong {
+font-style: italic;
 }
 
 #the_status_list li.disabled-status span.disable {
@@ -412,7 +413,7 @@ width: 300px;
 
 
 /* Icon Picker */
-div#publishpress_icon_pick_wrap {
+#publishpress_icon_pick_wrap {
 display: inline-block;
 cursor: pointer;
 padding-top: 1px;
@@ -494,7 +495,7 @@ border: 1px solid #ddd;
 }
 
 table.pp-statuses-options table.cme-typecaps  th.pp-caps-status-label {
-color: #aaa;
+color: #646970;
 }
 
 table.pp-statuses-options table.cme-typecaps td.status-label-advanced {
@@ -715,7 +716,12 @@ div.pp-statuses-warning {
   text-align: center;
   background-color: white;
 }
-.pp-cta-section h4 {
+.pp-cta-section h4,
+div.publishpress-admin-wrapper .pp-cta-section h2.pp-cta-heading,
+.pp-cta-section h2.pp-cta-heading {
+  padding: 0;
+  font-style: normal;
+  line-height: 1.4;
   margin: 0 0 12px 0;
   color: var(--text-muted);
   font-size: 18px;
@@ -916,8 +922,9 @@ div.pp-statuses-warning {
     pointer-events: none;
     backdrop-filter: blur(2px);
   }
+  .pp-upgrade-overlay h3,
   .pp-upgrade-overlay h4 {
-    color: #ff5722;
+    color: #c2410c;
     font-weight: 600;
     margin: 0 auto 10px auto;
     font-size: 16px;
@@ -989,6 +996,7 @@ div.pp-statuses-warning {
     margin-bottom: 10px !important;
     max-width: 550px;
     }
+    #pp-statuses-promo  .pp-upgrade-overlay h3,
     #pp-statuses-promo  .pp-upgrade-overlay h4
     {
     font-size: 18px;
@@ -1131,4 +1139,81 @@ div.pp-statuses-warning {
 .pp-statuses-role-tooltip .tooltip-text a,
 .pp-statuses-role-tooltip .tooltip-text a:hover {
     text-decoration: underline;
+}
+
+/* Page description (formerly an h2 in the header) */
+
+div.publishpress-admin-wrapper header a.add-new {
+vertical-align: top;
+margin-top: 2px;
+}
+
+/* Keyboard alternatives to drag-and-drop (WCAG 2.1.1 / 2.5.7) */
+#the_status_list .pp-status-move-controls {
+display: inline-block;
+margin-left: 8px;
+white-space: nowrap;
+vertical-align: middle;
+}
+
+#the_status_list .pp-status-move-controls button.button-link {
+color: #50575e;
+padding: 0;
+margin: 0 1px;
+width: 20px;
+height: 20px;
+line-height: 1;
+text-decoration: none;
+vertical-align: middle;
+}
+
+#the_status_list .pp-status-move-controls button.button-link:hover {
+color: #2271b1;
+}
+
+#the_status_list .pp-status-move-controls .dashicons {
+font-size: 16px;
+width: 16px;
+height: 16px;
+}
+
+/* Hover bridge is not needed (and would cover checkboxes) for the role tooltip, which has no gap */
+.pp-statuses-role-tooltip .tooltip-text::before {
+display: none;
+}
+
+/* Error messages linked to their fields */
+div.publishpress-admin div.form-error p {
+margin-bottom: 0;
+}
+
+/* Narrow screens: wrap the status list instead of scrolling the page (WCAG 1.4.10) */
+@media screen and (max-width: 782px) {
+  #the_status_list table.status-row th.description,
+  #the_status_list table.status-row td.description,
+  #status_list_header table.status-row th.description,
+  #the_status_list table.status-row th.post_types,
+  #the_status_list table.status-row td.post_types,
+  #status_list_header table.status-row th.post_types {
+    display: none;
+  }
+
+  table.status-row th.name,
+  table.status-row td.name {
+    width: auto;
+  }
+
+  #the_status_list table.status-row td.name div.row-actions {
+    display: block;
+    padding-left: 0;
+  }
+
+  #the_status_list table.status-row td,
+  #the_status_list table.status-row td a {
+    overflow-wrap: anywhere;
+  }
+
+  div.pp-statuses-co-l-right div.col-wrap {
+    overflow: visible !important;
+  }
 }

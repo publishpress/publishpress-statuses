@@ -368,6 +368,19 @@ class Admin
                 PUBLISHPRESS_STATUSES_VERSION,
                 true
             );
+            wp_localize_script(
+                'publishpress-icon-preview',
+                'ppIconPickerL10n',
+                [
+                    'dialogLabel' => __('Select an icon', 'publishpress-statuses'),
+                    'searchLabel' => __('Search icons', 'publishpress-statuses'),
+                    'searchPlaceholder' => __('Search', 'publishpress-statuses'),
+                    'previous' => __('Previous icons', 'publishpress-statuses'),
+                    'next' => __('Next icons', 'publishpress-statuses'),
+                    // translators: %s is the name of the selected icon
+                    'current' => __('Current icon: %s', 'publishpress-statuses'),
+                ]
+            );
             wp_enqueue_style(
                 'publishpress-icon-preview',
                 PUBLISHPRESS_STATUSES_URL . 'common/libs/icon-picker/icon-picker.css',
@@ -416,7 +429,7 @@ class Admin
             wp_enqueue_script(
                 'publishpress-custom-status-configure',
                 PUBLISHPRESS_STATUSES_URL . "common/js/custom-status-configure{$suffix}.js",
-                ['jquery', 'jquery-ui-sortable'],
+                ['jquery', 'jquery-ui-sortable', 'wp-a11y'],
                 PUBLISHPRESS_STATUSES_VERSION,
                 true
             );
@@ -429,6 +442,29 @@ class Admin
                         'Are you sure you want to delete the post status? All posts with this status will be assigned to the default status.',
                         'publishpress-statuses'
                     ),
+                    'error' => __('Error', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'disabled' => __('%s disabled.', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'enabled' => __('%s enabled.', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'deleted' => __('%s deleted.', 'publishpress-statuses'),
+                    // translators: %1$s is the status name, %2$s is the section name
+                    'movedUp' => __('%1$s moved up in %2$s.', 'publishpress-statuses'),
+                    // translators: %1$s is the status name, %2$s is the section name
+                    'movedDown' => __('%1$s moved down in %2$s.', 'publishpress-statuses'),
+                    // translators: %1$s is the status name, %2$s is the parent status name
+                    'indented' => __('%1$s is now a sub-status of %2$s.', 'publishpress-statuses'),
+                    // translators: %1$s is the status name, %2$s is the section name
+                    'outdented' => __('%1$s is no longer a sub-status. Now in %2$s.', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'cannotMoveUp' => __('%s cannot be moved up.', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'cannotMoveDown' => __('%s cannot be moved down.', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'cannotIndent' => __('%s cannot be made a sub-status here.', 'publishpress-statuses'),
+                    // translators: %s is the status name
+                    'cannotOutdent' => __('%s is not a sub-status.', 'publishpress-statuses'),
                 ]
             );
 
