@@ -42,3 +42,6 @@
 - screenshot-*.png
 - .web
 - .ddev
+- tests
+- docs
+- .agents

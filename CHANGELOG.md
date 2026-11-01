@@ -1,6 +1,9 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[Unreleased]
+- Added : PublishPress Hub MCP actions for native status settings, workflows and permissions.
+
 [1.3.5] - 27 Aug 2026
 - Added : Search filter for Roles on Post Access tab 
 - Fixed : Post Access tab does not show implicitly assigned Administrator capabilities

@@ -1,5 +1,7 @@
 <?php
 namespace PublishPress_Statuses;
+\defined('ABSPATH') || exit;
+
 
 // Custom Status management: Handle status add / edit requests
 class StatusHandler {
@@ -141,22 +143,6 @@ class StatusHandler {
             wp_die(esc_html__('Could not add status: ', 'publishpress-statuses') . esc_html($return->get_error_message()));
         }
 
-        global $wp_roles;
-
-        if (!empty($wp_roles) && is_object($wp_roles) && !empty($wp_roles->roles)) {
-            foreach($wp_roles->role_objects as $role_name => $role) {
-
-                // Mirror Planner behavior of enabling standard WP roles to assign statuses, but also grant to other roles based on post / page capabilities
-                if (in_array($role_name, ['administrator', 'author', 'editor', 'contributor']) || $role->has_cap('edit_posts') || $role->has_cap('edit_pages')) {
-                    $cap_name = 'status_change_' . str_replace('-', '_', $status_name);
-
-                    if (empty($role->capabilties[$cap_name])) {
-                        $role->add_cap($cap_name);
-                    }
-                }
-            }
-        }
-
         delete_option('publishpress_statuses_num_roles');
 
         $redirect_args = ['action' => 'edit-status', 'name' => $status_name, 'message' => 'status-added'];
@@ -165,37 +151,7 @@ class StatusHandler {
             $redirect_args['status_type'] = $status_type;
         }
 
-        if (!empty(\PublishPress_Statuses::instance()->options->new_statuses_main_workflow)) {
-            $defaulted_to_main = (array) get_option('publishpress_statuses_defaulted_to_main', []);
-            $defaulted_to_main[$status_name] = true;
-            update_option('publishpress_statuses_defaulted_to_main', $defaulted_to_main);
-        
-            if ($status_positions = get_option('publishpress_status_positions')) {
-                $status_positions = array_values($status_positions);
-    
-                if ('post_status' == $taxonomy) {
-                    if ($alternate_pos = array_search('_pre-publish-alternate', $status_positions)) {
-                        $status_positions = array_merge(
-                            array_slice($status_positions, 0, $alternate_pos - 1),
-                            [$status_name],
-                            array_slice($status_positions, $alternate_pos)
-                        );
-    
-                        update_option('publishpress_status_positions', $status_positions);
-                    }
-                } elseif ('pp_revision_status' == $taxonomy) {
-                    if ($alternate_pos) {
-                        $status_positions = array_merge(
-                            array_slice($status_positions, 0, $alternate_pos - 1),
-                            [$status_name],
-                            array_slice($status_positions, $alternate_pos)
-                        );
-    
-                        update_option('publishpress_status_positions', $status_positions);
-                    }
-                }
-            }
-        }
+        self::initializeCreatedStatus($status_name, $taxonomy);
 
         // Redirect if successful
         $redirect_url = \PublishPress_Statuses::getLink($redirect_args);
@@ -324,15 +280,8 @@ class StatusHandler {
                     continue;
                 }
 
-                if ($role = get_role($role_name)) {
-                    if ($set_val && empty($role->capabilities[$cap_name])) {
-                        $role->add_cap($cap_name);
-                        $changed = true;
-
-                    } elseif (!$set_val && !empty($role->capabilities[$cap_name])) {
-                        $role->remove_cap($cap_name);
-                        $changed = true;
-                    }
+                if (self::setRoleAssignment($status_obj->name, $role_name, $set_val)) {
+                    $changed = true;
                 }
 
             }
@@ -542,6 +491,15 @@ class StatusHandler {
         exit;
     }
 
+    /** Whether native storage rules permit customizing this status's labels. */
+    public static function canCustomizeLabels($status)
+    {
+        if (\PublishPress_Statuses::instance()->options->label_storage === 'user') {
+            return empty($status->pp_builtin) && empty($status->_builtin) && !in_array($status->name, ['draft', 'pending', 'publish', 'private', 'future'], true);
+        }
+        return (empty($status->_builtin) || $status->name === 'pending') && !in_array($status->name, ['draft', 'publish', 'private', 'future'], true);
+    }
+
     /**
      * Update an existing custom status
      *
@@ -550,7 +508,7 @@ class StatusHandler {
      *
      * @return object|WP_Error|false $updated_status Newly updated status object
      */
-    public static function updateCustomStatus($name, $args = [])
+    public static function updateCustomStatus($name, $args = [], $authorize = null)
     {
         if (in_array($name, ['_pre-publish-alternate', '_disabled'])) {
             return;
@@ -564,8 +522,6 @@ class StatusHandler {
 
         // Reset our internal object cache
         \PublishPress_Statuses::instance()->clearStatusCache();
-
-        $updatedStatusId = $name;
 
 
         // We're encoding metadata that isn't supported by default in the term's description field
@@ -588,39 +544,23 @@ class StatusHandler {
 
         // Also re-encode any existing properties, since the plugin that defined it may be temporarily deactivated.
         if (!$term = get_term_by('slug', $name, $taxonomy)) {
-            if ($term_id = \PublishPress_Statuses::instance()->addStatus($taxonomy, $status_obj->label, ['slug' => $name])) {
+            $create_authorization = $authorize ? static function ($id) use ($authorize, $args) { return $authorize($id, $args); } : null;
+            $created = \PublishPress_Statuses::instance()->addStatus($taxonomy, $status_obj->label, ['slug' => $name], $create_authorization);
+            if (is_wp_error($created)) {
+                return $created;
+            }
+            if ($created) {
                 $term = get_term_by('slug', $name, $taxonomy);
                 $updated_status_array = (array) $term;
             }
         }
 
-        if (!empty($status_obj)) {
-            $label_storage = \PublishPress_Statuses::instance()->options->label_storage;
-
-            switch ($label_storage) {
-                case 'user':
-                    if (!empty($status_obj->pp_builtin) || !empty($status_obj->_builtin)
-                    || in_array($name, ['draft', 'pending', 'publish', 'private', 'future'])
-                    ) {
-                        $label_locked = true;
-                    }
-
-                    break;
-
-                default:
-                    if ((!empty($status_obj->_builtin) && ('pending' != $name))
-                    || in_array($name, ['draft', 'publish', 'private', 'future'])
-                    ) {
-                        $label_locked = true;
-                    }
-            }
-
-            if (!isset($args['label'])) {
-                $label_locked = true;
-            }
-        }
+        $label_locked = !self::canCustomizeLabels($status_obj) || !isset($args['label']);
 
         if ($term) {
+            if ($authorize && !$authorize($term->term_id, $args)) {
+                return new \WP_Error('status-edit-denied', __('Status metadata could not be authorized. Read before retrying.', 'publishpress-statuses'));
+            }
             $term_meta_fields = apply_filters('publishpress_statuses_meta_fields', ['labels', 'post_type', 'roles', 'status_parent', 'color', 'icon']);
 
             if (!empty($label_locked)) {
@@ -639,7 +579,7 @@ class StatusHandler {
                         $meta_val = \get_object_vars($set_value);
 
                         foreach($meta_val as $k => $val) {
-                            $meta_val[$k] = sanitize_text_field(wp_unslash($val));
+                            $meta_val[$k] = sanitize_text_field($val);
                         }
 
                         $meta_val = (object) $meta_val;
@@ -647,7 +587,12 @@ class StatusHandler {
                         $meta_val = sanitize_textarea_field($set_value);
                     }
 
-                    $result = update_term_meta($term->term_id, $field, $meta_val);
+                    if ($authorize && !$authorize($term->term_id, $args)) {
+                        return new \WP_Error('status-edit-denied', __('Status permissions changed. Some changes may have been saved.', 'publishpress-statuses'));
+                    }
+                    // Metadata APIs strip slashes; preserve unslashed native captions.
+                    $stored_value = is_object($meta_val) ? (object) wp_slash((array) $meta_val) : wp_slash($meta_val);
+                    $result = update_term_meta($term->term_id, $field, $stored_value);
 
                     if (is_wp_error($result)) {
                         return $result;
@@ -681,6 +626,9 @@ class StatusHandler {
                 $args = array_diff_key($args, array_fill_keys(['label', 'labels', 'name'], true));
             }
 
+            if ($authorize && !$authorize($term->term_id, $args)) {
+                return new \WP_Error('status-edit-denied', __('Status permissions changed. Some changes may have been saved.', 'publishpress-statuses'));
+            }
             $updated_status_array = wp_update_term($term->term_id, $taxonomy, $args);
 
             if (is_wp_error($updated_status_array)) {
@@ -693,9 +641,8 @@ class StatusHandler {
             return new \WP_Error('custom-status-term_id', esc_html__("Error while updating the status ($name)", 'publishpress-statuses'));
         }
 
-        $updatedStatusId = $updated_status_array['term_id'];
-
-        return \PublishPress_Statuses::getStatusBy('id', $updatedStatusId);
+        \PublishPress_Statuses::instance()->clearStatusCache();
+        return \PublishPress_Statuses::getStatusBy('name', $name);
     }
 
     private function statusDeleted($status_name, $reassign_status = '') {
@@ -708,7 +655,7 @@ class StatusHandler {
      *
      * Reassigns posts that currently have the deleted status assigned.
      */
-    public static function deleteCustomStatus($old_status, $args = [], $reassign_status = '')
+    public static function deleteCustomStatus($old_status, $args = [], $reassign_status = '', $authorized_posts = null)
     {
         if ($reassign_status == $old_status) {
             return new \WP_Error('invalid', __('Cannot reassign to the status you want to delete', 'publishpress-statuses'));
@@ -737,7 +684,10 @@ class StatusHandler {
                 // @todo: If we support a custom default status, set it to draft
             }
 
-            self::reassign_post_status($old_status, $new_status);
+            $reassigned = self::reassign_post_status($old_status, $new_status, $authorized_posts);
+            if (is_wp_error($reassigned)) {
+                return $reassigned;
+            }
 
             if (!$status_obj = \PublishPress_Statuses::getStatusBy('name', $old_status)) {
                 return false;
@@ -816,13 +766,8 @@ class StatusHandler {
             self::printAjaxResponse('error', __('Status positions were not sent.', 'publishpress-statuses'));
         }
 
-        update_option('publishpress_status_positions', 
-            array_values(
-                array_filter(
-                    array_map('sanitize_key', $_POST['status_positions'])
-                )
-            )
-        );
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The shared method sanitizes every position with sanitize_key.
+        self::saveStatusPositions($_POST['status_positions']);
 
         // @todo: update 'publishpress_disabled_statuses' based on ordering relative to '_disabled'
 
@@ -920,6 +865,65 @@ class StatusHandler {
         return $restricted;
     }
 
+    /** Apply the native new-status workflow placement. */
+    public static function initializeCreatedStatus($status_name, $taxonomy)
+    {
+        if (!empty(\PublishPress_Statuses::instance()->options->new_statuses_main_workflow)) {
+            $defaulted = (array) get_option('publishpress_statuses_defaulted_to_main', []);
+            $defaulted[$status_name] = true;
+            update_option('publishpress_statuses_defaulted_to_main', $defaulted);
+            $positions = array_values((array) get_option('publishpress_status_positions', []));
+            $marker = $taxonomy === 'pp_revision_status' ? '_revision-alternate' : '_pre-publish-alternate';
+            $position = in_array($taxonomy, [\PublishPress_Statuses::TAXONOMY_PRE_PUBLISH, 'pp_revision_status'], true) ? array_search($marker, $positions, true) : false;
+            if ($position !== false && !in_array($status_name, $positions, true)) {
+                array_splice($positions, $position, 0, [$status_name]);
+                self::saveStatusPositions($positions);
+            }
+        }
+        delete_option('publishpress_statuses_num_roles');
+    }
+
+    /** Normalize one setting using the native form's stored representation. */
+    public static function sanitizeSetting($name, $value)
+    {
+        switch ($name) {
+            case 'post_types':
+                return array_intersect_key(array_map('intval', (array) $value), \PublishPress_Statuses::instance()->get_supported_post_types());
+            case 'default_privacy':
+            case 'force_default_privacy':
+                return array_intersect_key(array_map('sanitize_key', (array) $value), \PublishPress_Statuses::instance()->get_supported_post_types());
+            case 'force_editor_detection':
+            case 'label_storage':
+            case 'moderation_statuses_default_by_sequence':
+                return sanitize_key($value);
+            default:
+                return (int) $value;
+        }
+    }
+
+    /** Persist a validated workflow order for both the native drag/drop UI and API clients. */
+    public static function saveStatusPositions(array $positions)
+    {
+        update_option('publishpress_status_positions', array_values(array_filter(array_map('sanitize_key', $positions))));
+        \PublishPress_Statuses::instance()->clearStatusCache();
+    }
+
+    /** Persist one native role assignment, preserving unrelated capabilities. */
+    public static function setRoleAssignment($status, $role_name, $enabled)
+    {
+        if (!\PP_Statuses_Functions::isEditableRole($role_name) || !$role = get_role($role_name)) {
+            return false;
+        }
+        $cap = str_replace('-', '_', 'status_change_' . $status);
+        if ($enabled) {
+            $role->add_cap($cap);
+        } else {
+            $role->remove_cap($cap);
+        }
+        \PublishPress_Statuses::updateStatusNumRoles($status, ['force_refresh' => true]);
+        return true;
+    }
+
     public static function settings_validate_and_save()
     {
         if (!wp_verify_nonce(\PP_Statuses_Functions::POST_key('_wpnonce'), 'edit-publishpress-settings')
@@ -950,36 +954,12 @@ class StatusHandler {
             }
 
             if (isset($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name])) {
-                switch ($option_name) {
-                    case 'privacy_statuses_enabled' :
-                        update_option('presspermit_privacy_statuses_enabled', intval($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]));
-                        break;
-
-                    case 'post_types':
-                        $new_options[$option_name] = array_intersect_key(
-                            array_map('intval', (array) $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]), 
-                            \PublishPress_Statuses::instance()->get_supported_post_types()
-                        );
-
-                        break;
-
-                    case 'default_privacy':
-                    case 'force_default_privacy':
-                        $new_options[$option_name] = array_intersect_key(
-                            array_map('sanitize_key', (array) $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]), 
-                            \PublishPress_Statuses::instance()->get_supported_post_types()
-                        );
-
-                        break;
-
-                    case 'force_editor_detection':
-                    case 'label_storage':
-                    case 'moderation_statuses_default_by_sequence':
-                        $new_options[$option_name] = sanitize_key($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]);
-                        break;
-
-                    default:
-                        $new_options[$option_name] = (int) $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name];
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Native field normalization is delegated to the shared sanitizer.
+                $value = self::sanitizeSetting($option_name, $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]);
+                if ($option_name === 'privacy_statuses_enabled') {
+                    update_option('presspermit_privacy_statuses_enabled', $value);
+                } else {
+                    $new_options[$option_name] = $value;
                 }
             } else {
                 $new_options[$option_name] = $current_val;
@@ -1065,12 +1045,33 @@ class StatusHandler {
      * @param string $old_status Slug for the old status
      * @param string $new_status Slug for the new status
      */
-    private static function reassign_post_status($old_status, $new_status = '')
+    private static function reassign_post_status($old_status, $new_status = '', $authorized_posts = null)
     {
         global $wpdb;
 
         if (empty($new_status)) {
             $new_status = \PublishPress_Statuses::DEFAULT_STATUS;
+        }
+
+        if (is_array($authorized_posts)) {
+            // MCP supplies the preauthorized scope. Never expand it to rows created concurrently.
+            if ($authorized_posts) {
+                $placeholders = implode(',', array_fill(0, count($authorized_posts), '%d'));
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Fixed SQL plus generated integer placeholders; every value is prepared.
+                $updated = $wpdb->query($wpdb->prepare("UPDATE $wpdb->posts SET post_status = %s WHERE post_status = %s AND ID IN ($placeholders)", array_merge([$new_status, $old_status], $authorized_posts)));
+                foreach ($authorized_posts as $id) {
+                    clean_post_cache($id);
+                }
+                if ($updated === false) {
+                    return new \WP_Error('status-reassign-failed', __('Post reassignment could not be confirmed.', 'publishpress-statuses'));
+                }
+            }
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Fresh remaining-scope check before deleting a status.
+            $remaining = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_status = %s LIMIT 1", $old_status));
+            if ($wpdb->last_error || $remaining) {
+                return new \WP_Error('status-scope-changed', __('Posts still use this status. Read the current state before retrying.', 'publishpress-statuses'));
+            }
+            return true;
         }
 
         // phpcs Note: Direct DB query for efficient and reliable update of all existing $old_status posts to $new_status

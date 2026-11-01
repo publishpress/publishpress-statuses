@@ -282,6 +282,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             require_once(__DIR__ . '/PublishPress_Statuses.php');
             PublishPress_Statuses::instance();
         
+            require_once __DIR__ . '/Mcp/bootstrap.php';
         	do_action('publishpress_statuses_init');
 
             add_action(
