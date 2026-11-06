@@ -19,14 +19,15 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true,
             "publishpress/dev-workspace": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "composer/installers": true
         },
         "process-timeout": 0
     },
     "prefer-stable": true,
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.4.0",
         "ext-json": "*"
     },
     "require-dev": {

@@ -241,13 +241,13 @@ class PostEditClassicSubmitMetabox
             }
             ?>
             <input type="submit" name="save" id="save-post" value="<?php echo esc_attr($save_as) ?>"
-                   tabindex="4" class="button button-highlighted"/>
+                   class="button button-highlighted"/>
         <?php elseif ($is_moderation && ('future' != $post_status_obj->name)) :
             if (apply_filters('presspermit_display_save_as_button', true, $post, $args)):
                 $save_caption = isset($post_status_obj->labels->save_as) ? $post_status_obj->labels->save_as : __('Save');
                 ?>
                 <input type="submit" name="save" id="save-post" value="<?php echo esc_attr($save_caption) ?>"
-                    tabindex="4" class="button button-highlighted"/>
+                    class="button button-highlighted"/>
                 <?php 
             endif;
             ?>
@@ -292,7 +292,7 @@ class PostEditClassicSubmitMetabox
         }
         ?>
         <a class="preview button" href="<?php echo esc_url($preview_link); ?>" target="wp-preview" id="post-preview"
-           tabindex="4" title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
+           title="<?php echo esc_attr($preview_title);?>"><?php echo esc_html($preview_button); ?></a>
         <input type="hidden" name="wp-preview" id="wp-preview" value=""/>
         <?php
     }
@@ -347,12 +347,15 @@ class PostEditClassicSubmitMetabox
             ?>
             <a href="#post_status"
             <?php if (!empty($post_status_obj->private) || (!empty($post_status_obj->public) && 'publish' != $post_status)) { ?>style="display:none;"
-            <?php } ?>class="edit-post-status hide-if-no-js" tabindex='4'><?php echo esc_html(__('Edit')) ?></a>
+            <?php } ?>class="edit-post-status hide-if-no-js" role="button" aria-expanded="false"><span aria-hidden="true"><?php echo esc_html(__('Edit')) ?></span> <span class="screen-reader-text"><?php
+                /* translators: Hidden accessibility text. */
+                echo esc_html(__('Edit status'));
+                ?></span></a>
 
             <div id="post-status-select" class="hide-if-js">
                 <input type="hidden" name="hidden_post_status" id="hidden_post_status"
                     value="<?php echo esc_attr($post_status); ?>"/>
-                <select name='post_status' id='post_status' tabindex='4' autocomplete='off'>
+                <select name='post_status' id='post_status' autocomplete='off'>
 
                     <?php if (!empty($post_status_obj->public) || !empty($post_status_obj->private) || ('future' == $post_status)) : ?>
                         <option <?php selected(true, true); ?> value='_public'>
@@ -441,8 +444,11 @@ class PostEditClassicSubmitMetabox
             echo __('Publish <b>immediately</b>');
         }
         ?></span>
-        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" tabindex='4'><?php echo esc_html(__('Edit')) ?></a>
-        <div id="timestampdiv" class="hide-if-js"><?php touch_time(($action == 'edit'), 1, 4); ?></div>
+        <a href="#edit_timestamp" class="edit-timestamp hide-if-no-js" role="button" aria-expanded="false"><span aria-hidden="true"><?php echo esc_html(__('Edit')) ?></span> <span class="screen-reader-text"><?php
+            /* translators: Hidden accessibility text. */
+            echo esc_html(__('Edit date and time'));
+            ?></span></a>
+        <div id="timestampdiv" class="hide-if-js"><?php touch_time(($action == 'edit'), 1); ?></div>
         <?php
     }
 
@@ -479,25 +485,25 @@ class PostEditClassicSubmitMetabox
                     $future_status_obj = get_post_status_object('future');
                     ?>
                     <input name="original_publish" type="hidden" id="original_publish" value="<?php echo esc_attr($future_status_obj->labels->publish) ?>"/>
-                    <input name="publish" type="submit" class="button button-primary button-large" id="publish" tabindex="5" accesskey="p" value="<?php echo esc_attr($future_status_obj->labels->publish) ?>"/>
+                    <input name="publish" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_attr($future_status_obj->labels->publish) ?>"/>
                 <?php
                 else :
                     $publish_status_obj = get_post_status_object('publish');
                     ?>
                     <input name="original_publish" type="hidden" id="original_publish" value="<?php echo esc_attr($publish_status_obj->labels->publish) ?>"/>
-                    <input name="publish" type="submit" class="button button-primary button-large" id="publish" tabindex="5" accesskey="p" value="<?php echo esc_attr(__('Update')); ?>"/>
+                    <input name="publish" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_attr(__('Update')); ?>"/>
                 <?php
                 endif;
             else :
                 echo '<input name="pp_submission_status" type="hidden" id="pp_submission_status" value="' . esc_attr($status_obj->name) . '" />';
                 ?>
                 <input name="original_publish" type="hidden" id="original_publish" value="<?php echo esc_attr($status_obj->labels->publish) ?>"/>
-                <input name="publish" type="submit" class="button button-primary button-large" id="publish" tabindex="5" accesskey="p" value="<?php echo esc_attr($status_obj->labels->publish) ?>"/>
+                <input name="publish" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_attr($status_obj->labels->publish) ?>"/>
             <?php
             endif;
         } else { ?>
             <input name="original_publish" type="hidden" id="original_publish" value="<?php echo esc_attr(__('Update')); ?>"/>
-            <input name="save" type="submit" class="button button-primary button-large" id="publish" tabindex="5" accesskey="p" value="<?php echo esc_attr(__('Update')); ?>"/>
+            <input name="save" type="submit" class="button button-primary button-large" id="publish" accesskey="p" value="<?php echo esc_attr(__('Update')); ?>"/>
             <?php
         }
     }
