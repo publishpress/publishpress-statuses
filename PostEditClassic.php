@@ -188,7 +188,7 @@ class PostEditClassic
         wp_enqueue_script(
             'publishpress-statuses-classic-edit', 
             PUBLISHPRESS_STATUSES_URL . "common/js/classic-edit{$suffix}.js", 
-            ['jquery', 'jquery-form'], 
+            ['jquery', 'jquery-form', 'wp-a11y'], 
             PUBLISHPRESS_STATUSES_VERSION, 
             true
         );
@@ -207,7 +207,11 @@ class PostEditClassic
             'defaultBySequence' => $default_by_sequence,
             'scheduleFor' => esc_html(__('Schedule for: %s')),
             'publishOn' => esc_html(__('Publish on: %s')),
-            'publishedOn' => esc_html(__('Published on: %s'))
+            'publishedOn' => esc_html(__('Published on: %s')),
+            // translators: %s is a status name (screen reader announcement)
+            'statusSetCaption' => esc_html__('Status set to %s.', 'publishpress-statuses'),
+            // translators: %s is the caption of the main Publish / Submit button (screen reader announcement)
+            'publishButtonCaption' => esc_html__('Publish button: %s', 'publishpress-statuses'),
         ];
 
         if (defined('PUBLISHPRESS_STATUSES_CURRENT_TIME_LINK')) {

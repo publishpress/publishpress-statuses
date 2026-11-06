@@ -15,7 +15,7 @@ class PostEditGutenbergStatuses
 
         $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
         
-        wp_enqueue_script('publishpress-statuses-post-block-edit', PUBLISHPRESS_STATUSES_URL . "common/js/post-block-edit{$suffix}.js", ['jquery', 'jquery-form'], PUBLISHPRESS_STATUSES_VERSION, true);
+        wp_enqueue_script('publishpress-statuses-post-block-edit', PUBLISHPRESS_STATUSES_URL . "common/js/post-block-edit{$suffix}.js", ['jquery', 'jquery-form', 'wp-data', 'wp-i18n'], PUBLISHPRESS_STATUSES_VERSION, true);
 
         if (!defined('PP_STATUSES_ALLOW_PREPUBLISH_DISABLE')) {
             wp_enqueue_style('publishpress-statuses-post-block-edit', PUBLISHPRESS_STATUSES_URL . '/common/css/post-block-edit.css', [], PUBLISHPRESS_STATUSES_VERSION);

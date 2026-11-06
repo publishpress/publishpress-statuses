@@ -132,19 +132,19 @@ class StatusEditUI
 
                 $class = ($default_tab == $tab) ? $class_selected : $class_unselected;  // todo: return to last tab
 
-                echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
+                echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "' aria-controls='pp-" . esc_attr($tab) . "'" . (($default_tab == $tab) ? " aria-current='true'" : '') . ">"
                     . esc_html($caption);
                     
                 if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
                     $badge =
                     [
                         'text' => 'PRO',
-                        'bg_color' => '#8B5CF6',
+                        'bg_color' => '#6d28d9',
                         'class' => 'pp-pro-badge'
                     ];
                     $badge_text = isset($badge['text']) ? esc_html($badge['text']) : 'PRO';
-                    $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#8B5CF6';
-                    $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#8B5CF6';
+                    $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#6d28d9';
+                    $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#6d28d9';
                     $badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
                     
                     printf(
@@ -170,7 +170,8 @@ class StatusEditUI
             $tabsWrapper.find('li').click(function (e) {
                 e.preventDefault();
                 $tabsWrapper.children('li').filter('.nav-tab-active').removeClass('nav-tab-active');
-                $(this).addClass('nav-tab-active');
+                $tabsWrapper.find('a').removeAttr('aria-current');
+                $(this).addClass('nav-tab-active').find('a').first().attr('aria-current', 'true');
 
                 $('.publishpress-admin table.form-table').hide();
                 $('#editstatus > div').hide();
@@ -297,7 +298,7 @@ class StatusEditUI
                 <th scope="row" valign="top"><label for="slug"><?php
                     _e('Slug', 'publishpress-statuses'); ?></label></th>
                 <td>
-                    <input type="text" name="slug" id="slug" 
+                    <input type="text" name="slug" id="slug" aria-describedby="pp-slug-description" 
                             value="<?php
                             echo esc_attr($name); ?>" <?php
 
@@ -324,7 +325,7 @@ class StatusEditUI
                 <td>
 
                     <?php
-                    \PublishPress_Statuses\StatusesUI::colorPicker(esc_attr($color), 'status_color') ?>
+                    \PublishPress_Statuses\StatusesUI::colorPicker(esc_attr($color), 'status_color', ['id' => 'color', 'aria-describedby' => 'pp-color-description']) ?>
 
                     <?php
                     \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
@@ -334,7 +335,7 @@ class StatusEditUI
                 </td>
             </tr>
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="icon"><?php
+                <th scope="row" valign="top"><label for="publishpress_icon_pick_wrap"><?php
                         _e('Icon', 'publishpress-statuses'); ?></label>
                 </th>
                 <td>
@@ -344,15 +345,16 @@ class StatusEditUI
                                 echo esc_attr($icon);
                             } ?>"/>
 
-                    <div id="publishpress_icon_pick_wrap" data-target='#status_icon'
-                            data-preview="#publishpress_icon_pick_preview" class="button dashicons-picker">
+                    <button type="button" id="publishpress_icon_pick_wrap" data-target='#status_icon'
+                            data-preview="#publishpress_icon_pick_preview" class="button dashicons-picker"
+                            aria-haspopup="dialog" aria-expanded="false" aria-describedby="pp-status_icon-description">
                         
-                        <div id="publishpress_icon_pick_preview" class="dashicons <?php
-                        if (!empty($icon)) echo esc_attr($icon); else echo esc_attr(\PublishPress_Statuses::DEFAULT_ICON); ?>"></div>
+                        <span id="publishpress_icon_pick_preview" aria-hidden="true" class="dashicons <?php
+                        if (!empty($icon)) echo esc_attr($icon); else echo esc_attr(\PublishPress_Statuses::DEFAULT_ICON); ?>"></span>
 
                         <span class="publishpress_icon_pick_button_label"><?php
                             esc_html_e('Select Icon', 'publishpress-statuses'); ?></span>
-                    </div>
+                    </button>
 
                     <?php
                     \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
@@ -390,29 +392,65 @@ class StatusEditUI
         switch ($tab) {
             case 'roles' :
                 $roles = \PP_Statuses_Functions::getRoles(true);
+                $capabilities_active = defined('PUBLISHPRESS_CAPS_VERSION');
+                $capabilities_url = '';
+                $capabilities_plugin = '';
+
+                if (!$capabilities_active) {
+                    if (!function_exists('get_plugins')) {
+                        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                    }
+
+                    $capabilities_installed = false;
+                    foreach (get_plugins() as $plugin_file => $plugin_data) {
+                        if (0 === strpos($plugin_file, 'capability-manager-enhanced/')
+                            || 0 === strpos($plugin_file, 'publishpress-capabilities-pro/')) {
+                            $capabilities_installed = true;
+                            $capabilities_plugin = $plugin_file;
+                            break;
+                        }
+                    }
+
+                    if (current_user_can($capabilities_installed ? 'activate_plugins' : 'install_plugins')) {
+                        add_thickbox();
+                        wp_enqueue_script('plugin-install');
+                        wp_localize_script('publishpress-status-edit', 'ppStatusesCapabilities', [
+                            'ajaxUrl' => admin_url('admin-ajax.php'),
+                            'nonce' => wp_create_nonce('pp-statuses-capabilities'),
+                            'installNonce' => wp_create_nonce('updates'),
+                            'plugin' => $capabilities_plugin,
+                            'canActivate' => current_user_can('activate_plugins'),
+                            'error' => __('The plugin action could not be completed. Please try again.', 'publishpress-statuses'),
+                        ]);
+                        $capabilities_url = self_admin_url('plugin-install.php?tab=plugin-information&plugin=capability-manager-enhanced&TB_iframe=true&width=600&height=550');
+                    }
+                }
                 ?>
                 <tr class="form-field">
-                    <th><span><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></span>
+                    <th><label id="pp-status-assign-label"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
                     <br /><br />
                     <span class="pp-statuses-field-descript" style="font-weight: normal">
                     <?php esc_html_e('Choose which user roles can assign this status to a post.', 'publishpress-statuses');?>
                     </span>
                     </th>
 
-                    <td class="set-status-roles">
+                    <td class="set-status-roles" role="group" aria-labelledby="pp-status-assign-label">
                         <?php foreach($roles as $role_name => $role_label):
                             if (\PP_Statuses_Functions::isEditableRole($role_name)) :
                                 $role = get_role($role_name);
                                 $cap_name = str_replace('-', '_', "status_change_{$status->name}");
 
-                                $is_administrator = !empty($role->capabilities['administrator']) || !empty($role->capabilities['pp_moderate_any']);
+                                $is_administrator = ('administrator' == $role_name) || !empty($role->capabilities['pp_administer_content']) || !empty($role->capabilities['pp_moderate_any']);
                                 $can_set_status = $is_administrator || !empty($role->capabilities[$cap_name]);
                         ?>
                                 <div>
                                 <input type="hidden" name="roles_set_status[<?php echo esc_attr($role_name);?>]" value="0" />
 
-                                <label for="roles_set_status-<?php echo esc_attr($role_name);?>">
-                                <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status-<?php echo esc_attr($role_name);?>" autocomplete="off"
+                                <?php if ($is_administrator) : ?>
+                                <span class="pp-statuses-role-tooltip" data-toggle="tooltip" data-placement="top" tabindex="0" aria-describedby="pp-role-tooltip-<?php echo esc_attr($role_name);?>">
+                                <?php endif; ?>
+                                <label>
+                                <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status_<?php echo esc_attr($role_name);?>" autocomplete="off"<?php if ($is_administrator) : ?> aria-describedby="pp-role-tooltip-<?php echo esc_attr($role_name);?>"<?php endif; ?>
                                 <?php checked($can_set_status);?> <?php disabled($is_administrator);?> value="1" class="regular-text" />
                                 <span class="pp-full-label">
                                 <?php echo esc_html($role_label);?>
@@ -421,6 +459,38 @@ class StatusEditUI
                                 <?php echo esc_html(ucwords(str_replace('_', ' ', $cap_name)));?>
                                 </span>
                                 </label>
+                                <?php if ($is_administrator) : ?>
+                                    <span class="tooltip-text" role="tooltip" id="pp-role-tooltip-<?php echo esc_attr($role_name);?>"><span>
+                                    <?php
+                                    if ('administrator' === $role_name) {
+                                        echo esc_html__('Administrators can always', 'publishpress-statuses') . '<br />';
+                                        esc_html_e('assign this status.', 'publishpress-statuses');
+                                    } else {
+                                        $role_capabilities_url = $capabilities_active
+                                            ? add_query_arg(['page' => 'pp-capabilities', 'role' => $role_name, 'pp_caps_tab' => 'publishpress-statuses'], admin_url('admin.php'))
+                                            : $capabilities_url;
+
+                                        echo esc_html__('Roles with the', 'publishpress-statuses') . '<br />';
+                                        if ($role_capabilities_url) {
+                                            if ($capabilities_active) {
+                                                printf('<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>', esc_url($role_capabilities_url), esc_html__('pp_moderate_any capability', 'publishpress-statuses'));
+                                            } else {
+                                                printf('<a href="%s" class="thickbox open-plugin-details-modal">%s</a>', esc_url($role_capabilities_url), esc_html__('pp_moderate_any capability', 'publishpress-statuses'));
+                                            }
+                                        } else {
+                                            esc_html_e('pp_moderate_any capability', 'publishpress-statuses');
+                                        }
+                                        echo '<br />' . esc_html__('can always assign this status.', 'publishpress-statuses');
+
+                                        if (!$capabilities_active && !$capabilities_url) {
+                                            echo '<br /><br />' . esc_html__('Install the PublishPress Capabilities', 'publishpress-statuses') . '<br />';
+                                            esc_html_e("plugin to change this role's access.", 'publishpress-statuses');
+                                        }
+                                    }
+                                    ?>
+                                    </span><i></i></span>
+                                </span>
+                                <?php endif; ?>
                                 </div>
                             <?php endif;
                         endforeach;?>
@@ -433,13 +503,13 @@ class StatusEditUI
             case 'post_types' :
                 ?>
                 <tr class="form-field">
-                <th><span><?php esc_html_e('Post Types', 'publishpress-statuses') ?></span>
+                <th><label id="pp-post-types-label"><?php esc_html_e('Post Types', 'publishpress-statuses') ?></label>
                 <br /><br />
                 <span class="pp-statuses-field-descript" style="font-weight: normal">
                 <?php esc_html_e('Choose which post types can be set to this status.', 'publishpress-statuses');?>
                 </span>
                 </th>
-                <td>
+                <td role="group" aria-labelledby="pp-post-types-label">
 
                 <?php
                 $types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');

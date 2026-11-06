@@ -98,7 +98,8 @@ class PostsListing
             jQuery(document).ready(function ($) {
                 $('select[name="_status"] option[value="pending"]').remove();
 
-                $('select[name="_status"] option[value="future"]').after('<option value="_" disabled>______________</option>');
+                <?php // Visual separators are disabled options; aria-label gives screen readers a name instead of a string of underscores ?>
+                $('select[name="_status"] option[value="future"]').after('<option value="_" disabled aria-label="<?php echo esc_attr(__('Main Workflow', 'publishpress-statuses'));?>">______________</option>');
 
                 <?php
                 $isContentAdministrator = current_user_can('administrator') 
@@ -126,7 +127,7 @@ class PostsListing
 
                 foreach ($moderation_statuses as $_status => $_status_obj) :
                     if (!empty($_status_obj->alternate) && !$in_alternate_statuses) :?>
-                        $('select[name="_status"]').append('<option value="" disabled>______________</option>');
+                        $('select[name="_status"]').append('<option value="" disabled aria-label="<?php echo esc_attr(__('Alternate Workflows', 'publishpress-statuses'));?>">______________</option>');
                     <?php 
                         $in_alternate_statuses = true;
                     endif;
@@ -181,7 +182,7 @@ class PostsListing
 
         $total_posts = array_sum((array)$num_posts);
 
-        $class = !isset($views['mine']) && \PP_Statuses_Functions::empty_REQUEST('post_status', 'show_sticky') ? ' class="current"' : '';
+        $class = !isset($views['mine']) && \PP_Statuses_Functions::empty_REQUEST('post_status', 'show_sticky') ? ' class="current" aria-current="page"' : '';
         $allposts = (strpos($views['all'], 'all_posts=1')) ? $allposts = '&all_posts=1' : '';
 
         $views['all'] = "<a href='edit.php?post_type=$post_type{$allposts}'$class>" 
