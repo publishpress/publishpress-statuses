@@ -405,6 +405,18 @@ jQuery(document).ready(function ($) {
         return true;
     }
 
+    // Announce a message to screen readers, if wp.a11y is available
+    function ppSpeak(message) {
+        if (message && window.wp && wp.a11y && wp.a11y.speak) {
+            wp.a11y.speak(message, 'polite');
+        }
+    }
+
+    // Like WP core post.js: when an inline edit panel closes, show its Edit link again and return focus to it
+    function ppRestoreEditLink(editLink) {
+        editLink.show().attr('aria-expanded', 'false').trigger('focus');
+    }
+
     $('.cancel-timestamp', '#timestampdiv').on('click', function () {
         $('#timestampdiv').slideUp("fast");
         $('#mm').val($('#hidden_mm').val());
@@ -412,7 +424,7 @@ jQuery(document).ready(function ($) {
         $('#aa').val($('#hidden_aa').val());
         $('#hh').val($('#hidden_hh').val());
         $('#mn').val($('#hidden_mn').val());
-        $('#timestampdiv').siblings('a.edit-timestamp').show();
+        ppRestoreEditLink($('#timestampdiv').siblings('a.edit-timestamp'));
         ppUpdateText();
         return false;
     });
@@ -420,7 +432,7 @@ jQuery(document).ready(function ($) {
     $('.save-timestamp', '#timestampdiv').on('click', function () { // crazyhorse - multiple ok cancels
         if (ppUpdateText()) {
             $('#timestampdiv').slideUp("fast");
-            $('#timestampdiv').siblings('a.edit-timestamp').show();
+            ppRestoreEditLink($('#timestampdiv').siblings('a.edit-timestamp'));
         }
         return false;
     });
@@ -449,7 +461,23 @@ jQuery(document).ready(function ($) {
 
     $('.save-post-status', '#post-status-select').on('click', function () {
         $('#post-status-select').slideUp("fast");
-        $('#post-status-select').siblings('a.edit-post-status').show();
+        ppRestoreEditLink($('#post-status-select').siblings('a.edit-post-status'));
+
+        // The status display and Publish button caption change; announce them once updated
+        setTimeout(function() {
+            var message = '';
+
+            if (ppObjEdit.statusSetCaption) {
+                message = ppObjEdit.statusSetCaption.replace('%s', $('#post-status-display').text().trim());
+            }
+
+            if (ppObjEdit.publishButtonCaption && $('#publish:visible').length && $('#publish').val()) {
+                message += ' ' + ppObjEdit.publishButtonCaption.replace('%s', $('#publish').val());
+            }
+
+            ppSpeak(message.trim());
+        }, 300);
+
         return false;
     });
 
@@ -459,7 +487,7 @@ jQuery(document).ready(function ($) {
         $('#post_status option').removeAttr('selected');
         $('#post_status option[value="' + $('#hidden_post_status').val() + '"]').attr('selected', 'selected');
 
-        $('#post-status-select').siblings('a.edit-post-status').show();
+        ppRestoreEditLink($('#post-status-select').siblings('a.edit-post-status'));
         updateStatusCaptions();
 
         return false;
@@ -478,18 +506,23 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
+    // Like WP core post.js: opening an inline edit panel moves focus to its first field
     $('#timestampdiv').siblings('a.edit-timestamp').on('click', function () {
         if ($('#timestampdiv').is(":hidden")) {
-            $('#timestampdiv').slideDown('fast');
-            $(this).hide();
+            $('#timestampdiv').slideDown('fast', function() {
+                $('input, select', $('#timestampdiv .timestamp-wrap')).first().trigger('focus');
+            });
+            $(this).attr('aria-expanded', 'true').hide();
         }
         return false;
     });
 
     $('#post-status-select').siblings('a.edit-post-status').on('click', function () {
         if ($('#post-status-select').is(":hidden")) {
-            $('#post-status-select').slideDown('fast');
-            $(this).hide();
+            $('#post-status-select').slideDown('fast', function() {
+                $('#post_status').trigger('focus');
+            });
+            $(this).attr('aria-expanded', 'true').hide();
         }
         return false;
     });

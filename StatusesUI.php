@@ -870,7 +870,9 @@ class StatusesUI {
             </th>
 
             <td style="text-align: left">
-            <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
+            <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off" aria-label="<?php
+                // translators: %s is a post type name
+                echo esc_attr(sprintf(__('Default visibility for %s', 'publishpress-statuses'), $title));?>">
                 <option value=""><?php esc_html_e('Published'); ?></option>
 
                 <?php foreach (get_post_stati(['private' => true], 'object') as $status_obj) :
@@ -892,7 +894,9 @@ class StatusesUI {
             ?>
                 <input name='<?php echo esc_attr($name); ?>' type='hidden' value='0' />
                 &nbsp;<label style='<?php echo esc_attr($style); ?>' for="<?php echo esc_attr($id); ?>"><input
-                        type="checkbox" <?php echo esc_attr($checked); ?><?php echo esc_attr($disabled); ?>id="<?php echo esc_attr($id); ?>"
+                        type="checkbox" <?php echo esc_attr($checked); ?><?php echo esc_attr($disabled); ?>id="<?php echo esc_attr($id); ?>" aria-label="<?php
+                        // translators: %s is a post type name
+                        echo esc_attr(sprintf(__('Lock default visibility for %s', 'publishpress-statuses'), $title));?>"
                         name="<?php echo esc_attr($pp->options_group_name) . '[force_default_privacy][' . esc_attr($post_type) . ']'; ?>"
                         value="1" autocomplete="off" /><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'publishpress-statuses'); ?><?php endif; ?>
                 </label>
@@ -944,7 +948,7 @@ class StatusesUI {
             esc_html__('If this setting is unchecked, the lock will only prevent selection of a different visibility status. %1$s %2$s See documentation%3$s.', 'publishpress-statuses'),
             $admin_disclaimer,  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             '<a href="https://publishpress.com/knowledge-base/how-to-lock-visibility-statuses/" target="_blank">',
-            '</a>'
+            '<span class="screen-reader-text"> ' . esc_html__('(opens in a new tab)', 'publishpress-statuses') . '</span></a>'
         );
         ?>
         </p>
@@ -1236,7 +1240,7 @@ class StatusesUI {
                 echo esc_url(\PublishPress_Statuses::getLink(['action' => 'statuses', 'status_type' => 'moderation'])); ?>"
                     class="nav-tab<?php
                     if (!$action || ('moderation' == $status_type)) {
-                        echo ' nav-tab-active';
+                        echo ' nav-tab-active" aria-current="page';
                     } ?>"><?php
                     _e('Pre-Publication', 'publishpress-statuses'); ?></a>
 
@@ -1244,7 +1248,7 @@ class StatusesUI {
                 echo esc_url(\PublishPress_Statuses::getLink(['action' => 'statuses', 'status_type' => 'visibility'])); ?>"
                     class="nav-tab<?php
                     if ('visibility' == $status_type) {
-                        echo ' nav-tab-active';
+                        echo ' nav-tab-active" aria-current="page';
                     } ?>"><?php
                     _e('Visibility', 'publishpress-statuses'); ?></a>
                 
@@ -1255,7 +1259,7 @@ class StatusesUI {
                 echo esc_url(\PublishPress_Statuses::getLink(['action' => 'statuses', 'status_type' => 'revision'])); ?>"
                     class="nav-tab<?php
                     if ('revision' == $status_type) {
-                        echo ' nav-tab-active';
+                        echo ' nav-tab-active" aria-current="page';
                     } ?>"><?php
                     _e('Revision', 'publishpress-statuses'); ?>
                     
@@ -1263,12 +1267,12 @@ class StatusesUI {
                     $badge =
                     [
                         'text' => 'PRO',
-                        'bg_color' => '#8B5CF6',
+                        'bg_color' => '#6d28d9',
                         'class' => 'pp-pro-badge'
                     ];
                     $badge_text = isset($badge['text']) ? esc_html($badge['text']) : 'PRO';
-                    $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#8B5CF6';
-                    $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#8B5CF6';
+                    $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#6d28d9';
+                    $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#6d28d9';
                     $badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
                     
                     printf(
@@ -1348,7 +1352,7 @@ class StatusesUI {
                             <div class="wrap publishpress-admin">
                                 <div class="pp-columns-wrapper<?php echo (!defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) ? ' pp-enable-sidebar' : '' ?>">
                                     <div class="pp-column-left">
-                                        <h2 class="nav-tab-wrapper">
+                                        <nav class="nav-tab-wrapper" aria-label="<?php esc_attr_e('Settings sections', 'publishpress-statuses');?>">
                                             <?php 
                                             $tabs = [
                                                 'workflow' =>       __('Workflow', 'publishpress-statuses'),
@@ -1367,12 +1371,12 @@ class StatusesUI {
                                                 <a
                                                         href="#pp-tab-<?php echo esc_attr($tab);?>"
                                                         data-section="<?php echo esc_attr($tab);?>" 
-                                                        class="nav-tab<?php if ($current_tab === $tab) : ?> nav-tab-active<?php endif; ?>">
+                                                        class="nav-tab<?php if ($current_tab === $tab) : ?> nav-tab-active<?php endif; ?>"<?php if ($current_tab === $tab) : ?> aria-current="true"<?php endif; ?>>
 
                                                     <?php echo esc_html($tab_caption); ?>
                                                 </a>
                                             <?php endforeach; ?>
-                                        </h2>
+                                        </nav>
 
                                         <div class="pp-module-settings">
 
@@ -1396,8 +1400,8 @@ class StatusesUI {
                                     $('.nav-tab-wrapper .nav-tab').on('click', function (e) {
                                         $('.form-table > tbody > tr').hide();
 
-                                        $('.nav-tab-wrapper a').removeClass('nav-tab-active');
-                                        $(this).addClass('nav-tab-active');
+                                        $('.nav-tab-wrapper a').removeClass('nav-tab-active').removeAttr('aria-current');
+                                        $(this).addClass('nav-tab-active').attr('aria-current', 'true');
 
                                         $('input[name="pp_tab"]').val($(this).attr('data-section'));
                                         $('tr.pp-settings-' + $(this).attr('data-section')).show();
@@ -1460,11 +1464,66 @@ class StatusesUI {
             $pp_color = \PublishPress_Statuses::DEFAULT_COLOR;
         }
 
-        echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($fieldname) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($pp_color) . '" />';
+        echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($fieldname) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($pp_color) . '"'
+        . self::renderAttributes(array_diff_key((array) $attributes, array_fill_keys(['name', 'value', 'class', 'type'], true)))
+        . ' />';
     }
 
     /**
-     * Given a form field and a description, prints either the error associated with the field or the description.
+     * Error message for a form field, if any. Status edit errors for the label field are stored as 'status_label'.
+     */
+    public static function getFieldError($field)
+    {
+        $form_errors = \PublishPress_Statuses::instance()->form_errors;
+
+        if (!empty($form_errors[$field])) {
+            return $form_errors[$field];
+        }
+
+        if (('label' == $field) && !empty($form_errors['status_label'])) {
+            return $form_errors['status_label'];
+        }
+
+        return '';
+    }
+
+    /**
+     * aria-describedby / aria-invalid attributes linking a field to its error and description
+     * (ids match those output by printErrorOrDescription)
+     */
+    public static function fieldA11yAttributes($field)
+    {
+        $field = sanitize_key($field);
+        $ids = [];
+
+        if ($error = self::getFieldError($field)) {
+            $ids[] = "pp-{$field}-error";
+        }
+
+        $ids[] = "pp-{$field}-description";
+
+        $attributes = ['aria-describedby' => implode(' ', $ids)];
+
+        if ($error) {
+            $attributes['aria-invalid'] = 'true';
+        }
+
+        return $attributes;
+    }
+
+    public static function renderAttributes($attributes)
+    {
+        $html = '';
+
+        foreach ((array) $attributes as $name => $value) {
+            $html .= ' ' . esc_attr($name) . '="' . esc_attr($value) . '"';
+        }
+
+        return $html;
+    }
+
+    /**
+     * Given a form field and a description, prints the error associated with the field (if any) and the description.
      *
      * @param string $field The form field for which to check for an error
      * @param string $description Unlocalized string to display if there was no error with the given field
@@ -1472,14 +1531,14 @@ class StatusesUI {
      */
     public static function printErrorOrDescription($field, $description)
     {
-        if ($form_errors = \PublishPress_Statuses::instance()->form_errors): ?>
-            <div class="form-error">
-                <?php if (!empty($form_errors[$field])):?>
-                <p><?php echo esc_html($form_errors[$field]); ?></p>
-                <?php endif;?>
+        $field_key = sanitize_key($field);
+
+        if ($error = self::getFieldError($field)): ?>
+            <div class="form-error" id="pp-<?php echo esc_attr($field_key);?>-error">
+                <p><?php echo esc_html($error); ?></p>
             </div>
-        <?php else: ?>
-            <p class="description"><?php echo esc_html($description); ?></p>
-        <?php endif;
+        <?php endif; ?>
+            <p class="description" id="pp-<?php echo esc_attr($field_key);?>-description"><?php echo esc_html($description); ?></p>
+        <?php
     }
 }
