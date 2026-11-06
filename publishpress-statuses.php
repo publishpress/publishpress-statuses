@@ -3,13 +3,13 @@
  * Plugin Name: PublishPress Statuses Free
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
- * Version: 1.3.4
+ * Version: 1.3.5
  * Author: PublishPress
  * Author URI:  https://publishpress.com/
  * Text Domain: publishpress-statuses
  * Domain Path: /languages/
  * Requires at least: 5.5
- * Requires PHP: 7.2.5
+ * Requires PHP: 7.4.0
  * License: GPLv3
  *
  * Copyright (c) 2026 PublishPress
@@ -41,7 +41,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
  global $wp_version;
 
- $min_php_version = '7.2.5';
+ $min_php_version = '7.4.0';
  $min_wp_version  = '5.5';
  
  $invalid_php_version = version_compare(phpversion(), $min_php_version, '<');
@@ -245,7 +245,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         }
         
         if (empty($interrupt_load)) {
-            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.4');
+            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.5');
 
             define('PUBLISHPRESS_STATUSES_URL', trailingslashit(plugins_url('', __FILE__)));    // @todo: vendor lib
 
@@ -287,7 +287,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             add_action(
                 'init', 
                 function() {
-                    @load_plugin_textdomain('publishpress-statuses', false, dirname(plugin_basename(__FILE__)) . '/languages');
+                    @load_plugin_textdomain('publishpress-statuses', false, dirname(plugin_basename(__FILE__)) . '/languages');     // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
                 },
                 5
             );
@@ -356,7 +356,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
             if ($archived_term_descriptions = get_option('pp_statuses_archived_term_properties')) {
     
                 // Use hardcoded taxonomy string here because class PublishPress_Statuses is not loaded
-                $terms = get_terms('post_status', ['hide_empty' => false]);
+                $terms = get_terms(['taxonomy' => 'post_status', 'hide_empty' => false]);
     
                 if (is_array($terms)) {
                     foreach ($terms as $term) {

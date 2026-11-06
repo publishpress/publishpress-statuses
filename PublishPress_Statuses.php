@@ -434,6 +434,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     'hierarchical'          => false,
                     'label'                 => __('Statuses', 'publishpress-statuses'),
                     'labels'                => (object) ['name' => __('Statuses', 'publishpress-statuses'), 'singular_name' => __('Status', 'publishpress-statuses')],
+                    'public'                => false,
                     'query_var'             => false,
                     'rewrite'               => false,
                     'show_ui'               => false,
@@ -448,6 +449,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                 [
                     'hierarchical' => false,
                     'label' => __('Core Post Statuses', 'publishpress-statuses'),
+                    'public' => false,
                     'query_var' => false,
                     'rewrite' => false,
                     'show_ui' => false,
@@ -455,21 +457,22 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             );
         }
 
-        if (self::isStatusManagement()) {
-            if (! taxonomy_exists(self::TAXONOMY_PSEUDO_STATUS)) {
-                register_taxonomy(
-                    self::TAXONOMY_PSEUDO_STATUS,
-                    [],
-                    [
-                        'hierarchical' => false,
-                        'label' => 'Pseudo Statuses',
-                        'query_var' => false,
-                        'rewrite' => false,
-                        'show_ui' => false,
-                    ]
-                );
-            }
-        } else {
+        if (!taxonomy_exists(self::TAXONOMY_PSEUDO_STATUS)) {
+            register_taxonomy(
+                self::TAXONOMY_PSEUDO_STATUS,
+                [],
+                [
+                    'hierarchical' => false,
+                    'label' => 'Pseudo Statuses',
+                    'public' => false,
+                    'query_var' => false,
+                    'rewrite' => false,
+                    'show_ui' => false,
+                ]
+            );
+        }
+
+        if (!self::isStatusManagement()) {
             $disable_statuses = self::disable_custom_statuses_for_post_type(null, ['override_exemptions' => true]);
         }
 
@@ -702,7 +705,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             in_array($plugin_page, ['publishpress-statuses', 'pp-capabilities'])
             || (
                 isset($_SERVER['SCRIPT_NAME']) 
-                && false !== strpos(sanitize_text_field($_SERVER['SCRIPT_NAME']), 'admin-ajax.php') 
+                && false !== strpos(sanitize_text_field(wp_unslash($_SERVER['SCRIPT_NAME'])), 'admin-ajax.php') 
                 && \PP_Statuses_Functions::is_REQUEST('action', ['pp_update_status_positions', 'pp_statuses_toggle', 'pp_delete_custom_status'])
             );
     }
@@ -1755,8 +1758,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             $stored_status_terms[$taxonomy] = [];
 
             $_terms = get_terms(
-                $taxonomy, 
-                ['hide_empty' => false] // @todo: support other args?
+                ['taxonomy' => $taxonomy, 'hide_empty' => false] // @todo: support other args?
             );
 
             if (is_wp_error($_terms) || empty($_terms)) {
@@ -1806,14 +1808,14 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
 
                             if (is_object($value)) {
                                 foreach (get_object_vars($value) as $k => $val) {
-                                    $value->$k = sanitize_text_field($val);
+                                    $value->$k = sanitize_text_field(wp_unslash($val));
                                 }
                             } elseif (is_array($value)) {
                                 foreach ($value as $k => $val) {
-                                    $value[$k] = sanitize_text_field($val);
+                                    $value[$k] = sanitize_text_field(wp_unslash($val));
                                 }
                             } else {
-                                $value = sanitize_text_field($value);
+                                $value = sanitize_text_field(wp_unslash($value));
                             }
 
                             $term->$meta_key = $value;
@@ -2236,8 +2238,8 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                                     }
                             }
 
-                            if (is_object($val) && !empty($val->name)) {
-                                $wp_post_statuses[$status_name]->label = $val->name;
+                            if (!empty($val)) {
+                                $wp_post_statuses[$status_name]->label = $val;
                             }
                         }
 
@@ -2653,18 +2655,18 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                         $meta_val = [];
 
                         foreach ($set_value as $k => $val) {
-                            $meta_val[$k] = sanitize_textarea_field($val);
+                            $meta_val[$k] = sanitize_textarea_field(wp_unslash($val));
                         }
                     } elseif (is_object($set_value)) {
                         $meta_val = \get_object_vars($set_value);
 
                         foreach($meta_val as $k => $val) {
-                            $meta_val[$k] = sanitize_text_field($val);
+                            $meta_val[$k] = sanitize_text_field(wp_unslash($val));
                         }
 
                         $meta_val = (object) $meta_val;
                     } else {
-                        $meta_val = sanitize_textarea_field($set_value);
+                        $meta_val = sanitize_textarea_field(wp_unslash($set_value));
                     }
 
                     $result = update_term_meta($term_id, $field, $meta_val);
@@ -4072,17 +4074,11 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public static function getStatusSelection( $object ) {
-        $status_selection = '';
-
-        if ($post_id = \PP_Statuses_Functions::getPostID()) {
-            if ($post_status = get_post_field('post_status', $post_id)) {
-                if (get_post_status_object($post_status)) {
-                    $status_selection = $post_status;
-                }
-            }
-        }
-
-        return $status_selection;
+        // This transient REST field records an explicit editor selection only.
+        // Returning the stored status makes an untouched dropdown look like a
+        // manual choice and prevents the toolbar from advancing the workflow.
+        // The dropdown already falls back to the post's actual status.
+        return '';
     }
 
     public static function updateStatusSelection( $value, $object ) {

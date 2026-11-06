@@ -14,7 +14,7 @@ class PostSave
         }
 
         if ((defined('DOING_AJAX') && DOING_AJAX) 
-        || (!empty($_SERVER['SCRIPT_NAME']) && (false !== strpos($_SERVER['SCRIPT_NAME'], 'edit.php')))  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
+        || (!empty($_SERVER['SCRIPT_NAME']) && (false !== strpos(wp_unslash($_SERVER['SCRIPT_NAME']), 'edit.php')))  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Recommended
         ) {
             return $post_status;
         }
@@ -119,11 +119,11 @@ class PostSave
             // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             } elseif ((!isset($_REQUEST['_wpnonce']) || 
                 (
-                ($post_id && !wp_verify_nonce($_REQUEST['_wpnonce'], "update-post_{$post_id}"))  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                && ($post_type && !wp_verify_nonce($_REQUEST['_wpnonce'], "add-{$post_type}"))   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                ($post_id && !wp_verify_nonce(wp_unslash($_REQUEST['_wpnonce']), "update-post_{$post_id}"))  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                && ($post_type && !wp_verify_nonce(wp_unslash($_REQUEST['_wpnonce']), "add-{$post_type}"))   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 ))  
                 && (!isset($_REQUEST['_inline_edit']) ||
-                (!wp_verify_nonce($_REQUEST['_inline_edit'], 'inlineeditnonce'))                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                (!wp_verify_nonce(wp_unslash($_REQUEST['_inline_edit']), 'inlineeditnonce'))                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 )
             ) {
                 return $post_status;
@@ -143,12 +143,12 @@ class PostSave
                 if ($post_status_obj->public || $post_status_obj->private) {
                     if (!empty($_POST['post_date_gmt'])) {
                         // local variable is only used for comparison to current time
-                        $post_date_gmt = \PP_Statuses_Functions::sanitizeEntry(sanitize_text_field($_POST['post_date_gmt']));
+                        $post_date_gmt = \PP_Statuses_Functions::sanitizeEntry(sanitize_text_field(wp_unslash($_POST['post_date_gmt'])));
 
                     } elseif (!empty($_POST['aa'])) {
                         foreach (['aa' => 'Y', 'mm' => 'n', 'jj' => 'j', 'hh' => '', 'mn' => '', 'ss' => ''] as $var => $format) {
                             $$var = (!$format || (!empty($_POST[$var]) && $_POST[$var] > 0))
-                            ? \PP_Statuses_Functions::sanitizeEntry(sanitize_text_field($_POST[$var]))
+                            ? \PP_Statuses_Functions::sanitizeEntry(sanitize_text_field(wp_unslash($_POST[$var])))
                             : date($format);  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
                         }
                         $post_date = sprintf("%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, min($jj, 31), min($hh, 23), min($mn, 59), 0);
