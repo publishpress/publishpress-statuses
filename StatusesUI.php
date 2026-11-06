@@ -879,7 +879,7 @@ class StatusesUI {
             </th>
 
             <td style="text-align: left">
-            <select id="<?php echo esc_attr($select_id); ?>" name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off" aria-label="<?php
+            <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off" aria-label="<?php
                 // translators: %s is a post type name
                 echo esc_attr(sprintf(__('Default visibility for %s', 'publishpress-statuses'), $title));?>">
                 <option value=""><?php esc_html_e('Published'); ?></option>

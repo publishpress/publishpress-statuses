@@ -82,7 +82,7 @@ jQuery(document).ready(function ($) {
     if (publishedStatuses.indexOf(postStatus) != -1) {
         is_workflow_status = false;
     } else {
-        var pvt_stati = JSON.parse(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
+        var pvt_stati = jQuery.parseJSON(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
 
         $(pvt_stati).each(function (i) {
             if (pvt_stati[i].name == postStatus) {
@@ -107,7 +107,7 @@ jQuery(document).ready(function ($) {
         $('a.save-post-visibility').click(function() {
             setTimeout(() => {
                 if ($('#visibility-radio-public:checked').length) {
-                    var pub_stati = JSON.parse(ppObjEdit.pubStati.replace(/&quot;/g, '"'));
+                    var pub_stati = jQuery.parseJSON(ppObjEdit.pubStati.replace(/&quot;/g, '"'));
 
                     $(pub_stati).each(function (i) {
                         if (pub_stati[i].name == 'publish') {
@@ -239,7 +239,7 @@ jQuery(document).ready(function ($) {
         var status_val = $('input:radio:checked', '#post-visibility-select').val();
 
         var is_private = false;
-        var pvt_stati = JSON.parse(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
+        var pvt_stati = jQuery.parseJSON(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
 
         $(pvt_stati).each(function (i) {
             if (pvt_stati[i].name == status_val) {
@@ -281,7 +281,7 @@ jQuery(document).ready(function ($) {
     var stamp = $('#timestamp').html();
 
     if (typeof ppObjEdit != 'undefined')
-        var pvt_stati = JSON.parse(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
+        var pvt_stati = jQuery.parseJSON(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
     else
         var pvt_stati = [];
 
@@ -537,7 +537,7 @@ jQuery(document).ready(function ($) {
     var status_val = $('input:radio:checked', '#post-visibility-select').val();
 
     var is_private = false;
-    var pvt_stati = JSON.parse(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
+    var pvt_stati = jQuery.parseJSON(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
 
     $(pvt_stati).each(function (i) {
         if (pvt_stati[i].name == status_val) {
@@ -577,9 +577,9 @@ jQuery(document).ready(function ($) {
 
     var status_type = '';
     var save_as = '';
-    var pub_stati = JSON.parse(ppObjEdit.pubStati.replace(/&quot;/g, '"'));
-    var pvt_stati = JSON.parse(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
-    var mod_stati = JSON.parse(ppObjEdit.modStati.replace(/&quot;/g, '"'));
+    var pub_stati = jQuery.parseJSON(ppObjEdit.pubStati.replace(/&quot;/g, '"'));
+    var pvt_stati = jQuery.parseJSON(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
+    var mod_stati = jQuery.parseJSON(ppObjEdit.modStati.replace(/&quot;/g, '"'));
 
     $(mod_stati).each(function (i) {
         if (mod_stati[i].name == status_val) {
@@ -622,7 +622,7 @@ jQuery(document).ready(function ($) {
     var status_val = $('input:radio:checked', '#post-visibility-select').val();
 
     var is_private = false;
-    var pvt_stati = JSON.parse(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
+    var pvt_stati = jQuery.parseJSON(ppObjEdit.pvtStati.replace(/&quot;/g, '"'));
 
     $(pvt_stati).each(function (i) {
         if (pvt_stati[i].name == status_val) {

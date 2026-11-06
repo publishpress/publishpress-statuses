@@ -712,7 +712,7 @@ do_action('publishpress_statuses_table_row', $key, []);
 	 */
 	protected function single_row_columns( $item ) {
         ?>
-        <table class="status-row" role="presentation" style="float:right; width:100%"><tbody><tr>
+        <table class="status-row" role="presentation" style="float:right; width:100%"><tr>
 
         <?php
         list( $columns, $hidden, $sortable, $primary ) = $this->get_column_info();
@@ -734,7 +734,8 @@ do_action('publishpress_statuses_table_row', $key, []);
 			// Comments column uses HTML in the display name with screen reader text.
 			// Strip tags to get closer to a user-friendly string.
 
-            echo '<td class="' . esc_attr($column_name) . '" ';
+            $row_header = ('name' === $column_name) ? ' role="rowheader"' : '';
+            echo '<td class="' . esc_attr($column_name) . '"' . $row_header . ' ';
             if ( in_array( $column_name, $hidden, true ) ) echo 'style="width:0"';
             echo '>';
 
