@@ -660,8 +660,12 @@ class StatusesUI {
 
         $option_val = !empty($module->options->force_editor_detection) ? $module->options->force_editor_detection : '';
 
+        echo '<label class="screen-reader-text" for="force_editor_detection">';
+        esc_html_e('Gutenberg / Classic Editor', 'publishpress-statuses');
+        echo '</label>';
+
         echo sprintf(
-            '<select name="%s" autocomplete="off">',
+            '<select id="force_editor_detection" name="%s" autocomplete="off">',
             esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[force_editor_detection]'
         );
 
@@ -688,8 +692,12 @@ class StatusesUI {
 
         $option_val = !empty($module->options->label_storage) ? $module->options->label_storage : '';
 
+        echo '<label class="screen-reader-text" for="label_storage">';
+        esc_html_e('Status Label Customization', 'publishpress-statuses');
+        echo '</label>';
+
         echo sprintf(
-            '<select name="%s" autocomplete="off">',
+            '<select id="label_storage" name="%s" autocomplete="off">',
             esc_attr(\PublishPress_Statuses::SETTINGS_SLUG) . '[label_storage]'
         );
 
@@ -854,6 +862,7 @@ class StatusesUI {
 
         foreach ($post_types as $post_type => $title) {
             $setting = (isset($pp->options->default_privacy[$post_type])) ?  $pp->options->default_privacy[$post_type] : '';
+            $select_id = 'default_privacy-' . sanitize_key($post_type);
 
             echo sprintf(
                 '<input type="hidden" name="%s" value="" />',
@@ -865,7 +874,7 @@ class StatusesUI {
 
             <th>
             <?php
-            esc_html_e($title) . ' ';
+            echo '<label for="' . esc_attr($select_id) . '">' . esc_html($title) . '</label> ';
             ?>
             </th>
 
@@ -963,7 +972,11 @@ class StatusesUI {
 
         <div class="c-input-group">
 
-        <select name="publishpress_statuses_import_operation" autocomplete="off">
+        <label class="screen-reader-text" for="publishpress_statuses_import_operation">
+        <?php esc_html_e('Import Operation', 'publishpress-statuses'); ?>
+        </label>
+
+        <select id="publishpress_statuses_import_operation" name="publishpress_statuses_import_operation" autocomplete="off">
 
         <option value=''><?php esc_html_e('Select...', 'publishpress-statuses');?></option>
 
@@ -1021,7 +1034,11 @@ class StatusesUI {
 
         <div class="c-input-group">
 
-        <select name="publishpress_statuses_backup_operation" autocomplete="off">
+        <label class="screen-reader-text" for="publishpress_statuses_backup_operation">
+        <?php esc_html_e('Backup / Restore', 'publishpress-statuses'); ?>
+        </label>
+
+        <select id="publishpress_statuses_backup_operation" name="publishpress_statuses_backup_operation" autocomplete="off">
 
         <option value=''><?php esc_html_e('Select...', 'publishpress-statuses');?></option>
 
