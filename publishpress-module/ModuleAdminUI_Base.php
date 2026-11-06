@@ -122,7 +122,7 @@ class ModuleAdminUI_Base {
 
         <div class="pp-publishpress-logo">
         <a href="//publishpress.com" target="_blank" rel="noopener noreferrer">
-        <img src="<?php echo esc_url($local_img_url);?>" alt="<?php esc_attr_e('PublishPress', 'publishpress-statuses');?>" /><?php echo '<span class="screen-reader-text"> ' . esc_html__('(opens in a new tab)', 'publishpress-statuses') . '</span>';?>
+        <img src="<?php echo esc_url($local_img_url);?>" alt="<?php echo esc_attr($plugin_title);?>" />
         </a>
         </div>
 
