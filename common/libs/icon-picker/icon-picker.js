@@ -473,7 +473,7 @@
                     }
 
                     if (e.key === 'Tab' || e.keyCode === 9) {
-                        var focusable = popup.find('button, input').filter(':visible');
+                        var focusable = popup.find('button, input').filter(':visible').not('[tabindex="-1"]');
                         if (!focusable.length) {
                             return;
                         }

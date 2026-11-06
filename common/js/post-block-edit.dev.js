@@ -316,7 +316,7 @@ jQuery(document).ready(function ($) {
     function PP_SelectToolbarWorkflow() {
         var editor = wp.data.select('core/editor');
         if ('status' === PPCustomStatuses.statusRestProperty
-            && ppObjEdit.workflowSequence
+            && !ppObjEdit.workflowDisabled
             && !editor.isSavingPost()
             && !editor.getEditedPostAttribute('pp_status_selection')
             && !editor.getEditedPostAttribute('pp_statuses_selecting_workflow')
@@ -332,7 +332,7 @@ jQuery(document).ready(function ($) {
     function PP_CapturePendingSave(event) {
         if (event.target.closest('button.editor-post-save-draft,span.presspermit-save-button button')) {
             PP_SelectPendingForSave();
-        } else if (event.target.closest('button.editor-post-publish-button,span.presspermit-editor-button button')) {
+        } else if (event.target.closest('button.editor-post-publish-button,button.editor-post-publish-button__button,span.presspermit-editor-button button')) {
             PP_SelectToolbarWorkflow();
         }
     }
