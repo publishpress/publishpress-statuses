@@ -277,7 +277,7 @@ class StatusListTable extends \WP_List_Table
 
                 foreach ($columns as $column_name => $column_display_name) {
                     $is_hidden = in_array($column_name, $hidden, true);?>
-                    <th class="<?php echo esc_attr($column_name);?>" <?php if ($is_hidden) echo 'style="width:0"';?>>
+                    <th scope="col" class="<?php echo esc_attr($column_name);?>" <?php if ($is_hidden) echo 'style="width:0"';?>>
                         <div class="<?php echo esc_attr($column_name);?> column-<?php echo esc_attr($column_name);?>" <?php if ($is_hidden) echo 'hidden';?>>
                             <?php echo esc_html($column_display_name);?>
                         </div>
@@ -734,7 +734,8 @@ do_action('publishpress_statuses_table_row', $key, []);
 			// Comments column uses HTML in the display name with screen reader text.
 			// Strip tags to get closer to a user-friendly string.
 
-            echo '<td class="' . esc_attr($column_name) . '" ';
+            $row_header = ('name' === $column_name) ? ' role="rowheader"' : '';
+            echo '<td class="' . esc_attr($column_name) . '"' . $row_header . ' ';
             if ( in_array( $column_name, $hidden, true ) ) echo 'style="width:0"';
             echo '>';
 
@@ -829,7 +830,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         }
         ?>
 
-        </tr></table>
+        </tr></tbody></table>
 
         <div style="float:left"></div>
 		
@@ -970,19 +971,35 @@ do_action('publishpress_statuses_table_row', $key, []);
             && (empty($status_obj->pp_builtin) || (empty($options->label_storage) && ('user' != $options->label_storage)))
         ) {
             $url = admin_url("admin.php?action=edit-status-labels&name={$status_obj->name}&page=publishpress-statuses");
-            $actions['labels'] =  ['url' => esc_url($url), 'label' => esc_html__('Labels', 'publishpress-statuses')];
+            $actions['labels'] = [
+                'url' => esc_url($url),
+                'label' => esc_html__('Labels', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Edit labels for %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         if (empty($status_obj) || empty($status_obj->_builtin)) {
-            $actions['disable'] = ['url' => '#', 'label' => __('Disable', 'publishpress-statuses')];
+            $actions['disable'] = [
+                'url' => '#',
+                'label' => __('Disable', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Disable %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         if (empty($status_obj) || empty($status_obj->_builtin)) {
-            $actions['enable'] = ['url' => '#', 'label' => __('Enable', 'publishpress-statuses')];
+            $actions['enable'] = [
+                'url' => '#',
+                'label' => __('Enable', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Enable %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         if (empty($status_obj) || (empty($status_obj->_builtin) && empty($status_obj->pp_builtin))) {
-            $actions['delete'] = ['url' => '#', 'label' => __('Delete', 'publishpress-statuses')];
+            $actions['delete'] = [
+                'url' => '#',
+                'label' => __('Delete', 'publishpress-statuses'),
+                'aria_label' => sprintf(__('Delete %s', 'publishpress-statuses'), $item->label),
+            ];
         }
 
         $actions = apply_filters('publishpress_statuses_row-actions', $actions, $item);
@@ -1028,7 +1045,8 @@ do_action('publishpress_statuses_table_row', $key, []);
             $sep = ( $i < $action_count - 1 ) ? ' | ' : ' ';
 
             echo ">";
-            echo '<a href="' . esc_url($arr['url']) . '">' . esc_html($arr['label']) . '</a>';
+            $aria_label = !empty($arr['aria_label']) ? ' aria-label="' . esc_attr($arr['aria_label']) . '"' : '';
+            echo '<a href="' . esc_url($arr['url']) . '"' . $aria_label . '>' . esc_html($arr['label']) . '</a>';
             echo esc_html($sep) . "</span>";
 		}
 
@@ -1055,7 +1073,8 @@ do_action('publishpress_statuses_table_row', $key, []);
 
         $url = admin_url("admin.php?action=edit-status&name={$item->name}&page=publishpress-statuses");
 
-        echo "<a href='" . esc_url($url) . "'>" . esc_html($descript) . "</a>";
+        $aria_label = empty($descript) ? ' aria-label="' . esc_attr(sprintf(__('Edit description for %s', 'publishpress-statuses'), $item->label)) . '"' : '';
+        echo "<a href='" . esc_url($url) . "'" . $aria_label . ">" . esc_html($descript) . "</a>";
     }
 
     /**
