@@ -317,7 +317,7 @@ class StatusEditUI
             </tr>
 
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="status_color"><?php
+                <th scope="row" valign="top"><label for="color"><?php
                         _e(
                             'Color',
                             'publishpress-statuses'
