@@ -2,6 +2,8 @@
 
 namespace PublishPress;
 
+\defined('ABSPATH') || exit;
+
 class ModuleAdminUI_Base {
     public $module;
 

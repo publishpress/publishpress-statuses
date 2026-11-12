@@ -2,6 +2,8 @@
 
 namespace PublishPress\Statuses;
 
+\defined('ABSPATH') || exit;
+
 class CoreAdmin
 {
     function __construct()

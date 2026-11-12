@@ -1,5 +1,7 @@
 <?php
 
+defined('ABSPATH') || exit;
+
 ?>
 
 <form class='basic-settings'

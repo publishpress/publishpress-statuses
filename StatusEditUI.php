@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 // Custom Status management: Status Edit UI
 class StatusEditUI
 {

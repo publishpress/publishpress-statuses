@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 // Custom Status management: Statuses Screen
 class StatusesUI {
     private static $instance = null;
@@ -1482,6 +1484,7 @@ class StatusesUI {
         }
 
         echo '<input type="text" aria-required="true" size="7" maxlength="7" name="' . esc_attr($fieldname) . '" value="' . esc_attr($pp_color) . '" class="pp-color-picker" data-default-color="' . esc_attr($pp_color) . '"'
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- renderAttributes() escapes each attribute name and value with esc_attr().
         . self::renderAttributes(array_diff_key((array) $attributes, array_fill_keys(['name', 'value', 'class', 'type'], true)))
         . ' />';
     }

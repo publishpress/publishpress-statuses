@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 // Implement Custom Statuses on the Posts screen and in Post Editor
 class PostsListing
 {

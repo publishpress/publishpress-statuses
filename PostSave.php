@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Statuses;
 
+\defined('ABSPATH') || exit;
+
 class PostSave
 {
     public static function fltPostStatus($post_status, $args = [])
@@ -27,17 +29,30 @@ class PostSave
 
         $status_obj = get_post_status_object($post_status);
 
-        if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && !empty($status_obj->public) || !empty($status_obj->private)) {
-            if (!$selected_privacy = get_transient("_pp_selected_privacy_{$current_user->ID}_{$post_id}")) {
-                $selected_privacy = get_transient("_pp_selected_privacy_{$post_id}");
+        if ((defined('PUBLISHPRESS_STATUSES_PRO_VERSION') && !empty($status_obj->public)) || !empty($status_obj->private)) {
+            $privacy_key = "_pp_selected_privacy_{$current_user->ID}_{$post_id}";
+            // WordPress can sanitize the same save more than once. Consume persistent
+            // state once, but retain request-local context and reauthorize every use.
+            static $privacy_selections = [];
+            $cache_key = get_current_blog_id() . ":" . $privacy_key;
+            if (!array_key_exists($cache_key, $privacy_selections)) {
+                $privacy_selections[$cache_key] = get_transient($privacy_key);
+                if (!empty($privacy_selections[$cache_key])) {
+                    delete_transient($privacy_key);
+                }
             }
+            $selected_privacy = $privacy_selections[$cache_key];
 
-            if (!empty($selected_privacy) && !in_array($selected_privacy, ['publish', 'private'])) {
-                if ($status_obj = get_post_status_object($selected_privacy)) {
+            if (!empty($selected_privacy)) {
+
+                if (!in_array($selected_privacy, ['publish', 'private'], true)
+                && !empty($_post)
+                && current_user_can('edit_post', $post_id)
+                && get_post_status_object($selected_privacy)
+                && PPS::haveStatusPermission('set_status', $_post->post_type, $selected_privacy, ['internal_call' => true])
+                ) {
                     $post_status = $selected_privacy;
                 }
-
-                // Note: To deal with any subsequent filter calls, transients are not deleted until next editor load
             }
         }
 
@@ -284,3 +299,4 @@ class PostSave
         return $status;
     }
 }
+
