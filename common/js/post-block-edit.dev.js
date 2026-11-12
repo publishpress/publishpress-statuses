@@ -65,6 +65,20 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
+            var $existingClone = $('span.' + ppClass);
+            var otherClass = (ppClass == 'presspermit-editor-button') ? 'presspermit-editor-toggle' : 'presspermit-editor-button';
+
+            // If the clone is already in place, update its caption without re-creating it (keeps keyboard focus)
+            if ($existingClone.length == 1 && $existingClone.prev().is(node) && !node.is(':visible')
+            && $existingClone.children('button:visible').length && !$('span.' + otherClass).length
+            ) {
+                $existingClone.children('button').html(btnCaption);
+                PP_InitializeStatuses();
+                return;
+            }
+
+            var cloneHadFocus = document.activeElement && $existingClone.find(document.activeElement).length;
+
             $('span.presspermit-editor-toggle').remove();
 
             if (!$('div.editor-post-publish-panel__prepublish').length) {
@@ -85,8 +99,12 @@ jQuery(document).ready(function ($) {
                 // Hide the stock button
                 node.addClass(hideClass).hide().css('z-index', -999);
 
-                // Clone the stock button
-                node.after('<span class="' + ppClass + '">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-publish-button').removeAttr('aria-disabled').css('position', 'relative').css('background-color', 'var(--wp-admin-theme-color)').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+                // Clone the stock button (no id, and no aria-label, so the accessible name matches the visible caption)
+                node.after('<span class="' + ppClass + '">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-publish-button').removeAttr('aria-disabled').removeAttr('id').removeAttr('aria-label').css('position', 'relative').css('background-color', 'var(--wp-admin-theme-color)').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+
+                if (cloneHadFocus) {
+                    $('span.' + ppClass + ' button').trigger('focus');
+                }
         
                 // If the stock button is not the pre-publish toggle, really hide it (re-add hide class; set background color, position and aria-disabled properties)
                 if ((typeof ppObjEdit['isGutenbergLegacy'] != undefined) && ppObjEdit.isGutenbergLegacy) {
@@ -298,7 +316,7 @@ jQuery(document).ready(function ($) {
     function PP_SelectToolbarWorkflow() {
         var editor = wp.data.select('core/editor');
         if ('status' === PPCustomStatuses.statusRestProperty
-            && ppObjEdit.workflowSequence
+            && !ppObjEdit.workflowDisabled
             && !editor.isSavingPost()
             && !editor.getEditedPostAttribute('pp_status_selection')
             && !editor.getEditedPostAttribute('pp_statuses_selecting_workflow')
@@ -314,7 +332,7 @@ jQuery(document).ready(function ($) {
     function PP_CapturePendingSave(event) {
         if (event.target.closest('button.editor-post-save-draft,span.presspermit-save-button button')) {
             PP_SelectPendingForSave();
-        } else if (event.target.closest('button.editor-post-publish-button,span.presspermit-editor-button button')) {
+        } else if (event.target.closest('button.editor-post-publish-button,button.editor-post-publish-button__button,span.presspermit-editor-button button')) {
             PP_SelectToolbarWorkflow();
         }
     }

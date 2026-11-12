@@ -132,19 +132,19 @@ class StatusEditUI
 
                 $class = ($default_tab == $tab) ? $class_selected : $class_unselected;  // todo: return to last tab
 
-                echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "'>"
+                echo "<li class='" . esc_attr($class) . "'><a href='#pp-" . esc_attr($tab) . "' aria-controls='pp-" . esc_attr($tab) . "'" . (($default_tab == $tab) ? " aria-current='true'" : '') . ">"
                     . esc_html($caption);
                     
                 if (('post_access' == $tab) && !defined('PUBLISHPRESS_CAPS_PRO_VERSION') && !defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
                     $badge =
                     [
                         'text' => 'PRO',
-                        'bg_color' => '#8B5CF6',
+                        'bg_color' => '#6d28d9',
                         'class' => 'pp-pro-badge'
                     ];
                     $badge_text = isset($badge['text']) ? esc_html($badge['text']) : 'PRO';
-                    $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#8B5CF6';
-                    $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#8B5CF6';
+                    $badge_color = isset($badge['color']) ? esc_attr($badge['color']) : '#6d28d9';
+                    $badge_bg_color = isset($badge['bg_color']) ? esc_attr($badge['bg_color']) : '#6d28d9';
                     $badge_class = isset($badge['class']) ? esc_attr($badge['class']) : '';
                     
                     printf(
@@ -170,7 +170,8 @@ class StatusEditUI
             $tabsWrapper.find('li').click(function (e) {
                 e.preventDefault();
                 $tabsWrapper.children('li').filter('.nav-tab-active').removeClass('nav-tab-active');
-                $(this).addClass('nav-tab-active');
+                $tabsWrapper.find('a').removeAttr('aria-current');
+                $(this).addClass('nav-tab-active').find('a').first().attr('aria-current', 'true');
 
                 $('.publishpress-admin table.form-table').hide();
                 $('#editstatus > div').hide();
@@ -294,10 +295,10 @@ class StatusEditUI
             endif;?>
 
             <tr class="form-field">
-                <th scope="row" valign="top"><?php
-                    _e('Slug', 'publishpress-statuses'); ?></th>
+                <th scope="row" valign="top"><label for="slug"><?php
+                    _e('Slug', 'publishpress-statuses'); ?></label></th>
                 <td>
-                    <input type="text" name="slug" id="slug" 
+                    <input type="text" name="slug" id="slug" aria-describedby="pp-slug-description" 
                             value="<?php
                             echo esc_attr($name); ?>" <?php
 
@@ -324,7 +325,7 @@ class StatusEditUI
                 <td>
 
                     <?php
-                    \PublishPress_Statuses\StatusesUI::colorPicker(esc_attr($color), 'status_color') ?>
+                    \PublishPress_Statuses\StatusesUI::colorPicker(esc_attr($color), 'status_color', ['id' => 'color', 'aria-describedby' => 'pp-color-description']) ?>
 
                     <?php
                     \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
@@ -334,7 +335,7 @@ class StatusEditUI
                 </td>
             </tr>
             <tr class="form-field">
-                <th scope="row" valign="top"><label for="icon"><?php
+                <th scope="row" valign="top"><label for="publishpress_icon_pick_wrap"><?php
                         _e('Icon', 'publishpress-statuses'); ?></label>
                 </th>
                 <td>
@@ -344,15 +345,16 @@ class StatusEditUI
                                 echo esc_attr($icon);
                             } ?>"/>
 
-                    <div id="publishpress_icon_pick_wrap" data-target='#status_icon'
-                            data-preview="#publishpress_icon_pick_preview" class="button dashicons-picker">
+                    <button type="button" id="publishpress_icon_pick_wrap" data-target='#status_icon'
+                            data-preview="#publishpress_icon_pick_preview" class="button dashicons-picker"
+                            aria-haspopup="dialog" aria-expanded="false" aria-describedby="pp-status_icon-description">
                         
-                        <div id="publishpress_icon_pick_preview" class="dashicons <?php
-                        if (!empty($icon)) echo esc_attr($icon); else echo esc_attr(\PublishPress_Statuses::DEFAULT_ICON); ?>"></div>
+                        <span id="publishpress_icon_pick_preview" aria-hidden="true" class="dashicons <?php
+                        if (!empty($icon)) echo esc_attr($icon); else echo esc_attr(\PublishPress_Statuses::DEFAULT_ICON); ?>"></span>
 
                         <span class="publishpress_icon_pick_button_label"><?php
                             esc_html_e('Select Icon', 'publishpress-statuses'); ?></span>
-                    </div>
+                    </button>
 
                     <?php
                     \PublishPress_Statuses\StatusesUI::printErrorOrDescription(
@@ -425,14 +427,14 @@ class StatusEditUI
                 }
                 ?>
                 <tr class="form-field">
-                    <th><label for="status_assign"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
+                    <th><label id="pp-status-assign-label"><?php esc_html_e('Status Availability', 'publishpress-statuses') ?></label>
                     <br /><br />
                     <span class="pp-statuses-field-descript" style="font-weight: normal">
                     <?php esc_html_e('Choose which user roles can assign this status to a post.', 'publishpress-statuses');?>
                     </span>
                     </th>
 
-                    <td class="set-status-roles">
+                    <td class="set-status-roles" role="group" aria-labelledby="pp-status-assign-label">
                         <?php foreach($roles as $role_name => $role_label):
                             if (\PP_Statuses_Functions::isEditableRole($role_name)) :
                                 $role = get_role($role_name);
@@ -445,10 +447,10 @@ class StatusEditUI
                                 <input type="hidden" name="roles_set_status[<?php echo esc_attr($role_name);?>]" value="0" />
 
                                 <?php if ($is_administrator) : ?>
-                                <span class="pp-statuses-role-tooltip" data-toggle="tooltip" data-placement="top" tabindex="0">
+                                <span class="pp-statuses-role-tooltip" data-toggle="tooltip" data-placement="top" tabindex="0" aria-describedby="pp-role-tooltip-<?php echo esc_attr($role_name);?>">
                                 <?php endif; ?>
                                 <label>
-                                <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status" autocomplete="off"
+                                <input type="checkbox" name="roles_set_status[<?php echo esc_attr($role_name);?>]" id="roles_set_status_<?php echo esc_attr($role_name);?>" autocomplete="off"<?php if ($is_administrator) : ?> aria-describedby="pp-role-tooltip-<?php echo esc_attr($role_name);?>"<?php endif; ?>
                                 <?php checked($can_set_status);?> <?php disabled($is_administrator);?> value="1" class="regular-text" />
                                 <span class="pp-full-label">
                                 <?php echo esc_html($role_label);?>
@@ -458,7 +460,7 @@ class StatusEditUI
                                 </span>
                                 </label>
                                 <?php if ($is_administrator) : ?>
-                                    <span class="tooltip-text" role="tooltip"><span>
+                                    <span class="tooltip-text" role="tooltip" id="pp-role-tooltip-<?php echo esc_attr($role_name);?>"><span>
                                     <?php
                                     if ('administrator' === $role_name) {
                                         echo esc_html__('Administrators can always', 'publishpress-statuses') . '<br />';
@@ -501,13 +503,13 @@ class StatusEditUI
             case 'post_types' :
                 ?>
                 <tr class="form-field">
-                <th><label for="status_label"><?php esc_html_e('Post Types', 'publishpress-statuses') ?></label>
+                <th><label id="pp-post-types-label"><?php esc_html_e('Post Types', 'publishpress-statuses') ?></label>
                 <br /><br />
                 <span class="pp-statuses-field-descript" style="font-weight: normal">
                 <?php esc_html_e('Choose which post types can be set to this status.', 'publishpress-statuses');?>
                 </span>
                 </th>
-                <td>
+                <td role="group" aria-labelledby="pp-post-types-label">
 
                 <?php
                 $types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');

@@ -59,6 +59,51 @@ var publishedStatuses = window.PPCustomStatuses.publishedStatusObjects.map(funct
 
 var ppsCaptions = window.PPCustomStatuses.captions;
 
+/*
+ * Return the text colour (near-black or white) that gives the higher contrast
+ * ratio on the given status background colour (WCAG relative luminance).
+ */
+var ppStatusTextColor = function ppStatusTextColor(color) {
+  var rgb = null, m;
+
+  if (color) {
+    color = String(color).trim();
+
+    if ((m = color.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i))) {
+      var hex = m[1];
+
+      if (3 == hex.length) {
+        hex = hex.charAt(0) + hex.charAt(0) + hex.charAt(1) + hex.charAt(1) + hex.charAt(2) + hex.charAt(2);
+      }
+
+      rgb = [parseInt(hex.substr(0, 2), 16), parseInt(hex.substr(2, 2), 16), parseInt(hex.substr(4, 2), 16)];
+    } else if ((m = color.match(/^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/i))) {
+      rgb = [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10)];
+    }
+  }
+
+  if (!rgb) {
+    return 'white';
+  }
+
+  var lum = rgb.map(function (c) {
+    c = c / 255;
+    return (c <= 0.03928) ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+
+  lum = 0.2126 * lum[0] + 0.7152 * lum[1] + 0.0722 * lum[2];
+
+  // #1e1e1e has a relative luminance of about 0.013
+  return ((1.05 / (lum + 0.05)) >= ((lum + 0.05) / 0.063)) ? 'white' : '#1e1e1e';
+};
+
+// Announce a message to screen readers, if wp.a11y is available
+var ppcsSpeak = function ppcsSpeak(message) {
+  if (message && window.wp && wp.a11y && wp.a11y.speak) {
+    wp.a11y.speak(message, 'polite');
+  }
+};
+
 // Remove the "Published" item from statuses array
 statuses = statuses.filter(function (item) {
   return item.value !== 'publish';
@@ -174,7 +219,17 @@ function PPCS_RecaptionButton(btnSelector, btnCaption) {
     if ($(btnSelector).length && btnCaption 
     && (btnCaption != $('span.presspermit-save-button button').html() || !$('span.presspermit-save-button button:visible').length || $('button.editor-post-save-draft:visible').length)
     ) {
-      $('span.presspermit-save-button').remove();
+      var $existing = $('span.presspermit-save-button');
+
+      // Update the caption in place, so a focused button keeps focus
+      if ($existing.length == 1 && $existing.prev().is(node) && !node.is(':visible') && $existing.children('button:visible').length) {
+        $existing.children('button').html(btnCaption);
+        return;
+      }
+
+      var hadFocus = document.activeElement && $existing.find(document.activeElement).length;
+
+      $existing.remove();
 
       var hideClass = 'presspermit-save-hidden';
 
@@ -182,7 +237,11 @@ function PPCS_RecaptionButton(btnSelector, btnCaption) {
       node.addClass(hideClass).hide().css('z-index', -999);
 
       // Clone the stock button
-      node.after('<span class="presspermit-save-button">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-save-draft').removeAttr('disabled').removeAttr('aria-disabled').css('white-space', 'nowrap').css('position', 'relative').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+      node.after('<span class="presspermit-save-button">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-save-draft').removeAttr('disabled').removeAttr('aria-disabled').removeAttr('id').removeAttr('aria-label').css('white-space', 'nowrap').css('position', 'relative').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+
+      if (hadFocus) {
+        $('span.presspermit-save-button button').trigger('focus');
+      }
 
       node.addClass(hideClass).attr('aria-disabled', true);
     }
@@ -380,7 +439,7 @@ setInterval(function () {
       }
 
       if (statusObj && statusObj.color) {
-        statusCaption = '<span class="' + statusSpanClass + ' pp-status-' + buttonStatus + '" style="background:' + statusObj.color + '; color:white">' + statusCaption + '</span>';
+        statusCaption = '<span class="' + statusSpanClass + ' pp-status-' + buttonStatus + '" style="background:' + statusObj.color + '; color:' + ppStatusTextColor(statusObj.color) + '">' + statusCaption + '</span>';
       }
 
       if (statusObj && statusObj.icon) {
@@ -484,6 +543,31 @@ setInterval(function () {
     wp.data.dispatch('core/editor').editPost({
       pp_status_selection: $('div.publishpress-extended-post-status select').val()
     });
+
+    // The Save button is recaptioned after a delay; announce its new caption
+    setTimeout(function() {
+      var caption = $('span.presspermit-save-button button:visible').first().text();
+
+      if (caption && ppsCaptions.saveButtonCaption) {
+        ppcsSpeak(ppsCaptions.saveButtonCaption.replace('%s', caption));
+      }
+    }, 1000);
+  });
+
+  $(document).on('change', 'input[name="pp_statuses_workflow_selection"]', function(e) {
+    // Only announce user selections, not the automatic default selection
+    if (!e.originalEvent || !e.originalEvent.isTrusted) {
+      return;
+    }
+
+    // The Publish button in the pre-publish panel is recaptioned after a delay; announce its new caption
+    setTimeout(function() {
+      var caption = $('div.editor-post-publish-panel__header-publish-button button:visible, span.presspermit-editor-button button:visible').last().text();
+
+      if (caption && ppsCaptions.publishButtonCaption) {
+        ppcsSpeak(ppsCaptions.publishButtonCaption.replace('%s', caption));
+      }
+    }, 1000);
   });
 });
 
@@ -604,7 +688,9 @@ var PPWorkflowAction = function PPWorkflowAction(_ref) {
   return React.createElement(PluginPrePublishPanel, {
     className: "pp-statuses-workflow publishpress-statuses-workflow-".concat(pp_workflow_action)
   }, React.createElement("h3", null, ppsCaptions.publicationWorkflow), React.createElement(RadioControl, {
-    label: "",
+    // The visible h3 supplies the same text, so the group label is for assistive technology only
+    label: ppsCaptions.publicationWorkflow,
+    hideLabelFromVision: true,
     name: "pp_statuses_workflow_selection",
     options: radioOptions,
     selected: pp_workflow_action,

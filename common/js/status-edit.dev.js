@@ -223,3 +223,40 @@ jQuery(function ($) {
         }, 0);
     }, true);
 });
+
+// Tooltips: Escape dismisses a tooltip shown by hover or focus, until the pointer or focus leaves it.
+jQuery(function ($) {
+    $(document).on('keydown', function (event) {
+        if (event.key !== 'Escape' && event.keyCode !== 27) {
+            return;
+        }
+
+        var open = $('[data-toggle="tooltip"]').filter(function () {
+            return $(this).is(':hover') || $.contains(this, document.activeElement) || this === document.activeElement;
+        }).not('.pp-tooltip-dismissed');
+
+        if (open.length) {
+            open.addClass('pp-tooltip-dismissed');
+        }
+    });
+
+    $(document).on('mouseleave', '[data-toggle="tooltip"]', function () {
+        if (!$.contains(this, document.activeElement) && this !== document.activeElement) {
+            $(this).removeClass('pp-tooltip-dismissed');
+        }
+    });
+
+    $(document).on('focusout', '[data-toggle="tooltip"]', function (event) {
+        if (!event.relatedTarget || !$.contains(this, event.relatedTarget)) {
+            $(this).removeClass('pp-tooltip-dismissed');
+        }
+    });
+
+    // Enter or Space on a focusable tooltip trigger re-shows a dismissed tooltip
+    $(document).on('keydown', '[data-toggle="tooltip"][role="button"]', function (event) {
+        if (event.target === this && (event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault();
+            $(this).removeClass('pp-tooltip-dismissed');
+        }
+    });
+});

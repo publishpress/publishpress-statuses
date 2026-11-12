@@ -58,7 +58,7 @@ class PostEditGutenberg
         wp_enqueue_script(
             'publishpress-custom-status-block',
             PUBLISHPRESS_STATUSES_URL . "common/js/{$filename}{$suffix}.js",
-            ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-hooks'],
+            ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-hooks', 'wp-a11y'],
             PUBLISHPRESS_STATUSES_VERSION,
             true
         );
@@ -94,7 +94,13 @@ class PostEditGutenberg
             'advanceNext' => __('Advance to Next Status', 'publishpress-statuses'),
             'advanceMax' => __('Advance to Max Status', 'publishpress-statuses'),
             'currentlyPublished' => __('This post is currently published', 'publishpress-statuses'),
-            'currentlyScheduled' => __('This post is currently scheduled', 'publishpress-statuses')
+            'currentlyScheduled' => __('This post is currently scheduled', 'publishpress-statuses'),
+            // Accessible name for the separator option in the status dropdown
+            'alternateWorkflows' => __('Alternate Workflows', 'publishpress-statuses'),
+            // translators: %s is the caption of the Save button (screen reader announcement)
+            'saveButtonCaption' => __('Save button: %s', 'publishpress-statuses'),
+            // translators: %s is the caption of the Publish / Submit button (screen reader announcement)
+            'publishButtonCaption' => __('Publish button: %s', 'publishpress-statuses'),
         ];
 
         if (!empty($post)) {
