@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 class Workarounds {
 
     function __construct() {
@@ -276,12 +278,12 @@ class Workarounds {
             $return = '<strong>' . __('Permalink:') . "</strong>\n";
 
             if (false !== $view_link) {
-                $display_link = urldecode($view_link);
+                $display_link = esc_html(urldecode($view_link));
                 $return .= '<a id="sample-permalink" href="' . esc_url(
                         $view_link
                     ) . '"' . $preview_target . '>' . $display_link . "</a>\n";
             } else {
-                $return .= '<span id="sample-permalink">' . $permalink . "</span>\n";
+                $return .= '<span id="sample-permalink">' . esc_html($permalink) . "</span>\n";
             }
 
             // Encourage a pretty permalink setting
@@ -307,8 +309,9 @@ class Workarounds {
                 }
             }
 
-            $post_name_html = '<span id="editable-post-name">' . $post_name_abridged . '</span>';
-            $display_link = str_replace(['%pagename%', '%postname%'], $post_name_html, urldecode($permalink));
+            $post_name_html = '<span id="editable-post-name">' . esc_html($post_name_abridged) . '</span>';
+            // Escape decoded path data before adding the trusted editable-slug markup.
+            $display_link = str_replace(['%pagename%', '%postname%'], $post_name_html, esc_html(urldecode($permalink)));
 
             $return = '<strong>' . __('Permalink:') . "</strong>\n";
             $return .= '<span id="sample-permalink"><a href="' . esc_url(
@@ -318,7 +321,7 @@ class Workarounds {
             $return .= '<span id="edit-slug-buttons"><button type="button" class="edit-slug button button-small hide-if-no-js" aria-label="' . __(
                     'Edit permalink'
                 ) . '">' . __('Edit') . "</button></span>\n";
-            $return .= '<span id="editable-post-name-full">' . $post_name . "</span>\n";
+            $return .= '<span id="editable-post-name-full">' . esc_html($post_name) . "</span>\n";
         }
 
         return $return;

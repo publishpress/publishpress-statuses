@@ -3,13 +3,13 @@
  * Plugin Name: PublishPress Statuses Free
  * Plugin URI:  https://publishpress.com/statuses
  * Description: Manage and create post statuses to customize your editorial workflow
- * Version: 1.3.6
+ * Version: 1.3.7
  * Author: PublishPress
  * Author URI:  https://publishpress.com/
  * Text Domain: publishpress-statuses
  * Domain Path: /languages/
  * Requires at least: 5.5
- * Requires PHP: 7.2.5
+ * Requires PHP: 8.2
  * License: GPLv3
  *
  * Copyright (c) 2026 PublishPress
@@ -37,11 +37,11 @@
  *
  **/
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+defined('ABSPATH') || exit;
 
  global $wp_version;
 
- $min_php_version = '7.2.5';
+ $min_php_version = '8.2';
  $min_wp_version  = '5.5';
  
  $invalid_php_version = version_compare(phpversion(), $min_php_version, '<');
@@ -245,7 +245,7 @@ if ((!defined('PUBLISHPRESS_STATUSES_FILE') && !$pro_active) || $publishpress_st
         }
         
         if (empty($interrupt_load)) {
-            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.6');
+            define('PUBLISHPRESS_STATUSES_VERSION', '1.3.7');
 
             define('PUBLISHPRESS_STATUSES_URL', trailingslashit(plugins_url('', __FILE__)));    // @todo: vendor lib
 
