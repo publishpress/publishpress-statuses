@@ -27,7 +27,7 @@
     "prefer-stable": true,
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4.0",
+        "php": ">=8.2",
         "ext-json": "*"
     },
     "require-dev": {

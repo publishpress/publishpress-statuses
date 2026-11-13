@@ -1167,6 +1167,12 @@ text-decoration: none;
 vertical-align: middle;
 }
 
+/* Nesting controls follow the current hierarchy, including unsaved moves. */
+#the_status_list > li.page-row > .row .pp-status-move[data-move="outdent"],
+#the_status_list li.page-row li.page-row > .row .pp-status-move[data-move="indent"] {
+display: none;
+}
+
 #the_status_list .pp-status-move-controls button.button-link:hover {
 color: #2271b1;
 }
