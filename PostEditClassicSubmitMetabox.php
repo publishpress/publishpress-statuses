@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 class PostEditClassicSubmitMetabox
 {
     public static function post_submit_meta_box($post, $args = [])

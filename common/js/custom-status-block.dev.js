@@ -589,25 +589,29 @@ setInterval(function () {
         statusSpanClass += ' pp-published-status';
       }
 
-      if (statusObj && statusObj.color) {
-        statusCaption = '<span class="' + statusSpanClass + ' pp-status-' + buttonStatus + '" style="background:' + statusObj.color + '; color:' + ppStatusTextColor(statusObj.color) + '">' + statusCaption + '</span>';
-      }
-
-      if (statusObj && statusObj.icon) {
-        statusCaption = '<span class="dashicons ' + statusObj.icon + '"></span> ' + statusCaption + '</span>';
-      }
-      
       if (statusCaption) {
-        $('div.pp-statuses-workflow input[type="radio"][value="' + buttonWorkflowAction + '"]').next('label').parent().after(
-          '<div class="pp-editor-prepublish-' + buttonWorkflowAction + '-status pp-editor-workflow-caption pp-status-' + buttonStatus + '">' + statusCaption + '</div>'
-        );
+        // Status metadata is data, never HTML (including legacy stored values).
+        var caption = $('<div>').addClass('pp-editor-prepublish-' + buttonWorkflowAction + '-status pp-editor-workflow-caption pp-status-' + buttonStatus);
+        var label = $('<span>').text(statusCaption);
+
+        if (statusObj && /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i.test(statusObj.color)) {
+          label.addClass(statusSpanClass + ' pp-status-' + buttonStatus).css({background: statusObj.color, color: ppStatusTextColor(statusObj.color)});
+        }
+
+        if (statusObj && typeof statusObj.icon === 'string' && /^dashicons-[a-z0-9-]+$/.test(statusObj.icon)) {
+          caption.append($('<span>').addClass('dashicons').addClass(statusObj.icon));
+          caption.append(document.createTextNode(' '));
+        }
+
+        caption.append(label);
+        $('div.pp-statuses-workflow input[type="radio"][value="' + buttonWorkflowAction + '"]').next('label').parent().after(caption);
       }
     }
 
     $('input[name="pp_statuses_workflow_selection"][value="current"]').closest('div.components-radio-control__option').toggle(-1 == PPCustomStatuses.publishedStatuses.indexOf(selectedStatus));
     $('input[name="pp_statuses_workflow_selection"][value="specified"]').closest('div.components-radio-control__option').toggle((currentStatus != selectedStatus) && (-1 == ['publish', 'future'].indexOf(selectedStatus)));
-    $('input[name="pp_statuses_workflow_selection"][value="next"]').closest('div.components-radio-control__option').toggle(!currentStatusPublished && (ppObjEdit.nextStatus != currentStatus) && (ppObjEdit.nextStatus != ppObjEdit.maxStatus));
-    $('input[name="pp_statuses_workflow_selection"][value="max"]').closest('div.components-radio-control__option').toggle(!currentStatusPublished && (ppObjEdit.maxStatus != currentStatus));
+    $('input[name="pp_statuses_workflow_selection"][value="next"]').closest('div.components-radio-control__option').toggle(!currentStatusPublished && (ppObjEdit.nextStatus != currentStatus) && ((ppObjEdit.nextStatus != ppObjEdit.maxStatus) || !ppObjEdit.canSelectMax));
+    $('input[name="pp_statuses_workflow_selection"][value="max"]').closest('div.components-radio-control__option').toggle(ppObjEdit.canSelectMax && !currentStatusPublished && (ppObjEdit.maxStatus != currentStatus));
 
     if (!$('input[name="pp_statuses_workflow_selection"][value="next"]').closest('div.components-radio-control__option:visible').length) {
       $('div.pp-statuses-workflow div.pp-editor-prepublish-next-status').hide();
@@ -854,6 +858,14 @@ var PPWorkflowAction = function PPWorkflowAction(_ref) {
     { label: maxStatusCaption, value: 'max' }
   ];
 
+  if (!ppObjEdit.canSelectMax) {
+    radioOptions = radioOptions.filter(function (option) { return option.value !== 'max'; });
+
+    if (pp_workflow_action === 'max') {
+      pp_workflow_action = 'next';
+    }
+  }
+
   return React.createElement(wp.editPost.PluginPrePublishPanel, {
     className: "pp-statuses-workflow publishpress-statuses-workflow-".concat(pp_workflow_action)
   }, React.createElement("h3", null, ppsCaptions.publicationWorkflow), React.createElement(wp.components.RadioControl, {
@@ -885,3 +897,6 @@ wp.plugins.registerPlugin('publishpress-statuses-workflow-action', {
   render: pluginWorkflow
 });
 }
+
+
+

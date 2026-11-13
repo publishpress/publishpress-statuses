@@ -5,6 +5,8 @@ namespace PublishPress_Statuses;
 use PublishPressInstanceProtection\Config;
 use PublishPressInstanceProtection\InstanceChecker;
 
+\defined('ABSPATH') || exit;
+
 class LibInstanceProtection
 {
     public function __construct()

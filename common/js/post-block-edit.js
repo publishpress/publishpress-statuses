@@ -53,7 +53,7 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-        var node = $(btnSelector);
+        var node = $(btnSelector).not('span.presspermit-editor-button button, span.presspermit-editor-toggle button');
 
         var ppClass;
         var hideClass;
@@ -64,8 +64,8 @@ jQuery(document).ready(function ($) {
             ppClass = 'presspermit-editor-toggle';
         }
 
-        if ($(btnSelector).length && btnCaption && (btnCaption != $('span.' + ppClass + ' button').html() || !$('span.' + ppClass + ':visible').length)) {
-            if ($(btnSelector).html() == ppObjEdit.submitRevisionCaption) {
+        if ($(btnSelector).length && btnCaption && (btnCaption != $('span.' + ppClass + ' button').text() || !$('span.' + ppClass + ':visible').length)) {
+            if ($(btnSelector).text() == ppObjEdit.submitRevisionCaption) {
                 return;
             }
 
@@ -76,7 +76,7 @@ jQuery(document).ready(function ($) {
             if ($existingClone.length == 1 && $existingClone.prev().is(node) && !node.is(':visible')
             && $existingClone.children('button:visible').length && !$('span.' + otherClass).length
             ) {
-                $existingClone.children('button').html(btnCaption);
+                $existingClone.children('button').text(btnCaption);
                 PP_InitializeStatuses();
                 return;
             }
@@ -90,7 +90,7 @@ jQuery(document).ready(function ($) {
             }
 
             if ((ppClass == 'presspermit-editor-button') && $('div.editor-post-publish-panel__prepublish').length && $('span.' + ppClass + ' button').length) {
-                $('span.' + ppClass + ' button').html(btnCaption).show();
+                $('span.' + ppClass + ' button').text(btnCaption).show();
             } else {
                 $('.presspermit-editor-hidden').not($(btnSelector)).show();
 
@@ -104,7 +104,9 @@ jQuery(document).ready(function ($) {
                 node.addClass(hideClass).hide().css('z-index', -999);
 
                 // Clone the stock button (no id, and no aria-label, so the accessible name matches the visible caption)
-                node.after('<span class="' + ppClass + '">' + node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-publish-button').removeAttr('aria-disabled').removeAttr('id').removeAttr('aria-label').css('position', 'relative').css('background-color', 'var(--wp-admin-theme-color)').show().html(btnCaption).wrap('<span>').parent().html() + '</span>');
+                // Captions are plain text, including entity-decoded localized labels.
+                var replacementButton = node.clone().css('z-index', 0).removeClass(hideClass).removeClass('editor-post-publish-button').removeAttr('aria-disabled').removeAttr('id').removeAttr('aria-label').css('position', 'relative').css('background-color', 'var(--wp-admin-theme-color)').show().text(btnCaption);
+                node.after($('<span>').addClass(ppClass).append(replacementButton));
 
                 if (cloneHadFocus) {
                     $('span.' + ppClass + ' button').trigger('focus');

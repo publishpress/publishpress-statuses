@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 // Custom Status admin menus, shared javascript and CSS
 class Admin
 {

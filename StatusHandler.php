@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 // Custom Status management: Handle status add / edit requests
 class StatusHandler {
     /**
@@ -26,7 +28,8 @@ class StatusHandler {
 
         $status_color = !empty($_POST['status_color']) ? sanitize_hex_color(wp_unslash($_POST['status_color'])) : '';
 
-        $status_icon = !empty($_POST['icon']) ? str_replace('dashicons|', '', sanitize_key($_POST['icon'])) : '';
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitizeStatusIcon() accepts only a single Dashicons token and rejects non-string input.
+        $status_icon = !empty($_POST['icon']) ? \PublishPress_Statuses::sanitizeStatusIcon(wp_unslash($_POST['icon'])) : '';
 
         $taxonomy = (!empty($_POST['taxonomy'])) ? sanitize_key($_POST['taxonomy']) : \PublishPress_Statuses::TAXONOMY_PRE_PUBLISH;
 
@@ -255,8 +258,8 @@ class StatusHandler {
         }
 
         $color = !empty($_POST['status_color']) ? sanitize_hex_color(wp_unslash($_POST['status_color'])) : '';
-        $icon = !empty($_POST['icon']) ? sanitize_text_field(wp_unslash($_POST['icon'])) : '';
-        $icon = str_replace('dashicons|', '', $icon);
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitizeStatusIcon() accepts only a single Dashicons token and rejects non-string input.
+        $icon = !empty($_POST['icon']) ? \PublishPress_Statuses::sanitizeStatusIcon(wp_unslash($_POST['icon'])) : '';
 
         $status_obj = $existing_status;
 
@@ -629,7 +632,9 @@ class StatusHandler {
 
             foreach ($args as $field => $set_value) {
                 if (in_array($field, $term_meta_fields)) {
-                    if (is_array($args[$field])) {
+                    if ('icon' === $field) {
+                        $meta_val = \PublishPress_Statuses::sanitizeStatusIcon($set_value);
+                    } elseif (is_array($args[$field])) {
                         $meta_val = [];
 
                         foreach ($set_value as $k => $val) {
@@ -1086,3 +1091,5 @@ class StatusHandler {
         wp_cache_flush();
     }
 }
+
+

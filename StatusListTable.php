@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses;
 
+\defined('ABSPATH') || exit;
+
 /**
  * Custom Statuses uses WordPress' List Table API for generating the custom status management table
  *
@@ -1045,6 +1047,7 @@ do_action('publishpress_statuses_table_row', $key, []);
 
             echo ">";
             $aria_label = !empty($arr['aria_label']) ? ' aria-label="' . esc_attr($arr['aria_label']) . '"' : '';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $aria_label contains fixed attribute markup with its value escaped by esc_attr() above.
             echo '<a href="' . esc_url($arr['url']) . '"' . $aria_label . '>' . esc_html($arr['label']) . '</a>';
             echo esc_html($sep) . "</span>";
 		}
@@ -1073,6 +1076,7 @@ do_action('publishpress_statuses_table_row', $key, []);
         $url = admin_url("admin.php?action=edit-status&name={$item->name}&page=publishpress-statuses");
 
         $aria_label = empty($descript) ? ' aria-label="' . esc_attr(sprintf(__('Edit description for %s', 'publishpress-statuses'), $item->label)) . '"' : '';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $aria_label contains fixed attribute markup with its value escaped by esc_attr() above.
         echo "<a href='" . esc_url($url) . "'" . $aria_label . ">" . esc_html($descript) . "</a>";
     }
 
