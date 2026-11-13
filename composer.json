@@ -31,7 +31,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "publishpress/dev-workspace": "^2.0.4"
+        "publishpress/dev-workspace": "^2.1.0"
     },
     "extra": {
         "plugin-slug": "publishpress-statuses",
