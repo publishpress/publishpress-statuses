@@ -2,6 +2,7 @@
 title: "Custom Visibility Statuses (Pro)"
 order: 5
 doc_category: publishpress-statuses
+section: Visibility Statuses
 ---
 
 # Custom Visibility Statuses (Pro)

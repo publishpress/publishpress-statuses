@@ -2,6 +2,7 @@
 title: "Getting Started With PublishPress Statuses"
 order: 13
 doc_category: publishpress-statuses
+section: Getting Started
 ---
 
 # Getting Started With PublishPress Statuses

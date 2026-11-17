@@ -2,6 +2,7 @@
 title: "Revisions Statuses (Pro)"
 order: 12
 doc_category: publishpress-statuses
+section: Revision Statuses
 ---
 
 # Revisions Statuses (Pro)

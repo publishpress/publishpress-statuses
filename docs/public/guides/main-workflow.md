@@ -2,6 +2,7 @@
 title: "Main Workflow for Pre-Publication Statuses"
 order: 11
 doc_category: publishpress-statuses
+section: Pre-Publication Statuses
 ---
 
 # Main Workflow for Pre-Publication Statuses

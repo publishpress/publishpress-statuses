@@ -2,6 +2,7 @@
 title: "Technical Details for PublishPress Statuses"
 order: 16
 doc_category: publishpress-statuses
+section: Developer
 ---
 
 # Technical Details for PublishPress Statuses

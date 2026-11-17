@@ -2,6 +2,7 @@
 title: "Differences Between Statuses Free and Pro"
 order: 9
 doc_category: publishpress-statuses
+section: Getting Started
 ---
 
 # Differences Between Statuses Free and Pro

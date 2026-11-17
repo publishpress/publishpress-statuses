@@ -2,6 +2,7 @@
 title: "Examples of Visibility Statuses (Pro)"
 order: 4
 doc_category: publishpress-statuses
+section: Visibility Statuses
 ---
 
 # Examples of Visibility Statuses (Pro)

@@ -2,6 +2,7 @@
 title: "Statuses and the Planner Calendar"
 order: 14
 doc_category: publishpress-statuses
+section: Settings and Integrations
 ---
 
 # Statuses and the Planner Calendar

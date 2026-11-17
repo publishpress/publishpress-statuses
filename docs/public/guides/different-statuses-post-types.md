@@ -2,6 +2,7 @@
 title: "Different Statuses for Different Post Types"
 order: 7
 doc_category: publishpress-statuses
+section: Settings and Integrations
 ---
 
 # Different Statuses for Different Post Types

@@ -2,6 +2,7 @@
 title: "Workflow Branches"
 order: 17
 doc_category: publishpress-statuses
+section: Pre-Publication Statuses
 ---
 
 # Workflow Branches

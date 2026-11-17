@@ -2,6 +2,7 @@
 title: "Alternate Workflow for Pre-Publication Statuses"
 order: 1
 doc_category: publishpress-statuses
+section: Pre-Publication Statuses
 ---
 
 # Alternate Workflow for Pre-Publication Statuses
