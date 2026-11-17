@@ -178,7 +178,7 @@ var querySelectableStatuses = function(status) {
 
       });
 
-      if (typeof (retval['params']) != 'undefined') {
+      if ((typeof (retval['params']) != 'undefined') && (typeof ppObjEdit != 'undefined')) {
         if (typeof (retval['params']['nextStatus']) != 'undefined') {
           ppObjEdit.nextStatus = retval['params']['nextStatus'];
         }
@@ -372,6 +372,11 @@ setInterval(function () {
 
   var selectedStatus = wp.data.select('core/editor').getEditedPostAttribute('status');
   var currentWorkflowSelection = wp.data.select('core/editor').getEditedPostAttribute('pp_workflow_action');
+
+  // Workflow guidance data is not loaded when workflow is disabled ("No workflow guidance")
+  if ((typeof ppObjEdit == 'undefined') || ppObjEdit.workflowDisabled) {
+    return;
+  }
 
   if ('publish' == ppObjEdit.maxStatus || 'future' == ppObjEdit.maxStatus) {
     let postDate = new Date(wp.data.select('core/editor').getEditedPostAttribute('date'));
@@ -640,7 +645,7 @@ registerPlugin('publishpress-custom-status-block', {
   render: plugin
 });
 
-if (!ppObjEdit.workflowDisabled) {
+if ((typeof ppObjEdit != 'undefined') && !ppObjEdit.workflowDisabled) {
 var PPWorkflowAction = function PPWorkflowAction(_ref) {
   var onUpdate = _ref.onUpdate,
     wfa = _ref.ppWorkflowAction;
