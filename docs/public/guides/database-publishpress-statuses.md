@@ -2,6 +2,7 @@
 title: "Database Details for PublishPress Statuses"
 order: 6
 doc_category: publishpress-statuses
+section: Developer
 ---
 
 # Database Details for PublishPress Statuses

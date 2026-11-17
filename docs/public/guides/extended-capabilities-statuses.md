@@ -2,6 +2,7 @@
 title: "Post Access for Statuses (Pro)"
 order: 8
 doc_category: publishpress-statuses
+section: Pre-Publication Statuses
 ---
 
 # Post Access for Statuses (Pro)

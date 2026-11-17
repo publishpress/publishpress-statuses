@@ -2,6 +2,7 @@
 title: "Default and Locked Visibility Statuses"
 order: 10
 doc_category: publishpress-statuses
+section: Visibility Statuses
 ---
 
 # Default and Locked Visibility Statuses

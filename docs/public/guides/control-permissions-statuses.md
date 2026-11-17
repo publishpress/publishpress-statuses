@@ -2,6 +2,7 @@
 title: "Examples of Capabilities for Custom Statuses (Pro)"
 order: 2
 doc_category: publishpress-statuses
+section: Pre-Publication Statuses
 ---
 
 # Examples of Capabilities for Custom Statuses (Pro)

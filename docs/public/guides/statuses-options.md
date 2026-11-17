@@ -2,6 +2,7 @@
 title: "Options for PublishPress Statuses"
 order: 15
 doc_category: publishpress-statuses
+section: Settings and Integrations
 ---
 
 # Options for PublishPress Statuses
