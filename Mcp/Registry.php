@@ -126,6 +126,16 @@ class Registry
 
     public static function add(string $name, string $label, string $description, array $schema, callable $callback, callable $permission, bool $write = false, bool $destructive = false, array $output = []): void
     {
+        // These choices belong to native registries that may not be populated yet.
+        if ($name === 'save-status') {
+            $schema['properties']['taxonomy'] = self::text(100);
+            unset($schema['properties']['properties']['properties']['post_type']['items']['enum']);
+        } elseif ($name === 'set-status-roles') {
+            $schema['properties']['roles'] = ['type' => 'object', 'additionalProperties' => ['type' => 'boolean']];
+        } elseif ($name === 'set-status-capabilities') {
+            $schema['properties']['roles'] = ['type' => 'object', 'additionalProperties' => [
+                'type' => 'object', 'additionalProperties' => ['type' => 'boolean']]];
+        }
         wp_register_ability('publishpress-statuses/' . $name, [
             'label' => $label, 'description' => $description, 'category' => 'publishpress',
             'input_schema' => $schema, 'output_schema' => $output ?: self::object(['items' => ['type' => 'array', 'items' => ['type' => 'object']], 'has_more' => ['type' => 'boolean']]),

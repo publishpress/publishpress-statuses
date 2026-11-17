@@ -203,7 +203,13 @@ class Actions
     public static function save($input)
     {
         $status = self::status($input['name']);
-        $patch = $input['properties'];
+        $patch = Registry::validate($input['properties'], Registry::object(self::propertySchemas()));
+        if (is_wp_error($patch)) {
+            return $patch;
+        }
+        if (isset($input['taxonomy']) && !in_array($input['taxonomy'], self::taxonomies(), true)) {
+            return Registry::error();
+        }
         if ($status && is_wp_error($check = Registry::stale($input, self::state()))) {
             return $check;
         }

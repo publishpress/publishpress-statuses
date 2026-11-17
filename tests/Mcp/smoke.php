@@ -1,6 +1,12 @@
 <?php
 /** Released Adapter checks. Run only against disposable statuses_mcp_* databases. */
 define('REST_REQUEST', true);
+// Set PUBLISHPRESS_MCP_EARLY_REGISTRY=1 to run the same Adapter workflows before native init.
+if (getenv('PUBLISHPRESS_MCP_EARLY_REGISTRY') === '1') {
+    $GLOBALS['wp_filter']['init'][0][] = ['function' => static function () {
+        wp_get_abilities();
+    }, 'accepted_args' => 0];
+}
 require $argv[1];
 if (strpos(DB_NAME, 'statuses_mcp_') !== 0) {
     throw new RuntimeException('An isolated database is required.');
@@ -30,6 +36,10 @@ function success($result, $message) {
     return $result;
 }
 $featureInventory = success(callStatuses('list-features'), 'Native feature inventory');
+$taxonomyInput = wp_get_ability('publishpress-statuses/save-status')->get_input_schema()['properties']['taxonomy'];
+check(!array_key_exists('enum', $taxonomyInput) || !empty($taxonomyInput['enum']), 'Early registration exported an empty taxonomy choice list');
+check(is_wp_error(callStatuses('save-status', ['name' => 'mcp-invalid-taxonomy', 'taxonomy' => 'category',
+    'properties' => (object) ['label' => 'Invalid taxonomy'], 'dry_run' => true])), 'Foreign taxonomy accepted during status preview');
 check(count($featureInventory['items']) >= 10, 'Feature inventory is incomplete');
 $settings = success(callStatuses('get-plugin-settings'), 'Settings discovery');
 check($settings['pro'] === (getenv('STATUSES_MCP_MODE') === 'pro'), 'Edition detection mismatch');

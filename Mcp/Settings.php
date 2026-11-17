@@ -44,10 +44,10 @@ class Settings
     {
         $schemas = array_map(static function ($field) { return $field['schema']; }, self::definitions());
         if ($registration) {
-            foreach ($schemas['default_privacy']['properties'] as &$child) {
-                unset($child['enum']);
-            }
-            unset($child);
+            // Post types and private statuses can be registered after the abilities registry starts.
+            $schemas['post_types'] = ['type' => 'object', 'additionalProperties' => ['type' => 'boolean']];
+            $schemas['force_default_privacy'] = $schemas['post_types'];
+            $schemas['default_privacy'] = ['type' => 'object', 'additionalProperties' => ['type' => 'string']];
         }
         return $schemas;
     }
