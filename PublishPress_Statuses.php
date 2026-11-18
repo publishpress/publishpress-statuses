@@ -3458,6 +3458,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public function fltApplySelectedPostStatus($post_status) {
+        // A REST save can also insert revision rows within the same request.
+        if (in_array($post_status, ['inherit', 'auto-draft', 'trash'], true)) {
+            return $post_status;
+        }
         if ($this->doing_rest
         && (!defined('DOING_AUTOSAVE') || ! DOING_AUTOSAVE)
         ) {

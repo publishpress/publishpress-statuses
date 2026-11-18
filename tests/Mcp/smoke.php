@@ -144,8 +144,18 @@ remove_filter('publishpress_statuses_available_moderation_statuses', $hideReview
 $before = get_post($postId);
 success(callStatuses('set-post-status', ['id' => $postId, 'status' => 'mcp-review', 'expected_hash' => $workflowPost['expected_hash'], 'dry_run' => true]), 'Post status preview');
 check(get_post($postId) == $before, 'Post status preview wrote data');
+$writeCoreRevision = static function ($id) use ($postId) {
+    if ($id === $postId) {
+        _wp_put_post_revision(get_post($postId));
+    }
+};
+add_action('wp_after_insert_post', $writeCoreRevision);
 $workflowPost = success(callStatuses('set-post-status', ['id' => $postId, 'status' => 'mcp-review', 'expected_hash' => $workflowPost['expected_hash']]), 'Native post status save');
 check($workflowPost['complete'] && get_post_status($postId) === 'mcp-review', 'Native filters did not save requested status');
+remove_action('wp_after_insert_post', $writeCoreRevision);
+global $wpdb;
+$revisionStatuses = $wpdb->get_col($wpdb->prepare("SELECT post_status FROM $wpdb->posts WHERE post_type = 'revision' AND post_parent = %d", $postId));
+check($revisionStatuses && array_unique($revisionStatuses) === ['inherit'], 'Explicit post status leaked into a core revision');
 $denyAssignment = static function ($caps, $cap) { return $cap === 'status_change_mcp_review' ? ['do_not_allow'] : $caps; };
 add_filter('map_meta_cap', $denyAssignment, PHP_INT_MAX, 2);
 check(is_wp_error(callStatuses('set-post-status', ['id' => $postId, 'status' => 'mcp-review', 'expected_hash' => $workflowPost['expected_hash']])), 'Administrator bypassed denied status capability');
