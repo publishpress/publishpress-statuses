@@ -1,48 +1,58 @@
 <?php
 namespace PublishPress_Statuses\Mcp;
 
+use PublishPress_Statuses\StatusesUI;
+
 \defined('ABSPATH') || exit;
 
 /** Native settings discovery and typed partial updates. */
 class Settings
 {
-    public static function definitions()
+    public static function definitions($registration = false)
     {
         $bool = ['type' => 'boolean'];
-        $types = array_keys(\PublishPress_Statuses::instance()->get_supported_post_types());
-        $map = Registry::object(array_fill_keys($types, $bool));
-        $visibility = array_merge([''], array_keys(get_post_stati(['private' => true])));
+        $module = \PublishPress_Statuses::instance();
+        $types = array_intersect_key(StatusesUI::settingsPostTypes(), $module->get_supported_post_types());
+        $types = array_filter($types, [StatusesUI::class, 'canChangePostType'], ARRAY_FILTER_USE_KEY);
+        $visibilityTypes = array_intersect_key(StatusesUI::settingsPostTypes(true), $module->get_supported_post_types());
+        $map = Registry::object(array_fill_keys(array_keys($types), $bool));
         $fields = [
             'post_types' => ['label' => __('Use on these Post Types', 'publishpress-statuses'), 'schema' => $map],
-            'moderation_statuses_default_by_sequence' => ['label' => __('Workflow Guidance', 'publishpress-statuses'), 'schema' => ['type' => 'string', 'enum' => ['0', '1', 'none']]],
+            'moderation_statuses_default_by_sequence' => ['label' => __('Workflow Guidance', 'publishpress-statuses'), 'schema' => ['type' => 'string', 'enum' => array_map('strval', array_keys(StatusesUI::settingChoices('moderation_statuses_default_by_sequence')))]],
             'hide_manual_status_selectors' => ['label' => __('Manual Status Selection: hide selectors', 'publishpress-statuses'), 'schema' => $bool],
             'status_dropdown_show_current_branch_only' => ['label' => __('Hide unrelated sub-statuses', 'publishpress-statuses'), 'schema' => $bool],
             'new_statuses_main_workflow' => ['label' => __('Add new statuses to Main Workflow', 'publishpress-statuses'), 'schema' => $bool],
-            'default_privacy' => ['label' => __('Default Visibility Status', 'publishpress-statuses'), 'schema' => Registry::object(array_fill_keys($types, ['type' => 'string', 'enum' => $visibility]))],
-            'force_default_privacy' => ['label' => __('Lock default visibility by post type', 'publishpress-statuses'), 'schema' => $map],
+            'default_privacy' => ['label' => __('Default Visibility Status', 'publishpress-statuses'), 'schema' => Registry::object(array_fill_keys(array_keys($visibilityTypes), ['type' => 'string', 'enum' => array_keys(StatusesUI::settingChoices('default_privacy'))]))],
+            'force_default_privacy' => ['label' => __('Lock default visibility by post type', 'publishpress-statuses'), 'schema' => Registry::object(array_fill_keys(array_keys($visibilityTypes), $bool))],
             'lock_publication' => ['label' => __('Lock publication visibility', 'publishpress-statuses'), 'schema' => $bool],
             'pending_status_regulation' => ['label' => __('Pending Review: available to specified roles only', 'publishpress-statuses'), 'schema' => $bool],
-            'force_editor_detection' => ['label' => __('Gutenberg / Classic Editor', 'publishpress-statuses'), 'schema' => ['type' => 'string', 'enum' => ['', 'classic', 'gutenberg']]],
-            'label_storage' => ['label' => __('Status Label Customization', 'publishpress-statuses'), 'schema' => ['type' => 'string', 'enum' => ['', 'user']]],
+            'force_editor_detection' => ['label' => __('Gutenberg / Classic Editor', 'publishpress-statuses'), 'schema' => ['type' => 'string', 'enum' => array_map('strval', array_keys(StatusesUI::settingChoices('force_editor_detection')))]],
+            'label_storage' => ['label' => __('Status Label Customization', 'publishpress-statuses'), 'schema' => ['type' => 'string', 'enum' => array_map('strval', array_keys(StatusesUI::settingChoices('label_storage')))]],
         ];
-        if (Registry::pro()) {
+        if (defined('PUBLISHPRESS_STATUSES_PRO_VERSION')) {
             $fields['privacy_statuses_enabled'] = ['label' => __('Custom Visibility', 'publishpress-statuses'), 'schema' => $bool];
             if (!defined('PPS_CUSTOM_PRIVACY_EDIT_CAPS')) {
                 $fields['custom_privacy_edit_caps'] = ['label' => __('Custom Visibility Editing', 'publishpress-statuses'), 'schema' => $bool];
             }
         }
-        if (defined('PUBLISHPRESS_VERSION')) {
+        if ($registration || defined('PUBLISHPRESS_VERSION')) {
             $fields['planner_add_post_custom_statuses'] = ['label' => __('Planner Integration', 'publishpress-statuses'), 'schema' => $bool];
         }
-        if (function_exists('presspermit') && defined('PRESSPERMIT_COLLAB_VERSION') && defined('PRESSPERMIT_STATUSES_VERSION')) {
+        if ($registration || StatusesUI::showPermissionsIntegration()) {
             $fields['supplemental_cap_moderate_any'] = ['label' => __('Permissions Integration', 'publishpress-statuses'), 'schema' => $bool];
+        }
+        if (!$registration && !empty($module->options->hide_manual_status_selectors)) {
+            unset($fields['status_dropdown_show_current_branch_only']);
+        }
+        foreach (['moderation_statuses_default_by_sequence', 'force_editor_detection', 'label_storage', 'default_privacy'] as $key) {
+            $fields[$key]['choices'] = (object) StatusesUI::settingChoices($key);
         }
         return $fields;
     }
 
     public static function schemas($registration = false)
     {
-        $schemas = array_map(static function ($field) { return $field['schema']; }, self::definitions());
+        $schemas = array_map(static function ($field) { return $field['schema']; }, self::definitions($registration));
         if ($registration) {
             // Post types and private statuses can be registered after the abilities registry starts.
             $schemas['post_types'] = ['type' => 'object', 'additionalProperties' => ['type' => 'boolean']];
@@ -54,7 +64,7 @@ class Settings
 
     public static function state()
     {
-        return [get_option(\PublishPress_Statuses::SETTINGS_SLUG, new \stdClass()), get_option('presspermit_privacy_statuses_enabled', 1)];
+        return [get_option(\PublishPress_Statuses::SETTINGS_SLUG, new \stdClass()), get_option('presspermit_privacy_statuses_enabled', 1), self::schemas()];
     }
 
     private static function project($value, $schema)
@@ -86,9 +96,18 @@ class Settings
 
     public static function save($input)
     {
+        $module = \PublishPress_Statuses::instance();
+        $module->load_options(\PublishPress_Statuses::SETTINGS_SLUG);
         $patch = Registry::validate($input['settings'], Registry::object(self::schemas()));
         if (is_wp_error($patch) || is_wp_error($check = Registry::stale($input, self::state()))) {
             return is_wp_error($patch) ? $patch : $check;
+        }
+        $disabledTypes = array_keys(array_filter($patch['post_types'] ?? [], static function ($enabled) { return !$enabled; }));
+        if (array_intersect(array_diff($disabledTypes, ['post', 'page']), array_merge(array_keys($patch['default_privacy'] ?? []), array_keys($patch['force_default_privacy'] ?? [])))
+            || (isset($patch['status_dropdown_show_current_branch_only']) && !empty($patch['hide_manual_status_selectors']))
+            || (!empty($patch['default_privacy']) && isset($patch['privacy_statuses_enabled']) && !$patch['privacy_statuses_enabled']
+                && array_diff($patch['default_privacy'], ['', 'private']))) {
+            return Registry::error();
         }
         $current = (array) get_option(\PublishPress_Statuses::SETTINGS_SLUG, new \stdClass());
         $changes = [];

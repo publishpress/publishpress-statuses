@@ -592,7 +592,10 @@ class StatusHandler {
                     }
                     // Metadata APIs strip slashes; preserve unslashed native captions.
                     $stored_value = is_object($meta_val) ? (object) wp_slash((array) $meta_val) : wp_slash($meta_val);
-                    $result = update_term_meta($term->term_id, $field, $stored_value);
+                    // Core's update fallback unslashes a new object twice.
+                    $result = is_object($stored_value) && !metadata_exists('term', $term->term_id, $field)
+                        ? add_term_meta($term->term_id, $field, $stored_value, true)
+                        : update_term_meta($term->term_id, $field, $stored_value);
 
                     if (is_wp_error($result)) {
                         return $result;
@@ -842,7 +845,7 @@ class StatusHandler {
      *
      * @return bool $restricted True if restricted, false if not
      */
-    private static function is_restricted_status($slug)
+    public static function is_restricted_status($slug)
     {
         switch ($slug) {
             case 'publish':
