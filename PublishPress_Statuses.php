@@ -2312,7 +2312,7 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
             }
         }
 
-        if (!self::isStatusManagement()) {
+        if (empty($function_args['include_admin_statuses']) && !self::isStatusManagement()) {
             $skip_admin_statuses = apply_filters(
                 'publishpress_statuses_omit_admin_statuses',
                 ['_pre-publish-alternate', '_disabled']
@@ -2692,7 +2692,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
                     }
                     // Metadata APIs strip slashes; the native service accepts unslashed values.
                     $stored_value = is_object($meta_val) ? (object) wp_slash((array) $meta_val) : wp_slash($meta_val);
-                    $result = update_term_meta($term_id, $field, $stored_value);
+                    // Core's update fallback unslashes a new object twice.
+                    $result = is_object($stored_value) && !metadata_exists('term', $term_id, $field)
+                        ? add_term_meta($term_id, $field, $stored_value, true)
+                        : update_term_meta($term_id, $field, $stored_value);
 
                     if (is_wp_error($result)) {
                         return $result;
@@ -3455,6 +3458,10 @@ class PublishPress_Statuses extends \PublishPress\PPP_Module_Base
     }
 
     public function fltApplySelectedPostStatus($post_status) {
+        // A REST save can also insert revision rows within the same request.
+        if (in_array($post_status, ['inherit', 'auto-draft', 'trash'], true)) {
+            return $post_status;
+        }
         if ($this->doing_rest
         && (!defined('DOING_AUTOSAVE') || ! DOING_AUTOSAVE)
         ) {

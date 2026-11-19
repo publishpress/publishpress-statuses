@@ -233,6 +233,57 @@ class StatusesUI {
      *
      * @since 0.7
      */
+    public static function settingChoices($name)
+    {
+        switch ($name) {
+            case 'moderation_statuses_default_by_sequence':
+                return [
+                    '1' => __('Sequence by default: Publish button defaults to next status in workflow', 'publishpress-statuses'),
+                    '0' => __('Bypass by default: Publish button defaults to maximum available status', 'publishpress-statuses'),
+                    'none' => __('No workflow guidance', 'publishpress-statuses'),
+                ];
+            case 'force_editor_detection':
+                return [
+                    '' => __('Automatic Detection', 'publishpress-statuses'),
+                    'classic' => __('Using Classic Editor', 'publishpress-statuses'),
+                    'gutenberg' => __('Using Gutenberg Editor', 'publishpress-statuses'),
+                ];
+            case 'label_storage':
+                return [
+                    '' => __('For all plugin statuses', 'publishpress-statuses'),
+                    'user' => __('For user-created plugin statuses only', 'publishpress-statuses'),
+                ];
+            case 'default_privacy':
+                $choices = ['' => __('Published')];
+                foreach (get_post_stati(['private' => true], 'object') as $status) {
+                    $choices[$status->name] = $status->label;
+                }
+                return $choices;
+        }
+        return [];
+    }
+
+    public static function settingsPostTypes($visibility = false)
+    {
+        $types = ['post' => __('Posts'), 'page' => __('Pages')];
+        foreach (\PublishPress_Statuses::instance()->get_supported_post_types() as $name => $type) {
+            if (!$visibility || !\PublishPress_Statuses::DisabledForPostType($name)) {
+                $types[$name] = $type->label;
+            }
+        }
+        return $types;
+    }
+
+    public static function canChangePostType($name)
+    {
+        return !post_type_supports($name, 'pp_custom_statuses');
+    }
+
+    public static function showPermissionsIntegration()
+    {
+        return function_exists('presspermit') && defined('PRESSPERMIT_COLLAB_VERSION') && defined('PRESSPERMIT_STATUSES_VERSION');
+    }
+
     public function register_settings()
     {
         $group_name = \PublishPress_Statuses::SETTINGS_SLUG;
@@ -273,7 +324,7 @@ class StatusesUI {
             );
 
             add_settings_field(
-                'hide_manual_status_selectors',
+                'new_statuses_main_workflow',
                 __('New Status Position:', 'publishpress-statuses'),
                 [$this, 'settings_new_statuses_main_workflow_option'],
                 $group_name,
@@ -312,7 +363,7 @@ class StatusesUI {
                 );
             }
 
-            $show_edit_caps_setting = (function_exists('presspermit') && defined('PRESSPERMIT_COLLAB_VERSION') && defined('PRESSPERMIT_STATUSES_VERSION'));
+            $show_edit_caps_setting = self::showPermissionsIntegration();
 
             add_settings_field(
                 'status_dropdown_pending_status_regulation',
@@ -489,7 +540,7 @@ class StatusesUI {
         ) . ' ';
 
         echo '<label for="moderation_statuses_default_to_next">';
-        esc_html_e('Sequence by default: Publish button defaults to next status in workflow', 'publishpress-statuses');
+        echo esc_html(self::settingChoices('moderation_statuses_default_by_sequence')['1']);
         echo '</label>';
 
         echo '</div><div style="margin-top: 12px;">';
@@ -503,7 +554,7 @@ class StatusesUI {
         ) . ' ';
 
         echo '<label for="moderation_statuses_default_to_highest">';
-        esc_html_e('Bypass by default: Publish button defaults to maximum available status', 'publishpress-statuses');
+        echo esc_html(self::settingChoices('moderation_statuses_default_by_sequence')['0']);
         echo '</label>';
 
         echo '</div><div style="margin-top: 12px;">';
@@ -517,7 +568,7 @@ class StatusesUI {
         ) . ' ';
 
         echo '<label for="moderation_statuses_no_workflow">';
-        esc_html_e('No workflow guidance', 'publishpress-statuses');
+        echo esc_html(self::settingChoices('moderation_statuses_default_by_sequence')['none']);
         echo '</label>';
 
         echo '</div></div>';
@@ -666,9 +717,9 @@ class StatusesUI {
         );
 
         ?>
-        <option value='' <?php if (empty($option_val)) echo "selected";?>><?php esc_html_e('Automatic Detection', 'publishpress-statuses');?></option>
-        <option value='classic' <?php if ('classic' === $option_val) echo "selected";?>><?php esc_html_e('Using Classic Editor', 'publishpress-statuses');?></option>
-        <option value='gutenberg' <?php if ('gutenberg' === $option_val) echo "selected";?>><?php esc_html_e('Using Gutenberg Editor', 'publishpress-statuses');?></option>
+        <?php foreach (self::settingChoices('force_editor_detection') as $value => $label) : ?>
+            <option value="<?php echo esc_attr($value); ?>" <?php selected($option_val, $value); ?>><?php echo esc_html($label); ?></option>
+        <?php endforeach; ?>
         </select> 
 
         <p class="pp-option-footnote">
@@ -694,8 +745,9 @@ class StatusesUI {
         );
 
         ?>
-        <option value='' <?php if (empty($option_val)) echo "selected";?>><?php esc_html_e('For all plugin statuses', 'publishpress-statuses');?></option>
-        <option value='user' <?php if ('user' === $option_val) echo "selected";?>><?php esc_html_e('For user-created plugin statuses only', 'publishpress-statuses');?></option>
+        <?php foreach (self::settingChoices('label_storage') as $value => $label) : ?>
+            <option value="<?php echo esc_attr($value); ?>" <?php selected($option_val, $value); ?>><?php echo esc_html($label); ?></option>
+        <?php endforeach; ?>
         </select> 
 
         <p class="pp-option-footnote">
@@ -716,18 +768,7 @@ class StatusesUI {
             return;
         }
 
-        if (empty($post_types)) {
-            $post_types = [
-                'post' => __('Posts'),
-                'page' => __('Pages'),
-            ];
-
-            $custom_post_types = $pp->get_supported_post_types();
-
-            foreach ($custom_post_types as $custom_post_type => $args) {
-                $post_types[$custom_post_type] = $args->label;
-            }
-        }
+        $post_types = self::settingsPostTypes();
         ?>
 
         <div class="pp-statuses-post-types">
@@ -748,7 +789,7 @@ class StatusesUI {
             }
 
             // Defining post_type_supports in the functions.php file or similar should disable the checkbox
-            disabled(post_type_supports($post_type, 'pp_custom_statuses'), true);
+            disabled(!self::canChangePostType($post_type));
             echo ' type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;' . esc_html($title) . '</label>';
             
             // Leave a note to the admin as a reminder that add_post_type_support has been used somewhere in their code
@@ -827,20 +868,7 @@ class StatusesUI {
             return;
         }
 
-        if (empty($post_types)) {
-            $post_types = [
-                'post' => __('Posts'),
-                'page' => __('Pages'),
-            ];
-
-            $custom_post_types = $pp->get_supported_post_types();
-
-            foreach ($custom_post_types as $custom_post_type => $args) {
-                if (!\PublishPress_Statuses::DisabledForPostType($custom_post_type)) {
-                    $post_types[$custom_post_type] = $args->label;
-                }
-            }
-        }
+        $post_types = self::settingsPostTypes(true);
         ?>
 
         <div class="pp-statuses-post-types">
@@ -871,12 +899,8 @@ class StatusesUI {
 
             <td style="text-align: left">
             <select name="<?php echo esc_attr($pp->options_group_name) . '[default_privacy][' . esc_attr($post_type) . ']';?>" autocomplete="off">
-                <option value=""><?php esc_html_e('Published'); ?></option>
-
-                <?php foreach (get_post_stati(['private' => true], 'object') as $status_obj) :
-                    $selected = ($status_obj->name == $setting) ? ' selected ' : '';
-                ?>
-                    <option value="<?php echo esc_attr($status_obj->name); ?>" <?php echo esc_attr($selected); ?>><?php echo esc_html($status_obj->label); ?></option>
+                <?php foreach (self::settingChoices('default_privacy') as $value => $label) : ?>
+                    <option value="<?php echo esc_attr($value); ?>" <?php selected($setting, $value); ?>><?php echo esc_html($label); ?></option>
                 <?php endforeach; ?>
             </select>
 

@@ -6,6 +6,9 @@ if (!function_exists('wp_register_ability') || defined('PUBLISHPRESS_STATUSES_MC
 }
 define('PUBLISHPRESS_STATUSES_MCP_LOADED', true);
 require_once dirname(__DIR__) . '/StatusHandler.php';
+require_once dirname(__DIR__) . '/Admin.php';
+require_once dirname(__DIR__) . '/StatusEditUI.php';
+require_once dirname(__DIR__) . '/StatusesUI.php';
 require_once __DIR__ . '/Registry.php';
 require_once __DIR__ . '/Settings.php';
 require_once __DIR__ . '/Actions.php';

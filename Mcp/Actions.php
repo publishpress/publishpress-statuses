@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress_Statuses\Mcp;
 
+use PublishPress_Statuses\Admin;
+use PublishPress_Statuses\StatusEditUI;
 use PublishPress_Statuses\StatusHandler;
 
 \defined('ABSPATH') || exit;
@@ -30,9 +32,9 @@ class Actions
         $register('update-plugin-settings', 'Update Statuses settings', 'Patch settings using discovery types. JSON booleans, string choices and keyed post-type objects are distinct. Omitted fields and object entries are preserved. Read expected_hash first; dry_run previews without writes.', Registry::object($revision + ['settings' => Registry::object(Settings::schemas(true))], ['settings', 'expected_hash']), [Settings::class, 'save'], true, false, 'settingsPermission');
         $register('list-statuses', 'Discover editorial statuses and workflow', 'Read status labels, colors, icons, button captions, post-type availability, hierarchy, disabled status and main/alternate/revision workflow order. Active Pro adds visibility and revision statuses.', Registry::object(), 'listing');
         $register('get-status', 'Read an editorial status', 'Read one native status, its editable field contract and revision. Use save-status for properties and set-status-roles for assignment permissions.', Registry::object(['name' => Registry::text(40)], ['name']), 'read');
-        $register('save-status', 'Create or update an editorial status', 'Create a custom moderation status or patch native properties, labels, color, icon, post types or parent. Slugs cannot be renamed. post_type [] means all enabled post types. Pro visibility and revision creation requires the active native taxonomy. expected_hash is required for edits; dry_run previews.', Registry::object($revision + ['name' => $slug, 'taxonomy' => ['type' => 'string', 'enum' => self::taxonomies()], 'properties' => Registry::object(self::propertySchemas())], ['name', 'properties']), 'save', true);
+        $register('save-status', 'Create or update an editorial status', 'Create a custom status using Name form properties, then patch editable fields returned by get-status. Use post_type [] for all enabled post types. Pro visibility and revision creation requires an active native taxonomy. Edits require expected_hash.', Registry::object($revision + ['name' => $slug, 'taxonomy' => ['type' => 'string', 'enum' => self::taxonomies()], 'properties' => Registry::object(self::propertySchemas(null, true))], ['name', 'properties']), 'save', true);
         $register('set-workflow-order', 'Arrange main and alternate workflows', 'Supply the complete names array from list-statuses in the desired order, retaining every section marker. Moving statuses after the disabled marker disables them. Hierarchy uses save-status status_parent. Pro revision markers remain in native order.', Registry::object($revision + ['names' => Registry::listOf(Registry::text(40), 1000)], ['names', 'expected_hash']), 'order', true, true);
-        $register('delete-status', 'Delete a custom editorial status', 'Delete a custom status and reassign all affected posts to an explicit destination using the native deletion service. Built-in statuses cannot be deleted. Every affected post requires read/edit and target-status permissions; at most 1,000 posts. Inspect complete after saving.', Registry::object($revision + ['name' => $slug, 'reassign_to' => Registry::text(40)], ['name', 'reassign_to', 'expected_hash']), 'deleteStatus', true, true);
+        $register('delete-status', 'Delete a custom editorial status', 'Delete a custom status and reassign affected posts to Draft, the native deletion destination. Built-in statuses cannot be deleted. Every affected post requires read/edit and target-status permissions; at most 1,000 posts. Inspect complete after saving.', Registry::object($revision + ['name' => $slug, 'reassign_to' => Registry::text(40)], ['name', 'reassign_to', 'expected_hash']), 'deleteStatus', true, true);
         $register('get-status-roles', 'Read roles allowed to assign a status', 'Read editable role assignment flags and, with Pro, declared status-specific content capabilities. Never exposes arbitrary role capability dictionaries.', Registry::object(['name' => Registry::text(40)], ['name']), 'roles');
         $register('set-status-roles', 'Set roles allowed to assign a status', 'Patch native assignment flags by editable role slug using JSON booleans. Requires manage_options and native status-management authority. Only this status assignment capability is changed. Existing unrelated role capabilities are preserved.', Registry::object($revision + ['name' => Registry::text(40), 'roles' => Registry::object(array_fill_keys(array_keys(wp_roles()->roles), ['type' => 'boolean']))], ['name', 'roles', 'expected_hash']), 'saveRoles', true, true, 'settingsPermission');
         $register('get-post-workflow', 'Read a post editorial workflow', 'Read current and next editorial status and available status choices for an explicit editable post, without reading post content. Requires post read/edit permission; disabled post types and revision objects are excluded.', Registry::object(['id' => Registry::id()], ['id']), 'postRead', false, false, 'loggedIn');
@@ -110,13 +112,16 @@ class Actions
         if (Registry::pro()) {
             $types = apply_filters('publishpress_statuses_taxonomies', array_merge($types, [\PublishPress_Statuses::TAXONOMY_PRIVACY]));
         }
-        return array_values(array_filter(array_unique($types), 'taxonomy_exists'));
+        return array_values(array_filter(array_unique($types), static function ($taxonomy) {
+            return taxonomy_exists($taxonomy)
+                && ($taxonomy !== \PublishPress_Statuses::TAXONOMY_PRIVACY || get_option('presspermit_privacy_statuses_enabled', 1));
+        }));
     }
 
     private static function statuses()
     {
         \PublishPress_Statuses::instance()->clearStatusCache();
-        return \PublishPress_Statuses::getPostStati([], ['output' => 'object'], ['show_disabled' => true, 'context' => 'load']);
+        return \PublishPress_Statuses::getPostStati([], ['output' => 'object'], ['show_disabled' => true, 'context' => 'load', 'include_admin_statuses' => true]);
     }
 
     private static function status($name)
@@ -178,17 +183,79 @@ class Actions
         return ['items' => array_values(array_map([self::class, 'summary'], $statuses)), 'names' => array_keys($statuses), 'stored_order' => array_values((array) get_option('publishpress_status_positions', [])), 'taxonomies' => self::taxonomies(), 'pro' => Registry::pro(), 'expected_hash' => Registry::hash(self::state())];
     }
 
-    public static function propertySchemas()
+    public static function propertySchemas($status = null, $registration = false)
     {
-        return [
+        $fields = [
             'label' => ['type' => 'string', 'minLength' => 1, 'maxLength' => 20],
             'description' => Registry::text(5000),
             'color' => ['type' => 'string', 'pattern' => '^$|^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$'],
             'icon' => ['type' => 'string', 'maxLength' => 100, 'pattern' => '^[a-z0-9_-]*$'],
-            'post_type' => Registry::listOf(['type' => 'string', 'enum' => array_keys(\PublishPress_Statuses::instance()->get_supported_post_types())]),
+            'post_type' => Registry::listOf(Registry::text(20)),
             'status_parent' => Registry::text(40),
             'labels' => Registry::object(['save_as' => Registry::text(100), 'publish' => Registry::text(100)]),
         ];
+        if ($registration) {
+            return $fields;
+        }
+        $fields['icon']['enum'] = self::iconChoices();
+        if (!$status) {
+            return array_intersect_key($fields, array_fill_keys(['label', 'description', 'color', 'icon'], true));
+        }
+        if (!self::hasStatusForm($status)) {
+            return [];
+        }
+        $tabs = self::statusTabs($status);
+        if (!StatusHandler::canCustomizeLabels($status)) {
+            unset($fields['label']);
+        }
+        if (!isset($tabs['labels'])) {
+            unset($fields['labels'], $fields['description'], $fields['label']);
+        }
+        if (!isset($tabs['post_types'])) {
+            unset($fields['post_type']);
+        } else {
+            $fields['post_type']['items']['enum'] = array_keys(StatusEditUI::getAssignablePostTypes());
+        }
+        if (!self::canNest($status)) {
+            unset($fields['status_parent']);
+        }
+        $meta = apply_filters('publishpress_statuses_meta_fields', ['labels', 'post_type', 'roles', 'status_parent', 'color', 'icon']);
+        return array_intersect_key($fields, array_fill_keys(array_merge(['label', 'description'], $meta), true));
+    }
+
+    private static function hasStatusForm($status)
+    {
+        return empty($status->internal) && strpos($status->name, '_') !== 0
+            && (empty($status->taxonomy) || $status->taxonomy === \PublishPress_Statuses::TAXONOMY_CORE_STATUS
+                || in_array($status->taxonomy, self::taxonomies(), true));
+    }
+
+    private static function statusTabs($status)
+    {
+        return apply_filters('publishpress_statuses_edit_status_tabs', StatusEditUI::getPropertyTabs($status), $status->name);
+    }
+
+    private static function canNest($status)
+    {
+        return self::hasStatusForm($status) && empty($status->private) && empty($status->public)
+            && !in_array($status->name, ['draft', 'future', 'pending', 'draft-revision', 'pending-revision', 'future-revision'], true);
+    }
+
+    private static function iconChoices()
+    {
+        // Read the choices from the same bundled picker used by the Name form.
+        static $choices;
+        if (!isset($choices)) {
+            $script = file_get_contents(dirname(__DIR__) . '/common/libs/icon-picker/icon-picker.js');
+            $choices = [''];
+            if ($script && preg_match('/var icons = \[([^\]]*)\]/', $script, $list)) {
+                preg_match_all("/'([a-z0-9-]+)'/", $list[1], $matches);
+                foreach ($matches[1] as $name) {
+                    $choices[] = 'dashicons-' . $name;
+                }
+            }
+        }
+        return $choices;
     }
 
     public static function read($input)
@@ -197,17 +264,19 @@ class Actions
         if (!$status) {
             return Registry::error(__('Unknown status.', 'publishpress-statuses'), 404);
         }
-        return ['status' => self::summary($status), 'fields' => (object) self::propertySchemas(), 'locked_fields' => StatusHandler::canCustomizeLabels($status) ? [] : ['label', 'labels'], 'expected_hash' => Registry::hash(self::state())];
+        $fields = self::propertySchemas($status);
+        return ['status' => self::summary($status), 'fields' => (object) $fields, 'locked_fields' => array_values(array_diff(array_keys(self::propertySchemas(null, true)), array_keys($fields))), 'expected_hash' => Registry::hash(self::state())];
     }
 
     public static function save($input)
     {
         $status = self::status($input['name']);
-        $patch = Registry::validate($input['properties'], Registry::object(self::propertySchemas()));
+        $patch = Registry::validate($input['properties'], Registry::object(self::propertySchemas($status)));
         if (is_wp_error($patch)) {
             return $patch;
         }
-        if (isset($input['taxonomy']) && !in_array($input['taxonomy'], self::taxonomies(), true)) {
+        $taxonomy = $input['taxonomy'] ?? \PublishPress_Statuses::TAXONOMY_PRE_PUBLISH;
+        if ((isset($input['taxonomy']) || !$status) && !in_array($taxonomy, self::taxonomies(), true)) {
             return Registry::error();
         }
         if ($status && is_wp_error($check = Registry::stale($input, self::state()))) {
@@ -216,26 +285,37 @@ class Actions
         if (isset($patch['labels']) && !$patch['labels']) {
             unset($patch['labels']);
         }
+        $meta = apply_filters('publishpress_statuses_meta_fields', ['labels', 'post_type', 'roles', 'status_parent', 'color', 'icon']);
+        if (array_diff(array_keys($patch), array_merge(['label', 'description'], $meta))) {
+            return Registry::error();
+        }
+        if ($status && isset($input['taxonomy']) && $input['taxonomy'] !== $status->taxonomy) {
+            return Registry::error(__('An existing status cannot change taxonomy.', 'publishpress-statuses'));
+        }
+        if ($status && !self::hasStatusForm($status)) {
+            return Registry::denied();
+        }
         if ($status && !$patch) {
             if (!self::metadataAllowed($status, [])) {
                 return Registry::denied();
             }
             return ($input['dry_run'] ?? false) ? ['dry_run' => true, 'changes' => (object) []] : self::read($input) + ['complete' => true];
         }
-        if ($status && isset($input['taxonomy']) && $input['taxonomy'] !== $status->taxonomy) {
-            return Registry::error(__('An existing status cannot change taxonomy.', 'publishpress-statuses'));
-        }
-        if (!$status && (!isset($patch['label']) || get_post_status_object($input['name']) || is_numeric($input['name']))) {
+        if (!$status && (!isset($patch['label']) || get_post_status_object($input['name'])
+            || is_numeric($input['name']) || StatusHandler::is_restricted_status($input['name'])
+            || $input['name'] !== apply_filters('publishpress_statuses_add_status', $input['name'], $taxonomy))) {
             return Registry::error(__('Supply a label and an unused nonnumeric status slug.', 'publishpress-statuses'));
         }
-        if ($status && in_array($input['name'], ['_disabled', '_pre-publish-alternate', '_revision-alternate', '_revision-status'], true)) {
-            return Registry::error(__('Workflow section markers are not editable statuses.', 'publishpress-statuses'));
-        }
-        if ((isset($patch['label']) || isset($patch['labels'])) && $status && !StatusHandler::canCustomizeLabels($status)) {
-            return Registry::error(__('This native status label is locked.', 'publishpress-statuses'), 403);
-        }
-        if (isset($patch['label']) && $status && is_numeric($patch['label'])) {
-            return Registry::error(__('Use a nonnumeric native status label.', 'publishpress-statuses'));
+        if (!$status) {
+            $type = get_taxonomy($taxonomy);
+            if (!$type || !current_user_can($type->cap->edit_terms)) {
+                return Registry::denied();
+            }
+            foreach (self::taxonomies() as $existingTaxonomy) {
+                if (get_term_by('slug', $input['name'], $existingTaxonomy)) {
+                    return Registry::error(__('Name conflicts with existing status. Please choose another.', 'publishpress-statuses'));
+                }
+            }
         }
         if (isset($patch['labels']) && $status) {
             $taxonomy = !empty($status->_builtin) ? \PublishPress_Statuses::TAXONOMY_CORE_STATUS : ($status->taxonomy ?: \PublishPress_Statuses::TAXONOMY_PRE_PUBLISH);
@@ -246,7 +326,7 @@ class Actions
         }
         if (isset($patch['status_parent']) && $patch['status_parent'] !== '') {
             $parent = self::status($patch['status_parent']);
-            if (!$parent || strpos($parent->name, '_') === 0 || !empty($parent->private) || !empty($parent->status_parent) || $parent->name === $input['name'] || ($status && !empty($status->private)) || (($input['taxonomy'] ?? '') === \PublishPress_Statuses::TAXONOMY_PRIVACY) || (!empty($parent->for_revision) !== ($status ? !empty($status->for_revision) : ($input['taxonomy'] ?? '') === 'pp_revision_status')) || !empty(\PublishPress_Statuses::getStatusChildren($input['name']))) {
+            if (!$parent || !self::hasStatusForm($parent) || !empty($parent->private) || !empty($parent->public) || in_array($parent->name, ['draft', 'future', 'draft-revision', 'future-revision'], true) || !empty($parent->status_parent) || $parent->name === $input['name'] || ($status && !empty($status->private)) || (($input['taxonomy'] ?? '') === \PublishPress_Statuses::TAXONOMY_PRIVACY) || (!empty($parent->for_revision) !== ($status ? !empty($status->for_revision) : ($input['taxonomy'] ?? '') === 'pp_revision_status')) || self::hasChildren($input['name']) || self::workflowGroup($parent) !== self::workflowGroup($status)) {
                 return Registry::error(__('Choose a top-level moderation parent without creating a cycle or third nesting level.', 'publishpress-statuses'));
             }
         }
@@ -255,7 +335,11 @@ class Actions
                 $patch[$key] = sanitize_text_field($patch[$key]);
             }
         }
-        if (isset($patch['label']) && $patch['label'] === '') {
+        if (isset($patch['description'])) {
+            $patch['description'] = stripslashes(wp_filter_nohtml_kses($patch['description']));
+        }
+        if (isset($patch['label']) && (empty($patch['label']) || ($status && is_numeric($patch['label']))
+            || (function_exists('mb_strlen') ? mb_strlen($patch['label']) : strlen($patch['label'])) > 20)) {
             return Registry::error();
         }
         if ($status && !self::metadataAllowed($status, $patch)) {
@@ -274,7 +358,6 @@ class Actions
         if ($status) {
             $result = StatusHandler::updateCustomStatus($input['name'], $patch, [self::class, 'authorizeTerm']);
         } else {
-            $taxonomy = $input['taxonomy'] ?? \PublishPress_Statuses::TAXONOMY_PRE_PUBLISH;
             $result = \PublishPress_Statuses::instance()->addStatus($taxonomy, $patch['label'], ['slug' => $input['name']] + $patch, [self::class, 'authorizeTerm']);
         }
         if (is_wp_error($result) || !$result) {
@@ -322,15 +405,103 @@ class Actions
         return !$term || self::authorizeTerm($term->term_id, $patch);
     }
 
+    private static function hasChildren($name)
+    {
+        foreach (self::statuses() as $status) {
+            if (($status->status_parent ?? '') === $name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static function workflowGroup($status)
+    {
+        if (!empty($status->for_revision)) {
+            return 'revision';
+        }
+        if (!empty($status->private)) {
+            return 'visibility';
+        }
+        return 'moderation';
+    }
+
+    private static function validOrder(array $statuses, array $names)
+    {
+        $positions = array_flip($names);
+        $original = array_flip(array_keys($statuses));
+        $hideManual = !empty(\PublishPress_Statuses::instance()->options->hide_manual_status_selectors);
+        foreach ($statuses as $name => $status) {
+            if (strpos($name, '_') === 0) {
+                continue;
+            }
+            // Preserve the relative order of the unsortable core rows and section markers.
+            if (!empty($status->public) || in_array($name, ['draft', 'future', 'private'], true)) {
+                foreach ($statuses as $other => $object) {
+                    if ($other === $name || (strpos($other, '_') !== 0 && empty($object->public)
+                        && !in_array($other, ['draft', 'future', 'private'], true))) {
+                        continue;
+                    }
+                    if (($original[$name] < $original[$other]) !== ($positions[$name] < $positions[$other])) {
+                        return false;
+                    }
+                }
+                continue;
+            }
+            $position = $positions[$name];
+            if ($hideManual && in_array($name, ['deferred', 'needs-work', 'rejected'], true)
+                && ($position < ($positions['_pre-publish-alternate'] ?? PHP_INT_MAX)) !== ($original[$name] < ($original['_pre-publish-alternate'] ?? PHP_INT_MAX))) {
+                return false;
+            }
+            $parent = $status->status_parent ?? '';
+            if ($parent && isset($positions[$parent])) {
+                foreach (['_pre-publish-alternate', '_revision-alternate', '_disabled'] as $marker) {
+                    if (isset($positions[$marker]) && ($position < $positions[$marker]) !== ($positions[$parent] < $positions[$marker])) {
+                        return false;
+                    }
+                }
+            }
+            $after = static function ($marker) use ($name, $position, $positions, $original) {
+                return isset($positions[$marker]) && $position > $positions[$marker] && $original[$name] < $original[$marker];
+            };
+            $before = static function ($marker) use ($name, $position, $positions, $original) {
+                return isset($positions[$marker]) && $position < $positions[$marker] && $original[$name] > $original[$marker];
+            };
+            if ($position >= ($positions['_disabled'] ?? PHP_INT_MAX)) {
+                if ($after('_disabled') && in_array($name, ['pending', 'draft-revision', 'pending-revision', 'future-revision'], true)) {
+                    return false;
+                }
+                continue;
+            }
+            if (!empty($status->for_revision)) {
+                if ($before('_revision-workflow')
+                    || (in_array($name, ['draft-revision', 'pending-revision', 'future-revision'], true) && $after('_revision-alternate'))) {
+                    return false;
+                }
+            } elseif (!empty($status->private)) {
+                if ($before('private') || $after('_revision-workflow')) {
+                    return false;
+                }
+            } elseif ($before('draft') || $after('future') || ($name === 'pending' && $after('_pre-publish-alternate'))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static function order($input)
     {
-        $names = array_keys(self::statuses());
+        $statuses = self::statuses();
+        $names = array_keys($statuses);
         $markers = static function ($name) { return strpos($name, '_') === 0; };
         if (array_values(array_filter($names, $markers)) !== array_values(array_filter($input['names'], $markers))) {
             return Registry::error(__('Retain the native section-marker order.', 'publishpress-statuses'));
         }
-        if (array_diff($names, $input['names']) || array_diff($input['names'], $names) || is_wp_error($check = Registry::stale($input, self::state()))) {
+        if (count($names) !== count($input['names']) || array_diff($names, $input['names']) || array_diff($input['names'], $names) || is_wp_error($check = Registry::stale($input, self::state()))) {
             return isset($check) && is_wp_error($check) ? $check : Registry::error(__('Retain every current status and section marker exactly once.', 'publishpress-statuses'));
+        }
+        if ($names !== $input['names'] && !self::validOrder($statuses, $input['names'])) {
+            return Registry::error(__('Keep statuses within the sections allowed by the native workflow editor.', 'publishpress-statuses'));
         }
         if ($input['dry_run'] ?? false) {
             return ['dry_run' => true, 'names' => $input['names']];
@@ -351,29 +522,36 @@ class Actions
         }
         $cap = str_replace('-', '_', 'status_change_' . $status->name);
         $roles = [];
-        foreach (wp_roles()->roles as $role => $details) {
-            if (\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true])) {
+        $assignment = self::hasStatusForm($status) && isset(self::statusTabs($status)['roles']);
+        foreach ($assignment ? wp_roles()->roles : [] as $role => $details) {
+            if (\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true]) && !StatusEditUI::roleAssignmentLocked($role, get_role($role))) {
                 $roles[$role] = !empty($details['capabilities'][$cap]);
             }
         }
         $modes = (array) get_option('presspermit_status_capability_status', []);
-        $caps = Registry::pro() && method_exists('PublishPress\\StatusCapabilities', 'getStatusCapabilityNames') ? \PublishPress\StatusCapabilities::getStatusCapabilityNames($status->name) : [];
+        $caps = self::hasStatusForm($status) && Registry::pro() && method_exists('PublishPress\\StatusCapabilities', 'canEditStatusCapability') ? \PublishPress\StatusCapabilities::getStatusCapabilityNames($status->name) : [];
         $capabilities = [];
-        foreach (array_keys($roles) as $role) {
+        foreach ($caps ? array_keys(wp_roles()->roles) : [] as $role) {
+            if ($role === 'administrator' || !\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true])) {
+                continue;
+            }
             foreach ($caps as $cap) {
-                $capabilities[$role][$cap] = get_role($role)->has_cap($cap);
+                if (\PublishPress\StatusCapabilities::canEditStatusCapability($status->name, $role, $cap)) {
+                    $capabilities[$role][$cap] = get_role($role)->has_cap($cap);
+                }
             }
         }
-        return ['name' => $status->name, 'roles' => (object) $roles, 'capability_status_choices' => Registry::pro() && method_exists('PublishPress\\StatusCapabilities', 'getCapabilityStatusChoices') ? \PublishPress\StatusCapabilities::getCapabilityStatusChoices($status->name) : [], 'capability_names' => $caps, 'capabilities' => (object) array_map(static function ($values) { return (object) $values; }, $capabilities), 'capability_status' => Registry::pro() ? ($status->capability_status ?? ($modes[$status->name] ?? '')) : '', 'expected_hash' => Registry::hash(self::roleState($status->name))];
+        return ['name' => $status->name, 'roles' => (object) $roles, 'capability_status_choices' => self::hasStatusForm($status) && Registry::pro() && method_exists('PublishPress\\StatusCapabilities', 'getCapabilityStatusChoices') ? \PublishPress\StatusCapabilities::getCapabilityStatusChoices($status->name) : [], 'capability_names' => $caps, 'capabilities' => (object) array_map(static function ($values) { return (object) $values; }, $capabilities), 'capability_status' => Registry::pro() ? ($status->capability_status ?? ($modes[$status->name] ?? '')) : '', 'expected_hash' => Registry::hash(self::roleState($status->name))];
     }
 
     public static function saveRoles($input)
     {
-        if (!self::manage() || !self::status($input['name']) || is_wp_error($check = Registry::stale($input, self::roleState($input['name'])))) {
+        $status = self::status($input['name']);
+        if (!self::manage() || !$status || !self::hasStatusForm($status) || !isset(self::statusTabs($status)['roles']) || is_wp_error($check = Registry::stale($input, self::roleState($input['name'])))) {
             return isset($check) && is_wp_error($check) ? $check : Registry::denied();
         }
         foreach ($input['roles'] as $role => $enabled) {
-            if (!\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true])) {
+            if (!\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true]) || StatusEditUI::roleAssignmentLocked($role, get_role($role))) {
                 return Registry::denied();
             }
         }
@@ -381,7 +559,7 @@ class Actions
             return ['dry_run' => true, 'roles' => (object) $input['roles']];
         }
         foreach ($input['roles'] as $role => $enabled) {
-            if (!current_user_can('manage_options') || !self::manage() || !StatusHandler::setRoleAssignment($input['name'], $role, $enabled)) {
+            if (!current_user_can('manage_options') || !self::manage() || StatusEditUI::roleAssignmentLocked($role, get_role($role)) || !StatusHandler::setRoleAssignment($input['name'], $role, $enabled)) {
                 return ['complete' => false, 'name' => $input['name']];
             }
         }
@@ -395,7 +573,7 @@ class Actions
 
     public static function saveCapabilities($input)
     {
-        if (!Registry::pro() || !self::manage() || !method_exists('PublishPress\\StatusCapabilities', 'getStatusCapabilityNames') || !self::status($input['name'])) {
+        if (!Registry::pro() || !self::manage() || !method_exists('PublishPress\\StatusCapabilities', 'getStatusCapabilityNames') || !($status = self::status($input['name'])) || !self::hasStatusForm($status)) {
             return Registry::denied();
         }
         if (is_wp_error($check = Registry::stale($input, self::roleState($input['name'])))) {
@@ -408,11 +586,11 @@ class Actions
             return $patch;
         }
         foreach ($patch as $role => $caps) {
-            if (!\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true])) {
+            if ($role === 'administrator' || !\PP_Statuses_Functions::isEditableRole($role, ['force_refresh' => true])) {
                 return Registry::denied();
             }
             foreach ($caps as $cap => $enabled) {
-                if (preg_match('/^(manage_|edit_users$|promote_users$|create_users$|delete_users$|remove_users$|install_|activate_|update_|switch_themes$|edit_plugins$|edit_themes$|edit_files$|edit_theme_options$|delete_plugins$|delete_themes$|resume_plugins$|resume_themes$|unfiltered_)/', $cap) || ($enabled && !current_user_can($cap))) {
+                if (!method_exists('PublishPress\\StatusCapabilities', 'canEditStatusCapability') || !\PublishPress\StatusCapabilities::canEditStatusCapability($status->name, $role, $cap) || preg_match('/^(manage_|edit_users$|promote_users$|create_users$|delete_users$|remove_users$|install_|activate_|update_|switch_themes$|edit_plugins$|edit_themes$|edit_files$|edit_theme_options$|delete_plugins$|delete_themes$|resume_plugins$|resume_themes$|unfiltered_)/', $cap) || ($enabled && !current_user_can($cap))) {
                     return Registry::denied();
                 }
             }
@@ -422,7 +600,12 @@ class Actions
         }
         require_once PUBLISHPRESS_STATUSES_PRO_ABSPATH . '/modules/status-capabilities/StatusSavePro.php';
         foreach ($patch as $role => $caps) {
-            if (!current_user_can('manage_options') || !self::manage() || !\PublishPress\StatusCapabilities\StatusSavePro::applyRoleCapabilities($role, $caps, static function ($cap, $enabled) { return current_user_can('manage_options') && self::manage() && (!$enabled || current_user_can($cap)); })) {
+            $authorize = static function ($cap, $enabled) use ($status, $role) {
+                return current_user_can('manage_options') && self::manage()
+                    && \PublishPress\StatusCapabilities::canEditStatusCapability($status->name, $role, $cap)
+                    && (!$enabled || current_user_can($cap));
+            };
+            if (!\PublishPress\StatusCapabilities\StatusSavePro::applyRoleCapabilities($role, $caps, $authorize)) {
                 return ['complete' => false, 'name' => $input['name']];
             }
         }
@@ -438,7 +621,7 @@ class Actions
 
     public static function capabilityStatus($input)
     {
-        if (!Registry::pro() || !self::manage() || !$status = self::status($input['name'])) {
+        if (!Registry::pro() || !self::manage() || !($status = self::status($input['name'])) || !self::hasStatusForm($status)) {
             return Registry::denied();
         }
         if (is_wp_error($check = Registry::stale($input, self::roleState($input['name'])))) {
@@ -467,8 +650,35 @@ class Actions
         if (!$status || !empty($status->disabled) || !empty($status->for_revision) || !empty($status->internal) || in_array($name, ['trash', 'auto-draft', 'inherit', 'new', 'future'], true) || (!empty($status->post_type) && !in_array($post->post_type, $status->post_type, true))) {
             return false;
         }
+        if (!empty($status->public) && $name !== 'publish') {
+            return false;
+        }
         if (!empty($status->private) && $name !== 'private' && !get_option('presspermit_privacy_statuses_enabled', 1)) {
             return false;
+        }
+        $options = \PublishPress_Statuses::instance()->options;
+        $current = get_post_status_object($post->post_status);
+        if (!empty($options->force_default_privacy[$post->post_type])) {
+            $visibility = ($options->default_privacy[$post->post_type] ?? '') ?: 'publish';
+            if ((!empty($status->public) || !empty($status->private)) && $name !== $visibility) {
+                return false;
+            }
+            if (!empty($options->lock_publication) && (!empty($current->public) || !empty($current->private))
+                && $name !== $post->post_status && !current_user_can('pp_unpublish_posts')) {
+                return false;
+            }
+        }
+        if (empty($status->public) && empty($status->private)) {
+            if (!isset(Admin::get_selectable_statuses($post)[$name])) {
+                return false;
+            }
+            if (!empty($options->hide_manual_status_selectors) && !\PublishPress_Statuses::isContentAdministrator()
+                && $name !== $post->post_status) {
+                $next = \PublishPress_Statuses::getNextStatusObject($post->ID);
+                if (!$next || $next->name !== $name) {
+                    return false;
+                }
+            }
         }
         $type = get_post_type_object($post->post_type);
         $caps = ['draft' === $name ? $type->cap->edit_posts : str_replace('-', '_', 'status_change_' . $name)];
@@ -526,10 +736,19 @@ class Actions
         $request = new \WP_REST_Request('POST', '/' . $type->rest_namespace . '/' . ($type->rest_base ?: $type->name) . '/' . $post->ID);
         $request->set_param('id', $post->ID);
         $request->set_param('status', $input['status']);
+        $target = self::status($input['status']);
+        if (empty($target->public) && empty($target->private)) {
+            $request->set_param('pp_status_selection', $input['status']);
+        }
         $request->set_param('context', 'edit');
         $permission = $controller->update_item_permissions_check($request);
         if (is_wp_error($permission) || !$permission) {
             return is_wp_error($permission) ? $permission : Registry::denied();
+        }
+        $schema = $controller->get_item_schema()['properties']['status'] ?? null;
+        $valid = $schema ? rest_validate_value_from_schema($input['status'], $schema, 'status') : Registry::denied();
+        if (is_wp_error($valid)) {
+            return $valid;
         }
         if ($input['dry_run'] ?? false) {
             return ['dry_run' => true, 'id' => $post->ID, 'status' => $input['status']];
@@ -590,11 +809,17 @@ class Actions
         global $wpdb;
         $status = self::status($input['name']);
         $target = self::status($input['reassign_to']);
-        if (!$status || !$target || $status->name === $target->name || !empty($status->_builtin) || !empty($status->pp_builtin)) {
+        if (!$status || !$target || !self::hasStatusForm($status) || !self::hasStatusForm($target) || !empty($target->disabled) || !empty($target->for_revision) || $status->name === $target->name || !empty($status->_builtin) || !empty($status->pp_builtin)) {
             return Registry::error(__('Only user-created statuses can be deleted through MCP.', 'publishpress-statuses'));
         }
         if (is_wp_error($check = Registry::stale($input, self::state()))) {
             return $check;
+        }
+        if (self::hasChildren($status->name)) {
+            return Registry::error(__('Move or remove child statuses before deleting their parent.', 'publishpress-statuses'));
+        }
+        if ($target->name !== \PublishPress_Statuses::DEFAULT_STATUS) {
+            return Registry::error(__('Choose the native deletion destination, Draft.', 'publishpress-statuses'));
         }
         if (!empty($status->private) && Registry::pro()) {
             if (!method_exists('PublishPress\\StatusCapabilities', 'statusHasVisibilityConditions') || \PublishPress\StatusCapabilities::statusHasVisibilityConditions($status->name) !== false) {
