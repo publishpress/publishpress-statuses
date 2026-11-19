@@ -1,4 +1,8 @@
-The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
+
+[1.3.8] - 19 Nov 2026
+- Added : PublishPress Hub MCP actions for native status settings, workflows and permissions.
 
 [1.3.7] - 11 Nov 2026
 

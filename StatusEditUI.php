@@ -6,31 +6,11 @@ namespace PublishPress_Statuses;
 // Custom Status management: Status Edit UI
 class StatusEditUI
 {
-    public static function display($args = []) {
-        $action = (!empty($args['action'])) ? $args['action'] : 'edit-status';
-
-        // Check whether the term exists
-        $name = \PP_Statuses_Functions::REQUEST_key('name');
-
-        if (!$status = \PublishPress_Statuses::getStatusBy('id', $name)) {
-            echo '<div class="error"><p>' . esc_html(\PublishPress_Statuses::instance()->messages['status-missing']) . '</p></div>';
-            return;
-        }
-
-        $url_args = ['action' => 'statuses'];
-
-        if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
-            $url_args['status_type'] = $status_type;
-        }
-
-        $url = apply_filters(
-        	'publishpress_statuses_edit_status_url', 
-        	\PublishPress_Statuses::getLink($url_args),
-        	$status
-        );
-
+    public static function getPropertyTabs($status)
+    {
         $editable_taxonomies = apply_filters('publishpress_statuses_editable_taxonomies', ['post_status']);
 
+        $name = $status->name;
         $tabs = ['name' => __('Name')];
 
         if (empty($status->publish) && !in_array($name, ['draft', 'future', 'publish', 'private'])) {
@@ -66,6 +46,53 @@ class StatusEditUI
                 $tabs['roles'] = __('Roles', 'publishpress-statuses');
             }
         }
+        return $tabs;
+    }
+
+    public static function getAssignablePostTypes()
+    {
+        $types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');
+
+        $omit_types = ['nav_menu', 'attachment', 'revision', 'wp_navigation', 'wp_block']; // @todo: review block, navigation filtering
+
+        $custom_status_post_types = \PublishPress_Statuses::instance()->options->post_types;
+        $custom_status_post_types = array_filter($custom_status_post_types);
+        $types = array_intersect_key($types, $custom_status_post_types);
+
+        $types = array_diff_key($types, array_fill_keys((array)$omit_types, true));
+
+        return $types;
+    }
+
+    public static function roleAssignmentLocked($name, $role)
+    {
+        return $name === 'administrator' || !empty($role->capabilities['pp_administer_content']) || !empty($role->capabilities['pp_moderate_any']);
+    }
+
+    public static function display($args = []) {
+        $action = (!empty($args['action'])) ? $args['action'] : 'edit-status';
+
+        // Check whether the term exists
+        $name = \PP_Statuses_Functions::REQUEST_key('name');
+
+        if (!$status = \PublishPress_Statuses::getStatusBy('id', $name)) {
+            echo '<div class="error"><p>' . esc_html(\PublishPress_Statuses::instance()->messages['status-missing']) . '</p></div>';
+            return;
+        }
+
+        $url_args = ['action' => 'statuses'];
+
+        if ($status_type = \PP_Statuses_Functions::REQUEST_key('status_type')) {
+            $url_args['status_type'] = $status_type;
+        }
+
+        $url = apply_filters(
+            'publishpress_statuses_edit_status_url',
+            \PublishPress_Statuses::getLink($url_args),
+            $status
+        );
+
+        $tabs = self::getPropertyTabs($status);
         ?>
         <div class='pp-edit-status-back'>
             <?php if (!empty($tabs['labels']) && ('edit-status' == $action)) :
@@ -266,29 +293,8 @@ class StatusEditUI
 
         $display = ($default_tab == 'name') ? '' : 'display:none';
 
-        $label_locked = false;
-
-        if (!empty($status_obj)) {
-            $label_storage = \PublishPress_Statuses::instance()->options->label_storage;
-
-            switch ($label_storage) {
-                case 'user':
-                    if (!empty($status_obj->pp_builtin) || !empty($status_obj->_builtin)
-                    || in_array($name, ['draft', 'pending', 'publish', 'private', 'future'])
-                    ) {
-                        $label_locked = true;
-                    }
-
-                    break;
-
-                default:
-                    if ((!empty($status_obj->_builtin) && ('pending' != $name))
-                    || in_array($name, ['draft', 'publish', 'private', 'future'])
-                    ) {
-                        $label_locked = true;
-                    }
-            }
-        }
+        require_once __DIR__ . '/StatusHandler.php';
+        $label_locked = $status_obj && !\PublishPress_Statuses\StatusHandler::canCustomizeLabels($status_obj);
         ?>
         <div id="pp-name" class="pp-options">
         <table class="form-table" style="<?php echo esc_attr($display);?>">
@@ -442,7 +448,7 @@ class StatusEditUI
                                 $role = get_role($role_name);
                                 $cap_name = str_replace('-', '_', "status_change_{$status->name}");
 
-                                $is_administrator = ('administrator' == $role_name) || !empty($role->capabilities['pp_administer_content']) || !empty($role->capabilities['pp_moderate_any']);
+                                $is_administrator = self::roleAssignmentLocked($role_name, $role);
                                 $can_set_status = $is_administrator || !empty($role->capabilities[$cap_name]);
                         ?>
                                 <div>
@@ -514,15 +520,7 @@ class StatusEditUI
                 <td role="group" aria-labelledby="pp-post-types-label">
 
                 <?php
-                $types = get_post_types(['public' => true, 'show_ui' => true], 'object', 'or');
-
-                $omit_types = ['nav_menu', 'attachment', 'revision', 'wp_navigation', 'wp_block']; // @todo: review block, navigation filtering
-
-                $custom_status_post_types = \PublishPress_Statuses::instance()->options->post_types;
-                $custom_status_post_types = array_filter($custom_status_post_types);
-                $types = array_intersect_key($types, $custom_status_post_types);
-
-                $types = array_diff_key($types, array_fill_keys((array)$omit_types, true));
+                $types = self::getAssignablePostTypes();
 
                 $enabled_types = (!empty($status_obj->post_type)) ? $status_obj->post_type : [];
 
