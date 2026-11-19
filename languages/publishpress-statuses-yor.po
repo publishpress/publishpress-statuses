@@ -90,7 +90,7 @@ msgstr "Seto si %s"
 #: Admin.php:554 PostEditGutenberg.php:81 PostEditGutenberg.php:101
 #, php-format
 msgid "Save as %s"
-msgstr "Fipamọ akọpamọ"
+msgstr "Fipamọ bi %s"
 
 #. translators: %s is the name of a custom public status
 #: Admin.php:566
@@ -233,7 +233,7 @@ msgstr "Iwọn yii ti wa ni eto lọwọlọwọ"
 
 #: PostEditGutenberg.php:283
 msgid "Save Draft"
-msgstr "Fipamọ bi %s"
+msgstr "Fipamọ akọpamọ"
 
 #: PostEditGutenbergStatuses.php:160 StatusesUI.php:1341
 msgid "Workflow"
