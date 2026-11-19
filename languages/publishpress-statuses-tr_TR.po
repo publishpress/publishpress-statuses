@@ -1064,7 +1064,7 @@ msgstr ""
 
 #: StatusesUI.php:666
 msgid "Gutenberg / Classic Editor"
-msgstr "Durum Etiketi Özelleştirme"
+msgstr "Gutenberg / Klasik Düzenleyici"
 
 #: StatusesUI.php:675
 msgid "Automatic Detection"
@@ -1088,7 +1088,7 @@ msgstr ""
 
 #: StatusesUI.php:698
 msgid "Status Label Customization"
-msgstr "%s için varsayılan görünürlük"
+msgstr "Durum Etiketi Özelleştirme"
 
 #: StatusesUI.php:707
 msgid "For all plugin statuses"
