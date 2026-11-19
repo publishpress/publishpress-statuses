@@ -12,34 +12,35 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-09-01T04:42:50+00:00\n"
-"PO-Revision-Date: 2026-11-10 23:42+0000\n"
+"PO-Revision-Date: 2026-11-19 19:38+0000\n"
 "X-Generator: Weblate 2026.6.1\n"
 "X-Domain: publishpress-statuses\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language: id-ID\n"
 
-#: publishpress-statuses.php:5
+#: publishpress-statuses.php:3
 #. Plugin Name of the plugin
 msgid "PublishPress Statuses Free"
 msgstr "PublishPress Statuses Free"
 
-#: publishpress-statuses.php:7
+#: publishpress-statuses.php:4
 #. Plugin URI of the plugin
 msgid "https://publishpress.com/statuses"
 msgstr "https://publishpress.com/statuses"
 
-#: publishpress-statuses.php:9
+#: publishpress-statuses.php:5
 #. Description of the plugin
 msgid "Manage and create post statuses to customize your editorial workflow"
 msgstr "Kelola dan buat status pos untuk menyesuaikan alur kerja editorial Anda"
 
-#: publishpress-statuses.php:13
+#: publishpress-statuses.php:7
+#: Mcp/bootstrap.php:17
 #: publishpress-module/ModuleAdminUI_Base.php:127
 #. Author of the plugin
 msgid "PublishPress"
 msgstr "PublishPress"
 
-#: publishpress-statuses.php:15
+#: publishpress-statuses.php:8
 #. Author URI of the plugin
 msgid "https://publishpress.com/"
 msgstr "https://publishpress.com/"
@@ -47,9 +48,9 @@ msgstr "https://publishpress.com/"
 #: Admin.php:22
 #: Admin.php:527
 #: Admin.php:528
-#: PublishPress_Statuses.php:504
-#: PublishPress_Statuses.php:505
-#: StatusEditUI.php:77
+#: PublishPress_Statuses.php:507
+#: PublishPress_Statuses.php:508
+#: StatusEditUI.php:104
 #: StatusesUI.php:94
 msgid "Statuses"
 msgstr "Status"
@@ -185,22 +186,22 @@ msgstr "%s bukan sub-status."
 
 #: Admin.php:538
 #: Admin.php:539
-#: StatusesUI.php:1212
+#: StatusesUI.php:1238
 msgid "Add New"
 msgstr "Tambahkan Baru"
 
 #: Admin.php:625
-#: PublishPress_Statuses.php:973
+#: PublishPress_Statuses.php:968
 msgid "Approve"
 msgstr "Setujui"
 
 #: Admin.php:627
-#: PublishPress_Statuses.php:943
+#: PublishPress_Statuses.php:938
 msgid "Assign"
 msgstr "Tetapkan"
 
 #: Admin.php:629
-#: PublishPress_Statuses.php:958
+#: PublishPress_Statuses.php:953
 msgid "Mark In Progress"
 msgstr "Tandai Sedang Berlangsung"
 
@@ -255,7 +256,7 @@ msgstr ""
 #: publishpress-module/ModuleAdminUI_Base.php:118
 #: publishpress-module/ModuleAdminUI_Base.php:120
 #: publishpress-module/ModuleAdminUI_Base.php:127
-#: StatusesUI.php:962
+#: StatusesUI.php:988
 #: StatusListTable.php:226
 #: StatusListTable.php:231
 #: StatusListTable.php:248
@@ -277,6 +278,254 @@ msgstr "Dokumentasi terperinci juga tersedia di situs web plugin."
 #: includes-core/PromoBanner.php:253
 msgid "View Knowledge Base"
 msgstr "Lihat Basis Pengetahuan"
+
+#: Mcp/Actions.php:88
+msgid "Statuses settings"
+msgstr "Pengaturan Status"
+
+#: Mcp/Actions.php:89
+msgid "Editorial status properties and labels"
+msgstr "Properti dan label status editorial"
+
+#: Mcp/Actions.php:90
+msgid "Main, alternate and disabled workflows"
+msgstr "Alur kerja utama, alternatif, dan dinonaktifkan"
+
+#: Mcp/Actions.php:91
+msgid "Roles allowed to assign statuses"
+msgstr "Peran yang diizinkan untuk menetapkan status"
+
+#: Mcp/Actions.php:92
+msgid "Post editorial workflow"
+msgstr "Alur kerja editorial pos"
+
+#: Mcp/Actions.php:93
+msgid "Custom visibility statuses"
+msgstr "Status visibilitas kustom"
+
+#: Mcp/Actions.php:94
+msgid "Status-specific content permissions"
+msgstr "Izin konten spesifik status"
+
+#: Mcp/Actions.php:95
+msgid "Revision status definitions"
+msgstr "Definisi status revisi"
+
+#: Mcp/Actions.php:96
+msgid "Import, backup, restore and reset"
+msgstr "Impor, cadangkan, pulihkan, dan reset"
+
+#: Mcp/Actions.php:97
+msgid "Inherited and descendant visibility conditions"
+msgstr "Kondisi visibilitas yang diwarisi dan keturunan"
+
+#: Mcp/Actions.php:98
+msgid "Revision approval and scheduling"
+msgstr "Persetujuan dan penjadwalan revisi"
+
+#: Mcp/Actions.php:99
+msgid "Notification workflows"
+msgstr "Alur kerja pemberitahuan"
+
+#: Mcp/Actions.php:265
+msgid "Unknown status."
+msgstr "Status tidak dikenal."
+
+#: Mcp/Actions.php:293
+msgid "An existing status cannot change taxonomy."
+msgstr "Status yang ada tidak dapat mengubah taksonomi."
+
+#: Mcp/Actions.php:307
+msgid "Supply a label and an unused nonnumeric status slug."
+msgstr "Berikan label dan slug status non-numerik yang tidak terpakai."
+
+#: Mcp/Actions.php:316
+#: StatusHandler.php:115
+msgid "Name conflicts with existing status. Please choose another."
+msgstr "Nama bertentangan dengan status yang ada. Silakan pilih yang lain."
+
+#: Mcp/Actions.php:330
+msgid ""
+"Choose a top-level moderation parent without creating a cycle or third "
+"nesting level."
+msgstr ""
+"Pilih induk moderasi tingkat atas tanpa membuat siklus atau tingkat "
+"bersarang ketiga."
+
+#: Mcp/Actions.php:365
+msgid ""
+"Native status authorization changed. Some changes may have been saved; read "
+"the status before retrying."
+msgstr ""
+"Otorisasi status asli telah berubah. Beberapa perubahan mungkin telah "
+"disimpan; baca status sebelum mencoba lagi."
+
+#: Mcp/Actions.php:498
+msgid "Retain the native section-marker order."
+msgstr "Pertahankan urutan penanda bagian asli."
+
+#: Mcp/Actions.php:501
+msgid "Retain every current status and section marker exactly once."
+msgstr "Pertahankan setiap status dan penanda bagian yang ada tepat satu kali."
+
+#: Mcp/Actions.php:504
+msgid "Keep statuses within the sections allowed by the native workflow editor."
+msgstr "Jaga status dalam bagian yang diizinkan oleh editor alur kerja asli."
+
+#: Mcp/Actions.php:631
+msgid "Select a native permission-inheritance choice from discovery."
+msgstr "Pilih pilihan pewarisan izin asli dari penemuan."
+
+#: Mcp/Actions.php:730
+msgid "Use native editing for post types without REST support."
+msgstr "Gunakan pengeditan asli untuk jenis pos tanpa dukungan REST."
+
+#: Mcp/Actions.php:734
+msgid "This post type uses a custom controller; use its native editor."
+msgstr "Jenis pos ini menggunakan pengontrol kustom; gunakan editor aslinya."
+
+#: Mcp/Actions.php:785
+msgid "A post may occur only once in a batch."
+msgstr "Sebuah pos hanya dapat terjadi sekali dalam satu batch."
+
+#: Mcp/Actions.php:813
+msgid "Only user-created statuses can be deleted through MCP."
+msgstr "Hanya status yang dibuat pengguna yang dapat dihapus melalui MCP."
+
+#: Mcp/Actions.php:819
+msgid "Move or remove child statuses before deleting their parent."
+msgstr "Pindahkan atau hapus status anak sebelum menghapus induknya."
+
+#: Mcp/Actions.php:822
+msgid "Choose the native deletion destination, Draft."
+msgstr "Pilih tujuan penghapusan asli, Draf."
+
+#: Mcp/Actions.php:826
+msgid "Remove native visibility conditions before deleting this status."
+msgstr "Hapus kondisi visibilitas asli sebelum menghapus status ini."
+
+#: Mcp/Actions.php:839
+msgid ""
+"Revision records still use this definition. Use the native revision "
+"workflow."
+msgstr ""
+"Rekaman revisi masih menggunakan definisi ini. Gunakan alur kerja revisi "
+"asli."
+
+#: Mcp/Actions.php:842
+msgid "Use native administration for this deletion."
+msgstr "Gunakan administrasi asli untuk penghapusan ini."
+
+#: Mcp/Actions.php:858
+msgid "Use native administration to reassign posts with visibility locks."
+msgstr ""
+"Gunakan administrasi asli untuk menetapkan ulang pos dengan kunci "
+"visibilitas."
+
+#: Mcp/bootstrap.php:17
+msgid "PublishPress plugin actions."
+msgstr "Tindakan plugin PublishPress."
+
+#: Mcp/Registry.php:42
+msgid "Use the exact fields, types and choices returned by discovery."
+msgstr ""
+"Gunakan bidang, tipe, dan pilihan yang tepat yang dikembalikan oleh "
+"penemuan."
+
+#: Mcp/Registry.php:47
+msgid "You do not have permission to use this Statuses operation."
+msgstr "Anda tidak memiliki izin untuk menggunakan operasi Status ini."
+
+#: Mcp/Registry.php:93
+#, php-format
+msgid "Invalid JSON type at %s."
+msgstr "Tipe JSON tidak valid di %s."
+
+#: Mcp/Registry.php:181
+msgid ""
+"Statuses could not complete this operation. Inspect the current state "
+"before retrying; some changes may have been saved."
+msgstr ""
+"Status tidak dapat menyelesaikan operasi ini. Periksa keadaan saat ini "
+"sebelum mencoba lagi; beberapa perubahan mungkin telah disimpan."
+
+#: Mcp/Registry.php:213
+msgid "This object changed. Read it again before saving."
+msgstr "Objek ini telah berubah. Baca lagi sebelum menyimpan."
+
+#: Mcp/Registry.php:218
+msgid ""
+"The operation could not be fully confirmed. Read the object before "
+"retrying; some changes may have been saved."
+msgstr ""
+"Operasi tidak dapat dikonfirmasi sepenuhnya. Baca objek sebelum mencoba "
+"lagi; beberapa perubahan mungkin telah disimpan."
+
+#: Mcp/Settings.php:20
+msgid "Use on these Post Types"
+msgstr "Gunakan pada Jenis Pos ini"
+
+#: Mcp/Settings.php:21
+msgid "Workflow Guidance"
+msgstr "Panduan Alur Kerja"
+
+#: Mcp/Settings.php:22
+msgid "Manual Status Selection: hide selectors"
+msgstr "Pemilihan Status Manual: sembunyikan pemilih"
+
+#: Mcp/Settings.php:23
+msgid "Hide unrelated sub-statuses"
+msgstr "Sembunyikan sub-status yang tidak terkait"
+
+#: Mcp/Settings.php:24
+msgid "Add new statuses to Main Workflow"
+msgstr "Tambahkan status baru ke Alur Kerja Utama"
+
+#: Mcp/Settings.php:25
+msgid "Default Visibility Status"
+msgstr "Status Visibilitas Default"
+
+#: Mcp/Settings.php:26
+msgid "Lock default visibility by post type"
+msgstr "Kunci visibilitas default berdasarkan post type"
+
+#: Mcp/Settings.php:27
+msgid "Lock publication visibility"
+msgstr "Kunci visibilitas publikasi"
+
+#: Mcp/Settings.php:28
+msgid "Pending Review: available to specified roles only"
+msgstr "Tunggu Tinjauan: tersedia hanya untuk peran yang ditentukan"
+
+#: Mcp/Settings.php:29
+#: StatusesUI.php:717
+msgid "Gutenberg / Classic Editor"
+msgstr "Gutenberg / Editor Klasik"
+
+#: Mcp/Settings.php:30
+#: StatusesUI.php:749
+msgid "Status Label Customization"
+msgstr "Kustomisasi Label Status"
+
+#: Mcp/Settings.php:33
+msgid "Custom Visibility"
+msgstr "Visibilitas Kustom"
+
+#: Mcp/Settings.php:35
+msgid "Custom Visibility Editing"
+msgstr "Pengeditan Visibilitas Kustom"
+
+#: Mcp/Settings.php:39
+msgid "Planner Integration"
+msgstr "Integrasi Perencana"
+
+#: Mcp/Settings.php:42
+msgid "Permissions Integration"
+msgstr "Integrasi Izin"
+
+#: Mcp/Settings.php:138
+msgid "Settings permissions changed. Some changes may have been saved."
+msgstr "Izin pengaturan telah diubah. Beberapa perubahan mungkin telah disimpan."
 
 #: PostEditClassic.php:214
 #. translators: %s is a status name (screen reader announcement)
@@ -375,7 +624,7 @@ msgid "Save Draft"
 msgstr "Simpan Draf"
 
 #: PostEditGutenbergStatuses.php:162
-#: StatusesUI.php:1377
+#: StatusesUI.php:1403
 msgid "Workflow"
 msgstr "Alur Kerja"
 
@@ -463,7 +712,7 @@ msgstr ""
 "Untuk menggunakan PublishPress Statuses, harap tingkatkan PublishPress "
 "Capabilities Pro ke versi %s atau yang lebih tinggi."
 
-#: PublishPress_Statuses.php:466
+#: PublishPress_Statuses.php:469
 msgid ""
 "Can bypass normal status progression. User can publish immediately or move "
 "post to the furthest possible status."
@@ -471,165 +720,179 @@ msgstr ""
 "Dapat melewati progresi status normal. Pengguna dapat menerbitkan segera "
 "atau memindahkan postingan ke status yang paling jauh."
 
-#: PublishPress_Statuses.php:467
+#: PublishPress_Statuses.php:470
 msgid "Manage Statuses plugin settings."
 msgstr "Kelola pengaturan plugin Status."
 
-#: PublishPress_Statuses.php:472
+#: PublishPress_Statuses.php:475
 msgid "Can unpublish posts even if Visibility Status is locked."
 msgstr "Dapat membatalkan publikasi pos meskipun Status Visibilitas terkunci."
 
-#: PublishPress_Statuses.php:505, fuzzy
+#: PublishPress_Statuses.php:508, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: PublishPress_Statuses.php:520
+#: PublishPress_Statuses.php:523
 msgid "Core Post Statuses"
 msgstr "Status Pos Inti"
 
-#: PublishPress_Statuses.php:786
+#: PublishPress_Statuses.php:781
 msgid "New post, not yet submitted."
 msgstr "Pos baru, belum dikirim."
 
-#: PublishPress_Statuses.php:808
+#: PublishPress_Statuses.php:803
 msgid "Post is awaiting review."
 msgstr "Pos sedang menunggu tinjauan."
 
-#: PublishPress_Statuses.php:828
+#: PublishPress_Statuses.php:823
 msgid "Post is scheduled for publication."
 msgstr "Pos dijadwalkan untuk publikasi."
 
-#: PublishPress_Statuses.php:847
+#: PublishPress_Statuses.php:842
 msgid "Post is published, publicly visible."
 msgstr "Pos telah diterbitkan, terlihat oleh publik."
 
-#: PublishPress_Statuses.php:866
+#: PublishPress_Statuses.php:861
 msgid "Post is published with private visibility."
 msgstr "Pos telah diterbitkan dengan visibilitas pribadi."
 
-#: PublishPress_Statuses.php:926, fuzzy
+#: PublishPress_Statuses.php:921, fuzzy
 msgid "Pitch"
 msgstr "Pitch"
 
-#: PublishPress_Statuses.php:929
+#: PublishPress_Statuses.php:924
 msgid "Idea proposed; waiting for acceptance."
 msgstr "Ide yang diajukan; menunggu penerimaan."
 
-#: PublishPress_Statuses.php:941
+#: PublishPress_Statuses.php:936
 msgid "Assigned"
 msgstr "Ditugaskan"
 
-#: PublishPress_Statuses.php:944
+#: PublishPress_Statuses.php:939
 msgid "Post idea assigned to writer."
 msgstr "Ide pos ditugaskan kepada penulis."
 
-#: PublishPress_Statuses.php:956
+#: PublishPress_Statuses.php:951
 msgid "In Progress"
 msgstr "Dalam Proses"
 
-#: PublishPress_Statuses.php:959
+#: PublishPress_Statuses.php:954
 msgid "Writer is working on the post."
 msgstr "Penulis sedang mengerjakan pos tersebut."
 
-#: PublishPress_Statuses.php:971
+#: PublishPress_Statuses.php:966
 msgid "Approved"
 msgstr "Disetujui"
 
-#: PublishPress_Statuses.php:974
+#: PublishPress_Statuses.php:969
 msgid "Post has been approved for publication."
 msgstr "Pos telah disetujui untuk diterbitkan."
 
-#: PublishPress_Statuses.php:986
+#: PublishPress_Statuses.php:981
 msgid "Needs Work"
 msgstr "Perlu Pekerjaan"
 
-#: PublishPress_Statuses.php:988
+#: PublishPress_Statuses.php:983
 msgid "Set to Needs Work"
 msgstr "Atur menjadi Perlu Pekerjaan"
 
-#: PublishPress_Statuses.php:989
+#: PublishPress_Statuses.php:984
 msgid "Post needs work before further review."
 msgstr "Postingan perlu pekerjaan sebelum ditinjau lebih lanjut."
 
-#: PublishPress_Statuses.php:1001
+#: PublishPress_Statuses.php:996
 msgid "Rejected"
 msgstr "Ditolak"
 
-#: PublishPress_Statuses.php:1003
+#: PublishPress_Statuses.php:998
 msgid "Reject"
 msgstr "Tolak"
 
-#: PublishPress_Statuses.php:1004
+#: PublishPress_Statuses.php:999
 msgid "Post has been rejected."
 msgstr "Postingan telah ditolak."
 
-#: PublishPress_Statuses.php:1038
+#: PublishPress_Statuses.php:1033
 msgid "Alternate Pre-Publication Workflow:"
 msgstr "Alur Kerja Pra-Publikasi Alternatif:"
 
-#: PublishPress_Statuses.php:1133
+#: PublishPress_Statuses.php:1128
 msgid "Disabled Statuses:"
 msgstr "Status Dinonaktifkan:"
 
-#: PublishPress_Statuses.php:1149
+#: PublishPress_Statuses.php:1144
 msgid "Deferred"
 msgstr "Ditunda"
 
-#: PublishPress_Statuses.php:1151
+#: PublishPress_Statuses.php:1146
 msgid "Defer"
 msgstr "Tunda"
 
-#: PublishPress_Statuses.php:1152
+#: PublishPress_Statuses.php:1147
 msgid "Post has been deferred for future consideration."
 msgstr "Pos telah ditunda untuk pertimbangan di masa mendatang."
 
-#: PublishPress_Statuses.php:1164
+#: PublishPress_Statuses.php:1159
 msgid "Committee"
 msgstr "Komite"
 
-#: PublishPress_Statuses.php:1166
+#: PublishPress_Statuses.php:1161
 msgid "Refer to Committee"
 msgstr "Rujuk ke Komite"
 
-#: PublishPress_Statuses.php:1167
+#: PublishPress_Statuses.php:1162
 msgid "Post has been referred to committee."
 msgstr "Postingan telah dirujuk ke komite."
 
-#: PublishPress_Statuses.php:1180
+#: PublishPress_Statuses.php:1175
 msgid "Committee Review"
 msgstr "Tinjauan Komite"
 
-#: PublishPress_Statuses.php:1182
+#: PublishPress_Statuses.php:1177
 msgid "Set to Committee Review"
 msgstr "Atur ke Tinjauan Komite"
 
-#: PublishPress_Statuses.php:1183
+#: PublishPress_Statuses.php:1178
 msgid "Committee is reviewing the post."
 msgstr "Komite sedang meninjau postingan."
 
-#: PublishPress_Statuses.php:1196
+#: PublishPress_Statuses.php:1191
 msgid "Committee Progress"
 msgstr "Kemajuan Komite"
 
-#: PublishPress_Statuses.php:1198
+#: PublishPress_Statuses.php:1193
 msgid "Set to Committee Progress"
 msgstr "Atur ke Kemajuan Komite"
 
-#: PublishPress_Statuses.php:1199
+#: PublishPress_Statuses.php:1194
 msgid "Committee is editing the post."
 msgstr "Komite sedang mengedit postingan."
 
-#: PublishPress_Statuses.php:1212
+#: PublishPress_Statuses.php:1207
 msgid "Committee Approved"
 msgstr "Disetujui Komite"
 
-#: PublishPress_Statuses.php:1214
+#: PublishPress_Statuses.php:1209
 msgid "Set Committee Approval"
 msgstr "Atur Persetujuan Komite"
 
-#: PublishPress_Statuses.php:1215
+#: PublishPress_Statuses.php:1210
 msgid "Committee has approved the post."
 msgstr "Komite telah menyetujui postingan."
+
+#: PublishPress_Statuses.php:2732
+msgid ""
+"The new status could not be authorized. Inspect its current state before "
+"retrying."
+msgstr ""
+"Status baru tidak dapat diotorisasi. Periksa keadaan saat ini sebelum "
+"mencoba lagi."
+
+#: PublishPress_Statuses.php:2758
+#: StatusHandler.php:596
+#: StatusHandler.php:638
+msgid "Status permissions changed. Some changes may have been saved."
+msgstr "Izin status telah diubah. Beberapa perubahan mungkin telah disimpan."
 
 #: REST.php:121
 msgid "Sorry, you are not allowed to set this status."
@@ -639,37 +902,37 @@ msgstr "Maaf, Anda tidak diizinkan untuk mengatur status ini."
 msgid "Add New Status"
 msgstr "Tambah Status Baru"
 
-#: StatusEditUI.php:43
-#: StatusEditUI.php:52
+#: StatusEditUI.php:23
+#: StatusEditUI.php:32
 #: StatusListTable.php:977
 msgid "Labels"
 msgstr "Label"
 
-#: StatusEditUI.php:58
-#: StatusEditUI.php:508
+#: StatusEditUI.php:38
+#: StatusEditUI.php:514
 #: StatusListTable.php:173
 msgid "Post Types"
 msgstr "Tipe Postingan"
 
-#: StatusEditUI.php:66
+#: StatusEditUI.php:46
 #: StatusListTable.php:172
 msgid "Roles"
 msgstr "Peran"
 
-#: StatusEditUI.php:74
+#: StatusEditUI.php:101
 msgid "Edit Status Labels"
 msgstr "Edit Label Status"
 
-#: StatusEditUI.php:81
-#: StatusEditUI.php:251
+#: StatusEditUI.php:108
+#: StatusEditUI.php:278
 msgid "Update Status"
 msgstr "Perbarui Status"
 
-#: StatusEditUI.php:111
+#: StatusEditUI.php:138
 msgid "Post Access"
 msgstr "Akses Postingan"
 
-#: StatusEditUI.php:204
+#: StatusEditUI.php:231
 msgid ""
 "Enforce type-specific post capabilitities for this status, or share "
 "capabilities with another status."
@@ -677,124 +940,124 @@ msgstr ""
 "Terapkan kemampuan postingan khusus tipe untuk status ini, atau bagikan "
 "kemampuan dengan status lain."
 
-#: StatusEditUI.php:301, fuzzy
+#: StatusEditUI.php:307, fuzzy
 msgid "Slug"
 msgstr "Slug"
 
-#: StatusEditUI.php:313
+#: StatusEditUI.php:319
 msgid "The slug is the unique ID for the status."
 msgstr "Slug adalah ID unik untuk status."
 
-#: StatusEditUI.php:323
+#: StatusEditUI.php:329
 msgid "Color"
 msgstr "Warna"
 
-#: StatusEditUI.php:335
+#: StatusEditUI.php:341
 msgid "The color is used to identify the status."
 msgstr "Warna digunakan untuk mengidentifikasi status."
 
-#: StatusEditUI.php:341
+#: StatusEditUI.php:347
 #: StatusListTable.php:171
 msgid "Icon"
 msgstr "Ikon"
 
-#: StatusEditUI.php:358
+#: StatusEditUI.php:364
 msgid "Select Icon"
 msgstr "Pilih Ikon"
 
-#: StatusEditUI.php:364
+#: StatusEditUI.php:370
 msgid "The icon is used to visually represent the status."
 msgstr "Ikon digunakan untuk merepresentasikan status secara visual."
 
-#: StatusEditUI.php:425
+#: StatusEditUI.php:431
 msgid "The plugin action could not be completed. Please try again."
 msgstr "Tindakan plugin tidak dapat diselesaikan. Silakan coba lagi."
 
-#: StatusEditUI.php:432
+#: StatusEditUI.php:438
 msgid "Status Availability"
 msgstr "Ketersediaan Status"
 
-#: StatusEditUI.php:435
+#: StatusEditUI.php:441
 msgid "Choose which user roles can assign this status to a post."
 msgstr ""
 "Pilih peran pengguna mana yang dapat menetapkan status ini ke sebuah "
 "postingan."
 
-#: StatusEditUI.php:468
+#: StatusEditUI.php:474
 msgid "Administrators can always"
 msgstr "Administrator selalu dapat"
 
-#: StatusEditUI.php:469
+#: StatusEditUI.php:475
 msgid "assign this status."
 msgstr "menetapkan status ini."
 
-#: StatusEditUI.php:475
+#: StatusEditUI.php:481
 msgid "Roles with the"
 msgstr "Peran dengan"
 
-#: StatusEditUI.php:478
-#: StatusEditUI.php:480
-#: StatusEditUI.php:483
+#: StatusEditUI.php:484
+#: StatusEditUI.php:486
+#: StatusEditUI.php:489
 msgid "pp_moderate_any capability"
 msgstr "kemampuan pp_moderate_any"
 
-#: StatusEditUI.php:485
+#: StatusEditUI.php:491
 msgid "can always assign this status."
 msgstr "selalu dapat menetapkan status ini."
 
-#: StatusEditUI.php:488
+#: StatusEditUI.php:494
 msgid "Install the PublishPress Capabilities"
 msgstr "Instal PublishPress Capabilities"
 
-#: StatusEditUI.php:489
+#: StatusEditUI.php:495
 msgid "plugin to change this role's access."
 msgstr "plugin untuk mengubah akses peran ini."
 
-#: StatusEditUI.php:511
+#: StatusEditUI.php:517
 msgid "Choose which post types can be set to this status."
 msgstr "Pilih jenis pos mana yang dapat diatur ke status ini."
 
-#: StatusEditUI.php:548
+#: StatusEditUI.php:546
 msgid "All Post Types"
 msgstr "Semua Jenis Pos"
 
-#: StatusEditUI.php:598
+#: StatusEditUI.php:596
 msgid "Upgrade to choose who can manage posts in each status"
 msgstr "Tingkatkan untuk memilih siapa yang dapat mengelola pos di setiap status"
 
-#: StatusEditUI.php:601
+#: StatusEditUI.php:599
 msgid "Get PublishPress Statuses Pro for status-specific post access control."
 msgstr "Dapatkan PublishPress Statuses Pro untuk kontrol akses pos spesifik status."
 
-#: StatusEditUI.php:607
+#: StatusEditUI.php:605
 msgid "Control which roles can assign a status"
 msgstr "Kontrol peran mana yang dapat menetapkan status"
 
-#: StatusEditUI.php:610
+#: StatusEditUI.php:608
 msgid "Control which roles can edit or delete posts per-status"
 msgstr "Kontrol peran mana yang dapat mengedit atau menghapus pos per-status"
 
-#: StatusEditUI.php:613
+#: StatusEditUI.php:611
 msgid "Set capabilities separately for each post type"
 msgstr "Atur kemampuan secara terpisah untuk setiap jenis pos"
 
-#: StatusEditUI.php:616
+#: StatusEditUI.php:614
 msgid "User-friendly checkbox grid to assign capabilities"
 msgstr "Tata letak kotak centang yang ramah pengguna untuk menetapkan kemampuan"
 
-#: StatusEditUI.php:625
+#: StatusEditUI.php:623
 #: StatusListTable.php:685
 msgid "Get PublishPress Statuses Pro"
 msgstr "Dapatkan PublishPress Statuses Pro"
 
-#: StatusEditUI.php:630
+#: StatusEditUI.php:628
 #: StatusListTable.php:231
 #: StatusListTable.php:248
 #: StatusListTable.php:690
 msgid "Learn More"
 msgstr "Pelajari Lebih Lanjut"
 
-#: StatusEditUI.php:638
+#: StatusEditUI.php:636
 msgid ""
 "Post Access for this status cannot be customized until status-specific "
 "capability requirements are enabled."
@@ -802,28 +1065,28 @@ msgstr ""
 "Akses pos untuk status ini tidak dapat disesuaikan hingga persyaratan "
 "kemampuan khusus status diaktifkan."
 
-#: StatusEditUI.php:644
+#: StatusEditUI.php:642
 msgid "Status Capabilities"
 msgstr "Kemampuan Status"
 
-#: StatusEditUI.php:650
+#: StatusEditUI.php:648
 msgid "Require status-specific capabilities for post editing, deletion"
 msgstr "Membutuhkan kemampuan khusus status untuk pengeditan, penghapusan pos"
 
-#: StatusEditUI.php:668
+#: StatusEditUI.php:666
 msgid "Status Label"
 msgstr "Label Status"
 
-#: StatusEditUI.php:681
+#: StatusEditUI.php:679
 msgid "The name is used to identify the status. (Max: 20 characters)"
 msgstr "Nama digunakan untuk mengidentifikasi status. (Maks: 20 karakter)"
 
-#: StatusEditUI.php:691
+#: StatusEditUI.php:689
 #: StatusListTable.php:174
 msgid "Description"
 msgstr "Deskripsi"
 
-#: StatusEditUI.php:703
+#: StatusEditUI.php:701
 msgid ""
 "The description is primarily for administrative use, to give you some "
 "context on what the custom status is to be used for."
@@ -831,11 +1094,11 @@ msgstr ""
 "Deskripsi ini terutama untuk penggunaan administratif, untuk memberikan "
 "konteks tentang apa yang seharusnya digunakan untuk status kustom."
 
-#: StatusEditUI.php:716
+#: StatusEditUI.php:714
 msgid "Save As Label"
 msgstr "Simpan Sebagai Label"
 
-#: StatusEditUI.php:724
+#: StatusEditUI.php:722
 msgid "Submit Button Label"
 msgstr "Label Tombol Kirim"
 
@@ -866,7 +1129,7 @@ msgid "Add Status"
 msgstr "Tambahkan Status"
 
 #: StatusesUI.php:89
-#: StatusesUI.php:1353
+#: StatusesUI.php:1379
 msgid "PublishPress Statuses Settings"
 msgstr "Pengaturan Status PublishPress"
 
@@ -914,97 +1177,117 @@ msgid "Post status deleted."
 msgstr "Status pos dihapus."
 
 #: StatusesUI.php:228
-#: StatusHandler.php:880
+#: StatusHandler.php:828
 msgid "Status order updated."
 msgstr "Urutan status diperbarui."
 
-#: StatusesUI.php:252
-msgid "Use on these Post Types:"
-msgstr "Gunakan pada Jenis Pos ini:"
-
-#: StatusesUI.php:261
-msgid "Workflow Guidance:"
-msgstr "Panduan Alur Kerja:"
-
-#: StatusesUI.php:270
-msgid "Manual Status Selection:"
-msgstr "Pemilihan Status Manual:"
-
-#: StatusesUI.php:279
-msgid "New Status Position:"
-msgstr "Posisi Status Baru:"
-
-#: StatusesUI.php:289
-msgid "Custom Visibility:"
-msgstr "Visibilitas Kustom:"
-
-#: StatusesUI.php:299
-msgid "Default Visibility Status:"
-msgstr "Status Visibilitas Default:"
-
-#: StatusesUI.php:309
-msgid "Custom Visibility Editing:"
-msgstr "Pengeditan Visibilitas Kustom:"
-
-#: StatusesUI.php:321
-msgid "Pending Review Status:"
-msgstr "Status Menunggu Tinjauan:"
-
-#: StatusesUI.php:331
-msgid "Planner Integration:"
-msgstr "Integrasi Perencana:"
-
-#: StatusesUI.php:342
-msgid "Permissions Integration:"
-msgstr "Integrasi Izin:"
-
-#: StatusesUI.php:352
-msgid "Gutenberg / Classic Editor:"
-msgstr "Gutenberg / Editor Klasik:"
-
-#: StatusesUI.php:361
-msgid "Status Label Customization:"
-msgstr "Kustomisasi Label Status:"
-
-#: StatusesUI.php:376
-msgid "Import Operation:"
-msgstr "Operasi Impor:"
-
-#: StatusesUI.php:387
-msgid "Backup / Restore:"
-msgstr "Cadangan / Pemulihan:"
-
-#: StatusesUI.php:417
-msgid "Supplemental Role of Editor covers custom statuses"
-msgstr "Peran tambahan Editor mencakup status kustom"
-
-#: StatusesUI.php:442
-msgid "Include custom statuses in Add New pop-up on Calendar"
-msgstr "Sertakan status kustom dalam jendela Tambah Baru di Kalender"
-
-#: StatusesUI.php:467
-msgid "Hide status selection dropdown from non-Administrators in Gutenberg editor"
-msgstr ""
-"Sembunyikan dropdown pemilihan status dari non-Administrator di editor "
-"Gutenberg"
-
-#: StatusesUI.php:494
+#: StatusesUI.php:243
 msgid "Sequence by default: Publish button defaults to next status in workflow"
 msgstr ""
 "Urutan secara default: Tombol Publikasikan secara default ke status "
 "berikutnya dalam alur kerja"
 
-#: StatusesUI.php:508
+#: StatusesUI.php:244
 msgid "Bypass by default: Publish button defaults to maximum available status"
 msgstr ""
 "Bypass secara default: Tombol Publikasikan secara default ke status "
 "maksimum yang tersedia"
 
-#: StatusesUI.php:522
+#: StatusesUI.php:245
 msgid "No workflow guidance"
 msgstr "Tidak ada panduan alur kerja"
 
-#: StatusesUI.php:567
+#: StatusesUI.php:249
+msgid "Automatic Detection"
+msgstr "Deteksi Otomatis"
+
+#: StatusesUI.php:250
+msgid "Using Classic Editor"
+msgstr "Menggunakan Editor Klasik"
+
+#: StatusesUI.php:251
+msgid "Using Gutenberg Editor"
+msgstr "Menggunakan Editor Gutenberg"
+
+#: StatusesUI.php:255
+msgid "For all plugin statuses"
+msgstr "Untuk semua status plugin"
+
+#: StatusesUI.php:256
+msgid "For user-created plugin statuses only"
+msgstr "Hanya untuk status plugin yang dibuat pengguna"
+
+#: StatusesUI.php:303
+msgid "Use on these Post Types:"
+msgstr "Gunakan pada Jenis Pos ini:"
+
+#: StatusesUI.php:312
+msgid "Workflow Guidance:"
+msgstr "Panduan Alur Kerja:"
+
+#: StatusesUI.php:321
+msgid "Manual Status Selection:"
+msgstr "Pemilihan Status Manual:"
+
+#: StatusesUI.php:330
+msgid "New Status Position:"
+msgstr "Posisi Status Baru:"
+
+#: StatusesUI.php:340
+msgid "Custom Visibility:"
+msgstr "Visibilitas Kustom:"
+
+#: StatusesUI.php:350
+msgid "Default Visibility Status:"
+msgstr "Status Visibilitas Default:"
+
+#: StatusesUI.php:360
+msgid "Custom Visibility Editing:"
+msgstr "Pengeditan Visibilitas Kustom:"
+
+#: StatusesUI.php:372
+msgid "Pending Review Status:"
+msgstr "Status Menunggu Tinjauan:"
+
+#: StatusesUI.php:382
+msgid "Planner Integration:"
+msgstr "Integrasi Perencana:"
+
+#: StatusesUI.php:393
+msgid "Permissions Integration:"
+msgstr "Integrasi Izin:"
+
+#: StatusesUI.php:403
+msgid "Gutenberg / Classic Editor:"
+msgstr "Gutenberg / Editor Klasik:"
+
+#: StatusesUI.php:412
+msgid "Status Label Customization:"
+msgstr "Kustomisasi Label Status:"
+
+#: StatusesUI.php:427
+msgid "Import Operation:"
+msgstr "Operasi Impor:"
+
+#: StatusesUI.php:438
+msgid "Backup / Restore:"
+msgstr "Cadangan / Pemulihan:"
+
+#: StatusesUI.php:468
+msgid "Supplemental Role of Editor covers custom statuses"
+msgstr "Peran tambahan Editor mencakup status kustom"
+
+#: StatusesUI.php:493
+msgid "Include custom statuses in Add New pop-up on Calendar"
+msgstr "Sertakan status kustom dalam jendela Tambah Baru di Kalender"
+
+#: StatusesUI.php:518
+msgid "Hide status selection dropdown from non-Administrators in Gutenberg editor"
+msgstr ""
+"Sembunyikan dropdown pemilihan status dari non-Administrator di editor "
+"Gutenberg"
+
+#: StatusesUI.php:618
 msgid ""
 "Hide sub-statuses in the dropdown unless the post is set to the parent "
 "status or a sibling"
@@ -1012,7 +1295,7 @@ msgstr ""
 "Sembunyikan sub-status dalam dropdown kecuali pos diatur ke status induk "
 "atau saudara"
 
-#: StatusesUI.php:573
+#: StatusesUI.php:624
 msgid ""
 "Sub-statuses may be nested below any top-level status. They function as "
 "branches in the Main Workflow or in an Alternate Workflow."
@@ -1021,19 +1304,19 @@ msgstr ""
 "berfungsi sebagai cabang dalam Alur Kerja Utama atau dalam Alur Kerja "
 "Alternatif."
 
-#: StatusesUI.php:610
+#: StatusesUI.php:661
 msgid "Add new statuses to Main Workflow by default"
 msgstr "Tambahkan status baru ke Alur Kerja Utama secara default"
 
-#: StatusesUI.php:629
+#: StatusesUI.php:680
 msgid "Available to all users"
 msgstr "Tersedia untuk semua pengguna"
 
-#: StatusesUI.php:630
+#: StatusesUI.php:681
 msgid "Available to specified roles only"
 msgstr "Tersedia hanya untuk peran yang ditentukan"
 
-#: StatusesUI.php:636
+#: StatusesUI.php:687
 msgid ""
 "Users can only assign a custom status to a post if their role allows it. "
 "With the current setting, the same control is applied to the Pending Review "
@@ -1043,7 +1326,7 @@ msgstr ""
 "mengizinkannya. Dengan pengaturan saat ini, kontrol yang sama diterapkan "
 "pada status Tunda Tinjauan."
 
-#: StatusesUI.php:638
+#: StatusesUI.php:689
 msgid ""
 "Users can only assign a custom status to a post if their role allows it. "
 "With the current setting, those limitations will not be applied for the "
@@ -1053,29 +1336,13 @@ msgstr ""
 "mengizinkannya. Dengan pengaturan saat ini, batasan tersebut tidak akan "
 "diterapkan untuk status Tunda Tinjauan."
 
-#: StatusesUI.php:647
+#: StatusesUI.php:698
 #. translators: %1$s and %2$s are link markup
 #, php-format
 msgid "View or set roles at %1$s Statuses > Statuses > Pending Review > Roles %2$s"
 msgstr "Lihat atau atur peran di %1$s Status > Status > Tunda Tinjauan > Peran %2$s"
 
-#: StatusesUI.php:666
-msgid "Gutenberg / Classic Editor"
-msgstr "Gutenberg / Editor Klasik"
-
-#: StatusesUI.php:675
-msgid "Automatic Detection"
-msgstr "Deteksi Otomatis"
-
-#: StatusesUI.php:676
-msgid "Using Classic Editor"
-msgstr "Menggunakan Editor Klasik"
-
-#: StatusesUI.php:677
-msgid "Using Gutenberg Editor"
-msgstr "Menggunakan Editor Gutenberg"
-
-#: StatusesUI.php:682
+#: StatusesUI.php:733
 msgid ""
 "If custom statuses in the post editor are not loaded correctly, prevent "
 "incorrect detection of editor by specifying it here."
@@ -1083,19 +1350,7 @@ msgstr ""
 "Jika status kustom di editor pos tidak dimuat dengan benar, cegah deteksi "
 "editor yang salah dengan menentukannya di sini."
 
-#: StatusesUI.php:698
-msgid "Status Label Customization"
-msgstr "Kustomisasi Label Status"
-
-#: StatusesUI.php:707
-msgid "For all plugin statuses"
-msgstr "Untuk semua status plugin"
-
-#: StatusesUI.php:708
-msgid "For user-created plugin statuses only"
-msgstr "Hanya untuk status plugin yang dibuat pengguna"
-
-#: StatusesUI.php:713
+#: StatusesUI.php:765
 msgid ""
 "This controls which statuses can have their labels customized by editing "
 "Status properties. If a non-default entry is stored, it will override any "
@@ -1105,7 +1360,7 @@ msgstr ""
 "mengedit properti Status. Jika entri non-default disimpan, itu akan "
 "menggantikan string file bahasa mana pun."
 
-#: StatusesUI.php:767
+#: StatusesUI.php:808
 #. translators: %1$s is the post type name, %2$s is the pp_custom_statuses feature
 #, php-format
 msgid ""
@@ -1115,15 +1370,15 @@ msgstr ""
 "Dinonaktifkan karena add_post_type_support('%1$s', '%2$s') disertakan dalam "
 "file yang dimuat."
 
-#: StatusesUI.php:776
+#: StatusesUI.php:817
 msgid "Note: Post types can also be specified for each individual status."
 msgstr "Catatan: Jenis pos juga dapat ditentukan untuk setiap status individual."
 
-#: StatusesUI.php:801
+#: StatusesUI.php:842
 msgid "Enable custom Visibility Statuses"
 msgstr "Aktifkan Status Visibilitas Kustom"
 
-#: StatusesUI.php:826
+#: StatusesUI.php:867
 msgid ""
 "Posts with custom Visibility also require status-specific capabilities for "
 "editing"
@@ -1131,43 +1386,43 @@ msgstr ""
 "Pos dengan Visibilitas kustom juga memerlukan kemampuan spesifik status "
 "untuk diedit"
 
-#: StatusesUI.php:886
+#: StatusesUI.php:914
 #. translators: %s is a post type name
 #, php-format
 msgid "Default visibility for %s"
 msgstr "Visibilitas default untuk %s"
 
-#: StatusesUI.php:910
+#: StatusesUI.php:936
 #. translators: %s is a post type name
 #, php-format
 msgid "Lock default visibility for %s"
 msgstr "Kunci visibilitas default untuk %s"
 
-#: StatusesUI.php:912
+#: StatusesUI.php:938
 msgid "lock"
 msgstr "kunci"
 
-#: StatusesUI.php:939
+#: StatusesUI.php:965
 msgid "Locking also prevents posts from being unpublished"
 msgstr "Mengunci juga mencegah pos dari dibatalkan publikasinya"
 
-#: StatusesUI.php:949
+#: StatusesUI.php:975
 #, php-format
 msgid "This setting does not apply to %1$s Administrators%2$s."
 msgstr "Pengaturan ini tidak berlaku untuk %1$s Administrator%2$s."
 
-#: StatusesUI.php:950
+#: StatusesUI.php:976
 #, php-format
 msgid "You may assign a %1$s role capability %2$s to bypass this locking."
 msgstr ""
 "Anda dapat menetapkan %1$s kemampuan peran %2$s untuk melewati penguncian "
 "ini."
 
-#: StatusesUI.php:954
+#: StatusesUI.php:980
 msgid "This setting does not apply to Administrators."
 msgstr "Pengaturan ini tidak berlaku untuk Administrator."
 
-#: StatusesUI.php:959
+#: StatusesUI.php:985
 #, php-format
 msgid ""
 "If this setting is unchecked, the lock will only prevent selection of a "
@@ -1176,28 +1431,28 @@ msgstr ""
 "Jika pengaturan ini tidak dicentang, kunci hanya akan mencegah pemilihan "
 "status visibilitas yang berbeda. %1$s %2$s Lihat dokumentasi%3$s."
 
-#: StatusesUI.php:978
+#: StatusesUI.php:1004
 msgid "Import Operation"
 msgstr "Impor Operasi"
 
-#: StatusesUI.php:983
-#: StatusesUI.php:1045
+#: StatusesUI.php:1009
+#: StatusesUI.php:1071
 msgid "Select..."
 msgstr "Pilih..."
 
-#: StatusesUI.php:986
+#: StatusesUI.php:1012
 msgid "Re-run Planner import (with Status Control properties, ordering)"
 msgstr "Jalankan ulang impor Perencana (dengan properti Kontrol Status, pengurutan)"
 
-#: StatusesUI.php:987
+#: StatusesUI.php:1013
 msgid "Re-run Planner import (ignoring Status Control configuration)"
 msgstr "Jalankan ulang impor Perencana (mengabaikan konfigurasi Kontrol Status)"
 
-#: StatusesUI.php:989
+#: StatusesUI.php:1015
 msgid "Re-run Planner import"
 msgstr "Jalankan ulang impor Perencana"
 
-#: StatusesUI.php:995
+#: StatusesUI.php:1021
 msgid ""
 "Status color, icon and position is automatically imported from PublishPress "
 "Planner. Select an option above to re-run the import, giving priority to "
@@ -1207,100 +1462,100 @@ msgstr ""
 "Planner. Pilih opsi di atas untuk menjalankan ulang impor, memberi "
 "prioritas pada posisi status yang ditentukan oleh Perencana."
 
-#: StatusesUI.php:1040
+#: StatusesUI.php:1066
 msgid "Backup / Restore"
 msgstr "Cadangkan / Pulihkan"
 
-#: StatusesUI.php:1047
+#: StatusesUI.php:1073
 msgid "Back up current colors, icons, labels and post types"
 msgstr "Cadangkan warna, ikon, label, dan jenis pos saat ini"
 
-#: StatusesUI.php:1052
+#: StatusesUI.php:1078
 msgid "Restore backup of status colors"
 msgstr "Pulihkan cadangan warna status"
 
-#: StatusesUI.php:1056
+#: StatusesUI.php:1082
 msgid "Restore backup of status icons"
 msgstr "Pulihkan cadangan ikon status"
 
-#: StatusesUI.php:1060
+#: StatusesUI.php:1086
 msgid "Restore backup of status labels"
 msgstr "Pulihkan cadangan label status"
 
-#: StatusesUI.php:1064
+#: StatusesUI.php:1090
 msgid "Restore backup of status post types"
 msgstr "Pulihkan cadangan jenis pos status"
 
-#: StatusesUI.php:1070
+#: StatusesUI.php:1096
 msgid "Restore auto-backup of status colors"
 msgstr "Pulihkan cadangan otomatis warna status"
 
-#: StatusesUI.php:1074
+#: StatusesUI.php:1100
 msgid "Restore auto-backup of status icons"
 msgstr "Pulihkan cadangan otomatis ikon status"
 
-#: StatusesUI.php:1078
+#: StatusesUI.php:1104
 msgid "Restore auto-backup of status labels"
 msgstr "Pulihkan cadangan otomatis label status"
 
-#: StatusesUI.php:1082
+#: StatusesUI.php:1108
 msgid "Restore auto-backup of status post types"
 msgstr "Pulihkan cadangan otomatis jenis pos status"
 
-#: StatusesUI.php:1089
+#: StatusesUI.php:1115
 msgid "Use default status colors"
 msgstr "Gunakan warna status bawaan"
 
-#: StatusesUI.php:1093
+#: StatusesUI.php:1119
 msgid "Use default status icons"
 msgstr "Gunakan ikon status bawaan"
 
-#: StatusesUI.php:1097
+#: StatusesUI.php:1123
 msgid "Use default status labels"
 msgstr "Gunakan label status bawaan"
 
-#: StatusesUI.php:1101
+#: StatusesUI.php:1127
 msgid "Use default status post types"
 msgstr "Gunakan jenis pos status bawaan"
 
-#: StatusesUI.php:1105
+#: StatusesUI.php:1131
 msgid "Use Planner plugin's default status colors"
 msgstr "Gunakan warna status bawaan dari plugin Planner"
 
-#: StatusesUI.php:1109
+#: StatusesUI.php:1135
 msgid "Use Planner plugin's default status icons"
 msgstr "Gunakan ikon status bawaan dari plugin Planner"
 
-#: StatusesUI.php:1148
+#: StatusesUI.php:1174
 #. translators: %s is the status name
 #, fuzzy, php-format
 msgid "Edit Status: %s"
 msgstr "Edit Status: %s"
 
-#: StatusesUI.php:1151
+#: StatusesUI.php:1177
 #. translators: %s is the status name
 #, fuzzy, php-format
 msgid "Edit %1$s: %2$s"
 msgstr "Edit %1$s: %2$s"
 
-#: StatusesUI.php:1171
+#: StatusesUI.php:1197
 #. translators: %s is the status name
 #, php-format
 msgid "Edit Status Labels: %s"
 msgstr "Edit Label Status: %s"
 
-#: StatusesUI.php:1174
+#: StatusesUI.php:1200
 #. translators: %s is the status name
 #, php-format
 msgid "Edit %1$s Labels: %2$s"
 msgstr "Edit Label %1$s: %2$s"
 
-#: StatusesUI.php:1211
-#: StatusesUI.php:1339
+#: StatusesUI.php:1237
+#: StatusesUI.php:1365
 msgid "Add New Pre-Publication Status"
 msgstr "Tambahkan Status Prabuku Baru"
 
-#: StatusesUI.php:1227
+#: StatusesUI.php:1253
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid ""
@@ -1310,34 +1565,34 @@ msgstr ""
 "Untuk Status Visibilitas kustom, %1$supgrade ke PublishPress Statuses "
 "Pro%2$s."
 
-#: StatusesUI.php:1241
+#: StatusesUI.php:1267
 #. translators: %1$s and %2$s is link markup
 #, php-format
 msgid "Note: Custom Visibility Statuses are %1$sdisabled%2$s."
 msgstr "Catatan: Status Visibilitas kustom adalah %1$sdinonaktifkan%2$s."
 
-#: StatusesUI.php:1264
+#: StatusesUI.php:1290
 msgid "Pre-Publication"
 msgstr "Prabuku"
 
-#: StatusesUI.php:1272
-#: StatusesUI.php:1378
+#: StatusesUI.php:1298
+#: StatusesUI.php:1404
 msgid "Visibility"
 msgstr "Visibilitas"
 
-#: StatusesUI.php:1283
+#: StatusesUI.php:1309
 msgid "Revision"
 msgstr "Revisi"
 
-#: StatusesUI.php:1339
+#: StatusesUI.php:1365
 msgid "Add New Visibility Status"
 msgstr "Tambahkan Status Visibilitas Baru"
 
-#: StatusesUI.php:1343
+#: StatusesUI.php:1369
 msgid "This status can be assigned to customize post privacy."
 msgstr "Status ini dapat ditetapkan untuk menyesuaikan privasi pos."
 
-#: StatusesUI.php:1343
+#: StatusesUI.php:1369
 msgid ""
 "This status can be assigned to an unpublished post using the Post Status "
 "dropdown."
@@ -1345,108 +1600,118 @@ msgstr ""
 "Status ini dapat ditetapkan ke pos yang belum diterbitkan menggunakan "
 "dropdown Status Pos."
 
-#: StatusesUI.php:1374
+#: StatusesUI.php:1400
 msgid "Settings sections"
 msgstr "Bagian Pengaturan"
 
-#: StatusesUI.php:1379
+#: StatusesUI.php:1405
 msgid "Integration"
 msgstr "Integrasi"
 
-#: StatusesUI.php:1380, fuzzy
+#: StatusesUI.php:1406, fuzzy
 msgid "Editor"
 msgstr "Editor"
 
-#: StatusesUI.php:1381
+#: StatusesUI.php:1407
 msgid "Advanced"
 msgstr "Lanjutan"
 
-#: StatusesUI.php:1382
+#: StatusesUI.php:1408
 msgid "License"
 msgstr "Lisensi"
 
-#: StatusHandler.php:19
-#: StatusHandler.php:221
+#: StatusHandler.php:21
+#: StatusHandler.php:177
 msgid "Sorry, you do not have permission to edit custom statuses."
 msgstr "Maaf, Anda tidak memiliki izin untuk mengedit status kustom."
 
-#: StatusHandler.php:56
-#: StatusHandler.php:457
+#: StatusHandler.php:58
+#: StatusHandler.php:406
 msgid "Please enter a name for the status"
 msgstr "Silakan masukkan nama untuk status"
 
-#: StatusHandler.php:60
+#: StatusHandler.php:62
 msgid "Please enter a slug for the status"
 msgstr "Silakan masukkan slug untuk status"
 
-#: StatusHandler.php:67
-#: StatusHandler.php:462
+#: StatusHandler.php:69
+#: StatusHandler.php:411
 msgid "Please enter a valid, non-numeric name for the status."
 msgstr "Silakan masukkan nama yang valid dan tidak numerik untuk status."
 
-#: StatusHandler.php:84
-#: StatusHandler.php:481
+#: StatusHandler.php:86
+#: StatusHandler.php:430
 msgid "Status name cannot exceed 20 characters. Please try a shorter name."
 msgstr ""
 "Nama status tidak boleh melebihi 20 karakter. Silakan coba nama yang lebih "
 "pendek."
 
-#: StatusHandler.php:103
+#: StatusHandler.php:105
 msgid "Status slug cannot exceed 20 characters. Please try a shorter name."
 msgstr ""
 "Slug status tidak boleh melebihi 20 karakter. Silakan coba nama yang lebih "
 "pendek."
 
-#: StatusHandler.php:113
-msgid "Name conflicts with existing status. Please choose another."
-msgstr "Nama bertentangan dengan status yang ada. Silakan pilih yang lain."
-
-#: StatusHandler.php:120
+#: StatusHandler.php:122
 msgid "Status name is restricted. Please choose another name."
 msgstr "Nama status dibatasi. Silakan pilih nama lain."
 
-#: StatusHandler.php:144
+#: StatusHandler.php:146
 msgid "Could not add status: "
 msgstr "Tidak dapat menambahkan status: "
 
-#: StatusHandler.php:228
-#: StatusHandler.php:799
+#: StatusHandler.php:184
+#: StatusHandler.php:752
 msgid "Status does not exist."
 msgstr "Status tidak ada."
 
-#: StatusHandler.php:233
-#: StatusHandler.php:794
+#: StatusHandler.php:189
+#: StatusHandler.php:747
 msgid "Could not delete the status: "
 msgstr "Tidak dapat menghapus status: "
 
-#: StatusHandler.php:257
-#: StatusHandler.php:412
+#: StatusHandler.php:213
+#: StatusHandler.php:361
 msgid "Post status doesn't exist."
 msgstr "Status pos tidak ada."
 
-#: StatusHandler.php:390
+#: StatusHandler.php:339
 msgid "Error updating post status."
 msgstr "Kesalahan saat memperbarui status pos."
 
-#: StatusHandler.php:541
+#: StatusHandler.php:490
 msgid "Error updating post status labels."
 msgstr "Kesalahan memperbarui label status pos."
 
-#: StatusHandler.php:719
+#: StatusHandler.php:565
+msgid "Status metadata could not be authorized. Read before retrying."
+msgstr "Metadata status tidak dapat diotorisasi. Baca sebelum mencoba lagi."
+
+#: StatusHandler.php:669
 msgid "Cannot reassign to the status you want to delete"
 msgstr "Tidak dapat menetapkan ulang ke status yang ingin Anda hapus"
 
-#: StatusHandler.php:766
+#: StatusHandler.php:719
 msgid "Restricted status "
 msgstr "Status dibatasi "
 
-#: StatusHandler.php:796
+#: StatusHandler.php:749
 msgid "Status deleted"
 msgstr "Status dihapus"
 
-#: StatusHandler.php:821
+#: StatusHandler.php:774
 msgid "Status positions were not sent."
 msgstr "Posisi status tidak terkirim."
+
+#: StatusHandler.php:1074
+msgid "Post reassignment could not be confirmed."
+msgstr "Penugasan ulang pos tidak dapat dikonfirmasi."
+
+#: StatusHandler.php:1080
+msgid "Posts still use this status. Read the current state before retrying."
+msgstr ""
+"Pos masih menggunakan status ini. Baca keadaan saat ini sebelum mencoba "
+"lagi."
 
 #: StatusListTable.php:168
 msgid "Position"
@@ -1711,7 +1976,7 @@ msgstr "Lebih banyak informasi"
 msgid "Please use the PublishPress Statuses screen to manage statuses."
 msgstr "Silakan gunakan layar Status PublishPress untuk mengelola status."
 
-#: PublishPress_Statuses.php:928, fuzzy
+#: PublishPress_Statuses.php:923, fuzzy
 msgctxt "post action/button label"
 msgid "Pitch"
 msgstr "Pitch"
