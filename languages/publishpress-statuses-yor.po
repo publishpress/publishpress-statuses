@@ -232,8 +232,10 @@ msgid "This post is currently scheduled"
 msgstr "Iwọn yii ti wa ni eto lọwọlọwọ"
 
 #: PostEditGutenberg.php:283
+#, fuzzy
+#| msgid "Save as %s"
 msgid "Save Draft"
-msgstr "Fipamọ akọpamọ"
+msgstr "Fipamọ bi %s"
 
 #: PostEditGutenbergStatuses.php:160 StatusesUI.php:1341
 msgid "Workflow"
