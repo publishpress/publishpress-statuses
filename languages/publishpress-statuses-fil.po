@@ -239,8 +239,10 @@ msgid "This post is currently scheduled"
 msgstr "Ang post na ito ay kasalukuyang naka-schedule"
 
 #: PostEditGutenberg.php:283
+#, fuzzy
+#| msgid "Save as %s"
 msgid "Save Draft"
-msgstr "I-save ang burador"
+msgstr "I-save bilang %s"
 
 #: PostEditGutenbergStatuses.php:160 StatusesUI.php:1341
 msgid "Workflow"
