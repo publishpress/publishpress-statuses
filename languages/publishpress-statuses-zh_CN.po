@@ -1018,7 +1018,7 @@ msgstr "在 %1$s 状态 > 状态 > 待审核 > 角色 %2$s 查看或设置角色
 
 #: StatusesUI.php:666
 msgid "Gutenberg / Classic Editor"
-msgstr "状态标签自定义"
+msgstr "古腾堡 / 经典编辑器"
 
 #: StatusesUI.php:675
 msgid "Automatic Detection"
@@ -1040,7 +1040,7 @@ msgstr "如果帖子编辑器中的自定义状态未正确加载，请在此处
 
 #: StatusesUI.php:698
 msgid "Status Label Customization"
-msgstr "%s 的默认可见性"
+msgstr "状态标签自定义"
 
 #: StatusesUI.php:707
 msgid "For all plugin statuses"
