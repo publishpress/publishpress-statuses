@@ -95,7 +95,7 @@ msgstr "Itakda sa %s"
 #: Admin.php:554 PostEditGutenberg.php:81 PostEditGutenberg.php:101
 #, php-format
 msgid "Save as %s"
-msgstr "I-save ang burador"
+msgstr "I-save bilang %s"
 
 #. translators: %s is the name of a custom public status
 #: Admin.php:566
@@ -240,7 +240,7 @@ msgstr "Ang post na ito ay kasalukuyang naka-schedule"
 
 #: PostEditGutenberg.php:283
 msgid "Save Draft"
-msgstr "I-save bilang %s"
+msgstr "I-save ang burador"
 
 #: PostEditGutenbergStatuses.php:160 StatusesUI.php:1341
 msgid "Workflow"
