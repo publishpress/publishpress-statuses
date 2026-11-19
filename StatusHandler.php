@@ -774,7 +774,7 @@ class StatusHandler {
             self::printAjaxResponse('error', __('Status positions were not sent.', 'publishpress-statuses'));
         }
 
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The shared method sanitizes every position with sanitize_key.
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- The shared method sanitizes every position with sanitize_key.
         self::saveStatusPositions($_POST['status_positions']);
 
         // @todo: update 'publishpress_disabled_statuses' based on ordering relative to '_disabled'
@@ -962,7 +962,7 @@ class StatusHandler {
             }
 
             if (isset($_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name])) {
-                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Native field normalization is delegated to the shared sanitizer.
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Native field normalization is delegated to the shared sanitizer.
                 $value = self::sanitizeSetting($option_name, $_POST[\PublishPress_Statuses::SETTINGS_SLUG][$option_name]);
                 if ($option_name === 'privacy_statuses_enabled') {
                     update_option('presspermit_privacy_statuses_enabled', $value);
@@ -1065,7 +1065,7 @@ class StatusHandler {
             // MCP supplies the preauthorized scope. Never expand it to rows created concurrently.
             if ($authorized_posts) {
                 $placeholders = implode(',', array_fill(0, count($authorized_posts), '%d'));
-                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Fixed SQL plus generated integer placeholders; every value is prepared.
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Fixed SQL plus generated integer placeholders; every value is prepared.
                 $updated = $wpdb->query($wpdb->prepare("UPDATE $wpdb->posts SET post_status = %s WHERE post_status = %s AND ID IN ($placeholders)", array_merge([$new_status, $old_status], $authorized_posts)));
                 foreach ($authorized_posts as $id) {
                     clean_post_cache($id);
