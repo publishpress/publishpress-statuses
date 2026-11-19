@@ -22,17 +22,14 @@
     color: #655997;
 }
 
+/* :focus intentionally omitted so the WordPress focus ring (box-shadow) is not removed */
 .publishpress-admin-wrapper a:hover,
-.publishpress-admin-wrapper a:focus,
 .publishpress-admin-wrapper a:active,
 .publishpress-admin-wrapper a:hover div,
-.publishpress-admin-wrapper a:focus div,
 .publishpress-admin-wrapper a:active div,
 .publishpress-admin-wrapper a:hover p,
-.publishpress-admin-wrapper a:focus p,
 .publishpress-admin-wrapper a:active p,
 .publishpress-admin-wrapper a:hover .dashicons:before,
-.publishpress-admin-wrapper a:focus .dashicons:before,
 .publishpress-admin-wrapper a:active .dashicons:before {
     color: #5A4F87;
     -moz-box-shadow: none;
@@ -56,6 +53,12 @@
     margin-bottom: 0;
 }
 
+/* Visible focus for custom focusable controls (WCAG 2.4.7) */
+.publishpress-admin-wrapper a:focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: 0 0 0 2px #2271b1;
+}
+
 .publishpress-admin-wrapper .nav-tab-wrapper .nav-tab-active,
 .publishpress-admin-wrapper .nav-tab-wrapper .nav-tab:hover,
 .publishpress-admin-wrapper .nav-tab-wrapper .nav-tab:active,
@@ -76,7 +79,7 @@
 }
 
 .publishpress-admin-wrapper > footer * {
-    color: #777;
+    color: #50575e;
 }
 
 .publishpress-admin-wrapper > footer > nav ul {

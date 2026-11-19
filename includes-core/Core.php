@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress\Statuses;
 
+\defined('ABSPATH') || exit;
+
 class Core {
     function __construct() {
         global $publishpress_statuses_loaded_by_pro;

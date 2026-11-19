@@ -1,6 +1,8 @@
 <?php
 namespace PublishPress;
 
+\defined('ABSPATH') || exit;
+
 if (!class_exists('PublishPress\PPP_Module_Base')) {
     /**
      * PublishPress_Module

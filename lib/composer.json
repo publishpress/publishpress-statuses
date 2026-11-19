@@ -10,7 +10,7 @@
         "autoloader-suffix": "PublishPressStatuses"
     },
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.2",
         "ext-json": "*",
         "publishpress/instance-protection": "^1.0",
         "publishpress/wordpress-reviews": "^1.2.0",

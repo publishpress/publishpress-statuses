@@ -4,6 +4,8 @@ namespace PublishPress_Statuses;
 
 use PublishPress\WordPressReviews\ReviewsController;
 
+\defined('ABSPATH') || exit;
+
 class LibWordPressReviews
 {
     /**

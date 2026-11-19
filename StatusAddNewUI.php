@@ -1,4 +1,6 @@
 <?php
+
+defined('ABSPATH') || exit;
 /** Form for adding a new Custom Status term **/ 
 ?>
 

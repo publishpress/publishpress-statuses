@@ -45,18 +45,10 @@
 
     var ppRestoreElement = '';
 
-    function ppInitializeNestedStatusList() {
-        /**
-         * Instantiate the drag and drop sorting functionality
-         */
-        $('#the_status_list').nestedSortable({
-            items: '.page-row',
-            toleranceElement: '> .row',
-            placeholder: 'ui-sortable-placeholder',
-            tabSize: 56,
-            maxLevels: 2,
-            handle: '.handle',
-            isAllowed: function(placeholder, placeholderParent, currentItem){
+    /**
+     * Nesting / ordering rules, shared by drag-and-drop and the keyboard move buttons
+     */
+    var ppIsAllowed = function(placeholder, placeholderParent, currentItem){
                 // Don't allow a status to be dragged below Published / Private, or above Draft
                 var targetStatus = $(placeholderParent).prop('id');            
 
@@ -141,7 +133,7 @@
                         // Pending status cannot be moved out of Pre-Publication workflow
                         if ($(currentItem).attr('id') == 'status_row_pending') {
                             if (!$(placeholder.prop('previousElementSibling')).hasClass('moderation-status')
-                            && ($targetStatus != 'draft')
+                            && (targetStatus != 'draft')
                             ) {
                                 return false;
                             }
@@ -150,7 +142,21 @@
                 }
 
                 return true;
-            },
+            };
+
+
+    function ppInitializeNestedStatusList() {
+        /**
+         * Instantiate the drag and drop sorting functionality
+         */
+        $('#the_status_list').nestedSortable({
+            items: '.page-row',
+            toleranceElement: '> .row',
+            placeholder: 'ui-sortable-placeholder',
+            tabSize: 56,
+            maxLevels: 2,
+            handle: '.handle',
+            isAllowed: ppIsAllowed,
             start: function(e, ui){
 				ui.placeholder.height(ui.item.height());
 			},
@@ -167,33 +173,8 @@
 				//ppSyncNesting();
             },
             update: function (event, ui) {
-                //var affected_item = ui.item;
+                ppSyncItemClasses(ui.item);
 
-                if ($(ui.item).prev('li').hasClass('moderation-status')) {
-                    $(ui.item).addClass('moderation-status').find('ol li').addClass('moderation-status');
-                    $(ui.item).removeClass('alternate-moderation-status').find('ol li').removeClass('alternate-moderation-status');
-                    $(ui.item).removeClass('private-status').find('ol li').removeClass('private-status');
-                    $(ui.item).removeClass('disabled-status').find('ol li').removeClass('disabled-status');
-                }
-
-                if ($(ui.item).prev('li').hasClass('alternate-moderation-status')) {
-                    $(ui.item).addClass('alternate-moderation-status').find('ol li').addClass('alternate-moderation-status');
-                    $(ui.item).removeClass('moderation-status').find('ol li').removeClass('moderation-status');
-                    $(ui.item).removeClass('private-status').find('ol li').removeClass('private-status');
-                    $(ui.item).removeClass('disabled-status').find('ol li').removeClass('disabled-status');
-                }
-
-                if ($(ui.item).prev('li').hasClass('private-status')) {
-                    $(ui.item).removeClass('disabled-status').find('ol li').removeClass('disabled-status');
-                }
-
-                if ($(ui.item).prev('li').hasClass('disabled-status')) {
-                    $(ui.item).addClass('disabled-status').find('ol li').addClass('disabled-status');
-                }
-
-                var e = jQuery.Event('pp-status-update-item');
-                $('body').trigger(e, $(ui.item));
-                
                 $(ui.item).prop('style', '');
 
                 ppUpdateStatusPositions();
@@ -201,7 +182,99 @@
         });
     }
 
-    function ppUpdateStatusPositions() {
+    // Apply the section classes of the preceding row (shared by drag-and-drop and keyboard moves)
+    function ppSyncItemClasses(item) {
+        if ($(item).prev('li').hasClass('moderation-status')) {
+            $(item).addClass('moderation-status').find('ol li').addClass('moderation-status');
+            $(item).removeClass('alternate-moderation-status').find('ol li').removeClass('alternate-moderation-status');
+            $(item).removeClass('private-status').find('ol li').removeClass('private-status');
+            $(item).removeClass('disabled-status').find('ol li').removeClass('disabled-status');
+        }
+
+        if ($(item).prev('li').hasClass('alternate-moderation-status')) {
+            $(item).addClass('alternate-moderation-status').find('ol li').addClass('alternate-moderation-status');
+            $(item).removeClass('moderation-status').find('ol li').removeClass('moderation-status');
+            $(item).removeClass('private-status').find('ol li').removeClass('private-status');
+            $(item).removeClass('disabled-status').find('ol li').removeClass('disabled-status');
+        }
+
+        if ($(item).prev('li').hasClass('private-status')) {
+            $(item).removeClass('disabled-status').find('ol li').removeClass('disabled-status');
+        }
+
+        if ($(item).prev('li').hasClass('disabled-status')) {
+            $(item).addClass('disabled-status').find('ol li').addClass('disabled-status');
+        }
+
+        var e = jQuery.Event('pp-status-update-item');
+        $('body').trigger(e, $(item));
+    }
+
+    var ppL10n = (typeof objectL10ncustomstatus === 'object') ? objectL10ncustomstatus : {};
+
+    function ppString(key, fallback) {
+        return (ppL10n && ppL10n[key]) ? ppL10n[key] : fallback;
+    }
+
+    // Minimal sprintf: supports %s and %1$s placeholders
+    function ppFormat(str) {
+        var args = arguments, i = 0;
+
+        return String(str).replace(/%(\d+\$)?s/g, function (m, pos) {
+            i++;
+            var idx = pos ? parseInt(pos, 10) : i;
+            return (typeof args[idx] !== 'undefined') ? args[idx] : '';
+        });
+    }
+
+    function ppSpeak(message, politeness) {
+        if (message && window.wp && wp.a11y && typeof wp.a11y.speak === 'function') {
+            wp.a11y.speak(message, politeness || 'polite');
+        }
+    }
+
+    // Show a persistent (dismissible) notice. Returns the notice text for announcement.
+    function ppShowNotice(isSuccess, message, isText) {
+        $('.pp-float-notice').remove();
+
+        var notice = $('<div class="is-dismissible notice pp-float-notice"><p></p></div>').addClass(isSuccess ? 'notice-success' : 'notice-error');
+
+        if (isText) {
+            notice.find('p').text(message);
+        } else {
+            notice.find('p').html(message);
+        }
+
+        $('header > :first-child').before(notice);
+
+        // Let WordPress add the Dismiss button
+        $(document).trigger('wp-updates-notice-added');
+
+        return $.trim(notice.find('p').text());
+    }
+
+    function ppRowLabel(row) {
+        var nameCell = $(row).children('.row').find('td.name strong').first();
+        var link = nameCell.find('a').first();
+
+        return $.trim(link.length ? link.text() : nameCell.text());
+    }
+
+    function ppSectionLabel(row) {
+        var top = $(row).parentsUntil('#the_status_list').last();
+
+        if (!top.length) {
+            top = $(row);
+        }
+
+        var section = top.prevAll('li.section-row').filter(function () {
+            return $(this).css('display') != 'none';
+        }).first();
+
+        return $.trim(section.find('td.name strong').first().text()).replace(/:\s*$/, '');
+    }
+
+    function ppUpdateStatusPositions(announcement) {
         var statuses = [];
 
         $('#the_status_list li').each(function (index, value) {
@@ -223,49 +296,217 @@
 
         // Inform WordPress of our updated positions
         jQuery.post(ajaxurl, params, function (retval) {
-            $('.pp-float-notice').remove();
-
             // If there's a success message, print it. Otherwise we assume we received an error message
-            if (retval.status == 'success') {
-                var message = '<div class="is-dismissible notice pp-float-notice notice-success"><p>' + retval.message + '</p></div>';
+            var isSuccess = retval && (retval.status == 'success');
+            var text = ppShowNotice(isSuccess, (retval && retval.message) ? retval.message : ppString('error', 'Error'), !(retval && retval.message));
+
+            if (isSuccess) {
+                ppSpeak(announcement ? announcement + ' ' + text : text, 'polite');
             } else {
-                var message = '<div class="is-dismissible notice pp-float-notice notice-error"><p>' + retval.message + '</p></div>';
+                ppSpeak(text, 'assertive');
             }
-
-            $('header > :first-child').before(message);
-
-            $('.pp-float-notice').delay(1000).fadeOut(2000, function() {$(this).remove();});
         }).fail(function() {
-            var message = '<div class="is-dismissible pp-notice pp-float-notice notice-error"><p>Error</p></div>';
-
-            $('header > :first-child').before(message);
-            $('.pp-float-notice').delay(1000).fadeOut(2000, function() {$(this).remove();});
+            ppSpeak(ppShowNotice(false, ppString('error', 'Error'), true), 'assertive');
         });
     }
 
+    // Move focus to the nearest remaining status after a row is removed
+    function ppFocusAfterRemoval(row) {
+        var rowEl = $(row)[0];
+
+        var rows = $('#the_status_list li.page-row:visible').not('.section-row').filter(function () {
+            return (this !== rowEl) && !$.contains(rowEl, this) && $(this).children('.row').find('td.name strong a').length;
+        });
+
+        var after = rows.filter(function () {
+            return rowEl.compareDocumentPosition(this) & 4; // Node.DOCUMENT_POSITION_FOLLOWING
+        }).first();
+
+        var target = after.length ? after : rows.last();
+        var link = target.children('.row').find('td.name strong a').first();
+
+        if (link.length) {
+            link.trigger('focus');
+        } else {
+            $('.publishpress-admin-wrapper header h1').first().attr('tabindex', '-1').trigger('focus');
+        }
+    }
+
+    // Check a candidate position against the drag-and-drop rules
+    function ppCheckAllowed(placeholder, parentItem, item) {
+        var result = false;
+
+        try {
+            result = ppIsAllowed(placeholder, (parentItem && parentItem.length) ? parentItem : undefined, item);
+        } catch (err) {
+            result = false;
+        }
+
+        return result !== false;
+    }
+
+    function ppVisibleRows(rows) {
+        return rows.filter(function () {
+            return $(this).css('display') != 'none';
+        });
+    }
+
+    /**
+     * Keyboard alternative to drag-and-drop: move up / down, indent (make sub-status), outdent
+     */
+    function ppKeyboardMove(button) {
+        var item = $(button).closest('li.page-row');
+        var direction = $(button).attr('data-move');
+        var label = ppRowLabel(item);
+        var parentList = item.parent();
+        var isNested = !parentList.is('#the_status_list');
+        var parentItem = isNested ? parentList.closest('li.page-row') : $();
+        var placeholder = $('<li class="pp-keyboard-placeholder"></li>');
+        var allowed = false;
+        var target, message = '', failMessage = '';
+
+        switch (direction) {
+            case 'up':
+                failMessage = ppFormat(ppString('cannotMoveUp', '%s cannot be moved up.'), label);
+                target = ppVisibleRows(item.prevAll('li.page-row')).first();
+
+                if (target.length) {
+                    placeholder.insertBefore(target);
+
+                    // When crossing a section header, keep its drop zones together with it
+                    if (!isNested && target.hasClass('section-row')) {
+                        while (placeholder.prev('li.ui-temp-placeholder').length) {
+                            placeholder.insertBefore(placeholder.prev());
+                        }
+                    }
+
+                    allowed = ppCheckAllowed(placeholder, parentItem, item);
+                }
+                break;
+
+            case 'down':
+                failMessage = ppFormat(ppString('cannotMoveDown', '%s cannot be moved down.'), label);
+                target = ppVisibleRows(item.nextAll('li.page-row')).first();
+
+                if (target.length) {
+                    placeholder.insertAfter(target);
+
+                    if (!isNested && target.hasClass('section-row')) {
+                        while (placeholder.next('li.ui-temp-placeholder').length) {
+                            placeholder.insertAfter(placeholder.next());
+                        }
+                    }
+
+                    allowed = ppCheckAllowed(placeholder, parentItem, item);
+                }
+                break;
+
+            case 'indent':
+                failMessage = ppFormat(ppString('cannotIndent', '%s cannot be made a sub-status here.'), label);
+                target = ppVisibleRows(item.prevAll('li.page-row')).first();
+
+                // Same limits as dragging: two levels maximum, no section header as parent
+                if (!isNested && target.length && !target.hasClass('section-row')
+                && !item.children('ol').children('li.page-row').length
+                ) {
+                    allowed = ppCheckAllowed(placeholder, target, item);
+                }
+                break;
+
+            case 'outdent':
+                failMessage = ppFormat(ppString('cannotOutdent', '%s is not a sub-status.'), label);
+
+                if (isNested && parentItem.length) {
+                    placeholder.insertAfter(parentItem);
+                    allowed = ppCheckAllowed(placeholder, $(), item);
+                }
+                break;
+        }
+
+        if (!allowed) {
+            placeholder.remove();
+            ppSpeak(failMessage, 'assertive');
+            return;
+        }
+
+        if ('indent' == direction) {
+            placeholder.remove();
+
+            var childList = target.children('ol');
+
+            if (!childList.length) {
+                childList = $('<ol class="pp-nested-list" style="display: block"></ol>').appendTo(target);
+            } else {
+                childList.addClass('pp-nested-list').show();
+            }
+
+            childList.append(item);
+            message = ppFormat(ppString('indented', '%1$s is now a sub-status of %2$s.'), label, ppRowLabel(target));
+        } else {
+            placeholder.replaceWith(item);
+
+            if (isNested && !parentList.children('li.page-row').length) {
+                parentList.remove();
+            }
+
+            var section = ppSectionLabel(item);
+
+            if ('outdent' == direction) {
+                message = ppFormat(ppString('outdented', '%1$s is no longer a sub-status. Now in %2$s.'), label, section);
+            } else if ('up' == direction) {
+                message = ppFormat(ppString('movedUp', '%1$s moved up in %2$s.'), label, section);
+            } else {
+                message = ppFormat(ppString('movedDown', '%1$s moved down in %2$s.'), label, section);
+            }
+        }
+
+        ppSyncItemClasses(item);
+        ppSetNestedMargins();
+
+        // Moving a node drops focus; keep it on the control that was used
+        $(button).trigger('focus');
+
+        ppUpdateStatusPositions(message);
+    }
+
     $(document).ready(function () {
-        $('.delete-status a').on('click', function () {
+        // Confirm before deleting. Returning false here stops the delete handler on the parent span.
+        $('#the_status_list td.name span.delete a').on('click', function () {
             if (!confirm(objectL10ncustomstatus.pp_confirm_delete_status_string))
                 return false;
         });
 
         ppInitializeNestedStatusList();
 
+        $('#the_status_list').on('click', 'button.pp-status-move', function (e) {
+            e.preventDefault();
+            ppKeyboardMove(this);
+        });
+
         $('#the_status_list td.name .disable').click(function() {
+            var row = $(this).closest('li.page-row');
+            var label = ppRowLabel(row);
+
             $(this).hide().closest('li.page-row').addClass('disabled-status').removeClass('moderation-status').removeClass('alternate-moderation-status').insertAfter($('#the_status_list > li.disabled-status:last'));
-            $(this).parent().find('span.enable').show();
-            ppUpdateStatusPositions();
+            $(this).parent().find('span.enable').show().find('a').trigger('focus');
+            ppUpdateStatusPositions(ppFormat(ppString('disabled', '%s disabled.'), label));
             return false;
         });
 
         $('#the_status_list td.name .enable').click(function() {
+            var row = $(this).closest('li.page-row');
+            var label = ppRowLabel(row);
+
             $(this).hide().closest('li.page-row').removeClass('disabled-status').addClass('moderation-status').insertAfter($('#the_status_list > li.main-section:visible:first'));
-            $(this).parent().find('span.disable').show();
-            ppUpdateStatusPositions();
+            $(this).parent().find('span.disable').show().find('a').trigger('focus');
+            ppUpdateStatusPositions(ppFormat(ppString('enabled', '%s enabled.'), label));
             return false;
         });
 
         $('#the_status_list td.name .delete').click(function() {
+            var row = $(this).closest('li.page-row');
+            var label = ppRowLabel(row);
+
             // Prepare the POST
             var params = {
                 action: 'pp_delete_custom_status',
@@ -275,20 +516,16 @@
 
             jQuery.post(ajaxurl, params, function (retval) {
                 // If there's a success message, print it. Otherwise we assume we received an error message
-                if (retval.status == 'success') {
-                    var message = '<div class="is-dismissible notice pp-float-notice notice-success"><p>' + retval.message + '</p></div>';
+                var isSuccess = retval && (retval.status == 'success');
+                var text = ppShowNotice(isSuccess, (retval && retval.message) ? retval.message : ppString('error', 'Error'), !(retval && retval.message));
+
+                if (isSuccess) {
+                    ppSpeak(ppFormat(ppString('deleted', '%s deleted.'), label) + ' ' + text, 'polite');
                 } else {
-                    var message = '<div class="is-dismissible notice pp-float-notice notice-error"><p>' + retval.message + '</p></div>';
+                    ppSpeak(text, 'assertive');
                 }
-
-                $('header > :first-child').before(message);
-
-                $('.pp-float-notice').delay(1000).fadeOut(2000, function() {$(this).remove();});
-
             }).fail(function() {
-                var message = '<div class="is-dismissible pp-notice pp-float-notice notice-error"><p>Error</p></div>';
-                $('header > :first-child').before(message);
-                $('.pp-float-notice').delay(1000).fadeOut(2000, function() {$(this).remove();});
+                ppSpeak(ppShowNotice(false, ppString('error', 'Error'), true), 'assertive');
             });
 
            // also delete status children
@@ -303,6 +540,9 @@
                 jQuery.post(ajaxurl, params, function (retval) {});
            });
            
+           // Move focus off the row before it is removed
+           ppFocusAfterRemoval(row);
+
            $(this).hide().closest('li.page-row').fadeOut(500);
            
            setTimeout(() => {

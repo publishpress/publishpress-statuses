@@ -29,33 +29,64 @@
     float: left;
 }
 
-.dashicon-picker-container ul li a {
+.dashicon-picker-container ul li a,
+.dashicon-picker-container ul li button {
     display: block;
+    margin: 0;
+    background: #fff;
+    cursor: pointer;
+    line-height: 1;
     text-decoration: none;
     color: #373737;
     padding: 5px 5px;
     border: 1px solid #dfdfdf;
 }
 
-.dashicon-picker-container ul li a:hover {
+.dashicon-picker-container ul li a:hover,
+.dashicon-picker-container ul li button:hover {
     border-color: #999;
     background: #efefef;
+}
+
+.dashicon-picker-container ul li button[aria-pressed="true"] {
+    border-color: #2271b1;
+    background: #f0f6fc;
+    box-shadow: inset 0 0 0 1px #2271b1;
+}
+
+.dashicon-picker-container button:focus-visible,
+.dashicon-picker-container input:focus-visible {
+    outline: 2px solid #2271b1;
+    outline-offset: 1px;
 }
 
 .dashicon-picker-control {
     height: 32px;
 }
 
-.dashicon-picker-control a {
+.dashicon-picker-control a,
+.dashicon-picker-control button {
     padding: 5px;
+    background: none;
+    border: 0;
+    color: #2271b1;
+    cursor: pointer;
+    vertical-align: middle;
     text-decoration: none;
     line-height: 32px;
     width: 25px;
 }
 
-.dashicon-picker-control a span {
+.dashicon-picker-control a span,
+.dashicon-picker-control button span {
     display: inline;
     vertical-align: middle;
+}
+
+.dashicon-picker-control button {
+    width: auto;
+    padding: 5px 2px;
+    line-height: 1;
 }
 
 .dashicon-picker-control input {
