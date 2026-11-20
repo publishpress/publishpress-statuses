@@ -9,6 +9,7 @@
 - .idea
 - .php-cs-fixer.cache
 - .phpcs-php-compatibility.xml
+- .phpcs-plugin-review.xml
 - .phpcs.xml
 - .phplint-cache
 - .phplint.yml
@@ -44,4 +45,3 @@
 - .ddev
 - tests
 - docs
-- .agents
