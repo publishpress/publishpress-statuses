@@ -231,7 +231,7 @@ var querySelectableStatuses = function(status, post_id) {
         $('div.publishpress-extended-post-status select option[value="publish"]').insertBefore('div.publishpress-extended-post-status select option[value="_"]');
       });
 
-      if (typeof (retval['params']) != 'undefined') {
+      if ('undefined' != typeof ppObjEdit && typeof (retval['params']) != 'undefined') {
         if (typeof (retval['params']['nextStatus']) != 'undefined') {
           ppObjEdit.nextStatus = retval['params']['nextStatus'];
         }
@@ -502,6 +502,11 @@ jQuery(document).ready(function ($) {
 setInterval(function () {
   $('div.editor-post-publish-panel__prepublish > div:not([class])').hide();
   $('div.editor-post-publish-panel__prepublish > p:not([class])').hide();
+
+  // Workflow guidance disabled: ppObjEdit is not localized
+  if ('undefined' == typeof ppObjEdit || ppObjEdit.workflowDisabled) {
+    return;
+  }
 
   var currentStatus = wp.data.select('core/editor').getCurrentPostAttribute(PPCustomStatuses.statusRestProperty);
   var currentStatusPublished = -1 !== PPCustomStatuses.publishedStatuses.indexOf(currentStatus);
@@ -809,7 +814,7 @@ wp.plugins.registerPlugin('publishpress-custom-status-block', {
   render: ppPlugin
 });
 
-if (!ppObjEdit.workflowDisabled) {
+if ('undefined' != typeof ppObjEdit && !ppObjEdit.workflowDisabled) {
 var PPWorkflowAction = function PPWorkflowAction(_ref) {
   var onUpdate = _ref.onUpdate,
     wfa = _ref.ppWorkflowAction;
